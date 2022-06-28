@@ -19,6 +19,17 @@ INSERT INTO [PERSONS]
 	('Трифон','Красимиров','Иванов',4,'Жк.Студентски град/Ул.Парижка комуна №8')
 
 
+INSERT INTO [PHONE_TYPES] 
+	(PHONE_TYPE) VALUES
+	('Home'),
+	('Mobile'),
+	('Work')
 
-
+INSERT INTO [PHONE_NUMBERS]
+	([PERSON_ID],[PHONE_NUMBER],[PHONE_TYPE_ID])
+	VALUES
+	(1,'0893668829',2),
+	(2,'0899628177',3),
+	(3,'0876351840',1),
+	(4,'0882183197',2)
 COMMIT TRANSACTION
