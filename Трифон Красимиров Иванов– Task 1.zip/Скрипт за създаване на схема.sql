@@ -1,5 +1,6 @@
 USE [PhoneBook]
 
+
 CREATE TABLE
 	[CITIES]
 	(
