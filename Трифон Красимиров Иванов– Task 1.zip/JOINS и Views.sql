@@ -10,7 +10,6 @@ CREATE VIEW [PERSON_DATA] AS
 			ON
 				[P_T].[ID] = [P_N].[PHONE_TYPE_ID])
 
-
 SELECT
 	[FIRST_NAME] AS [Име],
 	[LAST_NAME] AS [Фамилия],
