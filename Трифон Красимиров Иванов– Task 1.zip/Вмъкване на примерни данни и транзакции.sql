@@ -42,3 +42,17 @@ BEGIN TRANSACTION
 			COMMIT TRANSACTION
 		END
 
+--INSERT INTO [PERSONS]
+	--	([FIRST_NAME],[SECOND_NAME],[LAST_NAME],[CITY_ID],[ADDRESS])
+	--	VALUES
+	--	('Стоян','Николов','Георгиев',1,'Жк.Славейков/Ул "Любен Каравелов №42"')
+
+
+BEGIN TRANSACTION
+	UPDATE [PERSONS] SET [ADDRESS] =
+			'Жк.Славейков/Ул "Любен Каравелов №42"'
+	WHERE [ADDRESS]='Жк.Студентски град/Ул.Парижка комуна №8'
+SAVE TRANSACTION [CHANGE_PERSON_ADDRESS]
+
+DELETE [PERSONS] WHERE [ADDRESS] = 'Жк.Славейков/Ул "Любен Каравелов №42"'
+
