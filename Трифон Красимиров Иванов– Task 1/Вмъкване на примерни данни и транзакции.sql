@@ -38,12 +38,30 @@ BEGIN CATCH
 END CATCH
 
 
+--Exclusive Lock 
 BEGIN TRANSACTION
 	UPDATE [PERSONS] SET [ADDRESS] =
 			'Жк.Славейков/Ул "Любен Каравелов №42"'
 	WHERE [ADDRESS] = 
 			'Жк.Студентски град/Ул.Парижка комуна №8'
-SAVE TRANSACTION [CHANGE_PERSON_ADDRESS]
+	WAITFOR DELAY '00:00:10'
+COMMIT
+SELECT * FROM [PERSONS] WITH (NOLOCK) 
+
+SELECT * FROM [PERSONS]
+
+BEGIN TRANSACTION
+	UPDATE [PERSONS] SET [FIRST_NAME] ='Кирчо'
+	WHERE [ADDRESS] = 
+			'Жк.Студентски град/Ул.Парижка комуна №8'
+	WAITFOR DELAY '00:00:10'
+COMMIT
+
+SELECT * FROM [PERSONS]
+
+
+
+
 
 SELECT * FROM [PERSONS]
 
