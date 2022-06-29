@@ -46,16 +46,17 @@ BEGIN TRANSACTION
 			'Жк.Студентски град/Ул.Парижка комуна №8'
 	WAITFOR DELAY '00:00:10'
 COMMIT
-SELECT * FROM [PERSONS] WITH (NOLOCK) 
 
-SELECT * FROM [PERSONS]
+SELECT * FROM [PERSONS] WITH (NOLOCK) 
 
 BEGIN TRANSACTION
 	UPDATE [PERSONS] SET [FIRST_NAME] ='Кирчо'
 	WHERE [ADDRESS] = 
-			'Жк.Студентски град/Ул.Парижка комуна №8'
+			'Жк.Славейков/Ул "Любен Каравелов №42"'
 	WAITFOR DELAY '00:00:10'
 COMMIT
+
+SELECT * FROM [PERSONS] WITH (NOLOCK) 
 
 SELECT * FROM [PERSONS]
 
