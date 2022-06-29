@@ -2,28 +2,32 @@ USE [PhoneBook]
 
 --CREATE DATABASE [PhoneBook]
 
-IF OBJECT_ID ('PERSONS') IS NOT NULL
-BEGIN
-	ALTER TABLE  [PERSONS]
-	DROP CONSTRAINT IF EXISTS [FK_PERSONS_CITY_ID];
-END
+--IF OBJECT_ID ('PERSONS') IS NOT NULL
+--BEGIN
+--	ALTER TABLE  [PERSONS]
+--	DROP CONSTRAINT IF EXISTS [FK_PERSONS_CITY_ID];
+--END
 
 
-IF OBJECT_ID ('PHONE_NUMBERS') IS NOT NULL
-BEGIN
-	ALTER TABLE 	[PHONE_NUMBERS]
-	DROP CONSTRAINT IF EXISTS	[FK_PHONE_NUMBERS_PERSON_ID], 
-					[FK_PHONE_NUMBERS_PHONE_TYPE_ID];
-END
+--IF OBJECT_ID ('PHONE_NUMBERS') IS NOT NULL
+--BEGIN
+--	ALTER TABLE 	[PHONE_NUMBERS]
+--	DROP CONSTRAINT IF EXISTS	[FK_PHONE_NUMBERS_PERSON_ID], 
+--					[FK_PHONE_NUMBERS_PHONE_TYPE_ID];
+--END
 
 
+DROP TABLE IF EXISTS [PHONE_NUMBERS]
+DROP TABLE IF EXISTS [PERSONS]
 DROP TABLE IF EXISTS [CITIES]
+DROP TABLE IF EXISTS [PHONE_TYPES]
+
 CREATE TABLE
 	[CITIES]
 	(
 		[ID] INT IDENTITY (1,1) NOT NULL,
 		[UPDATE_COUNTER] INT NOT NULL,
-		[CITY_NAME] NVARCHAR(32)NOT NULL,
+		[CITY_NAME] NVARCHAR(32)NOT NULL UNIQUE,
 		[AREA_NAME] NVARCHAR(32)NOT NULL,
 		[POSTAL_CODE] INT NOT NULL,
 		CONSTRAINT [PK_CITIES_ID]
@@ -32,13 +36,41 @@ CREATE TABLE
 
 exec sp_AddExtendedProperty
 'MS_Description',
-'ID ->Уникален идентификатор на запис в таблицата',
+'Уникален идентификатор на запис в таблицата (32)бита',
 'SCHEMA', 'dbo',
 'TABLE', 'CITIES',
 'COLUMN', 'ID'
 
+exec sp_AddExtendedProperty
+'MS_Description',
+'Версия на ред (32)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'CITIES',
+'COLUMN', 'UPDATE_COUNTER'
 
-DROP TABLE IF EXISTS [PHONE_TYPES]
+exec sp_addextendedproperty
+'MS_Description',
+'Таблица съдържаща областите (512)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'CITIES',
+'COLUMN', 'CITY_NAME'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Таблица съдържаща градовете (512)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'CITIES',
+'COLUMN', 'AREA_NAME'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Таблица съдържаща пощенските кодове (32)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'CITIES',
+'COLUMN', 'POSTAL_CODE'
+
+
+
 CREATE TABLE
 	[PHONE_TYPES]
 	(
@@ -49,8 +81,27 @@ CREATE TABLE
 		PRIMARY KEY ([ID])
 	)
 
+exec sp_addextendedproperty
+'MS_Description',
+'Уникален идентификатор на запис в таблицата (32)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PHONE_TYPES',
+'COLUMN', 'ID'
 
-DROP TABLE IF EXISTS [PERSONS]
+exec sp_addextendedproperty
+'MS_Description',
+'Версия на ред (32)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PHONE_TYPES',
+'COLUMN', 'UPDATE_COUNTER'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Колона съдържаща типовете телефони(128)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PHONE_TYPES',
+'COLUMN', 'PHONE_TYPE'
+
 CREATE TABLE
 	[PERSONS]
 	(
@@ -66,7 +117,6 @@ CREATE TABLE
 		PRIMARY KEY ([ID])
 	)
 
-DROP TABLE IF EXISTS [PHONE_NUMBERS]
 CREATE TABLE
 	[PHONE_NUMBERS]
 	(
