@@ -1,22 +1,5 @@
 USE [PhoneBook]
 
---CREATE DATABASE [PhoneBook]
-
---IF OBJECT_ID ('PERSONS') IS NOT NULL
---BEGIN
---	ALTER TABLE  [PERSONS]
---	DROP CONSTRAINT IF EXISTS [FK_PERSONS_CITY_ID];
---END
-
-
---IF OBJECT_ID ('PHONE_NUMBERS') IS NOT NULL
---BEGIN
---	ALTER TABLE 	[PHONE_NUMBERS]
---	DROP CONSTRAINT IF EXISTS	[FK_PHONE_NUMBERS_PERSON_ID], 
---					[FK_PHONE_NUMBERS_PHONE_TYPE_ID];
---END
-
-
 DROP TABLE IF EXISTS [PHONE_NUMBERS]
 DROP TABLE IF EXISTS [PERSONS]
 DROP TABLE IF EXISTS [CITIES]
@@ -43,28 +26,28 @@ exec sp_AddExtendedProperty
 
 exec sp_AddExtendedProperty
 'MS_Description',
-'Версия на ред (32)бита',
+'Версия на ред (32)бита (задължителен запис)',
 'SCHEMA', 'dbo',
 'TABLE', 'CITIES',
 'COLUMN', 'UPDATE_COUNTER'
 
 exec sp_addextendedproperty
 'MS_Description',
-'Таблица съдържаща областите (512)бита',
+'Таблица съдържаща (задължителен запис) областите (512)бита',
 'SCHEMA', 'dbo',
 'TABLE', 'CITIES',
 'COLUMN', 'CITY_NAME'
 
 exec sp_addextendedproperty
 'MS_Description',
-'Таблица съдържаща градовете (512)бита',
+'Таблица съдържаща (задължителен запис) градовете (512)бита',
 'SCHEMA', 'dbo',
 'TABLE', 'CITIES',
 'COLUMN', 'AREA_NAME'
 
 exec sp_addextendedproperty
 'MS_Description',
-'Таблица съдържаща пощенските кодове (32)бита',
+'Таблица съдържаща (задължителен запис) пощенските кодове (32)бита',
 'SCHEMA', 'dbo',
 'TABLE', 'CITIES',
 'COLUMN', 'POSTAL_CODE'
@@ -90,14 +73,14 @@ exec sp_addextendedproperty
 
 exec sp_addextendedproperty
 'MS_Description',
-'Версия на ред (32)бита',
+'Версия на ред (32)бита (задължителен запис)',
 'SCHEMA', 'dbo',
 'TABLE', 'PHONE_TYPES',
 'COLUMN', 'UPDATE_COUNTER'
 
 exec sp_addextendedproperty
 'MS_Description',
-'Колона съдържаща типовете телефони(128)бита',
+'Колона съдържаща (задължителен запис) типовете телефони (128)бита',
 'SCHEMA', 'dbo',
 'TABLE', 'PHONE_TYPES',
 'COLUMN', 'PHONE_TYPE'
@@ -117,6 +100,62 @@ CREATE TABLE
 		PRIMARY KEY ([ID])
 	)
 
+exec sp_addextendedproperty
+'MS_Description',
+'Уникален идентификатор на запис в таблицата (32)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PERSONS',
+'COLUMN', 'ID'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Версия на ред (32)бита (задължителен запис)',
+'SCHEMA', 'dbo',
+'TABLE', 'PERSONS',
+'COLUMN', 'UPDATE_COUNTER'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Таблица съхраняваща (задължителен запис) името (256)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PERSONS',
+'COLUMN', 'FIRST_NAME'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Таблица съхраняваща (задължителен запис) презимето (256)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PERSONS',
+'COLUMN', 'SECOND_NAME'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Таблица съхраняваща (задължителен запис) фамилията (256)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PERSONS',
+'COLUMN', 'LAST_NAME'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Таблица съхраняваща (задължителен запис) егн-то (64)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PERSONS',
+'COLUMN', 'CITY_ID'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Задължителен вторичен ключ рефериращ таблицата "CITTIES" и колоната "ID"  (64)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PERSONS',
+'COLUMN', 'EGN'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Таблица съхраняваща (задължителен запис) егн-то (512)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PERSONS',
+'COLUMN', 'ADDRESS'
+
 CREATE TABLE
 	[PHONE_NUMBERS]
 	(
@@ -128,6 +167,42 @@ CREATE TABLE
 		CONSTRAINT [PK_PHONE_NUMBERS_ID]
 			PRIMARY KEY([ID])
 	)
+
+exec sp_addextendedproperty
+'MS_Description',
+'Уникален идентификатор на запис в таблицата (32)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PHONE_NUMBERS',
+'COLUMN', 'ID'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Версия на ред (32)бита (задължителен запис)',
+'SCHEMA', 'dbo',
+'TABLE', 'PHONE_NUMBERS',
+'COLUMN', 'UPDATE_COUNTER'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Задължителен вторичен ключ рефериращ таблицата "PERSONS" и колоната "ID"  (64)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PHONE_NUMBERS',
+'COLUMN', 'PERSON_ID'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Задължителен вторичен ключ рефериращ таблицата "PHONE_NUMBERS" и колоната "ID"  (64)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PHONE_NUMBERS',
+'COLUMN', 'PHONE_TYPE_ID'
+
+exec sp_addextendedproperty
+'MS_Description',
+'Таблица съхраняваща (задължителен запис) телефонен номер (32)бита',
+'SCHEMA', 'dbo',
+'TABLE', 'PHONE_NUMBERS',
+'COLUMN', 'PHONE_NUMBER'
+
 
 ALTER TABLE [PERSONS]
 ADD CONSTRAINT [FK_PERSONS_CITY_ID] 
