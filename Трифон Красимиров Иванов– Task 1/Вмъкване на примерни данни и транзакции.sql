@@ -1,42 +1,65 @@
 USE [PhoneBook]
 
-BEGIN TRY
-	BEGIN TRANSACTION
-		INSERT INTO [CITIES]
-			([CITY_NAME],[AREA_NAME],[POSTAL_CODE], [UPDATE_COUNTER])
-			VALUES
-			('Бургас','Бургас',8000,1),
-			('Пловдив', 'Пловдив',4000,1),	
-			('Варна','Варна',9000,1),
-			('София','София',1000,1);
-	
-		INSERT INTO [PERSONS]
-			([FIRST_NAME],[SECOND_NAME],[LAST_NAME],[CITY_ID],[ADDRESS],[UPDATE_COUNTER],[EGN])
-			VALUES
-			('Трифон','Красимиров','Иванов',1,'Жк.Възраждане/Ул.Цар Калоян №24',1,9999999999),
-			('Христо','Стоянов','Петров',2,'Жк.Тракия/Ул.Лозенград №3',1,9999999999),
-			('Георги','Ангелов','Анастасов',1,'Жк.Лазур/Ул.Христо Ботев №9',1,9999999999),
-			('Трифон','Красимиров','Иванов',3,'Жк.Студентски град/Ул.Парижка комуна №8',1,9999999999)
-	
-		INSERT INTO [PHONE_TYPES] 
-			([PHONE_TYPE],[UPDATE_COUNTER]) VALUES
-			('Home',1),
-			('Mobile',1),
-			('Work',1)
-	
-		INSERT INTO [PHONE_NUMBERS]
-			([PERSON_ID],[PHONE_NUMBER],[PHONE_TYPE_ID],[UPDATE_COUNTER])
-			VALUES
-			(1,'0893668829',2,1),
-			(2,'0899628177',3,1),
-			(3,'0876351840',1,1),
-			(4,'0882183197',2,1)
-		 COMMIT
-END TRY
+BEGIN TRANSACTION
+INSERT INTO [CITIES]
+				([CITY_NAME],[AREA_NAME],[POSTAL_CODE], [UPDATE_COUNTER])
+				VALUES
+				('Бургас','Бургас',8000,1)
+SAVE TRANSACTION [base]
+COMMIT
+
+
+BEGIN TRANSACTION
+	BEGIN TRY
+			INSERT INTO [CITIES]
+				([CITY_NAME],[AREA_NAME],[POSTAL_CODE], [UPDATE_COUNTER])
+				VALUES
+				('Пловдив', 'Пловдив',4000,1),	
+				('Варна','Варна',9000,1),
+				('София','София',1000,1);
+		
+			INSERT INTO [PERSONS]
+				([FIRST_NAME],[SECOND_NAME],[LAST_NAME],[CITY_ID],[ADDRESS],[UPDATE_COUNTER],[EGN])
+				VALUES
+				('Трифон','Красимиров','Иванов',1,'Жк.Възраждане/Ул.Цар Калоян №24',1,9999999999),
+				('Христо','Стоянов','Петров',2,'Жк.Тракия/Ул.Лозенград №3',1,9999999999),
+				('Георги','Ангелов','Анастасов',1,'Жк.Лазур/Ул.Христо Ботев №9',1,9999999999),
+				('Трифон','Красимиров','Иванов',3,'Жк.Студентски град/Ул.Парижка комуна №8',1,9999999999)
+		
+			INSERT INTO [PHONE_TYPES] 
+				([PHONE_TYPE],[UPDATE_COUNTER]) VALUES
+				('Home',1),
+				('Mobile',1),
+				('Work',1)
+		
+			INSERT INTO [PHONE_NUMBERS]
+				([PERSON_ID],[PHONE_NUMBER],[PHONE_TYPE_ID],[UPDATE_COUNTER])
+				VALUES
+				(1,'0893668829',2,1),
+				(2,'0899628177',3,1),
+				(3,'0876351840',1,1),
+				(4,'0882183197',2,NULL)
+COMMIT
+	END TRY
 BEGIN CATCH
-	 SELECT ERROR_MESSAGE() AS ErrorMessage
+	SELECT ERROR_MESSAGE() AS ErrorMessage
+	ROLLBACK TRANSACTION base
+COMMIT
 END CATCH
 
+
+BEGIN TRANSACTION
+	BEGIN TRY
+			INSERT INTO [CITIES]
+					([CITY_NAME],[AREA_NAME],[POSTAL_CODE], [UPDATE_COUNTER])
+					VALUES
+					('Велико търново','Великотърновска',5000,1)
+COMMIT
+	END TRY
+	BEGIN CATCH
+		 SELECT ERROR_MESSAGE() AS ErrorMessage
+COMMIT
+	END CATCH
 
 --Exclusive Lock 
 BEGIN TRANSACTION
