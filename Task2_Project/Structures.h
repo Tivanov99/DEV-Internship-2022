@@ -83,3 +83,12 @@ struct PHONE_TYPES {
 		SecureZeroMemory(this, sizeof(*this));
 	}
 };
+
+
+typedef CTypedPtrArray < CPtrArray, PHONE_NUMBERS> CPhoneNumbersArray;
+
+typedef CTypedPtrArray < CPtrArray, CITIES> CCitiesArray;
+
+typedef CTypedPtrArray < CPtrArray, PERSONS> CPersonsArray;
+
+typedef CTypedPtrArray < CPtrArray, PHONE_TYPES> CPhoneTypesArray;
