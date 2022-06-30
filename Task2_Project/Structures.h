@@ -84,7 +84,6 @@ struct PHONE_TYPES {
 	}
 };
 
-
 typedef CTypedPtrArray < CPtrArray, PHONE_NUMBERS> CPhoneNumbersArray;
 
 typedef CTypedPtrArray < CPtrArray, CITIES> CCitiesArray;
@@ -92,3 +91,9 @@ typedef CTypedPtrArray < CPtrArray, CITIES> CCitiesArray;
 typedef CTypedPtrArray < CPtrArray, PERSONS> CPersonsArray;
 
 typedef CTypedPtrArray < CPtrArray, PHONE_TYPES> CPhoneTypesArray;
+
+
+typedef PHONE_TYPES PhoneType;
+typedef CITIES Cities;
+typedef PERSONS Persons;
+typedef PHONE_NUMBERS PhoneNumbers;
