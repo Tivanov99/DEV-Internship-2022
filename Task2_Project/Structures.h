@@ -11,9 +11,9 @@ struct CITIES {
 	/// <summary>?</summary>
 	int nUPDATE_COUNTER;
 	/// <summary>Променлива съдържаща стойността от колона 'CITY_NAME' в таблицата 'CITIES'</summary>
-	string CITY_NAME;
+	char  CITY_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колона 'AREA_NAME' в таблицата 'CITIES'</summary>
-	string AREA_NAME;
+	char AREA_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колона 'POSTAL_CODE' в таблицата 'CITIES'</summary>
 	int nPOSTAL_CODE;
 
@@ -32,16 +32,16 @@ struct PERSONS {
 	/// <summary>?</summary>
 	int nUPDATE_COUNTER;
 	/// <summary>Променлива съдържаща стойността от колона 'FIRST_NAME' в таблицата  'PERSONS'</summary>
-	string FIRST_NAME;
+	char FIRST_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колона 'SECOND_NAME' в таблицата  'PERSONS'</summary>
-	string SECOND_NAME;
+	char SECOND_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колоната 'LAST_NAME' в таблицата  'PERSONS'</summary>
-	string LAST_NAME;
+	char LAST_NAME[32];
 	/// <summary>Променлива съдържаща вторичен ключ (от колона 'CITY_ID' в таблицата  'PERSONS')
 	/// <summary>сочещ към таблицата 'CITIES' и колона 'ID'</summary>
 	int nCITY_ID;
 	/// <summary>Променлива съдържаща стойността от колоната 'ADDRESS' в таблицата  'PERSONS'</summary>
-	string ADDRESS;
+	char ADDRESS[256];
 
 	PERSONS()
 	{
@@ -61,7 +61,7 @@ struct PHONE_NUMBERS {
 	/// <summary>сочещ към колоната 'ID' в таблицата 'PHONE_NUMBERS'</summary>;
 	int nPHONE_TYPE_ID;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_NUMBER' в таблицата  'PHONE_NUMBERS'</summary>
-	string PHONE_NUMBER;
+	char PHONE_NUMBER[16];
 	PHONE_NUMBERS()
 	{
 		SecureZeroMemory(this, sizeof(*this));
@@ -77,7 +77,7 @@ struct PHONE_TYPES {
 	/// <summary>?</summary>
 	int UPDATE_COUNTER;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_TYPE' в таблицата  'PHONE_TYPES'</summary>
-	string PHONE_TYPE;
+	char PHONE_TYPE[16];
 	PHONE_TYPES()
 	{
 		SecureZeroMemory(this, sizeof(*this));
