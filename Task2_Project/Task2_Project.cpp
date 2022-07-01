@@ -32,10 +32,6 @@ void FillPhoneType(string sorce, PhoneType* phone) {
 	}
 };
 
-void ShowNElementInfo(CPhoneTypesArray& phoneTypes, int index) {
-	cout << phoneTypes[index]->PHONE_TYPE << "     " << &phoneTypes[index]->PHONE_TYPE << "\n";
-};
-
 void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
 	PhoneType* pMobilePhoneType = NULL;
 	pMobilePhoneType = new PhoneType();
@@ -57,26 +53,72 @@ void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
 	//cout << "AFTER DELTE STATEMENT: " << &phoneTypes[0]->PHONE_TYPE << " VALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
 }
 
+void ValidateArguments(int index, CPhoneTypesArray& oPhoneTypesArray) {
+	if (oPhoneTypesArray.IsEmpty())
+	{
+		throw invalid_argument("The array is empty!");
+	}
+	else if (index > oPhoneTypesArray.GetCount()) {
+		throw invalid_argument("Index out of range!");
+	}
+	else if (index < 0) {
+		throw invalid_argument("Index should be possitive!");
+	}
+};
+
+void ShowElementInfoAtIndex(int index, CPhoneTypesArray& oPhoneTypesArray) {
+		try
+		{
+			ValidateArguments(index, oPhoneTypesArray);
+			PhoneType* pTemp = NULL;
+			pTemp= oPhoneTypesArray.GetAt(index);
+			cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->PHONE_TYPE << endl;
+		}
+		catch (const std::exception&)
+		{
+			cout << "Something goes wrong, press again!";
+		}
+}
+
+
+
+PhoneType* GetPointerAtIndex(int index, CPhoneTypesArray& oPhoneTypesArray) {
+	try
+	{
+		ValidateArguments(index, oPhoneTypesArray));
+			throw invalid_argument("Something goes wrong, press again!");
+		
+		PhoneType* pPhoneType = NULL;
+		pPhoneType = oPhoneTypesArray.ElementAt(index);
+		return pPhoneType;
+	}
+	catch (exception& ex)
+	{
+		cout << ex.what();
+	}
+};
+
 
 int main()
 {
 	CPhoneNumbersArray oPhoneNumbersArray;
-	CCitiesArray cities;
-	CPersonsArray persons;
+	CCitiesArray oCitiesArray;
+	CPersonsArray oPersonsArray;
 
-	CPhoneTypesArray phoneTypes;
+	CPhoneTypesArray oPhoneTypesArray;
 
-	AddPhoneTypeElements(phoneTypes);
-	AddPhoneTypeElements(phoneTypes);
-	AddPhoneTypeElements(phoneTypes);
+	AddPhoneTypeElements(oPhoneTypesArray);
+	AddPhoneTypeElements(oPhoneTypesArray);
+	AddPhoneTypeElements(oPhoneTypesArray);
 
-	phoneTypes.FreeExtra();
-	phoneTypes.RemoveAt(0, 5);
-	phoneTypes.FreeExtra();
+	oPhoneTypesArray.RemoveAt(0, 5);
+	oPhoneTypesArray.FreeExtra();
 
-	PhoneType* pTemp = phoneTypes.GetAt(1);
-	cout << "Selected item info: "<<"memory address: "<<&pTemp << " value:" << pTemp->PHONE_TYPE<<endl;
-	cout << "AFTER DELTE STATEMENT: " << &phoneTypes[0]->PHONE_TYPE << " VALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
+
+	//cout << "AFTER DELTE STATEMENT: " << &oPhoneTypesArray[0]->PHONE_TYPE << " VALUE: " << oPhoneTypesArray[0]->PHONE_TYPE << "\n";
+	GetPointerAtIndex(-1, oPhoneTypesArray);
+
+
 }
 
 void Hide() {
