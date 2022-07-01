@@ -1,3 +1,4 @@
-﻿  pch.cpp
-  Task2_Project.cpp
-  Task2_Project.vcxproj -> C:\Users\Trifon\Desktop\DEV-Internship-2022\Task2_Project\x64\Debug\Task2_Project.exe
+﻿  Task2_Project.cpp
+C:\Users\Trifon\Desktop\Projects\DEV-2022\Task2_Project\Task2_Project.cpp(54,46): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  LINK : C:\Users\Trifon\Desktop\Projects\DEV-2022\Task2_Project\x64\Debug\Task2_Project.exe not found or not built by the last incremental link; performing full link
+  Task2_Project.vcxproj -> C:\Users\Trifon\Desktop\Projects\DEV-2022\Task2_Project\x64\Debug\Task2_Project.exe

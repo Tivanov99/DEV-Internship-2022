@@ -84,17 +84,16 @@ struct PHONE_TYPES {
 	}
 };
 
-typedef CTypedPtrArray < CPtrArray, PHONE_NUMBERS> CPhoneNumbersArray;
-
-typedef CTypedPtrArray < CPtrArray, CITIES> CCitiesArray;
-
-typedef CTypedPtrArray < CPtrArray, PERSONS> CPersonsArray;
-
-typedef CTypedPtrArray < CPtrArray, PHONE_TYPES> CPhoneTypesArray;
-
-
-
 typedef PHONE_TYPES PhoneType;
-typedef CITIES Cities;
-typedef PERSONS Persons;
-typedef PHONE_NUMBERS PhoneNumbers;
+typedef CITIES City;
+typedef PERSONS Person;
+typedef PHONE_NUMBERS PhoneNumber;
+
+
+typedef CTypedPtrArray < CPtrArray, PhoneType*> CPhoneTypesArray;
+
+typedef CTypedPtrArray < CPtrArray, City*> CCitiesArray;
+
+typedef CTypedPtrArray < CPtrArray, Person*> CPersonsArray;
+
+typedef CTypedPtrArray < CPtrArray, PhoneNumber*> CPhoneNumbersArray;
