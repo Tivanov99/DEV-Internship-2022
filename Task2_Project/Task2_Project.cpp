@@ -72,9 +72,11 @@ void CityNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 
 	service.ChangeCityName(pCity, "RuseSecond");
+
+	service.ShowElementInfoAtIndex(2, oCitiesArray);
 }
 
-void CityAreaNameChaning(CityService& service, CCitiesArray& oCitiesArray) {
+void CityAreaNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
 	City* pCity = NULL;
 	pCity = service.GetPointerAtIndex(2, oCitiesArray);
 
@@ -87,7 +89,7 @@ void CityAreaNameChaning(CityService& service, CCitiesArray& oCitiesArray) {
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 }
 
-void CityPostalCodeChange(CityService& service, CCitiesArray& oCitiesArray) {
+void CityPostalCodeChanging(CityService& service, CCitiesArray& oCitiesArray) {
 	City* pCity = NULL;
 	pCity = service.GetPointerAtIndex(2, oCitiesArray);
 
@@ -114,17 +116,66 @@ void ManageCities() {
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 
 	CityNameChanging(service, oCitiesArray);
-	CityAreaNameChaning(service, oCitiesArray);
-	CityPostalCodeChange(service, oCitiesArray);
+	CityAreaNameChanging(service, oCitiesArray);
+	CityPostalCodeChanging(service, oCitiesArray);
 }
 
+void CStringExample() {
+	CString strDummy = _T("This is a test ");
+	CString strSecondDummy = _T("This is a test ");
+
+	int nCompareResult = strDummy.Compare(strSecondDummy);
+	
+	string resultMessage = nCompareResult < 0 ? "Value compare is different" :
+		nCompareResult >0 ? "Compared value is different" :
+		"Values are equal";
+	cout << resultMessage<<endl;
 
 
+	strDummy.AppendChar('!');
+
+	cout << char(strDummy[3]) << endl;
+
+	strDummy.Delete(0, 5);
+
+	CString strResult = strDummy.Right(5);
+
+	for (size_t i = 0; i < strResult.GetLength(); i++)
+	{
+		cout << char(strResult[i]);
+	}
+
+	char cValueFound;
+	cValueFound=strDummy.Find('T', 1);
+	cout << cValueFound<<endl;
+
+	cout << strDummy.Delete(0,4);
+}
+
+void CArrayExample() {
+	CArray<int,int> arr;
+	arr.Add(5);
+	arr[0] += 5;
+
+	CArray <int, int> secondCArray;
+	secondCArray.Add(20);
+	secondCArray.Add(30);
+	secondCArray.Add(40);
+
+	arr.Append(secondCArray);
+
+	for (size_t i = 0; i < arr.GetCount(); i++)
+	{
+		cout << arr[i] << " ";
+	}
+	
+}
 
 int main()
 {
-	CPersonsArray oPersonsArray;
-	ManageCities();
+	CArrayExample();
+	//CStringExample();
+	//ManageCities();
 	//ManagePhoneTypes();
 	//ManagePhoneNumbers();
 }
