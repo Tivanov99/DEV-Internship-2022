@@ -18,14 +18,14 @@ CWinApp theApp;
 using namespace std;
 
 
-void FillPhoneType(string sorce, PhoneType *phone) {
-	size_t LengthOfArray = sizeof(phone->PHONE_TYPE) / sizeof(char);
+void FillPhoneType(string sorce, PhoneType &phone) {
+	size_t LengthOfArray = sizeof(phone.PHONE_TYPE) / sizeof(char);
 	cout << LengthOfArray;
 
-	if (sorce.length() < LengthOfArray) {
+	if (sorce.length() <= LengthOfArray) {
 		for (size_t i = 0; i < sorce.size(); i++)
 		{
-			phone->PHONE_TYPE[i] = sorce[i];
+			phone.PHONE_TYPE[i] = sorce[i];
 		}
 	}
 	else {
@@ -38,37 +38,31 @@ void ShowNElementInfo(CPhoneTypesArray& phoneTypes, int index) {
 };
 
 void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
-	string sMobileType = "mobiledadadadadadaddada";
+
+	string sMobileType = "mobile";
+	string sHomeType = "home";
+	string sOfficeType = "office";
 
 	PhoneType  oMobilePhoneType;
 	oMobilePhoneType.ID = 1;
 
-	int arr[15];
+	PhoneType oHomePhoneType;
+	oHomePhoneType.ID = 2;
+	FillPhoneType(sHomeType, oHomePhoneType);
 
-	/*size_t LengthOfArray = sizeof(oMobilePhoneType.PHONE_TYPE) / sizeof (char);
-	cout << LengthOfArray;*/
+	PhoneType oOfficePhoneType;
+	oOfficePhoneType.ID = 3;
+	FillPhoneType(sOfficeType, oOfficePhoneType);
+
 
 
 	PhoneType* pPhoneType;
-	/*pPhoneType = &oMobilePhoneType;*/
 	pPhoneType = new PhoneType();
-	char testArr[16];
 
 	FillPhoneType(sMobileType, pPhoneType);
 	
 
 	phoneTypes.Add(pPhoneType);
-	//FillPhoneType(sMobileType, oMobilePhoneType.PHONE_TYPE);
-
-	/*PhoneType oHomePhoneType;
-	oHomePhoneType.ID = 2;
-	FillPhoneType(sHomeType, oHomePhoneType.PHONE_TYPE);
-
-	PhoneType oOfficePhoneType;
-	oOfficePhoneType.ID = 3;
-	FillPhoneType(sOfficeType, oOfficePhoneType.PHONE_TYPE);*/
-
-
 
 	cout << "INSIDE INSERT METHOD POINTER REFERENCE: " << &pPhoneType->PHONE_TYPE << " VALUE: " << pPhoneType->PHONE_TYPE << "\n";
 
@@ -76,8 +70,7 @@ void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
 
 	cout << "AFTER DELTE STATEMENT: " << &pPhoneType->PHONE_TYPE << " VALUE: " << pPhoneType->PHONE_TYPE << "\n";
 
-	/*string sHomeType = "home";
-	string sOfficeType = "office";*/
+
 
 	/*phoneTypes.Add(&oHomePhoneType);
 	phoneTypes.Add(&oOfficePhoneType);*/
