@@ -58,8 +58,6 @@ void CreatePhoneTypes() {
 	}
 
 
-
-
 	cout << &value << "   " << value << "\n";
 	cout << "CTypedPtrArray\n";
 	cout << phoneTypes[0]->PHONE_TYPE << "\n";
