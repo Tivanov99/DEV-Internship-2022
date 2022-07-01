@@ -129,8 +129,6 @@ public:
 
 	void ChangePhoneNumber(string oldPhoneNumber, string newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray)
 	{
-		//string sOldPhoneNumber = ConvertToString(pOldPhoneNumberObject->PHONE_NUMBER);
-
 		for (size_t i = 0; i < oPhoneTypesArray.GetSize(); i++)
 		{
 			string currentPhoneNumber;
