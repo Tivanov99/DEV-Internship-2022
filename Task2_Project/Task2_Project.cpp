@@ -10,6 +10,7 @@
 #endif
 #include "Structures.h"
 #include "PhoneTypesService.h"
+#include "PhoneNumbersService.h"
 
 
 // The one and only application object
@@ -32,6 +33,23 @@ void ManagePhoneTypes() {
 	PhoneType* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
 
 	service.GetPointerAtIndex(17, oPhoneTypesArray);
+}
+
+void ManagePhoneNumbers() {
+	CPhoneNumbersArray oPhoneTypesArray;
+	PhoneNumbersService service;
+
+	service.AddPhoneTypeElements(oPhoneTypesArray);
+	service.AddPhoneTypeElements(oPhoneTypesArray);
+	service.AddPhoneTypeElements(oPhoneTypesArray);
+
+	service.RemoveAt(0, 2, oPhoneTypesArray);
+
+	PhoneNumber* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
+
+	service.GetPointerAtIndex(17, oPhoneTypesArray);
+
+	service.ChangePhoneNumber()
 }
 
 
