@@ -33,24 +33,29 @@ void FillPhoneType(string sorce, PhoneType* phone) {
 };
 
 void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
-	PhoneType* pMobilePhoneType = NULL;
-	pMobilePhoneType = new PhoneType();
-	FillPhoneType("mobile", pMobilePhoneType);
+	try
+	{
+		PhoneType* pMobilePhoneType = NULL;
+		pMobilePhoneType = new PhoneType();
+		FillPhoneType("mobile", pMobilePhoneType);
 
-	PhoneType* pHomePhoneType = NULL;
-	pHomePhoneType = new PhoneType();
-	FillPhoneType("home", pHomePhoneType);
+		PhoneType* pHomePhoneType = NULL;
+		pHomePhoneType = new PhoneType();
+		FillPhoneType("home", pHomePhoneType);
 
-	PhoneType* pOfficePhoneType = NULL;
-	pOfficePhoneType = new PhoneType();
-	FillPhoneType("office", pOfficePhoneType);
+		PhoneType* pOfficePhoneType = NULL;
+		pOfficePhoneType = new PhoneType();
+		FillPhoneType("office", pOfficePhoneType);
 
-	phoneTypes.Add(pMobilePhoneType);
-	phoneTypes.Add(pHomePhoneType);
-	phoneTypes.Add(pOfficePhoneType);
+		phoneTypes.Add(pMobilePhoneType);
+		phoneTypes.Add(pHomePhoneType);
+		phoneTypes.Add(pOfficePhoneType);
+	}
+	catch (const std::exception&)
+	{
+		cout << "Invalid 'Add' operation!";
+	}
 
-	//cout << "INSIDE INSERT METHOD POINTER REFERENCE: " << &phoneTypes[0]->PHONE_TYPE << " VALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
-	//cout << "AFTER DELTE STATEMENT: " << &phoneTypes[0]->PHONE_TYPE << " VALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
 }
 
 void ValidateArguments(int index, CPhoneTypesArray& oPhoneTypesArray) {
@@ -67,17 +72,17 @@ void ValidateArguments(int index, CPhoneTypesArray& oPhoneTypesArray) {
 };
 
 void ShowElementInfoAtIndex(int index, CPhoneTypesArray& oPhoneTypesArray) {
-		try
-		{
-			ValidateArguments(index, oPhoneTypesArray);
-			PhoneType* pTemp = NULL;
-			pTemp= oPhoneTypesArray.GetAt(index);
-			cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->PHONE_TYPE << endl;
-		}
-		catch (const std::exception&)
-		{
-			cout << "Something goes wrong, press again!";
-		}
+	try
+	{
+		ValidateArguments(index, oPhoneTypesArray);
+		PhoneType* pTemp = NULL;
+		pTemp = oPhoneTypesArray.GetAt(index);
+		cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->PHONE_TYPE << endl;
+	}
+	catch (const std::exception&)
+	{
+		cout << "Something goes wrong, press again!";
+	}
 }
 
 
@@ -85,9 +90,9 @@ void ShowElementInfoAtIndex(int index, CPhoneTypesArray& oPhoneTypesArray) {
 PhoneType* GetPointerAtIndex(int index, CPhoneTypesArray& oPhoneTypesArray) {
 	try
 	{
-		ValidateArguments(index, oPhoneTypesArray));
-			throw invalid_argument("Something goes wrong, press again!");
-		
+		ValidateArguments(index, oPhoneTypesArray);
+		throw invalid_argument("Something goes wrong, press again!");
+
 		PhoneType* pPhoneType = NULL;
 		pPhoneType = oPhoneTypesArray.ElementAt(index);
 		return pPhoneType;
@@ -116,8 +121,7 @@ int main()
 
 
 	//cout << "AFTER DELTE STATEMENT: " << &oPhoneTypesArray[0]->PHONE_TYPE << " VALUE: " << oPhoneTypesArray[0]->PHONE_TYPE << "\n";
-	GetPointerAtIndex(-1, oPhoneTypesArray);
-
+	GetPointerAtIndex(17, oPhoneTypesArray);
 
 }
 
