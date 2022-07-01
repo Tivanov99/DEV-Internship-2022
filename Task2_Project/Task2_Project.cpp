@@ -20,7 +20,6 @@ using namespace std;
 
 void FillPhoneType(string sorce, PhoneType* phone) {
 	size_t LengthOfArray = sizeof(phone->PHONE_TYPE) / sizeof(char);
-	cout << LengthOfArray;
 
 	if (sorce.length() <= LengthOfArray) {
 		for (size_t i = 0; i < sorce.size(); i++)
@@ -57,6 +56,8 @@ void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
 	//cout << "INSIDE INSERT METHOD POINTER REFERENCE: " << &phoneTypes[0]->PHONE_TYPE << " VALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
 	//cout << "AFTER DELTE STATEMENT: " << &phoneTypes[0]->PHONE_TYPE << " VALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
 }
+
+
 int main()
 {
 	CPhoneNumbersArray oPhoneNumbersArray;
@@ -66,8 +67,15 @@ int main()
 	CPhoneTypesArray phoneTypes;
 
 	AddPhoneTypeElements(phoneTypes);
+	AddPhoneTypeElements(phoneTypes);
+	AddPhoneTypeElements(phoneTypes);
+
 	phoneTypes.FreeExtra();
-	phoneTypes.RemoveAt(0, 2);
+	phoneTypes.RemoveAt(0, 5);
+	phoneTypes.FreeExtra();
+
+	PhoneType* pTemp = phoneTypes.GetAt(1);
+	cout << "Selected item info: "<<"memory address: "<<&pTemp << " value:" << pTemp->PHONE_TYPE<<endl;
 	cout << "AFTER DELTE STATEMENT: " << &phoneTypes[0]->PHONE_TYPE << " VALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
 }
 
