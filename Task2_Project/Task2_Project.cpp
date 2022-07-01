@@ -9,6 +9,7 @@
 #define new DEBUG_NEW
 #endif
 #include "Structures.h"
+#include "PhoneTypesService.h"
 
 
 // The one and only application object
@@ -18,90 +19,20 @@ CWinApp theApp;
 using namespace std;
 
 
-void FillPhoneType(string sorce, PhoneType* phone) {
-	size_t LengthOfArray = sizeof(phone->PHONE_TYPE) / sizeof(char);
+void ManagePhoneTypes() {
+	CPhoneTypesArray oPhoneTypesArray;
+	PhoneTypesService service;
 
-	if (sorce.length() <= LengthOfArray) {
-		for (size_t i = 0; i < sorce.size(); i++)
-		{
-			phone->PHONE_TYPE[i] = sorce[i];
-		}
-	}
-	else {
-		cout << "Too long sorce";
-	}
-};
+	service.AddPhoneTypeElements(oPhoneTypesArray);
+	service.AddPhoneTypeElements(oPhoneTypesArray);
+	service.AddPhoneTypeElements(oPhoneTypesArray);
 
-void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
-	try
-	{
-		PhoneType* pMobilePhoneType = NULL;
-		pMobilePhoneType = new PhoneType();
-		FillPhoneType("mobile", pMobilePhoneType);
+	service.RemoveAt(0, 2, oPhoneTypesArray);
 
-		PhoneType* pHomePhoneType = NULL;
-		pHomePhoneType = new PhoneType();
-		FillPhoneType("home", pHomePhoneType);
+	PhoneType* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
 
-		PhoneType* pOfficePhoneType = NULL;
-		pOfficePhoneType = new PhoneType();
-		FillPhoneType("office", pOfficePhoneType);
-
-		phoneTypes.Add(pMobilePhoneType);
-		phoneTypes.Add(pHomePhoneType);
-		phoneTypes.Add(pOfficePhoneType);
-	}
-	catch (const std::exception&)
-	{
-		cout << "Invalid 'Add' operation!";
-	}
-
+	service.GetPointerAtIndex(17, oPhoneTypesArray);
 }
-
-void ValidateArguments(int index, CPhoneTypesArray& oPhoneTypesArray) {
-	if (oPhoneTypesArray.IsEmpty())
-	{
-		throw invalid_argument("The array is empty!");
-	}
-	else if (index > oPhoneTypesArray.GetCount()) {
-		throw invalid_argument("Index out of range!");
-	}
-	else if (index < 0) {
-		throw invalid_argument("Index should be possitive!");
-	}
-};
-
-void ShowElementInfoAtIndex(int index, CPhoneTypesArray& oPhoneTypesArray) {
-	try
-	{
-		ValidateArguments(index, oPhoneTypesArray);
-		PhoneType* pTemp = NULL;
-		pTemp = oPhoneTypesArray.GetAt(index);
-		cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->PHONE_TYPE << endl;
-	}
-	catch (const std::exception&)
-	{
-		cout << "Something goes wrong, press again!";
-	}
-}
-
-
-
-PhoneType* GetPointerAtIndex(int index, CPhoneTypesArray& oPhoneTypesArray) {
-	try
-	{
-		ValidateArguments(index, oPhoneTypesArray);
-		throw invalid_argument("Something goes wrong, press again!");
-
-		PhoneType* pPhoneType = NULL;
-		pPhoneType = oPhoneTypesArray.ElementAt(index);
-		return pPhoneType;
-	}
-	catch (exception& ex)
-	{
-		cout << ex.what();
-	}
-};
 
 
 int main()
@@ -110,19 +41,7 @@ int main()
 	CCitiesArray oCitiesArray;
 	CPersonsArray oPersonsArray;
 
-	CPhoneTypesArray oPhoneTypesArray;
-
-	AddPhoneTypeElements(oPhoneTypesArray);
-	AddPhoneTypeElements(oPhoneTypesArray);
-	AddPhoneTypeElements(oPhoneTypesArray);
-
-	oPhoneTypesArray.RemoveAt(0, 5);
-	oPhoneTypesArray.FreeExtra();
-
-
-	//cout << "AFTER DELTE STATEMENT: " << &oPhoneTypesArray[0]->PHONE_TYPE << " VALUE: " << oPhoneTypesArray[0]->PHONE_TYPE << "\n";
-	GetPointerAtIndex(17, oPhoneTypesArray);
-
+	ManagePhoneTypes();
 }
 
 void Hide() {
@@ -153,3 +72,5 @@ void Hide() {
 
 		//return nRetCode;
 }
+
+
