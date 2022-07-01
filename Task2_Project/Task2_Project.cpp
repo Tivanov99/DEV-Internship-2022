@@ -52,11 +52,11 @@ void CreatePhoneTypes() {
 
 	char value[16];
 	int size = strlen(phoneTypes[0]->PHONE_TYPE);
+
 	for (size_t i = 0; i < size; i++)
 	{
 		value[i] = phoneTypes[0]->PHONE_TYPE[i];
 	}
-
 
 	cout << &value << "   " << value << "\n";
 	cout << "CTypedPtrArray\n";
@@ -64,15 +64,21 @@ void CreatePhoneTypes() {
 
 	PhoneType* pFirstEl;
 	pFirstEl = phoneTypes[0];
+	
+	cout << "New pointer and pointer from ctypedptrarray references";
+	cout << &pFirstEl << "\n";
+	cout << &phoneTypes[0] << endl;
 
+
+	cout << "Memory addreses";
 	cout << &phoneTypes[0]->PHONE_TYPE << "\n";
 	cout << &pFirstEl->PHONE_TYPE << "\n";
-
 	cout << &phoneTypes[0]->ID << "\n";
-	cout << &pFirstEl->ID;
+	cout << &pFirstEl->ID<< endl;
 
 
-	cout << phoneTypes[1]->PHONE_TYPE << *phoneTypes[1]->PHONE_TYPE << "  " << *phoneTypes[1]->PHONE_TYPE << "  " << &phoneTypes[1]->PHONE_TYPE << "\n";
+	//Цялостна информация
+	cout << phoneTypes[1]->PHONE_TYPE << "     " << *phoneTypes[1]->PHONE_TYPE << "  " << *phoneTypes[1]->PHONE_TYPE << "  " << &phoneTypes[1]->PHONE_TYPE << "\n";
 
 	/*cout << phoneTypes[0]->PHONE_TYPE << "\n";
 	cout << phoneTypes[1]->PHONE_TYPE << "\n";
