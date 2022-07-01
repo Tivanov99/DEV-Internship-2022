@@ -25,8 +25,11 @@ void FillPhoneType(string sorce, char destination[]) {
 	}
 };
 
-void CreatePhoneTypes() {
+void ShowNElementInfo(CPhoneTypesArray& phoneTypes, int index) {
+	cout << phoneTypes[index]->PHONE_TYPE << "     " << &phoneTypes[index]->PHONE_TYPE << "\n";
+};
 
+void AddPhoneTypeElements(CPhoneTypesArray &phoneTypes) {
 	string sMobileType = "mobile";
 	string sHomeType = "home";
 	string sOfficeType = "office";
@@ -44,11 +47,49 @@ void CreatePhoneTypes() {
 	FillPhoneType(sOfficeType, oOfficePhoneType.PHONE_TYPE);
 
 
-	CPhoneTypesArray phoneTypes;
+	PhoneType *pPhoneType;
+	pPhoneType = &oMobilePhoneType;
 
-	phoneTypes.Add(&oMobilePhoneType);
+	cout <<"INSIDE INSERT METHOD POINTER REFERENCE: " << &pPhoneType->PHONE_TYPE << " VALUE: " << pPhoneType->PHONE_TYPE << "\n";
+
+	phoneTypes.Add(pPhoneType);
 	phoneTypes.SetAtGrow(phoneTypes.GetSize(), &oHomePhoneType);
 	phoneTypes.SetAtGrow(phoneTypes.GetSize(), &oOfficePhoneType);
+
+}
+void CreatePhoneTypes() {
+
+	/*string sMobileType = "mobile";
+	string sHomeType = "home";
+	string sOfficeType = "office";
+
+	PhoneType  oMobilePhoneType;
+	oMobilePhoneType.ID = 1;
+	FillPhoneType(sMobileType, oMobilePhoneType.PHONE_TYPE);
+
+	PhoneType oHomePhoneType;
+	oHomePhoneType.ID = 2;
+	FillPhoneType(sHomeType, oHomePhoneType.PHONE_TYPE);
+
+	PhoneType oOfficePhoneType;
+	oOfficePhoneType.ID = 3;
+	FillPhoneType(sOfficeType, oOfficePhoneType.PHONE_TYPE);*/
+
+
+	CPhoneTypesArray phoneTypes;
+
+
+
+	/*phoneTypes.Add(&oMobilePhoneType);
+	phoneTypes.SetAtGrow(phoneTypes.GetSize(), &oHomePhoneType);
+	phoneTypes.SetAtGrow(phoneTypes.GetSize(), &oOfficePhoneType);*/
+
+	AddPhoneTypeElements(phoneTypes);
+
+	cout << "After inserting method POINTER REFERENCE:  " << & phoneTypes[0]->PHONE_TYPE << " VAALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
+
+	ShowNElementInfo(phoneTypes, 0);
+
 
 	char value[16];
 	int size = strlen(phoneTypes[0]->PHONE_TYPE);
@@ -74,8 +115,6 @@ void CreatePhoneTypes() {
 	cout << &pFirstEl->ID<< endl;
 
 
-	cout << "Full info about  second element of ctypedptrArray\n";
-	cout << phoneTypes[1]->PHONE_TYPE << "     " << &phoneTypes[1]->PHONE_TYPE << "\n";
 
 	cout << "CTypedPtrArray Loop \n";
 	INT_PTR cArrayLenght = phoneTypes.GetSize();
@@ -88,6 +127,8 @@ void CreatePhoneTypes() {
 
 	cout << phoneTypes[0]->PHONE_TYPE << "\n";
 }
+
+
 
 int main()
 {
