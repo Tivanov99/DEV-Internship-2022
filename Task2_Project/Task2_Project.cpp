@@ -53,7 +53,7 @@ void ManagePhoneNumbers() {
 
 	PhoneNumber* pPhoneNumber = NULL;
 	pPhoneNumber = service.GetPointerAtIndex(2, oPhoneTypesArray);
-	
+
 	service.ChangePhoneNumber("0895467264", "0888888888", oPhoneTypesArray);
 
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
@@ -106,8 +106,8 @@ void ManageCities() {
 	CCitiesArray oCitiesArray;
 
 	service.AddCityElements(oCitiesArray);
-	/*service.AddCityElements(oCitiesArray);
-	service.AddCityElements(oCitiesArray);*/
+	service.AddCityElements(oCitiesArray);
+	service.AddCityElements(oCitiesArray);
 
 	service.RemoveAt(0, 2, oCitiesArray);
 
@@ -125,11 +125,11 @@ void CStringExample() {
 	CString strSecondDummy = _T("This is a test ");
 
 	int nCompareResult = strDummy.Compare(strSecondDummy);
-	
+
 	string resultMessage = nCompareResult < 0 ? "Value compare is different" :
 		nCompareResult >0 ? "Compared value is different" :
 		"Values are equal";
-	cout << resultMessage<<endl;
+	cout << resultMessage << endl;
 
 
 	strDummy.AppendChar('!');
@@ -146,21 +146,21 @@ void CStringExample() {
 	}
 
 	char cValueFound;
-	cValueFound=strDummy.Find('T', 1);
-	cout << cValueFound<<endl;
+	cValueFound = strDummy.Find('T', 1);
+	cout << cValueFound << endl;
 
-	cout << strDummy.Delete(0,4);
+	cout << strDummy.Delete(0, 4);
 }
 
 void CArrayExample() {
-	CArray<int,int> arr;
-	arr.Add(5);
-	arr[0] += 5;
+	CArray<int, int> arr;
 
 	CArray <int, int> secondCArray;
 	secondCArray.Add(20);
 	secondCArray.Add(30);
 	secondCArray.Add(40);
+	secondCArray.Add(1);
+	secondCArray.Add(9);
 
 	arr.Append(secondCArray);
 
@@ -168,45 +168,53 @@ void CArrayExample() {
 	{
 		cout << arr[i] << " ";
 	}
-	
+
+	if (arr.GetCount() > 0) {
+		try
+		{
+			arr.RemoveAt(0,3);
+			arr.FreeExtra();
+		}
+		catch (const std::exception&)
+		{
+				
+		}
+	}
+
 }
 
 int main()
 {
 	CArrayExample();
-	//CStringExample();
-	//ManageCities();
-	//ManagePhoneTypes();
-	//ManagePhoneNumbers();
-}
+	CStringExample();
+	ManageCities();
+	ManagePhoneTypes();
+	ManagePhoneNumbers();
 
-void Hide() {
 	//int nRetCode = 0;
 
-		//HMODULE hModule = ::GetModuleHandle(nullptr);
+	//	HMODULE hModule = ::GetModuleHandle(nullptr);
 
-		//if (hModule != nullptr)
-		//{
-		//    // initialize MFC and print and error on failure
-		//    if (!AfxWinInit(hModule, nullptr, ::GetCommandLine(), 0))
-		//    {
-		//        // TODO: code your application's behavior here.
-		//        wprintf(L"Fatal Error: MFC initialization failed\n");
-		//        nRetCode = 1;
-		//    }
-		//    else
-		//    {
-		//        // TODO: code your application's behavior here.
-		//    }
-		//}
-		//else
-		//{
-		//    // TODO: change error code to suit your needs
-		//    wprintf(L"Fatal Error: GetModuleHandle failed\n");
-		//    nRetCode = 1;
-		//}
+	//	if (hModule != nullptr)
+	//	{
+	//	    // initialize MFC and print and error on failure
+	//	    if (!AfxWinInit(hModule, nullptr, ::GetCommandLine(), 0))
+	//	    {
+	//	        // TODO: code your application's behavior here.
+	//	        wprintf(L"Fatal Error: MFC initialization failed\n");
+	//	        nRetCode = 1;
+	//	    }
+	//	    else
+	//	    {
+	//	        // TODO: code your application's behavior here.
+	//	    }
+	//	}
+	//	else
+	//	{
+	//	    // TODO: change error code to suit your needs
+	//	    wprintf(L"Fatal Error: GetModuleHandle failed\n");
+	//	    nRetCode = 1;
+	//	}
 
-		//return nRetCode;
+	//	return nRetCode;
 }
-
-
