@@ -127,7 +127,7 @@ public:
 		}
 	};
 
-	void ChangePhoneNumber(string oldPhoneNumber, string newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray) 
+	void ChangePhoneNumber(string oldPhoneNumber, string newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray)
 	{
 		//string sOldPhoneNumber = ConvertToString(pOldPhoneNumberObject->PHONE_NUMBER);
 
@@ -146,6 +146,16 @@ public:
 				}
 				break;
 			}
+		}
+	}
+	void ChangePhoneNumber(PhoneNumber* pOldPhoneNumberElement, string newPhoneNumber)
+	{
+		string sOldPhoneNumber = ConvertToString(pOldPhoneNumberElement->PHONE_NUMBER);
+
+
+		for (size_t s = 0; s < newPhoneNumber.length(); s++)
+		{
+			pOldPhoneNumberElement->PHONE_NUMBER[s] = newPhoneNumber[s];
 		}
 	}
 };

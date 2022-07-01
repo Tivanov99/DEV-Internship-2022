@@ -57,7 +57,10 @@ void ManagePhoneNumbers() {
 
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
 
-	int da = 0;
+
+	service.ChangePhoneNumber(pPhoneNumber, "0999999999");
+	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
+
 }
 
 
