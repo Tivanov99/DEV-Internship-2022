@@ -36,6 +36,9 @@
     <ClInclude Include="PhoneTypesService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PhoneNumbersService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Task2_Project.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PhoneTypesService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhoneNumbersService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
