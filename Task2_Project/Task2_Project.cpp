@@ -39,9 +39,9 @@ void ManagePhoneNumbers() {
 	CPhoneNumbersArray oPhoneTypesArray;
 	PhoneNumbersService service;
 
-	service.AddPhoneTypeElements(oPhoneTypesArray);
-	service.AddPhoneTypeElements(oPhoneTypesArray);
-	service.AddPhoneTypeElements(oPhoneTypesArray);
+	service.AddDefaultPhoneNumbersElements(oPhoneTypesArray);
+	service.AddDefaultPhoneNumbersElements(oPhoneTypesArray);
+	service.AddDefaultPhoneNumbersElements(oPhoneTypesArray);
 
 	service.RemoveAt(0, 2, oPhoneTypesArray);
 

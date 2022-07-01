@@ -34,21 +34,36 @@ public:
 	void AddDefaultPhoneNumbersElements(CPhoneNumbersArray& phoneNumbers) {
 		try
 		{
-			PhoneNumber* pMobilePhoneType = NULL;
-			pMobilePhoneType = new PhoneNumber();
-			SetPhoneNumber("mobile", pMobilePhoneType);
+			PhoneNumber* pFirstPhoneNumber = NULL;
+			pFirstPhoneNumber = new PhoneNumber();
+			SetPhoneNumber("0893668829", pFirstPhoneNumber);
 
-			PhoneNumber* pHomePhoneType = NULL;
-			pHomePhoneType = new PhoneNumber();
-			SetPhoneNumber("home", pHomePhoneType);
+			PhoneNumber* pSecondPhoneNumber = NULL;
+			pSecondPhoneNumber = new PhoneNumber();
+			SetPhoneNumber("0883737518", pSecondPhoneNumber);
 
-			PhoneNumber* pOfficePhoneType = NULL;
-			pOfficePhoneType = new PhoneNumber();
-			SetPhoneNumber("office", pOfficePhoneType);
+			PhoneNumber* pThirdPhoneNumber = NULL;
+			pThirdPhoneNumber = new PhoneNumber();
+			SetPhoneNumber("0875462946", pThirdPhoneNumber);
 
-			phoneNumbers.Add(pMobilePhoneType);
-			phoneNumbers.Add(pHomePhoneType);
-			phoneNumbers.Add(pOfficePhoneType);
+			PhoneNumber* pFourthPhoneNumber = NULL;
+			pFourthPhoneNumber = new PhoneNumber();
+			SetPhoneNumber("0886372847", pFourthPhoneNumber);
+
+			PhoneNumber* pFifthPhoneNumber = NULL;
+			pFifthPhoneNumber = new PhoneNumber();
+			SetPhoneNumber("0895467264", pFifthPhoneNumber);
+
+			PhoneNumber* pSixthPhoneNumber = NULL;
+			pSixthPhoneNumber = new PhoneNumber();
+			SetPhoneNumber("0891937373", pSixthPhoneNumber);
+
+			phoneNumbers.Add(pFirstPhoneNumber);
+			phoneNumbers.Add(pSecondPhoneNumber);
+			phoneNumbers.Add(pThirdPhoneNumber);
+			phoneNumbers.Add(pFourthPhoneNumber);
+			phoneNumbers.Add(pFifthPhoneNumber);
+			phoneNumbers.Add(pSixthPhoneNumber);
 		}
 		catch (const std::exception&)
 		{
@@ -116,13 +131,13 @@ public:
 	void ChangePhoneNumber(string oldPhoneNumber, string newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray) {
 		for (size_t i = 0; i < oPhoneTypesArray.GetSize(); i++)
 		{
-			string currentPhoneNumber =NULL;
+			string currentPhoneNumber;
 			currentPhoneNumber = ConvertToString(oPhoneTypesArray[i]->PHONE_NUMBER);
 
 			if (currentPhoneNumber._Equal(oldPhoneNumber)) {
 				for (size_t s = 0; s < currentPhoneNumber.length(); s++)
 				{
-					oPhoneTypesArray[s]->PHONE_NUMBER[s] = currentPhoneNumber[s];
+					oPhoneTypesArray[s]->PHONE_NUMBER[s] = newPhoneNumber[s];
 				}
 				break;
 			}
