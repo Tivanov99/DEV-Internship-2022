@@ -56,6 +56,15 @@ void AddPhoneTypeElements(CPhoneTypesArray &phoneTypes) {
 	phoneTypes.SetAtGrow(phoneTypes.GetSize(), &oHomePhoneType);
 	phoneTypes.SetAtGrow(phoneTypes.GetSize(), &oOfficePhoneType);
 
+
+	cout << "Reference before delete " << &phoneTypes[1] << "   " << phoneTypes[1]->PHONE_TYPE <<"   " << &phoneTypes[1]->PHONE_TYPE << endl;
+
+	PhoneType* removedElement;
+	removedElement = phoneTypes[1];
+
+	phoneTypes.RemoveAt(1, 1);
+
+	cout << "Reference after delete " << &removedElement <<"   " << removedElement->PHONE_TYPE << "   " << &phoneTypes[1]->PHONE_TYPE << endl;
 }
 void CreatePhoneTypes() {
 
@@ -88,7 +97,7 @@ void CreatePhoneTypes() {
 
 	cout << "After inserting method POINTER REFERENCE:  " << & phoneTypes[0]->PHONE_TYPE << " VAALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
 
-	ShowNElementInfo(phoneTypes, 0);
+	/*ShowNElementInfo(phoneTypes, 0);
 
 
 	char value[16];
@@ -125,7 +134,7 @@ void CreatePhoneTypes() {
 
 	FillPhoneType("dadada", phoneTypes[0]->PHONE_TYPE);
 
-	cout << phoneTypes[0]->PHONE_TYPE << "\n";
+	cout << phoneTypes[0]->PHONE_TYPE << "\n";*/
 }
 
 
