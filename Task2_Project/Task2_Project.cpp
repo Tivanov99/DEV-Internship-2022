@@ -31,40 +31,45 @@ void ShowNElementInfo(CPhoneTypesArray& phoneTypes, int index) {
 
 void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
 	string sMobileType = "mobile";
-	string sHomeType = "home";
-	string sOfficeType = "office";
 
 	PhoneType  oMobilePhoneType;
 	oMobilePhoneType.ID = 1;
+
+	PhoneType* pPhoneType;
+	/*pPhoneType = &oMobilePhoneType;*/
+	pPhoneType = new PhoneType();
+	FillPhoneType(sMobileType, pPhoneType->PHONE_TYPE);
+
+	phoneTypes.Add(pPhoneType);
 	FillPhoneType(sMobileType, oMobilePhoneType.PHONE_TYPE);
 
-	PhoneType oHomePhoneType;
+	/*PhoneType oHomePhoneType;
 	oHomePhoneType.ID = 2;
 	FillPhoneType(sHomeType, oHomePhoneType.PHONE_TYPE);
 
 	PhoneType oOfficePhoneType;
 	oOfficePhoneType.ID = 3;
-	FillPhoneType(sOfficeType, oOfficePhoneType.PHONE_TYPE);
+	FillPhoneType(sOfficeType, oOfficePhoneType.PHONE_TYPE);*/
 
 
-	PhoneType* pPhoneType;
-	pPhoneType = &oMobilePhoneType;
 
 	cout << "INSIDE INSERT METHOD POINTER REFERENCE: " << &pPhoneType->PHONE_TYPE << " VALUE: " << pPhoneType->PHONE_TYPE << "\n";
 
-	phoneTypes.Add(pPhoneType);
-	phoneTypes.Add(&oHomePhoneType);
-	phoneTypes.Add(&oOfficePhoneType);
+	/*string sHomeType = "home";
+	string sOfficeType = "office";*/
+
+	/*phoneTypes.Add(&oHomePhoneType);
+	phoneTypes.Add(&oOfficePhoneType);*/
 
 
-	cout << "Reference before delete " << &phoneTypes[1] << "   " << phoneTypes[1]->PHONE_TYPE << "   " << &phoneTypes[1]->PHONE_TYPE << endl;
+	/*cout << "Reference before delete " << &phoneTypes[1] << "   " << phoneTypes[1]->PHONE_TYPE << "   " << &phoneTypes[1]->PHONE_TYPE << endl;
 
 	PhoneType* removedElement;
 	removedElement = phoneTypes[1];
 
 	phoneTypes.RemoveAt(1, 1);
 
-	cout << "Reference after delete " << &removedElement << "   " << removedElement->PHONE_TYPE << "   " << &phoneTypes[1]->PHONE_TYPE << endl;
+	cout << "Reference after  delete " << &removedElement << "   " << removedElement->PHONE_TYPE << "   " << &removedElement->PHONE_TYPE << endl;*/
 }
 void CreatePhoneTypes() {
 
