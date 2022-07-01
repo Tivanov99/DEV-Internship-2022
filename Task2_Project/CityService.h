@@ -53,7 +53,7 @@ public:
 
 	};
 
-	void AddDefaultPhoneNumbersElements(CCitiesArray& oCities) {
+	void AddCityElements(CCitiesArray& oCities) {
 		try
 		{
 			City* pBurgasCity = NULL;
@@ -65,32 +65,32 @@ public:
 			City* pVarnaCity = NULL;
 			pVarnaCity = new City();
 			SetCityName("Varna", pVarnaCity);
-			SetPostalCode("Varna", pBurgasCity);
-			SetPostalCode(9000, pBurgasCity);
+			SetPostalCode("Varna", pVarnaCity);
+			SetPostalCode(9000, pVarnaCity);
 
 			City* pSofiaCity = NULL;
 			pSofiaCity = new City();
 			SetCityName("Sofia", pSofiaCity);
-			SetPostalCode("Sofia", pBurgasCity);
-			SetPostalCode(1000, pBurgasCity);
+			SetPostalCode("Sofia", pSofiaCity);
+			SetPostalCode(1000, pSofiaCity);
 
 			City* pPlovidCity = NULL;
 			pPlovidCity = new City();
 			SetCityName("Plovdiv", pPlovidCity);
-			SetPostalCode("Plovdiv", pBurgasCity);
-			SetPostalCode(3000, pBurgasCity);
+			SetPostalCode("Plovdiv", pPlovidCity);
+			SetPostalCode(3000, pPlovidCity);
 
 			City* pRuseCity = NULL;
 			pRuseCity = new City();
 			SetCityName("Ruse", pRuseCity);
-			SetPostalCode("Ruse", pBurgasCity);
-			SetPostalCode(4700, pBurgasCity);
+			SetPostalCode("Ruse", pRuseCity);
+			SetPostalCode(4700, pRuseCity);
 
 			City* pVelinGradCity = NULL;
 			pVelinGradCity = new City();
 			SetCityName("VelinGrad", pVelinGradCity);
-			SetPostalCode("Pazardzhik", pBurgasCity);
-			SetPostalCode(6000, pBurgasCity);
+			SetPostalCode("Pazardzhik", pVelinGradCity);
+			SetPostalCode(6000, pVelinGradCity);
 
 			oCities.Add(pBurgasCity);
 			oCities.Add(pVarnaCity);
@@ -176,7 +176,7 @@ public:
 				City* pOldCity = NULL;
 				pOldCity = oCitiesArray[i];
 
-				for (size_t s = 0; s < currentCityName.length(); s++)
+				for (size_t s = 0; s < newCityName.length(); s++)
 				{
 					pOldCity->CITY_NAME[s] = newCityName[s];
 				}
@@ -206,7 +206,7 @@ public:
 				City* pOldCity = NULL;
 				pOldCity = oCitiesArray[i];
 
-				for (size_t s = 0; s < currentCityAreaName.length(); s++)
+				for (size_t s = 0; s < newCityAreaName.length(); s++)
 				{
 					pOldCity->AREA_NAME[s] = newCityAreaName[s];
 				}
@@ -222,26 +222,6 @@ public:
 		for (size_t s = 0; s < newAreaName.length(); s++)
 		{
 			pOldCity->AREA_NAME[s] = newAreaName[s];
-		}
-	}
-	void ChangeCityName(string oldCityName, string newCityName, CCitiesArray& oCitiesArray)
-	{
-
-		for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
-		{
-			string currentCityName;
-			currentCityName = ConvertToString(oCitiesArray[i]->CITY_NAME);
-
-			if (currentCityName._Equal(oldCityName)) {
-				City* pOldCity = NULL;
-				pOldCity = oCitiesArray[i];
-
-				for (size_t s = 0; s < currentCityName.length(); s++)
-				{
-					pOldCity->CITY_NAME[s] = newCityName[s];
-				}
-				break;
-			}
 		}
 	}
 	void ChangeCityPosalCode(string cityName, int nNewCityPosalCode, CCitiesArray& oCitiesArray)

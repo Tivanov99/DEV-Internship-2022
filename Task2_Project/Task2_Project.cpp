@@ -11,6 +11,7 @@
 #include "Structures.h"
 #include "PhoneTypesService.h"
 #include "PhoneNumbersService.h"
+#include "CityService.h"
 
 
 // The one and only application object
@@ -62,14 +63,68 @@ void ManagePhoneNumbers() {
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
 }
 
+void CityNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
+	City* pCity = NULL;
+	pCity = service.GetPointerAtIndex(2, oCitiesArray);
+
+	service.ChangeCityName("Ruse", "RuseFirst", oCitiesArray);
+
+	service.ShowElementInfoAtIndex(2, oCitiesArray);
+
+	service.ChangeCityName(pCity, "RuseSecond");
+}
+
+void CityAreaNameChaning(CityService& service, CCitiesArray& oCitiesArray) {
+	City* pCity = NULL;
+	pCity = service.GetPointerAtIndex(2, oCitiesArray);
+
+	service.ChangeCityAreaName(pCity, "RunskaFirst");
+
+	service.ShowElementInfoAtIndex(2, oCitiesArray);
+
+	service.ChangeCityAreaName("RunskaFirst", "RunskaSecond", oCitiesArray);
+
+	service.ShowElementInfoAtIndex(2, oCitiesArray);
+}
+
+void CityPostalCodeChange(CityService& service, CCitiesArray& oCitiesArray) {
+	City* pCity = NULL;
+	pCity = service.GetPointerAtIndex(2, oCitiesArray);
+
+	service.ChangeCityPosalCode("RuseSecond", 9999, oCitiesArray);
+
+	service.ShowElementInfoAtIndex(2, oCitiesArray);
+
+	service.ChangeCityPostalCode(pCity, 11111);
+	service.ShowElementInfoAtIndex(2, oCitiesArray);
+}
+
+void ManageCities() {
+	CityService service;
+	CCitiesArray oCitiesArray;
+
+	service.AddCityElements(oCitiesArray);
+	/*service.AddCityElements(oCitiesArray);
+	service.AddCityElements(oCitiesArray);*/
+
+	service.RemoveAt(0, 2, oCitiesArray);
+
+	City* pTemp = service.GetPointerAtIndex(0, oCitiesArray);
+
+	service.ShowElementInfoAtIndex(2, oCitiesArray);
+
+	CityNameChanging(service, oCitiesArray);
+	CityAreaNameChaning(service, oCitiesArray);
+	CityPostalCodeChange(service, oCitiesArray);
+}
+
 
 
 
 int main()
 {
-	CCitiesArray oCitiesArray;
 	CPersonsArray oPersonsArray;
-
+	ManageCities();
 	//ManagePhoneTypes();
 	//ManagePhoneNumbers();
 }
