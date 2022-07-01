@@ -29,7 +29,7 @@ void ShowNElementInfo(CPhoneTypesArray& phoneTypes, int index) {
 	cout << phoneTypes[index]->PHONE_TYPE << "     " << &phoneTypes[index]->PHONE_TYPE << "\n";
 };
 
-void AddPhoneTypeElements(CPhoneTypesArray &phoneTypes) {
+void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
 	string sMobileType = "mobile";
 	string sHomeType = "home";
 	string sOfficeType = "office";
@@ -47,24 +47,24 @@ void AddPhoneTypeElements(CPhoneTypesArray &phoneTypes) {
 	FillPhoneType(sOfficeType, oOfficePhoneType.PHONE_TYPE);
 
 
-	PhoneType *pPhoneType;
+	PhoneType* pPhoneType;
 	pPhoneType = &oMobilePhoneType;
 
-	cout <<"INSIDE INSERT METHOD POINTER REFERENCE: " << &pPhoneType->PHONE_TYPE << " VALUE: " << pPhoneType->PHONE_TYPE << "\n";
+	cout << "INSIDE INSERT METHOD POINTER REFERENCE: " << &pPhoneType->PHONE_TYPE << " VALUE: " << pPhoneType->PHONE_TYPE << "\n";
 
 	phoneTypes.Add(pPhoneType);
-	phoneTypes.SetAtGrow(phoneTypes.GetSize(), &oHomePhoneType);
-	phoneTypes.SetAtGrow(phoneTypes.GetSize(), &oOfficePhoneType);
+	phoneTypes.Add(&oHomePhoneType);
+	phoneTypes.Add(&oOfficePhoneType);
 
 
-	cout << "Reference before delete " << &phoneTypes[1] << "   " << phoneTypes[1]->PHONE_TYPE <<"   " << &phoneTypes[1]->PHONE_TYPE << endl;
+	cout << "Reference before delete " << &phoneTypes[1] << "   " << phoneTypes[1]->PHONE_TYPE << "   " << &phoneTypes[1]->PHONE_TYPE << endl;
 
 	PhoneType* removedElement;
 	removedElement = phoneTypes[1];
 
 	phoneTypes.RemoveAt(1, 1);
 
-	cout << "Reference after delete " << &removedElement <<"   " << removedElement->PHONE_TYPE << "   " << &phoneTypes[1]->PHONE_TYPE << endl;
+	cout << "Reference after delete " << &removedElement << "   " << removedElement->PHONE_TYPE << "   " << &phoneTypes[1]->PHONE_TYPE << endl;
 }
 void CreatePhoneTypes() {
 
@@ -95,7 +95,7 @@ void CreatePhoneTypes() {
 
 	AddPhoneTypeElements(phoneTypes);
 
-	cout << "After inserting method POINTER REFERENCE:  " << & phoneTypes[0]->PHONE_TYPE << " VAALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
+	cout << "After inserting method POINTER REFERENCE:  " << &phoneTypes[0]->PHONE_TYPE << " VAALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
 
 	/*ShowNElementInfo(phoneTypes, 0);
 
@@ -111,7 +111,7 @@ void CreatePhoneTypes() {
 
 	PhoneType* pFirstEl;
 	pFirstEl = phoneTypes[0];
-	
+
 	cout << "New pointer and pointer from ctypedptrarray references\n";
 	cout << &pFirstEl << "\n";
 	cout << &phoneTypes[0] << endl;
