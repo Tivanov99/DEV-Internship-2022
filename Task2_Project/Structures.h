@@ -93,6 +93,7 @@ typedef CTypedPtrArray < CPtrArray, PERSONS> CPersonsArray;
 typedef CTypedPtrArray < CPtrArray, PHONE_TYPES> CPhoneTypesArray;
 
 
+
 typedef PHONE_TYPES PhoneType;
 typedef CITIES Cities;
 typedef PERSONS Persons;
