@@ -18,10 +18,18 @@ CWinApp theApp;
 using namespace std;
 
 
-void FillPhoneType(string sorce, char destination[]) {
-	for (size_t i = 0; i < sorce.size(); i++)
-	{
-		destination[i] = sorce[i];
+void FillPhoneType(string sorce, PhoneType *phone) {
+	size_t LengthOfArray = sizeof(phone->PHONE_TYPE) / sizeof(char);
+	cout << LengthOfArray;
+
+	if (sorce.length() < LengthOfArray) {
+		for (size_t i = 0; i < sorce.size(); i++)
+		{
+			phone->PHONE_TYPE[i] = sorce[i];
+		}
+	}
+	else {
+		cout << "Too long sorce";
 	}
 };
 
@@ -30,18 +38,27 @@ void ShowNElementInfo(CPhoneTypesArray& phoneTypes, int index) {
 };
 
 void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
-	string sMobileType = "mobile";
+	string sMobileType = "mobiledadadadadadaddada";
 
 	PhoneType  oMobilePhoneType;
 	oMobilePhoneType.ID = 1;
 
+	int arr[15];
+
+	/*size_t LengthOfArray = sizeof(oMobilePhoneType.PHONE_TYPE) / sizeof (char);
+	cout << LengthOfArray;*/
+
+
 	PhoneType* pPhoneType;
 	/*pPhoneType = &oMobilePhoneType;*/
 	pPhoneType = new PhoneType();
-	FillPhoneType(sMobileType, pPhoneType->PHONE_TYPE);
+	char testArr[16];
+
+	FillPhoneType(sMobileType, pPhoneType);
+	
 
 	phoneTypes.Add(pPhoneType);
-	FillPhoneType(sMobileType, oMobilePhoneType.PHONE_TYPE);
+	//FillPhoneType(sMobileType, oMobilePhoneType.PHONE_TYPE);
 
 	/*PhoneType oHomePhoneType;
 	oHomePhoneType.ID = 2;
@@ -54,6 +71,10 @@ void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
 
 
 	cout << "INSIDE INSERT METHOD POINTER REFERENCE: " << &pPhoneType->PHONE_TYPE << " VALUE: " << pPhoneType->PHONE_TYPE << "\n";
+
+	delete phoneTypes[0];
+
+	cout << "AFTER DELTE STATEMENT: " << &pPhoneType->PHONE_TYPE << " VALUE: " << pPhoneType->PHONE_TYPE << "\n";
 
 	/*string sHomeType = "home";
 	string sOfficeType = "office";*/
