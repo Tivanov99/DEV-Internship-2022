@@ -58,31 +58,32 @@ void CreatePhoneTypes() {
 		value[i] = phoneTypes[0]->PHONE_TYPE[i];
 	}
 
-	cout << &value << "   " << value << "\n";
-	cout << "CTypedPtrArray\n";
-	cout << phoneTypes[0]->PHONE_TYPE << "\n";
 
 	PhoneType* pFirstEl;
 	pFirstEl = phoneTypes[0];
 	
-	cout << "New pointer and pointer from ctypedptrarray references";
+	cout << "New pointer and pointer from ctypedptrarray references\n";
 	cout << &pFirstEl << "\n";
 	cout << &phoneTypes[0] << endl;
 
 
-	cout << "Memory addreses";
+	cout << "Memory addreses\n";
 	cout << &phoneTypes[0]->PHONE_TYPE << "\n";
 	cout << &pFirstEl->PHONE_TYPE << "\n";
 	cout << &phoneTypes[0]->ID << "\n";
 	cout << &pFirstEl->ID<< endl;
 
 
-	//Цялостна информация
-	cout << phoneTypes[1]->PHONE_TYPE << "     " << *phoneTypes[1]->PHONE_TYPE << "  " << *phoneTypes[1]->PHONE_TYPE << "  " << &phoneTypes[1]->PHONE_TYPE << "\n";
+	cout << "Full info about  second element of ctypedptrArray\n";
+	cout << phoneTypes[1]->PHONE_TYPE << "     " << &phoneTypes[1]->PHONE_TYPE << "\n";
 
-	/*cout << phoneTypes[0]->PHONE_TYPE << "\n";
-	cout << phoneTypes[1]->PHONE_TYPE << "\n";
-	cout << phoneTypes[2]->PHONE_TYPE << "\n";*/
+	cout << "CTypedPtrArray Loop \n";
+	INT_PTR cArrayLenght = phoneTypes.GetSize();
+	for (size_t i = 0; i < cArrayLenght; i++)
+	{
+		cout <<"At index " << i  << " value : " << phoneTypes[i]->PHONE_TYPE << "\n";
+	}
+
 	FillPhoneType("dadada", phoneTypes[0]->PHONE_TYPE);
 
 	cout << phoneTypes[0]->PHONE_TYPE << "\n";
