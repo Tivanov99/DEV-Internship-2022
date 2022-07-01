@@ -36,8 +36,8 @@ void ManagePhoneTypes() {
 }
 
 void ManagePhoneNumbers() {
-	CPhoneNumbersArray oPhoneTypesArray;
 	PhoneNumbersService service;
+	CPhoneNumbersArray oPhoneTypesArray;
 
 	service.AddDefaultPhoneNumbersElements(oPhoneTypesArray);
 	service.AddDefaultPhoneNumbersElements(oPhoneTypesArray);
@@ -49,17 +49,17 @@ void ManagePhoneNumbers() {
 
 	service.GetPointerAtIndex(17, oPhoneTypesArray);
 
-	service.ChangePhoneNumber()
+	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
 }
 
 
 int main()
 {
-	CPhoneNumbersArray oPhoneNumbersArray;
 	CCitiesArray oCitiesArray;
 	CPersonsArray oPersonsArray;
 
-	ManagePhoneTypes();
+	//ManagePhoneTypes();
+	ManagePhoneNumbers();
 }
 
 void Hide() {

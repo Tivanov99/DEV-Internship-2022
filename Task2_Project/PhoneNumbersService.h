@@ -27,7 +27,7 @@ public:
 			}
 		}
 		else {
-			cout << "Too long sorce";
+			cout << "Too long sorce" << endl;
 		}
 	};
 
@@ -67,7 +67,7 @@ public:
 		}
 		catch (const std::exception&)
 		{
-			cout << "Invalid 'Add' operation!";
+			cout << "Invalid 'Add' operation!" << endl;
 		}
 
 	}
@@ -95,7 +95,7 @@ public:
 		}
 		catch (const std::exception&)
 		{
-			cout << "Something goes wrong, press again!";
+			cout << "Something goes wrong, try again!" << endl;
 		}
 	}
 
@@ -103,7 +103,6 @@ public:
 		try
 		{
 			ValidateArguments(index, oPhoneTypesArray);
-			throw invalid_argument("Something goes wrong, press again!");
 
 			PhoneNumber* pPhoneType = NULL;
 			pPhoneType = oPhoneTypesArray.ElementAt(index);
@@ -111,7 +110,7 @@ public:
 		}
 		catch (exception& ex)
 		{
-			cout << ex.what();
+			cout << ex.what() << endl;
 		}
 	};
 

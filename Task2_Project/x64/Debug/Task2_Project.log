@@ -1,7 +1,8 @@
-﻿  PhoneTypeService.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(2,10): fatal error C1083: Cannot open include file: 'PhoneTypeService.h': No such file or directory
-  PhoneTypesService.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypesService.cpp(1,1): fatal error C1041: cannot open program database 'C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\vc143.pdb'; if multiple CL.EXE write to the same .PDB file, please use /FS
+﻿  PhoneNumbersService.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumbersService.h(131,24): warning C4018: '<': signed/unsigned mismatch
   Task2_Project.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(4,1): fatal error C1041: cannot open program database 'C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\vc143.pdb'; if multiple CL.EXE write to the same .PDB file, please use /FS
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumbersService.h(131,24): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypesService.h(95): warning C4715: 'PhoneTypesService::GetPointerAtIndex': not all control paths return a value
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumbersService.h(115): warning C4715: 'PhoneNumbersService::GetPointerAtIndex': not all control paths return a value
+  Task2_Project.vcxproj -> C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\Task2_Project.exe
