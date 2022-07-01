@@ -47,9 +47,17 @@ void ManagePhoneNumbers() {
 
 	PhoneNumber* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
 
-	service.GetPointerAtIndex(17, oPhoneTypesArray);
 
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
+
+	PhoneNumber* pPhoneNumber = NULL;
+	pPhoneNumber = service.GetPointerAtIndex(2, oPhoneTypesArray);
+	
+	service.ChangePhoneNumber("0895467264", "0888888888", oPhoneTypesArray);
+
+	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
+
+	int da = 0;
 }
 
 

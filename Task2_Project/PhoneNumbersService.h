@@ -127,16 +127,22 @@ public:
 		}
 	};
 
-	void ChangePhoneNumber(string oldPhoneNumber, string newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray) {
+	void ChangePhoneNumber(string oldPhoneNumber, string newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray) 
+	{
+		//string sOldPhoneNumber = ConvertToString(pOldPhoneNumberObject->PHONE_NUMBER);
+
 		for (size_t i = 0; i < oPhoneTypesArray.GetSize(); i++)
 		{
 			string currentPhoneNumber;
 			currentPhoneNumber = ConvertToString(oPhoneTypesArray[i]->PHONE_NUMBER);
 
 			if (currentPhoneNumber._Equal(oldPhoneNumber)) {
+				PhoneNumber* pOldPhoneNumber = NULL;
+				pOldPhoneNumber = oPhoneTypesArray[i];
+
 				for (size_t s = 0; s < currentPhoneNumber.length(); s++)
 				{
-					oPhoneTypesArray[s]->PHONE_NUMBER[s] = newPhoneNumber[s];
+					pOldPhoneNumber->PHONE_NUMBER[s] = newPhoneNumber[s];
 				}
 				break;
 			}

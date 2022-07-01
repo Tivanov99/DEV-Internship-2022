@@ -1,8 +1,5 @@
-﻿  PhoneNumbersService.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumbersService.h(131,24): warning C4018: '<': signed/unsigned mismatch
-  Task2_Project.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumbersService.h(131,24): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypesService.h(95): warning C4715: 'PhoneTypesService::GetPointerAtIndex': not all control paths return a value
+﻿  Task2_Project.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumbersService.h(134,24): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumbersService.h(115): warning C4715: 'PhoneNumbersService::GetPointerAtIndex': not all control paths return a value
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypesService.h(95): warning C4715: 'PhoneTypesService::GetPointerAtIndex': not all control paths return a value
   Task2_Project.vcxproj -> C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\Task2_Project.exe
