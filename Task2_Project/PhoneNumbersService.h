@@ -3,7 +3,7 @@
 #include "Structures.h"
 #include <iostream>
 using namespace std;
-class PhoneNumbersService
+class PhoneNumberService
 {
 private:
 	string ConvertToString(char* phoneNumber) {
@@ -12,7 +12,7 @@ private:
 		return sValue;
 	}
 public:
-	PhoneNumbersService()
+	PhoneNumberService()
 	{
 
 	};

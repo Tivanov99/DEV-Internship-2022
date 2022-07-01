@@ -36,7 +36,7 @@ void ManagePhoneTypes() {
 }
 
 void ManagePhoneNumbers() {
-	PhoneNumbersService service;
+	PhoneNumberService service;
 	CPhoneNumbersArray oPhoneTypesArray;
 
 	service.AddDefaultPhoneNumbersElements(oPhoneTypesArray);
@@ -60,8 +60,9 @@ void ManagePhoneNumbers() {
 
 	service.ChangePhoneNumber(pPhoneNumber, "0999999999");
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
-
 }
+
+
 
 
 int main()
@@ -70,7 +71,7 @@ int main()
 	CPersonsArray oPersonsArray;
 
 	//ManagePhoneTypes();
-	ManagePhoneNumbers();
+	//ManagePhoneNumbers();
 }
 
 void Hide() {
