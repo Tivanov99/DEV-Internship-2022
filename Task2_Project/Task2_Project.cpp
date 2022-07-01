@@ -18,14 +18,14 @@ CWinApp theApp;
 using namespace std;
 
 
-void FillPhoneType(string sorce, PhoneType &phone) {
-	size_t LengthOfArray = sizeof(phone.PHONE_TYPE) / sizeof(char);
+void FillPhoneType(string sorce, PhoneType* phone) {
+	size_t LengthOfArray = sizeof(phone->PHONE_TYPE) / sizeof(char);
 	cout << LengthOfArray;
 
 	if (sorce.length() <= LengthOfArray) {
 		for (size_t i = 0; i < sorce.size(); i++)
 		{
-			phone.PHONE_TYPE[i] = sorce[i];
+			phone->PHONE_TYPE[i] = sorce[i];
 		}
 	}
 	else {
@@ -38,136 +38,37 @@ void ShowNElementInfo(CPhoneTypesArray& phoneTypes, int index) {
 };
 
 void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
+	PhoneType* pMobilePhoneType = NULL;
+	pMobilePhoneType = new PhoneType();
+	FillPhoneType("mobile", pMobilePhoneType);
 
-	string sMobileType = "mobile";
-	string sHomeType = "home";
-	string sOfficeType = "office";
+	PhoneType* pHomePhoneType = NULL;
+	pHomePhoneType = new PhoneType();
+	FillPhoneType("home", pHomePhoneType);
 
-	PhoneType  oMobilePhoneType;
-	oMobilePhoneType.ID = 1;
+	PhoneType* pOfficePhoneType = NULL;
+	pOfficePhoneType = new PhoneType();
+	FillPhoneType("office", pOfficePhoneType);
 
-	PhoneType oHomePhoneType;
-	oHomePhoneType.ID = 2;
-	FillPhoneType(sHomeType, oHomePhoneType);
+	phoneTypes.Add(pMobilePhoneType);
+	phoneTypes.Add(pHomePhoneType);
+	phoneTypes.Add(pOfficePhoneType);
 
-	PhoneType oOfficePhoneType;
-	oOfficePhoneType.ID = 3;
-	FillPhoneType(sOfficeType, oOfficePhoneType);
-
-
-
-	PhoneType* pPhoneType;
-	pPhoneType = new PhoneType();
-
-	FillPhoneType(sMobileType, pPhoneType);
-	
-
-	phoneTypes.Add(pPhoneType);
-
-	cout << "INSIDE INSERT METHOD POINTER REFERENCE: " << &pPhoneType->PHONE_TYPE << " VALUE: " << pPhoneType->PHONE_TYPE << "\n";
-
-	delete phoneTypes[0];
-
-	cout << "AFTER DELTE STATEMENT: " << &pPhoneType->PHONE_TYPE << " VALUE: " << pPhoneType->PHONE_TYPE << "\n";
-
-
-
-	/*phoneTypes.Add(&oHomePhoneType);
-	phoneTypes.Add(&oOfficePhoneType);*/
-
-
-	/*cout << "Reference before delete " << &phoneTypes[1] << "   " << phoneTypes[1]->PHONE_TYPE << "   " << &phoneTypes[1]->PHONE_TYPE << endl;
-
-	PhoneType* removedElement;
-	removedElement = phoneTypes[1];
-
-	phoneTypes.RemoveAt(1, 1);
-
-	cout << "Reference after  delete " << &removedElement << "   " << removedElement->PHONE_TYPE << "   " << &removedElement->PHONE_TYPE << endl;*/
+	//cout << "INSIDE INSERT METHOD POINTER REFERENCE: " << &phoneTypes[0]->PHONE_TYPE << " VALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
+	//cout << "AFTER DELTE STATEMENT: " << &phoneTypes[0]->PHONE_TYPE << " VALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
 }
-void CreatePhoneTypes() {
-
-	/*string sMobileType = "mobile";
-	string sHomeType = "home";
-	string sOfficeType = "office";
-
-	PhoneType  oMobilePhoneType;
-	oMobilePhoneType.ID = 1;
-	FillPhoneType(sMobileType, oMobilePhoneType.PHONE_TYPE);
-
-	PhoneType oHomePhoneType;
-	oHomePhoneType.ID = 2;
-	FillPhoneType(sHomeType, oHomePhoneType.PHONE_TYPE);
-
-	PhoneType oOfficePhoneType;
-	oOfficePhoneType.ID = 3;
-	FillPhoneType(sOfficeType, oOfficePhoneType.PHONE_TYPE);*/
-
-
-	CPhoneTypesArray phoneTypes;
-
-
-
-	/*phoneTypes.Add(&oMobilePhoneType);
-	phoneTypes.SetAtGrow(phoneTypes.GetSize(), &oHomePhoneType);
-	phoneTypes.SetAtGrow(phoneTypes.GetSize(), &oOfficePhoneType);*/
-
-	AddPhoneTypeElements(phoneTypes);
-
-	cout << "After inserting method POINTER REFERENCE:  " << &phoneTypes[0]->PHONE_TYPE << " VAALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
-
-	/*ShowNElementInfo(phoneTypes, 0);
-
-
-	char value[16];
-	int size = strlen(phoneTypes[0]->PHONE_TYPE);
-
-	for (size_t i = 0; i < size; i++)
-	{
-		value[i] = phoneTypes[0]->PHONE_TYPE[i];
-	}
-
-
-	PhoneType* pFirstEl;
-	pFirstEl = phoneTypes[0];
-
-	cout << "New pointer and pointer from ctypedptrarray references\n";
-	cout << &pFirstEl << "\n";
-	cout << &phoneTypes[0] << endl;
-
-
-	cout << "Memory addreses\n";
-	cout << &phoneTypes[0]->PHONE_TYPE << "\n";
-	cout << &pFirstEl->PHONE_TYPE << "\n";
-	cout << &phoneTypes[0]->ID << "\n";
-	cout << &pFirstEl->ID<< endl;
-
-
-
-	cout << "CTypedPtrArray Loop \n";
-	INT_PTR cArrayLenght = phoneTypes.GetSize();
-	for (size_t i = 0; i < cArrayLenght; i++)
-	{
-		cout <<"At index " << i  << " value : " << phoneTypes[i]->PHONE_TYPE << "\n";
-	}
-
-	FillPhoneType("dadada", phoneTypes[0]->PHONE_TYPE);
-
-	cout << phoneTypes[0]->PHONE_TYPE << "\n";*/
-}
-
-
-
 int main()
 {
-	CPhoneNumbersArray numbers;
+	CPhoneNumbersArray oPhoneNumbersArray;
 	CCitiesArray cities;
 	CPersonsArray persons;
 
-	CreatePhoneTypes();
+	CPhoneTypesArray phoneTypes;
 
-
-
+	AddPhoneTypeElements(phoneTypes);
+	phoneTypes.FreeExtra();
+	phoneTypes.RemoveAt(0, 2);
+	cout << "AFTER DELTE STATEMENT: " << &phoneTypes[0]->PHONE_TYPE << " VALUE: " << phoneTypes[0]->PHONE_TYPE << "\n";
 }
 
 void Hide() {

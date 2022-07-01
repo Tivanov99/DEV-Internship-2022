@@ -81,7 +81,7 @@ struct PHONE_TYPES {
 	PHONE_TYPES()
 	{
 		SecureZeroMemory(this, sizeof(*this));
-	}
+	};
 };
 
 typedef PHONE_TYPES PhoneType;
