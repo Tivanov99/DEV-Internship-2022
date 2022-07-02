@@ -121,9 +121,21 @@ void ManageCities() {
 }
 
 void CStringExample() {
-	CString strDummy = _T("This is a test ");
-	CString strSecondDummy = _T("This is a test ");
+	CString strDummy = _T("This is a test!\t");
 
+	//_tprintf(_T("%s"), (LPCTSTR)strDummy);
+
+
+	strDummy.AppendFormat(_T("%s"),_T("Just a test!"));
+
+	_tprintf(_T("%s"), (LPCTSTR)strDummy);
+
+	//CAtlString str = _T("Some data:\t");
+
+	//str.AppendFormat(_T("X value = %.2f\n"), 12345.12345);
+	//_tprintf_s(_T("%s"), (LPCTSTR)str);
+
+	/*
 	int nCompareResult = strDummy.Compare(strSecondDummy);
 
 	string resultMessage = nCompareResult < 0 ? "Value compare is different" :
@@ -149,7 +161,7 @@ void CStringExample() {
 	cValueFound = strDummy.Find('T', 1);
 	cout << cValueFound << endl;
 
-	cout << strDummy.Delete(0, 4);
+	cout << strDummy.Delete(0, 4);*/
 }
 
 void CArrayExample() {
@@ -185,11 +197,11 @@ void CArrayExample() {
 
 int main()
 {
-	CArrayExample();
+	/*CArrayExample();*/
 	CStringExample();
-	ManageCities();
+	/*ManageCities();
 	ManagePhoneTypes();
-	ManagePhoneNumbers();
+	ManagePhoneNumbers();*/
 
 	//int nRetCode = 0;
 
