@@ -123,15 +123,34 @@ void ManageCities() {
 void CStringExample() {
 	CString strDummy = _T("This is a dummy object!\t");
 
-	//_tprintf(_T("%s"), (LPCTSTR)strDummy);
+	_tprintf(_T("%s"), (LPCTSTR)strDummy);
 
-
-	strDummy.AppendFormat(_T("%s"),_T("Just a test!"));
+	strDummy.AppendFormat(_T("%s"), _T("Just a test!"));
 
 	_tprintf(_T("%s"), (LPCTSTR)strDummy);
-	
 
-	
+	CString comparedDummy = _T("This is a dummy object!\tJust a test!");
+
+	int compareResult = strDummy.Compare((LPCTSTR)comparedDummy);
+	string resultMessage;
+	switch (compareResult)
+	{
+	case -1: resultMessage = "\nCompared value is greater."; break;
+	case 1: resultMessage = "\nCompared value is less."; break;
+	default:
+		resultMessage = "\nValues are equal!";
+		break;
+	}
+
+	cout << resultMessage<< endl;
+
+	strDummy.Format(_T("%s"), "da");
+
+
+
+
+
+
 }
 
 void CArrayExample() {
@@ -154,12 +173,12 @@ void CArrayExample() {
 	if (arr.GetCount() > 0) {
 		try
 		{
-			arr.RemoveAt(0,3);
+			arr.RemoveAt(0, 3);
 			arr.FreeExtra();
 		}
 		catch (const std::exception&)
 		{
-				
+
 		}
 	}
 
@@ -182,21 +201,21 @@ int main()
 	//	    // initialize MFC and print and error on failure
 	//	    if (!AfxWinInit(hModule, nullptr, ::GetCommandLine(), 0))
 	//	    {
-	//	        // TODO: code your application's behavior here.
-	//	        wprintf(L"Fatal Error: MFC initialization failed\n");
-	//	        nRetCode = 1;
-	//	    }
-	//	    else
-	//	    {
-	//	        // TODO: code your application's behavior here.
-	//	    }
-	//	}
-	//	else
-	//	{
-	//	    // TODO: change error code to suit your needs
-	//	    wprintf(L"Fatal Error: GetModuleHandle failed\n");
-	//	    nRetCode = 1;
-	//	}
+	;	//	        // TODO: code your application's behavior here.
+		//	        wprintf(L"Fatal Error: MFC initialization failed\n");
+		//	        nRetCode = 1;
+		//	    }
+		//	    else
+		//	    {
+		//	        // TODO: code your application's behavior here.
+		//	    }
+		//	}
+		//	else
+		//	{
+		//	    // TODO: change error code to suit your needs
+		//	    wprintf(L"Fatal Error: GetModuleHandle failed\n");
+		//	    nRetCode = 1;
+		//	}
 
-	//	return nRetCode;
+		//	return nRetCode;
 }
