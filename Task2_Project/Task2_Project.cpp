@@ -9,10 +9,9 @@
 #define new DEBUG_NEW
 #endif
 #include "Structures.h"
-#include "PhoneTypesService.h"
-#include "PhoneNumbersService.h"
 #include "CityService.h"
 #include "CStringService.h"
+#include "BaseService.h"
 
 
 // The one and only application object
@@ -171,6 +170,7 @@ void CArrayExample() {
 
 int main()
 {
+	BaseService service;
 	/*CArrayExample();*/
 	CStringExample();
 	/*ManageCities();
