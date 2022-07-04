@@ -183,6 +183,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CCitiesTable.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="CitiesDoc.h" />
     <ClInclude Include="CitiesView.h" />
@@ -194,6 +195,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CCitiesTable.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="CitiesDoc.cpp" />
     <ClCompile Include="CitiesView.cpp" />
