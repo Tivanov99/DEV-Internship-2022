@@ -116,7 +116,7 @@ void CityService::ValidateArguments(int nIndex, CCitiesArray& oCitiesArray) {
 	}
 };
 
-template<class T> void ShowElementInfoAtIndex(int nIndex, T& elementsCollection) {
+void ShowElementInfoAtIndex(int nIndex, CCitiesArray& oCitiesArray) {
 	try
 	{
 		ValidateArguments(nIndex);

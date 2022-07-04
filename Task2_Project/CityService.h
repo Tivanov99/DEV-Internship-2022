@@ -13,7 +13,7 @@ private:
 public:
 	void AddCityElements(CCitiesArray& oCities);
 	void ValidateArguments(int nIndex, CCitiesArray& oCitiesArray);
-	template<class T> void ShowElementInfoAtIndex(int nIndex, T& elementsCollection);
+	void ShowElementInfoAtIndex(int nIndex, CCitiesArray& oCitiesArray);
 	City* GetPointerAtIndex(const int& index, CCitiesArray& oCitiesArray);
 	void RemoveAt(int nIndex, int nCount, CCitiesArray& oCitiesArray);
 	void ChangeCityName(string oldCityName, string newCityName, CCitiesArray& oCitiesArray);
