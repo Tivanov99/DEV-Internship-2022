@@ -12,6 +12,7 @@
 #include "PhoneTypesService.h"
 #include "PhoneNumbersService.h"
 #include "CityService.h"
+#include "CStringService.h"
 
 
 // The one and only application object
@@ -123,11 +124,16 @@ void ManageCities() {
 
 void CStringExample() {
 	CString strDummy = _T("This is a dummy object!\t");
+	CStringService strService;
 
-	strDummy.AppendFormat(_T("%s"), _T("Just a test!"));
+	strService.PrintCStringAsString(strDummy);
+	int nArgCount = 5;
+	strService.AppendListOfIntegerArgs(strDummy, nArgCount, 10, 20, 30, 40, 50);
+
+	strDummy.AppendFormat(_T("%s"),(LPCWSTR)"Just Test");
+	strService.PrintCStringAsString(strDummy);
 
 	CString comparedDummy = _T("This is a dummy object!\tJust a test!");
-
 }
 
 

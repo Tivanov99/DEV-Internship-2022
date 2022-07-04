@@ -8,9 +8,10 @@ public:
 	{
 
 	}
-	void AppendListOfArgs(CString& strDummy, int nArgsCount, ...) {
+	void AppendListOfIntegerArgs(CString& strDummy,int nArgsCount, ...) {
 		va_list vl;
 		va_start(vl, nArgsCount);
+		va_arg(vl, int);
 		for (size_t i = 0; i < nArgsCount; i++)
 		{
 			strDummy.AppendFormatV(_T("%d, "), vl);
@@ -37,9 +38,6 @@ public:
 			cout << "\nValues are equal!";
 			break;
 		}
-	}
-	void AppendAsStringFormat() {
-
 	}
 };
 
