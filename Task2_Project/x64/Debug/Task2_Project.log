@@ -1,13 +1,14 @@
-﻿  CityService.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(122,29): error C3861: 'oCitiesArray': identifier not found
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(124,11): error C3861: 'oCitiesArray': identifier not found
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(166,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(197,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(227,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(229,24): warning C4018: '<': signed/unsigned mismatch
-  Task2_Project.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumbersService.h(132,24): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(153,23): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumbersService.h(115): warning C4715: 'PhoneNumberService::GetPointerAtIndex': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypesService.h(101): warning C4715: 'PhoneTypesService::GetPointerAtIndex': not all control paths return a value
+﻿  BaseService.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(10,20): error C2649: 'typename': is not a 'class'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(10,20): error C2059: syntax error: '<end Parse>'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(11,87): error C2649: 'typename': is not a 'class'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(11,110): error C2059: syntax error: ';'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(12,1): error C2143: syntax error: missing ';' before '}'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(6,78): error C2649: 'typename': is not a 'class'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(6,101): error C2187: syntax error: 'const' was unexpected here
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(7,1): fatal error C1903: unable to recover from previous error(s); stopping compilation
+  INTERNAL COMPILER ERROR in 'C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.31.31103\bin\HostX64\x64\CL.exe'
+      Please choose the Technical Support command on the Visual C++
+      Help menu, or open the Technical Support help file for more information
