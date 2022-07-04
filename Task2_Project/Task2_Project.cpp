@@ -123,8 +123,6 @@ void ManageCities() {
 void CStringExample() {
 	CString strDummy = _T("This is a dummy object!\t");
 
-	_tprintf(_T("%s"), (LPCTSTR)strDummy);
-
 	strDummy.AppendFormat(_T("%s"), _T("Just a test!"));
 
 	_tprintf(_T("%s"), (LPCTSTR)strDummy);
@@ -132,7 +130,9 @@ void CStringExample() {
 	CString comparedDummy = _T("This is a dummy object!\tJust a test!");
 
 	int compareResult = strDummy.Compare((LPCTSTR)comparedDummy);
+
 	string resultMessage;
+
 	switch (compareResult)
 	{
 	case -1: resultMessage = "\nCompared value is greater."; break;
@@ -142,16 +142,11 @@ void CStringExample() {
 		break;
 	}
 
-	cout << resultMessage<< endl;
-
-	strDummy.Format(_T("%s"), "da");
-
-
-
-
+	cout << resultMessage << endl;
 
 
 }
+
 
 void CArrayExample() {
 	CArray<int, int> arr;
