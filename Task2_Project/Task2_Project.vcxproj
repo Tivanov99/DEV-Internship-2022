@@ -157,7 +157,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PhoneNumbersService.h" />
-    <ClInclude Include="PhoneTypesService.h" />
+    <ClInclude Include="PhoneTypeService.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Structures.h" />
     <ClInclude Include="targetver.h" />
@@ -175,7 +175,6 @@
     </ClCompile>
     <ClCompile Include="PhoneNumbersService.cpp" />
     <ClCompile Include="PhoneTypeService.cpp" />
-    <ClCompile Include="PhoneTypesService.cpp" />
     <ClCompile Include="Task2_Project.cpp" />
   </ItemGroup>
   <ItemGroup>

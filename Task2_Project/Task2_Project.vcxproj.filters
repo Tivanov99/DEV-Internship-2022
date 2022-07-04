@@ -33,9 +33,6 @@
     <ClInclude Include="Structures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PhoneTypesService.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PhoneNumbersService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -48,18 +45,15 @@
     <ClInclude Include="BaseService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PhoneTypeService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Task2_Project.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PhoneTypeService.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PhoneTypesService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PhoneNumbersService.cpp">
@@ -72,6 +66,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BaseService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PhoneTypeService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
