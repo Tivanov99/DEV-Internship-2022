@@ -1,13 +1,2 @@
-﻿  CStringService.cpp
-  Task2_Project.cpp
-C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\PhoneNumbersService.h(132,24): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\CityService.h(170,24): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\CityService.h(200,24): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\CityService.h(230,24): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\CityService.h(232,25): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\Task2_Project.cpp(153,23): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\CityService.h(152): warning C4715: 'CityService::GetPointerAtIndex': not all control paths return a value
-C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\PhoneTypesService.h(95): warning C4715: 'PhoneTypesService::GetPointerAtIndex': not all control paths return a value
-C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\PhoneNumbersService.h(115): warning C4715: 'PhoneNumberService::GetPointerAtIndex': not all control paths return a value
-C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\CStringService.cpp : fatal error C1090: PDB API call failed, error code '3': C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\x64\Debug\vc143.pdb
+﻿  pch.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\pch.cpp : fatal error C1090: PDB API call failed, error code '3': C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\vc143.pdb
