@@ -11,6 +11,12 @@ public:
 	{
 
 	};
+public:
+
+	void Print() const
+	{
+	}
+
 	void SetPhoneType(string sorce, PhoneType* phone) {
 		size_t LengthOfArray = sizeof(phone->PHONE_TYPE) / sizeof(char);
 
@@ -78,7 +84,7 @@ public:
 		}
 	}
 
-	PhoneType* GetPointerAtIndex(int index, CPhoneTypesArray& oPhoneTypesArray) {
+	PhoneType* GetPointerAtIndex(const int index, CPhoneTypesArray& oPhoneTypesArray) {
 		try
 		{
 			ValidateArguments(index, oPhoneTypesArray);

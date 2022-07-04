@@ -39,10 +39,13 @@
     <ClInclude Include="PhoneNumbersService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CStringService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="CityService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CStringService.h">
+    <ClInclude Include="BaseService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -62,10 +65,13 @@
     <ClCompile Include="PhoneNumbersService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CStringService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="CityService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CStringService.cpp">
+    <ClCompile Include="BaseService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

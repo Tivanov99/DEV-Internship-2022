@@ -5,7 +5,8 @@
 /// <summary>
 ///  Дискова структура CITIES предназначена за таблицата 'CITIES'
 /// </summary>
-struct CITIES {
+struct CITIES 
+{
 	/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'CITIES'</summary>
 	int nID;
 	/// <summary>?</summary>
@@ -62,6 +63,7 @@ struct PHONE_NUMBERS {
 	int nPHONE_TYPE_ID;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_NUMBER' в таблицата  'PHONE_NUMBERS'</summary>
 	char PHONE_NUMBER[16];
+
 	PHONE_NUMBERS()
 	{
 		SecureZeroMemory(this, sizeof(*this));

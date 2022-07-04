@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BaseService.h" />
     <ClInclude Include="CityService.h" />
     <ClInclude Include="CStringService.h" />
     <ClInclude Include="framework.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Task2_Project.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseService.cpp" />
     <ClCompile Include="CityService.cpp" />
     <ClCompile Include="CStringService.cpp" />
     <ClCompile Include="pch.cpp">
