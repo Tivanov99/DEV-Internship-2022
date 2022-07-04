@@ -4,8 +4,8 @@ C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\CityService.h(
 C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\CityService.h(200,24): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\CityService.h(230,24): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\CityService.h(232,25): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\Task2_Project.cpp(163,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\CityService.h(152): warning C4715: 'CityService::GetPointerAtIndex': not all control paths return a value
+C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\Task2_Project.cpp(172,23): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\PhoneTypesService.h(95): warning C4715: 'PhoneTypesService::GetPointerAtIndex': not all control paths return a value
+C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\CityService.h(152): warning C4715: 'CityService::GetPointerAtIndex': not all control paths return a value
 C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\PhoneNumbersService.h(115): warning C4715: 'PhoneNumberService::GetPointerAtIndex': not all control paths return a value
   Task2_Project.vcxproj -> C:\Users\Trifon\Desktop\DEVELOPMENT-Internship-2022\Task2_Project\x64\Debug\Task2_Project.exe

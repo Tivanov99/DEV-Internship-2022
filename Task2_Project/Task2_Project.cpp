@@ -120,6 +120,17 @@ void ManageCities() {
 	CityPostalCodeChanging(service, oCitiesArray);
 }
 
+void AppendListOfArgs(CString& strDummy, int nArgsCount, ...) {
+	va_list vl;
+	va_start(vl, nArgsCount);
+	for (size_t i = 0; i < nArgsCount; i++)
+	{
+		strDummy.AppendFormatV(_T("%d, "), vl);
+		va_arg(vl, int);
+	}
+	va_end(vl);
+}
+
 void CStringExample() {
 	CString strDummy = _T("This is a dummy object!\t");
 
@@ -127,25 +138,23 @@ void CStringExample() {
 
 	_tprintf(_T("%s"), (LPCTSTR)strDummy);
 
+
 	CString comparedDummy = _T("This is a dummy object!\tJust a test!");
 
 	int compareResult = strDummy.Compare((LPCTSTR)comparedDummy);
 
-	string resultMessage;
-
 	switch (compareResult)
 	{
-	case -1: resultMessage = "\nCompared value is greater."; break;
-	case 1: resultMessage = "\nCompared value is less."; break;
+	case -1:cout << "\nCompared value is greater."; break;
+	case 1: cout << "\nCompared value is less."; break;
 	default:
-		resultMessage = "\nValues are equal!";
+		cout << "\nValues are equal!";
 		break;
 	}
-
-	cout << resultMessage << endl;
-
-
+	AppendListOfArgs(strDummy, 4, 110, 30, 74, 89);
+	_tprintf(_T("%s"), (LPCTSTR)strDummy);
 }
+
 
 
 void CArrayExample() {
