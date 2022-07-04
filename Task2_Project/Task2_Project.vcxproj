@@ -156,7 +156,7 @@
     <ClInclude Include="CStringService.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="PhoneNumbersService.h" />
+    <ClInclude Include="PhoneNumberService.h" />
     <ClInclude Include="PhoneTypeService.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Structures.h" />
@@ -173,7 +173,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="PhoneNumbersService.cpp" />
+    <ClCompile Include="PhoneNumberService.cpp" />
     <ClCompile Include="PhoneTypeService.cpp" />
     <ClCompile Include="Task2_Project.cpp" />
   </ItemGroup>

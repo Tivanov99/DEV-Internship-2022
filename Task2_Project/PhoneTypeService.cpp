@@ -1,6 +1,6 @@
+#pragma once
 #include "pch.h"
 #include "PhoneTypeService.h"
-#pragma once
 #include <string>
 #include "Structures.h"
 #include <iostream>
