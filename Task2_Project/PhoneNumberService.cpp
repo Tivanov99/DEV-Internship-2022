@@ -22,6 +22,7 @@ void PhoneNumberService::SetPhoneNumber(string sorce, PHONE_NUMBERS& phoneNumber
 	}
 };
 
+//CHECK HERE
  template<class T> void PhoneNumberService::AddDefaultElements(CTypedPtrArray<CPtrArray, class T*>& elementsCollection) {
 	try
 	{
@@ -62,6 +63,7 @@ void PhoneNumberService::SetPhoneNumber(string sorce, PHONE_NUMBERS& phoneNumber
 	}
 }
 
+ //CHECK HERE
 void PhoneNumberService::ShowElementInfoAtIndex(const int index, CPhoneNumbersArray& oPhoneTypesArray) {
 	try
 	{
@@ -95,12 +97,12 @@ void PhoneNumberService::ChangePhoneNumber(string oldPhoneNumber, string newPhon
 		}
 	}
 }
-void PhoneNumberService::ChangePhoneNumber(PHONE_NUMBERS* pOldPhoneNumberElement, string newPhoneNumber)
+void PhoneNumberService::ChangePhoneNumber(PHONE_NUMBERS& pOldPhoneNumberElement, string newPhoneNumber)
 {
-	string sOldPhoneNumber = ConvertToString(pOldPhoneNumberElement->szPHONE_NUMBER);
+	string sOldPhoneNumber = ConvertToString(pOldPhoneNumberElement.szPHONE_NUMBER);
 
 	for (size_t s = 0; s < newPhoneNumber.length(); s++)
 	{
-		pOldPhoneNumberElement->szPHONE_NUMBER[s] = newPhoneNumber[s];
+		pOldPhoneNumberElement.szPHONE_NUMBER[s] = newPhoneNumber[s];
 	}
 }

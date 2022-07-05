@@ -50,20 +50,20 @@ void ManagePhoneNumbers() {
 
 	service.RemoveAt(0, 2, oPhoneTypesArray);
 
-	PHONE_NUMBER* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
+	//PHONE_NUMBER* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
 
 
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
 
-	PhoneNumber* pPhoneNumber = NULL;
-	pPhoneNumber = service.GetPointerAtIndex(2, oPhoneTypesArray);
+	//PHONE_NUMBER* pPhoneNumber = NULL;
+	//pPhoneNumber = service.GetPointerAtIndex(2, oPhoneTypesArray);
 
 	service.ChangePhoneNumber("0895467264", "0888888888", oPhoneTypesArray);
 
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
 
 
-	service.ChangePhoneNumber(pPhoneNumber, "0999999999");
+	service.ChangePhoneNumber(*oPhoneTypesArray[0], "0999999999");
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
 }
 

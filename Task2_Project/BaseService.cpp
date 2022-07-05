@@ -25,7 +25,7 @@ template<class T> T* BaseService:: GetPointerAtIndex(const int nIndex, CTypedPtr
 		cout << ex.what() << endl;
 	}
 };
-template <class T> void BaseService::ReRemoveAt(const int nIndex, const int count, CTypedPtrArray<CPtrArray, class T*>& elementsCollection)
+template <class T> void BaseService::RemoveAt(const int nIndex, const int count, CTypedPtrArray<CPtrArray, class T*>& elementsCollection)
 {
 	try
 	{
