@@ -23,7 +23,7 @@ void PhoneNumberService::SetPhoneNumber(string sorce, PHONE_NUMBERS& phoneNumber
 };
 
 //CHECK HERE!!!!
- template<class T> void PhoneNumberService::AddDefaultElements(CTypedPtrArray<CPtrArray, class T*>& elementsCollection) {
+template<class T> void PhoneNumberService::AddDefaultElements(CTypedPtrArray<CPtrArray, class T*>& elementsCollection) {
 	try
 	{
 		PHONE_NUMBERS* pFirstPhoneNumber = NULL;
@@ -63,7 +63,7 @@ void PhoneNumberService::SetPhoneNumber(string sorce, PHONE_NUMBERS& phoneNumber
 	}
 }
 
- //CHECK HERE
+//CHECK HERE
 void PhoneNumberService::ShowElementInfoAtIndex(const int index, CPhoneNumbersArray& oPhoneTypesArray) {
 	try
 	{
@@ -78,7 +78,8 @@ void PhoneNumberService::ShowElementInfoAtIndex(const int index, CPhoneNumbersAr
 	}
 }
 
-void PhoneNumberService::ChangePhoneNumber(string oldPhoneNumber, string newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray)
+void PhoneNumberService::ChangePhoneNumber
+(string oldPhoneNumber, string newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray)
 {
 	for (size_t i = 0; i < oPhoneTypesArray.GetSize(); i++)
 	{

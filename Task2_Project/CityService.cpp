@@ -132,7 +132,7 @@ void CityService::ShowElementInfoAtIndex(const int nIndex, CCitiesArray& oCities
 	}
 }
 
-void CityService::ChangeCityName(const string oldCityName, const string newCityName, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityName(string const &oldCityName, string const &newCityName, CCitiesArray& oCitiesArray)
 {
 	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
 	{
@@ -152,7 +152,7 @@ void CityService::ChangeCityName(const string oldCityName, const string newCityN
 	}
 }
 
-void CityService::ChangeCityName(CITIES& pOldCity, const string newCityName)
+void CityService::ChangeCityName(CITIES& pOldCity, string const &newCityName)
 {
 	string sCityName = ConvertToString(pOldCity.szCITY_NAME);
 
@@ -162,7 +162,7 @@ void CityService::ChangeCityName(CITIES& pOldCity, const string newCityName)
 		pOldCity.szCITY_NAME[s] = newCityName[s];
 	}
 }
-void CityService::ChangeCityAreaName(const string oldCityAreaName, const string newCityAreaName, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityAreaName (string const &oldCityAreaName,string const &newCityAreaName, CCitiesArray& oCitiesArray)
 {
 	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
 	{

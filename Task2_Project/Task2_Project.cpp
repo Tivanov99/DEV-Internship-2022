@@ -68,7 +68,8 @@ void ManagePhoneNumbers() {
 }
 
 void CityNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
-	City* pCity = NULL;
+
+	CITIES* pCity = NULL;
 	pCity = service.GetPointerAtIndex(2, oCitiesArray);
 
 	service.ChangeCityName("Ruse", "RuseFirst", oCitiesArray);
