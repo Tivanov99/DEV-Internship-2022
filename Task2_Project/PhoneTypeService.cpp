@@ -6,7 +6,7 @@
 #include <iostream>
 using namespace std;
 
-void PhoneTypeService::SetPhoneType(const string sorce, PHONE_TYPES phone) {
+void PhoneTypeService::SetPhoneType(const string sorce, PHONE_TYPES& phone) {
 	size_t LengthOfArray = sizeof(phone.szPHONE_TYPE) / sizeof(char);
 
 	if (sorce.length() <= LengthOfArray) {
@@ -20,11 +20,12 @@ void PhoneTypeService::SetPhoneType(const string sorce, PHONE_TYPES phone) {
 	}
 };
 
-void PhoneTypeService::AddDefaultElements(CPhoneTypesArray &oArray) {
+void PhoneTypeService::AddDefaultElements(CPhoneTypesArray& phoneTypes)
+{
 	try
 	{
 		PHONE_TYPES pMobilePhoneType ;
-		SetPhoneType("mobile", pMobilePhoneType);
+		SetPhoneType("mobile",pMobilePhoneType);
 
 		PHONE_TYPES pHomePhoneType ;
 		SetPhoneType("home", pHomePhoneType);
@@ -32,9 +33,9 @@ void PhoneTypeService::AddDefaultElements(CPhoneTypesArray &oArray) {
 		PHONE_TYPES pOfficePhoneType;
 		SetPhoneType("office", pOfficePhoneType);
 
-		oArray.Add(&pMobilePhoneType);
-		oArray.Add(&pHomePhoneType);
-		oArray.Add(&pOfficePhoneType);
+		phoneTypes.Add(&pMobilePhoneType);
+		phoneTypes.Add(&pHomePhoneType);
+		phoneTypes.Add(&pOfficePhoneType);
 	}
 	catch (const std::exception&)
 	{
