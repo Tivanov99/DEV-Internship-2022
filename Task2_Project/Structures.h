@@ -12,11 +12,11 @@ struct CITIES
 	/// <summary>?</summary>
 	int nUPDATE_COUNTER;
 	/// <summary>Променлива съдържаща стойността от колона 'CITY_NAME' в таблицата 'CITIES'</summary>
-	char  CITY_NAME[32];
+	char  szCITY_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колона 'AREA_NAME' в таблицата 'CITIES'</summary>
-	char AREA_NAME[32];
+	char szAREA_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колона 'POSTAL_CODE' в таблицата 'CITIES'</summary>
-	int nPOSTAL_CODE;
+	int sznPOSTAL_CODE;
 
 	CITIES()
 	{
@@ -33,16 +33,16 @@ struct PERSONS {
 	/// <summary>?</summary>
 	int nUPDATE_COUNTER;
 	/// <summary>Променлива съдържаща стойността от колона 'FIRST_NAME' в таблицата  'PERSONS'</summary>
-	char FIRST_NAME[32];
+	char szFIRST_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колона 'SECOND_NAME' в таблицата  'PERSONS'</summary>
-	char SECOND_NAME[32];
+	char szSECOND_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колоната 'LAST_NAME' в таблицата  'PERSONS'</summary>
-	char LAST_NAME[32];
+	char szLAST_NAME[32];
 	/// <summary>Променлива съдържаща вторичен ключ (от колона 'CITY_ID' в таблицата  'PERSONS')
 	/// <summary>сочещ към таблицата 'CITIES' и колона 'ID'</summary>
 	int nCITY_ID;
 	/// <summary>Променлива съдържаща стойността от колоната 'ADDRESS' в таблицата  'PERSONS'</summary>
-	char ADDRESS[256];
+	char szADDRESS[256];
 
 	PERSONS()
 	{
@@ -62,7 +62,7 @@ struct PHONE_NUMBERS {
 	/// <summary>сочещ към колоната 'ID' в таблицата 'PHONE_NUMBERS'</summary>;
 	int nPHONE_TYPE_ID;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_NUMBER' в таблицата  'PHONE_NUMBERS'</summary>
-	char PHONE_NUMBER[16];
+	char szPHONE_NUMBER[16];
 
 	PHONE_NUMBERS()
 	{
@@ -79,23 +79,17 @@ struct PHONE_TYPES {
 	/// <summary>?</summary>
 	int UPDATE_COUNTER;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_TYPE' в таблицата  'PHONE_TYPES'</summary>
-	char PHONE_TYPE[16];
+	char szPHONE_TYPE[16];
 	PHONE_TYPES()
 	{
 		SecureZeroMemory(this, sizeof(*this));
 	};
 };
 
-typedef PHONE_TYPES PhoneType;
-typedef CITIES City;
-typedef PERSONS Person;
-typedef PHONE_NUMBERS PhoneNumber;
+typedef CTypedPtrArray < CPtrArray, PHONE_TYPES*> CPhoneTypesArray;
 
+typedef CTypedPtrArray < CPtrArray, CITIES*> CCitiesArray;
 
-typedef CTypedPtrArray < CPtrArray, PhoneType*> CPhoneTypesArray;
+typedef CTypedPtrArray < CPtrArray, PERSONS*> CPersonsArray;
 
-typedef CTypedPtrArray < CPtrArray, City*> CCitiesArray;
-
-typedef CTypedPtrArray < CPtrArray, Person*> CPersonsArray;
-
-typedef CTypedPtrArray < CPtrArray, PhoneNumber*> CPhoneNumbersArray;
+typedef CTypedPtrArray < CPtrArray, PHONE_NUMBERS*> CPhoneNumbersArray;
