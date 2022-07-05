@@ -166,7 +166,7 @@ BEGIN TRANSACTION
 				[LAST_NAME] = 'Анастасов')
 				
 		UPDATE [PERSONS]
-			SET [CITY_ID] = @VARNA_CITY_ID
+			SET [CITY_ID] = 2
 			WHERE
 			[ID]= @SELECTED_PERSON_ID
 		
