@@ -6,7 +6,7 @@
 #include <iostream>
 using namespace std;
 
-void PhoneTypeService::SetPhoneType(const string sorce, PHONE_TYPES& phone) {
+void PhoneTypeService::SetPhoneType(const string sorce, PHONE_TYPES phone) {
 	size_t LengthOfArray = sizeof(phone.szPHONE_TYPE) / sizeof(char);
 
 	if (sorce.length() <= LengthOfArray) {
@@ -20,24 +20,21 @@ void PhoneTypeService::SetPhoneType(const string sorce, PHONE_TYPES& phone) {
 	}
 };
 
-void PhoneTypeService::AddDefaultElements(CPhoneTypesArray& oArray) {
+void PhoneTypeService::AddDefaultElements(CPhoneTypesArray &oArray) {
 	try
 	{
-		PHONE_TYPES* pMobilePhoneType = NULL;
-		pMobilePhoneType = new PHONE_TYPES();
-		SetPhoneType("mobile", *pMobilePhoneType);
+		PHONE_TYPES pMobilePhoneType ;
+		SetPhoneType("mobile", pMobilePhoneType);
 
-		PHONE_TYPES* pHomePhoneType = NULL;
-		pHomePhoneType = new PHONE_TYPES();
-		SetPhoneType("home", *pHomePhoneType);
+		PHONE_TYPES pHomePhoneType ;
+		SetPhoneType("home", pHomePhoneType);
 
-		PHONE_TYPES* pOfficePhoneType = NULL;
-		pOfficePhoneType = new PHONE_TYPES();
-		SetPhoneType("office", *pOfficePhoneType);
+		PHONE_TYPES pOfficePhoneType;
+		SetPhoneType("office", pOfficePhoneType);
 
-		oArray.Add(pMobilePhoneType);
-		oArray.Add(pHomePhoneType);
-		oArray.Add(pOfficePhoneType);
+		oArray.Add(&pMobilePhoneType);
+		oArray.Add(&pHomePhoneType);
+		oArray.Add(&pOfficePhoneType);
 	}
 	catch (const std::exception&)
 	{
@@ -45,7 +42,7 @@ void PhoneTypeService::AddDefaultElements(CPhoneTypesArray& oArray) {
 	}
 };
 
-void PhoneTypeService::ShowElementInfoAtIndex(const int nIndex, const CPhoneTypesArray& oPhoneTypesArray)
+void PhoneTypeService::ShowElementInfoAtIndex(const int nIndex, const CPhoneTypesArray &oPhoneTypesArray)
 {
 	try
 	{

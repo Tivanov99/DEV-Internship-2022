@@ -13,6 +13,7 @@
 #include "CStringService.h"
 #include "BaseService.h"
 #include "PhoneNumberService.h"
+#include "PhoneTypeService.h"
 
 
 // The one and only application object
@@ -24,15 +25,14 @@ using namespace std;
 
 void ManagePhoneTypes() {
 	CPhoneTypesArray oPhoneTypesArray;
-	PhoneTypesService service;
+	PhoneTypeService service;
 
-	service.AddPhoneTypeElements(oPhoneTypesArray);
-	service.AddPhoneTypeElements(oPhoneTypesArray);
-	service.AddPhoneTypeElements(oPhoneTypesArray);
+	service.AddDefaultElements(oPhoneTypesArray);
+	
 
 	service.RemoveAt(0, 2, oPhoneTypesArray);
 
-	PhoneType* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
+	PHONE_TYPES* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
 
 	service.GetPointerAtIndex(17, oPhoneTypesArray);
 }
@@ -72,16 +72,16 @@ void CityNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
 
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 
-	service.ChangeCityName(pCity, "RuseSecond");
+	//service.ChangeCityName(pCity, "RuseSecond");
 
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 }
 
 void CityAreaNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
-	City* pCity = NULL;
+	CITIES* pCity = NULL;
 	pCity = service.GetPointerAtIndex(2, oCitiesArray);
 
-	service.ChangeCityAreaName(pCity, "RunskaFirst");
+	//service.ChangeCityAreaName(pCity, "RunskaFirst");
 
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 
@@ -91,28 +91,27 @@ void CityAreaNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
 }
 
 void CityPostalCodeChanging(CityService& service, CCitiesArray& oCitiesArray) {
-	City* pCity = NULL;
+	CITIES* pCity = NULL;
 	pCity = service.GetPointerAtIndex(2, oCitiesArray);
 
 	service.ChangeCityPosalCode("RuseSecond", 9999, oCitiesArray);
 
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 
-	service.ChangeCityPostalCode(pCity, 11111);
+	//service.ChangeCityPostalCode(pCity, 11111);
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 }
 
 void ManageCities() {
 	CityService service;
+
 	CCitiesArray oCitiesArray;
 
-	service.AddCityElements(oCitiesArray);
-	service.AddCityElements(oCitiesArray);
-	service.AddCityElements(oCitiesArray);
+	service.AddDefaultElements(oCitiesArray);
 
 	service.RemoveAt(0, 2, oCitiesArray);
 
-	City* pTemp = service.GetPointerAtIndex(0, oCitiesArray);
+	CITIES* pTemp = service.GetPointerAtIndex(0, oCitiesArray);
 
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 
@@ -171,13 +170,13 @@ void CArrayExample() {
 
 int main()
 {
-
-	BaseService service;
-	CArrayExample();
+	//CArrayExample();
 	CStringExample();
 	ManageCities();
 	ManagePhoneTypes();
 	ManagePhoneNumbers()
+
+
 
 	//int nRetCode = 0;
 

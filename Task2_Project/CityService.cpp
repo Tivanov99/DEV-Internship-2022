@@ -53,42 +53,42 @@ void CityService::SetPostalCode(const int nSorce, CITIES& city) {
 void CityService::AddDefaultElements(CCitiesArray& oCities) {
 	try
 	{
-		CITIES* pBurgasCity ;
-		SetCityName("Bugras", *pBurgasCity);
-		SetPostalCode("Bugras", *pBurgasCity);
-		SetPostalCode(8000, *pBurgasCity);
+		CITIES pBurgasCity;
+		SetCityName("Bugras", pBurgasCity);
+		SetPostalCode("Bugras", pBurgasCity);
+		SetPostalCode(8000, pBurgasCity);
 
-		CITIES* pVarnaCity;
-		SetCityName("Varna", *pVarnaCity);
-		SetPostalCode("Varna",*pVarnaCity);
-		SetPostalCode(9000, *pVarnaCity);
+		CITIES pVarnaCity;
+		SetCityName("Varna", pVarnaCity);
+		SetPostalCode("Varna",pVarnaCity);
+		SetPostalCode(9000, pVarnaCity);
 
-		CITIES* pSofiaCity ;
-		SetCityName("Sofia", *pSofiaCity);
-		SetPostalCode("Sofia",*pSofiaCity);
-		SetPostalCode(1000, *pSofiaCity);
+		CITIES pSofiaCity ;
+		SetCityName("Sofia", pSofiaCity);
+		SetPostalCode("Sofia",pSofiaCity);
+		SetPostalCode(1000, pSofiaCity);
 
-		CITIES* pPlovidCity;
-		SetCityName("Plovdiv", *pPlovidCity);
-		SetPostalCode("Plovdiv", *pPlovidCity);
-		SetPostalCode(3000, *pPlovidCity);
+		CITIES pPlovidCity;
+		SetCityName("Plovdiv", pPlovidCity);
+		SetPostalCode("Plovdiv", pPlovidCity);
+		SetPostalCode(3000, pPlovidCity);
 
-		CITIES* pRuseCity ;
-		SetCityName("Ruse", *pRuseCity);
-		SetPostalCode("Ruse", *pRuseCity);
-		SetPostalCode(4700, *pRuseCity);
+		CITIES pRuseCity ;
+		SetCityName("Ruse", pRuseCity);
+		SetPostalCode("Ruse", pRuseCity);
+		SetPostalCode(4700, pRuseCity);
 
-		CITIES* pVelinGradCity;
-		SetCityName("VelinGrad", *pVelinGradCity);
-		SetPostalCode("Pazardzhik", *pVelinGradCity);
-		SetPostalCode(6000, *pVelinGradCity);
+		CITIES pVelinGradCity;
+		SetCityName("VelinGrad", pVelinGradCity);
+		SetPostalCode("Pazardzhik", pVelinGradCity);
+		SetPostalCode(6000, pVelinGradCity);
 
-		oCities.Add(pBurgasCity);
-		oCities.Add(pVarnaCity);
-		oCities.Add(pSofiaCity);
-		oCities.Add(pPlovidCity);
-		oCities.Add(pRuseCity);
-		oCities.Add(pVelinGradCity);
+		oCities.Add(&pBurgasCity);
+		oCities.Add(&pVarnaCity);
+		oCities.Add(&pSofiaCity);
+		oCities.Add(&pPlovidCity);
+		oCities.Add(&pRuseCity);
+		oCities.Add(&pVelinGradCity);
 	}
 	catch (const std::exception&)
 	{
@@ -109,12 +109,12 @@ void CityService::ValidateArguments(const int nIndex, CCitiesArray& oCitiesArray
 	}
 };
 
-void CityService::ShowElementInfoAtIndex(const int nIndex, CCitiesArray& oCitiesArray) {
+void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& oArray) {
 	try
 	{
-		ValidateIndex(nIndex, oCitiesArray.GetSize());
+		ValidateIndex(nIndex, oArray.GetSize());
 		CITIES* pCity = NULL;
-		pCity = oCitiesArray.GetAt(nIndex);
+		pCity = oArray.GetAt(nIndex);
 		cout << "Selected item info: " << "memory address: " << &pCity
 			<< " City Name :" << pCity->szCITY_NAME
 			<< " Postal Code " << pCity->nPOSTAL_CODE

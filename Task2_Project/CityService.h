@@ -14,7 +14,7 @@ private:
 public:
 	void AddDefaultElements(CCitiesArray& oCities) override;
 	void ValidateArguments(const int nIndex, CCitiesArray& oCitiesArray);
-	void ShowElementInfoAtIndex(const int nIndex, CCitiesArray& oCitiesArray);
+	void ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& oArray)override;
 	void ChangeCityName(string const& oldCityName, string const& newCityName, CCitiesArray& oCitiesArray);
 	void ChangeCityName(CITIES& pOldCity, string const &newCityName);
 	void ChangeCityAreaName(string const& oldCityAreaName, string const& newCityAreaName, CCitiesArray& oCitiesArray);

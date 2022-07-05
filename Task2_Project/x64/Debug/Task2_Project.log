@@ -1,66 +1,4 @@
-﻿  PhoneNumberService.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(13,20): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(13,20): error C2059: syntax error: '<end Parse>'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(14,51): error C2146: syntax error: missing '>' before identifier 'phoneNumber'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(15,67): error C2146: syntax error: missing '>' before identifier 'oPhoneTypesArray'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(16,91): error C2146: syntax error: missing '>' before identifier 'oPhoneTypesArray'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(18,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(4,63): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(8,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(11,26): error C2039: 'SetPhoneNumber': is not a member of 'PhoneNumberService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(8): message : see declaration of 'PhoneNumberService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(11,40): error C4596: 'SetPhoneNumber': illegal qualified name in member declaration
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(11,70): error C2146: syntax error: missing '>' before identifier 'phoneNumber'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(11,83): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(14,21): error C2947: expecting '>' to terminate template-argument-list, found '<='
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(14,39): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(14,39): error C2059: syntax error: '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(14,39): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(20,2): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(20,2): error C2059: syntax error: 'else'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(20,7): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(26,19): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(26,19): error C2059: syntax error: '<end Parse>'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(26,19): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(28,2): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(31,33): error C2065: 'pFirstPhoneNumber': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(31,50): error C2059: syntax error: ')'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(35,33): error C2065: 'pSecondPhoneNumber': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(35,51): error C2059: syntax error: ')'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(39,33): error C2065: 'pThirdPhoneNumber': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(39,50): error C2059: syntax error: ')'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(43,33): error C2065: 'pFourthPhoneNumber': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(43,51): error C2059: syntax error: ')'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(47,33): error C2065: 'pFifthPhoneNumber': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(47,50): error C2059: syntax error: ')'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(51,33): error C2065: 'pSixthPhoneNumber': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(51,50): error C2059: syntax error: ')'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(59,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(61,2): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(62,8): error C2947: expecting '>' to terminate template-argument-list, found '<<'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(62,11): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(62,11): error C2143: syntax error: missing ')' before 'string'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(62,11): error C2143: syntax error: missing ';' before 'string'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(62,11): error C2059: syntax error: 'string'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(63,2): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(63,2): error C2059: syntax error: '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(63,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(64,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(64,1): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(64,1): error C2059: syntax error: '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(67,104): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(67,104): error C2447: '{': missing function header (old-style formal list?)
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(81,26): error C2039: 'ChangePhoneNumber': is not a member of 'PhoneNumberService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(8): message : see declaration of 'PhoneNumberService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(84,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(87,3): error C2065: 'currentPhoneNumber': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(87,24): error C3861: 'ConvertToString': identifier not found
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(89,7): error C2065: 'currentPhoneNumber': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(93,27): error C2065: 'currentPhoneNumber': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(101,26): error C2039: 'ChangePhoneNumber': is not a member of 'PhoneNumberService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(8): message : see declaration of 'PhoneNumberService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(103,27): error C3861: 'ConvertToString': identifier not found
-  PhoneTypeService.cpp
+﻿  PhoneTypeService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(4,45): error C2065: 'PHONE_TYPES': undeclared identifier
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(4,33): error C2923: 'BaseService': 'PHONE_TYPES' is not a valid template type argument for parameter 'T'
@@ -70,56 +8,46 @@ C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(7): message : see d
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7,33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7,33): error C2146: syntax error: missing ')' before identifier 'sorce'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7,33): error C3646: 'sorce': unknown override specifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7,51): error C2143: syntax error: missing ';' before '&'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7,52): error C3646: 'phone': unknown override specifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7,57): error C2059: syntax error: ')'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7,40): error C2182: 'PHONE_TYPES': illegal use of type 'void'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7,58): error C2059: syntax error: ')'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7,59): error C2238: unexpected token(s) preceding ';'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(8,26): error C2061: syntax error: identifier 'CPhoneTypesArray'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(9,70): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(9,70): error C2143: syntax error: missing ',' before '&'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(9,71): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(9,71): error C2143: syntax error: missing ',' before '&'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(8,7): error C3668: 'PhoneTypeService::AddDefaultElements': method with override specifier 'override' did not override any base class methods
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(9,7): error C3668: 'PhoneTypeService::ShowElementInfoAtIndex': method with override specifier 'override' did not override any base class methods
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(9,57): error C2061: syntax error: identifier 'PHONE_TYPES'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(9,77): error C2511: 'void PhoneTypeService::SetPhoneType(const std::string)': overloaded member function not found in 'PhoneTypeService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(9,76): error C2511: 'void PhoneTypeService::SetPhoneType(const std::string)': overloaded member function not found in 'PhoneTypeService'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(4): message : see declaration of 'PhoneTypeService'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(10,32): error C2065: 'phone': undeclared identifier
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(15,4): error C2065: 'phone': undeclared identifier
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(23,69): error C2511: 'void PhoneTypeService::AddDefaultElements(CPhoneTypesArray &)': overloaded member function not found in 'PhoneTypeService'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(4): message : see declaration of 'PhoneTypeService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(26,16): error C2065: 'pMobilePhoneType': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(26,33): error C2597: illegal reference to non-static member 'PhoneTypeService::PHONE_TYPES'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(26,33): error C3867: 'PhoneTypeService::PHONE_TYPES': non-standard syntax; use '&' to create a pointer to member
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(26,33): error C2568: '*': unable to resolve function overload
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(27,3): error C2065: 'pMobilePhoneType': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(27,26): error C2061: syntax error: identifier 'PHONE_TYPES'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(28,27): error C2065: 'pMobilePhoneType': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(30,16): error C2065: 'pHomePhoneType': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(30,31): error C2597: illegal reference to non-static member 'PhoneTypeService::PHONE_TYPES'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(30,31): error C3867: 'PhoneTypeService::PHONE_TYPES': non-standard syntax; use '&' to create a pointer to member
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(30,31): error C2568: '*': unable to resolve function overload
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(31,3): error C2065: 'pHomePhoneType': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(31,24): error C2061: syntax error: identifier 'PHONE_TYPES'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(32,25): error C2065: 'pHomePhoneType': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(34,16): error C2065: 'pOfficePhoneType': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(34,33): error C2597: illegal reference to non-static member 'PhoneTypeService::PHONE_TYPES'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(34,33): error C3867: 'PhoneTypeService::PHONE_TYPES': non-standard syntax; use '&' to create a pointer to member
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(34,33): error C2568: '*': unable to resolve function overload
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(35,3): error C2065: 'pOfficePhoneType': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(35,26): error C2061: syntax error: identifier 'PHONE_TYPES'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(36,27): error C2065: 'pOfficePhoneType': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(38,14): error C2065: 'pMobilePhoneType': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(39,14): error C2065: 'pHomePhoneType': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(40,14): error C2065: 'pOfficePhoneType': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(49,1): error C2511: 'void PhoneTypeService::ShowElementInfoAtIndex(const int,const CPhoneTypesArray &)': overloaded member function not found in 'PhoneTypeService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(26,15): error C2146: syntax error: missing ';' before identifier 'pMobilePhoneType'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(26,3): error C2597: illegal reference to non-static member 'PhoneTypeService::PHONE_TYPES'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7): message : see declaration of 'PhoneTypeService::PHONE_TYPES'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(26,15): error C2065: 'pMobilePhoneType': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(27,26): error C2065: 'pMobilePhoneType': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(29,15): error C2146: syntax error: missing ';' before identifier 'pHomePhoneType'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(29,3): error C2597: illegal reference to non-static member 'PhoneTypeService::PHONE_TYPES'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7): message : see declaration of 'PhoneTypeService::PHONE_TYPES'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(29,15): error C2065: 'pHomePhoneType': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(30,24): error C2065: 'pHomePhoneType': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(32,15): error C2146: syntax error: missing ';' before identifier 'pOfficePhoneType'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(32,3): error C2597: illegal reference to non-static member 'PhoneTypeService::PHONE_TYPES'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7): message : see declaration of 'PhoneTypeService::PHONE_TYPES'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(32,15): error C2065: 'pOfficePhoneType': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(33,26): error C2065: 'pOfficePhoneType': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(35,15): error C2065: 'pMobilePhoneType': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(36,15): error C2065: 'pHomePhoneType': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(37,15): error C2065: 'pOfficePhoneType': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(46,1): error C2511: 'void PhoneTypeService::ShowElementInfoAtIndex(const int,const CPhoneTypesArray &)': overloaded member function not found in 'PhoneTypeService'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(4): message : see declaration of 'PhoneTypeService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(52,3): error C3861: 'ValidateIndex': identifier not found
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(53,16): error C2065: 'pTemp': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(53,22): error C2597: illegal reference to non-static member 'PhoneTypeService::PHONE_TYPES'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(53,22): error C3867: 'PhoneTypeService::PHONE_TYPES': non-standard syntax; use '&' to create a pointer to member
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(53,22): error C2568: '*': unable to resolve function overload
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(54,3): error C2065: 'pTemp': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(55,60): error C2065: 'pTemp': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(55,82): error C2065: 'pTemp': undeclared identifier
-  Task2_Project.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(4,1): fatal error C1041: cannot open program database 'C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\vc143.idb'; if multiple CL.EXE write to the same .PDB file, please use /FS
-  Generating Code...
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(49,3): error C3861: 'ValidateIndex': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(50,16): error C2065: 'pTemp': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(50,22): error C2597: illegal reference to non-static member 'PhoneTypeService::PHONE_TYPES'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(50,22): error C3867: 'PhoneTypeService::PHONE_TYPES': non-standard syntax; use '&' to create a pointer to member
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(50,22): error C2568: '*': unable to resolve function overload
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(51,3): error C2065: 'pTemp': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(52,60): error C2065: 'pTemp': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(52,82): error C2065: 'pTemp': undeclared identifier
