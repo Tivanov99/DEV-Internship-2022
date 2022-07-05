@@ -5,17 +5,20 @@ DROP TABLE IF EXISTS [PERSONS]
 DROP TABLE IF EXISTS [CITIES]
 DROP TABLE IF EXISTS [PHONE_TYPES]
 
+--exec sp_columns [PHONE_NUMBERS]
+
 CREATE TABLE
 	[CITIES]
 	(
 		[ID] INT IDENTITY (1,1) NOT NULL,
 		[UPDATE_COUNTER] INT NOT NULL,
-		[CITY_NAME] NVARCHAR(32)NOT NULL UNIQUE,
+		[CITY_NAME] NVARCHAR(32)NOT NULL,
 		[AREA_NAME] NVARCHAR(32)NOT NULL,
 		[POSTAL_CODE] INT NOT NULL,
 		CONSTRAINT [PK_CITIES_ID]
 		PRIMARY KEY ([ID])
 	)
+
 EXEC sp_addextendedproperty @name='CITIES_Table_Description', 
 @value='Таблица съдържаща инфрормацията за градовете.',
 @level0type=N'SCHEMA',@level0name=N'dbo', 
@@ -55,6 +58,8 @@ exec sp_addextendedproperty
 'SCHEMA', 'dbo',
 'TABLE', 'CITIES',
 'COLUMN', 'POSTAL_CODE'
+CREATE UNIQUE INDEX UX_CITIES_CITY_NAME ON [CITIES]([CITY_NAME])
+
 CREATE NONCLUSTERED INDEX IX_CITIES_CITY_NAME
 ON [CITIES]([CITY_NAME] ASC)
 
@@ -72,6 +77,7 @@ CREATE TABLE
 		CONSTRAINT [PK_PHONE_TYPES_ID]
 		PRIMARY KEY ([ID])
 	)
+
 EXEC sp_addextendedproperty @name='PHONE_TYPES_Table_Description', 
 @value='Таблица съдържаща инфрормацията за типовете телефони.',
 @level0type=N'SCHEMA',@level0name=N'dbo', 
@@ -98,6 +104,9 @@ exec sp_addextendedproperty
 'TABLE', 'PHONE_TYPES',
 'COLUMN', 'PHONE_TYPE'
 
+CREATE UNIQUE INDEX UX_PHONE_TYPES_PHONE_TYPE ON [PHONE_TYPES]([PHONE_TYPE])
+
+
 CREATE TABLE
 	[PERSONS]
 	(
@@ -116,8 +125,6 @@ EXEC sp_addextendedproperty @name='PERSONS_Table_Description',
 @value='Таблица съдържаща инфрормацията за хора.',
 @level0type=N'SCHEMA',@level0name=N'dbo', 
 @level1type=N'TABLE',@level1name=N'PERSONS'
-
-
 
 exec sp_addextendedproperty
 'MS_Description',
@@ -186,7 +193,6 @@ ADD CONSTRAINT [FK_PERSONS_CITY_ID]
 		FOREIGN KEY ([CITY_ID])
 		REFERENCES [CITIES]([ID])
 
-
 CREATE TABLE
 	[PHONE_NUMBERS]
 	(
@@ -198,6 +204,8 @@ CREATE TABLE
 		CONSTRAINT [PK_PHONE_NUMBERS_ID]
 			PRIMARY KEY([ID])
 	)
+
+
 	EXEC sp_addextendedproperty @name='PHONE_NUMBERS_Table_Description', 
 @value='Таблица съдържаща инфрормацията за телефонни номера, типове телефони и хора.',
 @level0type=N'SCHEMA',@level0name=N'dbo', 
