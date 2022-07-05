@@ -22,7 +22,7 @@ void PhoneNumberService::SetPhoneNumber(string sorce, PHONE_NUMBERS& phoneNumber
 	}
 };
 
-void PhoneNumberService::AddDefaultElements(CPhoneNumbersArray& phoneNumbers) {
+ template<class T> void PhoneNumberService::AddDefaultElements(CTypedPtrArray<CPtrArray, class T*>& elementsCollection) {
 	try
 	{
 		PHONE_NUMBERS* pFirstPhoneNumber = NULL;
@@ -49,12 +49,12 @@ void PhoneNumberService::AddDefaultElements(CPhoneNumbersArray& phoneNumbers) {
 		pSixthPhoneNumber = new PHONE_NUMBERS();
 		SetPhoneNumber("0891937373", *pSixthPhoneNumber);
 
-		phoneNumbers.Add(pFirstPhoneNumber);
-		phoneNumbers.Add(pSecondPhoneNumber);
-		phoneNumbers.Add(pThirdPhoneNumber);
-		phoneNumbers.Add(pFourthPhoneNumber);
-		phoneNumbers.Add(pFifthPhoneNumber);
-		phoneNumbers.Add(pSixthPhoneNumber);
+		elementsCollection.Add(pFirstPhoneNumber);
+		elementsCollection.Add(pSecondPhoneNumber);
+		elementsCollection.Add(pThirdPhoneNumber);
+		elementsCollection.Add(pFourthPhoneNumber);
+		elementsCollection.Add(pFifthPhoneNumber);
+		elementsCollection.Add(pSixthPhoneNumber);
 	}
 	catch (const std::exception&)
 	{
@@ -76,19 +76,6 @@ void PhoneNumberService::ShowElementInfoAtIndex(const int index, CPhoneNumbersAr
 	}
 }
 
-void PhoneNumberService::RemoveAt(const int index, const int count, CPhoneNumbersArray& oPhoneTypesArray) {
-	try
-	{
-		ValidateIndex(index, oPhoneTypesArray.GetSize());
-		oPhoneTypesArray.RemoveAt(index, count);
-		oPhoneTypesArray.FreeExtra();
-	}
-	catch (exception ex)
-	{
-		cout << ex.what();
-	}
-};
-
 void PhoneNumberService::ChangePhoneNumber(string oldPhoneNumber, string newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray)
 {
 	for (size_t i = 0; i < oPhoneTypesArray.GetSize(); i++)
@@ -108,21 +95,6 @@ void PhoneNumberService::ChangePhoneNumber(string oldPhoneNumber, string newPhon
 		}
 	}
 }
-template<class T> T* PhoneNumberService::GetPointerAtIndex(const int nIndex, CTypedPtrArray<CPtrArray, class T*>& elementsCollection)
-{
-	try
-	{
-		ValidateIndex(index, oPhoneTypesArray);
-
-		PhoneNumber* pPhoneType = NULL;
-		pPhoneType = oPhoneTypesArray.ElementAt(index);
-		return pPhoneType;
-	}
-	catch (exception& ex)
-	{
-		cout << ex.what() << endl;
-	}
-};
 void PhoneNumberService::ChangePhoneNumber(PHONE_NUMBERS* pOldPhoneNumberElement, string newPhoneNumber)
 {
 	string sOldPhoneNumber = ConvertToString(pOldPhoneNumberElement->szPHONE_NUMBER);

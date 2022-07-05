@@ -39,11 +39,14 @@ void ManagePhoneTypes() {
 
 void ManagePhoneNumbers() {
 	PhoneNumberService service;
+
 	CPhoneNumbersArray oPhoneTypesArray;
 
-	service.AddDefaultPhoneNumbersElements(oPhoneTypesArray);
-	service.AddDefaultPhoneNumbersElements(oPhoneTypesArray);
-	service.AddDefaultPhoneNumbersElements(oPhoneTypesArray);
+	service.AddDefaultElements<PHONE_NUMBERS>(oPhoneTypesArray);
+
+
+	service.AddDefaultElements(oPhoneTypesArray);
+	service.AddDefaultElements(oPhoneTypesArray);
 
 	service.RemoveAt(0, 2, oPhoneTypesArray);
 
