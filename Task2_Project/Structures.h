@@ -12,7 +12,7 @@ struct CITIES
 	/// <summary>?</summary>
 	int nUPDATE_COUNTER;
 	/// <summary>Променлива съдържаща стойността от колона 'CITY_NAME' в таблицата 'CITIES'</summary>
-	char  szCITY_NAME[32];
+	char szCITY_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колона 'AREA_NAME' в таблицата 'CITIES'</summary>
 	char szAREA_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колона 'POSTAL_CODE' в таблицата 'CITIES'</summary>
@@ -75,9 +75,9 @@ struct PHONE_NUMBERS {
 /// </summary>
 struct PHONE_TYPES {
 	/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'PHONE_TYPES'</summary>
-	int ID;
+	int nID;
 	/// <summary>?</summary>
-	int UPDATE_COUNTER;
+	int nUPDATE_COUNTER;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_TYPE' в таблицата  'PHONE_TYPES'</summary>
 	char szPHONE_TYPE[16];
 	PHONE_TYPES()

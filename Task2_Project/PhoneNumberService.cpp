@@ -23,7 +23,7 @@ void PhoneNumberService::SetPhoneNumber(string sorce, PHONE_NUMBERS& phoneNumber
 };
 
 //CHECK HERE!!!!
-template<class T> void PhoneNumberService::AddDefaultElements(CTypedPtrArray<CPtrArray, class T*>& elementsCollection) {
+void PhoneNumberService::AddDefaultElements(CPhoneNumbersArray &oArray) {
 	try
 	{
 		PHONE_NUMBERS* pFirstPhoneNumber = NULL;
@@ -50,12 +50,12 @@ template<class T> void PhoneNumberService::AddDefaultElements(CTypedPtrArray<CPt
 		pSixthPhoneNumber = new PHONE_NUMBERS();
 		SetPhoneNumber("0891937373", *pSixthPhoneNumber);
 
-		elementsCollection.Add(pFirstPhoneNumber);
-		elementsCollection.Add(pSecondPhoneNumber);
-		elementsCollection.Add(pThirdPhoneNumber);
-		elementsCollection.Add(pFourthPhoneNumber);
-		elementsCollection.Add(pFifthPhoneNumber);
-		elementsCollection.Add(pSixthPhoneNumber);
+		oArray.Add(pFirstPhoneNumber);
+		oArray.Add(pSecondPhoneNumber);
+		oArray.Add(pThirdPhoneNumber);
+		oArray.Add(pFourthPhoneNumber);
+		oArray.Add(pFifthPhoneNumber);
+		oArray.Add(pSixthPhoneNumber);
 	}
 	catch (const std::exception&)
 	{
@@ -64,12 +64,12 @@ template<class T> void PhoneNumberService::AddDefaultElements(CTypedPtrArray<CPt
 }
 
 //CHECK HERE
-void PhoneNumberService::ShowElementInfoAtIndex(const int index, CPhoneNumbersArray& oPhoneTypesArray) {
+void PhoneNumberService::ShowElementInfoAtIndex(const int nIndex, const CPhoneNumbersArray& oArray) {
 	try
 	{
-		ValidateIndex(index, oPhoneTypesArray.GetSize());
+		ValidateIndex(nIndex, oArray.GetCount()-1);
 		PHONE_NUMBERS* pTemp = NULL;
-		pTemp = oPhoneTypesArray.GetAt(index);
+		pTemp = oArray.GetAt(nIndex);
 		cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->szPHONE_NUMBER << endl;
 	}
 	catch (const std::exception&)

@@ -53,38 +53,32 @@ void CityService::SetPostalCode(const int nSorce, CITIES& city) {
 void CityService::AddDefaultElements(CCitiesArray& oCities) {
 	try
 	{
-		CITIES* pBurgasCity = NULL;
-		pBurgasCity = new CITIES();
+		CITIES* pBurgasCity ;
 		SetCityName("Bugras", *pBurgasCity);
 		SetPostalCode("Bugras", *pBurgasCity);
 		SetPostalCode(8000, *pBurgasCity);
 
-		CITIES* pVarnaCity = NULL;
-		pVarnaCity = new CITIES();
+		CITIES* pVarnaCity;
 		SetCityName("Varna", *pVarnaCity);
 		SetPostalCode("Varna",*pVarnaCity);
 		SetPostalCode(9000, *pVarnaCity);
 
-		CITIES* pSofiaCity = NULL;
-		pSofiaCity = new CITIES();
+		CITIES* pSofiaCity ;
 		SetCityName("Sofia", *pSofiaCity);
 		SetPostalCode("Sofia",*pSofiaCity);
 		SetPostalCode(1000, *pSofiaCity);
 
-		CITIES* pPlovidCity = NULL;
-		pPlovidCity = new CITIES();
+		CITIES* pPlovidCity;
 		SetCityName("Plovdiv", *pPlovidCity);
 		SetPostalCode("Plovdiv", *pPlovidCity);
 		SetPostalCode(3000, *pPlovidCity);
 
-		CITIES* pRuseCity = NULL;
-		pRuseCity = new CITIES();
+		CITIES* pRuseCity ;
 		SetCityName("Ruse", *pRuseCity);
 		SetPostalCode("Ruse", *pRuseCity);
 		SetPostalCode(4700, *pRuseCity);
 
-		CITIES* pVelinGradCity = NULL;
-		pVelinGradCity = new CITIES();
+		CITIES* pVelinGradCity;
 		SetCityName("VelinGrad", *pVelinGradCity);
 		SetPostalCode("Pazardzhik", *pVelinGradCity);
 		SetPostalCode(6000, *pVelinGradCity);
