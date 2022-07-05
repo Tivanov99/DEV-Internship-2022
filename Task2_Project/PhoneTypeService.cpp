@@ -6,44 +6,10 @@
 #include <iostream>
 using namespace std;
 
-void PhoneTypeService::SetPhoneType(const string sorce, PHONE_TYPES& phone) {
-	size_t LengthOfArray = sizeof(phone.szPHONE_TYPE) / sizeof(char);
 
-	if (sorce.length() <= LengthOfArray) {
-		for (size_t i = 0; i < sorce.size(); i++)
-		{
-			phone.szPHONE_TYPE[i] = sorce[i];
-		}
-	}
-	else {
-		cout << "Too long sorce";
-	}
-};
 
-void PhoneTypeService::AddDefaultElements(CPhoneTypesArray& phoneTypes)
-{
-	try
-	{
-		PHONE_TYPES pMobilePhoneType ;
-		SetPhoneType("mobile",pMobilePhoneType);
 
-		PHONE_TYPES pHomePhoneType ;
-		SetPhoneType("home", pHomePhoneType);
-
-		PHONE_TYPES pOfficePhoneType;
-		SetPhoneType("office", pOfficePhoneType);
-
-		phoneTypes.Add(&pMobilePhoneType);
-		phoneTypes.Add(&pHomePhoneType);
-		phoneTypes.Add(&pOfficePhoneType);
-	}
-	catch (const std::exception&)
-	{
-		cout << "Invalid 'Add' operation!";
-	}
-};
-
-void PhoneTypeService::ShowElementInfoAtIndex(const int nIndex, const CPhoneTypesArray &oPhoneTypesArray)
+void PhoneTypeService::ShowElementInfoAtIndex(const int nIndex, const CPhoneTypesArray& oPhoneTypesArray)
 {
 	try
 	{
@@ -57,5 +23,40 @@ void PhoneTypeService::ShowElementInfoAtIndex(const int nIndex, const CPhoneType
 		cout << "Something goes wrong, press again!";
 	}
 };
+void PhoneTypeService::AddDefaultElements(CPhoneTypesArray& phoneTypes)
+{
+	try
+	{
+		PHONE_TYPES pMobilePhoneType;
+		CString strMobile = _T("mobile");
+		SetPhoneType(strMobile, pMobilePhoneType);
+
+		PHONE_TYPES pHomePhoneType;
+		CString strHome = _T("home");
+		SetPhoneType(strHome, pHomePhoneType);
+
+		PHONE_TYPES pOfficePhoneType;
+		CString strOffice = _T("office");
+		SetPhoneType(strOffice, pOfficePhoneType);
+
+		phoneTypes.Add(&pMobilePhoneType);
+		phoneTypes.Add(&pHomePhoneType);
+		phoneTypes.Add(&pOfficePhoneType);
+	}
+	catch (const std::exception&)
+	{
+		cout << "Invalid 'Add' operation!";
+	}
+};
+
+void PhoneTypeService::SetPhoneType(CString &strType, PHONE_TYPES &oPhone)
+{
+	//if (oPhone==NULL) {
+		for (size_t i = 0; i < strType.GetLength(); i++)
+		{
+			oPhone.szPHONE_TYPE[i] = strType[i];
+		}
+	//}
+}
 
 

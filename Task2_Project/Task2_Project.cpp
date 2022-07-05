@@ -8,12 +8,11 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-#include "Structures.h"
 #include "CityService.h"
-#include "CStringService.h"
-#include "BaseService.h"
 #include "PhoneNumberService.h"
 #include "PhoneTypeService.h"
+#include "CStringService.h"
+
 
 
 // The one and only application object
@@ -170,7 +169,7 @@ void CArrayExample() {
 
 int main()
 {
-	//CArrayExample();
+	CArrayExample();
 	CStringExample();
 	ManageCities();
 	ManagePhoneTypes();

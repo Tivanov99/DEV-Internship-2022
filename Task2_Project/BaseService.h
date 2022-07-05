@@ -3,7 +3,7 @@
 
 
 template<class T>
-class BaseService
+class BaseService 
 {
 private:
 	typedef CTypedPtrArray < CPtrArray, T*> CTypeArray;
