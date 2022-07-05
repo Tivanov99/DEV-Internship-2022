@@ -1,21 +1,33 @@
 USE [PhoneBook]
 
-CREATE OR ALTER PROCEDURE ADD_TABLE_DESCRIPTION (@TABLE_NAME nvarchar,@TABLE_DESCRIPTION nvarchar) AS
+CREATE OR ALTER PROCEDURE SP_ADD_TABLE_DESCRIPTION
+(
+    @TABLE_NAME NVARCHAR,
+    @TABLE_DESCRIPTION NVARCHAR
+)
+AS
 BEGIN
-	SELECT CONCAT(@TABLE_NAME,'_Table_Description') AS DESCRIPTION_NAME
-	EXEC sp_addextendedproperty @name=DESCRIPTION_NAME, 
-	@value=@TABLE_DESCRIPTION,
-	@level0type=N'SCHEMA',@level0name=N'dbo',  
-	@level1type=N'TABLE',@level1name=@TABLE_NAME
+    SELECT CONCAT(@TABLE_NAME,'_TABLE_DESCRIPTION') AS DESCRIPTION_NAME
+
+    EXEC SP_ADDEXTENDEDPROPERTY @NAME=DESCRIPTION_NAME,
+                                @VALUE=@TABLE_DESCRIPTION,
+                                @LEVEL0TYPE=N'SCHEMA',
+                                @LEVEL0NAME=N'DBO',
+                                @LEVEL1TYPE=N'TABLE',
+                                @LEVEL1NAME=@TABLE_NAME
 END
 
-CREATE OR ALTER PROCEDURE ADD_COLUMN_DESCRIPTION (@TABLE_NAME NVARCHAR,@COLUMN_NAME NVARCHAR,@COLUMN_DESCRIPTION NVARCHAR)  AS
+CREATE OR ALTER PROCEDURE SP_ADD_COLUMN_DESCRIPTION
+(
+	@TABLE_NAME NVARCHAR,
+	@COLUMN_NAME NVARCHAR,
+	@COLUMN_DESCRIPTION NVARCHAR
+)
+AS
 BEGIN
-	exec sp_AddExtendedProperty
-	'MS_Description',
-	@COLUMN_DESCRIPTION,
-	'TABLE', @TABLE_NAME,
-	'COLUMN', @COLUMN_NAME
+	exec sp_AddExtendedProperty'MS_Description',@COLUMN_DESCRIPTION,
+								'TABLE', @TABLE_NAME,
+								'COLUMN', @COLUMN_NAME
 END
 
 DROP TABLE IF EXISTS [PHONE_NUMBERS]
@@ -38,50 +50,13 @@ CREATE TABLE
 		PRIMARY KEY ([ID])
 	)
 
+EXEC SP_ADD_TABLE_DESCRIPTION 'CITIES','Таблица съдържаща инфрормацията за градовете.'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'CITIES','ID','Уникален идентификатор на запис в таблицата (32)бита'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'CITIES','UPDATE_COUNTER','Версия на ред (32)бита (задължителен запис)'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'CITIES','CITY_NAME','Таблица съдържаща (задължителен запис) областите (512)бита'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'CITIES','AREA_NAME','Таблица съдържаща (задължителен запис) областите (512)бита'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'CITIES','POSTAL_CODE','Таблица съдържаща (задължителен запис) пощенските кодове (32)бита'
 
-
-
-
-
-EXEC sp_addextendedproperty @name='CITIES_Table_Description', 
-@value='Таблица съдържаща инфрормацията за градовете.',
-@level0type=N'SCHEMA',@level0name=N'dbo', 
-@level1type=N'TABLE',@level1name=N'CITIES'
-
-exec sp_AddExtendedProperty
-'MS_Description',
-'Уникален идентификатор на запис в таблицата (32)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'CITIES',
-'COLUMN', 'ID'
-
-exec sp_AddExtendedProperty
-'MS_Description',
-'Версия на ред (32)бита (задължителен запис)',
-'SCHEMA', 'dbo',
-'TABLE', 'CITIES',
-'COLUMN', 'UPDATE_COUNTER'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Таблица съдържаща (задължителен запис) областите (512)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'CITIES',
-'COLUMN', 'CITY_NAME'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Таблица съдържаща (задължителен запис) градовете (512)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'CITIES',
-'COLUMN', 'AREA_NAME'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Таблица съдържаща (задължителен запис) пощенските кодове (32)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'CITIES',
-'COLUMN', 'POSTAL_CODE'
 CREATE UNIQUE INDEX UX_CITIES_CITY_NAME ON [CITIES]([CITY_NAME])
 
 CREATE NONCLUSTERED INDEX IX_CITIES_CITY_NAME
@@ -102,31 +77,11 @@ CREATE TABLE
 		PRIMARY KEY ([ID])
 	)
 
-EXEC sp_addextendedproperty @name='PHONE_TYPES_Table_Description', 
-@value='Таблица съдържаща инфрормацията за типовете телефони.',
-@level0type=N'SCHEMA',@level0name=N'dbo', 
-@level1type=N'TABLE',@level1name=N'PHONE_TYPES'
+EXEC SP_ADD_TABLE_DESCRIPTION 'PHONE_TYPES','Таблица съдържаща инфрормацията за типовете телефони.'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PHONE_TYPES','ID','Уникален идентификатор на запис в таблицата (32)бита'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PHONE_TYPES','UPDATE_COUNTER','Версия на ред (32)бита (задължителен запис)'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PHONE_TYPES','PHONE_TYPE','Колона съдържаща (задължителен запис) типовете телефони (128)бита'
 
-exec sp_addextendedproperty
-'MS_Description',
-'Уникален идентификатор на запис в таблицата (32)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PHONE_TYPES',
-'COLUMN', 'ID'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Версия на ред (32)бита (задължителен запис)',
-'SCHEMA', 'dbo',
-'TABLE', 'PHONE_TYPES',
-'COLUMN', 'UPDATE_COUNTER'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Колона съдържаща (задължителен запис) типовете телефони (128)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PHONE_TYPES',
-'COLUMN', 'PHONE_TYPE'
 
 CREATE UNIQUE INDEX UX_PHONE_TYPES_PHONE_TYPE ON [PHONE_TYPES]([PHONE_TYPE])
 
@@ -145,66 +100,15 @@ CREATE TABLE
 		CONSTRAINT [PK_PERSONS_ID]
 		PRIMARY KEY ([ID])
 	)
-EXEC sp_addextendedproperty @name='PERSONS_Table_Description', 
-@value='Таблица съдържаща инфрормацията за хора.',
-@level0type=N'SCHEMA',@level0name=N'dbo', 
-@level1type=N'TABLE',@level1name=N'PERSONS'
+EXEC SP_ADD_TABLE_DESCRIPTION 'PERSONS','Таблица съдържаща инфрормацията за хора.'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PERSONS','UPDATE_COUNTER','Версия на ред (32)бита (задължителен запис)'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PERSONS','FIRST_NAME','Таблица съхраняваща (задължителен запис) името (256)бита'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PERSONS','SECOND_NAME','Таблица съхраняваща (задължителен запис) презимето (256)бита'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PERSONS','LAST_NAME','Таблица съхраняваща (задължителен запис) фамилията (256)бита'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PERSONS','CITY_ID','Задължителен вторичен ключ рефериращ таблицата "CITTIES" и колоната "ID"  (64)бита'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PERSONS','UCN','Таблица съхраняваща (задължителен запис) егн-то (64)бита'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PERSONS','ADDRESS','Таблица съхраняваща (задължителен запис) егн-то (512)бита'
 
-exec sp_addextendedproperty
-'MS_Description',
-'Уникален идентификатор на запис в таблицата (32)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PERSONS',
-'COLUMN', 'ID'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Версия на ред (32)бита (задължителен запис)',
-'SCHEMA', 'dbo',
-'TABLE', 'PERSONS',
-'COLUMN', 'UPDATE_COUNTER'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Таблица съхраняваща (задължителен запис) името (256)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PERSONS',
-'COLUMN', 'FIRST_NAME'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Таблица съхраняваща (задължителен запис) презимето (256)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PERSONS',
-'COLUMN', 'SECOND_NAME'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Таблица съхраняваща (задължителен запис) фамилията (256)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PERSONS',
-'COLUMN', 'LAST_NAME'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Таблица съхраняваща (задължителен запис) егн-то (64)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PERSONS',
-'COLUMN', 'CITY_ID'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Задължителен вторичен ключ рефериращ таблицата "CITTIES" и колоната "ID"  (64)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PERSONS',
-'COLUMN', 'UCN'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Таблица съхраняваща (задължителен запис) егн-то (512)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PERSONS',
-'COLUMN', 'ADDRESS'
 
 CREATE NONCLUSTERED INDEX IX_PERSONS_FIRST_AND_LAST_NAME
 ON [PERSONS]([FIRST_NAME], [LAST_NAME] ASC)
@@ -229,11 +133,8 @@ CREATE TABLE
 			PRIMARY KEY([ID])
 	)
 
+EXEC SP_ADD_TABLE_DESCRIPTION 'PHONE_NUMBERS','Таблица съдържаща инфрормацията за телефонни номера, типове телефони и хора.'
 
-	EXEC sp_addextendedproperty @name='PHONE_NUMBERS_Table_Description', 
-@value='Таблица съдържаща инфрормацията за телефонни номера, типове телефони и хора.',
-@level0type=N'SCHEMA',@level0name=N'dbo', 
-@level1type=N'TABLE',@level1name=N'PHONE_NUMBERS'
 
 exec sp_addextendedproperty
 'MS_Description',
