@@ -5,7 +5,8 @@ DROP TABLE IF EXISTS [PERSONS]
 DROP TABLE IF EXISTS [CITIES]
 DROP TABLE IF EXISTS [PHONE_TYPES]
 
---exec sp_columns [PHONE_NUMBERS]
+exec sp_columns  [PHONE_NUMBERS] 
+
 
 CREATE TABLE
 	[CITIES]
@@ -18,6 +19,37 @@ CREATE TABLE
 		CONSTRAINT [PK_CITIES_ID]
 		PRIMARY KEY ([ID])
 	)
+
+
+	--@COLUMN_NAME nvarchar(10) NULL,
+
+CREATE OR ALTER PROCEDURE ADD_TABLE_DESCRIPTION
+@TABLE_NAME nvarchar,
+@TABLE_DESCRIPTION nvarchar,
+@SCHEMA NVARCHAR AS
+BEGIN
+	SELECT CONCAT(@TABLE_NAME,'_Table_Description') AS DESCRIPTION_NAME
+	EXEC sp_addextendedproperty @name=DESCRIPTION_NAME, 
+	@value=@TABLE_DESCRIPTION,
+	@level0type=N'SCHEMA',@level0name=N'dbo',  
+	@level1type=N'TABLE',@level1name=@TABLE_NAME
+END
+
+CREATE OR ALTER PROCEDURE ADD_COLUMN_DESCRIPTION
+@TABLE_NAME NVARCHAR,
+@COLUMN_NAME NVARCHAR,
+@COLUMN_DESCRIPTION NVARCHAR ,
+@SCHEMA NVARCHAR AS
+BEGIN
+	exec sp_AddExtendedProperty
+	'MS_Description',
+	@COLUMN_DESCRIPTION,
+	'SCHEMA', @SCHEMA,
+	'TABLE', @TABLE_NAME,
+	'COLUMN', @COLUMN_NAME
+END
+
+
 
 EXEC sp_addextendedproperty @name='CITIES_Table_Description', 
 @value='Таблица съдържаща инфрормацията за градовете.',
