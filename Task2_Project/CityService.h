@@ -1,27 +1,26 @@
 #pragma once
 #include <string>
 #include "Structures.h"
+#include "BaseService.h";
 using namespace std;
 
-class CityService
+class CityService : public BaseService
 {
 private:
 	string ConvertToString(char* phoneNumber);
-	void SetCityName(string sorce, City* city);
-	void SetPostalCode(string sorce, City* city);
-	void SetPostalCode(int nSorce, City* city);
+	void SetCityName(const string sorce, CITIES* city);
+	void SetPostalCode(const string sorce, CITIES* city);
+	void SetPostalCode(const int nSorce, CITIES* city);
 public:
 	void AddCityElements(CCitiesArray& oCities);
-	void ValidateArguments(int nIndex, CCitiesArray& oCitiesArray);
-	void ShowElementInfoAtIndex(int nIndex, CCitiesArray& oCitiesArray);
-	City* GetPointerAtIndex(const int& index, CCitiesArray& oCitiesArray);
-	void RemoveAt(int nIndex, int nCount, CCitiesArray& oCitiesArray);
-	void ChangeCityName(string oldCityName, string newCityName, CCitiesArray& oCitiesArray);
-	void ChangeCityName(City* pOldCity, string newCityName);
-	void ChangeCityAreaName(string oldCityAreaName, string newCityAreaName, CCitiesArray& oCitiesArray);
-	void ChangeCityAreaName(City* pOldCity, string newAreaName);
-	void ChangeCityPosalCode(string cityName, int nNewCityPosalCode, CCitiesArray& oCitiesArray);
-	void ChangeCityPostalCode(City* pCity, int nNewPostalCode);
+	void ValidateArguments(const int nIndex, CCitiesArray& oCitiesArray);
+	void ShowElementInfoAtIndex(const int nIndex, CCitiesArray& oCitiesArray);
+	void ChangeCityName(const string oldCityName, const string newCityName, CCitiesArray& oCitiesArray);
+	void ChangeCityName(CITIES* pOldCity, const string newCityName);
+	void ChangeCityAreaName(const string oldCityAreaName, const string newCityAreaName, CCitiesArray& oCitiesArray);
+	void ChangeCityAreaName(CITIES* pOldCity, const string newAreaName);
+	void ChangeCityPosalCode(string cityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray);
+	void ChangeCityPostalCode(CITIES* pCity, const int nNewPostalCode);
 };
 
 

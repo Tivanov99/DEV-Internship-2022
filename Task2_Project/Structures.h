@@ -16,7 +16,7 @@ struct CITIES
 	/// <summary>Променлива съдържаща стойността от колона 'AREA_NAME' в таблицата 'CITIES'</summary>
 	char szAREA_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колона 'POSTAL_CODE' в таблицата 'CITIES'</summary>
-	int sznPOSTAL_CODE;
+	int nPOSTAL_CODE;
 
 	CITIES()
 	{

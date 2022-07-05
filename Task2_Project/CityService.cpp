@@ -1,10 +1,9 @@
 #pragma once
-
 #include "pch.h"
 #include "CityService.h"
 #include "resource.h"
-#include "CityService.h"
 #include <iostream>
+#include "BaseService.cpp"
 
 using namespace std;
 
@@ -14,13 +13,13 @@ string CityService::ConvertToString(char* phoneNumber) {
 	return sValue;
 }
 
-void CityService::SetCityName(string sorce, City* city) {
-	int nLengthOfArray = sizeof(city->CITY_NAME) / sizeof(char);
+void CityService::SetCityName(const string sorce, CITIES* city) {
+	int nLengthOfArray = sizeof(city->szCITY_NAME) / sizeof(char);
 
 	if (sorce.length() <= nLengthOfArray) {
 		for (int i = 0; i < sorce.size(); i++)
 		{
-			city->CITY_NAME[i] = sorce[i];
+			city->szCITY_NAME[i] = sorce[i];
 		}
 	}
 	else {
@@ -28,13 +27,13 @@ void CityService::SetCityName(string sorce, City* city) {
 	}
 };
 
-void CityService::SetPostalCode(string sorce, City* city) {
-	int nLengthOfArray = sizeof(city->CITY_NAME) / sizeof(char);
+void CityService::SetPostalCode(const string sorce, CITIES* city) {
+	int nLengthOfArray = sizeof(city->szCITY_NAME) / sizeof(char);
 
 	if (sorce.length() <= nLengthOfArray) {
 		for (int i = 0; i < sorce.size(); i++)
 		{
-			city->AREA_NAME[i] = sorce[i];
+			city->szAREA_NAME[i] = sorce[i];
 		}
 	}
 	else {
@@ -42,7 +41,7 @@ void CityService::SetPostalCode(string sorce, City* city) {
 	}
 };
 
-void CityService::SetPostalCode(int nSorce, City* city) {
+void CityService::SetPostalCode(const int nSorce, CITIES* city) {
 	if (nSorce > 0) {
 		city->nPOSTAL_CODE = nSorce;
 	}
@@ -54,38 +53,38 @@ void CityService::SetPostalCode(int nSorce, City* city) {
 void CityService::AddCityElements(CCitiesArray& oCities) {
 	try
 	{
-		City* pBurgasCity = NULL;
-		pBurgasCity = new City();
+		CITIES* pBurgasCity = NULL;
+		pBurgasCity = new CITIES();
 		SetCityName("Bugras", pBurgasCity);
 		SetPostalCode("Bugras", pBurgasCity);
 		SetPostalCode(8000, pBurgasCity);
 
-		City* pVarnaCity = NULL;
-		pVarnaCity = new City();
+		CITIES* pVarnaCity = NULL;
+		pVarnaCity = new CITIES();
 		SetCityName("Varna", pVarnaCity);
 		SetPostalCode("Varna", pVarnaCity);
 		SetPostalCode(9000, pVarnaCity);
 
-		City* pSofiaCity = NULL;
-		pSofiaCity = new City();
+		CITIES* pSofiaCity = NULL;
+		pSofiaCity = new CITIES();
 		SetCityName("Sofia", pSofiaCity);
 		SetPostalCode("Sofia", pSofiaCity);
 		SetPostalCode(1000, pSofiaCity);
 
-		City* pPlovidCity = NULL;
-		pPlovidCity = new City();
+		CITIES* pPlovidCity = NULL;
+		pPlovidCity = new CITIES();
 		SetCityName("Plovdiv", pPlovidCity);
 		SetPostalCode("Plovdiv", pPlovidCity);
 		SetPostalCode(3000, pPlovidCity);
 
-		City* pRuseCity = NULL;
-		pRuseCity = new City();
+		CITIES* pRuseCity = NULL;
+		pRuseCity = new CITIES();
 		SetCityName("Ruse", pRuseCity);
 		SetPostalCode("Ruse", pRuseCity);
 		SetPostalCode(4700, pRuseCity);
 
-		City* pVelinGradCity = NULL;
-		pVelinGradCity = new City();
+		CITIES* pVelinGradCity = NULL;
+		pVelinGradCity = new CITIES();
 		SetCityName("VelinGrad", pVelinGradCity);
 		SetPostalCode("Pazardzhik", pVelinGradCity);
 		SetPostalCode(6000, pVelinGradCity);
@@ -103,7 +102,7 @@ void CityService::AddCityElements(CCitiesArray& oCities) {
 	}
 };
 
-void CityService::ValidateArguments(int nIndex, CCitiesArray& oCitiesArray) {
+void CityService::ValidateArguments(const int nIndex, CCitiesArray& oCitiesArray) {
 	if (oCitiesArray.IsEmpty())
 	{
 		throw invalid_argument("The array is empty!");
@@ -116,16 +115,16 @@ void CityService::ValidateArguments(int nIndex, CCitiesArray& oCitiesArray) {
 	}
 };
 
-void ShowElementInfoAtIndex(int nIndex, CCitiesArray& oCitiesArray) {
+void CityService::ShowElementInfoAtIndex(const int nIndex, CCitiesArray& oCitiesArray) {
 	try
 	{
-		ValidateArguments(nIndex);
-		City* pCity = NULL;
+		ValidateIndex(nIndex, oCitiesArray.GetSize());
+		CITIES* pCity = NULL;
 		pCity = oCitiesArray.GetAt(nIndex);
 		cout << "Selected item info: " << "memory address: " << &pCity
-			<< " City Name :" << pCity->CITY_NAME
+			<< " City Name :" << pCity->szCITY_NAME
 			<< " Postal Code " << pCity->nPOSTAL_CODE
-			<< " Area Name " << pCity->AREA_NAME << endl;
+			<< " Area Name " << pCity->szAREA_NAME << endl;
 	}
 	catch (const std::exception&)
 	{
@@ -133,95 +132,67 @@ void ShowElementInfoAtIndex(int nIndex, CCitiesArray& oCitiesArray) {
 	}
 }
 
-City* CityService::GetPointerAtIndex(const int& nIndex, CCitiesArray& oCitiesArray) {
-	try
-	{
-		ValidateArguments(nIndex, oCitiesArray);
-
-		City* pCity = NULL;
-		pCity = oCitiesArray.ElementAt(nIndex);
-		return	pCity;
-	}
-	catch (exception& ex)
-	{
-		cout << ex.what() << endl;
-	}
-};
-
-void CityService::RemoveAt(int nIndex, int nCount, CCitiesArray& oCitiesArray) {
-	try
-	{
-		ValidateArguments(nIndex, oCitiesArray);
-		oCitiesArray.RemoveAt(nIndex, nCount);
-		oCitiesArray.FreeExtra();
-	}
-	catch (exception ex)
-	{
-		cout << ex.what();
-	}
-};
-
-void CityService::ChangeCityName(string oldCityName, string newCityName, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityName(const string oldCityName, const string newCityName, CCitiesArray& oCitiesArray)
 {
 	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
 	{
 		string currentCityName;
-		currentCityName = ConvertToString(oCitiesArray[i]->CITY_NAME);
+		currentCityName = ConvertToString(oCitiesArray[i]->szCITY_NAME);
 
 		if (currentCityName._Equal(oldCityName)) {
-			City* pOldCity = NULL;
+			CITIES* pOldCity = NULL;
 			pOldCity = oCitiesArray[i];
 
 			for (size_t s = 0; s < newCityName.length(); s++)
 			{
-				pOldCity->CITY_NAME[s] = newCityName[s];
+				pOldCity->szCITY_NAME[s] = newCityName[s];
 			}
 			break;
 		}
 	}
 }
 
-void CityService::ChangeCityName(City* pOldCity, string newCityName)
+void CityService::ChangeCityName(CITIES* pOldCity, const string newCityName)
 {
-	string sCityName = ConvertToString(pOldCity->CITY_NAME);
+	string sCityName = ConvertToString(pOldCity->szCITY_NAME);
 
 
 	for (size_t s = 0; s < newCityName.length(); s++)
 	{
-		pOldCity->CITY_NAME[s] = newCityName[s];
+		pOldCity->szCITY_NAME[s] = newCityName[s];
 	}
 }
-void CityService::ChangeCityAreaName(string oldCityAreaName, string newCityAreaName, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityAreaName(const string oldCityAreaName, const string newCityAreaName, CCitiesArray& oCitiesArray)
 {
 
 	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
 	{
 		string currentCityAreaName;
-		currentCityAreaName = ConvertToString(oCitiesArray[i]->AREA_NAME);
+		currentCityAreaName = ConvertToString(oCitiesArray[i]->szAREA_NAME);
 
 		if (currentCityAreaName._Equal(oldCityAreaName)) {
-			City* pOldCity = NULL;
+			CITIES* pOldCity = NULL;
 			pOldCity = oCitiesArray[i];
 
 			for (size_t s = 0; s < newCityAreaName.length(); s++)
 			{
-				pOldCity->AREA_NAME[s] = newCityAreaName[s];
+				pOldCity->szAREA_NAME[s] = newCityAreaName[s];
 			}
 			break;
 		}
 	}
 }
-void CityService::ChangeCityAreaName(City* pOldCity, string newAreaName)
+void CityService::ChangeCityAreaName(CITIES* pOldCity,const string newAreaName)
 {
-	string sOldAreaName = ConvertToString(pOldCity->CITY_NAME);
+	string sOldAreaName = ConvertToString(pOldCity->szCITY_NAME);
 
 
 	for (size_t s = 0; s < newAreaName.length(); s++)
 	{
-		pOldCity->AREA_NAME[s] = newAreaName[s];
+		pOldCity->szAREA_NAME[s] = newAreaName[s];
 	}
 }
-void CityService::ChangeCityPosalCode(string cityName, int nNewCityPosalCode, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityPosalCode(const string cityName,const int nNewCityPosalCode, CCitiesArray& oCitiesArray)
 {
 
 	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
@@ -229,10 +200,10 @@ void CityService::ChangeCityPosalCode(string cityName, int nNewCityPosalCode, CC
 		for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
 		{
 			string currentCityName;
-			currentCityName = ConvertToString(oCitiesArray[i]->CITY_NAME);
+			currentCityName = ConvertToString(oCitiesArray[i]->szCITY_NAME);
 
 			if (currentCityName._Equal(cityName)) {
-				City* pCity = NULL;
+				CITIES* pCity = NULL;
 				pCity = oCitiesArray[i];
 
 				pCity->nPOSTAL_CODE = nNewCityPosalCode;
@@ -241,7 +212,7 @@ void CityService::ChangeCityPosalCode(string cityName, int nNewCityPosalCode, CC
 		}
 	}
 }
-void ChangeCityPostalCode(City* pCity, int nNewPostalCode)
+void CityService::ChangeCityPostalCode(CITIES* pCity, const int nNewPostalCode)
 {
 	if (nNewPostalCode > 0) {
 		pCity->nPOSTAL_CODE = nNewPostalCode;
