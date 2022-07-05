@@ -1,44 +1,62 @@
 USE [PhoneBook]
 
 BEGIN TRANSACTION
-INSERT INTO [CITIES]
-				([CITY_NAME],[AREA_NAME],[POSTAL_CODE], [UPDATE_COUNTER])
-				VALUES
-				('Бургас','Бургас',8000,1)
-SAVE TRANSACTION [base]
+	DECLARE @BURGAS_CITY_POSTAL_CODE INT = 8000 ;
+	INSERT INTO [CITIES]
+					([CITY_NAME],[AREA_NAME],[POSTAL_CODE], [UPDATE_COUNTER])
+					VALUES
+					('Бургас','Бургас',@BURGAS_CITY_POSTAL_CODE,0)
+	SAVE TRANSACTION [base]
 COMMIT
 
 
 BEGIN TRANSACTION
 	BEGIN TRY
+
+	DECLARE @PLOVDIV_CITY_POSTAL_CODE INT = 4000;
+	DECLARE @VARNA_CITY_POSTAL_CODE INT = 9000;
+	DECLARE @SOFIA_CITY_POSTAL_CODE INT = 1000;
+
 			INSERT INTO [CITIES]
 				([CITY_NAME],[AREA_NAME],[POSTAL_CODE], [UPDATE_COUNTER])
 				VALUES
-				('Пловдив', 'Пловдив',4000,1),	
-				('Варна','Варна',9000,1),
-				('София','София',1000,1);
+				('Пловдив', 'Пловдив',@PLOVDIV_CITY_POSTAL_CODE,0),	
+				('Варна','Варна',@VARNA_CITY_POSTAL_CODE,0),
+				('София','София',@SOFIA_CITY_POSTAL_CODE,0);
 		
+
+	DECLARE @PLOVDIV_CITY_ID INT = (select [ID] from CITIES WHERE [CITY_NAME] ='Пловдив');
+	DECLARE @VARNA_CITY_ID INT =(SELECT [ID] FROM [CITIES] WHERE [CITY_NAME]='Варна');
+	DECLARE @Burgas_CITY_ID INT =(SELECT [ID] FROM [CITIES] WHERE [CITY_NAME]='Бургас');
+	DECLARE @SOFIA_CITY_ID INT =(SELECT [ID] FROM [CITIES] WHERE [CITY_NAME]='София');
+
+
+	
 			INSERT INTO [PERSONS]
-				([FIRST_NAME],[SECOND_NAME],[LAST_NAME],[CITY_ID],[ADDRESS],[UPDATE_COUNTER],[EGN])
+				([FIRST_NAME],[SECOND_NAME],[LAST_NAME],[CITY_ID],[ADDRESS],[UPDATE_COUNTER],[UCN])
 				VALUES
-				('Трифон','Красимиров','Иванов',1,'Жк.Възраждане/Ул.Цар Калоян №24',1,9999999999),
-				('Христо','Стоянов','Петров',2,'Жк.Тракия/Ул.Лозенград №3',1,9999999999),
-				('Георги','Ангелов','Анастасов',1,'Жк.Лазур/Ул.Христо Ботев №9',1,9999999999),
-				('Трифон','Красимиров','Иванов',3,'Жк.Студентски град/Ул.Парижка комуна №8',1,9999999999)
+				('Трифон','Красимиров','Иванов',@PLOVDIV_CITY_ID,'Жк.Възраждане/Ул.Цар Калоян №24',0,9999999999),
+				('Христо','Стоянов','Петров',@VARNA_CITY_ID,'Жк.Тракия/Ул.Лозенград №3',0,9999999999),
+				('Георги','Ангелов','Анастасов',@Burgas_CITY_ID,'Жк.Лазур/Ул.Христо Ботев №9',0,9999999999),
+				('Трифон','Красимиров','Иванов',@SOFIA_CITY_ID,'Жк.Студентски град/Ул.Парижка комуна №8',0,9999999999)
 		
 			INSERT INTO [PHONE_TYPES] 
 				([PHONE_TYPE],[UPDATE_COUNTER]) VALUES
-				('Home',1),
-				('Mobile',1),
-				('Work',1)
+				('Home',0),
+				('Mobile',0),
+				('Work',0)
+
+			DECLARE @HOME_PHONE_TYPE_ID INT = (SELECT [ID] FROM PHONE_TYPES WHERE [PHONE_TYPE] ='Home');
+			DECLARE @MOBILE_PHONE_TYPE_ID INT = (SELECT [ID] FROM PHONE_TYPES WHERE [PHONE_TYPE] ='Mobile');
+			DECLARE @WORK_PHONE_TYPE_ID INT = (SELECT [ID] FROM PHONE_TYPES WHERE [PHONE_TYPE] ='Work');
 		
 			INSERT INTO [PHONE_NUMBERS]
 				([PERSON_ID],[PHONE_NUMBER],[PHONE_TYPE_ID],[UPDATE_COUNTER])
 				VALUES
-				(1,'0893668829',2,1),
-				(2,'0899628177',3,1),
-				(3,'0876351840',1,1),
-				(4,'0882183197',2,1)
+				(1,'0893668829',@HOME_PHONE_TYPE_ID,0),
+				(2,'0899628177',@MOBILE_PHONE_TYPE_ID,0),
+				(3,'0876351840',@WORK_PHONE_TYPE_ID,0),
+				(4,'0882183197',@MOBILE_PHONE_TYPE_ID,0)
 COMMIT
 	END TRY
 BEGIN CATCH
@@ -50,10 +68,12 @@ END CATCH
 
 BEGIN TRANSACTION
 	BEGIN TRY
+
+	DECLARE @VELIKO_TARNOVO_POSTAL_CODE INT = 5000;
 			INSERT INTO [CITIES]
 					([CITY_NAME],[AREA_NAME],[POSTAL_CODE], [UPDATE_COUNTER])
 					VALUES
-					('Велико търново','Великотърновска',5000,1)
+					('Велико търново','Великотърновска',@VELIKO_TARNOVO_POSTAL_CODE,0)
 COMMIT
 	END TRY
 	BEGIN CATCH
@@ -113,11 +133,11 @@ END CATCH
 BEGIN TRANSACTION
 	BEGIN TRY
 		SELECT * FROM [PERSONS]
-	
+
 			INSERT INTO [PERSONS]
-						([FIRST_NAME],[SECOND_NAME],[LAST_NAME],[CITY_ID],[ADDRESS],[UPDATE_COUNTER],[EGN])
+						([FIRST_NAME],[SECOND_NAME],[LAST_NAME],[CITY_ID],[ADDRESS],[UPDATE_COUNTER],[UCN])
 						VALUES
-						('Стоян','Калинов','Стефанов',3,'Жк.Възраждане/Ул.Пробуда №11',1,12345678904)
+						('Стоян','Калинов','Стефанов',@Burgas_CITY_ID,'Жк.Възраждане/Ул.Пробуда №11',0,12345678904)
 		SAVE TRANSACTION [TEST_TRANSACTION]
 		DELETE FROM [PERSONS] WHERE [SECOND_NAME] ='Калинов'
 		SELECT * FROM [PERSONS]
@@ -142,14 +162,14 @@ BEGIN TRANSACTION
 				[LAST_NAME] = 'Анастасов')
 				
 		UPDATE [PERSONS]
-			SET [CITY_ID] = 1
+			SET [CITY_ID] = @VARNA_CITY_ID
 			WHERE
 			[ID]= @SELECTED_PERSON_ID
 		
 		INSERT INTO [PERSONS]
-		([FIRST_NAME],[SECOND_NAME],[LAST_NAME],[CITY_ID],[ADDRESS],[UPDATE_COUNTER],[EGN])
+		([FIRST_NAME],[SECOND_NAME],[LAST_NAME],[CITY_ID],[ADDRESS],[UPDATE_COUNTER],[UCN])
 		VALUES
-		('Петър','Калоянов','Стоянов',1,'Жк.Възраждане/Ул.Цар Калоян №24',1,null)
+		('Петър','Калоянов','Стоянов',@PLOVDIV_CITY_ID,'Жк.Възраждане/Ул.Цар Калоян №24',1,null)
 COMMIT
 	END TRY
 	BEGIN CATCH
