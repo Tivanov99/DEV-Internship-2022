@@ -22,7 +22,7 @@ void PhoneNumberService::SetPhoneNumber(string sorce, PHONE_NUMBERS& phoneNumber
 	}
 };
 
-//CHECK HERE
+//CHECK HERE!!!!
  template<class T> void PhoneNumberService::AddDefaultElements(CTypedPtrArray<CPtrArray, class T*>& elementsCollection) {
 	try
 	{
