@@ -1,234 +1,69 @@
 ﻿  BaseService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(10,20): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(10,20): error C2059: syntax error: '<end Parse>'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(11,11): error C2951: template declarations are only permitted at global, namespace, or class scope
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(11,20): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(11,126): error C2059: syntax error: ';'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(12,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(7,1): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(8,14): error C2947: expecting '>' to terminate template-argument-list, found '>'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(8,25): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(10,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,18): error C2947: expecting '>' to terminate template-argument-list, found '<'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,20): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,20): error C2143: syntax error: missing ')' before 'constant'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,20): error C2143: syntax error: missing ';' before 'constant'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,20): error C2238: unexpected token(s) preceding ';'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,20): error C2059: syntax error: 'constant'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,21): error C2059: syntax error: ')'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,23): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(15,36): error C2039: 'GetPointerAtIndex': is not a member of 'BaseService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(2): message : see declaration of 'BaseService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(15,19): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(15,19): error C2059: syntax error: '<end Parse>'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(15,19): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(17,2): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(18,25): error C2065: 'elementsCollection': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(22,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(24,2): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,8): error C2947: expecting '>' to terminate template-argument-list, found '<<'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,13): error C3927: '->': trailing return type is not allowed after a non-function declarator
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,13): error C3484: syntax error: expected '->' before the return type
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,14): error C3613: missing return type after '->' ('int' assumed)
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,14): error C2146: syntax error: missing ')' before identifier 'what'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,14): error C3646: 'what': unknown override specifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,18): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,18): error C2059: syntax error: '('
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(26,2): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(26,2): error C2059: syntax error: '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(26,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(27,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(27,1): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(27,1): error C2059: syntax error: '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(28,38): error C2039: 'RemoveAt': is not a member of 'BaseService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(2): message : see declaration of 'BaseService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(28,20): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(29,1): error C2059: syntax error: '<end Parse>'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(29,1): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(31,2): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(32,25): error C2065: 'elementsCollection': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(35,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(37,2): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,8): error C2947: expecting '>' to terminate template-argument-list, found '<<'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,13): error C3927: '->': trailing return type is not allowed after a non-function declarator
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,13): error C3484: syntax error: expected '->' before the return type
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,14): error C3613: missing return type after '->' ('int' assumed)
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,14): error C2146: syntax error: missing ')' before identifier 'what'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,14): error C3646: 'what': unknown override specifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,18): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,18): error C2059: syntax error: '('
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(39,2): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(39,2): error C2059: syntax error: '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(39,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(40,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(40,1): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(40,1): error C2059: syntax error: '}'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(18,31): error C2664: 'void BaseService<T>::ValidateIndex(const int,const int)': cannot convert argument 2 from 'CTypedPtrArray<CPtrArray,T *>' to 'const int'
+          with
+          [
+              T=T
+          ]
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(18,25): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(6,28): message : see declaration of 'BaseService<T>::ValidateIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(20,15): error C2065: 'elementsCollection': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(32,43): error C2664: 'void BaseService<T>::ValidateIndex(const int,const int)': cannot convert argument 2 from 'CTypedPtrArray<CPtrArray,T *>' to 'const int'
+          with
+          [
+              T=T
+          ]
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(32,25): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(6,28): message : see declaration of 'BaseService<T>::ValidateIndex'
   CityService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(10,20): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(10,20): error C2059: syntax error: '<end Parse>'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(11,11): error C2951: template declarations are only permitted at global, namespace, or class scope
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(11,20): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(11,126): error C2059: syntax error: ';'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(12,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(8,1): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(11,47): error C2146: syntax error: missing '>' before identifier 'city'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(12,49): error C2146: syntax error: missing '>' before identifier 'city'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(13,47): error C2146: syntax error: missing '>' before identifier 'city'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(16,57): error C2146: syntax error: missing '>' before identifier 'oCitiesArray'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(17,62): error C2146: syntax error: missing '>' before identifier 'oCitiesArray'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(18,61): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(18,88): error C2146: syntax error: missing '>' before identifier 'oCitiesArray'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(19,53): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(20,69): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(20,100): error C2146: syntax error: missing '>' before identifier 'oCitiesArray'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(21,57): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(22,87): error C2146: syntax error: missing '>' before identifier 'oCitiesArray'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(24,1): error C2143: syntax error: missing ';' before '}'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(7,1): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(8,14): error C2947: expecting '>' to terminate template-argument-list, found '>'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(8,25): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(10,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,18): error C2947: expecting '>' to terminate template-argument-list, found '<'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,20): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,20): error C2143: syntax error: missing ')' before 'constant'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,20): error C2143: syntax error: missing ';' before 'constant'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,20): error C2238: unexpected token(s) preceding ';'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,20): error C2059: syntax error: 'constant'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,21): error C2059: syntax error: ')'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(11,23): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(15,36): error C2039: 'GetPointerAtIndex': is not a member of 'BaseService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(2): message : see declaration of 'BaseService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(15,19): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(15,19): error C2059: syntax error: '<end Parse>'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(15,19): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(17,2): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(18,25): error C2065: 'elementsCollection': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(22,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(24,2): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,8): error C2947: expecting '>' to terminate template-argument-list, found '<<'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,13): error C3927: '->': trailing return type is not allowed after a non-function declarator
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,13): error C3484: syntax error: expected '->' before the return type
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,14): error C3613: missing return type after '->' ('int' assumed)
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,14): error C2146: syntax error: missing ')' before identifier 'what'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,14): error C3646: 'what': unknown override specifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,18): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(25,18): error C2059: syntax error: '('
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(26,2): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(26,2): error C2059: syntax error: '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(26,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(27,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(27,1): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(27,1): error C2059: syntax error: '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(28,38): error C2039: 'RemoveAt': is not a member of 'BaseService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(2): message : see declaration of 'BaseService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(28,20): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(29,1): error C2059: syntax error: '<end Parse>'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(29,1): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(31,2): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(32,25): error C2065: 'elementsCollection': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(35,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(37,2): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,8): error C2947: expecting '>' to terminate template-argument-list, found '<<'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,13): error C3927: '->': trailing return type is not allowed after a non-function declarator
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,13): error C3484: syntax error: expected '->' before the return type
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,14): error C3613: missing return type after '->' ('int' assumed)
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,14): error C2146: syntax error: missing ')' before identifier 'what'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,14): error C3646: 'what': unknown override specifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,18): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(38,18): error C2059: syntax error: '('
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(39,2): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(39,2): error C2059: syntax error: '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(39,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(40,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(40,1): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(40,1): error C2059: syntax error: '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(11,8): error C2653: 'CityService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(13,2): error C2065: 'sValue': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(14,9): error C2065: 'sValue': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(17,6): error C2653: 'CityService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(31,6): error C2653: 'CityService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(45,6): error C2653: 'CityService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(54,6): error C2653: 'CityService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(58): error C2440: '=': cannot convert from 'int' to 'CITIES *'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(58): message : Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or parenthesized function-style cast
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(64): error C2440: '=': cannot convert from 'int' to 'CITIES *'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(64): message : Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or parenthesized function-style cast
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(70): error C2440: '=': cannot convert from 'int' to 'CITIES *'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(70): message : Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or parenthesized function-style cast
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(76): error C2440: '=': cannot convert from 'int' to 'CITIES *'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(76): message : Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or parenthesized function-style cast
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(82): error C2440: '=': cannot convert from 'int' to 'CITIES *'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(82): message : Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or parenthesized function-style cast
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(88): error C2440: '=': cannot convert from 'int' to 'CITIES *'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(88): message : Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or parenthesized function-style cast
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(106,6): error C2653: 'CityService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(122,3): error C3861: 'ValidateIndex': identifier not found
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(143,6): error C2653: 'CityService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(145,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(148,3): error C2065: 'currentCityName': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(150,7): error C2065: 'currentCityName': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(163,6): error C2653: 'CityService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(173,6): error C2653: 'CityService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(176,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(179,3): error C2065: 'currentCityAreaName': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(181,7): error C2065: 'currentCityAreaName': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(193,6): error C2653: 'CityService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(203,6): error C2653: 'CityService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(206,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(208,24): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(211,4): error C2065: 'currentCityName': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(213,8): error C2065: 'currentCityName': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(18,31): error C2664: 'void BaseService<T>::ValidateIndex(const int,const int)': cannot convert argument 2 from 'CTypedPtrArray<CPtrArray,T *>' to 'const int'
+          with
+          [
+              T=T
+          ]
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(18,25): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(6,28): message : see declaration of 'BaseService<T>::ValidateIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(20,15): error C2065: 'elementsCollection': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(32,43): error C2664: 'void BaseService<T>::ValidateIndex(const int,const int)': cannot convert argument 2 from 'CTypedPtrArray<CPtrArray,T *>' to 'const int'
+          with
+          [
+              T=T
+          ]
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(32,25): message : No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(6,28): message : see declaration of 'BaseService<T>::ValidateIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(121,45): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(137,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(167,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(196,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(198,24): warning C4018: '<': signed/unsigned mismatch
   PhoneNumberService.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(10,20): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(10,20): error C2059: syntax error: '<end Parse>'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(11,11): error C2951: template declarations are only permitted at global, namespace, or class scope
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(11,20): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(11,126): error C2059: syntax error: ';'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(12,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(9,1): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(13,19): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(13,99): error C2059: syntax error: ';'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(13,20): error C2649: 'typename': is not a 'class'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(13,20): error C2059: syntax error: '<end Parse>'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(14,51): error C2146: syntax error: missing '>' before identifier 'phoneNumber'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(15,67): error C2146: syntax error: missing '>' before identifier 'oPhoneTypesArray'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(16,48): error C2065: 'string': undeclared identifier
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(16,91): error C2146: syntax error: missing '>' before identifier 'oPhoneTypesArray'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(17,64): error C2065: 'string': undeclared identifier
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(18,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(4,8): error C2653: 'PhoneNumberService': is not a class or namespace name
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(4,63): error C2143: syntax error: missing ';' before '{'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(8,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(11,6): error C2653: 'PhoneNumberService': is not a class or namespace name
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(11,26): error C2039: 'SetPhoneNumber': is not a member of 'PhoneNumberService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(8): message : see declaration of 'PhoneNumberService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(11,40): error C4596: 'SetPhoneNumber': illegal qualified name in member declaration
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(11,70): error C2146: syntax error: missing '>' before identifier 'phoneNumber'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(11,83): error C2143: syntax error: missing ';' before '{'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(14,21): error C2947: expecting '>' to terminate template-argument-list, found '<='
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(14,39): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(15,3): error C2143: syntax error: missing ')' before ';'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(15,24): error C2947: expecting '>' to terminate template-argument-list, found '<'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(15,38): error C2143: syntax error: missing ')' before ';'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(15,43): error C2059: syntax error: ')'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(16,3): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(18,3): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(19,2): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(20,7): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(21,8): error C2947: expecting '>' to terminate template-argument-list, found '<<'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(21,11): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(21,11): error C2143: syntax error: missing ')' before 'string'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(21,11): error C2143: syntax error: missing ';' before 'string'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(21,11): error C2238: unexpected token(s) preceding ';'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(21,11): error C2059: syntax error: 'string'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(21,35): error C2238: unexpected token(s) preceding ';'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(23,1): error C2988: unrecognizable template declaration/definition
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(23,1): error C2059: syntax error: '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(23,1): error C2143: syntax error: missing ';' before '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(26,25): error C2653: 'PhoneNumberService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(26,20): error C2649: 'typename': is not a 'class'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(26,20): error C2059: syntax error: '<end Parse>'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(26,20): error C2143: syntax error: missing ';' before '{'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(14,39): error C2988: unrecognizable template declaration/definition
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(14,39): error C2059: syntax error: '{'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(14,39): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(20,2): error C2988: unrecognizable template declaration/definition
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(20,2): error C2059: syntax error: 'else'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(20,7): error C2334: unexpected token(s) preceding '{'; skipping apparent function body
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(26,19): error C2649: 'typename': is not a 'class'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(26,19): error C2059: syntax error: '<end Parse>'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(26,19): error C2143: syntax error: missing ';' before '{'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(28,2): error C2143: syntax error: missing ';' before '{'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(31,33): error C2065: 'pFirstPhoneNumber': undeclared identifier
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(31,50): error C2059: syntax error: ')'
@@ -255,25 +90,18 @@ C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(63,2): err
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(64,1): error C2143: syntax error: missing ';' before '}'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(64,1): error C2988: unrecognizable template declaration/definition
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(64,1): error C2059: syntax error: '}'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(67,6): error C2653: 'PhoneNumberService': is not a class or namespace name
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(67,104): error C2143: syntax error: missing ';' before '{'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(67,104): error C2447: '{': missing function header (old-style formal list?)
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(81,6): error C2653: 'PhoneNumberService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(81,26): error C2182: 'ChangePhoneNumber': illegal use of type 'void'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(81,44): error C2065: 'string': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(81,51): error C2146: syntax error: missing ')' before identifier 'oldPhoneNumber'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(82,1): error C2143: syntax error: missing ';' before '{'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(82,1): error C2447: '{': missing function header (old-style formal list?)
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(100,6): error C2653: 'PhoneNumberService': is not a class or namespace name
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(100,83): error C2061: syntax error: identifier 'string'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(100,26): error C2365: 'ChangePhoneNumber': redefinition; previous definition was 'data variable'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(81): message : see declaration of 'ChangePhoneNumber'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(102,2): error C2065: 'string': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(102,9): error C2146: syntax error: missing ';' before identifier 'sOldPhoneNumber'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(102,9): error C2065: 'sOldPhoneNumber': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(102,27): error C3861: 'ConvertToString': identifier not found
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(104,25): error C2065: 'newPhoneNumber': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(106,46): error C2065: 'newPhoneNumber': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(81,26): error C2039: 'ChangePhoneNumber': is not a member of 'PhoneNumberService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(8): message : see declaration of 'PhoneNumberService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(84,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(87,3): error C2065: 'currentPhoneNumber': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(87,24): error C3861: 'ConvertToString': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(89,7): error C2065: 'currentPhoneNumber': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(93,27): error C2065: 'currentPhoneNumber': undeclared identifier
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(101,26): error C2039: 'ChangePhoneNumber': is not a member of 'PhoneNumberService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(8): message : see declaration of 'PhoneNumberService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(103,27): error C3861: 'ConvertToString': identifier not found
   PhoneTypeService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(2,1): fatal error C1041: cannot open program database 'C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\vc143.pdb'; if multiple CL.EXE write to the same .PDB file, please use /FS
   Task2_Project.cpp

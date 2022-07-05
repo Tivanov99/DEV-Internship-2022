@@ -3,7 +3,7 @@
 using namespace std;
 
 
-void BaseService::ValidateIndex(const int nIndex, const int nLenght)
+void BaseService<class T>::ValidateIndex(const int nIndex, const int nLenght)
 {
 	 if (nIndex > nLenght) {
 		throw invalid_argument("Index out of range!");
@@ -12,12 +12,12 @@ void BaseService::ValidateIndex(const int nIndex, const int nLenght)
 		throw invalid_argument("Index should be possitive!");
 	}
 };
-template<class T> T* BaseService:: GetPointerAtIndex(const int nIndex, CTypedPtrArray<CPtrArray, class T*>& elementsCollection) {
+T* BaseService<class T>:: GetPointerAtIndex(const int nIndex, CTypeArray& oArray) {
 	try
 	{
-		ValidateIndex(nIndex, elementsCollection);
+		ValidateIndex(nIndex, oArray.GetCount()-1);
 		T* pPointer = NULL;
-		pPointer = &elementsCollection[nIndex];
+		pPointer = oArray[nIndex];
 		return pPointer;
 	}
 	catch (exception ex)
@@ -25,13 +25,13 @@ template<class T> T* BaseService:: GetPointerAtIndex(const int nIndex, CTypedPtr
 		cout << ex.what() << endl;
 	}
 };
-template <class T> void BaseService::RemoveAt(const int nIndex, const int count, CTypedPtrArray<CPtrArray, class T*>& elementsCollection)
+void BaseService<T>::RemoveAt(const int nIndex, const int count, CTypeArray& oArray)
 {
 	try
 	{
-		ValidateIndex(nIndex, elementsCollection);
-		elementsCollection.RemoveAt(nIndex, count);
-		elementsCollection.FreeExtra();
+		ValidateIndex(nIndex, oArray.GetCount()-1);
+		oArray.RemoveAt(nIndex, count);
+		oArray.FreeExtra();
 	}
 	catch (exception ex)
 	{

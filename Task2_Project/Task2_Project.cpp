@@ -175,6 +175,7 @@ void CArrayExample() {
 
 int main()
 {
+
 	BaseService service;
 	CArrayExample();
 	CStringExample();

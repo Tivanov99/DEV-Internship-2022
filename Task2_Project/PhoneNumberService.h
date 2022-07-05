@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class PhoneNumberService :public BaseService
+class PhoneNumberService :public BaseService<PHONE_NUMBERS>
 {
 private:
 	string ConvertToString(char* phoneNumber);
