@@ -1,12 +1,13 @@
 #pragma once
-class PhoneTypeService
+#include "BaseService.h";
+
+class PhoneTypeService: BaseService
 {
 public:
-	void SetPhoneType(string sorce, PhoneType* phone);
-	void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes);
-	void ValidateArguments(int index, CPhoneTypesArray& oPhoneTypesArray);
-	void ShowElementInfoAtIndex(int index, CPhoneTypesArray& oPhoneTypesArray);
-	PhoneType* GetPointerAtIndex(const int index, CPhoneTypesArray& oPhoneTypesArray);
-	void RemoveAt(int index, int count, CPhoneTypesArray& oPhoneTypesArray);
+	void SetPhoneType(const string sorce, PHONE_TYPES& phone);
+	//void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes);
+	//void ShowElementInfoAtIndex(const int index, CPhoneTypesArray& oPhoneTypesArray);
+	//PHONE_TYPES* GetPointerAtIndex(const int index, CPhoneTypesArray& oPhoneTypesArray);
+	void RemoveAt(const int index, const int count, CPhoneTypesArray& oPhoneTypesArray);
 };
 

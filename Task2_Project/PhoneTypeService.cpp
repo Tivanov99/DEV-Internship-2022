@@ -6,93 +6,79 @@
 #include <iostream>
 using namespace std;
 
-void PhoneTypeService::SetPhoneType(string sorce, PhoneType* phone) {
-	size_t LengthOfArray = sizeof(phone->PHONE_TYPE) / sizeof(char);
+void PhoneTypeService::SetPhoneType(const string sorce, PHONE_TYPES& phone) {
+	size_t LengthOfArray = sizeof(phone.szPHONE_TYPE) / sizeof(char);
 
 	if (sorce.length() <= LengthOfArray) {
 		for (size_t i = 0; i < sorce.size(); i++)
 		{
-			phone->PHONE_TYPE[i] = sorce[i];
+			phone.szPHONE_TYPE[i] = sorce[i];
 		}
 	}
 	else {
 		cout << "Too long sorce";
 	}
 };
+//
+//void PhoneTypeService::AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
+//	try
+//	{
+//		PHONE_TYPES* pMobilePhoneType = NULL;
+//		pMobilePhoneType = new PHONE_TYPES();
+//		SetPhoneType("mobile", pMobilePhoneType);
+//
+//		PHONE_TYPES* pHomePhoneType = NULL;
+//		pHomePhoneType = new PHONE_TYPES();
+//		SetPhoneType("home", pHomePhoneType);
+//
+//		PHONE_TYPES* pOfficePhoneType = NULL;
+//		pOfficePhoneType = new PHONE_TYPES();
+//		SetPhoneType("office", pOfficePhoneType);
+//
+//		phoneTypes.Add(pMobilePhoneType);
+//		phoneTypes.Add(pHomePhoneType);
+//		phoneTypes.Add(pOfficePhoneType);
+//	}
+//	catch (const std::exception&)
+//	{
+//		cout << "Invalid 'Add' operation!";
+//	}
+//}
 
-void PhoneTypeService::AddPhoneTypeElements(CPhoneTypesArray& phoneTypes) {
+//void PhoneTypeService::ShowElementInfoAtIndex(const int index, CPhoneTypesArray& oPhoneTypesArray) {
+//	try
+//	{
+//		ValidateIndex(index, oPhoneTypesArray.GetCount());
+//		PHONE_TYPES* pTemp = NULL;
+//		pTemp = oPhoneTypesArray.GetAt(index);
+//		cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->szPHONE_TYPE << endl;
+//	}
+//	catch (const std::exception&)
+//	{
+//		cout << "Something goes wrong, press again!";
+//	}
+//}
+
+//PHONE_TYPES* PhoneTypeService::GetPointerAtIndex(const int index, CPhoneTypesArray& oPhoneTypesArray) {
+//	try
+//	{
+//		ValidateArguments(index, oPhoneTypesArray);
+//		throw invalid_argument("Something goes wrong, press again!");
+//
+//		PHONE_TYPES* pPhoneType = NULL;
+//		pPhoneType = oPhoneTypesArray.ElementAt(index);
+//		return pPhoneType;
+//	}
+//	catch (exception& ex)
+//	{
+//		cout << ex.what();
+//	}
+//};
+
+void PhoneTypeService::RemoveAt(const int index, const int count, CPhoneTypesArray& oPhoneTypesArray) {
 	try
 	{
-		PhoneType* pMobilePhoneType = NULL;
-		pMobilePhoneType = new PhoneType();
-		SetPhoneType("mobile", pMobilePhoneType);
-
-		PhoneType* pHomePhoneType = NULL;
-		pHomePhoneType = new PhoneType();
-		SetPhoneType("home", pHomePhoneType);
-
-		PhoneType* pOfficePhoneType = NULL;
-		pOfficePhoneType = new PhoneType();
-		SetPhoneType("office", pOfficePhoneType);
-
-		phoneTypes.Add(pMobilePhoneType);
-		phoneTypes.Add(pHomePhoneType);
-		phoneTypes.Add(pOfficePhoneType);
-	}
-	catch (const std::exception&)
-	{
-		cout << "Invalid 'Add' operation!";
-	}
-
-}
-
-void PhoneTypeService::ValidateArguments(int index, CPhoneTypesArray& oPhoneTypesArray) {
-	if (oPhoneTypesArray.IsEmpty())
-	{
-		throw invalid_argument("The array is empty!");
-	}
-	else if (index > oPhoneTypesArray.GetCount()) {
-		throw invalid_argument("Index out of range!");
-	}
-	else if (index < 0) {
-		throw invalid_argument("Index should be possitive!");
-	}
-};
-
-void PhoneTypeService::ShowElementInfoAtIndex(int index, CPhoneTypesArray& oPhoneTypesArray) {
-	try
-	{
-		ValidateArguments(index, oPhoneTypesArray);
-		PhoneType* pTemp = NULL;
-		pTemp = oPhoneTypesArray.GetAt(index);
-		cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->PHONE_TYPE << endl;
-	}
-	catch (const std::exception&)
-	{
-		cout << "Something goes wrong, press again!";
-	}
-}
-
-PhoneType* PhoneTypeService::GetPointerAtIndex(const int index, CPhoneTypesArray& oPhoneTypesArray) {
-	try
-	{
-		ValidateArguments(index, oPhoneTypesArray);
-		throw invalid_argument("Something goes wrong, press again!");
-
-		PhoneType* pPhoneType = NULL;
-		pPhoneType = oPhoneTypesArray.ElementAt(index);
-		return pPhoneType;
-	}
-	catch (exception& ex)
-	{
-		cout << ex.what();
-	}
-};
-
-void PhoneTypeService::RemoveAt(int index, int count, CPhoneTypesArray& oPhoneTypesArray) {
-	try
-	{
-		ValidateArguments(index, oPhoneTypesArray);
+		ValidateIndex(index, oPhoneTypesArray.GetCount());
 		oPhoneTypesArray.RemoveAt(index, count);
 		oPhoneTypesArray.FreeExtra();
 	}

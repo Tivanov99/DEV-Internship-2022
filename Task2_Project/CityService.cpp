@@ -164,7 +164,6 @@ void CityService::ChangeCityName(CITIES& pOldCity, const string newCityName)
 }
 void CityService::ChangeCityAreaName(const string oldCityAreaName, const string newCityAreaName, CCitiesArray& oCitiesArray)
 {
-
 	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
 	{
 		string currentCityAreaName;
@@ -185,7 +184,6 @@ void CityService::ChangeCityAreaName(const string oldCityAreaName, const string 
 void CityService::ChangeCityAreaName(CITIES& pOldCity,const string newAreaName)
 {
 	string sOldAreaName = ConvertToString(pOldCity.szCITY_NAME);
-
 
 	for (size_t s = 0; s < newAreaName.length(); s++)
 	{
