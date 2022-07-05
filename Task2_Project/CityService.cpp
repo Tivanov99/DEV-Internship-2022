@@ -50,7 +50,7 @@ void CityService::SetPostalCode(const int nSorce, CITIES& city) {
 	}
 };
 
-void CityService::AddCityElements(CCitiesArray& oCities) {
+void CityService::AddDefaultElements(CCitiesArray& oCities) {
 	try
 	{
 		CITIES* pBurgasCity = NULL;

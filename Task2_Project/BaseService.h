@@ -5,6 +5,7 @@
 template<class T>
 class BaseService
 {
+private:
 	typedef CTypedPtrArray < CPtrArray, T*> CTypeArray;
 public:
 	void ValidateIndex(const int nIndex, const int nLenght);

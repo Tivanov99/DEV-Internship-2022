@@ -12,7 +12,7 @@ private:
 	void SetPostalCode(const string sorce, CITIES& city);
 	void SetPostalCode(const int nSorce, CITIES& city);
 public:
-	void AddCityElements(CCitiesArray& oCities);
+	void AddDefaultElements(CCitiesArray& oCities) override;
 	void ValidateArguments(const int nIndex, CCitiesArray& oCitiesArray);
 	void ShowElementInfoAtIndex(const int nIndex, CCitiesArray& oCitiesArray);
 	void ChangeCityName(string const& oldCityName, string const& newCityName, CCitiesArray& oCitiesArray);
