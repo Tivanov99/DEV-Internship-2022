@@ -75,16 +75,4 @@ void PhoneTypeService::SetPhoneType(const string sorce, PHONE_TYPES& phone) {
 //	}
 //};
 
-void PhoneTypeService::RemoveAt(const int index, const int count, CPhoneTypesArray& oPhoneTypesArray) {
-	try
-	{
-		ValidateIndex(index, oPhoneTypesArray.GetCount());
-		oPhoneTypesArray.RemoveAt(index, count);
-		oPhoneTypesArray.FreeExtra();
-	}
-	catch (exception ex)
-	{
-		cout << ex.what();
-	}
-};
 

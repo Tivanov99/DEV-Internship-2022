@@ -8,6 +8,5 @@ public:
 	//void AddPhoneTypeElements(CPhoneTypesArray& phoneTypes);
 	//void ShowElementInfoAtIndex(const int index, CPhoneTypesArray& oPhoneTypesArray);
 	//PHONE_TYPES* GetPointerAtIndex(const int index, CPhoneTypesArray& oPhoneTypesArray);
-	void RemoveAt(const int index, const int count, CPhoneTypesArray& oPhoneTypesArray);
 };
 
