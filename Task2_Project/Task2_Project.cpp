@@ -12,6 +12,7 @@
 #include "CityService.h"
 #include "CStringService.h"
 #include "BaseService.h"
+#include "PhoneNumberService.h"
 
 
 // The one and only application object
@@ -46,7 +47,7 @@ void ManagePhoneNumbers() {
 
 	service.RemoveAt(0, 2, oPhoneTypesArray);
 
-	PhoneNumber* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
+	PHONE_NUMBER* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
 
 
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
@@ -171,11 +172,11 @@ void CArrayExample() {
 int main()
 {
 	BaseService service;
-	/*CArrayExample();*/
+	CArrayExample();
 	CStringExample();
-	/*ManageCities();
+	ManageCities();
 	ManagePhoneTypes();
-	ManagePhoneNumbers();*/
+	ManagePhoneNumbers()
 
 	//int nRetCode = 0;
 

@@ -8,13 +8,13 @@ string PhoneNumberService::ConvertToString(char* phoneNumber) {
 };
 
 
-void PhoneNumberService::SetPhoneNumber(string sorce, PhoneNumber* phoneNumber) {
-	size_t LengthOfArray = sizeof(phoneNumber->PHONE_NUMBER) / sizeof(char);
+void PhoneNumberService::SetPhoneNumber(string sorce, PHONE_NUMBERS& phoneNumber) {
+	size_t LengthOfArray = sizeof(phoneNumber.szPHONE_NUMBER) / sizeof(char);
 
 	if (sorce.length() <= LengthOfArray) {
 		for (size_t i = 0; i < sorce.size(); i++)
 		{
-			phoneNumber->PHONE_NUMBER[i] = sorce[i];
+			phoneNumber.szPHONE_NUMBER[i] = sorce[i];
 		}
 	}
 	else {
@@ -22,32 +22,32 @@ void PhoneNumberService::SetPhoneNumber(string sorce, PhoneNumber* phoneNumber) 
 	}
 };
 
-void PhoneNumberService::AddDefaultPhoneNumbersElements(CPhoneNumbersArray& phoneNumbers) {
+void PhoneNumberService::AddDefaultElements(CPhoneNumbersArray& phoneNumbers) {
 	try
 	{
-		PhoneNumber* pFirstPhoneNumber = NULL;
-		pFirstPhoneNumber = new PhoneNumber();
-		SetPhoneNumber("0893668829", pFirstPhoneNumber);
+		PHONE_NUMBERS* pFirstPhoneNumber = NULL;
+		pFirstPhoneNumber = new PHONE_NUMBERS();
+		SetPhoneNumber("0893668829", *pFirstPhoneNumber);
 
-		PhoneNumber* pSecondPhoneNumber = NULL;
-		pSecondPhoneNumber = new PhoneNumber();
-		SetPhoneNumber("0883737518", pSecondPhoneNumber);
+		PHONE_NUMBERS* pSecondPhoneNumber = NULL;
+		pSecondPhoneNumber = new PHONE_NUMBERS();
+		SetPhoneNumber("0883737518", *pSecondPhoneNumber);
 
-		PhoneNumber* pThirdPhoneNumber = NULL;
-		pThirdPhoneNumber = new PhoneNumber();
-		SetPhoneNumber("0875462946", pThirdPhoneNumber);
+		PHONE_NUMBERS* pThirdPhoneNumber = NULL;
+		pThirdPhoneNumber = new PHONE_NUMBERS();
+		SetPhoneNumber("0875462946", *pThirdPhoneNumber);
 
-		PhoneNumber* pFourthPhoneNumber = NULL;
-		pFourthPhoneNumber = new PhoneNumber();
-		SetPhoneNumber("0886372847", pFourthPhoneNumber);
+		PHONE_NUMBERS* pFourthPhoneNumber = NULL;
+		pFourthPhoneNumber = new PHONE_NUMBERS();
+		SetPhoneNumber("0886372847", *pFourthPhoneNumber);
 
-		PhoneNumber* pFifthPhoneNumber = NULL;
-		pFifthPhoneNumber = new PhoneNumber();
-		SetPhoneNumber("0895467264", pFifthPhoneNumber);
+		PHONE_NUMBERS* pFifthPhoneNumber = NULL;
+		pFifthPhoneNumber = new PHONE_NUMBERS();
+		SetPhoneNumber("0895467264", *pFifthPhoneNumber);
 
-		PhoneNumber* pSixthPhoneNumber = NULL;
-		pSixthPhoneNumber = new PhoneNumber();
-		SetPhoneNumber("0891937373", pSixthPhoneNumber);
+		PHONE_NUMBERS* pSixthPhoneNumber = NULL;
+		pSixthPhoneNumber = new PHONE_NUMBERS();
+		SetPhoneNumber("0891937373", *pSixthPhoneNumber);
 
 		phoneNumbers.Add(pFirstPhoneNumber);
 		phoneNumbers.Add(pSecondPhoneNumber);
@@ -66,9 +66,9 @@ void PhoneNumberService::ShowElementInfoAtIndex(const int index, CPhoneNumbersAr
 	try
 	{
 		ValidateIndex(index, oPhoneTypesArray.GetSize());
-		PhoneNumber* pTemp = NULL;
+		PHONE_NUMBERS* pTemp = NULL;
 		pTemp = oPhoneTypesArray.GetAt(index);
-		cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->PHONE_NUMBER << endl;
+		cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->szPHONE_NUMBER << endl;
 	}
 	catch (const std::exception&)
 	{
@@ -94,15 +94,15 @@ void PhoneNumberService::ChangePhoneNumber(string oldPhoneNumber, string newPhon
 	for (size_t i = 0; i < oPhoneTypesArray.GetSize(); i++)
 	{
 		string currentPhoneNumber;
-		currentPhoneNumber = ConvertToString(oPhoneTypesArray[i]->PHONE_NUMBER);
+		currentPhoneNumber = ConvertToString(oPhoneTypesArray[i]->szPHONE_NUMBER);
 
 		if (currentPhoneNumber._Equal(oldPhoneNumber)) {
-			PhoneNumber* pOldPhoneNumber = NULL;
+			PHONE_NUMBERS* pOldPhoneNumber = NULL;
 			pOldPhoneNumber = oPhoneTypesArray[i];
 
 			for (size_t s = 0; s < currentPhoneNumber.length(); s++)
 			{
-				pOldPhoneNumber->PHONE_NUMBER[s] = newPhoneNumber[s];
+				pOldPhoneNumber->szPHONE_NUMBER[s] = newPhoneNumber[s];
 			}
 			break;
 		}
@@ -123,12 +123,12 @@ template<class T> T* PhoneNumberService::GetPointerAtIndex(const int nIndex, CTy
 		cout << ex.what() << endl;
 	}
 };
-void PhoneNumberService::ChangePhoneNumber(PhoneNumber* pOldPhoneNumberElement, string newPhoneNumber)
+void PhoneNumberService::ChangePhoneNumber(PHONE_NUMBERS* pOldPhoneNumberElement, string newPhoneNumber)
 {
-	string sOldPhoneNumber = ConvertToString(pOldPhoneNumberElement->PHONE_NUMBER);
+	string sOldPhoneNumber = ConvertToString(pOldPhoneNumberElement->szPHONE_NUMBER);
 
 	for (size_t s = 0; s < newPhoneNumber.length(); s++)
 	{
-		pOldPhoneNumberElement->PHONE_NUMBER[s] = newPhoneNumber[s];
+		pOldPhoneNumberElement->szPHONE_NUMBER[s] = newPhoneNumber[s];
 	}
 }
