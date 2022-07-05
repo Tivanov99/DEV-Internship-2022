@@ -134,42 +134,12 @@ CREATE TABLE
 	)
 
 EXEC SP_ADD_TABLE_DESCRIPTION 'PHONE_NUMBERS','Таблица съдържаща инфрормацията за телефонни номера, типове телефони и хора.'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PHONE_NUMBERS','ID','Уникален идентификатор на запис в таблицата (32)бита'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PHONE_NUMBERS','UPDATE_COUNTER','Версия на ред (32)бита (задължителен запис)'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PHONE_NUMBERS','PERSON_ID','Задължителен вторичен ключ рефериращ таблицата "PERSONS" и колоната "ID"  (64)бита'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PHONE_NUMBERS','PHONE_TYPE_ID','Задължителен вторичен ключ рефериращ таблицата "PHONE_NUMBERS" и колоната "ID"  (64)бита'
+EXEC SP_ADD_COLUMN_DESCRIPTION 'PHONE_NUMBERS','PHONE_NUMBER','Таблица съхраняваща (задължителен запис) телефонен номер (32)бита'
 
-
-exec sp_addextendedproperty
-'MS_Description',
-'Уникален идентификатор на запис в таблицата (32)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PHONE_NUMBERS',
-'COLUMN', 'ID'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Версия на ред (32)бита (задължителен запис)',
-'SCHEMA', 'dbo',
-'TABLE', 'PHONE_NUMBERS',
-'COLUMN', 'UPDATE_COUNTER'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Задължителен вторичен ключ рефериращ таблицата "PERSONS" и колоната "ID"  (64)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PHONE_NUMBERS',
-'COLUMN', 'PERSON_ID'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Задължителен вторичен ключ рефериращ таблицата "PHONE_NUMBERS" и колоната "ID"  (64)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PHONE_NUMBERS',
-'COLUMN', 'PHONE_TYPE_ID'
-
-exec sp_addextendedproperty
-'MS_Description',
-'Таблица съхраняваща (задължителен запис) телефонен номер (32)бита',
-'SCHEMA', 'dbo',
-'TABLE', 'PHONE_NUMBERS',
-'COLUMN', 'PHONE_NUMBER'
 
 ALTER TABLE [PHONE_NUMBERS]
 ADD CONSTRAINT [FK_PHONE_NUMBERS_PERSON_ID]
