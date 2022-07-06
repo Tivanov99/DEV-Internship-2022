@@ -1,5 +1,7 @@
 #include <atldbcli.h>
 #include <iostream>
+#include <afxcontrolbars.h>
+#include <afxcontrolbars.h>
 
 using namespace std;
 
@@ -63,47 +65,22 @@ public:
 
 BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 {
-
-};
-BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
-{
-
-};
-
-BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
-{
-
-};
-BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
-{
-
-};
-
-BOOL CCitiesTable:: Insert(const CITIES& recCities)
-{
-
-};
-BOOL CCitiesTable::DeleteWhereID(const long lID)
-{
-
-};
-
-BOOL CCitiesTable::LoadCustomers()
-{
 	CDataSource oDataSource;
 	CSession oSession;
 
 	CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
-	oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("SQLSERVER"));	// сървър
-	oDBPropSet.AddProperty(DBPROP_AUTH_USERID, _T("sa"));			// потребител
-	oDBPropSet.AddProperty(DBPROP_AUTH_PASSWORD, _T("sa"));			// парола
-	oDBPropSet.AddProperty(DBPROP_INIT_CATALOG, _T("Northwind"));	// база данни
+	//SQLSERVER
+	oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP - 6RL5K65"));	// сървър
+	oDBPropSet.AddProperty(DBPROP_AUTH_INTEGRATED, _T("SSPI"));
+	//oDBPropSet.AddProperty(DBPROP_AUTH_USERID, _T("sa"));			// потребител
+	//oDBPropSet.AddProperty(DBPROP_AUTH_PASSWORD, _T("sa"));			// парола
+	oDBPropSet.AddProperty(DBPROP_INIT_CATALOG, _T("PhoneBook"));	// база данни
 	oDBPropSet.AddProperty(DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO, false);
 	oDBPropSet.AddProperty(DBPROP_INIT_LCID, 1033L);
 	oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4));
 
 	// Свързваме се към базата данни
-	hResult = oDataSource.Open(_T("SQLOLEDB.1"), &oDBPropSet);
+	HRESULT hResult = oDataSource.Open(_T("SQLOLEDB.1"), &oDBPropSet);
 	if (FAILED(hResult))
 	{
 		Message(_T("Unable to connect to SQL Server database. Error: %d"), hResult);
@@ -153,9 +130,13 @@ BOOL CCitiesTable::LoadCustomers()
 	oDataSource.Close();
 
 	return TRUE;
-}
+};
+BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
+{
 
-BOOL CCitiesTable::UpdateCustomer()
+};
+
+BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 {
 	CDataSource oDataSource;
 	CSession oSession;
@@ -170,7 +151,7 @@ BOOL CCitiesTable::UpdateCustomer()
 	oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4));
 
 	// Свързваме се към базата данни
-	hResult = oDataSource.Open(_T("SQLOLEDB.1"), &oDBPropSet);
+	HRESULT hResult = oDataSource.Open(_T("SQLOLEDB.1"), &oDBPropSet);
 	if (FAILED(hResult))
 	{
 		Message(_T("Unable to connect to SQL Server database. Error: %d"), hResult);
@@ -243,4 +224,14 @@ BOOL CCitiesTable::UpdateCustomer()
 	oDataSource.Close();
 
 	return TRUE;
-}
+};
+
+BOOL CCitiesTable:: Insert(const CITIES& recCities)
+{
+
+};
+BOOL CCitiesTable::DeleteWhereID(const long lID)
+{
+
+};
+
