@@ -8,15 +8,15 @@
 struct CITIES 
 {
 	/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'CITIES'</summary>
-	int nID;
+	long lID;
 	/// <summary>?</summary>
-	int nUPDATE_COUNTER;
+	long lUPDATE_COUNTER;
 	/// <summary>Променлива съдържаща стойността от колона 'CITY_NAME' в таблицата 'CITIES'</summary>
 	TCHAR szCITY_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колона 'AREA_NAME' в таблицата 'CITIES'</summary>
 	TCHAR szAREA_NAME[32];
 	/// <summary>Променлива съдържаща стойността от колона 'POSTAL_CODE' в таблицата 'CITIES'</summary>
-	int nPOSTAL_CODE;
+	long lPOSTAL_CODE;
 
 	CITIES()
 	{
