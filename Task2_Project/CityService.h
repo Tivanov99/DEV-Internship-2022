@@ -12,6 +12,7 @@ private:
 	void SetAreaName(const CString &sorce, CITIES* city);
 	void SetPostalCode(const int nSorce, CITIES* city);
 public:
+
 	CityService()
 	{
 
