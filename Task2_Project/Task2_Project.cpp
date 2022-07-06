@@ -51,13 +51,15 @@ void ManagePhoneNumbers() {
 
 	//PHONE_NUMBER* pPhoneNumber = NULL;
 	//pPhoneNumber = service.GetPointerAtIndex(2, oPhoneTypesArray);
+	CString strNewPhoneNumber = _T("0888888888");
 
-	service.ChangePhoneNumber("0895467264", "0888888888", oPhoneTypesArray);
-
+	PHONE_NUMBERS pPhoneNumber = *oPhoneTypesArray[0];
+	service.ChangePhoneNumber(pPhoneNumber,strNewPhoneNumber);
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
 
-
-	service.ChangePhoneNumber(*oPhoneTypesArray[0], "0999999999");
+	CString strOldPhoneNumber = _T("0886372847");
+	CString strPhoneNumber = _T("0999999999");
+	service.ChangePhoneNumber(strOldPhoneNumber, strPhoneNumber, oPhoneTypesArray);
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
 }
 
