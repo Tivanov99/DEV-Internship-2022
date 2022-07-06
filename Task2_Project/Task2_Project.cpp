@@ -10,6 +10,7 @@
 #endif
 #include "CityService.h"
 #include "PhoneNumberService.h"
+#include "PhoneTypeService.h"
 #include "CStringService.h"
 
 
@@ -21,19 +22,17 @@ CWinApp theApp;
 using namespace std;
 
 
-//void ManagePhoneTypes() {
-//	CPhoneTypesArray oPhoneTypesArray;
-//	//PhoneTypeService service;
-//
-//	service.AddDefaultElements(oPhoneTypesArray);
-//	
-//
-//	service.RemoveAt(0, 2, oPhoneTypesArray);
-//
-//	PHONE_TYPES* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
-//
-//	service.GetPointerAtIndex(17, oPhoneTypesArray);
-//}
+void ManagePhoneTypes() {
+	CPhoneTypesArray oPhoneTypesArray;
+	PhoneTypeService service;
+	service.AddDefaultElements(oPhoneTypesArray);
+
+	service.RemoveAt(0, 2, oPhoneTypesArray);
+
+	PHONE_TYPES* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
+
+	service.GetPointerAtIndex(17, oPhoneTypesArray);
+}
 
 void ManagePhoneNumbers() {
 	PhoneNumberService service;
@@ -44,13 +43,8 @@ void ManagePhoneNumbers() {
 
 	service.RemoveAt(0, 2, oPhoneTypesArray);
 
-	//PHONE_NUMBER* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
-
-
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
 
-	//PHONE_NUMBER* pPhoneNumber = NULL;
-	//pPhoneNumber = service.GetPointerAtIndex(2, oPhoneTypesArray);
 	CString strNewPhoneNumber = _T("0888888888");
 
 	PHONE_NUMBERS pPhoneNumber = *oPhoneTypesArray[0];
@@ -174,17 +168,16 @@ void CArrayExample() {
 
 		}
 	}
-
 }
 
 
 int main()
 {
-	ManageCities();/*
+	ManageCities();
 	CArrayExample();
 	CStringExample();
-	ManagePhoneTypes();*/
-	//ManagePhoneNumbers()
+	ManagePhoneTypes();
+	ManagePhoneNumbers()
 
 
 
