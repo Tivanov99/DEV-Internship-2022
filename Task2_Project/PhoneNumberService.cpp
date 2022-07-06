@@ -1,13 +1,6 @@
 #include "pch.h"
 #include "PhoneNumberService.h"
 
-string PhoneNumberService::ConvertToString(char* phoneNumber) {
-	string sValue;
-	sValue = phoneNumber;
-	return sValue;
-};
-
-
 void PhoneNumberService::SetPhoneNumber(const CString &sorce, PHONE_NUMBERS& phoneNumber) {
 	size_t LengthOfArray = sizeof(phoneNumber.szPHONE_NUMBER) / sizeof(char);
 
