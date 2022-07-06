@@ -12,6 +12,7 @@
 #include "ChildFrm.h"
 #include "CitiesDoc.h"
 #include "CitiesView.h"
+#include "CCitiesTable.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -198,6 +199,10 @@ void CPhoneBookApp::PreLoadState()
 	bNameValid = strName.LoadString(IDS_EDIT_MENU);
 	ASSERT(bNameValid);
 	GetContextMenuManager()->AddMenu(strName, IDR_POPUP_EDIT);
+
+	CCitiesTable access;
+	CCitiesArray arr;
+	access.SelectAll(arr);
 }
 
 void CPhoneBookApp::LoadCustomState()

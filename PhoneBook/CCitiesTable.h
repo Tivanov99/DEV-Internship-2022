@@ -4,237 +4,237 @@
 #include <afxcontrolbars.h>
 
 using namespace std;
+namespace
+{
 
 #define CITY_NAME_SIZE	32
 #define AREA_NAME_SIZE	32
 
-/// <summary>
-///  Дискова структура CITIES предназначена за таблицата 'CITIES'
-/// </summary>
-struct CITIES
-{
-	/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'CITIES'</summary>
-	long lID;
-	/// <summary>?</summary>
-	long lUPDATE_COUNTER;
-	/// <summary>Променлива съдържаща стойността от колона 'CITY_NAME' в таблицата 'CITIES'</summary>
-	TCHAR szCITY_NAME[CITY_NAME_SIZE];
-	/// <summary>Променлива съдържаща стойността от колона 'AREA_NAME' в таблицата 'CITIES'</summary>
-	TCHAR szAREA_NAME[AREA_NAME_SIZE];
-	/// <summary>Променлива съдържаща стойността от колона 'POSTAL_CODE' в таблицата 'CITIES'</summary>
-	long lPOSTAL_CODE;
-
-	CITIES()
+	/// <summary>
+	///  Дискова структура CITIES предназначена за таблицата 'CITIES'
+	/// </summary>
+	struct CITIES
 	{
-		SecureZeroMemory(this, sizeof(*this));
-	}
-};
+		/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'CITIES'</summary>
+		long lID;
+		/// <summary>?</summary>
+		long lUPDATE_COUNTER;
+		/// <summary>Променлива съдържаща стойността от колона 'CITY_NAME' в таблицата 'CITIES'</summary>
+		TCHAR szCITY_NAME[CITY_NAME_SIZE];
+		/// <summary>Променлива съдържаща стойността от колона 'AREA_NAME' в таблицата 'CITIES'</summary>
+		TCHAR szAREA_NAME[AREA_NAME_SIZE];
+		/// <summary>Променлива съдържаща стойността от колона 'POSTAL_CODE' в таблицата 'CITIES'</summary>
+		long lPOSTAL_CODE;
 
-// <summary>type-def презентиращ CTypedPtrArray който използва CPtrArray контейнер и таблицата CITIES< / summary >
-typedef CTypedPtrArray < CPtrArray, CITIES*> CCitiesArray;
+		CITIES()
+		{
+			SecureZeroMemory(this, sizeof(*this));
+		}
+	};
 
-class CCityAccessor
-{
-protected:
-	CITIES m_recCITY;
+	// <summary>type-def презентиращ CTypedPtrArray който използва CPtrArray контейнер и таблицата CITIES< / summary >
+	typedef CTypedPtrArray < CPtrArray, CITIES*> CCitiesArray;
 
-	BEGIN_ACCESSOR_MAP(CCityAccessor, 2)
-		BEGIN_ACCESSOR(0, true)
-		COLUMN_ENTRY(1, m_recCITY.lID)
-		END_ACCESSOR()
-
-		BEGIN_ACCESSOR(1, true)
-		COLUMN_ENTRY(2, m_recCITY.lUPDATE_COUNTER)
-		COLUMN_ENTRY(3, m_recCITY.szCITY_NAME)
-		COLUMN_ENTRY(4, m_recCITY.szAREA_NAME)
-		COLUMN_ENTRY(5, m_recCITY.lPOSTAL_CODE)
-		END_ACCESSOR()
-	END_ACCESSOR_MAP()
-};
-
-/// <summary>Клас за работа с таблица CITIES</summary>
-class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
-{
-public:
-	BOOL SelectAll(CCitiesArray& oCitiesArray);
-	BOOL SelectWhereID(const long lID, CITIES& recCities);
-	BOOL UpdateWhereID(const long lID, const CITIES& recCities);
-	BOOL Insert(const CITIES& recCities);
-	BOOL DeleteWhereID(const long lID);
-};
-
-BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
-{
-	CDataSource oDataSource;
-	CSession oSession;
-
-	CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
-	//SQLSERVER
-	oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP - 6RL5K65"));	// сървър
-	oDBPropSet.AddProperty(DBPROP_AUTH_INTEGRATED, _T("SSPI"));
-	//oDBPropSet.AddProperty(DBPROP_AUTH_USERID, _T("sa"));			// потребител
-	//oDBPropSet.AddProperty(DBPROP_AUTH_PASSWORD, _T("sa"));			// парола
-	oDBPropSet.AddProperty(DBPROP_INIT_CATALOG, _T("PhoneBook"));	// база данни
-	oDBPropSet.AddProperty(DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO, false);
-	oDBPropSet.AddProperty(DBPROP_INIT_LCID, 1033L);
-	oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4));
-
-	// Свързваме се към базата данни
-	HRESULT hResult = oDataSource.Open(_T("SQLOLEDB.1"), &oDBPropSet);
-	if (FAILED(hResult))
+	class CCityAccessor
 	{
-		AfxMessageBox(_T("Unable to connect to SQL Server database. Error: %d"), hResult);
-		return FALSE;
-	}
+	protected:
+		CITIES m_recCITY;
 
-	// Отваряме сесия
-	hResult = oSession.Open(oDataSource);
-	if (FAILED(hResult))
+		BEGIN_ACCESSOR_MAP(CCityAccessor, 2)
+			BEGIN_ACCESSOR(0, true)
+			COLUMN_ENTRY(1, m_recCITY.lID)
+			END_ACCESSOR()
+
+			BEGIN_ACCESSOR(1, true)
+			COLUMN_ENTRY(2, m_recCITY.lUPDATE_COUNTER)
+			COLUMN_ENTRY(3, m_recCITY.szCITY_NAME)
+			COLUMN_ENTRY(4, m_recCITY.szAREA_NAME)
+			COLUMN_ENTRY(5, m_recCITY.lPOSTAL_CODE)
+			END_ACCESSOR()
+		END_ACCESSOR_MAP()
+	};
+
+	/// <summary>Клас за работа с таблица CITIES</summary>
+	class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
 	{
-		AfxMessageBox(_T("Unable to open session. Error: %d"), hResult);
-		oDataSource.Close();
+	public:
+		BOOL SelectAll(CCitiesArray& oCitiesArray);
+		BOOL SelectWhereID(const long lID, CITIES& recCities);
+		BOOL UpdateWhereID(const long lID, const CITIES& recCities);
+		BOOL Insert(const CITIES& recCities);
+		BOOL DeleteWhereID(const long lID);
+	};
 
-		return FALSE;
-	}
-
-	// Конструираме заявката
-	CString strQuery = _T("SELECT * FROM CUSTOMERS");
-
-	// Изпълняваме командата
-	hResult = Open(oSession, strQuery);
-	if (FAILED(hResult))
+	BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 	{
-		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
+		CDataSource oDataSource;
+		CSession oSession;
 
+		CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
+		oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65"));	// сървър
+		oDBPropSet.AddProperty(DBPROP_AUTH_INTEGRATED, _T("SSPI"));
+		oDBPropSet.AddProperty(DBPROP_INIT_CATALOG, _T("PhoneBook"));	// база данни
+		oDBPropSet.AddProperty(DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO, false);
+		oDBPropSet.AddProperty(DBPROP_INIT_LCID, 1033L);
+		oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4));
+
+		// Свързваме се към базата данни
+		HRESULT hResult = oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
+		if (FAILED(hResult))
+		{
+			AfxMessageBox(_T("Unable to connect to SQL Server database. Error: %d"), hResult);
+			return FALSE;
+		}
+
+		// Отваряме сесия
+		hResult = oSession.Open(oDataSource);
+		if (FAILED(hResult))
+		{
+			AfxMessageBox(_T("Unable to open session. Error: %d"), hResult);
+			oDataSource.Close();
+
+			return FALSE;
+		}
+
+		// Конструираме заявката
+		CString strQuery = _T("SELECT * FROM CITIES");
+
+		// Изпълняваме командата
+		hResult = Open(oSession, strQuery);
+		if (FAILED(hResult))
+		{
+			wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
+
+			oSession.Close();
+			oDataSource.Close();
+
+			return FALSE;
+		}
+
+		// Прочитаме всички данни
+		while (MoveNext() == S_OK)
+		{
+			CString strCustomerData;
+			strCustomerData.Format(_T("ID: %d, City Name: %s, Area Name: %s, Postal Code: %d"),
+				m_recCITY.lID,
+				m_recCITY.szCITY_NAME,
+				m_recCITY.szAREA_NAME,
+				m_recCITY.lPOSTAL_CODE);
+
+			// Logic with the result
+		}
+
+		// Затваряме командата, сесията и връзката с базата данни. 
+		Close();
 		oSession.Close();
 		oDataSource.Close();
 
-		return FALSE;
-	}
-
-	// Прочитаме всички данни
-	while (MoveNext() == S_OK)
+		return TRUE;
+	};
+	BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 	{
-		CString strCustomerData;
-		strCustomerData.Format(_T("ID: %d, City Name: %s, Area Name: %s, Postal Code: %d"),
-			m_recCITY.lID,
-			m_recCITY.szCITY_NAME,
-			m_recCITY.szAREA_NAME,
-			m_recCITY.lPOSTAL_CODE);
+		return false;
+	};
 
-		// Logic with the result
-	}
+	BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
+	{
+		//CDataSource oDataSource;
+		//CSession oSession;
+	
+		//CDBPropSet oDBPropSet(DBPROPSET_oDBPropSet);
+		//oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("SQLSERVER"));	// сървър
+		//oDBPropSet.AddProperty(DBPROP_AUTH_USERID, _T("sa"));			// потребител
+		//oDBPropSet.AddProperty(DBPROP_AUTH_PASSWORD, _T("sa"));			// парола
+		//oDBPropSet.AddProperty(DBPROP_INIT_CATALOG, _T("Northwind"));	// база данни
+		//oDBPropSet.AddProperty(DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO, false);
+		//oDBPropSet.AddProperty(DBPROP_INIT_LCID, 1033L);
+		//oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4));
+	
+		//// Свързваме се към базата данни
+		//HRESULT hResult = oDataSource.Open(_T("SQLOLEDB.1"), &oDBPropSet);
+		//if (FAILED(hResult))
+		//{
+		//	wprintf(_T("Unable to connect to SQL Server database. Error: %d"), hResult);
+		//	return FALSE;
+		//}
+	
+		//// Отваряме сесия
+		//hResult = oSession.Open(oDataSource);
+		//if (FAILED(hResult))
+		//{
+		//	wprintf(_T("Unable to open session. Error: %d"), hResult);
+		//	oDataSource.Close();
+	
+		//	return FALSE;
+		//}
+	
+		//// Конструираме заявката
+		//CString strQuery;
+		//strQuery.Format(_T("SELECT * FROM CUSTOMERS WHERE ID = %d"), 1);
+	
+		//// Настройка на типа на Rowset-а
+		//CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
+		//oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
+		//oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true);
+		//oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true);
+		//oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE);
+	
+		//// Изпълняваме командата
+		//HRESULT hResult = Open(oSession, strQuery, oUpdateDBPropSet);
+		//if (FAILED(hResult))
+		//{
+		//	wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
+	
+		//	oSession.Close();
+		//	oDataSource.Close();
+	
+		//	return FALSE;
+		//}
+	
+		//hResult = MoveFirst();
+		//if (FAILED(hResult))
+		//{
+		//	wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
+	
+		//	Close();
+		//	oSession.Close();
+		//	oDataSource.Close();
+	
+		//	return FALSE;
+		//}
+	
+		//// ВЪПРОС: Какво стъпки следва да извършим преди да инкрементираме m_lUpdateCounter?
+	
+		//m_recCITY.lUPDATE_COUNTER++;
+	
+		//hResult = SetData(1);
+		//if (FAILED(hResult))
+		//{
+		//	wprintf(_T("Error updating record. Error: %d. Query: %s"), hResult, strQuery);
+	
+		//	Close();
+		//	oSession.Close();
+		//	oDataSource.Close();
+	
+		//	return FALSE;
+		//}
+	
+		//Close();
+		//oSession.Close();
+		//oDataSource.Close();
+	
+		return TRUE;
+	};
 
-	// Затваряме командата, сесията и връзката с базата данни. 
-	Close();
-	oSession.Close();
-	oDataSource.Close();
+	BOOL CCitiesTable::Insert(const CITIES& recCities)
+	{
+		return false;
 
-	return TRUE;
-};
-BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
-{
-	return false;
-};
+	};
+	BOOL CCitiesTable::DeleteWhereID(const long lID)
+	{
+		return false;
 
-//BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
-//{
-//	CDataSource oDataSource;
-//	CSession oSession;
-//
-//	CDBPropSet oDBPropSet(DBPROPSET_oDBPropSet);
-//	oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("SQLSERVER"));	// сървър
-//	oDBPropSet.AddProperty(DBPROP_AUTH_USERID, _T("sa"));			// потребител
-//	oDBPropSet.AddProperty(DBPROP_AUTH_PASSWORD, _T("sa"));			// парола
-//	oDBPropSet.AddProperty(DBPROP_INIT_CATALOG, _T("Northwind"));	// база данни
-//	oDBPropSet.AddProperty(DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO, false);
-//	oDBPropSet.AddProperty(DBPROP_INIT_LCID, 1033L);
-//	oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4));
-//
-//	// Свързваме се към базата данни
-//	HRESULT hResult = oDataSource.Open(_T("SQLOLEDB.1"), &oDBPropSet);
-//	if (FAILED(hResult))
-//	{
-//		wprintf(_T("Unable to connect to SQL Server database. Error: %d"), hResult);
-//		return FALSE;
-//	}
-//
-//	// Отваряме сесия
-//	hResult = oSession.Open(oDataSource);
-//	if (FAILED(hResult))
-//	{
-//		wprintf(_T("Unable to open session. Error: %d"), hResult);
-//		oDataSource.Close();
-//
-//		return FALSE;
-//	}
-//
-//	// Конструираме заявката
-//	CString strQuery;
-//	strQuery.Format(_T("SELECT * FROM CUSTOMERS WHERE ID = %d"), 1);
-//
-//	// Настройка на типа на Rowset-а
-//	CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
-//	oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
-//	oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true);
-//	oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true);
-//	oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE);
-//
-//	// Изпълняваме командата
-//	HRESULT hResult = Open(oSession, strQuery, oUpdateDBPropSet);
-//	if (FAILED(hResult))
-//	{
-//		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
-//
-//		oSession.Close();
-//		oDataSource.Close();
-//
-//		return FALSE;
-//	}
-//
-//	hResult = MoveFirst();
-//	if (FAILED(hResult))
-//	{
-//		wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
-//
-//		Close();
-//		oSession.Close();
-//		oDataSource.Close();
-//
-//		return FALSE;
-//	}
-//
-//	// ВЪПРОС: Какво стъпки следва да извършим преди да инкрементираме m_lUpdateCounter?
-//
-//	m_recCITY.lUPDATE_COUNTER++;
-//
-//	hResult = SetData(1);
-//	if (FAILED(hResult))
-//	{
-//		wprintf(_T("Error updating record. Error: %d. Query: %s"), hResult, strQuery);
-//
-//		Close();
-//		oSession.Close();
-//		oDataSource.Close();
-//
-//		return FALSE;
-//	}
-//
-//	Close();
-//	oSession.Close();
-//	oDataSource.Close();
-//
-//	return TRUE;
-//};
+	};
 
-BOOL CCitiesTable:: Insert(const CITIES& recCities)
-{
-	return false;
-
-};
-BOOL CCitiesTable::DeleteWhereID(const long lID)
-{
-	return false;
-
-};
-
+}
