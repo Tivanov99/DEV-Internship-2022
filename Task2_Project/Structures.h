@@ -86,10 +86,15 @@ struct PHONE_TYPES {
 	};
 };
 
+// <summary>type-def презентиращ CTypedPtrArray който използва CPtrArray контейнер и таблицата PHONE_TYPES< / summary >
 typedef CTypedPtrArray < CPtrArray, PHONE_TYPES*> CPhoneTypesArray;
 
+// <summary>type-def презентиращ CTypedPtrArray който използва CPtrArray контейнер и таблицата CITIES< / summary >
 typedef CTypedPtrArray < CPtrArray, CITIES*> CCitiesArray;
 
+
+// <summary>type-def презентиращ CTypedPtrArray който използва CPtrArray контейнер и таблицата PERSONS< / summary >
 typedef CTypedPtrArray < CPtrArray, PERSONS*> CPersonsArray;
 
+// <summary>type-def презентиращ CTypedPtrArray който използва CPtrArray контейнер и таблицата PHONE_NUMBERS< / summary >
 typedef CTypedPtrArray < CPtrArray, PHONE_NUMBERS*> CPhoneNumbersArray;

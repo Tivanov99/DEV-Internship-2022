@@ -9,6 +9,14 @@ class BaseService
 private:
 	typedef CTypedPtrArray < CPtrArray, T*> CTypeArray;
 public:
+	BaseService()
+	{
+
+	}
+	~BaseService()
+	{
+
+	}
 	void ValidateIndex(const int nIndex, const int nLenght);
 	virtual void AddDefaultElements(CTypeArray &oArray) = 0;
 	virtual void ShowElementInfoAtIndex(const int nIndex, const CTypeArray &oArray) = 0;

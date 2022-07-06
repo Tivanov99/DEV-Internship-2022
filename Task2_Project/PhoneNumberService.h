@@ -10,6 +10,13 @@ class PhoneNumberService :public BaseService<PHONE_NUMBERS>
 private:
 	string ConvertToString(char* phoneNumber);
 public:
+	PhoneNumberService()
+	{
+
+	}
+	~PhoneNumberService() {
+
+	}
 	void AddDefaultElements(CPhoneNumbersArray& oArray) override;
 	void SetPhoneNumber(const CString &sorce, PHONE_NUMBERS& phoneNumber);
 	void ShowElementInfoAtIndex(const int nIndex, const CPhoneNumbersArray& oArray) override;

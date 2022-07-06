@@ -12,6 +12,13 @@ private:
 	void SetAreaName(const CString &sorce, CITIES* city);
 	void SetPostalCode(const int nSorce, CITIES* city);
 public:
+	CityService()
+	{
+
+	}
+	~CityService() {
+
+	};
 	void AddDefaultElements(CCitiesArray& oCities) override;
 	void ValidateArguments(const int nIndex, CCitiesArray& oCitiesArray);
 	void ShowElementInfoAtIndex(const int nIndex, const CCitiesArray &oArray)override;

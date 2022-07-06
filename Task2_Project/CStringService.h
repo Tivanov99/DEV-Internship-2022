@@ -8,6 +8,10 @@ public:
 	{
 
 	}
+	~CStringService()
+	{
+
+	}
 	void AppendListOfIntegerArgs(CString& strDummy,int nArgsCount, ...) {
 		va_list vl;
 		va_start(vl, nArgsCount);
