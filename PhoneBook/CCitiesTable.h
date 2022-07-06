@@ -28,28 +28,27 @@ struct CITIES
 	}
 };
 
-class CCustomersAccessor
+class CCitiesAccessor
 {
 protected:
-	CITIES m_recCustomer;
+	CITIES m_recICTY;
 
-	BEGIN_ACCESSOR_MAP(CCustomersAccessor, 2)
+	BEGIN_ACCESSOR_MAP(CCitiesAccessor, 2)
 		BEGIN_ACCESSOR(0, true)
-		COLUMN_ENTRY(1, m_recCustomer.lID)
+		COLUMN_ENTRY(1, m_recICTY.lID)
 		END_ACCESSOR()
 
 		BEGIN_ACCESSOR(1, true)
-		COLUMN_ENTRY(2, m_recCustomer.lUpdateCounter)
-		COLUMN_ENTRY(3, m_recCustomer.szCompanyName)
-		COLUMN_ENTRY(4, m_recCustomer.szName)
-		COLUMN_ENTRY(5, m_recCustomer.szAddress)
-		COLUMN_ENTRY(6, m_recCustomer.szCountry)
+		COLUMN_ENTRY(2, m_recICTY.lUPDATE_COUNTER)
+		COLUMN_ENTRY(3, m_recICTY.szCITY_NAME)
+		COLUMN_ENTRY(4, m_recICTY.szAREA_NAME)
+		COLUMN_ENTRY(5, m_recICTY.lPOSTAL_CODE)
 		END_ACCESSOR()
 	END_ACCESSOR_MAP()
 };
 
 /// <summary>Клас за работа с таблица CUSTOMERS</summary>
-class CCustomersTable : private CCommand<CAccessor<CCustomersAccessor>>
+class CCustomersTable : private CCommand<CAccessor<CCitiesAccessor>>
 {
 public:
 	BOOL LoadCustomers();
