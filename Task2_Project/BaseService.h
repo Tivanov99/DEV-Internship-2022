@@ -48,7 +48,10 @@ void BaseService<T>::RemoveAt(const int nIndex, const int count, CTypeArray& oAr
 	try
 	{
 		ValidateIndex(nIndex, oArray.GetCount() - 1);
+		T* pCurrent = oArray[nIndex];
 		oArray.RemoveAt(nIndex, count);
+		delete pCurrent;
+		pCurrent = NULL;
 		oArray.FreeExtra();
 	}
 	catch (exception ex)
