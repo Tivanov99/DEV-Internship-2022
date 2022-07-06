@@ -11,9 +11,9 @@ private:
 	string ConvertToString(char* phoneNumber);
 public:
 	void AddDefaultElements(CPhoneNumbersArray& oArray) override;
-	void SetPhoneNumber(string sorce, PHONE_NUMBERS& phoneNumber);
+	void SetPhoneNumber(const CString &sorce, PHONE_NUMBERS& phoneNumber);
 	void ShowElementInfoAtIndex(const int nIndex, const CPhoneNumbersArray& oArray) override;
-	void ChangePhoneNumber(string oldPhoneNumber, string newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray);
-	void ChangePhoneNumber(PHONE_NUMBERS& pOldPhoneNumberElement, string newPhoneNumber);
+	void ChangePhoneNumber(const CString &oldPhoneNumber, const CString &newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray);
+	void ChangePhoneNumber(PHONE_NUMBERS& pOldPhoneNumberElement, const CString &newPhoneNumber);
 };
 

@@ -158,9 +158,6 @@ void CityService::ChangeCityName(const CString &oldCityName, const CString &newC
 
 void CityService::ChangeCityName(CITIES& pOldCity, const CString &newCityName)
 {
-	string sCityName = ConvertToString(pOldCity.szCITY_NAME);
-
-
 	for (size_t s = 0; s < newCityName.GetLength(); s++)
 	{
 		pOldCity.szCITY_NAME[s] = newCityName[s];
@@ -170,8 +167,7 @@ void CityService::ChangeCityAreaName(const CString &oldCityAreaName, const CStri
 {
 	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
 	{
-		CString currentCityAreaName;
-		currentCityAreaName.AppendFormat(_T("%c"), (LPCWSTR)oCitiesArray[i]->szCITY_NAME);
+		CString currentCityAreaName = oCitiesArray[i]->szCITY_NAME;
 
 		if (currentCityAreaName == oldCityAreaName) {
 			CITIES* pOldCity = NULL;
@@ -187,8 +183,6 @@ void CityService::ChangeCityAreaName(const CString &oldCityAreaName, const CStri
 }
 void CityService::ChangeCityAreaName(CITIES& pOldCity, const CString &newAreaName)
 {
-	string sOldAreaName = ConvertToString(pOldCity.szCITY_NAME);
-
 	for (size_t s = 0; s < newAreaName.GetLength(); s++)
 	{
 		pOldCity.szAREA_NAME[s] = newAreaName[s];
@@ -201,8 +195,7 @@ void CityService::ChangeCityPosalCode(const CString &cityName, const int nNewCit
 	{
 		for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
 		{
-			CString currentCityName;
-			currentCityName.AppendFormat(_T("%c"), (LPCWSTR)oCitiesArray[i]->szCITY_NAME);
+			CString currentCityName = oCitiesArray[i]->szCITY_NAME;
 
 			if (currentCityName == cityName) {
 				CITIES* pCity = NULL;

@@ -8,11 +8,11 @@ string PhoneNumberService::ConvertToString(char* phoneNumber) {
 };
 
 
-void PhoneNumberService::SetPhoneNumber(string sorce, PHONE_NUMBERS& phoneNumber) {
+void PhoneNumberService::SetPhoneNumber(const CString &sorce, PHONE_NUMBERS& phoneNumber) {
 	size_t LengthOfArray = sizeof(phoneNumber.szPHONE_NUMBER) / sizeof(char);
 
-	if (sorce.length() <= LengthOfArray) {
-		for (size_t i = 0; i < sorce.size(); i++)
+	if (sorce.GetLength() <= LengthOfArray) {
+		for (size_t i = 0; i < sorce.GetLength(); i++)
 		{
 			phoneNumber.szPHONE_NUMBER[i] = sorce[i];
 		}
@@ -26,29 +26,37 @@ void PhoneNumberService::SetPhoneNumber(string sorce, PHONE_NUMBERS& phoneNumber
 void PhoneNumberService::AddDefaultElements(CPhoneNumbersArray &oArray) {
 	try
 	{
+		CString strFirstPhoneNumber = _T("0893668829");
 		PHONE_NUMBERS* pFirstPhoneNumber = NULL;
 		pFirstPhoneNumber = new PHONE_NUMBERS();
-		SetPhoneNumber("0893668829", *pFirstPhoneNumber);
+		SetPhoneNumber(strFirstPhoneNumber, *pFirstPhoneNumber);
 
+
+		CString strSecondPhoneNumber = _T("0883737518");
 		PHONE_NUMBERS* pSecondPhoneNumber = NULL;
 		pSecondPhoneNumber = new PHONE_NUMBERS();
-		SetPhoneNumber("0883737518", *pSecondPhoneNumber);
+		SetPhoneNumber(strSecondPhoneNumber, *pSecondPhoneNumber);
 
+		CString strThirdPhoneNumber = _T("0875462946");
 		PHONE_NUMBERS* pThirdPhoneNumber = NULL;
 		pThirdPhoneNumber = new PHONE_NUMBERS();
-		SetPhoneNumber("0875462946", *pThirdPhoneNumber);
+		SetPhoneNumber(strThirdPhoneNumber, *pThirdPhoneNumber);
 
+
+		CString strFourthPhoneNumber = _T("0886372847");
 		PHONE_NUMBERS* pFourthPhoneNumber = NULL;
 		pFourthPhoneNumber = new PHONE_NUMBERS();
-		SetPhoneNumber("0886372847", *pFourthPhoneNumber);
+		SetPhoneNumber(strFourthPhoneNumber, *pFourthPhoneNumber);
 
+		CString strFifthPhoneNumber = _T("0895467264");
 		PHONE_NUMBERS* pFifthPhoneNumber = NULL;
 		pFifthPhoneNumber = new PHONE_NUMBERS();
-		SetPhoneNumber("0895467264", *pFifthPhoneNumber);
+		SetPhoneNumber(strFifthPhoneNumber, *pFifthPhoneNumber);
 
+		CString strSixthPhoneNumber = _T("0895467264");
 		PHONE_NUMBERS* pSixthPhoneNumber = NULL;
 		pSixthPhoneNumber = new PHONE_NUMBERS();
-		SetPhoneNumber("0891937373", *pSixthPhoneNumber);
+		SetPhoneNumber(strSixthPhoneNumber, *pSixthPhoneNumber);
 
 		oArray.Add(pFirstPhoneNumber);
 		oArray.Add(pSecondPhoneNumber);
@@ -79,18 +87,17 @@ void PhoneNumberService::ShowElementInfoAtIndex(const int nIndex, const CPhoneNu
 }
 
 void PhoneNumberService::ChangePhoneNumber
-(string oldPhoneNumber, string newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray)
+(const CString &oldPhoneNumber, const CString &newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray)
 {
 	for (size_t i = 0; i < oPhoneTypesArray.GetSize(); i++)
 	{
-		string currentPhoneNumber;
-		currentPhoneNumber = ConvertToString(oPhoneTypesArray[i]->szPHONE_NUMBER);
+		CString currentPhoneNumber = oPhoneTypesArray[i]->szPHONE_NUMBER;
 
-		if (currentPhoneNumber._Equal(oldPhoneNumber)) {
+		if (currentPhoneNumber == oldPhoneNumber) {
 			PHONE_NUMBERS* pOldPhoneNumber = NULL;
 			pOldPhoneNumber = oPhoneTypesArray[i];
 
-			for (size_t s = 0; s < currentPhoneNumber.length(); s++)
+			for (size_t s = 0; s < currentPhoneNumber.GetLength(); s++)
 			{
 				pOldPhoneNumber->szPHONE_NUMBER[s] = newPhoneNumber[s];
 			}
@@ -98,11 +105,11 @@ void PhoneNumberService::ChangePhoneNumber
 		}
 	}
 }
-void PhoneNumberService::ChangePhoneNumber(PHONE_NUMBERS& pOldPhoneNumberElement, string newPhoneNumber)
+void PhoneNumberService::ChangePhoneNumber(PHONE_NUMBERS& pOldPhoneNumberElement, const CString &newPhoneNumber)
 {
-	string sOldPhoneNumber = ConvertToString(pOldPhoneNumberElement.szPHONE_NUMBER);
+	CString sOldPhoneNumber =pOldPhoneNumberElement.szPHONE_NUMBER;
 
-	for (size_t s = 0; s < newPhoneNumber.length(); s++)
+	for (size_t s = 0; s < newPhoneNumber.GetLength(); s++)
 	{
 		pOldPhoneNumberElement.szPHONE_NUMBER[s] = newPhoneNumber[s];
 	}
