@@ -62,9 +62,6 @@
     <ClCompile Include="CityService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BaseService.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PhoneNumberService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

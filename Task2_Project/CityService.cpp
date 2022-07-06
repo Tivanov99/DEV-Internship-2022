@@ -2,8 +2,6 @@
 #include "pch.h"
 #include "CityService.h"
 #include "resource.h"
-#include <iostream>
-#include "BaseService.cpp"
 
 using namespace std;
 
@@ -60,12 +58,12 @@ void CityService::AddDefaultElements(CCitiesArray& oCities) {
 
 		CITIES pVarnaCity;
 		SetCityName("Varna", pVarnaCity);
-		SetPostalCode("Varna",pVarnaCity);
+		SetPostalCode("Varna", pVarnaCity);
 		SetPostalCode(9000, pVarnaCity);
 
-		CITIES pSofiaCity ;
+		CITIES pSofiaCity;
 		SetCityName("Sofia", pSofiaCity);
-		SetPostalCode("Sofia",pSofiaCity);
+		SetPostalCode("Sofia", pSofiaCity);
 		SetPostalCode(1000, pSofiaCity);
 
 		CITIES pPlovidCity;
@@ -73,7 +71,7 @@ void CityService::AddDefaultElements(CCitiesArray& oCities) {
 		SetPostalCode("Plovdiv", pPlovidCity);
 		SetPostalCode(3000, pPlovidCity);
 
-		CITIES pRuseCity ;
+		CITIES pRuseCity;
 		SetCityName("Ruse", pRuseCity);
 		SetPostalCode("Ruse", pRuseCity);
 		SetPostalCode(4700, pRuseCity);
@@ -126,7 +124,7 @@ void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& o
 	}
 }
 
-void CityService::ChangeCityName(string const &oldCityName, string const &newCityName, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityName(string const& oldCityName, string const& newCityName, CCitiesArray& oCitiesArray)
 {
 	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
 	{
@@ -146,7 +144,7 @@ void CityService::ChangeCityName(string const &oldCityName, string const &newCit
 	}
 }
 
-void CityService::ChangeCityName(CITIES& pOldCity, string const &newCityName)
+void CityService::ChangeCityName(CITIES& pOldCity, string const& newCityName)
 {
 	string sCityName = ConvertToString(pOldCity.szCITY_NAME);
 
@@ -156,7 +154,7 @@ void CityService::ChangeCityName(CITIES& pOldCity, string const &newCityName)
 		pOldCity.szCITY_NAME[s] = newCityName[s];
 	}
 }
-void CityService::ChangeCityAreaName (string const &oldCityAreaName,string const &newCityAreaName, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityAreaName(string const& oldCityAreaName, string const& newCityAreaName, CCitiesArray& oCitiesArray)
 {
 	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
 	{
@@ -175,7 +173,7 @@ void CityService::ChangeCityAreaName (string const &oldCityAreaName,string const
 		}
 	}
 }
-void CityService::ChangeCityAreaName(CITIES& pOldCity,const string newAreaName)
+void CityService::ChangeCityAreaName(CITIES& pOldCity, const string newAreaName)
 {
 	string sOldAreaName = ConvertToString(pOldCity.szCITY_NAME);
 
@@ -184,7 +182,7 @@ void CityService::ChangeCityAreaName(CITIES& pOldCity,const string newAreaName)
 		pOldCity.szAREA_NAME[s] = newAreaName[s];
 	}
 }
-void CityService::ChangeCityPosalCode(const string cityName,const int nNewCityPosalCode, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityPosalCode(const string cityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray)
 {
 
 	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
