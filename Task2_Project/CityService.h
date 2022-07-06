@@ -26,17 +26,17 @@ public:
 	void AddDefaultElements(CCitiesArray& oCities) override;
 	//<summary>Функция принтираща информация за обект намиращ се на позицията на nIndex, пренаписана от базов клас 'BaseService'.</summary>
 	void ShowElementInfoAtIndex(const int nIndex, const CCitiesArray &oArray)override;
-	//<summary>Функция променяща 'CITY_NAME' стойността на обект чието текущо име е подадено като първи аргумент 'oldCityName'.</summary>
+	//<summary>Функция променяща 'CITY_NAME' стойността на обект чието текущо име е подадено като аргумент 'oldCityName'.</summary>
 	void ChangeCityName(const CString &oldCityName, const CString &newCityName, CCitiesArray& oCitiesArray);
 	//<summary>Функция променяща 'CITY_NAME' на обект подаден като аргумент.</summary>
 	void ChangeCityName(CITIES& pOldCity, const CString &newCityName);
-	//<summary>Функция променяща 'AREA_NAME' стойността на обект чието текущо име е подадено като първи аргумент 'oldCityAreaName'.</summary>
+	//<summary>Функция променяща 'AREA_NAME' стойността на обект чието текущо име е подадено като аргумент 'oldCityAreaName'.</summary>
 	void ChangeCityAreaName(const CString &oldCityAreaName, const CString &newCityAreaName, CCitiesArray& oCitiesArray);
 	//<summary>Функция променяща 'AREA_NAME' на обект подаден като аргумент.</summary>
 	void ChangeCityAreaName(CITIES& pOldCity, const CString &newAreaName);
-	//<summary>Функция променяща 'POSTAL_CODE' стойността на обект чието текущо име е подадено като първи аргумент 'cityName'.</summary>
+	//<summary>Функция променяща 'POSTAL_CODE' стойността на обект чието текущо име е подадено като аргумент 'cityName'.</summary>
 	void ChangeCityPosalCode(const CString &cityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray);
-	//<summary>Функция променяща 'POSTAL_CODE' стойността на обект подаден като първи аргумент.</summary>
+	//<summary>Функция променяща 'POSTAL_CODE' стойността на обект подаден като аргумент 'pCity'.</summary>
 	void ChangeCityPostalCode(CITIES& pCity, const int nNewPostalCode);
 };
 
