@@ -5,11 +5,6 @@
 
 using namespace std;
 
-string CityService::ConvertToString(char* phoneNumber) {
-	string sValue;
-	sValue = phoneNumber;
-	return sValue;
-}
 
 void CityService::SetCityName(const CString &sorce, CITIES* city) {
 	int nLengthOfArray = sizeof(city->szCITY_NAME) / sizeof(char);
@@ -41,7 +36,7 @@ void CityService::SetAreaName(const CString &sorce, CITIES* city) {
 
 void CityService::SetPostalCode(const int nSorce, CITIES* city) {
 	if (nSorce > 0) {
-		city->nPOSTAL_CODE = nSorce;
+		city->lPOSTAL_CODE = nSorce;
 	}
 	else {
 		cout << "Too long city name!" << endl;
@@ -106,19 +101,6 @@ void CityService::AddDefaultElements(CCitiesArray& oCities) {
 		oCities.Add(pVelinGradCity);
 };
 
-void CityService::ValidateArguments(const int nIndex, CCitiesArray& oCitiesArray) {
-	if (oCitiesArray.IsEmpty())
-	{
-		throw invalid_argument("The array is empty!");
-	}
-	else if (nIndex > oCitiesArray.GetCount()) {
-		throw invalid_argument("Index out of range!");
-	}
-	else if (nIndex < 0) {
-		throw invalid_argument("Index should be possitive!");
-	}
-};
-
 void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& oArray) {
 	try
 	{
@@ -127,7 +109,7 @@ void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& o
 		pCity = oArray.GetAt(nIndex);
 		cout << "Selected item info: " << "memory address: " << &pCity
 			<< " City Name :" << pCity->szCITY_NAME
-			<< " Postal Code " << pCity->nPOSTAL_CODE
+			<< " Postal Code " << pCity->lPOSTAL_CODE
 			<< " Area Name " << pCity->szAREA_NAME << endl;
 	}
 	catch (const std::exception&)
@@ -201,7 +183,7 @@ void CityService::ChangeCityPosalCode(const CString &cityName, const int nNewCit
 				CITIES* pCity = NULL;
 				pCity = oCitiesArray[i];
 
-				pCity->nPOSTAL_CODE = nNewCityPosalCode;
+				pCity->lPOSTAL_CODE = nNewCityPosalCode;
 				break;
 			}
 		}
@@ -210,6 +192,6 @@ void CityService::ChangeCityPosalCode(const CString &cityName, const int nNewCit
 void CityService::ChangeCityPostalCode(CITIES& pCity, const int nNewPostalCode)
 {
 	if (nNewPostalCode > 0) {
-		pCity.nPOSTAL_CODE = nNewPostalCode;
+		pCity.lPOSTAL_CODE = nNewPostalCode;
 	}
 }
