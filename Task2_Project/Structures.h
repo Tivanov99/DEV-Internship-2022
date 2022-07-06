@@ -15,9 +15,9 @@ struct CITIES
 	/// <summary>?</summary>
 	long lUPDATE_COUNTER;
 	/// <summary>Променлива съдържаща стойността от колона 'CITY_NAME' в таблицата 'CITIES'</summary>
-	TCHAR szCITY_NAME[32];
+	TCHAR szCITY_NAME[CITY_NAME_SIZE];
 	/// <summary>Променлива съдържаща стойността от колона 'AREA_NAME' в таблицата 'CITIES'</summary>
-	TCHAR szAREA_NAME[32];
+	TCHAR szAREA_NAME[AREA_NAME_SIZE];
 	/// <summary>Променлива съдържаща стойността от колона 'POSTAL_CODE' в таблицата 'CITIES'</summary>
 	long lPOSTAL_CODE;
 
@@ -41,16 +41,16 @@ struct PERSONS {
 	/// <summary>?</summary>
 	long lUPDATE_COUNTER;
 	/// <summary>Променлива съдържаща стойността от колона 'FIRST_NAME' в таблицата  'PERSONS'</summary>
-	TCHAR szFIRST_NAME[32];
+	TCHAR szFIRST_NAME[FIRST_NAME_SIZE];
 	/// <summary>Променлива съдържаща стойността от колона 'SECOND_NAME' в таблицата  'PERSONS'</summary>
-	char szSECOND_NAME[32];
+	char szSECOND_NAME[SECOND_NAME_SIZE];
 	/// <summary>Променлива съдържаща стойността от колоната 'LAST_NAME' в таблицата  'PERSONS'</summary>
-	TCHAR szLAST_NAME[32];
+	TCHAR szLAST_NAME[LAST_NAME_SIZE];
 	/// <summary>Променлива съдържаща вторичен ключ (от колона 'CITY_ID' в таблицата  'PERSONS')
 	/// <summary>сочещ към таблицата 'CITIES' и колона 'ID'</summary>
 	long lCITY_ID;
 	/// <summary>Променлива съдържаща стойността от колоната 'ADDRESS' в таблицата  'PERSONS'</summary>
-	TCHAR szADDRESS[256];
+	TCHAR szADDRESS[ADDRESS_SIZE];
 
 	PERSONS()
 	{
@@ -72,7 +72,7 @@ struct PHONE_NUMBERS {
 	/// <summary>сочещ към колоната 'ID' в таблицата 'PHONE_NUMBERS'</summary>;
 	long lPHONE_TYPE_ID;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_NUMBER' в таблицата  'PHONE_NUMBERS'</summary>
-	TCHAR szPHONE_NUMBER[16];
+	TCHAR szPHONE_NUMBER[PHONE_NUMBER_SIZE];
 
 	PHONE_NUMBERS()
 	{
@@ -90,7 +90,7 @@ struct PHONE_TYPES {
 	/// <summary>?</summary>
 	long lUPDATE_COUNTER;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_TYPE' в таблицата  'PHONE_TYPES'</summary>
-	TCHAR szPHONE_TYPE[16];
+	TCHAR szPHONE_TYPE[PHONE_TYPE_SIZE];
 	PHONE_TYPES()
 	{
 		SecureZeroMemory(this, sizeof(*this));
