@@ -10,7 +10,6 @@
 #endif
 #include "CityService.h"
 #include "PhoneNumberService.h"
-#include "PhoneTypeService.h"
 #include "CStringService.h"
 
 
@@ -22,19 +21,19 @@ CWinApp theApp;
 using namespace std;
 
 
-void ManagePhoneTypes() {
-	CPhoneTypesArray oPhoneTypesArray;
-	PhoneTypeService service;
-
-	service.AddDefaultElements(oPhoneTypesArray);
-	
-
-	service.RemoveAt(0, 2, oPhoneTypesArray);
-
-	PHONE_TYPES* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
-
-	service.GetPointerAtIndex(17, oPhoneTypesArray);
-}
+//void ManagePhoneTypes() {
+//	CPhoneTypesArray oPhoneTypesArray;
+//	//PhoneTypeService service;
+//
+//	service.AddDefaultElements(oPhoneTypesArray);
+//	
+//
+//	service.RemoveAt(0, 2, oPhoneTypesArray);
+//
+//	PHONE_TYPES* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
+//
+//	service.GetPointerAtIndex(17, oPhoneTypesArray);
+//}
 
 void ManagePhoneNumbers() {
 	PhoneNumberService service;
@@ -167,12 +166,26 @@ void CArrayExample() {
 
 }
 
+//#pragma once
+//#include "BaseService.h";
+//
+//
+//class PhoneTypeService : public BaseService<PHONE_TYPES>
+//{
+//public:
+//	void SetPhoneType(CString& strType, PHONE_TYPES& oPhone);
+//	void AddDefaultElements(CPhoneTypesArray& oArray) override;
+//	void ShowElementInfoAtIndex(const int nIndex, const CPhoneTypesArray& oArray) override;
+//};
+
+
+
 int main()
 {
-	CArrayExample();
+	/*CArrayExample();
 	CStringExample();
 	ManageCities();
-	ManagePhoneTypes();
+	ManagePhoneTypes();*/
 	ManagePhoneNumbers()
 
 

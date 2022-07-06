@@ -1,33 +1,34 @@
-﻿  PhoneTypeService.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(4,45): error C2065: 'PHONE_TYPES': undeclared identifier
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(4,33): error C2923: 'BaseService': 'PHONE_TYPES' is not a valid template type argument for parameter 'T'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(4): message : see declaration of 'PHONE_TYPES'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(5,1): error C2955: 'BaseService': use of class template requires template argument list
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(7): message : see declaration of 'BaseService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7,26): error C2061: syntax error: identifier 'CPhoneTypesArray'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(8,71): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(8,71): error C2143: syntax error: missing ',' before '&'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(9,38): error C2061: syntax error: identifier 'PHONE_TYPES'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(7,7): error C3668: 'PhoneTypeService::AddDefaultElements': method with override specifier 'override' did not override any base class methods
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(8,7): error C3668: 'PhoneTypeService::ShowElementInfoAtIndex': method with override specifier 'override' did not override any base class methods
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(13,1): error C2511: 'void PhoneTypeService::ShowElementInfoAtIndex(const int,const CPhoneTypesArray &)': overloaded member function not found in 'PhoneTypeService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(4): message : see declaration of 'PhoneTypeService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(16,3): error C3861: 'ValidateIndex': identifier not found
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(27,1): error C2511: 'void PhoneTypeService::AddDefaultElements(CPhoneTypesArray &)': overloaded member function not found in 'PhoneTypeService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(4): message : see declaration of 'PhoneTypeService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(32,43): error C2660: 'PhoneTypeService::SetPhoneType': function does not take 2 arguments
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(9,7): message : see declaration of 'PhoneTypeService::SetPhoneType'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(36,39): error C2660: 'PhoneTypeService::SetPhoneType': function does not take 2 arguments
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(9,7): message : see declaration of 'PhoneTypeService::SetPhoneType'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(40,43): error C2660: 'PhoneTypeService::SetPhoneType': function does not take 2 arguments
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(9,7): message : see declaration of 'PhoneTypeService::SetPhoneType'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(53,1): error C2511: 'void PhoneTypeService::SetPhoneType(CString &,PHONE_TYPES &)': overloaded member function not found in 'PhoneTypeService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(4): message : see declaration of 'PhoneTypeService'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(57,38): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(57,38): warning C4244: '=': conversion from 'wchar_t' to 'char', possible loss of data
+﻿  BaseService.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(18,42): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(32,42): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+  CityService.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(18,42): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(32,42): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(115,39): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(131,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(161,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(190,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(192,24): warning C4018: '<': signed/unsigned mismatch
+  PhoneNumberService.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(70,42): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(84,23): warning C4018: '<': signed/unsigned mismatch
   Task2_Project.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(151,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(150,23): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(27): warning C4715: 'BaseService<T>::GetPointerAtIndex': not all control paths return a value
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.cpp(27): warning C4715: 'BaseService<T>::GetPointerAtIndex': not all control paths return a value
+CityService.obj : error LNK2005: "public: class T * __cdecl BaseService<class T>::GetPointerAtIndex(int,class CTypedPtrArray<class CPtrArray,class T *> &)" (?GetPointerAtIndex@?$BaseService@VT@@@@QEAAPEAVT@@HAEAV?$CTypedPtrArray@VCPtrArray@@PEAVT@@@@@Z) already defined in BaseService.obj
+CityService.obj : error LNK2005: "public: void __cdecl BaseService<class T>::RemoveAt(int,int,class CTypedPtrArray<class CPtrArray,class T *> &)" (?RemoveAt@?$BaseService@VT@@@@QEAAXHHAEAV?$CTypedPtrArray@VCPtrArray@@PEAVT@@@@@Z) already defined in BaseService.obj
+CityService.obj : error LNK2005: "public: void __cdecl BaseService<class T>::ValidateIndex(int,int)" (?ValidateIndex@?$BaseService@VT@@@@QEAAXHH@Z) already defined in BaseService.obj
+CityService.obj : error LNK2019: unresolved external symbol "public: void __cdecl BaseService<struct CITIES>::ValidateIndex(int,int)" (?ValidateIndex@?$BaseService@UCITIES@@@@QEAAXHH@Z) referenced in function "public: virtual void __cdecl CityService::ShowElementInfoAtIndex(int,class CTypedPtrArray<class CPtrArray,struct CITIES *> const &)" (?ShowElementInfoAtIndex@CityService@@UEAAXHAEBV?$CTypedPtrArray@VCPtrArray@@PEAUCITIES@@@@@Z)
+PhoneNumberService.obj : error LNK2019: unresolved external symbol "public: void __cdecl BaseService<struct PHONE_NUMBERS>::ValidateIndex(int,int)" (?ValidateIndex@?$BaseService@UPHONE_NUMBERS@@@@QEAAXHH@Z) referenced in function "public: virtual void __cdecl PhoneNumberService::ShowElementInfoAtIndex(int,class CTypedPtrArray<class CPtrArray,struct PHONE_NUMBERS *> const &)" (?ShowElementInfoAtIndex@PhoneNumberService@@UEAAXHAEBV?$CTypedPtrArray@VCPtrArray@@PEAUPHONE_NUMBERS@@@@@Z)
+Task2_Project.obj : error LNK2019: unresolved external symbol "public: struct CITIES * __cdecl BaseService<struct CITIES>::GetPointerAtIndex(int,class CTypedPtrArray<class CPtrArray,struct CITIES *> &)" (?GetPointerAtIndex@?$BaseService@UCITIES@@@@QEAAPEAUCITIES@@HAEAV?$CTypedPtrArray@VCPtrArray@@PEAUCITIES@@@@@Z) referenced in function "void __cdecl CityAreaNameChanging(class CityService &,class CTypedPtrArray<class CPtrArray,struct CITIES *> &)" (?CityAreaNameChanging@@YAXAEAVCityService@@AEAV?$CTypedPtrArray@VCPtrArray@@PEAUCITIES@@@@@Z)
+Task2_Project.obj : error LNK2019: unresolved external symbol "public: void __cdecl BaseService<struct CITIES>::RemoveAt(int,int,class CTypedPtrArray<class CPtrArray,struct CITIES *> &)" (?RemoveAt@?$BaseService@UCITIES@@@@QEAAXHHAEAV?$CTypedPtrArray@VCPtrArray@@PEAUCITIES@@@@@Z) referenced in function "void __cdecl ManageCities(void)" (?ManageCities@@YAXXZ)
+Task2_Project.obj : error LNK2019: unresolved external symbol "public: void __cdecl BaseService<struct PHONE_NUMBERS>::RemoveAt(int,int,class CTypedPtrArray<class CPtrArray,struct PHONE_NUMBERS *> &)" (?RemoveAt@?$BaseService@UPHONE_NUMBERS@@@@QEAAXHHAEAV?$CTypedPtrArray@VCPtrArray@@PEAUPHONE_NUMBERS@@@@@Z) referenced in function "void __cdecl ManagePhoneNumbers(void)" (?ManagePhoneNumbers@@YAXXZ)
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\Task2_Project.exe : fatal error LNK1120: 5 unresolved externals
