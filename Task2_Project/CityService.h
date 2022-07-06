@@ -18,7 +18,7 @@ public:
 	void ChangeCityName(const CString &oldCityName, const CString &newCityName, CCitiesArray& oCitiesArray);
 	void ChangeCityName(CITIES& pOldCity, const CString &newCityName);
 	void ChangeCityAreaName(const CString &oldCityAreaName, const CString &newCityAreaName, CCitiesArray& oCitiesArray);
-	void ChangeCityAreaName(CITIES& pOldCity, const string newAreaName);
+	void ChangeCityAreaName(CITIES& pOldCity, const CString &newAreaName);
 	void ChangeCityPosalCode(const CString &cityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray);
 	void ChangeCityPostalCode(CITIES& pCity, const int nNewPostalCode);
 };

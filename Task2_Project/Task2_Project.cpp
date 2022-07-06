@@ -66,37 +66,46 @@ void CityNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
 	CITIES* pCity = NULL;
 	pCity = service.GetPointerAtIndex(2, oCitiesArray);
 
-	service.ChangeCityName("Ruse", "RuseFirst", oCitiesArray);
+	CString strRuseCityOldName = _T("Ruse");
+	CString strRuseCityNewName = _T("RuseFirst");
+
+	service.ChangeCityName(strRuseCityOldName, strRuseCityNewName, oCitiesArray);
 
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 
-	//service.ChangeCityName(pCity, "RuseSecond");
+	CString strRuseCitySecondNewName = _T("RuseSecond");
+	CITIES oCity = *oCitiesArray[2];
+	service.ChangeCityName(oCity, strRuseCitySecondNewName);
 
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 }
 
 void CityAreaNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
-	CITIES* pCity = NULL;
-	pCity = service.GetPointerAtIndex(2, oCitiesArray);
+	CITIES oCity;
+	oCity = *oCitiesArray[2];
 
-	//service.ChangeCityAreaName(pCity, "RunskaFirst");
+	CString strCityAreaName = _T("RunskaFirst");
+	service.ChangeCityAreaName(oCity, strCityAreaName);
 
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 
-	service.ChangeCityAreaName("RunskaFirst", "RunskaSecond", oCitiesArray);
+	CString strOldCityAreaName = _T("RunskaFirst");
+	CString strNewCityAreaName = _T("RunskaSecond");
+
+	service.ChangeCityAreaName(strOldCityAreaName, strNewCityAreaName, oCitiesArray);
 
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 }
 
-void CityPostalCodeChanging(CityService& service, CCitiesArray& oCitiesArray) {
-	CITIES* pCity = NULL;
-	pCity = service.GetPointerAtIndex(2, oCitiesArray);
-
-	service.ChangeCityPosalCode("RuseSecond", 9999, oCitiesArray);
+void CityPostalCodeChanging(CityService& service, CCitiesArray& oCitiesArray)
+{
+	CString strRuseCityOldName = _T("RuseSecond");
+	service.ChangeCityPosalCode(strRuseCityOldName, 9999, oCitiesArray);
 
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 
-	//service.ChangeCityPostalCode(pCity, 11111);
+	CITIES oCity = *oCitiesArray[2];
+	service.ChangeCityPostalCode(oCity, 11111);
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 }
 

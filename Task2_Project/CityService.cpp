@@ -141,7 +141,7 @@ void CityService::ChangeCityName(const CString &oldCityName, const CString &newC
 	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
 	{
 		CString currentCityName;
-		currentCityName.AppendFormat(_T("%c"),(LPCWSTR)oCitiesArray[i]->szCITY_NAME);
+		currentCityName.AppendFormat(_T("%s"),(LPCWSTR)oCitiesArray[i]->szCITY_NAME);
 
 		if (currentCityName == oldCityName) {
 			CITIES* pOldCity = NULL;
@@ -185,11 +185,11 @@ void CityService::ChangeCityAreaName(const CString &oldCityAreaName, const CStri
 		}
 	}
 }
-void CityService::ChangeCityAreaName(CITIES& pOldCity, const string newAreaName)
+void CityService::ChangeCityAreaName(CITIES& pOldCity, const CString &newAreaName)
 {
 	string sOldAreaName = ConvertToString(pOldCity.szCITY_NAME);
 
-	for (size_t s = 0; s < newAreaName.length(); s++)
+	for (size_t s = 0; s < newAreaName.GetLength(); s++)
 	{
 		pOldCity.szAREA_NAME[s] = newAreaName[s];
 	}
