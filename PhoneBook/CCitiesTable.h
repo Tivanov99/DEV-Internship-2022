@@ -28,12 +28,15 @@ struct CITIES
 	}
 };
 
-class CCitiesAccessor
+// <summary>type-def презентиращ CTypedPtrArray който използва CPtrArray контейнер и таблицата CITIES< / summary >
+typedef CTypedPtrArray < CPtrArray, CITIES*> CCitiesArray;
+
+class CCityAccessor
 {
 protected:
 	CITIES m_recICTY;
 
-	BEGIN_ACCESSOR_MAP(CCitiesAccessor, 2)
+	BEGIN_ACCESSOR_MAP(CCityAccessor, 2)
 		BEGIN_ACCESSOR(0, true)
 		COLUMN_ENTRY(1, m_recICTY.lID)
 		END_ACCESSOR()
@@ -47,15 +50,45 @@ protected:
 	END_ACCESSOR_MAP()
 };
 
-/// <summary>Клас за работа с таблица CUSTOMERS</summary>
-class CCustomersTable : private CCommand<CAccessor<CCitiesAccessor>>
+/// <summary>Клас за работа с таблица CITIES</summary>
+class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
 {
 public:
-	BOOL LoadCustomers();
-	BOOL UpdateCustomer();
+	BOOL SelectAll(CCitiesArray& oCitiesArray);
+	BOOL SelectWhereID(const long lID, CITIES& recCities);
+	BOOL UpdateWhereID(const long lID, const CITIES& recCities);
+	BOOL Insert(const CITIES& recCities);
+	BOOL DeleteWhereID(const long lID);
 };
 
-BOOL CCustomersTable::LoadCustomers()
+BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
+{
+
+};
+BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
+{
+
+};
+
+BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
+{
+
+};
+BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
+{
+
+};
+
+BOOL CCitiesTable:: Insert(const CITIES& recCities)
+{
+
+};
+BOOL CCitiesTable::DeleteWhereID(const long lID)
+{
+
+};
+
+BOOL CCitiesTable::LoadCustomers()
 {
 	CDataSource oDataSource;
 	CSession oSession;
@@ -122,7 +155,7 @@ BOOL CCustomersTable::LoadCustomers()
 	return TRUE;
 }
 
-BOOL CCustomersTable::UpdateCustomer()
+BOOL CCitiesTable::UpdateCustomer()
 {
 	CDataSource oDataSource;
 	CSession oSession;
