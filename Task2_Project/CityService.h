@@ -8,9 +8,9 @@ class CityService : public BaseService<CITIES>
 {
 private:
 	string ConvertToString(char* phoneNumber);
-	void SetCityName(const string sorce, CITIES& city);
-	void SetPostalCode(const string sorce, CITIES& city);
-	void SetPostalCode(const int nSorce, CITIES& city);
+	void SetCityName(const string sorce, CITIES* city);
+	void SetPostalCode(const string sorce, CITIES* city);
+	void SetPostalCode(const int nSorce, CITIES* city);
 public:
 	void AddDefaultElements(CCitiesArray& oCities) override;
 	void ValidateArguments(const int nIndex, CCitiesArray& oCitiesArray);

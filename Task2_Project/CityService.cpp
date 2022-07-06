@@ -11,13 +11,13 @@ string CityService::ConvertToString(char* phoneNumber) {
 	return sValue;
 }
 
-void CityService::SetCityName(const string sorce, CITIES& city) {
-	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(char);
+void CityService::SetCityName(const string sorce, CITIES* city) {
+	int nLengthOfArray = sizeof(city->szCITY_NAME) / sizeof(char);
 
 	if (sorce.length() <= nLengthOfArray) {
 		for (int i = 0; i < sorce.size(); i++)
 		{
-			city.szCITY_NAME[i] = sorce[i];
+			city->szCITY_NAME[i] = sorce[i];
 		}
 	}
 	else {
@@ -25,13 +25,13 @@ void CityService::SetCityName(const string sorce, CITIES& city) {
 	}
 };
 
-void CityService::SetPostalCode(const string sorce, CITIES& city) {
-	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(char);
+void CityService::SetPostalCode(const string sorce, CITIES* city) {
+	int nLengthOfArray = sizeof(city->szCITY_NAME) / sizeof(char);
 
 	if (sorce.length() <= nLengthOfArray) {
 		for (int i = 0; i < sorce.size(); i++)
 		{
-			city.szAREA_NAME[i] = sorce[i];
+			city->szAREA_NAME[i] = sorce[i];
 		}
 	}
 	else {
@@ -39,9 +39,9 @@ void CityService::SetPostalCode(const string sorce, CITIES& city) {
 	}
 };
 
-void CityService::SetPostalCode(const int nSorce, CITIES& city) {
+void CityService::SetPostalCode(const int nSorce, CITIES* city) {
 	if (nSorce > 0) {
-		city.nPOSTAL_CODE = nSorce;
+		city->nPOSTAL_CODE = nSorce;
 	}
 	else {
 		cout << "Too long city name!" << endl;
@@ -49,49 +49,49 @@ void CityService::SetPostalCode(const int nSorce, CITIES& city) {
 };
 
 void CityService::AddDefaultElements(CCitiesArray& oCities) {
-	try
-	{
-		CITIES pBurgasCity;
+		CITIES* pBurgasCity= NULL;
+		pBurgasCity = new CITIES();
 		SetCityName("Bugras", pBurgasCity);
 		SetPostalCode("Bugras", pBurgasCity);
 		SetPostalCode(8000, pBurgasCity);
 
-		CITIES pVarnaCity;
+		CITIES* pVarnaCity = NULL;
+		pVarnaCity= new CITIES();
 		SetCityName("Varna", pVarnaCity);
 		SetPostalCode("Varna", pVarnaCity);
 		SetPostalCode(9000, pVarnaCity);
 
-		CITIES pSofiaCity;
+		CITIES* pSofiaCity=NULL;
+		pSofiaCity=new CITIES();
 		SetCityName("Sofia", pSofiaCity);
 		SetPostalCode("Sofia", pSofiaCity);
 		SetPostalCode(1000, pSofiaCity);
 
-		CITIES pPlovidCity;
+		CITIES* pPlovidCity=NULL;
+		pPlovidCity= new CITIES();
 		SetCityName("Plovdiv", pPlovidCity);
 		SetPostalCode("Plovdiv", pPlovidCity);
 		SetPostalCode(3000, pPlovidCity);
 
-		CITIES pRuseCity;
+		CITIES* pRuseCity=NULL;
+		pRuseCity = new CITIES();
 		SetCityName("Ruse", pRuseCity);
 		SetPostalCode("Ruse", pRuseCity);
 		SetPostalCode(4700, pRuseCity);
 
-		CITIES pVelinGradCity;
+		CITIES* pVelinGradCity= NULL;
+		pVelinGradCity = new CITIES();
 		SetCityName("VelinGrad", pVelinGradCity);
 		SetPostalCode("Pazardzhik", pVelinGradCity);
 		SetPostalCode(6000, pVelinGradCity);
 
-		oCities.Add(&pBurgasCity);
-		oCities.Add(&pVarnaCity);
-		oCities.Add(&pSofiaCity);
-		oCities.Add(&pPlovidCity);
-		oCities.Add(&pRuseCity);
-		oCities.Add(&pVelinGradCity);
-	}
-	catch (const std::exception&)
-	{
-		cout << "Invalid 'Add' operation!" << endl;
-	}
+
+		oCities.Add(pBurgasCity);
+		oCities.Add(pVarnaCity);
+		oCities.Add(pSofiaCity);
+		oCities.Add(pPlovidCity);
+		oCities.Add(pRuseCity);
+		oCities.Add(pVelinGradCity);
 };
 
 void CityService::ValidateArguments(const int nIndex, CCitiesArray& oCitiesArray) {
