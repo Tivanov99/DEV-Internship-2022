@@ -2,6 +2,9 @@
 #include <WinBase.h>
 #include <string>
 
+#define CITY_NAME_SIZE	32
+#define AREA_NAME_SIZE	32
+
 /// <summary>
 ///  ƒискова структура CITIES предназначена за таблицата 'CITIES'
 /// </summary>
@@ -23,6 +26,11 @@ struct CITIES
 		SecureZeroMemory(this, sizeof(*this));
 	}
 };
+
+#define FIRST_NAME_SIZE		32
+#define SECOND_NAME_SIZE	32
+#define LAST_NAME_SIZE		32
+#define ADDRESS_SIZE		256
 
 /// <summary>
 ///  ƒискова структура PERSONS предназначена за таблицата 'PERSONS'
@@ -50,6 +58,8 @@ struct PERSONS {
 	}
 };
 
+#define PHONE_NUMBER_SIZE	16
+
 /// <summary>
 ///  ƒискова структура 'PHONE_NUMBERS' предназначена за таблицата 'PHONE_NUMBERS'
 /// </summary>
@@ -70,6 +80,7 @@ struct PHONE_NUMBERS {
 	}
 };
 
+#define PHONE_TYPE_SIZE	16
 /// <summary>
 ///  ƒискова структура PHONE_TYPES предназначена за таблицата 'PHONE_TYPES'
 /// </summary>
