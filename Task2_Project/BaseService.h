@@ -26,7 +26,7 @@ public:
 	virtual void ShowElementInfoAtIndex(const int nIndex, const CTypeArray &oArray) = 0;
 	//<summary>Функция връщаща Pointer от подаден индекс като аргумент.</summary>
 	T* GetPointerAtIndex(const int nIndex, CTypeArray &oArray);
-	//<summary>Функция премахваща определен брой Pointer-и 'count'започваща от  подаден като аргумент индес 'nIndex'</summary>
+	//<summary>Функция премахваща определен брой Pointer-и 'count'започваща от подаден като аргумент индес 'nIndex'</summary>
 	void  RemoveAt(const int nIndex, const int count, CTypeArray &oArray);
 };
 
