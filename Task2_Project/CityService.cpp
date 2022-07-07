@@ -5,9 +5,10 @@
 
 using namespace std;
 
-
 void CityService::SetCityName(const CString& sorce, CITIES& city) {
 	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(char);
+
+	//TODO : check copy from one array to other, already exist method !
 
 	if (sorce.GetLength() <= nLengthOfArray) {
 		for (int i = 0; i < sorce.GetLength(); i++)
@@ -23,6 +24,8 @@ void CityService::SetCityName(const CString& sorce, CITIES& city) {
 void CityService::SetAreaName(const CString& sorce, CITIES& city) {
 	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(char);
 
+	//TODO : check copy from one array to other, already exist method !
+
 	if (sorce.GetLength() <= nLengthOfArray) {
 		for (int i = 0; i < sorce.GetLength(); i++)
 		{
@@ -36,12 +39,8 @@ void CityService::SetAreaName(const CString& sorce, CITIES& city) {
 
 void CityService::SetPostalCode(const int nSorce, CITIES& city)
 {
-	if (nSorce > 0) {
-		city.lPOSTAL_CODE = nSorce;
-	}
-	else {
-		cout << "Too long city name!" << endl;
-	}
+	if (nSorce > 0) 
+	city.lPOSTAL_CODE = nSorce;
 };
 
 void CityService::AddDefaultElements(CCitiesArray& oCities)
@@ -124,8 +123,11 @@ void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& o
 {
 	ValidateIndex(nIndex, oArray.GetCount());
 
-	CITIES* pCity = NULL;
-	pCity = oArray.GetAt(nIndex);
+	CITIES* pCity = oArray.GetAt(nIndex);
+
+	if (pCity == NULL)
+		return;
+
 	CString info;
 	info.Format(_T("City Name : %s, Postal Code : %d, Area Name : %s\n"),
 		pCity->szCITY_NAME, pCity->lPOSTAL_CODE, pCity->szAREA_NAME);
