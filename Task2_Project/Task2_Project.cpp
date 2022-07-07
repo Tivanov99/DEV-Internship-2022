@@ -27,7 +27,9 @@ void ManagePhoneTypes() {
 	PhoneTypeService service;
 	service.AddDefaultElements(oPhoneTypesArray);
 
-	service.RemoveAt(0, 2, oPhoneTypesArray);
+	service.ShowElementInfoAtIndex(0, oPhoneTypesArray);
+
+	//service.RemoveAt(0, 2, oPhoneTypesArray);
 
 	PHONE_TYPES* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
 
@@ -41,7 +43,7 @@ void ManagePhoneNumbers() {
 
 	service.AddDefaultElements(oPhoneTypesArray);
 
-	service.RemoveAt(0, 2, oPhoneTypesArray);
+	//service.RemoveAt(0, 2, oPhoneTypesArray);
 
 	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
 

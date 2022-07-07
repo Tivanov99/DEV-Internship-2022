@@ -1,10 +1,10 @@
 ﻿  CityService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(113,39): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(158,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(163,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(173,49): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(183,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(190,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(192,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(116,39): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(157,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(162,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(172,49): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(182,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(189,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(191,24): warning C4018: '<': signed/unsigned mismatch
   Task2_Project.vcxproj -> C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\Task2_Project.exe

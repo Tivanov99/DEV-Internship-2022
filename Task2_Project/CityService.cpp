@@ -62,6 +62,7 @@ void CityService::AddDefaultElements(CCitiesArray& oCities)
 	SetAreaName(strVarnaAreaName, pVarnaCity);
 	SetPostalCode(9000, pVarnaCity);
 
+
 	/*CITIES* pSofiaCity = NULL;
 	pSofiaCity = new CITIES();
 	CString strSofiaCityName = _T("Sofia");
@@ -96,8 +97,10 @@ void CityService::AddDefaultElements(CCitiesArray& oCities)
 
 	//TODO check how to coppy stack obeject to heap !
 
-	CITIES* pBurgas = new CITIES(pBurgasCity);
-	CITIES* pVarna = new CITIES(pVarnaCity);
+	CITIES* pBurgas = new CITIES;
+	*pBurgas = pBurgasCity;
+	CITIES* pVarna = new CITIES;
+	*pVarna = pVarnaCity;
 
 	oCities.Add(pBurgas);
 	oCities.Add(pVarna);
@@ -110,18 +113,14 @@ void CityService::AddDefaultElements(CCitiesArray& oCities)
 void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& oArray) {
 	try
 	{
-		ValidateIndex(nIndex, oArray.GetSize());
+		ValidateIndex(nIndex, oArray.GetCount());
 
 		CITIES* pCity = NULL;
 		pCity = oArray.GetAt(nIndex);
-
-	/*	CString strCityName = pCity->szCITY_NAME;
-		CString strAreaName = pCity->szAREA_NAME;*/
-
-		cout << "Selected item info: " << "memory address: " << &pCity
-			<< " City Name :" << strCityName
-			<< " Postal Code " << pCity->lPOSTAL_CODE
-			<< " Area Name " <<  *strAreaName << endl;
+		CString info;
+		info.Format(_T("City Name : %s, Postal Code : %d, Area Name : %s\n"),
+			pCity->szCITY_NAME, pCity->lPOSTAL_CODE, pCity->szAREA_NAME);
+		_tprintf(_T("%s"), (LPCTSTR)info);
 	}
 	catch (const std::exception&)
 	{
