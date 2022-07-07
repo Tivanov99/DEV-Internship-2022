@@ -6,7 +6,7 @@ class PhoneTypeService : public BaseService<PHONE_TYPES>
 {
 private:
 	//<summary>Функция задаваща стойност на мембър 'PHONE_TYPE'на подаден обект</summary>
-	void SetPhoneType(CString& strType, PHONE_TYPES* oPhone);
+	void SetPhoneType(CString& strType, PHONE_TYPES& oPhone);
 public:
 	PhoneTypeService()
 	{
