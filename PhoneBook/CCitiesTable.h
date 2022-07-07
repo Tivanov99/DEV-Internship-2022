@@ -175,6 +175,7 @@ namespace
 		{
 			return FALSE;
 		}
+
 		CString strQuery;
 		strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), lID);
 
@@ -203,90 +204,71 @@ namespace
 
 	BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	{
-		//CDataSource oDataSource;
-		//CSession oSession;
+		CDataSource oDataSource;
+		CSession oSession;
+		HRESULT hResult;
 
-		//CDBPropSet oDBPropSet(DBPROPSET_oDBPropSet);
-		//oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("SQLSERVER"));	// сървър
-		//oDBPropSet.AddProperty(DBPROP_AUTH_USERID, _T("sa"));			// потребител
-		//oDBPropSet.AddProperty(DBPROP_AUTH_PASSWORD, _T("sa"));			// парола
-		//oDBPropSet.AddProperty(DBPROP_INIT_CATALOG, _T("Northwind"));	// база данни
-		//oDBPropSet.AddProperty(DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO, false);
-		//oDBPropSet.AddProperty(DBPROP_INIT_LCID, 1033L);
-		//oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4));
+		BOOL IsCorrectlyConnectedToDb = ConnectoToDb(oDataSource,oSession,hResult);
+		if (!IsCorrectlyConnectedToDb)
+		{
+			return FALSE;
+		}
+		
 
-		//// Свързваме се към базата данни
-		//HRESULT hResult = oDataSource.Open(_T("SQLOLEDB.1"), &oDBPropSet);
-		//if (FAILED(hResult))
-		//{
-		//	wprintf(_T("Unable to connect to SQL Server database. Error: %d"), hResult);
-		//	return FALSE;
-		//}
+		// Конструираме заявката
+		CString strQuery;
+		strQuery.Format(_T("SELECT * FROM CUSTOMERS WHERE ID = %d"), 1);
 
-		//// Отваряме сесия
-		//hResult = oSession.Open(oDataSource);
-		//if (FAILED(hResult))
-		//{
-		//	wprintf(_T("Unable to open session. Error: %d"), hResult);
-		//	oDataSource.Close();
+		// Настройка на типа на Rowset-а
+		CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
+		oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
+		oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true);
+		oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true);
+		oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE);
 
-		//	return FALSE;
-		//}
+		// Изпълняваме командата
+		HRESULT hResult = Open(oSession, strQuery, oUpdateDBPropSet);
+		if (FAILED(hResult))
+		{
+			wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
 
-		//// Конструираме заявката
-		//CString strQuery;
-		//strQuery.Format(_T("SELECT * FROM CUSTOMERS WHERE ID = %d"), 1);
+			oSession.Close();
+			oDataSource.Close();
 
-		//// Настройка на типа на Rowset-а
-		//CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
-		//oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
-		//oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true);
-		//oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true);
-		//oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE);
+			return FALSE;
+		}
 
-		//// Изпълняваме командата
-		//HRESULT hResult = Open(oSession, strQuery, oUpdateDBPropSet);
-		//if (FAILED(hResult))
-		//{
-		//	wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
+		hResult = MoveFirst();
+		if (FAILED(hResult))
+		{
+			wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
 
-		//	oSession.Close();
-		//	oDataSource.Close();
+			Close();
+			oSession.Close();
+			oDataSource.Close();
 
-		//	return FALSE;
-		//}
+			return FALSE;
+		}
 
-		//hResult = MoveFirst();
-		//if (FAILED(hResult))
-		//{
-		//	wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
+		// ВЪПРОС: Какво стъпки следва да извършим преди да инкрементираме m_lUpdateCounter?
 
-		//	Close();
-		//	oSession.Close();
-		//	oDataSource.Close();
+		m_recCITY.lUPDATE_COUNTER++;
 
-		//	return FALSE;
-		//}
+		hResult = SetData(1);
+		if (FAILED(hResult))
+		{
+			wprintf(_T("Error updating record. Error: %d. Query: %s"), hResult, strQuery);
 
-		//// ВЪПРОС: Какво стъпки следва да извършим преди да инкрементираме m_lUpdateCounter?
+			Close();
+			oSession.Close();
+			oDataSource.Close();
 
-		//m_recCITY.lUPDATE_COUNTER++;
+			return FALSE;
+		}
 
-		//hResult = SetData(1);
-		//if (FAILED(hResult))
-		//{
-		//	wprintf(_T("Error updating record. Error: %d. Query: %s"), hResult, strQuery);
-
-		//	Close();
-		//	oSession.Close();
-		//	oDataSource.Close();
-
-		//	return FALSE;
-		//}
-
-		//Close();
-		//oSession.Close();
-		//oDataSource.Close();
+		Close();
+		oSession.Close();
+		oDataSource.Close();
 
 		return TRUE;
 	};
