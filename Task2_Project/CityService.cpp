@@ -110,9 +110,8 @@ void CityService::AddDefaultElements(CCitiesArray& oCities)
 	//oCities.Add(pVelinGradCity);
 };
 
-void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& oArray) {
-	try
-	{
+void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& oArray)
+{
 		ValidateIndex(nIndex, oArray.GetCount());
 
 		CITIES* pCity = NULL;
@@ -121,11 +120,6 @@ void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& o
 		info.Format(_T("City Name : %s, Postal Code : %d, Area Name : %s\n"),
 			pCity->szCITY_NAME, pCity->lPOSTAL_CODE, pCity->szAREA_NAME);
 		_tprintf(_T("%s"), (LPCTSTR)info);
-	}
-	catch (const std::exception&)
-	{
-		cout << "Something goes wrong, try again!" << endl;
-	}
 };
 
 void CityService::ChangeCityName(const CString& strCurrentCityName, const CString& newCityName, CCitiesArray& oCitiesArray)
