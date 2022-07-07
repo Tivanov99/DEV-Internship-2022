@@ -57,6 +57,9 @@ namespace
 	/// <summary>Клас за работа с таблица CITIES</summary>
 	class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
 	{
+	private:
+		HRESULT& ConnectoToDb();
+		CDBPropSet& BuildCDBPropSet();
 	public:
 		BOOL SelectAll(CCitiesArray& oCitiesArray);
 		BOOL SelectWhereID(const long lID, CITIES& recCities);
@@ -65,11 +68,8 @@ namespace
 		BOOL DeleteWhereID(const long lID);
 	};
 
-	BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
+	CDBPropSet& CCitiesTable::BuildCDBPropSet()
 	{
-		CDataSource oDataSource;
-		CSession oSession;
-
 		CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
 		oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65"));	// сървър
 		oDBPropSet.AddProperty(DBPROP_AUTH_INTEGRATED, _T("SSPI"));
@@ -77,13 +77,22 @@ namespace
 		oDBPropSet.AddProperty(DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO, false);
 		oDBPropSet.AddProperty(DBPROP_INIT_LCID, 1033L);
 		oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4));
+		return oDBPropSet;
+	};
+	HRESULT& CCitiesTable::ConnectoToDb()
+	{
+		CDataSource oDataSource;
+		CSession oSession;
+
+		CDBPropSet oDBPropSet = BuildCDBPropSet();
 
 		// Свързваме се към базата данни
 		HRESULT hResult = oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
+
 		if (FAILED(hResult))
 		{
 			AfxMessageBox(_T("Unable to connect to SQL Server database. Error: %d"), hResult);
-			return FALSE;
+			return hResult;
 		}
 
 		// Отваряме сесия
@@ -93,8 +102,14 @@ namespace
 			AfxMessageBox(_T("Unable to open session. Error: %d"), hResult);
 			oDataSource.Close();
 
-			return FALSE;
+			return hResult;
 		}
+		return hResult;
+	};
+
+	BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
+	{
+		HRESULT hResult = ConnectoToDb();
 
 		// Конструираме заявката
 		CString strQuery = _T("SELECT * FROM CITIES");
@@ -131,6 +146,7 @@ namespace
 
 		return TRUE;
 	};
+
 	BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 	{
 		return false;
