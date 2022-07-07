@@ -175,8 +175,9 @@ namespace
 		{
 			return FALSE;
 		}
+		CString strQuery;
+		strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), lID);
 
-		CString strQuery = _T("Select * from CITIES Where ID = %d", lID);
 		BOOL bIsExecutedQueryCorrectly = ExecuteQuery(hResult, oSession, oDataSource, strQuery);
 		if (!bIsExecutedQueryCorrectly)
 		{
@@ -191,11 +192,13 @@ namespace
 				m_recCITY.szCITY_NAME,
 				m_recCITY.szAREA_NAME,
 				m_recCITY.lPOSTAL_CODE);
+
+			recCities = m_recCITY;
 		}
 		Close();
 		oSession.Close();
 		oDataSource.Close();
-		return false;
+		return TRUE;
 	};
 
 	BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
