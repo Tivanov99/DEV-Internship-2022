@@ -6,8 +6,10 @@ using namespace std;
 template<class  T>
 class BaseService 
 {
+
 private:
 	typedef CTypedPtrArray < CPtrArray, T*> CTypeArray;
+
 public:
 
 	BaseService()
@@ -33,16 +35,19 @@ public:
 template<class T>
 void BaseService<T>::ValidateIndex(const int nIndex, const int nLenght)
 {
-	if (nIndex > nLenght) {
+	if (nIndex > nLenght)
+	{
 		throw invalid_argument("Index out of range!");
 	}
-	else if (nIndex < 0) {
+	else if (nIndex < 0)
+	{
 		throw invalid_argument("Index should be possitive!");
 	}
 };
 
 template<class  T>
-T* BaseService<T>::GetPointerAtIndex(const int nIndex, CTypeArray& oArray) {
+T* BaseService<T>::GetPointerAtIndex(const int nIndex, CTypeArray& oArray)
+{
 	try
 	{
 		ValidateIndex(nIndex, oArray.GetCount() - 1);
@@ -62,6 +67,7 @@ void BaseService<T>::RemoveAt(const int nIndex, const int count, CTypeArray& oAr
 	try
 	{
 		ValidateIndex(nIndex, oArray.GetCount() - 1);
+
 		T* pCurrent = oArray[nIndex];
 		oArray.RemoveAt(nIndex, count);
 		delete pCurrent;

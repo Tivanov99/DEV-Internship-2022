@@ -1,6 +1,47 @@
-﻿  PhoneTypeService.cpp
+﻿  CStringService.cpp
+  CityService.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(109,39): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(125,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(140,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(151,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(156,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(166,49): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(176,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(182,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(184,24): warning C4018: '<': signed/unsigned mismatch
+  PhoneNumberService.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(10,43): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(71,42): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(85,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(95,58): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(107,62): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  PhoneTypeService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(12,38): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(21,43): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+  Task2_Project.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(155,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(53,43): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(50): message : while compiling class template member function 'T *BaseService<T>::GetPointerAtIndex(const int,CTypedPtrArray<CPtrArray,CITIES *> &)'
+          with
+          [
+              T=CITIES
+          ]
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(63): message : see reference to function template instantiation 'T *BaseService<T>::GetPointerAtIndex(const int,CTypedPtrArray<CPtrArray,CITIES *> &)' being compiled
+          with
+          [
+              T=CITIES
+          ]
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(8): message : see reference to class template instantiation 'BaseService<CITIES>' being compiled
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(69,43): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(66): message : while compiling class template member function 'void BaseService<CITIES>::RemoveAt(const int,const int,CTypedPtrArray<CPtrArray,CITIES *> &)'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(115): message : see reference to function template instantiation 'void BaseService<CITIES>::RemoveAt(const int,const int,CTypedPtrArray<CPtrArray,CITIES *> &)' being compiled
+  Generating Code...
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(62): warning C4715: 'BaseService<PHONE_TYPES>::GetPointerAtIndex': not all control paths return a value
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(62): warning C4715: 'BaseService<CITIES>::GetPointerAtIndex': not all control paths return a value
   Task2_Project.vcxproj -> C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\Task2_Project.exe

@@ -37,6 +37,15 @@ namespace
 
 	class CCityAccessor
 	{
+
+		CCityAccessor()
+		{
+
+		};
+		~CCityAccessor()
+		{
+
+		};
 	protected:
 		CITIES m_recCITY;
 
@@ -57,11 +66,20 @@ namespace
 	/// <summary>Клас за работа с таблица CITIES</summary>
 	class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
 	{
+		CCitiesTable()
+		{
+
+		};
+		~CCitiesTable()
+		{
+
+		}
 	private:
 		BOOL ConnectoToDb(CDataSource& oDataSource, CSession& oSession, HRESULT& hResult);
 		CDBPropSet BuildReadingCDBPropSet();
 		CDBPropSet BuildUpdateCBDPropSet();
 		BOOL ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, CString& strQuery);
+		void CloseConnection(CDataSource& oDataSource, CSession& oSession);
 	public:
 		BOOL SelectAll(CCitiesArray& oCitiesArray);
 		BOOL SelectWhereID(const long lID, CITIES& recCities);
@@ -69,6 +87,12 @@ namespace
 		BOOL Insert(const CITIES& recCities);
 		BOOL DeleteWhereID(const long lID);
 
+	};
+	void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
+	{
+		Close();
+		oSession.Close();
+		oDataSource.Close();
 	};
 
 	CDBPropSet CCitiesTable::BuildReadingCDBPropSet()
@@ -84,8 +108,8 @@ namespace
 		return oDBPropSet;
 	};
 
-	CDBPropSet CCitiesTable::BuildUpdateCBDPropSet() {
-
+	CDBPropSet CCitiesTable::BuildUpdateCBDPropSet()
+	{
 		CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
 		oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
 		oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true);
@@ -140,17 +164,14 @@ namespace
 		CSession oSession;
 		HRESULT hResult;
 
-		BOOL bIsDbConnected = ConnectoToDb(oDataSource, oSession, hResult);
-		if (!bIsDbConnected)
-		{
+		if (!ConnectoToDb(oDataSource, oSession, hResult))
 			return FALSE;
-		}
 
 		// Конструираме заявката
-		CString strQuery = _T("SELECT * FROM CITIES");
+		const CString strQuery = _T("SELECT * FROM CITIES");
 		// Изпълняваме командата
 
-		BOOL bIsQueryExecutedCorrectly = ExecuteQuery(hResult, oSession, oDataSource, strQuery);
+		const BOOL bIsQueryExecutedCorrectly = ExecuteQuery(hResult, oSession, oDataSource, strQuery);
 		if (!bIsQueryExecutedCorrectly)
 		{
 			return FALSE;
@@ -165,13 +186,13 @@ namespace
 				m_recCITY.szCITY_NAME,
 				m_recCITY.szAREA_NAME,
 				m_recCITY.lPOSTAL_CODE);
+			//TODO ADD ELEMENTS TO ARRAY
+			//check last result from MoveNext()!
 			// Logic with the result
 		}
 
 		// Затваряме командата, сесията и връзката с базата данни. 
-		Close();
-		oSession.Close();
-		oDataSource.Close();
+		CloseConnection(oDataSource,oSession);
 
 		return TRUE;
 	};
@@ -199,18 +220,11 @@ namespace
 
 		while (MoveNext()==S_OK())
 		{
-			CString strCustomerData;
-			strCustomerData.Format(_T("ID: %d, City Name: %s, Area Name: %s, Postal Code: %d"),
-				m_recCITY.lID,
-				m_recCITY.szCITY_NAME,
-				m_recCITY.szAREA_NAME,
-				m_recCITY.lPOSTAL_CODE);
 
 			recCities = m_recCITY;
 		}
-		Close();
-		oSession.Close();
-		oDataSource.Close();
+
+		CloseConnection(oDataSource, oSession);
 		return TRUE;
 	};
 
@@ -222,13 +236,11 @@ namespace
 
 		BOOL IsCorrectlyConnectedToDb = ConnectoToDb(oDataSource,oSession,hResult);
 		if (!IsCorrectlyConnectedToDb)
-		{
 			return FALSE;
-		}
 
 		// Конструираме заявката
 		CString strQuery;
-		strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), 1);
+		strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), lID);
 
 		// Настройка на типа на Rowset-а
 		CDBPropSet oUpdateDBPropSet = BuildUpdateCBDPropSet();
@@ -243,10 +255,7 @@ namespace
 		{
 			wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
 
-			Close();
-			oSession.Close();
-			oDataSource.Close();
-
+			CloseConnection(oDataSource, oSession);
 			return FALSE;
 		}
 
@@ -265,17 +274,11 @@ namespace
 		if (FAILED(hResult))
 		{
 			wprintf(_T("Error updating record. Error: %d. Query: %s"), hResult, strQuery);
-
-			Close();
-			oSession.Close();
-			oDataSource.Close();
-
+			CloseConnection(oDataSource, oSession);
 			return FALSE;
 		}
 
-		Close();
-		oSession.Close();
-		oDataSource.Close();
+		CloseConnection(oDataSource, oSession);
 
 		return TRUE;
 	};
