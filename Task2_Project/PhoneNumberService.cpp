@@ -79,15 +79,18 @@ void PhoneNumberService::ShowElementInfoAtIndex(const int nIndex, const CPhoneNu
 	if (nIndex > oArray.GetCount() - 1)
 		return;
 
-	PHONE_NUMBERS* pTemp = NULL;
-	pTemp = oArray.GetAt(nIndex);
+	PHONE_NUMBERS* pTemp = oArray.GetAt(nIndex);
+
+	if (pTemp == NULL)
+		return;
+
 	cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->szPHONE_NUMBER << endl;
 }
 
 void PhoneNumberService::ChangePhoneNumber
 (const CString& oldPhoneNumber, const CString& strNewPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray)
 {
-	for (INT_PTR i = 0; i < oPhoneTypesArray.GetSize(); i++)
+	for (INT_PTR i = 0; i < oPhoneTypesArray.GetCount(); i++)
 	{
 		PHONE_NUMBERS* pPhoneNumber = oPhoneTypesArray.GetAt(i);
 
@@ -102,12 +105,11 @@ void PhoneNumberService::ChangePhoneNumber
 		}
 	}
 }
-void PhoneNumberService::ChangePhoneNumber(PHONE_NUMBERS& pOldPhoneNumberElement, const CString& newPhoneNumber)
+void PhoneNumberService::ChangePhoneNumber(PHONE_NUMBERS& pOldPhoneNumberElement, const CString& strNewPhoneNumber)
 {
-	CString sOldPhoneNumber = pOldPhoneNumberElement.szPHONE_NUMBER;
+	CString sOldPhoneNumber;
+	sOldPhoneNumber.Format(_T("%s"), pOldPhoneNumberElement.szPHONE_NUMBER);
 
-	for (size_t s = 0; s < newPhoneNumber.GetLength(); s++)
-	{
-		pOldPhoneNumberElement.szPHONE_NUMBER[s] = newPhoneNumber[s];
-	}
+	TCHAR* szBuffer = _tcsdup(sOldPhoneNumber);
+	_tcscpy_s(pOldPhoneNumberElement.szPHONE_NUMBER, szBuffer);
 }
