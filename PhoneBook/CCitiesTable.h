@@ -109,7 +109,7 @@ namespace
 
 	BOOL CCitiesTable::ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, CString& strQuery)
 	{
-		hResult = Open(oSession, strQuery);
+		hResult = Open(oSession,strQuery);
 		if (FAILED(hResult))
 		{
 			wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
@@ -228,11 +228,13 @@ namespace
 
 		// Изпълняваме командата
 
-		BOOL bIsQueryExecutedCorrectly = ExecuteQuery(hResult, oSession, oDataSource, strQuery);
+		hResult = Open(oSession,strQuery,&oUpdateDBPropSet);
+
+		/*BOOL bIsQueryExecutedCorrectly = ExecuteQuery(hResult, oSession, oDataSource, strQuery);
 		if (!bIsQueryExecutedCorrectly)
 		{
 			return FALSE;
-		}
+		}*/
 
 
 		hResult = MoveFirst();
