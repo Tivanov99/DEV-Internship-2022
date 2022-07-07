@@ -167,15 +167,34 @@ namespace
 	BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 	{
 		CDataSource oDataSource;
-		CSession oSessison;
+		CSession oSession;
 		HRESULT hResult;
 
-		BOOL bIsConnectedCorrectly = ConnectoToDb(oDataSource, oSessison, hResult);
+		BOOL bIsConnectedCorrectly = ConnectoToDb(oDataSource, oSession, hResult);
 		if (!bIsConnectedCorrectly)
 		{
 			return FALSE;
 		}
 
+		CString strQuery = _T("Select * from CITIES Where ID = %d", lID);
+		BOOL bIsExecutedQueryCorrectly = ExecuteQuery(hResult, oSession, oDataSource, strQuery);
+		if (!bIsExecutedQueryCorrectly)
+		{
+			return FALSE;
+		}
+
+		while (MoveNext()==S_OK())
+		{
+			CString strCustomerData;
+			strCustomerData.Format(_T("ID: %d, City Name: %s, Area Name: %s, Postal Code: %d"),
+				m_recCITY.lID,
+				m_recCITY.szCITY_NAME,
+				m_recCITY.szAREA_NAME,
+				m_recCITY.lPOSTAL_CODE);
+		}
+		Close();
+		oSession.Close();
+		oDataSource.Close();
 		return false;
 	};
 
