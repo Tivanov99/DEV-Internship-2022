@@ -1,19 +1,18 @@
 #include "pch.h"
 #include "PhoneNumberService.h"
 
-void PhoneNumberService::SetPhoneNumber(const CString &sorce, PHONE_NUMBERS& phoneNumber)
+void PhoneNumberService::SetPhoneNumber(const CString& strSorce, PHONE_NUMBERS& oPhoneNumber)
 {
-	size_t LengthOfArray = sizeof(phoneNumber.szPHONE_NUMBER) / sizeof(char);
+	size_t LengthOfArray = sizeof(oPhoneNumber.szPHONE_NUMBER) / sizeof(char);
 
-	if (sorce.GetLength() > LengthOfArray)
+	if (strSorce.GetLength() > LengthOfArray)
 		return;
-	
-	TCHAR* szBuffer = _tcsdup(sorce);
-	_tcscpy_s(phoneNumber.szPHONE_NUMBER, szBuffer);
+
+	TCHAR* szBuffer = _tcsdup(strSorce);
+	_tcscpy_s(oPhoneNumber.szPHONE_NUMBER, szBuffer);
 };
 
-//CHECK HERE!!!!
-void PhoneNumberService::AddDefaultElements(CPhoneNumbersArray &oArray) {
+void PhoneNumberService::AddDefaultElements(CPhoneNumbersArray& oArray) {
 	try
 	{
 		CString strFirstPhoneNumber = _T("0893668829");
@@ -75,43 +74,37 @@ void PhoneNumberService::AddDefaultElements(CPhoneNumbersArray &oArray) {
 	}
 }
 
-//CHECK HERE
 void PhoneNumberService::ShowElementInfoAtIndex(const int nIndex, const CPhoneNumbersArray& oArray) {
-	try
-	{
-		ValidateIndex(nIndex, oArray.GetCount()-1);
-		PHONE_NUMBERS* pTemp = NULL;
-		pTemp = oArray.GetAt(nIndex);
-		cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->szPHONE_NUMBER << endl;
-	}
-	catch (const std::exception&)
-	{
-		cout << "Something goes wrong, try again!" << endl;
-	}
+
+	if (nIndex > oArray.GetCount() - 1)
+		return;
+
+	PHONE_NUMBERS* pTemp = NULL;
+	pTemp = oArray.GetAt(nIndex);
+	cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->szPHONE_NUMBER << endl;
 }
 
 void PhoneNumberService::ChangePhoneNumber
-(const CString &oldPhoneNumber, const CString &newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray)
+(const CString& oldPhoneNumber, const CString& strNewPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray)
 {
-	for (size_t i = 0; i < oPhoneTypesArray.GetSize(); i++)
+	for (INT_PTR i = 0; i < oPhoneTypesArray.GetSize(); i++)
 	{
-		CString currentPhoneNumber = oPhoneTypesArray[i]->szPHONE_NUMBER;
+		PHONE_NUMBERS* pPhoneNumber = oPhoneTypesArray.GetAt(i);
 
-		if (currentPhoneNumber == oldPhoneNumber) {
-			PHONE_NUMBERS* pOldPhoneNumber = NULL;
-			pOldPhoneNumber = oPhoneTypesArray[i];
+		CString currentPhoneNumber;
+		currentPhoneNumber.Format(_T("%s"), pPhoneNumber->szPHONE_NUMBER);
 
-			for (size_t s = 0; s < currentPhoneNumber.GetLength(); s++)
-			{
-				pOldPhoneNumber->szPHONE_NUMBER[s] = newPhoneNumber[s];
-			}
+		if (currentPhoneNumber == oldPhoneNumber)
+		{
+			TCHAR* szBuffer = _tcsdup(strNewPhoneNumber);
+			_tcscpy_s(pPhoneNumber->szPHONE_NUMBER, szBuffer);
 			break;
 		}
 	}
 }
-void PhoneNumberService::ChangePhoneNumber(PHONE_NUMBERS& pOldPhoneNumberElement, const CString &newPhoneNumber)
+void PhoneNumberService::ChangePhoneNumber(PHONE_NUMBERS& pOldPhoneNumberElement, const CString& newPhoneNumber)
 {
-	CString sOldPhoneNumber =pOldPhoneNumberElement.szPHONE_NUMBER;
+	CString sOldPhoneNumber = pOldPhoneNumberElement.szPHONE_NUMBER;
 
 	for (size_t s = 0; s < newPhoneNumber.GetLength(); s++)
 	{
