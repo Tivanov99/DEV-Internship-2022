@@ -1,18 +1,15 @@
 #include "pch.h"
 #include "PhoneNumberService.h"
 
-void PhoneNumberService::SetPhoneNumber(const CString &sorce, PHONE_NUMBERS& phoneNumber) {
+void PhoneNumberService::SetPhoneNumber(const CString &sorce, PHONE_NUMBERS& phoneNumber)
+{
 	size_t LengthOfArray = sizeof(phoneNumber.szPHONE_NUMBER) / sizeof(char);
 
-	if (sorce.GetLength() <= LengthOfArray) {
-		for (size_t i = 0; i < sorce.GetLength(); i++)
-		{
-			phoneNumber.szPHONE_NUMBER[i] = sorce[i];
-		}
-	}
-	else {
-		cout << "Too long sorce" << endl;
-	}
+	if (sorce.GetLength() > LengthOfArray)
+		return;
+	
+	TCHAR* szBuffer = _tcsdup(sorce);
+	_tcscpy_s(phoneNumber.szPHONE_NUMBER, szBuffer);
 };
 
 //CHECK HERE!!!!
@@ -20,36 +17,50 @@ void PhoneNumberService::AddDefaultElements(CPhoneNumbersArray &oArray) {
 	try
 	{
 		CString strFirstPhoneNumber = _T("0893668829");
-		PHONE_NUMBERS* pFirstPhoneNumber = NULL;
-		pFirstPhoneNumber = new PHONE_NUMBERS();
-		SetPhoneNumber(strFirstPhoneNumber, *pFirstPhoneNumber);
-
+		PHONE_NUMBERS oFirstPhoneNumber;
+		SetPhoneNumber(strFirstPhoneNumber, oFirstPhoneNumber);
 
 		CString strSecondPhoneNumber = _T("0883737518");
-		PHONE_NUMBERS* pSecondPhoneNumber = NULL;
-		pSecondPhoneNumber = new PHONE_NUMBERS();
-		SetPhoneNumber(strSecondPhoneNumber, *pSecondPhoneNumber);
+		PHONE_NUMBERS oSecondPhoneNumber;
+		SetPhoneNumber(strSecondPhoneNumber, oSecondPhoneNumber);
+
 
 		CString strThirdPhoneNumber = _T("0875462946");
-		PHONE_NUMBERS* pThirdPhoneNumber = NULL;
-		pThirdPhoneNumber = new PHONE_NUMBERS();
-		SetPhoneNumber(strThirdPhoneNumber, *pThirdPhoneNumber);
-
+		PHONE_NUMBERS oThirdPhoneNumber;
+		SetPhoneNumber(strThirdPhoneNumber, oThirdPhoneNumber);
 
 		CString strFourthPhoneNumber = _T("0886372847");
-		PHONE_NUMBERS* pFourthPhoneNumber = NULL;
-		pFourthPhoneNumber = new PHONE_NUMBERS();
-		SetPhoneNumber(strFourthPhoneNumber, *pFourthPhoneNumber);
+		PHONE_NUMBERS oFourthPhoneNumber;
+		SetPhoneNumber(strFourthPhoneNumber, oFourthPhoneNumber);
+
 
 		CString strFifthPhoneNumber = _T("0895467264");
-		PHONE_NUMBERS* pFifthPhoneNumber = NULL;
-		pFifthPhoneNumber = new PHONE_NUMBERS();
-		SetPhoneNumber(strFifthPhoneNumber, *pFifthPhoneNumber);
+		PHONE_NUMBERS oFifthPhoneNumber;
+		SetPhoneNumber(strFifthPhoneNumber, oFifthPhoneNumber);
 
 		CString strSixthPhoneNumber = _T("0895467264");
-		PHONE_NUMBERS* pSixthPhoneNumber = NULL;
-		pSixthPhoneNumber = new PHONE_NUMBERS();
-		SetPhoneNumber(strSixthPhoneNumber, *pSixthPhoneNumber);
+		PHONE_NUMBERS oSixthPhoneNumber;
+		SetPhoneNumber(strSixthPhoneNumber, oSixthPhoneNumber);
+
+
+		PHONE_NUMBERS* pFirstPhoneNumber = new PHONE_NUMBERS;
+		*pFirstPhoneNumber = oFirstPhoneNumber;
+
+		PHONE_NUMBERS* pSecondPhoneNumber = new PHONE_NUMBERS;
+		*pSecondPhoneNumber = oSecondPhoneNumber;
+
+		PHONE_NUMBERS* pThirdPhoneNumber = new PHONE_NUMBERS;
+		*pThirdPhoneNumber = oThirdPhoneNumber;
+
+		PHONE_NUMBERS* pFourthPhoneNumber = new PHONE_NUMBERS;
+		*pFourthPhoneNumber = oFourthPhoneNumber;
+
+		PHONE_NUMBERS* pFifthPhoneNumber = new PHONE_NUMBERS;
+		*pFifthPhoneNumber = oFifthPhoneNumber;
+
+		PHONE_NUMBERS* pSixthPhoneNumber = new PHONE_NUMBERS;
+		*pSixthPhoneNumber = oSixthPhoneNumber;
+
 
 		oArray.Add(pFirstPhoneNumber);
 		oArray.Add(pSecondPhoneNumber);

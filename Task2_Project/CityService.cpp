@@ -8,18 +8,11 @@ using namespace std;
 void CityService::SetCityName(const CString& sorce, CITIES& city) {
 	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(char);
 
-	//TODO : check copy from one array to other, already exist method !
+	if (sorce.GetLength() > nLengthOfArray)
+		return;
 
-	if (sorce.GetLength() <= nLengthOfArray)
-	{
-		for (int i = 0; i < sorce.GetLength(); i++)
-		{
-			city.szCITY_NAME[i] = sorce[i];
-		}
-	}
-	else {
-		cout << "Too long city name!" << endl;
-	}
+	TCHAR* szBuffer = _tcsdup(sorce);
+	_tcscpy_s(city.szAREA_NAME, szBuffer);
 };
 
 void CityService::SetAreaName(const CString& sorce, CITIES& city)
