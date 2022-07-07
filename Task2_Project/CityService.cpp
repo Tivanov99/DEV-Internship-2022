@@ -10,7 +10,8 @@ void CityService::SetCityName(const CString& sorce, CITIES& city) {
 
 	//TODO : check copy from one array to other, already exist method !
 
-	if (sorce.GetLength() <= nLengthOfArray) {
+	if (sorce.GetLength() <= nLengthOfArray)
+	{
 		for (int i = 0; i < sorce.GetLength(); i++)
 		{
 			city.szCITY_NAME[i] = sorce[i];
@@ -25,9 +26,8 @@ void CityService::SetAreaName(const CString& sorce, CITIES& city)
 {
 	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(TCHAR);
 	if (sorce.GetLength() > nLengthOfArray)
-	{
 		return;
-	}
+
 	TCHAR* szBuffer = _tcsdup(sorce);
 	_tcscpy_s(city.szAREA_NAME, szBuffer);
 };
@@ -190,7 +190,8 @@ void CityService::ChangeCityPosalCodeByCityName(const CString& strCityName, cons
 		CString currentCityName;
 		currentCityName.Format(_T("%s"), pCurrentCity->szCITY_NAME);
 
-		if (currentCityName == strCityName) {
+		if (currentCityName == strCityName)
+		{
 			pCurrentCity->lPOSTAL_CODE = nNewCityPosalCode;
 			break;
 		}
