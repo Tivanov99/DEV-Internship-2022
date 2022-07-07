@@ -59,7 +59,8 @@ namespace
 	{
 	private:
 		BOOL ConnectoToDb(CDataSource& oDataSource, CSession& oSession, HRESULT& hResult);
-		CDBPropSet BuildCDBPropSet();
+		CDBPropSet BuildReadingCDBPropSet();
+		CDBPropSet BuildUpdateCBDPropSet();
 		BOOL ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, CString& strQuery);
 	public:
 		BOOL SelectAll(CCitiesArray& oCitiesArray);
@@ -70,7 +71,7 @@ namespace
 
 	};
 
-	CDBPropSet CCitiesTable::BuildCDBPropSet()
+	CDBPropSet CCitiesTable::BuildReadingCDBPropSet()
 	{
 		CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
 		oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65"));	// сървър
@@ -82,9 +83,20 @@ namespace
 
 		return oDBPropSet;
 	};
+
+	CDBPropSet CCitiesTable::BuildUpdateCBDPropSet() {
+
+		CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
+		oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
+		oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true);
+		oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true);
+		oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE);
+		return oUpdateDBPropSet;
+	}
+
 	BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession, HRESULT& hResult)
 	{
-		CDBPropSet& oDBPropSet = BuildCDBPropSet();
+		CDBPropSet& oDBPropSet = BuildReadingCDBPropSet();
 
 		// Свързваме се към базата данни
 		hResult = oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
@@ -213,29 +225,17 @@ namespace
 		{
 			return FALSE;
 		}
-		
 
 		// Конструираме заявката
 		CString strQuery;
 		strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), 1);
 
 		// Настройка на типа на Rowset-а
-		CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
-		oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
-		oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true);
-		oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true);
-		oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE);
+		CDBPropSet oUpdateDBPropSet = BuildUpdateCBDPropSet();
 
 		// Изпълняваме командата
 
 		hResult = Open(oSession,strQuery,&oUpdateDBPropSet);
-
-		/*BOOL bIsQueryExecutedCorrectly = ExecuteQuery(hResult, oSession, oDataSource, strQuery);
-		if (!bIsQueryExecutedCorrectly)
-		{
-			return FALSE;
-		}*/
-
 
 		hResult = MoveFirst();
 
@@ -252,7 +252,6 @@ namespace
 
 		// ВЪПРОС: Какво стъпки следва да извършим преди да инкрементираме m_lUpdateCounter?
 		CString strNewCityName = _T("Balchik");
-		m_recCITY.szCITY_NAME;
 		fill_n(m_recCITY.szCITY_NAME, CITY_NAME_SIZE, 0);
 
 		for (size_t i = 0; i < strNewCityName.GetLength(); i++)
