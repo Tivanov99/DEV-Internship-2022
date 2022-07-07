@@ -58,17 +58,19 @@ namespace
 	class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
 	{
 	private:
-		HRESULT& ConnectoToDb();
-		CDBPropSet& BuildCDBPropSet();
+		BOOL ConnectoToDb(CDataSource& oDataSource, CSession& oSession, HRESULT& hResult);
+		CDBPropSet BuildCDBPropSet();
+		BOOL ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, CString& strQuery);
 	public:
 		BOOL SelectAll(CCitiesArray& oCitiesArray);
 		BOOL SelectWhereID(const long lID, CITIES& recCities);
 		BOOL UpdateWhereID(const long lID, const CITIES& recCities);
 		BOOL Insert(const CITIES& recCities);
 		BOOL DeleteWhereID(const long lID);
+
 	};
 
-	CDBPropSet& CCitiesTable::BuildCDBPropSet()
+	CDBPropSet CCitiesTable::BuildCDBPropSet()
 	{
 		CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
 		oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65"));	// сървър
@@ -77,22 +79,20 @@ namespace
 		oDBPropSet.AddProperty(DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO, false);
 		oDBPropSet.AddProperty(DBPROP_INIT_LCID, 1033L);
 		oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4));
+
 		return oDBPropSet;
 	};
-	HRESULT& CCitiesTable::ConnectoToDb()
+	BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession, HRESULT& hResult)
 	{
-		CDataSource oDataSource;
-		CSession oSession;
-
-		CDBPropSet oDBPropSet = BuildCDBPropSet();
+		CDBPropSet& oDBPropSet = BuildCDBPropSet();
 
 		// Свързваме се към базата данни
-		HRESULT hResult = oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
+		hResult = oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
 
 		if (FAILED(hResult))
 		{
 			AfxMessageBox(_T("Unable to connect to SQL Server database. Error: %d"), hResult);
-			return hResult;
+			return FALSE;
 		}
 
 		// Отваряме сесия
@@ -102,19 +102,13 @@ namespace
 			AfxMessageBox(_T("Unable to open session. Error: %d"), hResult);
 			oDataSource.Close();
 
-			return hResult;
+			return FALSE;
 		}
-		return hResult;
+		return TRUE;
 	};
 
-	BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
+	BOOL CCitiesTable::ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, CString& strQuery)
 	{
-		HRESULT hResult = ConnectoToDb();
-
-		// Конструираме заявката
-		CString strQuery = _T("SELECT * FROM CITIES");
-
-		// Изпълняваме командата
 		hResult = Open(oSession, strQuery);
 		if (FAILED(hResult))
 		{
@@ -123,6 +117,30 @@ namespace
 			oSession.Close();
 			oDataSource.Close();
 
+			return FALSE;
+		}
+		return TRUE;
+	}
+
+	BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
+	{
+		CDataSource oDataSource;
+		CSession oSession;
+		HRESULT hResult;
+
+		BOOL bIsDbConnected = ConnectoToDb(oDataSource, oSession, hResult);
+		if (!bIsDbConnected)
+		{
+			return FALSE;
+		}
+
+		// Конструираме заявката
+		CString strQuery = _T("SELECT * FROM CITIES");
+		// Изпълняваме командата
+
+		BOOL bIsQueryExecutedCorrectly = ExecuteQuery(hResult, oSession, oDataSource, strQuery);
+		if (!bIsQueryExecutedCorrectly)
+		{
 			return FALSE;
 		}
 
@@ -135,7 +153,6 @@ namespace
 				m_recCITY.szCITY_NAME,
 				m_recCITY.szAREA_NAME,
 				m_recCITY.lPOSTAL_CODE);
-
 			// Logic with the result
 		}
 
@@ -149,6 +166,16 @@ namespace
 
 	BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 	{
+		CDataSource oDataSource;
+		CSession oSessison;
+		HRESULT hResult;
+
+		BOOL bIsConnectedCorrectly = ConnectoToDb(oDataSource, oSessison, hResult);
+		if (!bIsConnectedCorrectly)
+		{
+			return FALSE;
+		}
+
 		return false;
 	};
 
@@ -156,7 +183,7 @@ namespace
 	{
 		//CDataSource oDataSource;
 		//CSession oSession;
-	
+
 		//CDBPropSet oDBPropSet(DBPROPSET_oDBPropSet);
 		//oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("SQLSERVER"));	// сървър
 		//oDBPropSet.AddProperty(DBPROP_AUTH_USERID, _T("sa"));			// потребител
@@ -165,7 +192,7 @@ namespace
 		//oDBPropSet.AddProperty(DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO, false);
 		//oDBPropSet.AddProperty(DBPROP_INIT_LCID, 1033L);
 		//oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4));
-	
+
 		//// Свързваме се към базата данни
 		//HRESULT hResult = oDataSource.Open(_T("SQLOLEDB.1"), &oDBPropSet);
 		//if (FAILED(hResult))
@@ -173,72 +200,72 @@ namespace
 		//	wprintf(_T("Unable to connect to SQL Server database. Error: %d"), hResult);
 		//	return FALSE;
 		//}
-	
+
 		//// Отваряме сесия
 		//hResult = oSession.Open(oDataSource);
 		//if (FAILED(hResult))
 		//{
 		//	wprintf(_T("Unable to open session. Error: %d"), hResult);
 		//	oDataSource.Close();
-	
+
 		//	return FALSE;
 		//}
-	
+
 		//// Конструираме заявката
 		//CString strQuery;
 		//strQuery.Format(_T("SELECT * FROM CUSTOMERS WHERE ID = %d"), 1);
-	
+
 		//// Настройка на типа на Rowset-а
 		//CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
 		//oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
 		//oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true);
 		//oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true);
 		//oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE);
-	
+
 		//// Изпълняваме командата
 		//HRESULT hResult = Open(oSession, strQuery, oUpdateDBPropSet);
 		//if (FAILED(hResult))
 		//{
 		//	wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
-	
+
 		//	oSession.Close();
 		//	oDataSource.Close();
-	
+
 		//	return FALSE;
 		//}
-	
+
 		//hResult = MoveFirst();
 		//if (FAILED(hResult))
 		//{
 		//	wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
-	
+
 		//	Close();
 		//	oSession.Close();
 		//	oDataSource.Close();
-	
+
 		//	return FALSE;
 		//}
-	
+
 		//// ВЪПРОС: Какво стъпки следва да извършим преди да инкрементираме m_lUpdateCounter?
-	
+
 		//m_recCITY.lUPDATE_COUNTER++;
-	
+
 		//hResult = SetData(1);
 		//if (FAILED(hResult))
 		//{
 		//	wprintf(_T("Error updating record. Error: %d. Query: %s"), hResult, strQuery);
-	
+
 		//	Close();
 		//	oSession.Close();
 		//	oDataSource.Close();
-	
+
 		//	return FALSE;
 		//}
-	
+
 		//Close();
 		//oSession.Close();
 		//oDataSource.Close();
-	
+
 		return TRUE;
 	};
 
