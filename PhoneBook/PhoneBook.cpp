@@ -203,7 +203,7 @@ void CPhoneBookApp::PreLoadState()
 	CCitiesTable access;
 	CCitiesArray arr;
 	CITIES oCity;
-	access.SelectWhereID(1, oCity);
+	access.UpdateWhereID(1, oCity);
 }
 
 void CPhoneBookApp::LoadCustomState()

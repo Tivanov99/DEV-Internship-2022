@@ -217,7 +217,7 @@ namespace
 
 		// Конструираме заявката
 		CString strQuery;
-		strQuery.Format(_T("SELECT * FROM CUSTOMERS WHERE ID = %d"), 1);
+		strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), 1);
 
 		// Настройка на типа на Rowset-а
 		CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
@@ -227,18 +227,16 @@ namespace
 		oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE);
 
 		// Изпълняваме командата
-		HRESULT hResult = Open(oSession, strQuery, oUpdateDBPropSet);
-		if (FAILED(hResult))
+
+		BOOL bIsQueryExecutedCorrectly = ExecuteQuery(hResult, oSession, oDataSource, strQuery);
+		if (!bIsQueryExecutedCorrectly)
 		{
-			wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
-
-			oSession.Close();
-			oDataSource.Close();
-
 			return FALSE;
 		}
 
+
 		hResult = MoveFirst();
+
 		if (FAILED(hResult))
 		{
 			wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
@@ -251,6 +249,14 @@ namespace
 		}
 
 		// ВЪПРОС: Какво стъпки следва да извършим преди да инкрементираме m_lUpdateCounter?
+		CString strNewCityName = _T("Balchik");
+		m_recCITY.szCITY_NAME;
+		fill_n(m_recCITY.szCITY_NAME, CITY_NAME_SIZE, 0);
+
+		for (size_t i = 0; i < strNewCityName.GetLength(); i++)
+		{
+			m_recCITY.szCITY_NAME[i] = strNewCityName[i];
+		}
 
 		m_recCITY.lUPDATE_COUNTER++;
 
