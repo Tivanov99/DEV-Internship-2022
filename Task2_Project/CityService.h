@@ -35,7 +35,7 @@ public:
 	//<summary>Функция променяща 'AREA_NAME' на обект подаден като аргумент.</summary>
 	void ChangeCityAreaName(CITIES& pOldCity, const CString &newAreaName);
 	//<summary>Функция променяща 'POSTAL_CODE' стойността на обект чието текущо име е подадено като аргумент 'cityName'.</summary>
-	void ChangeCityPosalCode(const CString &cityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray);
+	void ChangeCityPosalCodeByCityName(const CString &cityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray);
 	//<summary>Функция променяща 'POSTAL_CODE' стойността на обект подаден като аргумент 'pCity'.</summary>
 	void ChangeCityPostalCode(CITIES& pCity, const int nNewPostalCode);
 };

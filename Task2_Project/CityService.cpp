@@ -116,7 +116,8 @@ void CityService::AddDefaultElements(CCitiesArray& oCities)
 
 void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& oArray)
 {
-	ValidateIndex(nIndex, oArray.GetCount());
+	if (nIndex > oArray.GetCount())
+		return;
 
 	CITIES* pCity = oArray.GetAt(nIndex);
 

@@ -98,7 +98,7 @@ void CityAreaNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
 void CityPostalCodeChanging(CityService& service, CCitiesArray& oCitiesArray)
 {
 	CString strRuseCityOldName = _T("RuseSecond");
-	service.ChangeCityPosalCode(strRuseCityOldName, 9999, oCitiesArray);
+	service.ChangeCityPosalCodeByCityName(strRuseCityOldName, 9999, oCitiesArray);
 
 	service.ShowElementInfoAtIndex(2, oCitiesArray);
 
