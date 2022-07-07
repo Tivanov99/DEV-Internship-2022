@@ -31,8 +31,8 @@ public:
 	void PrintCStringAsString(CString& strDummy) {
 		_tprintf(_T("%s"), (LPCTSTR)strDummy);
 	}
-	void Compare(CString& comparator, CString compared) {
-		int compareResult = comparator.Compare((LPCTSTR)compared);
+	void Compare(CString& strComparator, CString strCompared) {
+		int compareResult = strComparator.Compare((LPCTSTR)strCompared);
 
 		switch (compareResult)
 		{

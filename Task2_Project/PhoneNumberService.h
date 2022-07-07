@@ -26,8 +26,8 @@ public:
 	//всеки под сървис я импелеметира пренаписана от базов клас 'BaseService'.</summary>
 	void ShowElementInfoAtIndex(const int nIndex, const CPhoneNumbersArray& oArray) override;
 	//<summary>Функция променяща стойността на 'PHONE_NUMBER' на обект чиято текуща сойност е 'oldPhoneNumber'.</summary>
-	void ChangePhoneNumber(const CString &oldPhoneNumber, const CString &newPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray);
+	void ChangePhoneNumber(const CString &strPhoneNumber, const CString &strNewPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray);
 	//<summary>Функция променяща стойността на 'PHONE_NUMBER' на обект подаден като аргумент 'pOldPhoneNumberElement' .</summary>
-	void ChangePhoneNumber(PHONE_NUMBERS& pOldPhoneNumberElement, const CString &newPhoneNumber);
+	void ChangePhoneNumber(PHONE_NUMBERS& pOldPhoneNumberElement, const CString &strNewPhoneNumber);
 };
 
