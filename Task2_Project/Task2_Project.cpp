@@ -112,8 +112,10 @@ void ManageCities() {
 
 	service.AddDefaultElements(oCitiesArray);
 
-	service.RemoveAt(0, 2, oCitiesArray);
-	service.ShowElementInfoAtIndex(2, oCitiesArray);
+	//service.RemoveAt(0, 2, oCitiesArray);
+	service.ShowElementInfoAtIndex(0, oCitiesArray);
+	service.ShowElementInfoAtIndex(1, oCitiesArray);
+
 
 	CITIES* pTemp = service.GetPointerAtIndex(0, oCitiesArray);
 
@@ -174,10 +176,10 @@ void CArrayExample() {
 int main()
 {
 	ManageCities();
-	CArrayExample();
-	CStringExample();
-	ManagePhoneTypes();
-	ManagePhoneNumbers()
+	//CArrayExample();
+	//CStringExample();
+	//ManagePhoneTypes();
+	//ManagePhoneNumbers()
 
 
 

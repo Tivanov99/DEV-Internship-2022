@@ -6,13 +6,13 @@
 using namespace std;
 
 
-void CityService::SetCityName(const CString& sorce, CITIES* city) {
-	int nLengthOfArray = sizeof(city->szCITY_NAME) / sizeof(char);
+void CityService::SetCityName(const CString& sorce, CITIES& city) {
+	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(char);
 
 	if (sorce.GetLength() <= nLengthOfArray) {
 		for (int i = 0; i < sorce.GetLength(); i++)
 		{
-			city->szCITY_NAME[i] = sorce[i];
+			city.szCITY_NAME[i] = sorce[i];
 		}
 	}
 	else {
@@ -20,13 +20,13 @@ void CityService::SetCityName(const CString& sorce, CITIES* city) {
 	}
 };
 
-void CityService::SetAreaName(const CString& sorce, CITIES* city) {
-	int nLengthOfArray = sizeof(city->szCITY_NAME) / sizeof(char);
+void CityService::SetAreaName(const CString& sorce, CITIES& city) {
+	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(char);
 
 	if (sorce.GetLength() <= nLengthOfArray) {
 		for (int i = 0; i < sorce.GetLength(); i++)
 		{
-			city->szAREA_NAME[i] = sorce[i];
+			city.szAREA_NAME[i] = sorce[i];
 		}
 	}
 	else {
@@ -34,10 +34,10 @@ void CityService::SetAreaName(const CString& sorce, CITIES* city) {
 	}
 };
 
-void CityService::SetPostalCode(const int nSorce, CITIES* city)
+void CityService::SetPostalCode(const int nSorce, CITIES& city)
 {
 	if (nSorce > 0) {
-		city->lPOSTAL_CODE = nSorce;
+		city.lPOSTAL_CODE = nSorce;
 	}
 	else {
 		cout << "Too long city name!" << endl;
@@ -46,23 +46,23 @@ void CityService::SetPostalCode(const int nSorce, CITIES* city)
 
 void CityService::AddDefaultElements(CCitiesArray& oCities)
 {
-	CITIES* pBurgasCity = NULL;
-	pBurgasCity = new CITIES();
+	CITIES pBurgasCity;
+	//pBurgasCity = new CITIES();
 	CString strBurgasCityName = _T("Bugras");
 	CString strBurgasAreaName = _T("Bugras");
 	SetCityName(strBurgasCityName, pBurgasCity);
 	SetAreaName(strBurgasAreaName, pBurgasCity);
 	SetPostalCode(8000, pBurgasCity);
 
-	CITIES* pVarnaCity = NULL;
-	pVarnaCity = new CITIES();
+	CITIES pVarnaCity;
+	//pVarnaCity = new CITIES();
 	CString strVarnaCityName = _T("Varna");
 	CString strVarnaAreaName = _T("Varna");
 	SetCityName(strVarnaCityName, pVarnaCity);
 	SetAreaName(strVarnaAreaName, pVarnaCity);
 	SetPostalCode(9000, pVarnaCity);
 
-	CITIES* pSofiaCity = NULL;
+	/*CITIES* pSofiaCity = NULL;
 	pSofiaCity = new CITIES();
 	CString strSofiaCityName = _T("Sofia");
 	CString strSofiaAreaName = _T("Sofia");
@@ -92,43 +92,42 @@ void CityService::AddDefaultElements(CCitiesArray& oCities)
 	CString strVelinGradAreaName = _T("Pazardzhik");
 	SetCityName(strVelinGradCityName, pVelinGradCity);
 	SetAreaName(strVelinGradAreaName, pVelinGradCity);
-	SetPostalCode(6000, pVelinGradCity);*
-
-	CITIES test;
-	/*SetCityName(strVelinGradCityName, pVelinGradCity);
-	SetAreaName(strVelinGradAreaName, pVelinGradCity);
 	SetPostalCode(6000, pVelinGradCity);*/
 
-
-	CITIES* pVelinGradCity = new CITIES();
 	//TODO check how to coppy stack obeject to heap !
 
-	pVelinGradCity = test;
-	oCities.Add(pBurgasCity);
+	CITIES* pBurgas = new CITIES(pBurgasCity);
+	CITIES* pVarna = new CITIES(pVarnaCity);
 
-	oCities.Add(pVarnaCity);
-	oCities.Add(pSofiaCity);
-	oCities.Add(pPlovidCity);
-	oCities.Add(pRuseCity);
-	oCities.Add(pVelinGradCity);
+	oCities.Add(pBurgas);
+	oCities.Add(pVarna);
+	//oCities.Add(pSofiaCity);
+	//oCities.Add(pPlovidCity);
+	//oCities.Add(pRuseCity);
+	//oCities.Add(pVelinGradCity);
 };
 
 void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& oArray) {
 	try
 	{
 		ValidateIndex(nIndex, oArray.GetSize());
+
 		CITIES* pCity = NULL;
 		pCity = oArray.GetAt(nIndex);
+
+	/*	CString strCityName = pCity->szCITY_NAME;
+		CString strAreaName = pCity->szAREA_NAME;*/
+
 		cout << "Selected item info: " << "memory address: " << &pCity
-			<< " City Name :" << pCity->szCITY_NAME
+			<< " City Name :" << strCityName
 			<< " Postal Code " << pCity->lPOSTAL_CODE
-			<< " Area Name " << pCity->szAREA_NAME << endl;
+			<< " Area Name " <<  *strAreaName << endl;
 	}
 	catch (const std::exception&)
 	{
 		cout << "Something goes wrong, try again!" << endl;
 	}
-}
+};
 
 void CityService::ChangeCityName(const CString& strCurrentCityName, const CString& newCityName, CCitiesArray& oCitiesArray)
 {
@@ -142,16 +141,15 @@ void CityService::ChangeCityName(const CString& strCurrentCityName, const CStrin
 		currentCityName.AppendFormat(_T("%s"), (LPCWSTR)pCity->szCITY_NAME);
 
 		if (currentCityName == strCurrentCityName) {
-			CITIES* pOldCity = NULL;
-			pOldCity = oCitiesArray[i];
+		
 
-			//TODO : check
-			pOldCity->szCITY_NAME[s] = newCityName[s];
+			//TODO : check copy from one array to other, already exist method !
+			/*pOldCity->szCITY_NAME[s] = newCityName[s];
 			}
-			break;
+			break;*/
 		}
 	}
-}
+};
 
 void CityService::ChangeCityName(CITIES& pOldCity, const CString& newCityName)
 {
@@ -177,14 +175,15 @@ void CityService::ChangeCityAreaName(const CString& oldCityAreaName, const CStri
 			break;
 		}
 	}
-}
+};
 void CityService::ChangeCityAreaName(CITIES& pOldCity, const CString& newAreaName)
 {
 	for (size_t s = 0; s < newAreaName.GetLength(); s++)
 	{
 		pOldCity.szAREA_NAME[s] = newAreaName[s];
 	}
-}
+};
+
 void CityService::ChangeCityPosalCode(const CString& cityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray)
 {
 
@@ -203,10 +202,11 @@ void CityService::ChangeCityPosalCode(const CString& cityName, const int nNewCit
 			}
 		}
 	}
-}
+};
+
 void CityService::ChangeCityPostalCode(CITIES& pCity, const int nNewPostalCode)
 {
 	if (nNewPostalCode > 0) {
 		pCity.lPOSTAL_CODE = nNewPostalCode;
 	}
-}
+};

@@ -8,11 +8,11 @@ class CityService : public BaseService<CITIES>
 {
 private:
 	//<summary>Функция задаваща сойност на 'CITY_NAME' на подаден като аругмент показател</summary>
-	void SetCityName(const CString &sorce, CITIES* city);
+	void SetCityName(const CString &sorce, CITIES& city);
 	//<summary>Функция задаваща сойност на 'AREA_NAME' на подаден като аругмент показател</summary>
-	void SetAreaName(const CString &sorce, CITIES* city);
+	void SetAreaName(const CString &sorce, CITIES& city);
 	//<summary>Функция задаваща сойност на 'POSTAL_CODE' на подаден като аругмент показател</summary>
-	void SetPostalCode(const int nSorce, CITIES* city);
+	void SetPostalCode(const int nSorce, CITIES& city);
 public:
 
 	CityService()
