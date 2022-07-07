@@ -39,8 +39,8 @@ void CityService::SetAreaName(const CString& sorce, CITIES& city) {
 
 void CityService::SetPostalCode(const int nSorce, CITIES& city)
 {
-	if (nSorce > 0) 
-	city.lPOSTAL_CODE = nSorce;
+	if (nSorce > 0)
+		city.lPOSTAL_CODE = nSorce;
 };
 
 void CityService::AddDefaultElements(CCitiesArray& oCities)
@@ -147,9 +147,8 @@ void CityService::ChangeCityName(const CString& strCityName, const CString& strN
 
 		if (strCurrentCityName == strCityName)
 		{
-			//TODO : check copy from one array to other, already exist method !
-
-			//pOldCity->szCITY_NAME[s] = newCityName[s];
+			TCHAR* szBuffer = _tcsdup(strNewCityName);
+			_tcscpy_s(pCity->szCITY_NAME, szBuffer);
 			break;
 		}
 	}
@@ -219,7 +218,7 @@ void CityService::ChangeCityPosalCode(const CString& strCityName, const int nNew
 
 void CityService::ChangeCityPostalCode(CITIES& pCity, const int nNewPostalCode)
 {
-	if (nNewPostalCode > 0 )
+	if (nNewPostalCode > 0)
 	{
 		pCity.lPOSTAL_CODE = nNewPostalCode;
 	}

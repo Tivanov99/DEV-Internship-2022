@@ -1,10 +1,6 @@
 ﻿  CityService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(125,39): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(143,32): warning C4002: too many arguments for function-like macro invocation '_T'
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(161,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(178,49): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(188,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(195,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(197,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(124,39): warning C4244: 'argument': conversion from 'INT_PTR' to 'const int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(167,42): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(198,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   Task2_Project.vcxproj -> C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\Task2_Project.exe
