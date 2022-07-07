@@ -132,7 +132,7 @@ void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& o
 	_tprintf(_T("%s"), (LPCTSTR)info);
 };
 
-void CityService::ChangeCityName(const CString& strCurrentCityName, const CString& newCityName, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityName(const CString& strCityName, const CString& strNewCityName, CCitiesArray& oCitiesArray)
 {
 	for (INT_PTR i = 0; i < oCitiesArray.GetCount(); i++)
 	{
@@ -140,76 +140,85 @@ void CityService::ChangeCityName(const CString& strCurrentCityName, const CStrin
 		if (pCity == NULL)
 			continue;
 
-		CString currentCityName;
-		currentCityName.AppendFormat(_T("%s"), (LPCWSTR)pCity->szCITY_NAME);
+		CString strCurrentCityName;
+		strCurrentCityName.Format(_T("%s"), pCity->szCITY_NAME);
 
-		if (currentCityName == strCurrentCityName) {
-
-
+		if (strCurrentCityName == strCityName)
+		{
 			//TODO : check copy from one array to other, already exist method !
-			/*pOldCity->szCITY_NAME[s] = newCityName[s];
-			}
-			break;*/
+
+			//pOldCity->szCITY_NAME[s] = newCityName[s];
+			break;
 		}
 	}
 };
 
 void CityService::ChangeCityName(CITIES& pOldCity, const CString& newCityName)
 {
+	//TODO : check copy from one array to other, already exist method !
+
 	for (size_t s = 0; s < newCityName.GetLength(); s++)
 	{
 		pOldCity.szCITY_NAME[s] = newCityName[s];
 	}
 }
-void CityService::ChangeCityAreaName(const CString& oldCityAreaName, const CString& newCityAreaName, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityAreaName(const CString& strCityAreaName, const CString& strNewCityAreaName, CCitiesArray& oCitiesArray)
 {
-	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
+	for (INT_PTR i = 0; i < oCitiesArray.GetSize(); i++)
 	{
-		CString currentCityAreaName = oCitiesArray[i]->szCITY_NAME;
+		CITIES* pCurrentCity = oCitiesArray.GetAt(i);
+		if (pCurrentCity == NULL)
+			continue;
 
-		if (currentCityAreaName == oldCityAreaName) {
-			CITIES* pOldCity = NULL;
-			pOldCity = oCitiesArray[i];
+		CString strCurrentCityAreaName;
+		strCurrentCityAreaName.Format(_T("%s"), pCurrentCity->szAREA_NAME);
 
-			for (size_t s = 0; s < newCityAreaName.GetLength(); s++)
+		if (strCurrentCityAreaName == strCityAreaName)
+		{
+			//TODO : check copy from one array to other, already exist method !
+			/*for (size_t s = 0; s < strNewCityAreaName.GetLength(); s++)
 			{
-				pOldCity->szAREA_NAME[s] = newCityAreaName[s];
-			}
+				pOldCity->szAREA_NAME[s] = strNewCityAreaName[s];
+			}*/
 			break;
 		}
 	}
 };
-void CityService::ChangeCityAreaName(CITIES& pOldCity, const CString& newAreaName)
+void CityService::ChangeCityAreaName(CITIES& pOldCity, const CString& strNewAreaName)
 {
-	for (size_t s = 0; s < newAreaName.GetLength(); s++)
+	//TODO : check copy from one array to other, already exist method !
+
+	for (size_t s = 0; s < strNewAreaName.GetLength(); s++)
 	{
-		pOldCity.szAREA_NAME[s] = newAreaName[s];
+		pOldCity.szAREA_NAME[s] = strNewAreaName[s];
 	}
 };
 
-void CityService::ChangeCityPosalCode(const CString& cityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityPosalCode(const CString& strCityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray)
 {
-
-	for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
+	for (INT_PTR i = 0; i < oCitiesArray.GetSize(); i++)
 	{
-		for (size_t i = 0; i < oCitiesArray.GetSize(); i++)
-		{
-			CString currentCityName = oCitiesArray[i]->szCITY_NAME;
+		CITIES* pCurrentCity = oCitiesArray.GetAt(i);
+		if (pCurrentCity == NULL)
+			continue;
 
-			if (currentCityName == cityName) {
-				CITIES* pCity = NULL;
-				pCity = oCitiesArray[i];
+		CString currentCityName;
+		currentCityName.Format(_T("%s"), pCurrentCity->szCITY_NAME);
 
-				pCity->lPOSTAL_CODE = nNewCityPosalCode;
-				break;
-			}
+		if (currentCityName == strCityName) {
+
+			//TODO : check copy from one array to other, already exist method !
+
+			pCurrentCity->lPOSTAL_CODE = nNewCityPosalCode;
+			break;
 		}
 	}
 };
 
 void CityService::ChangeCityPostalCode(CITIES& pCity, const int nNewPostalCode)
 {
-	if (nNewPostalCode > 0) {
+	if (nNewPostalCode > 0 )
+	{
 		pCity.lPOSTAL_CODE = nNewPostalCode;
 	}
 };
