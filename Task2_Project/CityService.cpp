@@ -5,13 +5,12 @@
 
 using namespace std;
 
-void CityService::SetCityName(const CString& sorce, CITIES& city) {
+void CityService::SetCityName(const CString& szSorce, CITIES& city) {
 	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(char);
 
-	if (sorce.GetLength() > nLengthOfArray)
+	if (szSorce.GetLength() > nLengthOfArray)
 		return;
-
-	TCHAR* szBuffer = _tcsdup(sorce);
+	TCHAR* szBuffer = _tcsdup(szSorce);
 	_tcscpy_s(city.szCITY_NAME, szBuffer);
 };
 

@@ -30,6 +30,7 @@ public:
 	void  RemoveAt(const int nIndex, const int count, CTypeArray& oArray);
 };
 
+
 template<class  T>
 T* BaseService<T>::GetPointerAtIndex(const int nIndex, CTypeArray& oArray)
 {

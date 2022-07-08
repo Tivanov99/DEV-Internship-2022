@@ -13,6 +13,7 @@ private:
 	void SetAreaName(const CString &sorce, CITIES& city);
 	//<summary>Функция задаваща сойност на 'POSTAL_CODE' на подаден като аругмент показател</summary>
 	void SetPostalCode(const int nSorce, CITIES& city);
+	
 public:
 
 	CityService()
