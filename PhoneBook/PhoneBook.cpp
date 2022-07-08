@@ -202,8 +202,24 @@ void CPhoneBookApp::PreLoadState()
 
 	CCitiesTable access;
 	CCitiesArray arr;
-	CITIES oCity;
+	access.SelectAll(arr);
+	CITIES oCity = *arr.GetAt(0);
+
+	TCHAR szNewCityName[32] = { 'B','U','R','G','A','S','K','O'};
+
+	copy(begin(szNewCityName), end(szNewCityName), begin(oCity.szCITY_NAME));
+
 	access.UpdateWhereID(1, oCity);
+
+	CITIES oCityy;
+	TCHAR szCityName[32] = { 'B','L','A','G','O','E','V','O'};
+	TCHAR szAreaName[32] = { 'G','A','B','R','O','V','O' };
+	oCityy.lPOSTAL_CODE = 1111;
+
+	copy(begin(szCityName), end(szCityName), begin(oCityy.szCITY_NAME));
+	copy(begin(szAreaName), end(szAreaName), begin(oCityy.szAREA_NAME));
+
+	access.Insertt(oCityy);
 }
 
 void CPhoneBookApp::LoadCustomState()

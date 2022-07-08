@@ -41,14 +41,14 @@ namespace
 	class CCityAccessor
 	{
 	protected:
-		CCityAccessor()
+		/*CCityAccessor()
 		{
 
 		};
 		~CCityAccessor()
 		{
 
-		};
+		};*/
 		CITIES m_recCITY;
 
 		BEGIN_ACCESSOR_MAP(CCityAccessor, 2)
@@ -88,9 +88,8 @@ namespace
 		BOOL UpdateWhereID(const long lID, const CITIES& recCities);
 		BOOL Insert(const CITIES& recCities);
 		BOOL DeleteWhereID(const long lID);
-
-
 	};
+
 	void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
 	{
 		Close();
@@ -246,7 +245,6 @@ namespace
 		// Настройка на типа на Rowset-а
 		CDBPropSet oUpdateDBPropSet = BuildUpdateDBPropSet();
 
-
 		HRESULT hResult;
 
 		// Изпълняваме командата
@@ -262,8 +260,8 @@ namespace
 			return FALSE;
 		}
 
-
 		hResult = MoveFirst();
+
 		if (FAILED(hResult))
 		{
 			wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
@@ -272,9 +270,7 @@ namespace
 			return FALSE;
 		}
 
-
-		// ВЪПРОС: Какво стъпки следва да извършим преди да инкрементираме m_lUpdateCounter?
-
+		m_recCITY = recCities;
 		m_recCITY.lUPDATE_COUNTER++;
 
 		hResult = SetData(ModifyColumnCode);
@@ -290,32 +286,23 @@ namespace
 
 		return TRUE;
 	};
-
+	
 	BOOL CCitiesTable::Insert(const CITIES& recCities)
 	{
 		CSession oSession;
-		HRESULT oHresult;
 		CDataSource oDataSource;
 
-		if (!ConnectoToDb(oDataSource, oSession, oHresult))
+		if (!ConnectoToDb(oDataSource, oSession))
 			return FALSE;
-
-		CString strQuery;
-		strQuery.Format(_T("INSERT INTO CITIES (%s[CITY_NAME],%s[AREA_NAME],%d[POSTAL_CODE], %d[UPDATE_COUNTER])"),
-			"Smolqn", "Smolqn", 3333, 0);
 
 		CDBPropSet oUpdatePropSet = BuildUpdateDBPropSet();
 
-		oHresult = Open(oSession, strQuery, &oUpdatePropSet);
 
-		if (FAILED(oHresult))
+		HRESULT hResult ;
+
+		if (FAILED(hResult))
 		{
-			wprintf(_T("Error executing query. Error: %d. Query: %s"), oHresult, strQuery);
-
-			oSession.Close();
-			oDataSource.Close();
-
-			return FALSE;
+			ATLTRACE(_T("Insert failed: 0x%X\n"), hResult);
 		}
 
 		return FALSE;
