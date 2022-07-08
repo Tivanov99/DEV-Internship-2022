@@ -69,7 +69,7 @@ void CityNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
 
 	service.ChangeCityName(strRuseCityOldName, strRuseCityNewName, oCitiesArray);
 
-	service.ShowElementInfoAtIndex(2, oCitiesArray);
+	service.ShowElementInfoAtIndex(4, oCitiesArray);
 
 	CString strRuseCitySecondNewName = _T("RuseSecond");
 	CITIES oCity = *oCitiesArray[2];
@@ -117,12 +117,12 @@ void ManageCities() {
 	//service.RemoveAt(0, 2, oCitiesArray);
 	service.ShowElementInfoAtIndex(0, oCitiesArray);
 	service.ShowElementInfoAtIndex(1, oCitiesArray);
+	CityNameChanging(service, oCitiesArray);
 
 
 	CITIES* pTemp = service.GetPointerAtIndex(0, oCitiesArray);
 
 
-	CityNameChanging(service, oCitiesArray);
 	CityAreaNameChanging(service, oCitiesArray);
 	CityPostalCodeChanging(service, oCitiesArray);
 }

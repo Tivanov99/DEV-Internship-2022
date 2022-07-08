@@ -12,12 +12,12 @@ void CityService::SetCityName(const CString& sorce, CITIES& city) {
 		return;
 
 	TCHAR* szBuffer = _tcsdup(sorce);
-	_tcscpy_s(city.szAREA_NAME, szBuffer);
+	_tcscpy_s(city.szCITY_NAME, szBuffer);
 };
 
 void CityService::SetAreaName(const CString& sorce, CITIES& city)
 {
-	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(TCHAR);
+	int nLengthOfArray = sizeof(city.szAREA_NAME) / sizeof(TCHAR);
 	if (sorce.GetLength() > nLengthOfArray)
 		return;
 
