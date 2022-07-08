@@ -185,6 +185,7 @@
   <ItemGroup>
     <ClInclude Include="CCitiesTable.h" />
     <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="Structures.h" />
     <ClInclude Include="CitiesDoc.h" />
     <ClInclude Include="CitiesView.h" />
     <ClInclude Include="framework.h" />

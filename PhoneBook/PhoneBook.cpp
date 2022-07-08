@@ -219,7 +219,6 @@ void CPhoneBookApp::PreLoadState()
 	copy(begin(szCityName), end(szCityName), begin(oCityy.szCITY_NAME));
 	copy(begin(szAreaName), end(szAreaName), begin(oCityy.szAREA_NAME));
 
-	access.Insertt(oCityy);
 }
 
 void CPhoneBookApp::LoadCustomState()
