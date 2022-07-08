@@ -4,6 +4,7 @@
 #include <afxcontrolbars.h>
 
 using namespace std;
+
 namespace
 {
 
@@ -35,9 +36,11 @@ namespace
 	// <summary>type-def презентиращ CTypedPtrArray който използва CPtrArray контейнер и таблицата CITIES< / summary >
 	typedef CTypedPtrArray < CPtrArray, CITIES*> CCitiesArray;
 
+#define NoneModifyColumnCode 0
+#define ModifyColumnCode 1
 	class CCityAccessor
 	{
-
+	protected:
 		CCityAccessor()
 		{
 
@@ -46,7 +49,6 @@ namespace
 		{
 
 		};
-	protected:
 		CITIES m_recCITY;
 
 		BEGIN_ACCESSOR_MAP(CCityAccessor, 2)
@@ -66,6 +68,13 @@ namespace
 	/// <summary>Клас за работа с таблица CITIES</summary>
 	class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
 	{
+	private:
+		BOOL ConnectoToDb(CDataSource& oDataSource, CSession& oSession, HRESULT& hResult);
+		CDBPropSet BuildCDBPropSet();
+		CDBPropSet BuildUpdateDBPropSet();
+		BOOL ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, const CString& strQuery);
+		void CloseConnection(CDataSource& oDataSource, CSession& oSession);
+	public:
 		CCitiesTable()
 		{
 
@@ -73,19 +82,13 @@ namespace
 		~CCitiesTable()
 		{
 
-		}
-	private:
-		BOOL ConnectoToDb(CDataSource& oDataSource, CSession& oSession, HRESULT& hResult);
-		CDBPropSet BuildReadingCDBPropSet();
-		CDBPropSet BuildUpdateCBDPropSet();
-		BOOL ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, CString& strQuery);
-		void CloseConnection(CDataSource& oDataSource, CSession& oSession);
-	public:
+		};
 		BOOL SelectAll(CCitiesArray& oCitiesArray);
 		BOOL SelectWhereID(const long lID, CITIES& recCities);
 		BOOL UpdateWhereID(const long lID, const CITIES& recCities);
 		BOOL Insert(const CITIES& recCities);
 		BOOL DeleteWhereID(const long lID);
+
 
 	};
 	void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
@@ -95,7 +98,7 @@ namespace
 		oDataSource.Close();
 	};
 
-	CDBPropSet CCitiesTable::BuildReadingCDBPropSet()
+	CDBPropSet CCitiesTable::BuildCDBPropSet()
 	{
 		CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
 		oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65"));	// сървър
@@ -108,7 +111,7 @@ namespace
 		return oDBPropSet;
 	};
 
-	CDBPropSet CCitiesTable::BuildUpdateCBDPropSet()
+	CDBPropSet CCitiesTable::BuildUpdateDBPropSet()
 	{
 		CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
 		oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
@@ -120,7 +123,7 @@ namespace
 
 	BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession, HRESULT& hResult)
 	{
-		CDBPropSet& oDBPropSet = BuildReadingCDBPropSet();
+		CDBPropSet& oDBPropSet = BuildCDBPropSet();
 
 		// Свързваме се към базата данни
 		hResult = oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
@@ -143,9 +146,9 @@ namespace
 		return TRUE;
 	};
 
-	BOOL CCitiesTable::ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, CString& strQuery)
+	BOOL CCitiesTable::ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, const CString& strQuery)
 	{
-		hResult = Open(oSession,strQuery);
+		hResult = Open(oSession, strQuery);
 		if (FAILED(hResult))
 		{
 			wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
@@ -171,8 +174,7 @@ namespace
 		const CString strQuery = _T("SELECT * FROM CITIES");
 		// Изпълняваме командата
 
-		const BOOL bIsQueryExecutedCorrectly = ExecuteQuery(hResult, oSession, oDataSource, strQuery);
-		if (!bIsQueryExecutedCorrectly)
+		if (!ExecuteQuery(hResult, oSession, oDataSource, strQuery))
 		{
 			return FALSE;
 		}
@@ -192,7 +194,7 @@ namespace
 		}
 
 		// Затваряме командата, сесията и връзката с базата данни. 
-		CloseConnection(oDataSource,oSession);
+		CloseConnection(oDataSource, oSession);
 
 		return TRUE;
 	};
@@ -203,8 +205,7 @@ namespace
 		CSession oSession;
 		HRESULT hResult;
 
-		BOOL bIsConnectedCorrectly = ConnectoToDb(oDataSource, oSession, hResult);
-		if (!bIsConnectedCorrectly)
+		if (!ConnectoToDb(oDataSource, oSession, hResult))
 		{
 			return FALSE;
 		}
@@ -212,13 +213,12 @@ namespace
 		CString strQuery;
 		strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), lID);
 
-		BOOL bIsExecutedQueryCorrectly = ExecuteQuery(hResult, oSession, oDataSource, strQuery);
-		if (!bIsExecutedQueryCorrectly)
+		if (!ExecuteQuery(hResult, oSession, oDataSource, strQuery))
 		{
 			return FALSE;
 		}
 
-		while (MoveNext()==S_OK())
+		while (MoveNext() == S_OK())
 		{
 
 			recCities = m_recCITY;
@@ -234,8 +234,7 @@ namespace
 		CSession oSession;
 		HRESULT hResult;
 
-		BOOL IsCorrectlyConnectedToDb = ConnectoToDb(oDataSource,oSession,hResult);
-		if (!IsCorrectlyConnectedToDb)
+		if (!ConnectoToDb(oDataSource, oSession, hResult))
 			return FALSE;
 
 		// Конструираме заявката
@@ -243,14 +242,21 @@ namespace
 		strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), lID);
 
 		// Настройка на типа на Rowset-а
-		CDBPropSet oUpdateDBPropSet = BuildUpdateCBDPropSet();
+		CDBPropSet oUpdateDBPropSet = BuildUpdateDBPropSet();
 
 		// Изпълняваме командата
+		hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
+		if (FAILED(hResult))
+		{
+			wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
 
-		hResult = Open(oSession,strQuery,&oUpdateDBPropSet);
+			oSession.Close();
+			oDataSource.Close();
+
+			return FALSE;
+		}
 
 		hResult = MoveFirst();
-
 		if (FAILED(hResult))
 		{
 			wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
@@ -259,18 +265,19 @@ namespace
 			return FALSE;
 		}
 
-		// ВЪПРОС: Какво стъпки следва да извършим преди да инкрементираме m_lUpdateCounter?
-		CString strNewCityName = _T("Balchik");
+		//Update
+		CString strNewCityName = _T("Бургас");
 		fill_n(m_recCITY.szCITY_NAME, CITY_NAME_SIZE, 0);
 
-		for (size_t i = 0; i < strNewCityName.GetLength(); i++)
-		{
-			m_recCITY.szCITY_NAME[i] = strNewCityName[i];
-		}
+		TCHAR* szBuffer = _tcsdup(strNewCityName);
+		_tcscpy_s(m_recCITY.szCITY_NAME,szBuffer);
+		//Update
+
+		// ВЪПРОС: Какво стъпки следва да извършим преди да инкрементираме m_lUpdateCounter?
 
 		m_recCITY.lUPDATE_COUNTER++;
 
-		hResult = SetData(1);
+		hResult = SetData(ModifyColumnCode);
 		if (FAILED(hResult))
 		{
 			wprintf(_T("Error updating record. Error: %d. Query: %s"), hResult, strQuery);
