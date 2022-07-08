@@ -272,7 +272,7 @@ namespace
 		TCHAR* szBuffer = _tcsdup(strNewCityName);
 		_tcscpy_s(m_recCITY.szCITY_NAME,szBuffer);
 		//Update
-
+		
 		// ВЪПРОС: Какво стъпки следва да извършим преди да инкрементираме m_lUpdateCounter?
 
 		m_recCITY.lUPDATE_COUNTER++;
@@ -292,8 +292,34 @@ namespace
 
 	BOOL CCitiesTable::Insert(const CITIES& recCities)
 	{
-		return false;
+		CSession oSession;
+		HRESULT oHresult;
+		CDataSource oDataSource;
 
+		if (!ConnectoToDb(oDataSource,oSession,oHresult))
+			return FALSE;
+
+		CString strQuery;
+		strQuery.Format(_T("INSERT INTO CITIES (%s[CITY_NAME],%s[AREA_NAME],%d[POSTAL_CODE], %d[UPDATE_COUNTER])"),
+			"Smolqn","Smolqn",3333,0);
+
+		CDBPropSet oUpdatePropSet = BuildUpdateDBPropSet();
+
+		oHresult = Open(oSession, strQuery, &oUpdatePropSet);
+
+		if (FAILED(oHresult))
+		{
+			wprintf(_T("Error executing query. Error: %d. Query: %s"), oHresult, strQuery);
+
+			oSession.Close();
+			oDataSource.Close();
+
+			return FALSE;
+		}
+
+
+
+		return FALSE;
 	};
 	BOOL CCitiesTable::DeleteWhereID(const long lID)
 	{
