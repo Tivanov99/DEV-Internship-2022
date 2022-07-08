@@ -209,15 +209,21 @@ void CPhoneBookApp::PreLoadState()
 
 	copy(begin(szNewCityName), end(szNewCityName), begin(oCity.szCITY_NAME));
 
-	access.UpdateWhereID(1, oCity);
+	//access.UpdateWhereID(1, oCity);
 
 	CITIES oCityy;
-	TCHAR szCityName[32] = { 'B','L','A','G','O','E','V','O'};
-	TCHAR szAreaName[32] = { 'G','A','B','R','O','V','O' };
-	oCityy.lPOSTAL_CODE = 1111;
+	TCHAR szCityName[32] = { 'B','L','A','G'};
+	TCHAR szAreaName[32] = { 'G','A','B','R' };
+	oCityy.lPOSTAL_CODE = 7777;
+	oCityy.lUPDATE_COUNTER = 0;
 
 	copy(begin(szCityName), end(szCityName), begin(oCityy.szCITY_NAME));
 	copy(begin(szAreaName), end(szAreaName), begin(oCityy.szAREA_NAME));
+
+	access.DeleteWhereID(1);
+
+	//access.Insertt(oCityy);
+
 
 }
 

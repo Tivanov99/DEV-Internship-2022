@@ -49,17 +49,47 @@ public:
 	};
 
 public:
+	/// <summary>
+	///  Функция която чете всики записи от таблицата "CITIES" и ги добавя в подаден като аргумент масив.
+	/// </summary>
 	BOOL SelectAll(CCitiesArray& oCitiesArray);
+	/// <summary>
+	///  Функция която чете запис от таблицата "CITIES" чието ID отговаря на "lID" и го презаписва в "recCities" аргумента.
+	/// </summary>
 	BOOL SelectWhereID(const long lID, CITIES& recCities);
+	/// <summary>
+	///  Функция която прави промяна на запис от таблицата "CITIES" чието ID отговаря на "lID" аргумента.
+	/// </summary>
 	BOOL UpdateWhereID(const long lID, const CITIES& recCities);
-	BOOL Insert(const CITIES& recCities);
+	/// <summary>
+	///  Функция която добавя запис към таблицата "CITIES".
+	/// </summary>
+	BOOL Insertt(const CITIES& recCities);
+	/// <summary>
+	///  Функция която изтрива запис от таблицата "CITIES" който отговавя на "lID" аргумента.
+	/// </summary>
 	BOOL DeleteWhereID(const long lID);
 
 
 private:
+	/// <summary>
+	///  Функция която отваря връзка към базата.
+	/// </summary>
 	BOOL ConnectoToDb(CDataSource& oDataSource, CSession& oSession);
+	/// <summary>
+	///  Функция която създава рол-сет.
+	/// </summary>
 	CDBPropSet BuildCDBPropSet();
+	/// <summary>
+	///  Функция която създава рол-сет предназначен за модифициране на данни.
+	/// </summary>
 	CDBPropSet BuildUpdateDBPropSet();
+	/// <summary>
+	///  Функция която изпълнява дадена заявка към отворена връзка.
+	/// </summary>
 	BOOL ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, const CString& strQuery);
+	/// <summary>
+	///  Функция която затваря всички връзки към базата.
+	/// </summary>
 	void CloseConnection(CDataSource& oDataSource, CSession& oSession);
 };

@@ -1,4 +1,4 @@
-#include "pch.h"
+Ôªø#include "pch.h"
 #include "CCitiesTable.h"
 
 void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
@@ -11,9 +11,9 @@ void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
 CDBPropSet CCitiesTable::BuildCDBPropSet()
 {
 	CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
-	oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65"));	// Ò˙‚˙
+	oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65"));	// —Å—ä—Ä–≤—ä—Ä
 	oDBPropSet.AddProperty(DBPROP_AUTH_INTEGRATED, _T("SSPI"));
-	oDBPropSet.AddProperty(DBPROP_INIT_CATALOG, _T("PhoneBook"));	// ·‡Á‡ ‰‡ÌÌË
+	oDBPropSet.AddProperty(DBPROP_INIT_CATALOG, _T("PhoneBook"));	// –±–∞–∑–∞ –¥–∞–Ω–Ω–∏
 	oDBPropSet.AddProperty(DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO, false);
 	oDBPropSet.AddProperty(DBPROP_INIT_LCID, 1033L);
 	oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4));
@@ -35,7 +35,7 @@ BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession)
 {
 	CDBPropSet& oDBPropSet = BuildCDBPropSet();
 
-	// —‚˙Á‚‡ÏÂ ÒÂ Í˙Ï ·‡Á‡Ú‡ ‰‡ÌÌË
+	// –°–≤—ä—Ä–∑–≤–∞–º–µ —Å–µ –∫—ä–º –±–∞–∑–∞—Ç–∞ –¥–∞–Ω–Ω–∏
 	HRESULT hResult = oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
 
 	if (FAILED(hResult))
@@ -44,7 +44,7 @@ BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession)
 		return FALSE;
 	}
 
-	// ŒÚ‚‡ˇÏÂ ÒÂÒËˇ
+	// –û—Ç–≤–∞—Ä—è–º–µ —Å–µ—Å–∏—è
 	hResult = oSession.Open(oDataSource);
 	if (FAILED(hResult))
 	{
@@ -80,16 +80,16 @@ BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 	if (!ConnectoToDb(oDataSource, oSession))
 		return FALSE;
 
-	//  ÓÌÒÚÛË‡ÏÂ Á‡ˇ‚Í‡Ú‡
+	// –ö–æ–Ω—Å—Ç—Ä—É–∏—Ä–∞–º–µ –∑–∞—è–≤–∫–∞—Ç–∞
 	const CString strQuery = _T("SELECT * FROM CITIES");
-	// »ÁÔ˙ÎÌˇ‚‡ÏÂ ÍÓÏ‡Ì‰‡Ú‡
+	// –ò–∑–ø—ä–ª–Ω—è–≤–∞–º–µ –∫–æ–º–∞–Ω–¥–∞—Ç–∞
 
 	if (!ExecuteQuery(hResult, oSession, oDataSource, strQuery))
 	{
 		return FALSE;
 	}
 
-	// œÓ˜ËÚ‡ÏÂ ‚ÒË˜ÍË ‰‡ÌÌË
+	// –ü—Ä–æ—á–∏—Ç–∞–º–µ –≤—Å–∏—á–∫–∏ –¥–∞–Ω–Ω–∏
 	while (MoveNext() == S_OK)
 	{
 		CString strCustomerData;
@@ -106,7 +106,7 @@ BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 		// Logic with the result
 	}
 
-	// «‡Ú‚‡ˇÏÂ ÍÓÏ‡Ì‰‡Ú‡, ÒÂÒËˇÚ‡ Ë ‚˙ÁÍ‡Ú‡ Ò ·‡Á‡Ú‡ ‰‡ÌÌË. 
+	// –ó–∞—Ç–≤–∞—Ä—è–º–µ –∫–æ–º–∞–Ω–¥–∞—Ç–∞, —Å–µ—Å–∏—è—Ç–∞ –∏ –≤—Ä—ä–∑–∫–∞—Ç–∞ —Å –±–∞–∑–∞—Ç–∞ –¥–∞–Ω–Ω–∏. 
 	CloseConnection(oDataSource, oSession);
 
 	return TRUE;
@@ -133,7 +133,6 @@ BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 
 	while (MoveNext() == S_OK())
 	{
-
 		recCities = m_recCITY;
 	}
 
@@ -149,16 +148,16 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	if (!ConnectoToDb(oDataSource, oSession))
 		return FALSE;
 
-	//  ÓÌÒÚÛË‡ÏÂ Á‡ˇ‚Í‡Ú‡
+	// –ö–æ–Ω—Å—Ç—Ä—É–∏—Ä–∞–º–µ –∑–∞—è–≤–∫–∞—Ç–∞
 	CString strQuery;
 	strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), lID);
 
-	// Õ‡ÒÚÓÈÍ‡ Ì‡ ÚËÔ‡ Ì‡ Rowset-‡
+	// –ù–∞—Å—Ç—Ä–æ–π–∫–∞ –Ω–∞ —Ç–∏–ø–∞ –Ω–∞ Rowset-–∞
 	CDBPropSet oUpdateDBPropSet = BuildUpdateDBPropSet();
 
 	HRESULT hResult;
 
-	// »ÁÔ˙ÎÌˇ‚‡ÏÂ ÍÓÏ‡Ì‰‡Ú‡
+	// –ò–∑–ø—ä–ª–Ω—è–≤–∞–º–µ –∫–æ–º–∞–Ω–¥–∞—Ç–∞
 	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
 
 	if (FAILED(hResult))
@@ -186,8 +185,12 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 
 	m_recCITY.lUPDATE_COUNTER++;
+	m_recCITY.lPOSTAL_CODE = recCities.lPOSTAL_CODE;
+	TCHAR* szAreaNameBuffer = _tcsdup(recCities.szAREA_NAME);
+	_tcscpy_s(m_recCITY.szAREA_NAME,szAreaNameBuffer);
 
-
+	TCHAR* szCityNameBuffer = _tcsdup(recCities.szCITY_NAME);
+	_tcscpy_s(m_recCITY.szCITY_NAME, szCityNameBuffer);
 
 	hResult = SetData(ModifyColumnCode);
 
@@ -203,7 +206,7 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	return TRUE;
 };
 
-BOOL CCitiesTable::Insert(const CITIES& recCities)
+BOOL CCitiesTable::Insertt(const CITIES& recCities)
 {
 	CSession oSession;
 	CDataSource oDataSource;
@@ -214,16 +217,86 @@ BOOL CCitiesTable::Insert(const CITIES& recCities)
 	CDBPropSet oUpdatePropSet = BuildUpdateDBPropSet();
 
 	HRESULT hResult = S_FALSE;
+	CString strQuery;
+	strQuery.Format(_T("SELECT * FROM CITIES WHERE ID > %d"), 6);
+	hResult = Open(oSession, strQuery, &oUpdatePropSet);
 
 	if (FAILED(hResult))
 	{
 		ATLTRACE(_T("Insert failed: 0x%X\n"), hResult);
+		CloseConnection(oDataSource, oSession);
+		return FALSE;
 	}
 
-	return FALSE;
+	m_recCITY = recCities;
+	
+	hResult = SetData(ModifyColumnCode);
+
+	hResult = Insert(0);
+
+	if (FAILED(hResult))
+	{
+		ATLTRACE(_T("Insert failed: 0x%X\n"), hResult);
+		CloseConnection(oDataSource, oSession);
+		return FALSE;
+	}
+
+	CloseConnection(oDataSource, oSession);
+	return TRUE;
 };
 
 BOOL CCitiesTable::DeleteWhereID(const long lID)
 {
-	return false;
+	CDataSource oDataSource;
+	CSession oSession;
+
+	if (!ConnectoToDb(oDataSource, oSession))
+		return FALSE;
+
+	// –ö–æ–Ω—Å—Ç—Ä—É–∏—Ä–∞–º–µ –∑–∞—è–≤–∫–∞—Ç–∞
+	CString strQuery;
+	strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), lID);
+
+	// –ù–∞—Å—Ç—Ä–æ–π–∫–∞ –Ω–∞ —Ç–∏–ø–∞ –Ω–∞ Rowset-–∞
+	CDBPropSet oUpdateDBPropSet = BuildUpdateDBPropSet();
+
+	HRESULT hResult;
+
+	// –ò–∑–ø—ä–ª–Ω—è–≤–∞–º–µ –∫–æ–º–∞–Ω–¥–∞—Ç–∞
+	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
+
+	if (FAILED(hResult))
+	{
+		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
+
+		oSession.Close();
+		oDataSource.Close();
+
+		return FALSE;
+	}
+
+	hResult = MoveFirst();
+
+	if (FAILED(hResult))
+	{
+		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
+
+		oSession.Close();
+		oDataSource.Close();
+
+		return FALSE;
+	}
+
+	m_recCITY;
+	hResult= Delete();
+
+	if (FAILED(hResult))
+	{
+		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
+		CloseConnection(oDataSource, oSession);
+		return FALSE;
+	}
+	CloseConnection(oDataSource, oSession);
+
+	return TRUE;
 };
