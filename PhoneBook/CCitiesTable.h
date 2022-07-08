@@ -167,7 +167,7 @@ namespace
 		CSession oSession;
 		HRESULT hResult;
 
-		if (!ConnectoToDb(oDataSource, oSession, hResult))
+		if (!ConnectoToDb(oDataSource, oSession))
 			return FALSE;
 
 		// Конструираме заявката
@@ -188,7 +188,10 @@ namespace
 				m_recCITY.szCITY_NAME,
 				m_recCITY.szAREA_NAME,
 				m_recCITY.lPOSTAL_CODE);
-			//TODO ADD ELEMENTS TO ARRAY
+			CITIES* pCurrentCity= new CITIES;
+			*pCurrentCity = m_recCITY;
+			oCitiesArray.Add(pCurrentCity);
+			
 			//check last result from MoveNext()!
 			// Logic with the result
 		}
@@ -205,7 +208,7 @@ namespace
 		CSession oSession;
 		HRESULT hResult;
 
-		if (!ConnectoToDb(oDataSource, oSession, hResult))
+		if (!ConnectoToDb(oDataSource, oSession))
 		{
 			return FALSE;
 		}
