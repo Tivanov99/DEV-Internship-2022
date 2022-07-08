@@ -69,7 +69,7 @@ namespace
 	class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
 	{
 	private:
-		BOOL ConnectoToDb(CDataSource& oDataSource, CSession& oSession, HRESULT& hResult);
+		BOOL ConnectoToDb(CDataSource& oDataSource, CSession& oSession);
 		CDBPropSet BuildCDBPropSet();
 		CDBPropSet BuildUpdateDBPropSet();
 		BOOL ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, const CString& strQuery);
@@ -121,12 +121,12 @@ namespace
 		return oUpdateDBPropSet;
 	}
 
-	BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession, HRESULT& hResult)
+	BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession)
 	{
 		CDBPropSet& oDBPropSet = BuildCDBPropSet();
 
 		// Свързваме се към базата данни
-		hResult = oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
+		HRESULT hResult = oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
 
 		if (FAILED(hResult))
 		{
@@ -232,9 +232,8 @@ namespace
 	{
 		CDataSource oDataSource;
 		CSession oSession;
-		HRESULT hResult;
 
-		if (!ConnectoToDb(oDataSource, oSession, hResult))
+		if (!ConnectoToDb(oDataSource, oSession))
 			return FALSE;
 
 		// Конструираме заявката
@@ -244,8 +243,12 @@ namespace
 		// Настройка на типа на Rowset-а
 		CDBPropSet oUpdateDBPropSet = BuildUpdateDBPropSet();
 
+
+		HRESULT hResult;
+
 		// Изпълняваме командата
 		hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
+
 		if (FAILED(hResult))
 		{
 			wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
@@ -256,6 +259,7 @@ namespace
 			return FALSE;
 		}
 
+
 		hResult = MoveFirst();
 		if (FAILED(hResult))
 		{
@@ -265,19 +269,13 @@ namespace
 			return FALSE;
 		}
 
-		//Update
-		CString strNewCityName = _T("Бургас");
-		fill_n(m_recCITY.szCITY_NAME, CITY_NAME_SIZE, 0);
 
-		TCHAR* szBuffer = _tcsdup(strNewCityName);
-		_tcscpy_s(m_recCITY.szCITY_NAME,szBuffer);
-		//Update
-		
 		// ВЪПРОС: Какво стъпки следва да извършим преди да инкрементираме m_lUpdateCounter?
 
 		m_recCITY.lUPDATE_COUNTER++;
 
 		hResult = SetData(ModifyColumnCode);
+
 		if (FAILED(hResult))
 		{
 			wprintf(_T("Error updating record. Error: %d. Query: %s"), hResult, strQuery);
@@ -296,12 +294,12 @@ namespace
 		HRESULT oHresult;
 		CDataSource oDataSource;
 
-		if (!ConnectoToDb(oDataSource,oSession,oHresult))
+		if (!ConnectoToDb(oDataSource, oSession, oHresult))
 			return FALSE;
 
 		CString strQuery;
 		strQuery.Format(_T("INSERT INTO CITIES (%s[CITY_NAME],%s[AREA_NAME],%d[POSTAL_CODE], %d[UPDATE_COUNTER])"),
-			"Smolqn","Smolqn",3333,0);
+			"Smolqn", "Smolqn", 3333, 0);
 
 		CDBPropSet oUpdatePropSet = BuildUpdateDBPropSet();
 
@@ -316,8 +314,6 @@ namespace
 
 			return FALSE;
 		}
-
-
 
 		return FALSE;
 	};
