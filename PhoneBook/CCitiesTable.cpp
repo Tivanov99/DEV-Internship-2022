@@ -65,7 +65,7 @@ BOOL CCitiesTable::ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSourc
 	hResult = Open(oSession, strQuery);
 	if (FAILED(hResult))
 	{
-		
+		ErrorExecutingQuery(strQuery, hResult, oDataSource, oSession);
 	}
 	return TRUE;
 }
