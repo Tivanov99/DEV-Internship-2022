@@ -218,17 +218,15 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 
 	HRESULT hResult = S_FALSE;
 
-	CString strQuery;
-	strQuery.Format(_T("SELECT TOP 0 * FROM CITIES"));
+	CString strQuery = _T("SELECT TOP 0 * FROM CITIES");
+
 	hResult = Open(oSession, strQuery, &oUpdatePropSet);
 
 	if (FAILED(hResult))
 	{
 		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
 
-		oSession.Close();
-		oDataSource.Close();
-
+		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
 
@@ -241,7 +239,6 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
-
 
 	m_recCITY = recCities;
 	hResult = Insert(ModifyColumnCode);
@@ -281,25 +278,10 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 	{
 		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
 
-		oSession.Close();
-		oDataSource.Close();
-
+		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
-
-
-	/*hResult = MoveFirst();
-
-	if (FAILED(hResult))
-	{
-		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
-
-		oSession.Close();
-		oDataSource.Close();
-
-		return FALSE;
-	}*/
-
+		
 	m_recCITY;
 	hResult= Delete();
 

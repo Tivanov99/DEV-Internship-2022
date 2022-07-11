@@ -224,8 +224,6 @@ void CPhoneBookApp::PreLoadState()
 	//access.DeleteWhereID(1);
 
 	access.Insertt(oCityy);
-
-
 }
 
 void CPhoneBookApp::LoadCustomState()
