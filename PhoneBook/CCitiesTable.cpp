@@ -176,7 +176,7 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	hResult = MoveFirst();
 
-	if (FAILED(hResult))
+	if (FAILED(hResult) || hResult== DB_S_ENDOFROWSET)
 	{
 		ErrorOpeningRecord(strQuery, hResult, oDataSource, oSession);
 		return FALSE;
@@ -192,7 +192,9 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	if (FAILED(hResult))
 	{
-		wprintf(_T("Error updating record. Error: %d. Query: %s"), hResult, strQuery);
+		CString strErrorMessage;
+		strErrorMessage.Format(_T("Error updating record. Error: %d. Query: %s"), hResult, strQuery.GetString());
+		AfxMessageBox(strErrorMessage);
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
@@ -224,7 +226,7 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 	}
 
 	hResult = MoveFirst();
-	if (FAILED(hResult))
+	if (FAILED(hResult) || hResult == DB_S_ENDOFROWSET)
 	{
 		ErrorOpeningRecord(strQuery, hResult, oDataSource, oSession);
 		return FALSE;
@@ -272,7 +274,7 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 
 	hResult = MoveFirst();
 
-	if (FAILED(hResult))
+	if (FAILED(hResult) || hResult == DB_S_ENDOFROWSET)
 	{
 		ErrorOpeningRecord(strQuery, hResult, oDataSource, oSession);
 		return FALSE;

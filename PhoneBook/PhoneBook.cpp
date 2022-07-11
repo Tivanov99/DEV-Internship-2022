@@ -204,13 +204,13 @@ void CPhoneBookApp::PreLoadState()
 	CCitiesTable access;
 	CCitiesArray arr;
 	access.SelectAll(arr);
-	/*CITIES oCity = *arr.GetAt(0);
+	CITIES oCity = *arr.GetAt(0);
 
 	TCHAR szNewCityName[32] = { 'B','U','R','G','A','S','K','O'};
 
-	copy(begin(szNewCityName), end(szNewCityName), begin(oCity.szCITY_NAME));*/
+	copy(begin(szNewCityName), end(szNewCityName), begin(oCity.szCITY_NAME));
 
-	//access.UpdateWhereID(1, oCity);
+	access.UpdateWhereID(1, oCity);
 
 	CITIES oCityy;
 	access.SelectWhereID(1,oCityy);
