@@ -239,15 +239,6 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 		return FALSE;
 	}
 
-	//TODO CHECK
-	hResult = MoveFirst();
-	if (FAILED(hResult))
-	{
-		ShowErrorMessage(hResult, strErrorOpeningRecord, strEmptySelect);
-		CloseConnection(oDataSource, oSession);
-		return FALSE;
-	}
-
 	m_recCITY = recCities;
 
 	hResult = Insert(ModifyColumnCode);

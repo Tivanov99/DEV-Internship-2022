@@ -204,6 +204,8 @@ void CPhoneBookApp::PreLoadState()
 	CCitiesTable access;
 	CCitiesArray arr;
 	access.SelectAll(arr);
+	access.DeleteWhereID(10);
+
 	CITIES oCity = *arr.GetAt(0);
 
 	TCHAR szNewCityName[32] = { 'B','U','R','G','A','S','K','O'};
@@ -224,7 +226,6 @@ void CPhoneBookApp::PreLoadState()
 
 	access.Insertt(oCityy);
 
-	access.DeleteWhereID(6);
 }
 
 void CPhoneBookApp::LoadCustomState()
