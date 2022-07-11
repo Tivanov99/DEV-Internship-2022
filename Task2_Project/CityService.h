@@ -27,12 +27,23 @@ public:
 	CityService() {};
 	~CityService(){};
 	
-	///<summary>Функция променяща 'CITY_NAME' стойността на обект чието текущо име е подадено като аргумент 'oldCityName'.</summary>
-	void ChangeCityName(const CString &oldCityName, const CString &newCityName, CCitiesArray& oCitiesArray);
+	///<summary>Функция променяща 'CITY_NAME' стойността на обект чието текущо име е подадено като аргумент 'strCurrentCityName'.</summary>
+	/// <param name="strCurrentCityName">Текущото име на градът.</param>
+	/// <param name="strNewCityName">Новото име на градът.</param>
+	/// <param name="oCitiesArray">Масивът в който ще се търси град по подаденото текущо име "strCurrentCityName".</param>
+	void ChangeCityName(const CString &strCurrentCityName, const CString &strNewCityName, CCitiesArray& oCitiesArray);
+
 	///<summary>Функция променяща 'CITY_NAME' на обект подаден като аргумент.</summary>
+	/// <param name="pOldCity">Референция към обект.</param>
+	/// <param name="newCityName">Новото име на градът.</param>
 	void ChangeCityName(CITIES& pOldCity, const CString &newCityName);
+
 	///<summary>Функция променяща 'AREA_NAME' стойността на обект чието текущо име е подадено като аргумент 'oldCityAreaName'.</summary>
-	void ChangeCityAreaName(const CString &oldCityAreaName, const CString &newCityAreaName, CCitiesArray& oCitiesArray);
+	/// <param name="newCityName">Текущото име на областта.</param>
+	/// <param name="strNewCityAreaName">Новото име на областта.</param>
+	/// <param name="oCitiesArray">Масив в който ще се търси обект по стойността "strCurrentCityAreaName".</param>
+	void ChangeCityAreaName(const CString &strCurrentCityAreaName, const CString &strNewCityAreaName, CCitiesArray& oCitiesArray);
+
 	///<summary>Функция променяща 'AREA_NAME' на обект подаден като аргумент.</summary>
 	void ChangeCityAreaName(CITIES& pOldCity, const CString &newAreaName);
 	///<summary>Функция променяща 'POSTAL_CODE' стойността на обект чието текущо име е подадено като аргумент 'cityName'.</summary>
@@ -45,6 +56,8 @@ public:
 	void AddDefaultElements(CCitiesArray& citiesArray) override;
 
 	///<summary>Функция принтираща информация за обект намиращ се на позицията на nIndex, пренаписана от базов клас 'BaseService'.</summary>
+	/// <param name="nIndex">Позиция в масива.</param>
+	/// <param name="oArray">Масив със стойности.</param> 
 	void ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& oArray)override;
 };
 
