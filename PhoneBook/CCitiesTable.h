@@ -114,9 +114,10 @@ private:
 	/// <summary>
 	///  Функция която извежда съобщение при неуспешен опит за прочитане на резултат от заявка, и затваря връзката.
 	/// </summary>
-	/// <param name="hResult">Обект съдържащ съобщението на възникналата грешка.</param> 
-	/// <param name="oSession">Обект чрез който ще се затвори връзката към базата.</param> 
 	/// <param name="oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
+	/// <param name="oSession">Обект чрез който ще се затвори връзката към базата.</param> 
+	/// <param name="hResult">Обект съдържащ съобщението на възникналата грешка.</param> 
+	/// <param name="strErrorMessage">Обект който съдържа текущото съобщение с грешка.</param>  
 	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
-	void ShowErrorMessage(CDataSource& oDataSource, CSession& oSession, const HRESULT& hResult, const CString& strErrorMessag,const CString& strQuery = NULL);
+	void ShowErrorMessage(const HRESULT& hResult, const CString& strErrorMessage, const CString& strQuery = NULL);
 };

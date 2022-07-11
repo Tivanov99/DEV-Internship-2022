@@ -4,8 +4,16 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CCitiesTable
-#define SELECT_ALL_BY_ID "SELECT * FROM CITIES WHERE ID = %d";
-#define SELECT_ALL "SELECT * FROM CITIES";
+const CString strSelectAllById = _T("SELECT * FROM CITIES WHERE ID = %d");
+const CString strSelectAll = _T("SELECT * FROM CITIES");
+const CString strUnableToConnectServer = _T("Unable to connect to SQL Server database. Error: %d");
+const CString strUnableToOpenSession = _T("Unable to open session. Error: %d");
+const CString strErrorExecutingQuery = _T("Error executing query.Error:% d.Query : % s");
+const CString strErrorOpeningRecord = _T("Error opening record.Error:% d.Query : % s");
+const CString strErrorUpdatingRecord = _T("Error updating record.Error:% d.Query : % s");
+const CString strErrorDeletingRecord = _T("Error deleting record.Error:% d.Query : % s");
+
+
 
 CCitiesTable::CCitiesTable()
 {
@@ -21,10 +29,10 @@ void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
 	oDataSource.Close();
 };
 
-void CCitiesTable::ShowErrorMessage(CDataSource& oDataSource, CSession& oSession,const HRESULT& hResult, const CString& strErrorMessage,const CString& strQuery= NULL)
+void CCitiesTable::ShowErrorMessage(const HRESULT& hResult, const CString& strErrorMessage, const CString& strQuery )
 {
 	CString strError;
-	strError.Format(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery.GetString());
+	strError.Format(strErrorMessage, hResult, strQuery.GetString());
 	AfxMessageBox(strError);
 	CloseConnection(oDataSource, oSession);
 }
@@ -61,7 +69,7 @@ BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession)
 
 	if (FAILED(hResult))
 	{
-		AfxMessageBox(_T("Unable to connect to SQL Server database. Error: %d"), hResult);
+		AfxMessageBox(strUnableToConnectServer, hResult);
 		return FALSE;
 	}
 
@@ -69,7 +77,7 @@ BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession)
 	hResult = oSession.Open(oDataSource);
 	if (FAILED(hResult))
 	{
-		AfxMessageBox(_T("Unable to open session. Error: %d"), hResult);
+		AfxMessageBox(strUnableToOpenSession, hResult);
 		oDataSource.Close();
 		return FALSE;
 	}
@@ -81,7 +89,7 @@ BOOL CCitiesTable::ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, 
 	hResult = Open(oSession, strQuery);
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(oDataSource,oSession,hResult,strQuery);
+		ShowErrorMessage(hResult,strErrorExecutingQuery,strQuery);
 		return FALSE;
 	}
 	return TRUE;
@@ -96,11 +104,8 @@ BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 	if (!ConnectoToDb(oDataSource, oSession))
 		return FALSE;
 
-	// Конструираме заявката
-	const CString strQuery = _T("SELECT * FROM CITIES");
-
 	// Изпълняваме командата
-	if (!ExecuteNoneModifyQuery(hResult, oSession, oDataSource, strQuery))
+	if (!ExecuteNoneModifyQuery(hResult, oSession, oDataSource, strSelectAll))
 		return FALSE;
 
 	// Прочитаме всички данни
@@ -127,7 +132,7 @@ BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 		return FALSE;
 
 	CString strQuery;
-	strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), lID);
+	strQuery.Format(strSelectAllById.GetString(), lID);
 
 	HRESULT hResult;
 
@@ -153,7 +158,7 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	// Конструираме заявката
 	CString strQuery;
-	strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), lID);
+	strQuery.Format(strSelectAllById.GetString(), lID);
 
 	// Настройка на типа на Rowset-а
 	CDBPropSet oUpdateDBPropSet = BuildUpdateDBPropSet();
@@ -164,7 +169,7 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(oDataSource, oSession, hResult, strQuery);
+		ShowErrorMessage(oDataSource,oSession,hResult,strSelectAllById,strQuery);
 		return FALSE;
 	}
 
@@ -217,14 +222,14 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 	hResult = Open(oSession, strQuery, &oUpdatePropSet);
 	if (FAILED(hResult))
 	{
-		ErrorExecutingQuery(strQuery, hResult, oDataSource, oSession);
+		ShowErrorMessage(oDataSource, oSession, hResult, strErrorExecutingQuery, strQuery);
 		return FALSE;
 	}
 
 	hResult = MoveFirst();
 	if (FAILED(hResult))
 	{
-		ErrorOpeningRecord(strQuery, hResult, oDataSource, oSession);
+		ShowErrorMessage(oDataSource, oSession, hResult, strErrorOpeningRecord, strQuery);
 		return FALSE;
 	}
 
@@ -264,7 +269,7 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 
 	if (FAILED(hResult))
 	{
-		ErrorExecutingQuery(strQuery, hResult, oDataSource, oSession);
+		ShowErrorMessage(oDataSource, oSession, hResult, strErrorExecutingQuery, strQuery);
 		return FALSE;
 	}
 
@@ -272,7 +277,8 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 
 	if (FAILED(hResult) || hResult == DB_S_ENDOFROWSET)
 	{
-		ErrorOpeningRecord(strQuery, hResult, oDataSource, oSession);
+		ShowErrorMessage(oDataSource, oSession, hResult, strErrorOpeningRecord, strQuery);
+
 		return FALSE;
 	}
 
