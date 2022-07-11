@@ -21,8 +21,14 @@ void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
 };
 void CCitiesTable::ErrorExecutingQuery(const CString strQuery,const HRESULT& hResult, CDataSource oDataSource, CSession oSession)
 {
-	wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
+	CString strError;
+	strError.Format(_T("Error executing query.Error: % d.Query : % s"), hResult, strQuery.GetString());
+	AfxMessageBox(strError);
 	CloseConnection(oDataSource, oSession);
+}
+
+void ErrorOpeningRecord(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession) {
+
 }
 
 CDBPropSet CCitiesTable::BuildCDBPropSet()
@@ -219,8 +225,9 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 
 	if (FAILED(hResult))
 	{
-		wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
-
+		CString strError;
+		strError.Format(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
+		AfxMessageBox(strError);
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}

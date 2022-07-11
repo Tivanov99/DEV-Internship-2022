@@ -11,8 +11,12 @@ using namespace std;
 class CCityAccessor
 {
 protected:
-	CCityAccessor();
-	~CCityAccessor();
+	CCityAccessor() {
+
+	};
+	~CCityAccessor() {
+
+	};
 	CITIES m_recCITY;
 
 	BEGIN_ACCESSOR_MAP(CCityAccessor, 2)
@@ -112,4 +116,13 @@ private:
 	/// <param name="oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
 	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
 	void ErrorExecutingQuery(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession);
+
+	/// <summary>
+	///  Функция която извежда съобщение при неуспешен опит за прочитане на резултат от заявка, и затваря връзката.
+	/// </summary>
+	/// <param name="hResult">Обект съдържащ съобщението на възникналата грешка.</param> 
+	/// <param name="oSession">Обект чрез който ще се затвори връзката към базата.</param> 
+	/// <param name="oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
+	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
+	void ErrorOpeningRecord(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession);
 };
