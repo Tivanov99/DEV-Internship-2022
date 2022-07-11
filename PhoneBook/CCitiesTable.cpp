@@ -265,7 +265,7 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 
 	// Конструираме заявката
 	CString strQuery;
-	strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), lID);
+	strQuery.Format(strSelectAllById, lID);
 
 	// Настройка на типа на Rowset-а
 	CDBPropSet oUpdateDBPropSet = BuildUpdateDBPropSet();
@@ -277,7 +277,8 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(oDataSource, oSession, hResult, strErrorExecutingQuery, strQuery);
+		ShowErrorMessage(hResult, strErrorExecutingQuery, strQuery);
+		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
 
@@ -285,8 +286,8 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 
 	if (FAILED(hResult) || hResult == DB_S_ENDOFROWSET)
 	{
-		ShowErrorMessage(oDataSource, oSession, hResult, strErrorOpeningRecord, strQuery);
-
+		ShowErrorMessage(hResult, strErrorOpeningRecord);
+		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
 
@@ -294,7 +295,7 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 
 	if (FAILED(hResult))
 	{
-		ATLTRACE(_T("Delete failed: 0x%X\n"), hResult);
+		ShowErrorMessage(hResult, strErrorDeletingRecord);
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
