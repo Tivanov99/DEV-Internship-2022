@@ -35,7 +35,14 @@ void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
 void CCitiesTable::ShowErrorMessage(const HRESULT& hResult, const CString& strErrorMessage, const CString& strQuery )
 {
 	CString strError;
-	strError.Format(strErrorMessage, hResult, strQuery.GetString());
+	if (strQuery.GetString() != NULL)
+	{
+		strError.Format(strErrorMessage, hResult, strQuery.GetString());
+	}
+	else
+	{
+		strError.Format(strErrorMessage, hResult);
+	}
 	AfxMessageBox(strError);
 }
 
