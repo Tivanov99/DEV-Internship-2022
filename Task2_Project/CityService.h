@@ -13,16 +13,19 @@ private:
 	void SetAreaName(const CString &sorce, CITIES& city);
 	//<summary>Функция задаваща сойност на 'POSTAL_CODE' на подаден като аругмент показател</summary>
 	void SetPostalCode(const int nSorce, CITIES& city);
-	
+	CCitiesArray oCities;
 public:
 
-	CityService()
+	CityService(){}
+	~CityService()
 	{
-
-	}
-	~CityService() {
-
+		while (oCities.GetCount()>0)
+		{
+			delete oCities.GetAt(oCities.GetCount() - 1);
+		}
+		oCities.RemoveAll();
 	};
+	
 	//<summary>Функция добавяща всички дефоутни елементи в подаден масив като аргумент, пренаписана от базов клас 'BaseService' </summary>
 	void AddDefaultElements(CCitiesArray& oCities) override;
 	//<summary>Функция принтираща информация за обект намиращ се на позицията на nIndex, пренаписана от базов клас 'BaseService'.</summary>

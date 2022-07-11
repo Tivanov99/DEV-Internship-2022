@@ -217,23 +217,35 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 	CDBPropSet oUpdatePropSet = BuildUpdateDBPropSet();
 
 	HRESULT hResult = S_FALSE;
+
 	CString strQuery;
 	strQuery.Format(_T("SELECT * FROM CITIES WHERE ID > %d"), 6);
 	hResult = Open(oSession, strQuery, &oUpdatePropSet);
 
 	if (FAILED(hResult))
 	{
-		ATLTRACE(_T("Insert failed: 0x%X\n"), hResult);
-		CloseConnection(oDataSource, oSession);
+		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
+
+		oSession.Close();
+		oDataSource.Close();
+
 		return FALSE;
 	}
 
+	//hResult = MoveFirst();
+
+	//if (FAILED(hResult))
+	//{
+	//	wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
+
+	//	CloseConnection(oDataSource, oSession);
+	//	return FALSE;
+	//}
+
+
 	m_recCITY = recCities;
+	hResult = SetData(0);
 	
-	hResult = SetData(ModifyColumnCode);
-
-	hResult = Insert(0);
-
 	if (FAILED(hResult))
 	{
 		ATLTRACE(_T("Insert failed: 0x%X\n"), hResult);
@@ -275,7 +287,8 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 		return FALSE;
 	}
 
-	hResult = MoveFirst();
+
+	/*hResult = MoveFirst();
 
 	if (FAILED(hResult))
 	{
@@ -285,7 +298,7 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 		oDataSource.Close();
 
 		return FALSE;
-	}
+	}*/
 
 	m_recCITY;
 	hResult= Delete();
