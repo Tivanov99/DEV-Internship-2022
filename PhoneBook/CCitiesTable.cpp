@@ -6,12 +6,15 @@
 // CCitiesTable
 const CString strSelectAllById = _T("SELECT * FROM CITIES WHERE ID = %d");
 const CString strSelectAll = _T("SELECT * FROM CITIES");
+const CString strEmptySelect= _T("SELECT TOP 0 * FROM CITIES");
 const CString strUnableToConnectServer = _T("Unable to connect to SQL Server database. Error: %d");
 const CString strUnableToOpenSession = _T("Unable to open session. Error: %d");
 const CString strErrorExecutingQuery = _T("Error executing query.Error:% d.Query : % s");
 const CString strErrorOpeningRecord = _T("Error opening record.Error:% d.Query : % s");
 const CString strErrorUpdatingRecord = _T("Error updating record.Error:% d.Query : % s");
-const CString strErrorDeletingRecord = _T("Error deleting record.Error:% d.Query : % s");
+const CString strErrorDeletingRecord = _T("Delete failed: 0x%X\n");
+const CString strErrorInsertingRecord = _T("Insert failed: 0x%X\n");
+
 
 
 
@@ -219,21 +222,22 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 
 	CDBPropSet oUpdatePropSet = BuildUpdateDBPropSet();
 
-	CString strQuery = _T("SELECT TOP 0 * FROM CITIES");
-
 	HRESULT hResult = S_FALSE;
 
-	hResult = Open(oSession, strQuery, &oUpdatePropSet);
+	hResult = Open(oSession, strEmptySelect, &oUpdatePropSet);
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(oDataSource, oSession, hResult, strErrorExecutingQuery, strQuery);
+		ShowErrorMessage(hResult, strErrorExecutingQuery, strEmptySelect);
+		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
 
+	//TODO CHECK
 	hResult = MoveFirst();
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(oDataSource, oSession, hResult, strErrorOpeningRecord, strQuery);
+		ShowErrorMessage(hResult, strErrorOpeningRecord, strEmptySelect);
+		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
 
@@ -242,7 +246,7 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 	hResult = Insert(ModifyColumnCode);
 	if (FAILED(hResult))
 	{
-		AfxMessageBox(_T("Insert failed: 0x%X\n"), hResult);
+		ShowErrorMessage(hResult, strErrorInsertingRecord);
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
