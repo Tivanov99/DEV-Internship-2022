@@ -200,6 +200,7 @@ void CPhoneBookApp::PreLoadState()
 	ASSERT(bNameValid);
 	GetContextMenuManager()->AddMenu(strName, IDR_POPUP_EDIT);
 
+	//ME
 	CCitiesTable access;
 	CCitiesArray arr;
 	access.SelectAll(arr);

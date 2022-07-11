@@ -219,7 +219,7 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 	HRESULT hResult = S_FALSE;
 
 	CString strQuery;
-	strQuery.Format(_T("SELECT * FROM CITIES WHERE ID > %d"), 6);
+	strQuery.Format(_T("SELECT TOP 0 * FROM CITIES"));
 	hResult = Open(oSession, strQuery, &oUpdatePropSet);
 
 	if (FAILED(hResult))
@@ -232,19 +232,19 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 		return FALSE;
 	}
 
-	//hResult = MoveFirst();
+	hResult = MoveFirst();
 
-	//if (FAILED(hResult))
-	//{
-	//	wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
+	if (FAILED(hResult))
+	{
+		wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
 
-	//	CloseConnection(oDataSource, oSession);
-	//	return FALSE;
-	//}
+		CloseConnection(oDataSource, oSession);
+		return FALSE;
+	}
 
 
 	m_recCITY = recCities;
-	hResult = SetData(0);
+	hResult = Insert(ModifyColumnCode);
 	
 	if (FAILED(hResult))
 	{
