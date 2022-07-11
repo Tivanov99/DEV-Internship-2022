@@ -100,9 +100,8 @@ private:
 	/// </summary>
 	/// <param name="hResult">Обект съдържащ текущото състояние на заявката</param> 
 	/// <param name="oSession">Обект чрез който ще изпълни връзката към базата.</param> 
-	/// <param name="oDataSource">Обект чрез който ще се изпълни връзката към базата.</param> 
 	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
-	BOOL ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, const CString& strQuery);
+	BOOL ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, const CString& strQuery);
 
 	/// <summary>
 	///  Функция която затваря връзката към базата.

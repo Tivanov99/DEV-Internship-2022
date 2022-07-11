@@ -34,7 +34,6 @@ void CCitiesTable::ShowErrorMessage(const HRESULT& hResult, const CString& strEr
 	CString strError;
 	strError.Format(strErrorMessage, hResult, strQuery.GetString());
 	AfxMessageBox(strError);
-	CloseConnection(oDataSource, oSession);
 }
 
 CDBPropSet CCitiesTable::BuildCDBPropSet()
@@ -84,7 +83,7 @@ BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession)
 	return TRUE;
 };
 
-BOOL CCitiesTable::ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, const CString& strQuery)
+BOOL CCitiesTable::ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, const CString& strQuery)
 {
 	hResult = Open(oSession, strQuery);
 	if (FAILED(hResult))
