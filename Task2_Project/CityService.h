@@ -15,16 +15,8 @@ private:
 	void SetPostalCode(const int nSorce, CITIES& city);
 	CCitiesArray oCities;
 public:
-
-	CityService(){}
-	~CityService()
-	{
-		while (oCities.GetCount()>0)
-		{
-			delete oCities.GetAt(oCities.GetCount() - 1);
-		}
-		oCities.RemoveAll();
-	};
+	CityService() {};
+	~CityService(){};
 	
 	//<summary>Функция добавяща всички дефоутни елементи в подаден масив като аргумент, пренаписана от базов клас 'BaseService' </summary>
 	void AddDefaultElements(CCitiesArray& oCities) override;

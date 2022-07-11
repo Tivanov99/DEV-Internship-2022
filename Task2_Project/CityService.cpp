@@ -5,6 +5,17 @@
 
 using namespace std;
 
+CityService::CityService()
+{};
+CityService::~CityService()
+{
+	while (oCities.GetCount() > 0)
+	{
+		delete oCities.GetAt(oCities.GetCount() - 1);
+	}
+	oCities.RemoveAll();
+};
+
 void CityService::SetCityName(const CString& szSorce, CITIES& city) {
 	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(char);
 
