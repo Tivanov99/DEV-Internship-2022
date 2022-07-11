@@ -7,6 +7,11 @@ void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
 	oSession.Close();
 	oDataSource.Close();
 };
+void CCitiesTable::ErrorExecutingQuery(const CString strQuery,const HRESULT& hResult, CDataSource oDataSource, CSession oSession)
+{
+	wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
+	CloseConnection(oDataSource, oSession);
+}
 
 CDBPropSet CCitiesTable::BuildCDBPropSet()
 {
@@ -60,9 +65,7 @@ BOOL CCitiesTable::ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSourc
 	hResult = Open(oSession, strQuery);
 	if (FAILED(hResult))
 	{
-		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
-		CloseConnection(oDataSource, oSession);
-		return FALSE;
+		
 	}
 	return TRUE;
 }

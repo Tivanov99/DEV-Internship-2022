@@ -92,5 +92,5 @@ private:
 	///  Функция която затваря всички връзки към базата.
 	/// </summary>
 	void CloseConnection(CDataSource& oDataSource, CSession& oSession);
-	void UpdateRecord();
+	void ErrorExecutingQuery(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession);
 };
