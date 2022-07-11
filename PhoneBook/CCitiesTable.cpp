@@ -98,14 +98,18 @@ BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 {
 	CDataSource oDataSource;
 	CSession oSession;
-	HRESULT hResult;
 
 	if (!ConnectoToDb(oDataSource, oSession))
 		return FALSE;
 
+	HRESULT hResult;
+
 	// Изпълняваме командата
-	if (!ExecuteNoneModifyQuery(hResult, oSession, oDataSource, strSelectAll))
+	if (!ExecuteNoneModifyQuery(hResult, oSession, strSelectAll)) 
+	{
+		CloseConnection(oDataSource, oSession);
 		return FALSE;
+	}
 
 	// Прочитаме всички данни
 	while (MoveNext() != DB_S_ENDOFROWSET)
@@ -135,8 +139,11 @@ BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 
 	HRESULT hResult;
 
-	if (!ExecuteNoneModifyQuery(hResult, oSession, oDataSource, strQuery))
+	if (!ExecuteNoneModifyQuery(hResult, oSession, strQuery))
+	{
+		CloseConnection(oDataSource, oSession);
 		return FALSE;
+	}
 
 	while (MoveNext() != DB_S_ENDOFROWSET)
 	{
@@ -168,7 +175,8 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(oDataSource,oSession,hResult,strSelectAllById,strQuery);
+		ShowErrorMessage(hResult,strSelectAllById,strQuery);
+		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
 
