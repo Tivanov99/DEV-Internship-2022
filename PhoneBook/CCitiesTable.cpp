@@ -60,12 +60,13 @@ BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession)
 	return TRUE;
 };
 
-BOOL CCitiesTable::ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, const CString& strQuery)
+BOOL CCitiesTable::ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, const CString& strQuery)
 {
 	hResult = Open(oSession, strQuery);
 	if (FAILED(hResult))
 	{
 		ErrorExecutingQuery(strQuery, hResult, oDataSource, oSession);
+		return FALSE;
 	}
 	return TRUE;
 }
@@ -83,14 +84,11 @@ BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 	const CString strQuery = _T("SELECT * FROM CITIES");
 
 	// Изпълняваме командата
-	if (!ExecuteQuery(hResult, oSession, oDataSource, strQuery))
-	{
+	if (!ExecuteNoneModifyQuery(hResult, oSession, oDataSource, strQuery))
 		return FALSE;
-	}
 
 	// Прочитаме всички данни
-	//TODO: Check last result from MoveNext()!
-	while (MoveNext() == S_OK)
+	while (MoveNext() != DB_S_ENDOFROWSET)
 	{
 		// Logic with the result
 		CITIES* pCurrentCity = new CITIES;
@@ -108,22 +106,19 @@ BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 {
 	CDataSource oDataSource;
 	CSession oSession;
-	HRESULT hResult;
 
 	if (!ConnectoToDb(oDataSource, oSession))
-	{
 		return FALSE;
-	}
 
 	CString strQuery;
 	strQuery.Format(_T("SELECT * FROM CITIES WHERE ID = %d"), lID);
 
-	if (!ExecuteQuery(hResult, oSession, oDataSource, strQuery))
-	{
-		return FALSE;
-	}
+	HRESULT hResult;
 
-	while (MoveNext() == S_OK())
+	if (!ExecuteNoneModifyQuery(hResult, oSession, oDataSource, strQuery))
+		return FALSE;
+
+	while (MoveNext() != DB_S_ENDOFROWSET)
 	{
 		recCities = m_recCITY;
 	}
@@ -151,11 +146,9 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	// Изпълняваме командата
 	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
-
 	if (FAILED(hResult))
 	{
-		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
-		CloseConnection(oDataSource, oSession);
+		ErrorExecutingQuery(strQuery, hResult, oDataSource, oSession);
 		return FALSE;
 	}
 
@@ -206,9 +199,7 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 
 	if (FAILED(hResult))
 	{
-		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
-
-		CloseConnection(oDataSource, oSession);
+		ErrorExecutingQuery(strQuery, hResult, oDataSource, oSession);
 		return FALSE;
 	}
 
@@ -258,9 +249,7 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 
 	if (FAILED(hResult))
 	{
-		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
-
-		CloseConnection(oDataSource, oSession);
+		ErrorExecutingQuery(strQuery, hResult, oDataSource, oSession);
 		return FALSE;
 	}
 
