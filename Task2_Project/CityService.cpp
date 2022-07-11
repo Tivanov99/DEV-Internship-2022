@@ -16,7 +16,8 @@ CityService::~CityService()
 	oCities.RemoveAll();
 };
 
-void CityService::SetCityName(const CString& szSorce, CITIES& city) {
+void CityService::SetCityName(const CString& szSorce, CITIES& city)
+{
 	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(char);
 
 	if (szSorce.GetLength() > nLengthOfArray)

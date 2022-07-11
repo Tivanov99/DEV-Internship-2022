@@ -7,33 +7,45 @@ using namespace std;
 class CityService : public BaseService<CITIES>
 {
 private:
-	//<summary>Функция задаваща сойност на 'CITY_NAME' на подаден като аругмент показател</summary>
-	void SetCityName(const CString &sorce, CITIES& city);
-	//<summary>Функция задаваща сойност на 'AREA_NAME' на подаден като аругмент показател</summary>
-	void SetAreaName(const CString &sorce, CITIES& city);
-	//<summary>Функция задаваща сойност на 'POSTAL_CODE' на подаден като аругмент показател</summary>
-	void SetPostalCode(const int nSorce, CITIES& city);
+	///<summary>Функция задаваща сойност на 'CITY_NAME' на подаден като аругмент показател</summary>
+	/// <param name="strCityName">Името на град което ще бъде зададено като стойност</param>
+	/// <param name="oCity">Обект чието "szCITY_NAME" ще бъде зададено с подадената стойност от "strCityName"</param>
+	void SetCityName(const CString &strCityName, CITIES& oCity);
+
+	///<summary>Функция задаваща сойност на 'AREA_NAME' на подаден като аругмент показател</summary>
+	/// <param name="strAreaName">Името на област което ще бъде зададено като стойност</param>
+	/// <param name="oCity"> Името на околност което ще бъде зададено като стойност на "szAREA_NAME"</param>
+	void SetAreaName(const CString &strAreaName, CITIES& oCity);
+
+	///<summary>Функция задаваща сойност на 'POSTAL_CODE' на подаден като аругмент показател</summary>
+	/// <param name="nPostalCode">Пощенски код който ще бъде зададен като стойност</param>
+	/// <param name="oCity">Името на околност което ще бъде зададено като стойност на "lPOSTAL_CODE"</param>
+	void SetPostalCode(const int nPostalCode, CITIES& oCity);
+
 	CCitiesArray oCities;
 public:
 	CityService() {};
 	~CityService(){};
 	
-	//<summary>Функция добавяща всички дефоутни елементи в подаден масив като аргумент, пренаписана от базов клас 'BaseService' </summary>
-	void AddDefaultElements(CCitiesArray& oCities) override;
-	//<summary>Функция принтираща информация за обект намиращ се на позицията на nIndex, пренаписана от базов клас 'BaseService'.</summary>
-	void ShowElementInfoAtIndex(const int nIndex, const CCitiesArray &oArray)override;
-	//<summary>Функция променяща 'CITY_NAME' стойността на обект чието текущо име е подадено като аргумент 'oldCityName'.</summary>
+	///<summary>Функция променяща 'CITY_NAME' стойността на обект чието текущо име е подадено като аргумент 'oldCityName'.</summary>
 	void ChangeCityName(const CString &oldCityName, const CString &newCityName, CCitiesArray& oCitiesArray);
-	//<summary>Функция променяща 'CITY_NAME' на обект подаден като аргумент.</summary>
+	///<summary>Функция променяща 'CITY_NAME' на обект подаден като аргумент.</summary>
 	void ChangeCityName(CITIES& pOldCity, const CString &newCityName);
-	//<summary>Функция променяща 'AREA_NAME' стойността на обект чието текущо име е подадено като аргумент 'oldCityAreaName'.</summary>
+	///<summary>Функция променяща 'AREA_NAME' стойността на обект чието текущо име е подадено като аргумент 'oldCityAreaName'.</summary>
 	void ChangeCityAreaName(const CString &oldCityAreaName, const CString &newCityAreaName, CCitiesArray& oCitiesArray);
-	//<summary>Функция променяща 'AREA_NAME' на обект подаден като аргумент.</summary>
+	///<summary>Функция променяща 'AREA_NAME' на обект подаден като аргумент.</summary>
 	void ChangeCityAreaName(CITIES& pOldCity, const CString &newAreaName);
-	//<summary>Функция променяща 'POSTAL_CODE' стойността на обект чието текущо име е подадено като аргумент 'cityName'.</summary>
+	///<summary>Функция променяща 'POSTAL_CODE' стойността на обект чието текущо име е подадено като аргумент 'cityName'.</summary>
 	void ChangeCityPosalCodeByCityName(const CString &cityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray);
-	//<summary>Функция променяща 'POSTAL_CODE' стойността на обект подаден като аргумент 'pCity'.</summary>
+	///<summary>Функция променяща 'POSTAL_CODE' стойността на обект подаден като аргумент 'pCity'.</summary>
 	void ChangeCityPostalCode(CITIES& pCity, const int nNewPostalCode);
+
+	///<summary>Функция добавяща всички дефоутни елементи в подаден масив като аргумент, пренаписана от базов клас 'BaseService' </summary>
+	/// <param name="citiesArray">Масив в който ще се добавят всички стойности.</param>
+	void AddDefaultElements(CCitiesArray& citiesArray) override;
+
+	///<summary>Функция принтираща информация за обект намиращ се на позицията на nIndex, пренаписана от базов клас 'BaseService'.</summary>
+	void ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& oArray)override;
 };
 
 
