@@ -83,25 +83,42 @@ private:
 	/// <summary>
 	///  Функция която отваря връзка към базата.
 	/// </summary>
+	/// <param name="oDataSource">Обект служещ за отваряне на връзка.</param> 
+	/// <param name="oSession">Обект служещ за отваряне на връзка.</param> 
 	BOOL ConnectoToDb(CDataSource& oDataSource, CSession& oSession);
+
 	/// <summary>
 	///  Функция която създава рол-сет.
 	/// </summary>
 	CDBPropSet BuildCDBPropSet();
+
 	/// <summary>
 	///  Функция която създава рол-сет предназначен за модифициране на данни.
 	/// </summary>
 	CDBPropSet BuildUpdateDBPropSet();
+
 	/// <summary>
 	///  Функция която изпълнява дадена заявка към отворена връзка.
 	/// </summary>
+	/// <param name="hResult">Обект съдържащ текущото състояние на заявката</param> 
+	/// <param name="oSession">Обект чрез който ще изпълни връзката към базата.</param> 
+	/// <param name="oDataSource">Обект чрез който ще се изпълни връзката към базата.</param> 
+	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
 	BOOL ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, const CString& strQuery);
+
 	/// <summary>
-	///  Функция която затваря всички връзки към базата.
+	///  Функция която затваря връзката към базата.
 	/// </summary>
+	/// <param name="oSession">Обект чрез който ще се затвори връзката към базата.</param> 
+	/// <param name="oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
 	void CloseConnection(CDataSource& oDataSource, CSession& oSession);
+
 	/// <summary>
-	///  Функция която извежда съобщение при неуспешен опи за изпълнение на заявка, и затваря връзката.
+	///  Функция която извежда съобщение при неуспешен опит за изпълнение на заявка, и затваря връзката.
 	/// </summary>
+ 	/// <param name="hResult">Обект съдържащ съобщението на възникналата грешка.</param> 
+	/// <param name="oSession">Обект чрез който ще се затвори връзката към базата.</param> 
+	/// <param name="oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
+	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
 	void ErrorExecutingQuery(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession);
 };
