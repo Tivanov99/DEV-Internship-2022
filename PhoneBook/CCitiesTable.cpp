@@ -20,15 +20,9 @@ void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
 	oSession.Close();
 	oDataSource.Close();
 };
-void CCitiesTable::ErrorExecutingQuery(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession)
-{
-	CString strError;
-	strError.Format(_T("Error executing query.Error: % d.Query : % s"), hResult, strQuery.GetString());
-	AfxMessageBox(strError);
-	CloseConnection(oDataSource, oSession);
-}
 
-void CCitiesTable::ErrorOpeningRecord(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession) {
+void CCitiesTable::ShowErrorMessage(CDataSource& oDataSource, CSession& oSession,const HRESULT& hResult, const CString& strErrorMessage,const CString& strQuery= NULL)
+{
 	CString strError;
 	strError.Format(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery.GetString());
 	AfxMessageBox(strError);
@@ -87,7 +81,7 @@ BOOL CCitiesTable::ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, 
 	hResult = Open(oSession, strQuery);
 	if (FAILED(hResult))
 	{
-		ErrorExecutingQuery(strQuery, hResult, oDataSource, oSession);
+		ShowErrorMessage(oDataSource,oSession,hResult,strQuery);
 		return FALSE;
 	}
 	return TRUE;
@@ -170,7 +164,7 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
 	if (FAILED(hResult))
 	{
-		ErrorExecutingQuery(strQuery, hResult, oDataSource, oSession);
+		ShowErrorMessage(oDataSource, oSession, hResult, strQuery);
 		return FALSE;
 	}
 
@@ -178,7 +172,7 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	if (FAILED(hResult) || hResult== DB_S_ENDOFROWSET)
 	{
-		ErrorOpeningRecord(strQuery, hResult, oDataSource, oSession);
+		ShowErrorMessage(oDataSource, oSession, hResult, strQuery);
 		return FALSE;
 	}
 
@@ -192,6 +186,8 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	if (FAILED(hResult))
 	{
+		ShowErrorMessage(oDataSource, oSession, hResult, strQuery);
+
 		CString strErrorMessage;
 		strErrorMessage.Format(_T("Error updating record. Error: %d. Query: %s"), hResult, strQuery.GetString());
 		AfxMessageBox(strErrorMessage);
@@ -292,3 +288,4 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 
 	return TRUE;
 };
+

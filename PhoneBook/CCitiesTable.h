@@ -112,20 +112,11 @@ private:
 	void CloseConnection(CDataSource& oDataSource, CSession& oSession);
 
 	/// <summary>
-	///  Функция която извежда съобщение при неуспешен опит за изпълнение на заявка, и затваря връзката.
-	/// </summary>
- 	/// <param name="hResult">Обект съдържащ съобщението на възникналата грешка.</param> 
-	/// <param name="oSession">Обект чрез който ще се затвори връзката към базата.</param> 
-	/// <param name="oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
-	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
-	void ErrorExecutingQuery(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession);
-
-	/// <summary>
 	///  Функция която извежда съобщение при неуспешен опит за прочитане на резултат от заявка, и затваря връзката.
 	/// </summary>
 	/// <param name="hResult">Обект съдържащ съобщението на възникналата грешка.</param> 
 	/// <param name="oSession">Обект чрез който ще се затвори връзката към базата.</param> 
 	/// <param name="oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
 	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
-	void ErrorOpeningRecord(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession);
+	void ShowErrorMessage(CDataSource& oDataSource, CSession& oSession, const HRESULT& hResult, const CString& strErrorMessag,const CString& strQuery = NULL);
 };
