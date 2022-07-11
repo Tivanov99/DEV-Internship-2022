@@ -50,7 +50,6 @@ BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession)
 	{
 		AfxMessageBox(_T("Unable to open session. Error: %d"), hResult);
 		oDataSource.Close();
-
 		return FALSE;
 	}
 	return TRUE;
@@ -62,10 +61,7 @@ BOOL CCitiesTable::ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSourc
 	if (FAILED(hResult))
 	{
 		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
-
-		oSession.Close();
-		oDataSource.Close();
-
+		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
 	return TRUE;
@@ -82,28 +78,21 @@ BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 
 	// Конструираме заявката
 	const CString strQuery = _T("SELECT * FROM CITIES");
-	// Изпълняваме командата
 
+	// Изпълняваме командата
 	if (!ExecuteQuery(hResult, oSession, oDataSource, strQuery))
 	{
 		return FALSE;
 	}
 
 	// Прочитаме всички данни
+	//TODO: Check last result from MoveNext()!
 	while (MoveNext() == S_OK)
 	{
-		CString strCustomerData;
-		strCustomerData.Format(_T("ID: %d, City Name: %s, Area Name: %s, Postal Code: %d"),
-			m_recCITY.lID,
-			m_recCITY.szCITY_NAME,
-			m_recCITY.szAREA_NAME,
-			m_recCITY.lPOSTAL_CODE);
+		// Logic with the result
 		CITIES* pCurrentCity = new CITIES;
 		*pCurrentCity = m_recCITY;
 		oCitiesArray.Add(pCurrentCity);
-
-		//check last result from MoveNext()!
-		// Logic with the result
 	}
 
 	// Затваряме командата, сесията и връзката с базата данни. 
@@ -156,6 +145,7 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	CDBPropSet oUpdateDBPropSet = BuildUpdateDBPropSet();
 
 	HRESULT hResult;
+
 	// Изпълняваме командата
 	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
 
@@ -231,7 +221,7 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 
 	m_recCITY = recCities;
 	hResult = Insert(ModifyColumnCode);
-	
+
 	if (FAILED(hResult))
 	{
 		ATLTRACE(_T("Insert failed: 0x%X\n"), hResult);
@@ -280,8 +270,8 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
-		
-	hResult= Delete();
+
+	hResult = Delete();
 
 	if (FAILED(hResult))
 	{
