@@ -4,7 +4,8 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CCitiesTable
-#define SelectAllById "SELECT * FROM CITIES WHERE ID = %d";
+#define SELECT_ALL_BY_ID "SELECT * FROM CITIES WHERE ID = %d";
+#define SELECT_ALL "SELECT * FROM CITIES";
 
 CCitiesTable::CCitiesTable()
 {
@@ -19,7 +20,7 @@ void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
 	oSession.Close();
 	oDataSource.Close();
 };
-void CCitiesTable::ErrorExecutingQuery(const CString strQuery,const HRESULT& hResult, CDataSource oDataSource, CSession oSession)
+void CCitiesTable::ErrorExecutingQuery(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession)
 {
 	CString strError;
 	strError.Format(_T("Error executing query.Error: % d.Query : % s"), hResult, strQuery.GetString());
@@ -27,8 +28,11 @@ void CCitiesTable::ErrorExecutingQuery(const CString strQuery,const HRESULT& hRe
 	CloseConnection(oDataSource, oSession);
 }
 
-void ErrorOpeningRecord(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession) {
-
+void CCitiesTable::ErrorOpeningRecord(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession) {
+	CString strError;
+	strError.Format(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery.GetString());
+	AfxMessageBox(strError);
+	CloseConnection(oDataSource, oSession);
 }
 
 CDBPropSet CCitiesTable::BuildCDBPropSet()
@@ -174,8 +178,7 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	if (FAILED(hResult))
 	{
-		wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
-		CloseConnection(oDataSource, oSession);
+		ErrorOpeningRecord(strQuery, hResult, oDataSource, oSession);
 		return FALSE;
 	}
 
@@ -209,12 +212,11 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 
 	CDBPropSet oUpdatePropSet = BuildUpdateDBPropSet();
 
-	HRESULT hResult = S_FALSE;
-
 	CString strQuery = _T("SELECT TOP 0 * FROM CITIES");
 
-	hResult = Open(oSession, strQuery, &oUpdatePropSet);
+	HRESULT hResult = S_FALSE;
 
+	hResult = Open(oSession, strQuery, &oUpdatePropSet);
 	if (FAILED(hResult))
 	{
 		ErrorExecutingQuery(strQuery, hResult, oDataSource, oSession);
@@ -222,22 +224,18 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 	}
 
 	hResult = MoveFirst();
-
 	if (FAILED(hResult))
 	{
-		CString strError;
-		strError.Format(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
-		AfxMessageBox(strError);
-		CloseConnection(oDataSource, oSession);
+		ErrorOpeningRecord(strQuery, hResult, oDataSource, oSession);
 		return FALSE;
 	}
 
 	m_recCITY = recCities;
-	hResult = Insert(ModifyColumnCode);
 
+	hResult = Insert(ModifyColumnCode);
 	if (FAILED(hResult))
 	{
-		ATLTRACE(_T("Insert failed: 0x%X\n"), hResult);
+		AfxMessageBox(_T("Insert failed: 0x%X\n"), hResult);
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
@@ -276,9 +274,7 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 
 	if (FAILED(hResult))
 	{
-		wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
-
-		CloseConnection(oDataSource, oSession);
+		ErrorOpeningRecord(strQuery, hResult, oDataSource, oSession);
 		return FALSE;
 	}
 
