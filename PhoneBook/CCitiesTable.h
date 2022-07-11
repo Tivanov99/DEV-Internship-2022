@@ -11,11 +11,8 @@ using namespace std;
 class CCityAccessor
 {
 protected:
-	CCityAccessor(){};
-	~CCityAccessor()
-	{
-
-	};
+	CCityAccessor();
+	~CCityAccessor();
 	CITIES m_recCITY;
 
 	BEGIN_ACCESSOR_MAP(CCityAccessor, 2)
@@ -36,14 +33,8 @@ protected:
 class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
 {
 public:
-	CCitiesTable()
-	{
-
-	};
-	~CCitiesTable()
-	{
-
-	};
+	CCitiesTable();
+	~CCitiesTable();
 
 public:
 	/// <summary>
