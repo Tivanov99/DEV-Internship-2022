@@ -175,7 +175,7 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(hResult,strSelectAllById,strQuery);
+		ShowErrorMessage(hResult,strErrorExecutingQuery,strQuery);
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
@@ -184,7 +184,8 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	if (FAILED(hResult) || hResult== DB_S_ENDOFROWSET)
 	{
-		ShowErrorMessage(oDataSource, oSession, hResult, strQuery);
+		ShowErrorMessage(hResult,strErrorOpeningRecord ,strQuery);
+		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
 
@@ -198,11 +199,7 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(oDataSource, oSession, hResult, strQuery);
-
-		CString strErrorMessage;
-		strErrorMessage.Format(_T("Error updating record. Error: %d. Query: %s"), hResult, strQuery.GetString());
-		AfxMessageBox(strErrorMessage);
+		ShowErrorMessage(hResult,strErrorUpdatingRecord ,strQuery);
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}

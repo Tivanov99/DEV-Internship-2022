@@ -114,7 +114,7 @@ private:
 	///  Функция която извежда съобщение при неуспешен опит за прочитане на резултат от заявка.
 	/// </summary>
 	/// <param name="hResult">Обект съдържащ съобщението на възникналата грешка.</param> 
-	/// <param name="strErrorMessage">Обект който съдържа текущото съобщение с грешка.</param>  
+	/// <param name="strErrorMessage">Обект който съдържа подробно разяснение за текущата грешка.</param>  
 	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
 	void ShowErrorMessage(const HRESULT& hResult, const CString& strErrorMessage, const CString& strQuery = NULL);
 };
