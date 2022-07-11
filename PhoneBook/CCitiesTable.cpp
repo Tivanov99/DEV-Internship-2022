@@ -10,7 +10,7 @@ const CString strEmptySelect= _T("SELECT TOP 0 * FROM CITIES");
 const CString strUnableToConnectServer = _T("Unable to connect to SQL Server database. Error: %d");
 const CString strUnableToOpenSession = _T("Unable to open session. Error: %d");
 const CString strErrorExecutingQuery = _T("Error executing query.Error:% d.Query : % s");
-const CString strErrorOpeningRecord = _T("Error opening record.Error:% d.Query : % s");
+const CString strErrorOpeningRecord = _T("Error opening record.Error:% d");
 const CString strErrorUpdatingRecord = _T("Error updating record.Error:% d.Query : % s");
 const CString strErrorDeletingRecord = _T("Delete failed: 0x%X\n");
 const CString strErrorInsertingRecord = _T("Insert failed: 0x%X\n");
@@ -202,7 +202,7 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(hResult,strErrorUpdatingRecord ,strQuery);
+		ShowErrorMessage(hResult,strErrorUpdatingRecord);
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
@@ -286,7 +286,7 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 
 	if (FAILED(hResult) || hResult == DB_S_ENDOFROWSET)
 	{
-		ShowErrorMessage(hResult, strErrorOpeningRecord);
+		ShowErrorMessage(hResult, strErrorOpeningRecord, strQuery);
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
