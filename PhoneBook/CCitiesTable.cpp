@@ -1,6 +1,8 @@
 ﻿#include "pch.h"
 #include "CCitiesTable.h"
 
+#define SelectAllById "SELECT * FROM CITIES WHERE ID = %d";
+
 void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
 {
 	Close();

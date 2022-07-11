@@ -87,10 +87,13 @@ private:
 	/// <summary>
 	///  Функция която изпълнява дадена заявка към отворена връзка.
 	/// </summary>
-	BOOL ExecuteQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, const CString& strQuery);
+	BOOL ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, CDataSource& oDataSource, const CString& strQuery);
 	/// <summary>
 	///  Функция която затваря всички връзки към базата.
 	/// </summary>
 	void CloseConnection(CDataSource& oDataSource, CSession& oSession);
+	/// <summary>
+	///  Функция която извежда съобщение при неуспешен опи за изпълнение на заявка, и затваря връзката.
+	/// </summary>
 	void ErrorExecutingQuery(const CString strQuery, const HRESULT& hResult, CDataSource oDataSource, CSession oSession);
 };
