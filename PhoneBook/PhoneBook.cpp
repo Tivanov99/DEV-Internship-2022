@@ -210,7 +210,7 @@ void CPhoneBookApp::PreLoadState()
 
 	copy(begin(szNewCityName), end(szNewCityName), begin(oCity.szCITY_NAME));
 
-	access.UpdateWhereID(1, oCity);
+	//access.UpdateWhereID(1, oCity);
 
 	CITIES oCityy;
 	access.SelectWhereID(1,oCityy);

@@ -33,6 +33,9 @@ protected:
 	END_ACCESSOR_MAP()
 };
 
+/////////////////////////////////////////////////////////////////////////////
+// CCitiesTable
+
 /// <summary>Клас за работа с таблица CITIES</summary>
 class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
 {

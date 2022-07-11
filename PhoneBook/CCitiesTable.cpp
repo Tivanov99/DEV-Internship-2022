@@ -226,7 +226,7 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 	}
 
 	hResult = MoveFirst();
-	if (FAILED(hResult) || hResult == DB_S_ENDOFROWSET)
+	if (FAILED(hResult))
 	{
 		ErrorOpeningRecord(strQuery, hResult, oDataSource, oSession);
 		return FALSE;
