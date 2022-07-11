@@ -92,4 +92,5 @@ private:
 	///  Функция която затваря всички връзки към базата.
 	/// </summary>
 	void CloseConnection(CDataSource& oDataSource, CSession& oSession);
+	void UpdateRecord();
 };

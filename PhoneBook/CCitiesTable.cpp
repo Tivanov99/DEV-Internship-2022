@@ -156,17 +156,13 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	CDBPropSet oUpdateDBPropSet = BuildUpdateDBPropSet();
 
 	HRESULT hResult;
-
 	// Изпълняваме командата
 	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
 
 	if (FAILED(hResult))
 	{
 		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
-
-		oSession.Close();
-		oDataSource.Close();
-
+		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
 
@@ -175,7 +171,6 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	if (FAILED(hResult))
 	{
 		wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
-
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
@@ -183,14 +178,8 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	if (recCities.lUPDATE_COUNTER != m_recCITY.lUPDATE_COUNTER)
 		return FALSE;
 
-
 	m_recCITY.lUPDATE_COUNTER++;
-	m_recCITY.lPOSTAL_CODE = recCities.lPOSTAL_CODE;
-	TCHAR* szAreaNameBuffer = _tcsdup(recCities.szAREA_NAME);
-	_tcscpy_s(m_recCITY.szAREA_NAME,szAreaNameBuffer);
-
-	TCHAR* szCityNameBuffer = _tcsdup(recCities.szCITY_NAME);
-	_tcscpy_s(m_recCITY.szCITY_NAME, szCityNameBuffer);
+	m_recCITY = recCities;
 
 	hResult = SetData(ModifyColumnCode);
 
@@ -292,12 +281,11 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 		return FALSE;
 	}
 		
-	m_recCITY;
 	hResult= Delete();
 
 	if (FAILED(hResult))
 	{
-		wprintf(_T("Error executing query. Error: %d. Query: %s"), hResult, strQuery);
+		ATLTRACE(_T("Delete failed: 0x%X\n"), hResult);
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
