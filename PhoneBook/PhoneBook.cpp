@@ -221,9 +221,9 @@ void CPhoneBookApp::PreLoadState()
 	copy(begin(szCityName), end(szCityName), begin(oCityy.szCITY_NAME));
 	copy(begin(szAreaName), end(szAreaName), begin(oCityy.szAREA_NAME));
 
-	//access.DeleteWhereID(1);
+	access.DeleteWhereID(6);
 
-	access.Insertt(oCityy);
+	//access.Insertt(oCityy);
 }
 
 void CPhoneBookApp::LoadCustomState()

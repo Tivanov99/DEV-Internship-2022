@@ -281,6 +281,16 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 		CloseConnection(oDataSource, oSession);
 		return FALSE;
 	}
+
+	hResult = MoveFirst();
+
+	if (FAILED(hResult))
+	{
+		wprintf(_T("Error opening record. Error: %d. Query: %s"), hResult, strQuery);
+
+		CloseConnection(oDataSource, oSession);
+		return FALSE;
+	}
 		
 	m_recCITY;
 	hResult= Delete();
