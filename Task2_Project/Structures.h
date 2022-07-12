@@ -68,8 +68,10 @@ struct PHONE_NUMBERS {
 	long lID;
 	/// <summary>?</summary>
 	long lUPDATE_COUNTER;
-	/// <summary>Променлива съдържаща вторичен ключ (от колона 'PHONE_TYPE_ID' в таблицата  'PHONE_TYPES')
-	/// <summary>сочещ към колоната 'ID' в таблицата 'PHONE_NUMBERS'</summary>;
+	/// <summary>
+		///Променлива съдържаща вторичен ключ (от колона 'PHONE_TYPE_ID' в таблицата 'PHONE_TYPES')
+		///сочещ към колоната 'ID' в таблицата 'PHONE_NUMBERS'</summary>;
+	/// </summary>
 	long lPHONE_TYPE_ID;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_NUMBER' в таблицата  'PHONE_NUMBERS'</summary>
 	TCHAR szPHONE_NUMBER[PHONE_NUMBER_SIZE];

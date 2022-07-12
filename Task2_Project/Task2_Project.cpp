@@ -71,11 +71,12 @@ void CityNameChanging(CityService& service, CCitiesArray& oCitiesArray)
 
 void CityAreaNameChanging(CityService& service)
 {
-	CITIES oCity;
-	oCity = *oCitiesArray[2];
+	CString strCityName = _T("Ruse");
+	CITIES* oCity;
+	oCity = service.GetByCityName(strCityName);
 
 	CString strCityAreaName = _T("RunskaFirst");
-	service.ChangeCityAreaName(oCity, strCityAreaName);
+	service.ChangeCityAreaName(*oCity, strCityAreaName);
 
 	service.ShowElementInfoAtIndex(2);
 
@@ -94,8 +95,10 @@ void CityPostalCodeChanging(CityService& service)
 
 	service.ShowElementInfoAtIndex(2);
 
-	CITIES oCity = *oCitiesArray[2];
-	service.ChangeCityPostalCode(oCity, 11111);
+	long lCityPostalCode = 1000;
+
+	CITIES* oCity = service.GetByPostalCode(lCityPostalCode);
+	service.ChangeCityPostalCode(*oCity, 11111);
 	service.ShowElementInfoAtIndex(2);
 }
 
@@ -110,9 +113,6 @@ void ManageCities() {
 	service.ShowElementInfoAtIndex(0);
 	service.ShowElementInfoAtIndex(1);
 	CityNameChanging(service, oCitiesArray);
-
-
-	CITIES* pTemp = service.GetPointerAtIndex(0);
 
 
 	CityAreaNameChanging(service);

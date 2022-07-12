@@ -20,7 +20,10 @@ public:
 
 	PhoneNumberService();
 	~PhoneNumberService();
-	
+
+	PHONE_NUMBERS* GetByPhoneNumber(CString strPhoneNumber);
+
+
 	///<summary>
 		//Функция променяща стойността на 'PHONE_NUMBER' на обект чиято текуща сойност е 'oldPhoneNumber'.
 	///</summary>

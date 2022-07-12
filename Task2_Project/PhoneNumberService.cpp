@@ -9,6 +9,19 @@ PhoneNumberService::~PhoneNumberService()
 {
 
 };
+PHONE_NUMBERS* PhoneNumberService::GetByPhoneNumber(CString strPhoneNumber)
+{
+	for (INT_PTR i = 0; i < oArray.GetCount(); i++)
+	{
+		PHONE_NUMBERS* pPhoneNumber = oArray.GetAt(i);
+		CString strCurrentPhoneNumber;
+		strCurrentPhoneNumber.Format(_T("%s"), pPhoneNumber->szPHONE_NUMBER);
+		if (strPhoneNumber != strCurrentPhoneNumber)
+			continue;
+
+		return pPhoneNumber;
+	}
+};
 
 void PhoneNumberService::SetPhoneNumber(const CString& strSorce, PHONE_NUMBERS& oPhoneNumber)
 {
