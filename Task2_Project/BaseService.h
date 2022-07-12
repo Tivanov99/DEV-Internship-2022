@@ -28,25 +28,6 @@ public:
 	/// <param name="nIndex">Позиция на елемента в масива.</param>
 	/// <param name="oArray">Масив с елементи.</param>
 	virtual void ShowElementInfoAtIndex(const int nIndex) = 0;
-	
-	///<summary>Функция връщаща Pointer от подаден индекс като аргумент.</summary>
-	/// <param name="nIndex">Позиция на елемента в масива.</param>
-	/// <param name="oArray">Масив с обекти.</param>
-	T* GetPointerAtIndex(const int nIndex, CTypeArray& oArray);
-};
-
-
-template<class  T>
-T* BaseService<T>::GetPointerAtIndex(const int nIndex, CTypeArray& oArray)
-{
-	if (nIndex > oArray.GetCount() - 1)
-		return NULL;
-
-	T* pPointer = oArray.GetAt(nIndex);
-	if(pPointer==NULL)
-		return NULL;
-
-	return pPointer;
 };
 
 template<class  T>
