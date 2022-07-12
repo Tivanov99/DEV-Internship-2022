@@ -24,8 +24,8 @@ public:
 		///Функция принтираща информация за обект намиращ се на позицията на nIndex.
 		///Функция пренаписана от базов клас 'BaseService'.
 	///</summary>
-	/// <param name="оnIndex">Позиция на елемента в масива.</param>
-	/// <param name="оoArray">Масив с елементи.</param>
+	/// <param name="nIndex">Позиция на елемента в масива.</param>
+	/// <param name="oArray">Масив с елементи.</param>
 	void ShowElementInfoAtIndex(const int nIndex, const CPhoneTypesArray& oArray) override;
 };
 

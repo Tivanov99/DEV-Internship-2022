@@ -24,8 +24,8 @@ private:
 
 	CCitiesArray oCities;
 public:
-	CityService() {};
-	~CityService(){};
+	CityService();
+	~CityService();
 	
 	///<summary>Функция променяща 'CITY_NAME' стойността на обект чието текущо име е подадено като аргумент 'strCurrentCityName'.</summary>
 	/// <param name="strCurrentCityName">Текущото име на градът.</param>

@@ -12,22 +12,27 @@ private:
 
 public:
 
-	BaseService()
-	{
-
-	}
-	~BaseService()
-	{
-
-	}
-	//<summary>Функция добавяща всички дефоутни елементи в подаден масив като аргумент.</summary>
+	BaseService();
+	~BaseService();
+	///<summary>
+		/// Функция добавяща всички дефоутни елементи в подаден масив като аргумент.
+		/// Функция пренаписана от базов клас 'BaseService'.
+	/// </summary>
+	///<param name="oArray">Масив в който ще се добавят всички стойности.</param>
 	virtual void AddDefaultElements(CTypeArray& oArray) = 0;
-	//<summary>Функция принтираща информация за обект намиращ се на позицията на nIndex, всеки под сървис я импелеметира.</summary>
+	
+	///<summary>
+		///Функция принтираща информация за обект намиращ се на позицията на nIndex.
+		///Функция пренаписана от базов клас 'BaseService'.
+	///</summary>
+	/// <param name="nIndex">Позиция на елемента в масива.</param>
+	/// <param name="oArray">Масив с елементи.</param>
 	virtual void ShowElementInfoAtIndex(const int nIndex, const CTypeArray& oArray) = 0;
-	//<summary>Функция връщаща Pointer от подаден индекс като аргумент.</summary>
+	
+	///<summary>Функция връщаща Pointer от подаден индекс като аргумент.</summary>
+	/// <param name="nIndex">Позиция на елемента в масива.</param>
+	/// <param name="oArray">Масив с обекти.</param>
 	T* GetPointerAtIndex(const int nIndex, CTypeArray& oArray);
-	//<summary>Функция премахваща определен брой Pointer-и 'count'започваща от подаден като аргумент индес 'nIndex'</summary>
-	void  RemoveAt(const int nIndex, const int count, CTypeArray& oArray);
 };
 
 
@@ -45,20 +50,6 @@ T* BaseService<T>::GetPointerAtIndex(const int nIndex, CTypeArray& oArray)
 };
 
 template<class  T>
-void BaseService<T>::RemoveAt(const int nIndex, const int count, CTypeArray& oArray)
-{
-	try
-	{
-		ValidateIndex(nIndex, oArray.GetCount() - 1);
-
-		T* pCurrent = oArray[nIndex];
-		oArray.RemoveAt(nIndex, count);
-		delete pCurrent;
-		pCurrent = NULL;
-		oArray.FreeExtra();
-	}
-	catch (exception ex)
-	{
-		cout << ex.what() << endl;
-	}
-};
+BaseService<T>::BaseService() {};
+template<class  T>
+BaseService<T>::~BaseService() {};

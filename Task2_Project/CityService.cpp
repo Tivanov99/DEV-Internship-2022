@@ -5,8 +5,7 @@
 
 using namespace std;
 
-CityService::CityService()
-{};
+CityService::CityService(){};
 CityService::~CityService()
 {
 	while (oCities.GetCount() > 0)
