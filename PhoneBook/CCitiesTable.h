@@ -41,16 +41,16 @@ class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
 {
 private:
 	static const LPCSTR lpszSelectAllById;
-	const CString strSelectAll = _T("SELECT * FROM CITIES");
-	const CString strEmptySelect = _T("SELECT TOP 0 * FROM CITIES");
-	const CString strUnableToConnectServer = _T("Unable to connect to SQL Server database. Error: %d");
-	const CString strUnableToOpenSession = _T("Unable to open session. Error: %d");
+	static const LPCSTR lpszSelectAll;   
+	static const LPCSTR lpszEmptySelect;
+	static const LPCSTR lpszUnableToConnectServer;
+	static const LPCSTR lpszUnableToOpenSession ;
 	static const LPCSTR lpszErrorExecutingQuery;
 	static const LPCSTR lpszErrorInvalidQueryAcessor;
-	const CString strErrorOpeningRecord = _T("Error opening record.Error:% d");
-	const CString strErrorUpdatingRecord = _T("Error updating record.Error:% d.Query : % s");
-	const CString strErrorDeletingRecord = _T("Delete failed: 0x%X\n");
-	const CString strErrorInsertingRecord = _T("Insert failed: 0x%X\n");
+	static const LPCSTR lpszErrorOpeningRecord;
+	static const LPCSTR lpszErrorUpdatingRecord;
+	static const LPCSTR lpszErrorDeletingRecord;
+	static const LPCSTR lpszErrorInsertingRecord;
 	static const LPCSTR lpszInvalidRecordVersion;
 	
 
