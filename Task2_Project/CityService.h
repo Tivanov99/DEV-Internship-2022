@@ -60,7 +60,10 @@ public:
 	/// <param name="nNewPostalCode">Нов пощенски код.</param>
 	void ChangeCityPostalCode(CITIES& оCity, const int nNewPostalCode);
 
-	///<summary>Функция добавяща всички дефоутни елементи в подаден масив като аргумент, пренаписана от базов клас 'BaseService' </summary>
+	///<summary>
+		/// Функция добавяща всички дефоутни елементи в подаден масив като
+		/// аргумент, пренаписана от базов клас 'BaseService'.
+	///  </summary>
 	/// <param name="citiesArray">Масив в който ще се добавят всички стойности.</param>
 	void AddDefaultElements(CCitiesArray& citiesArray) override;
 

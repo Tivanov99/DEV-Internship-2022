@@ -1,6 +1,15 @@
 #include "pch.h"
 #include "PhoneNumberService.h"
 
+PhoneNumberService::PhoneNumberService()
+{
+
+};
+PhoneNumberService::~PhoneNumberService()
+{
+
+};
+
 void PhoneNumberService::SetPhoneNumber(const CString& strSorce, PHONE_NUMBERS& oPhoneNumber)
 {
 	size_t LengthOfArray = sizeof(oPhoneNumber.szPHONE_NUMBER) / sizeof(char);

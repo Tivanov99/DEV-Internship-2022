@@ -16,13 +16,8 @@ private:
 	void SetPhoneNumber(const CString& strPhoneNumber, PHONE_NUMBERS& oPhoneNumber);
 public:
 
-	PhoneNumberService()
-	{
-
-	}
-	~PhoneNumberService() {
-
-	}
+	PhoneNumberService();
+	~PhoneNumberService();
 	
 	///<summary>
 		//Функция променяща стойността на 'PHONE_NUMBER' на обект чиято текуща сойност е 'oldPhoneNumber'.

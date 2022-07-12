@@ -4,11 +4,13 @@
 
 using namespace std;
 
+PhoneTypeService::PhoneTypeService() {};
+PhoneTypeService::~PhoneTypeService() {};
 
-void PhoneTypeService::SetPhoneType(CString& strPhoneType, PHONE_TYPES& oPhone)
+void PhoneTypeService:: SetPhoneType(CString& strType, PHONE_TYPES& oPhone)
 {
 	CString strBuffer;
-	strBuffer.Format(_T("%s"), strPhoneType);
+	strBuffer.Format(_T("%s"), strType);
 
 	TCHAR* szBuffer = _tcsdup(strBuffer);
 	_tcscpy_s(oPhone.szPHONE_TYPE, szBuffer);
