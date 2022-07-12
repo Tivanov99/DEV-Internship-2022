@@ -60,14 +60,14 @@ public:
 	///  Функция която чете всики записи от таблицата "CITIES" и ги добавя в подаден като аргумент масив.
 	/// </summary>
 	/// <param name="oCitiesArray">Масив в който ще бъдат записани всички прочетени данни.</param>
-	BOOL SelectAll(CCitiesArray& oCitiesArray);
+	bool SelectAll(CCitiesArray& oCitiesArray);
 
 	/// <summary>
 	///  Функция която чете запис от таблицата "CITIES" чието ID отговаря на "lID" и го презаписва в "recCities" аргумента.
 	/// </summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	/// <param name="recCities">Референция която ще присвои резултата от функцията</param>
-	BOOL SelectWhereID(const long lID, CITIES& recCities);
+	bool SelectWhereID(const long lID, CITIES& recCities);
 
 	/// <summary>
 	///  Функция която прави промяна на запис от таблицата "CITIES" чието ID отговаря на "lID" аргумента,
@@ -75,37 +75,37 @@ public:
 	/// </summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	/// <param name="recCities">Референция която съдържа вече променените данни.</param>
-	BOOL UpdateWhereID(const long lID, const CITIES& recCities);
+	bool UpdateWhereID(const long lID, const CITIES& recCities);
 
 	/// <summary>
 	///  Функция която добавя запис подаден като аргумент към таблицата "CITIES".
 	/// </summary>
 	/// <param name="recCities">Референция която съдържа нов обект.</param>
-	BOOL Insertt(const CITIES& recCities);
+	bool Insertt(const CITIES& recCities);
 
 	/// <summary>
 	///  Функция която изтрива запис от таблицата "CITIES" който отговавя на "lID" аргумента.
 	/// </summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
-	BOOL DeleteWhereID(const long lID);
+	bool DeleteWhereID(const long lID);
 
 private:
 	/// <summary>
-	///  Функция която отваря връзка към базата.
+	///  Функция която отваря сесия и връзка към базата.
 	/// </summary>
 	/// <param name="oDataSource">Обект служещ за отваряне на връзка.</param> 
 	/// <param name="oSession">Обект служещ за отваряне на връзка.</param> 
-	BOOL ConnectoToDb(CDataSource& oDataSource, CSession& oSession);
+	BOOL OpenSessionAndConnectionToDb(CDataSource& oDataSource, CSession& oSession);
 
 	/// <summary>
 	///  Функция която създава рол-сет.
 	/// </summary>
-	CDBPropSet BuildCDBPropSet();
+	CDBPropSet GetDBPropSet();
 
 	/// <summary>
 	///  Функция която създава рол-сет предназначен за модифициране на данни.
 	/// </summary>
-	CDBPropSet BuildUpdateDBPropSet();
+	CDBPropSet GetModifyDBPropSet();
 
 	/// <summary>
 	///  Функция която изпълнява дадена заявка към отворена връзка.
@@ -120,7 +120,7 @@ private:
 	/// </summary>
 	/// <param name="oSession">Обект чрез който ще се затвори връзката към базата.</param> 
 	/// <param name="oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
-	void CloseConnection(CDataSource& oDataSource, CSession& oSession);
+	void CloseSessionAndConnection(CDataSource& oDataSource, CSession& oSession);
 
 	/// <summary>
 	///  Функция която извежда съобщение при неуспешен опит за прочитане на резултат от заявка.

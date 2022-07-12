@@ -12,7 +12,7 @@ CCitiesTable::~CCitiesTable()
 {
 };
 
-void CCitiesTable::CloseConnection(CDataSource& oDataSource, CSession& oSession)
+void CCitiesTable::CloseSessionAndConnection(CDataSource& oDataSource, CSession& oSession)
 {
 	Close();
 	oSession.Close();
@@ -33,7 +33,7 @@ void CCitiesTable::ShowErrorMessage(const HRESULT& hResult, const CString& strEr
 	AfxMessageBox(strError);
 }
 
-CDBPropSet CCitiesTable::BuildCDBPropSet()
+CDBPropSet CCitiesTable::GetDBPropSet()
 {
 	CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
 	oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65"));	// сървър
@@ -46,7 +46,7 @@ CDBPropSet CCitiesTable::BuildCDBPropSet()
 	return oDBPropSet;
 };
 
-CDBPropSet CCitiesTable::BuildUpdateDBPropSet()
+CDBPropSet CCitiesTable::GetModifyDBPropSet()
 {
 	CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
 	oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
@@ -56,9 +56,9 @@ CDBPropSet CCitiesTable::BuildUpdateDBPropSet()
 	return oUpdateDBPropSet;
 }
 
-BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession)
+bool CCitiesTable::OpenSessionAndConnectionToDb(CDataSource& oDataSource, CSession& oSession)
 {
-	CDBPropSet& oDBPropSet = BuildCDBPropSet();
+	CDBPropSet& oDBPropSet = GetDBPropSet();
 
 	// Свързваме се към базата данни
 	HRESULT hResult = oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
@@ -66,7 +66,7 @@ BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession)
 	if (FAILED(hResult))
 	{
 		AfxMessageBox(strUnableToConnectServer, hResult);
-		return FALSE;
+		return false;
 	}
 
 	// Отваряме сесия
@@ -75,37 +75,37 @@ BOOL CCitiesTable::ConnectoToDb(CDataSource& oDataSource, CSession& oSession)
 	{
 		AfxMessageBox(strUnableToOpenSession, hResult);
 		oDataSource.Close();
-		return FALSE;
+		return false;
 	}
-	return TRUE;
+	return true;
 };
 
-BOOL CCitiesTable::ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, const CString& strQuery)
+bool CCitiesTable::ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, const CString& strQuery)
 {
 	hResult = Open(oSession, strQuery);
 	if (FAILED(hResult))
 	{
 		ShowErrorMessage(hResult,strErrorExecutingQuery,strQuery);
-		return FALSE;
+		return false;
 	}
-	return TRUE;
+	return true;
 }
 
-BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
+bool CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 {
 	CDataSource oDataSource;
 	CSession oSession;
 
-	if (!ConnectoToDb(oDataSource, oSession))
-		return FALSE;
+	if (!OpenSessionAndConnectionToDb(oDataSource, oSession))
+		return false;
 
 	HRESULT hResult;
 
 	// Изпълняваме командата
 	if (!ExecuteNoneModifyQuery(hResult, oSession, strSelectAll)) 
 	{
-		CloseConnection(oDataSource, oSession);
-		return FALSE;
+		CloseSessionAndConnection(oDataSource, oSession);
+		return false;
 	}
 
 	// Прочитаме всички данни
@@ -118,28 +118,28 @@ BOOL CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 	}
 
 	// Затваряме командата, сесията и връзката с базата данни. 
-	CloseConnection(oDataSource, oSession);
+	CloseSessionAndConnection(oDataSource, oSession);
 
-	return TRUE;
+	return true;
 };
 
-BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
+bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 {
 	CDataSource oDataSource;
 	CSession oSession;
 
-	if (!ConnectoToDb(oDataSource, oSession))
-		return FALSE;
+	if (!OpenSessionAndConnectionToDb(oDataSource, oSession))
+		return false;
 
 	CString strQuery;
 	strQuery.Format(strSelectAllById.GetString(), lID);
 
-	HRESULT hResult;
+	HRESULT hResult= S_FALSE;
 
 	if (!ExecuteNoneModifyQuery(hResult, oSession, strQuery))
 	{
-		CloseConnection(oDataSource, oSession);
-		return FALSE;
+		CloseSessionAndConnection(oDataSource, oSession);
+		return false;
 	}
 
 	while (MoveNext() != DB_S_ENDOFROWSET)
@@ -147,34 +147,34 @@ BOOL CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 		recCities = m_recCITY;
 	}
 
-	CloseConnection(oDataSource, oSession);
-	return TRUE;
+	CloseSessionAndConnection(oDataSource, oSession);
+	return true;
 };
 
-BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
+bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 {
 	CDataSource oDataSource;
 	CSession oSession;
 
-	if (!ConnectoToDb(oDataSource, oSession))
-		return FALSE;
+	if (!OpenSessionAndConnectionToDb(oDataSource, oSession))
+		return false;
 
 	// Конструираме заявката
 	CString strQuery;
 	strQuery.Format(strSelectAllById.GetString(), lID);
 
 	// Настройка на типа на Rowset-а
-	CDBPropSet oUpdateDBPropSet = BuildUpdateDBPropSet();
+	CDBPropSet oUpdateDBPropSet = GetModifyDBPropSet();
 
-	HRESULT hResult;
+	HRESULT hResult = S_FALSE;;
 
 	// Изпълняваме командата
 	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
 	if (FAILED(hResult))
 	{
 		ShowErrorMessage(hResult,strErrorExecutingQuery,strQuery);
-		CloseConnection(oDataSource, oSession);
-		return FALSE;
+		CloseSessionAndConnection(oDataSource, oSession);
+		return false;
 	}
 
 	hResult = MoveFirst();
@@ -182,12 +182,12 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	if (FAILED(hResult) || hResult== DB_S_ENDOFROWSET)
 	{
 		ShowErrorMessage(hResult,strErrorOpeningRecord ,strQuery);
-		CloseConnection(oDataSource, oSession);
-		return FALSE;
+		CloseSessionAndConnection(oDataSource, oSession);
+		return false;
 	}
 
 	if (recCities.lUPDATE_COUNTER != m_recCITY.lUPDATE_COUNTER)
-		return FALSE;
+		return false;
 
 	m_recCITY.lUPDATE_COUNTER++;
 	m_recCITY = recCities;
@@ -197,24 +197,24 @@ BOOL CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	if (FAILED(hResult))
 	{
 		ShowErrorMessage(hResult,strErrorUpdatingRecord);
-		CloseConnection(oDataSource, oSession);
-		return FALSE;
+		CloseSessionAndConnection(oDataSource, oSession);
+		return false;
 	}
 
-	CloseConnection(oDataSource, oSession);
+	CloseSessionAndConnection(oDataSource, oSession);
 
-	return TRUE;
+	return true;
 };
 
-BOOL CCitiesTable::Insertt(const CITIES& recCities)
+bool CCitiesTable::Insertt(const CITIES& recCities)
 {
 	CSession oSession;
 	CDataSource oDataSource;
 
-	if (!ConnectoToDb(oDataSource, oSession))
-		return FALSE;
+	if (!OpenSessionAndConnectionToDb(oDataSource, oSession))
+		return false;
 
-	CDBPropSet oUpdatePropSet = BuildUpdateDBPropSet();
+	CDBPropSet oUpdatePropSet = GetModifyDBPropSet();
 
 	HRESULT hResult = S_FALSE;
 
@@ -222,8 +222,8 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 	if (FAILED(hResult))
 	{
 		ShowErrorMessage(hResult, strErrorExecutingQuery, strEmptySelect);
-		CloseConnection(oDataSource, oSession);
-		return FALSE;
+		CloseSessionAndConnection(oDataSource, oSession);
+		return false;
 	}
 
 	m_recCITY = recCities;
@@ -232,30 +232,30 @@ BOOL CCitiesTable::Insertt(const CITIES& recCities)
 	if (FAILED(hResult))
 	{
 		ShowErrorMessage(hResult, strErrorInsertingRecord);
-		CloseConnection(oDataSource, oSession);
-		return FALSE;
+		CloseSessionAndConnection(oDataSource, oSession);
+		return false;
 	}
 
-	CloseConnection(oDataSource, oSession);
-	return TRUE;
+	CloseSessionAndConnection(oDataSource, oSession);
+	return true;
 };
 
-BOOL CCitiesTable::DeleteWhereID(const long lID)
+bool CCitiesTable::DeleteWhereID(const long lID)
 {
 	CDataSource oDataSource;
 	CSession oSession;
 
-	if (!ConnectoToDb(oDataSource, oSession))
-		return FALSE;
+	if (!OpenSessionAndConnectionToDb(oDataSource, oSession))
+		return false;
 
 	// Конструираме заявката
 	CString strQuery;
 	strQuery.Format(strSelectAllById, lID);
 
 	// Настройка на типа на Rowset-а
-	CDBPropSet oUpdateDBPropSet = BuildUpdateDBPropSet();
+	CDBPropSet oUpdateDBPropSet = GetModifyDBPropSet();
 
-	HRESULT hResult;
+	HRESULT hResult= S_FALSE;
 
 	// Изпълняваме командата
 	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
@@ -263,8 +263,8 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 	if (FAILED(hResult))
 	{
 		ShowErrorMessage(hResult, strErrorExecutingQuery, strQuery);
-		CloseConnection(oDataSource, oSession);
-		return FALSE;
+		CloseSessionAndConnection(oDataSource, oSession);
+		return false;
 	}
 
 	hResult = MoveFirst();
@@ -272,8 +272,8 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 	if (FAILED(hResult) || hResult == DB_S_ENDOFROWSET)
 	{
 		ShowErrorMessage(hResult, strErrorOpeningRecord, strQuery);
-		CloseConnection(oDataSource, oSession);
-		return FALSE;
+		CloseSessionAndConnection(oDataSource, oSession);
+		return false;
 	}
 
 	hResult = Delete();
@@ -281,11 +281,11 @@ BOOL CCitiesTable::DeleteWhereID(const long lID)
 	if (FAILED(hResult))
 	{
 		ShowErrorMessage(hResult, strErrorDeletingRecord);
-		CloseConnection(oDataSource, oSession);
-		return FALSE;
+		CloseSessionAndConnection(oDataSource, oSession);
+		return false;
 	}
-	CloseConnection(oDataSource, oSession);
+	CloseSessionAndConnection(oDataSource, oSession);
 
-	return TRUE;
+	return true;
 };
 
