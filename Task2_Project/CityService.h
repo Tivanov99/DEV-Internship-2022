@@ -34,9 +34,9 @@ public:
 	void ChangeCityName(const CString &strCurrentCityName, const CString &strNewCityName, CCitiesArray& oCitiesArray);
 
 	///<summary>Функция променяща 'CITY_NAME' на обект подаден като аргумент.</summary>
-	/// <param name="pOldCity">Референция към обект.</param>
+	/// <param name="оOldCity">Референция към обект.</param>
 	/// <param name="newCityName">Новото име на градът.</param>
-	void ChangeCityName(CITIES& pOldCity, const CString &newCityName);
+	void ChangeCityName(CITIES& оOldCity, const CString &newCityName);
 
 	///<summary>Функция променяща 'AREA_NAME' стойността на обект чието текущо име е подадено като аргумент 'oldCityAreaName'.</summary>
 	/// <param name="newCityName">Текущото име на областта.</param>
@@ -45,11 +45,20 @@ public:
 	void ChangeCityAreaName(const CString &strCurrentCityAreaName, const CString &strNewCityAreaName, CCitiesArray& oCitiesArray);
 
 	///<summary>Функция променяща 'AREA_NAME' на обект подаден като аргумент.</summary>
-	void ChangeCityAreaName(CITIES& pOldCity, const CString &newAreaName);
-	///<summary>Функция променяща 'POSTAL_CODE' стойността на обект чието текущо име е подадено като аргумент 'cityName'.</summary>
-	void ChangeCityPosalCodeByCityName(const CString &cityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray);
+	/// <param name="pOldCity">Референция към обект.</param>
+	/// <param name="strNewAreaName">Стойност с която ще бъде подменена текущата намираща се в "szAREA_NAME".</param>
+	void ChangeCityAreaName(CITIES& oOldCity, const CString &strNewAreaName);
+
+	///<summary>Функция променяща 'POSTAL_CODE' стойността на обект чието текущо име е подадено като аргумент 'strCityName'.</summary>
+	/// <param name="strCityName">Текущото име на градът.</param>
+	/// <param name="nNewCityPosalCode">Нов пощенски код.</param>
+	/// <param name="oCitiesArray">Масив в който ще се търси обект по стоиността 'strCityName'.param>
+	void ChangeCityPosalCodeByCityName(const CString &strCityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray);
+	
 	///<summary>Функция променяща 'POSTAL_CODE' стойността на обект подаден като аргумент 'pCity'.</summary>
-	void ChangeCityPostalCode(CITIES& pCity, const int nNewPostalCode);
+	/// <param name="оCity">Референция към обект.</param>
+	/// <param name="nNewPostalCode">Нов пощенски код.</param>
+	void ChangeCityPostalCode(CITIES& оCity, const int nNewPostalCode);
 
 	///<summary>Функция добавяща всички дефоутни елементи в подаден масив като аргумент, пренаписана от базов клас 'BaseService' </summary>
 	/// <param name="citiesArray">Масив в който ще се добавят всички стойности.</param>
