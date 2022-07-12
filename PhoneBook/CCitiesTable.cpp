@@ -2,7 +2,7 @@
 #include "CCitiesTable.h"
 
 
-const LPCSTR CCitiesTable::lpszSelectAllById = _T("SELECT * FROM CITIES WHERE ID = %d");
+const LPCSTR CCitiesTable::lpszSelectAllById = "SELECT * FROM CITIES WHERE ID = %d";
 
 /////////////////////////////////////////////////////////////////////////////
 // CCitiesTable
@@ -21,16 +21,16 @@ void CCitiesTable::CloseSessionAndConnection(CDataSource& oDataSource, CSession&
 	oDataSource.Close();
 };
 
-void CCitiesTable::ShowErrorMessage(const HRESULT& hResult, const CString& strErrorMessage, const CString& strQuery )
+void CCitiesTable::ShowErrorMessage(const CString& strErrorMessage, const CString& strQuery )
 {
 	CString strError;
 	if (strQuery.GetString() != NULL)
 	{
-		strError.Format(strErrorMessage, hResult, strQuery.GetString());
+		strError.Format(strErrorMessage, strQuery.GetString());
 	}
 	else
 	{
-		strError.Format(strErrorMessage, hResult);
+		strError.Format(strErrorMessage);
 	}
 	AfxMessageBox(strError);
 }

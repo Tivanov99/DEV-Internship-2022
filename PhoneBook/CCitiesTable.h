@@ -138,7 +138,7 @@ private:
 	/// <param name="hResult">Обект съдържащ съобщението на възникналата грешка.</param> 
 	/// <param name="strErrorMessage">Обект който съдържа подробно разяснение за текущата грешка.</param>  
 	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
-	void ShowErrorMessage(const HRESULT& hResult, const CString& strErrorMessage, const CString& strQuery = NULL);
+	void ShowErrorMessage(const CString& strErrorMessage, const CString& strQuery = NULL);
 
 	// Overrides
 	// -------------
