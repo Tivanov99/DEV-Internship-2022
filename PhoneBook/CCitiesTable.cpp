@@ -92,12 +92,12 @@ bool CCitiesTable::ExecuteNoneModifyQuery(CSession& oSession, const CString& str
 	return true;
 }
 
-bool CCitiesTable::ExecuteModifyQuery(HRESULT& hResult, CSession& oSession, const CString& strQuery, CDBPropSet oPropSet)
+bool CCitiesTable::ExecuteModifyQuery(CSession& oSession, const CString& strQuery, CDBPropSet oPropSet)
 {
-	hResult = Open(oSession, strQuery, &oPropSet);
+	HRESULT hResult = Open(oSession, strQuery, &oPropSet);
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(hResult, strErrorExecutingQuery, strQuery);
+		ShowErrorMessage(strErrorExecutingQuery, strQuery);
 		return false;
 	}
 	return true;

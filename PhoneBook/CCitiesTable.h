@@ -123,7 +123,7 @@ private:
 	/// <param name="hResult">Обект съдържащ текущото състояние на заявката</param> 
 	/// <param name="oSession">Обект чрез който ще изпълни връзката към базата.</param> 
 	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
-	bool ExecuteModifyQuery(HRESULT& hResult, CSession& oSession, const CString& strQuery, CDBPropSet oPropSet);
+	bool ExecuteModifyQuery(CSession& oSession, const CString& strQuery, CDBPropSet oPropSet);
 
 	/// <summary>
 	///  Функция която затваря връзката към базата.
