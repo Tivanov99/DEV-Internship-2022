@@ -40,7 +40,7 @@ protected:
 class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
 {
 private:
-	const CString strSelectAllById = _T("SELECT * FROM CITIES WHERE ID = %d");
+	static const LPCSTR lpszSelectAllById;
 	const CString strSelectAll = _T("SELECT * FROM CITIES");
 	const CString strEmptySelect = _T("SELECT TOP 0 * FROM CITIES");
 	const CString strUnableToConnectServer = _T("Unable to connect to SQL Server database. Error: %d");
@@ -54,7 +54,9 @@ private:
 public:
 	CCitiesTable();
 	~CCitiesTable();
-
+	
+	// Methods
+	// -------------
 public:
 	/// <summary>
 	///  Функция която чете всики записи от таблицата "CITIES" и ги добавя в подаден като аргумент масив.
@@ -81,7 +83,7 @@ public:
 	///  Функция която добавя запис подаден като аргумент към таблицата "CITIES".
 	/// </summary>
 	/// <param name="recCities">Референция която съдържа нов обект.</param>
-	bool Insertt(const CITIES& recCities);
+	bool Insert(const CITIES& recCities);
 
 	/// <summary>
 	///  Функция която изтрива запис от таблицата "CITIES" който отговавя на "lID" аргумента.
@@ -137,4 +139,11 @@ private:
 	/// <param name="strErrorMessage">Обект който съдържа подробно разяснение за текущата грешка.</param>  
 	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
 	void ShowErrorMessage(const HRESULT& hResult, const CString& strErrorMessage, const CString& strQuery = NULL);
+
+	// Overrides
+	// -------------
+
+	// Members
+	// -------------
+
 };

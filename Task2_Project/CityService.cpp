@@ -8,18 +8,24 @@ using namespace std;
 CityService::CityService(){};
 CityService::~CityService()
 {
+	//todo: use for 
 	while (citiesArray.GetCount() > 0)
 	{
 		delete citiesArray.GetAt(citiesArray.GetCount() - 1);
+		citiesArray[i] = NULL;
 	}
 	citiesArray.RemoveAll();
 };	
 
 CITIES* CityService::GetByAreaName(const CString& strCityAreaName)
 {
-	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
+	for (INT_PTR i = 0; i < m_oCitiesArray.GetCount(); i++)
 	{
+		//TODO: CHECLK FOR NULL
 		CITIES* pCity = citiesArray.GetAt(i);
+		if (pCity == NULL)
+			continue;
+
 		CString srtCurrentCityName;
 		srtCurrentCityName.Format(_T("%s"), pCity->szAREA_NAME);
 		if (srtCurrentCityName != strCityAreaName)
@@ -75,8 +81,8 @@ void CityService::SetAreaName(const CString& strAreaName, CITIES& oCity)
 	TCHAR* szBuffer = _tcsdup(strAreaName);
 	_tcscpy_s(oCity.szAREA_NAME, szBuffer);
 };
-
-void CityService::SetPostalCode(const long lSorce, CITIES& oCity)
+//TODO: REMOVE
+void CitySeEMOrvice::SetPostalCode(const long lSorce, CITIES& oCity)
 {
 	if (lSorce > 0)
 		oCity.lPOSTAL_CODE = lSorce;
@@ -91,9 +97,10 @@ void CityService::AddDefaultElements()
 	SetAreaName(strBurgasAreaName, oBurgasCity);
 	SetPostalCode(8000, oBurgasCity);
 
+	//TODO: CHECK HERE, SKIP CSTRING OBEJCTS
 	CITIES oVarnaCity;
-	CString strVarnaCityName = _T("Varna");
-	CString strVarnaAreaName = _T("Varna");
+	consdCString strVarnaCityName = _T("Varna");
+	consdCString strVarnaAreaName = _T("Varna");
 	SetCityName(strVarnaCityName, oVarnaCity);
 	SetAreaName(strVarnaAreaName, oVarnaCity);
 	SetPostalCode(9000, oVarnaCity);

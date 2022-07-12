@@ -2,6 +2,8 @@
 #include "CCitiesTable.h"
 
 
+const LPCSTR CCitiesTable::lpszSelectAllById = _T("SELECT * FROM CITIES WHERE ID = %d");
+
 /////////////////////////////////////////////////////////////////////////////
 // CCitiesTable
 
@@ -44,7 +46,7 @@ CDBPropSet CCitiesTable::GetDBPropSet()const
 	oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4));
 
 	return oDBPropSet;
-};
+}
 
 CDBPropSet CCitiesTable::GetModifyDBPropSet() const
 {
@@ -189,7 +191,7 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	hResult = MoveFirst();
 
-	if (FAILED(hResult) || hResult== DB_S_ENDOFROWSET)
+	if (FAILED(hResult))
 	{
 		ShowErrorMessage(hResult,strErrorOpeningRecord ,strQuery);
 		CloseSessionAndConnection(oDataSource, oSession);
@@ -197,6 +199,7 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	}
 
 	if (recCities.lUPDATE_COUNTER != m_recCITY.lUPDATE_COUNTER)
+		//tODO: return message
 		return false;
 
 	m_recCITY.lUPDATE_COUNTER++;
@@ -216,7 +219,7 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	return true;
 };
 
-bool CCitiesTable::Insertt(const CITIES& recCities)
+bool CCitiesTable::Insert(const CITIES& recCities)
 {
 	CSession oSession;
 	CDataSource oDataSource;
@@ -237,7 +240,8 @@ bool CCitiesTable::Insertt(const CITIES& recCities)
 
 	m_recCITY = recCities;
 
-	hResult = Insert(ModifyColumnCode);
+	//TODO check.
+	hResult = __super::Insert(ModifyColumnCode);
 	if (FAILED(hResult))
 	{
 		ShowErrorMessage(hResult, strErrorInsertingRecord);
@@ -274,9 +278,9 @@ bool CCitiesTable::DeleteWhereID(const long lID)
 		return false;
 	}
 
-	hResult = MoveFirst();
-
-	if (FAILED(hResult) || hResult == DB_S_ENDOFROWSET)
+	
+	//TODO: remove hResult.
+	if (MoveFirst() != S_OK)
 	{
 		ShowErrorMessage(hResult, strErrorOpeningRecord, strQuery);
 		CloseSessionAndConnection(oDataSource, oSession);
