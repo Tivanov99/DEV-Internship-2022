@@ -138,26 +138,27 @@ bool CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 	if (FAILED(hResult))
 	{
 		ShowErrorMessage(lpszErrorOpeningRecord);
+		CloseSessionAndConnection(oDataSource,oSession);
 		return false;
 	}
 
 	// Прочитаме всички данни
-		while (hResult != DB_S_ENDOFROWSET)
+	while (hResult != DB_S_ENDOFROWSET)
+	{
+		CITIES* pCurrentCity = new CITIES;
+		*pCurrentCity = m_recCITY;
+		oCitiesArray.Add(pCurrentCity);
+
+		hResult = MoveNext();
+
+		if (FAILED(hResult) && hResult!= DB_S_ENDOFROWSET)
 		{
-			CITIES* pCurrentCity = new CITIES;
-			*pCurrentCity = m_recCITY;
-			oCitiesArray.Add(pCurrentCity);
-
-			hResult = MoveNext();
-
-			if (FAILED(hResult) && hResult!= DB_S_ENDOFROWSET)
-			{
-				ShowErrorMessage(lpszErrorOpeningRecord);
-				CloseSessionAndConnection(oDataSource, oSession);
-				return false;
-			}
-			// Logic with the result
+			ShowErrorMessage(lpszErrorOpeningRecord);
+			CloseSessionAndConnection(oDataSource, oSession);
+			return false;
 		}
+		// Logic with the result
+	}
 
 	// Затваряме командата, сесията и връзката с базата данни. 
 	CloseSessionAndConnection(oDataSource, oSession);
@@ -182,12 +183,13 @@ bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 		return false;
 	}
 
-
-	//TODO: CHECH HERE
-	while (MoveNext() != DB_S_ENDOFROWSET)
+	if (FAILED(MoveFirst()))
 	{
-		recCities = m_recCITY;
+		ShowErrorMessage(lpszErrorOpeningRecord);
+		CloseSessionAndConnection(oDataSource, oSession);
+		return false;
 	}
+		recCities = m_recCITY;
 
 	CloseSessionAndConnection(oDataSource, oSession);
 	return true;
