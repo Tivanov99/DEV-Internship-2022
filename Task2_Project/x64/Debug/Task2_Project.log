@@ -8,6 +8,47 @@ C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(3,10): warning
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(28,45): error C2660: 'PhoneTypeService::AddDefaultElements': function does not take 1 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(23,7): message : see declaration of 'PhoneTypeService::AddDefaultElements'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(30,52): error C2660: 'PhoneTypeService::ShowElementInfoAtIndex': function does not take 2 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(31,7): message : see declaration of 'PhoneTypeService::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(34,31): error C2039: 'GetPointerAtIndex': is not a member of 'PhoneTypeService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(5): message : see declaration of 'PhoneTypeService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(36,10): error C2039: 'GetPointerAtIndex': is not a member of 'PhoneTypeService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(5): message : see declaration of 'PhoneTypeService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(44,45): error C2660: 'PhoneNumberService::AddDefaultElements': function does not take 1 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(53,7): message : see declaration of 'PhoneNumberService::AddDefaultElements'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(48,52): error C2660: 'PhoneNumberService::ShowElementInfoAtIndex': function does not take 2 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(46,7): message : see declaration of 'PhoneNumberService::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(54,52): error C2660: 'PhoneNumberService::ShowElementInfoAtIndex': function does not take 2 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(46,7): message : see declaration of 'PhoneNumberService::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(59,52): error C2660: 'PhoneNumberService::ShowElementInfoAtIndex': function does not take 2 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(46,7): message : see declaration of 'PhoneNumberService::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(65,18): error C2039: 'GetPointerAtIndex': is not a member of 'CityService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(7): message : see declaration of 'CityService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(70,77): error C2661: 'CityService::ChangeCityName': no overloaded function takes 3 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(72,48): error C2660: 'CityService::ShowElementInfoAtIndex': function does not take 2 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(72,7): message : see declaration of 'CityService::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(78,48): error C2660: 'CityService::ShowElementInfoAtIndex': function does not take 2 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(72,7): message : see declaration of 'CityService::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(88,48): error C2660: 'CityService::ShowElementInfoAtIndex': function does not take 2 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(72,7): message : see declaration of 'CityService::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(93,81): error C2661: 'CityService::ChangeCityAreaName': no overloaded function takes 3 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(95,48): error C2660: 'CityService::ShowElementInfoAtIndex': function does not take 2 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(72,7): message : see declaration of 'CityService::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(101,78): error C2660: 'CityService::ChangeCityPosalCodeByCityName': function does not take 3 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(56,7): message : see declaration of 'CityService::ChangeCityPosalCodeByCityName'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(103,48): error C2660: 'CityService::ShowElementInfoAtIndex': function does not take 2 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(72,7): message : see declaration of 'CityService::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(107,48): error C2660: 'CityService::ShowElementInfoAtIndex': function does not take 2 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(72,7): message : see declaration of 'CityService::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(115,41): error C2660: 'CityService::AddDefaultElements': function does not take 1 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(67,7): message : see declaration of 'CityService::AddDefaultElements'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(118,48): error C2660: 'CityService::ShowElementInfoAtIndex': function does not take 2 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(72,7): message : see declaration of 'CityService::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(119,48): error C2660: 'CityService::ShowElementInfoAtIndex': function does not take 2 arguments
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(72,7): message : see declaration of 'CityService::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(123,26): error C2039: 'GetPointerAtIndex': is not a member of 'CityService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(7): message : see declaration of 'CityService'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(159,23): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
-  Task2_Project.vcxproj -> C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\Task2_Project.exe

@@ -17,7 +17,7 @@ void PhoneTypeService:: SetPhoneType(CString& strType, PHONE_TYPES& oPhone)
 };
 
 
-void PhoneTypeService::ShowElementInfoAtIndex(const int nIndex, const CPhoneTypesArray& oArray)
+void PhoneTypeService::ShowElementInfoAtIndex(const int nIndex)
 {
 		PHONE_TYPES* pTemp = oArray.GetAt(nIndex);
 		if (pTemp == NULL)
@@ -25,7 +25,7 @@ void PhoneTypeService::ShowElementInfoAtIndex(const int nIndex, const CPhoneType
 
 		cout << "Selected item info: " << "memory address: " << &pTemp << " value:" <<  endl;
 };
-void PhoneTypeService::AddDefaultElements(CPhoneTypesArray& oArray)
+void PhoneTypeService::AddDefaultElements()
 {
 		PHONE_TYPES oMobilePhoneType;
 		CString strMobile = _T("mobile");

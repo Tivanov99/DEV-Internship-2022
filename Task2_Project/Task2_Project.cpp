@@ -25,15 +25,11 @@ using namespace std;
 void ManagePhoneTypes() {
 	CPhoneTypesArray oPhoneTypesArray;
 	PhoneTypeService service;
-	service.AddDefaultElements(oPhoneTypesArray);
+	service.AddDefaultElements();
 
-	service.ShowElementInfoAtIndex(0, oPhoneTypesArray);
+	service.ShowElementInfoAtIndex(0);
 
 	//service.RemoveAt(0, 2, oPhoneTypesArray);
-
-	PHONE_TYPES* pTemp = service.GetPointerAtIndex(0, oPhoneTypesArray);
-
-	service.GetPointerAtIndex(17, oPhoneTypesArray);
 }
 
 void ManagePhoneNumbers() {
@@ -41,70 +37,66 @@ void ManagePhoneNumbers() {
 
 	CPhoneNumbersArray oPhoneTypesArray;
 
-	service.AddDefaultElements(oPhoneTypesArray);
+	service.AddDefaultElements();
 
-	//service.RemoveAt(0, 2, oPhoneTypesArray);
-
-	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
+	service.ShowElementInfoAtIndex(2);
 
 	CString strNewPhoneNumber = _T("0888888888");
 
 	PHONE_NUMBERS pPhoneNumber = *oPhoneTypesArray[0];
 	service.ChangePhoneNumber(pPhoneNumber,strNewPhoneNumber);
-	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
+	service.ShowElementInfoAtIndex(2);
 
 	CString strOldPhoneNumber = _T("0886372847");
 	CString strPhoneNumber = _T("0999999999");
 	service.ChangePhoneNumber(strOldPhoneNumber, strPhoneNumber, oPhoneTypesArray);
-	service.ShowElementInfoAtIndex(2, oPhoneTypesArray);
+	service.ShowElementInfoAtIndex(2);
 }
 
-void CityNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
-
-	CITIES* pCity = NULL;
-	pCity = service.GetPointerAtIndex(2, oCitiesArray);
-
+void CityNameChanging(CityService& service, CCitiesArray& oCitiesArray)
+{
 	CString strRuseCityOldName = _T("Ruse");
 	CString strRuseCityNewName = _T("RuseFirst");
 
-	service.ChangeCityName(strRuseCityOldName, strRuseCityNewName, oCitiesArray);
+	service.ChangeCityName(strRuseCityOldName, strRuseCityNewName);
 
-	service.ShowElementInfoAtIndex(4, oCitiesArray);
+	service.ShowElementInfoAtIndex(4);
 
 	CString strRuseCitySecondNewName = _T("RuseSecond");
 	CITIES oCity = *oCitiesArray[2];
 	service.ChangeCityName(oCity, strRuseCitySecondNewName);
 
-	service.ShowElementInfoAtIndex(2, oCitiesArray);
+	service.ShowElementInfoAtIndex(2);
 }
 
-void CityAreaNameChanging(CityService& service, CCitiesArray& oCitiesArray) {
+void CityAreaNameChanging(CityService& service)
+{
 	CITIES oCity;
 	oCity = *oCitiesArray[2];
 
 	CString strCityAreaName = _T("RunskaFirst");
 	service.ChangeCityAreaName(oCity, strCityAreaName);
 
-	service.ShowElementInfoAtIndex(2, oCitiesArray);
+	service.ShowElementInfoAtIndex(2);
 
 	CString strOldCityAreaName = _T("RunskaFirst");
 	CString strNewCityAreaName = _T("RunskaSecond");
 
-	service.ChangeCityAreaName(strOldCityAreaName, strNewCityAreaName, oCitiesArray);
+	service.ChangeCityAreaName(strOldCityAreaName, strNewCityAreaName);
 
-	service.ShowElementInfoAtIndex(2, oCitiesArray);
+	service.ShowElementInfoAtIndex(2);
 }
 
-void CityPostalCodeChanging(CityService& service, CCitiesArray& oCitiesArray)
+void CityPostalCodeChanging(CityService& service)
 {
 	CString strRuseCityOldName = _T("RuseSecond");
-	service.ChangeCityPosalCodeByCityName(strRuseCityOldName, 9999, oCitiesArray);
+	service.ChangeCityPosalCodeByCityName(strRuseCityOldName, 9999);
 
-	service.ShowElementInfoAtIndex(2, oCitiesArray);
+	service.ShowElementInfoAtIndex(2);
 
 	CITIES oCity = *oCitiesArray[2];
 	service.ChangeCityPostalCode(oCity, 11111);
-	service.ShowElementInfoAtIndex(2, oCitiesArray);
+	service.ShowElementInfoAtIndex(2);
 }
 
 void ManageCities() {
@@ -112,19 +104,19 @@ void ManageCities() {
 
 	CCitiesArray oCitiesArray;
 
-	service.AddDefaultElements(oCitiesArray);
+	service.AddDefaultElements();
 
 	//service.RemoveAt(0, 2, oCitiesArray);
-	service.ShowElementInfoAtIndex(0, oCitiesArray);
-	service.ShowElementInfoAtIndex(1, oCitiesArray);
+	service.ShowElementInfoAtIndex(0);
+	service.ShowElementInfoAtIndex(1);
 	CityNameChanging(service, oCitiesArray);
 
 
-	CITIES* pTemp = service.GetPointerAtIndex(0, oCitiesArray);
+	CITIES* pTemp = service.GetPointerAtIndex(0);
 
 
-	CityAreaNameChanging(service, oCitiesArray);
-	CityPostalCodeChanging(service, oCitiesArray);
+	CityAreaNameChanging(service);
+	CityPostalCodeChanging(service);
 }
 
 

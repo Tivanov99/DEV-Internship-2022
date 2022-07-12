@@ -9,6 +9,8 @@ private:
 	/// <param name="strType">Вид телефонен номер.</param>
 	/// <param name="oPhone">Референция към обект.</param>
 	void SetPhoneType(CString& strType, PHONE_TYPES& oPhone);
+
+	CPhoneTypesArray oArray;
 public:
 	PhoneTypeService();
 	~PhoneTypeService();
@@ -18,7 +20,7 @@ public:
 		/// Функция пренаписана от базов клас 'BaseService'.
 	/// </summary>
 	///<param name="citiesArray">Масив в който ще се добавят всички стойности.</param>
-	void AddDefaultElements(CPhoneTypesArray& oArray) override;
+	void AddDefaultElements() override;
 
 	///<summary>
 		///Функция принтираща информация за обект намиращ се на позицията на nIndex.
@@ -26,6 +28,6 @@ public:
 	///</summary>
 	/// <param name="nIndex">Позиция на елемента в масива.</param>
 	/// <param name="oArray">Масив с елементи.</param>
-	void ShowElementInfoAtIndex(const int nIndex, const CPhoneTypesArray& oArray) override;
+	void ShowElementInfoAtIndex(const int nIndex) override;
 };
 

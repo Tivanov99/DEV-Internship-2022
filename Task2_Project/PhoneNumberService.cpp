@@ -21,7 +21,7 @@ void PhoneNumberService::SetPhoneNumber(const CString& strSorce, PHONE_NUMBERS& 
 	_tcscpy_s(oPhoneNumber.szPHONE_NUMBER, szBuffer);
 };
 
-void PhoneNumberService::AddDefaultElements(CPhoneNumbersArray& oArray) {
+void PhoneNumberService::AddDefaultElements() {
 	try
 	{
 		CString strFirstPhoneNumber = _T("0893668829");
@@ -83,7 +83,7 @@ void PhoneNumberService::AddDefaultElements(CPhoneNumbersArray& oArray) {
 	}
 }
 
-void PhoneNumberService::ShowElementInfoAtIndex(const int nIndex, const CPhoneNumbersArray& oArray) {
+void PhoneNumberService::ShowElementInfoAtIndex(const int nIndex) {
 
 	if (nIndex > oArray.GetCount() - 1)
 		return;

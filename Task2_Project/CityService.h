@@ -26,6 +26,12 @@ private:
 public:
 	CityService();
 	~CityService();
+
+	CITIES* GetByAreaName(const CString& strCityAreaName);
+
+	CITIES* GetByCityName(const CString& strCityName);
+
+	CITIES* GetByPostalCode(const long lPostalCode);
 	
 	///<summary>Функция променяща 'CITY_NAME' стойността на обект чието текущо име е подадено като аргумент 'strCurrentCityName'.</summary>
 	/// <param name="strCurrentCityName">Текущото име на градът.</param>
@@ -34,9 +40,9 @@ public:
 	void ChangeCityName(const CString &strCurrentCityName, const CString &strNewCityName);
 
 	///<summary>Функция променяща 'CITY_NAME' на обект подаден като аргумент.</summary>
-	/// <param name="оOldCity">Референция към обект.</param>
+	/// <param name="оCity">Референция към обект.</param>
 	/// <param name="newCityName">Новото име на градът.</param>
-	void ChangeCityName(CITIES& оOldCity, const CString &newCityName);
+	void ChangeCityName(CITIES& оCity, const CString &newCityName);
 
 	///<summary>Функция променяща 'AREA_NAME' стойността на обект чието текущо име е подадено като аргумент 'oldCityAreaName'.</summary>
 	/// <param name="newCityName">Текущото име на областта.</param>
@@ -45,9 +51,9 @@ public:
 	void ChangeCityAreaName(const CString &strCurrentCityAreaName, const CString &strNewCityAreaName);
 
 	///<summary>Функция променяща 'AREA_NAME' на обект подаден като аргумент.</summary>
-	/// <param name="pOldCity">Референция към обект.</param>
+	/// <param name="oCity">Референция към обект.</param>
 	/// <param name="strNewAreaName">Стойност с която ще бъде подменена текущата намираща се в "szAREA_NAME".</param>
-	void ChangeCityAreaName(CITIES& oOldCity, const CString &strNewAreaName);
+	void ChangeCityAreaName(CITIES& oCity, const CString &strNewAreaName);
 
 	///<summary>Функция променяща 'POSTAL_CODE' стойността на обект чието текущо име е подадено като аргумент 'strCityName'.</summary>
 	/// <param name="strCityName">Текущото име на градът.</param>

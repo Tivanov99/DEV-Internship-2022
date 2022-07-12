@@ -14,6 +14,8 @@ private:
 	/// <param name="strPhoneNumber">Телефонен номер.</param>
 	/// <param name="oPhoneNumber">Референция към обект.</param>
 	void SetPhoneNumber(const CString& strPhoneNumber, PHONE_NUMBERS& oPhoneNumber);
+
+	CPhoneNumbersArray oArray;
 public:
 
 	PhoneNumberService();
@@ -41,13 +43,13 @@ public:
 	///</summary>
 	/// <param name="оnIndex">Позиция на елемента в масива.</param>
 	/// <param name="оoArray">Масив с елементи.</param>
-	void ShowElementInfoAtIndex(const int nIndex, const CPhoneNumbersArray& oArray) override;
+	void ShowElementInfoAtIndex(const int nIndex) override;
 	
 	///<summary>
 		/// Функция добавяща всички дефоутни елементи в подаден масив като аргумент.
 		/// Функция пренаписана от базов клас 'BaseService'.
 	/// </summary>
 	///<param name="citiesArray">Масив в който ще се добавят всички стойности.</param>
-	void AddDefaultElements(CPhoneNumbersArray& citiesArray) override;
+	void AddDefaultElements() override;
 };
 

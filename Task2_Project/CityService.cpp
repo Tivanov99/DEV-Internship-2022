@@ -15,6 +15,47 @@ CityService::~CityService()
 	oCities.RemoveAll();
 };
 
+CITIES* CityService::GetByAreaName(const CString& strCityAreaName)
+{
+	for (INT_PTR i = 0; i < oCities.GetCount(); i++)
+	{
+		CITIES* pCity = oCities.GetAt(i);
+		CString srtCurrentCityName;
+		srtCurrentCityName.Format(_T("%s"), pCity->szAREA_NAME);
+		if (srtCurrentCityName != strCityAreaName)
+			continue;
+
+		return pCity;
+	}
+};
+
+CITIES* CityService::GetByCityName(const CString& strCityName)
+{
+	for (INT_PTR i = 0; i < oCities.GetCount(); i++)
+	{
+		CITIES* pCity = oCities.GetAt(i);
+		CString srtCurrentCityName;
+		srtCurrentCityName.Format(_T("%s"), pCity->szAREA_NAME);
+		if (srtCurrentCityName != strCityName)
+			continue;
+
+		return pCity;
+	}
+};
+
+CITIES* CityService::GetByPostalCode(const long lPostalCode)
+{
+	for (INT_PTR i = 0; i < oCities.GetCount(); i++)
+	{
+		CITIES* pCity = oCities.GetAt(i);
+		
+		if (pCity->lPOSTAL_CODE != lPostalCode)
+			continue;
+
+		return pCity;
+	}
+};
+
 void CityService::SetCityName(const CString& szSorce, CITIES& city)
 {
 	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(char);
