@@ -3,7 +3,10 @@
 
 
 const LPCSTR CCitiesTable::lpszSelectAllById = "SELECT * FROM CITIES WHERE ID = %d";
-
+const LPCSTR CCitiesTable::lpszInvalidRecordVersion = "Invalid version of current record! Please reload the record again.";
+const LPCSTR CCitiesTable::lpszErrorExecutingQuery = "Error executing query.Error:% d.Query : % s";
+const LPCSTR CCitiesTable ::lpszErrorInvalidQueryAcessor  = 
+	"Invalid query accessor! Use 0 for non-record-changing queries or 1 for record-changing queries";
 /////////////////////////////////////////////////////////////////////////////
 // CCitiesTable
 
@@ -21,16 +24,16 @@ void CCitiesTable::CloseSessionAndConnection(CDataSource& oDataSource, CSession&
 	oDataSource.Close();
 };
 
-void CCitiesTable::ShowErrorMessage(const CString& strErrorMessage, const CString& strQuery )
+void CCitiesTable::ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery)
 {
 	CString strError;
 	if (strQuery.GetString() != NULL)
 	{
-		strError.Format(strErrorMessage, strQuery.GetString());
+		strError.Format((CString)strErrorMessage, strQuery.GetString());
 	}
 	else
 	{
-		strError.Format(strErrorMessage);
+		strError.Format((CString)strErrorMessage);
 	}
 	AfxMessageBox(strError);
 }
@@ -82,22 +85,37 @@ bool CCitiesTable::OpenSessionAndConnectionToDb(CDataSource& oDataSource, CSessi
 	return true;
 };
 
-bool CCitiesTable::ExecuteNoneModifyQuery(CSession& oSession, const CString& strQuery)
+bool CCitiesTable::ExecuteNoneModifyQuery(CSession& oSession, const CString& strQuery, const int nQueryAccessor)
 {
-	if (FAILED(Open(oSession, strQuery)))
+	if (nQueryAccessor == NoneModifyColumnCode)
 	{
-		ShowErrorMessage(strErrorExecutingQuery,strQuery);
-		return false;
+		if (FAILED(Open(oSession, strQuery)))
+		{
+			ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
+			return false;
+		}
+		return true;
 	}
-	return true;
+	else if (nQueryAccessor == ModifyColumnCode)
+	{
+		CDBPropSet oUpdateDBPropSet = GetModifyDBPropSet();
+		if (FAILED(Open(oSession, strQuery,&oUpdateDBPropSet)))
+		{
+			ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
+			return false;
+		}
+		return true;
+	}
+	ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
+	return false;
 }
 
-bool CCitiesTable::ExecuteModifyQuery(CSession& oSession, const CString& strQuery, CDBPropSet oPropSet)
+bool CCitiesTable::ExecuteModifyQuery(CSession& oSession, const CString& strQuery, CDBPropSet oPropSet = null)
 {
 	HRESULT hResult = Open(oSession, strQuery, &oPropSet);
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(strErrorExecutingQuery, strQuery);
+		ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
 		return false;
 	}
 	return true;
@@ -111,10 +129,8 @@ bool CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 	if (!OpenSessionAndConnectionToDb(oDataSource, oSession))
 		return false;
 
-	HRESULT hResult;
-
 	// Изпълняваме командата
-	if (!ExecuteNoneModifyQuery(hResult, oSession, strSelectAll)) 
+	if (!ExecuteNoneModifyQuery(oSession, strSelectAll))
 	{
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
@@ -144,11 +160,9 @@ bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 		return false;
 
 	CString strQuery;
-	strQuery.Format(strSelectAllById.GetString(), lID);
+	strQuery.Format((CString)lpszSelectAllById, lID);
 
-	HRESULT hResult= S_FALSE;
-
-	if (!ExecuteNoneModifyQuery(hResult, oSession, strQuery))
+	if (!ExecuteNoneModifyQuery(oSession, strQuery))
 	{
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
@@ -173,33 +187,34 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	// Конструираме заявката
 	CString strQuery;
-	strQuery.Format(strSelectAllById.GetString(), lID);
+	strQuery.Format((CString)lpszSelectAllById, lID);
 
 	// Настройка на типа на Rowset-а
 	CDBPropSet oUpdateDBPropSet = GetModifyDBPropSet();
 
-	HRESULT hResult = S_FALSE;;
 
 	// Изпълняваме командата
-	if (!ExecuteModifyQuery(hResult ,oSession, strQuery, oUpdateDBPropSet))
+	if (!ExecuteModifyQuery(oSession, strQuery, oUpdateDBPropSet))
 	{
-		ShowErrorMessage(hResult,strErrorExecutingQuery,strQuery);
+		ShowErrorMessage((CString)strErrorExecutingQuery, strQuery);
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
 	}
+	HRESULT hResult = S_FALSE;
 
 	hResult = MoveFirst();
 
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(hResult,strErrorOpeningRecord ,strQuery);
+		ShowErrorMessage(strErrorOpeningRecord, strQuery);
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
 	}
 
 	if (recCities.lUPDATE_COUNTER != m_recCITY.lUPDATE_COUNTER)
 		//tODO: return message
-		return false;
+		ShowErrorMessage(lpszInvalidRecordVersion);
+	return false;
 
 	m_recCITY.lUPDATE_COUNTER++;
 	m_recCITY = recCities;
@@ -208,7 +223,7 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(hResult,strErrorUpdatingRecord);
+		ShowErrorMessage(strErrorUpdatingRecord);
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
 	}
@@ -230,9 +245,9 @@ bool CCitiesTable::Insert(const CITIES& recCities)
 
 	HRESULT hResult = S_FALSE;
 
-	if (!ExecuteModifyQuery(hResult, oSession, strEmptySelect, oUpdatePropSet))
+	if (!ExecuteModifyQuery(oSession, strEmptySelect, oUpdatePropSet))
 	{
-		ShowErrorMessage(hResult, strErrorExecutingQuery, strEmptySelect);
+		ShowErrorMessage(strErrorExecutingQuery, strEmptySelect);
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
 	}
@@ -243,7 +258,7 @@ bool CCitiesTable::Insert(const CITIES& recCities)
 	hResult = __super::Insert(ModifyColumnCode);
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(hResult, strErrorInsertingRecord);
+		ShowErrorMessage(strErrorInsertingRecord);
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
 	}
@@ -262,26 +277,26 @@ bool CCitiesTable::DeleteWhereID(const long lID)
 
 	// Конструираме заявката
 	CString strQuery;
-	strQuery.Format(strSelectAllById, lID);
+	strQuery.Format(lpszSelectAllById, lID);
 
 	// Настройка на типа на Rowset-а
 	CDBPropSet oUpdateDBPropSet = GetModifyDBPropSet();
 
-	HRESULT hResult= S_FALSE;
+	HRESULT hResult = S_FALSE;
 
 	// Изпълняваме командата
-	if (!ExecuteModifyQuery(hResult, oSession, strEmptySelect, oUpdateDBPropSet))
+	if (!ExecuteModifyQuery(oSession, strEmptySelect, oUpdateDBPropSet))
 	{
-		ShowErrorMessage(hResult, strErrorExecutingQuery, strQuery);
+		ShowErrorMessage(strErrorExecutingQuery, strQuery);
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
 	}
 
-	
+
 	//TODO: remove hResult.
 	if (MoveFirst() != S_OK)
 	{
-		ShowErrorMessage(hResult, strErrorOpeningRecord, strQuery);
+		ShowErrorMessage(strErrorOpeningRecord, strQuery);
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
 	}
@@ -290,7 +305,7 @@ bool CCitiesTable::DeleteWhereID(const long lID)
 
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(hResult, strErrorDeletingRecord);
+		ShowErrorMessage(strErrorDeletingRecord);
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
 	}

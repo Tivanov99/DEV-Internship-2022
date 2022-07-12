@@ -250,7 +250,7 @@ void CPhoneBookApp::PreLoadState()
 	recCity.lPOSTAL_CODE = lPostalCode;
 	recCity.lUPDATE_COUNTER = 0;
 
-	bool bIsInserted = ÓCitiesTable.Insertt(recCity);
+	bool bIsInserted = ÓCitiesTable.Insert(recCity);
 	if (!bIsInserted)
 	{
 		CString strErrorMessage = _T("Invalid 'Insert' operation");

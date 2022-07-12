@@ -45,11 +45,14 @@ private:
 	const CString strEmptySelect = _T("SELECT TOP 0 * FROM CITIES");
 	const CString strUnableToConnectServer = _T("Unable to connect to SQL Server database. Error: %d");
 	const CString strUnableToOpenSession = _T("Unable to open session. Error: %d");
-	const CString strErrorExecutingQuery = _T("Error executing query.Error:% d.Query : % s");
+	static const LPCSTR lpszErrorExecutingQuery;
+	static const LPCSTR lpszErrorInvalidQueryAcessor;
 	const CString strErrorOpeningRecord = _T("Error opening record.Error:% d");
 	const CString strErrorUpdatingRecord = _T("Error updating record.Error:% d.Query : % s");
 	const CString strErrorDeletingRecord = _T("Delete failed: 0x%X\n");
 	const CString strErrorInsertingRecord = _T("Insert failed: 0x%X\n");
+	static const LPCSTR lpszInvalidRecordVersion;
+	
 
 public:
 	CCitiesTable();
@@ -115,7 +118,7 @@ private:
 	/// <param name="hResult">Обект съдържащ текущото състояние на заявката</param> 
 	/// <param name="oSession">Обект чрез който ще изпълни връзката към базата.</param> 
 	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
-	bool ExecuteNoneModifyQuery(CSession& oSession, const CString& strQuery);
+	bool ExecuteNoneModifyQuery(CSession& oSession, const CString& strQuery,const int nQueryAccessor);
 
 	/// <summary>
 	///  Функция която изпълнява дадена заявка към отворена връзка.
@@ -138,7 +141,7 @@ private:
 	/// <param name="hResult">Обект съдържащ съобщението на възникналата грешка.</param> 
 	/// <param name="strErrorMessage">Обект който съдържа подробно разяснение за текущата грешка.</param>  
 	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
-	void ShowErrorMessage(const CString& strErrorMessage, const CString& strQuery = NULL);
+	void ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery = NULL);
 
 	// Overrides
 	// -------------
