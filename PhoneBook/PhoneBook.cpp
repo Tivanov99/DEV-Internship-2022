@@ -202,30 +202,36 @@ void CPhoneBookApp::PreLoadState()
 
 	//ME
 	CCitiesTable access;
-	CCitiesArray arr;
-	access.SelectAll(arr);
+	CCitiesArray ÓCitiesArray;
+
+	access.SelectAll(ÓCitiesArray);
+
 	access.DeleteWhereID(10);
 
-	CITIES oCity = *arr.GetAt(0);
+	CITIES oCity = *ÓCitiesArray.GetAt(0);
+	CString strBurgasko = _T("Burgasko");
+	TCHAR* szBurgaskoBuffer = _tcsdup(strBurgasko);
+	_tcscpy_s(oCity.szCITY_NAME, szBurgaskoBuffer);
+	access.UpdateWhereID(1, oCity);
 
-	TCHAR szNewCityName[32] = { 'B','U','R','G','A','S','K','O'};
 
-	copy(begin(szNewCityName), end(szNewCityName), begin(oCity.szCITY_NAME));
+	CITIES recCity;
 
-	//access.UpdateWhereID(1, oCity);
+	access.SelectWhereID(1,recCity);
 
-	CITIES oCityy;
-	access.SelectWhereID(1,oCityy);
-	TCHAR szCityName[32] = { 'B','L','A','G'};
-	TCHAR szAreaName[32] = { 'G','A','B','R' };
-	oCityy.lPOSTAL_CODE = 7777;
-	oCityy.lUPDATE_COUNTER = 0;
 
-	copy(begin(szCityName), end(szCityName), begin(oCityy.szCITY_NAME));
-	copy(begin(szAreaName), end(szAreaName), begin(oCityy.szAREA_NAME));
+	CString strNewCityName = _T("Blagoev grad");
+	TCHAR* szCityNameBuffer = _tcsdup(strNewCityName);
+	_tcscpy_s(recCity.szCITY_NAME, szBurgaskoBuffer);
 
-	access.Insertt(oCityy);
+	CString strNewAreaName = _T("Botev");
+	TCHAR* szAreaNameBuffer = _tcsdup(strNewAreaName);
+	_tcscpy_s(recCity.szAREA_NAME, szAreaNameBuffer);
+	long lPostalCode = 7777;
+	recCity.lPOSTAL_CODE = lPostalCode;
+	recCity.lUPDATE_COUNTER = 0;
 
+	access.Insertt(recCity);
 }
 
 void CPhoneBookApp::LoadCustomState()

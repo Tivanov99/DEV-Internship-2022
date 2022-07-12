@@ -95,17 +95,17 @@ private:
 	/// </summary>
 	/// <param name="oDataSource">Обект служещ за отваряне на връзка.</param> 
 	/// <param name="oSession">Обект служещ за отваряне на връзка.</param> 
-	BOOL OpenSessionAndConnectionToDb(CDataSource& oDataSource, CSession& oSession);
+	bool OpenSessionAndConnectionToDb(CDataSource& oDataSource, CSession& oSession);
 
 	/// <summary>
 	///  Функция която създава рол-сет.
 	/// </summary>
-	CDBPropSet GetDBPropSet();
+	CDBPropSet GetDBPropSet() const;
 
 	/// <summary>
 	///  Функция която създава рол-сет предназначен за модифициране на данни.
 	/// </summary>
-	CDBPropSet GetModifyDBPropSet();
+	CDBPropSet GetModifyDBPropSet() const;
 
 	/// <summary>
 	///  Функция която изпълнява дадена заявка към отворена връзка.
@@ -113,7 +113,15 @@ private:
 	/// <param name="hResult">Обект съдържащ текущото състояние на заявката</param> 
 	/// <param name="oSession">Обект чрез който ще изпълни връзката към базата.</param> 
 	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
-	BOOL ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, const CString& strQuery);
+	bool ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, const CString& strQuery);
+
+	/// <summary>
+	///  Функция която изпълнява дадена заявка към отворена връзка.
+	/// </summary>
+	/// <param name="hResult">Обект съдържащ текущото състояние на заявката</param> 
+	/// <param name="oSession">Обект чрез който ще изпълни връзката към базата.</param> 
+	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
+	bool ExecuteModifyQuery(HRESULT& hResult, CSession& oSession, const CString& strQuery, CDBPropSet oPropSet);
 
 	/// <summary>
 	///  Функция която затваря връзката към базата.

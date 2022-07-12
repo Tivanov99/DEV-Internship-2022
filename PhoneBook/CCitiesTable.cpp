@@ -33,7 +33,7 @@ void CCitiesTable::ShowErrorMessage(const HRESULT& hResult, const CString& strEr
 	AfxMessageBox(strError);
 }
 
-CDBPropSet CCitiesTable::GetDBPropSet()
+CDBPropSet CCitiesTable::GetDBPropSet()const
 {
 	CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
 	oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65"));	// сървър
@@ -46,7 +46,7 @@ CDBPropSet CCitiesTable::GetDBPropSet()
 	return oDBPropSet;
 };
 
-CDBPropSet CCitiesTable::GetModifyDBPropSet()
+CDBPropSet CCitiesTable::GetModifyDBPropSet() const
 {
 	CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
 	oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
@@ -86,6 +86,17 @@ bool CCitiesTable::ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, 
 	if (FAILED(hResult))
 	{
 		ShowErrorMessage(hResult,strErrorExecutingQuery,strQuery);
+		return false;
+	}
+	return true;
+}
+
+bool CCitiesTable::ExecuteModifyQuery(HRESULT& hResult, CSession& oSession, const CString& strQuery, CDBPropSet oPropSet)
+{
+	hResult = Open(oSession, strQuery, &oPropSet);
+	if (FAILED(hResult))
+	{
+		ShowErrorMessage(hResult, strErrorExecutingQuery, strQuery);
 		return false;
 	}
 	return true;
@@ -169,8 +180,7 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	HRESULT hResult = S_FALSE;;
 
 	// Изпълняваме командата
-	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
-	if (FAILED(hResult))
+	if (!ExecuteModifyQuery(hResult ,oSession, strQuery, oUpdateDBPropSet))
 	{
 		ShowErrorMessage(hResult,strErrorExecutingQuery,strQuery);
 		CloseSessionAndConnection(oDataSource, oSession);
@@ -218,8 +228,7 @@ bool CCitiesTable::Insertt(const CITIES& recCities)
 
 	HRESULT hResult = S_FALSE;
 
-	hResult = Open(oSession, strEmptySelect, &oUpdatePropSet);
-	if (FAILED(hResult))
+	if (!ExecuteModifyQuery(hResult, oSession, strEmptySelect, oUpdatePropSet))
 	{
 		ShowErrorMessage(hResult, strErrorExecutingQuery, strEmptySelect);
 		CloseSessionAndConnection(oDataSource, oSession);
@@ -258,9 +267,7 @@ bool CCitiesTable::DeleteWhereID(const long lID)
 	HRESULT hResult= S_FALSE;
 
 	// Изпълняваме командата
-	hResult = Open(oSession, strQuery, &oUpdateDBPropSet);
-
-	if (FAILED(hResult))
+	if (!ExecuteModifyQuery(hResult, oSession, strEmptySelect, oUpdateDBPropSet))
 	{
 		ShowErrorMessage(hResult, strErrorExecutingQuery, strQuery);
 		CloseSessionAndConnection(oDataSource, oSession);

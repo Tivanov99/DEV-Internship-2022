@@ -20,7 +20,7 @@ private:
 	///<summary>Функция задаваща сойност на 'POSTAL_CODE' на подаден като аругмент показател</summary>
 	///<param name="nPostalCode">Пощенски код който ще бъде зададен като стойност</param>
 	///<param name="oCity">Името на околност което ще бъде зададено като стойност на "lPOSTAL_CODE"</param>
-	void SetPostalCode(const int nPostalCode, CITIES& oCity);
+	void SetPostalCode(const long lPostalCode, CITIES& oCity);
 
 	CCitiesArray citiesArray;
 public:
@@ -51,7 +51,7 @@ public:
 	///<summary>Функция променяща 'CITY_NAME' на обект подаден като аргумент.</summary>
 	///<param name="оCity">Референция към обект.</param>
 	///<param name="newCityName">Новото име на градът.</param>
-	void ChangeCityName(CITIES& оCity, const CString& newCityName);
+	void ChangeCityName(CITIES& оCity, const CString& strNewCityName);
 
 	///<summary>
 		/// Функция променяща 'AREA_NAME' стойността на обект
@@ -74,11 +74,11 @@ public:
 	///<param name="strCityName">Текущото име на градът.</param>
 	///<param name="nNewCityPosalCode">Нов пощенски код.</param>
 	///<param name="oCitiesArray">Масив в който ще се търси обект по стоиността 'strCityName'.param>
-	void ChangeCityPosalCodeByCityName(const CString& strCityName, const int nNewCityPosalCode);
+	void ChangeCityPosalCodeByCityName(const CString& strCityName, const long lNewCityPosalCode);
 	///<summary>Функция променяща 'POSTAL_CODE' стойността на обект подаден като аргумент 'pCity'.</summary>
 	///<param name="оCity">Референция към обект.</param>
 	///<param name="nNewPostalCode">Нов пощенски код.</param>
-	void ChangeCityPostalCode(CITIES& оCity, const int nNewPostalCode);
+	void ChangeCityPostalCode(CITIES& оCity, const long lNewPostalCode);
 
 	///<summary>
 		/// Функция добавяща всички дефоутни елементи в подаден масив като
@@ -93,7 +93,7 @@ public:
 	///</summary>
 	///<param name="nIndex">Позиция в масива.</param>
 	///<param name="oArray">Масив със стойности.</param> 
-	void ShowElementInfoAtIndex(const int nIndex)override;
+	void ShowElementInfoAtIndex(const long lIndex)override;
 };
 
 

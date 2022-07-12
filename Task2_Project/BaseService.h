@@ -27,7 +27,7 @@ public:
 	///</summary>
 	/// <param name="nIndex">Позиция на елемента в масива.</param>
 	/// <param name="oArray">Масив с елементи.</param>
-	virtual void ShowElementInfoAtIndex(const int nIndex) = 0;
+	virtual void ShowElementInfoAtIndex(const long lIndex) = 0;
 };
 
 template<class  T>

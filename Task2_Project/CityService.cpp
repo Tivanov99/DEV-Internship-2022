@@ -56,30 +56,30 @@ CITIES* CityService::GetByPostalCode(const long lPostalCode)
 	}
 };
 
-void CityService::SetCityName(const CString& szSorce, CITIES& city)
+void CityService::SetCityName(const CString& strCityName, CITIES& oCity)
 {
-	int nLengthOfArray = sizeof(city.szCITY_NAME) / sizeof(char);
+	int nLengthOfArray = sizeof(oCity.szCITY_NAME) / sizeof(char);
 
-	if (szSorce.GetLength() > nLengthOfArray)
+	if (strCityName.GetLength() > nLengthOfArray)
 		return;
-	TCHAR* szBuffer = _tcsdup(szSorce);
-	_tcscpy_s(city.szCITY_NAME, szBuffer);
+	TCHAR* szBuffer = _tcsdup(strCityName);
+	_tcscpy_s(oCity.szCITY_NAME, szBuffer);
 };
 
-void CityService::SetAreaName(const CString& sorce, CITIES& city)
+void CityService::SetAreaName(const CString& strAreaName, CITIES& oCity)
 {
-	int nLengthOfArray = sizeof(city.szAREA_NAME) / sizeof(TCHAR);
-	if (sorce.GetLength() > nLengthOfArray)
+	int nLengthOfArray = sizeof(oCity.szAREA_NAME) / sizeof(TCHAR);
+	if (strAreaName.GetLength() > nLengthOfArray)
 		return;
 
-	TCHAR* szBuffer = _tcsdup(sorce);
-	_tcscpy_s(city.szAREA_NAME, szBuffer);
+	TCHAR* szBuffer = _tcsdup(strAreaName);
+	_tcscpy_s(oCity.szAREA_NAME, szBuffer);
 };
 
-void CityService::SetPostalCode(const int nSorce, CITIES& city)
+void CityService::SetPostalCode(const long lSorce, CITIES& oCity)
 {
-	if (nSorce > 0)
-		city.lPOSTAL_CODE = nSorce;
+	if (lSorce > 0)
+		oCity.lPOSTAL_CODE = lSorce;
 };
 
 void CityService::AddDefaultElements()
@@ -158,12 +158,12 @@ void CityService::AddDefaultElements()
 	citiesArray.Add(pVelinGradCity);
 };
 
-void CityService::ShowElementInfoAtIndex(const int nIndex)
+void CityService::ShowElementInfoAtIndex(const long lIndex)
 {
-	if (nIndex > citiesArray.GetCount())
+	if (lIndex > citiesArray.GetCount())
 		return;
 
-	CITIES* pCity = citiesArray.GetAt(nIndex);
+	CITIES* pCity = citiesArray.GetAt(lIndex);
 
 	if (pCity == NULL)
 		return;
@@ -194,9 +194,9 @@ void CityService::ChangeCityName(const CString& strCityName, const CString& strN
 	}
 };
 
-void CityService::ChangeCityName(CITIES& oCity, const CString& newCityName)
+void CityService::ChangeCityName(CITIES& oCity, const CString& strNewCityName)
 {
-	TCHAR* szBuffer = _tcsdup(newCityName);
+	TCHAR* szBuffer = _tcsdup(strNewCityName);
 	_tcscpy_s(oCity.szCITY_NAME, szBuffer);
 }
 void CityService::ChangeCityAreaName(const CString& strCityAreaName, const CString& strNewCityAreaName)
@@ -224,7 +224,7 @@ void CityService::ChangeCityAreaName(CITIES& pOldCity, const CString& strNewArea
 	_tcscpy_s(pOldCity.szAREA_NAME, szBuffer);
 };
 
-void CityService::ChangeCityPosalCodeByCityName(const CString& strCityName, const int nNewCityPosalCode)
+void CityService::ChangeCityPosalCodeByCityName(const CString& strCityName, const long lNewCityPosalCode)
 {
 	for (INT_PTR i = 0; i < citiesArray.GetSize(); i++)
 	{
@@ -237,16 +237,16 @@ void CityService::ChangeCityPosalCodeByCityName(const CString& strCityName, cons
 
 		if (currentCityName == strCityName)
 		{
-			pCurrentCity->lPOSTAL_CODE = nNewCityPosalCode;
+			pCurrentCity->lPOSTAL_CODE = lNewCityPosalCode;
 			break;
 		}
 	}
 };
 
-void CityService::ChangeCityPostalCode(CITIES& pCity, const int nNewPostalCode)
+void CityService::ChangeCityPostalCode(CITIES& pCity, const long lNewPostalCode)
 {
-	if (nNewPostalCode > 0)
+	if (lNewPostalCode > 0)
 	{
-		pCity.lPOSTAL_CODE = nNewPostalCode;
+		pCity.lPOSTAL_CODE = lNewPostalCode;
 	}
 };
