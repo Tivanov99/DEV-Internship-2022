@@ -118,15 +118,7 @@ private:
 	/// <param name="hResult">Обект съдържащ текущото състояние на заявката</param> 
 	/// <param name="oSession">Обект чрез който ще изпълни връзката към базата.</param> 
 	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
-	bool ExecuteNoneModifyQuery(CSession& oSession, const CString& strQuery,const int nQueryAccessor);
-
-	/// <summary>
-	///  Функция която изпълнява дадена заявка към отворена връзка.
-	/// </summary>
-	/// <param name="hResult">Обект съдържащ текущото състояние на заявката</param> 
-	/// <param name="oSession">Обект чрез който ще изпълни връзката към базата.</param> 
-	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
-	bool ExecuteModifyQuery(CSession& oSession, const CString& strQuery, CDBPropSet oPropSet);
+	bool ExecuteQuery(CSession& oSession, const CString& strQuery,const int nQueryAccessor);
 
 	/// <summary>
 	///  Функция която затваря връзката към базата.

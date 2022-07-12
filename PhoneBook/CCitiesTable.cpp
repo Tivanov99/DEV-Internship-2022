@@ -85,7 +85,7 @@ bool CCitiesTable::OpenSessionAndConnectionToDb(CDataSource& oDataSource, CSessi
 	return true;
 };
 
-bool CCitiesTable::ExecuteNoneModifyQuery(CSession& oSession, const CString& strQuery, const int nQueryAccessor)
+bool CCitiesTable::ExecuteQuery(CSession& oSession, const CString& strQuery, const int nQueryAccessor)
 {
 	if (nQueryAccessor == NoneModifyColumnCode)
 	{
@@ -110,17 +110,6 @@ bool CCitiesTable::ExecuteNoneModifyQuery(CSession& oSession, const CString& str
 	return false;
 }
 
-bool CCitiesTable::ExecuteModifyQuery(CSession& oSession, const CString& strQuery, CDBPropSet oPropSet = null)
-{
-	HRESULT hResult = Open(oSession, strQuery, &oPropSet);
-	if (FAILED(hResult))
-	{
-		ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-		return false;
-	}
-	return true;
-}
-
 bool CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 {
 	CDataSource oDataSource;
@@ -130,7 +119,7 @@ bool CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 		return false;
 
 	// Изпълняваме командата
-	if (!ExecuteNoneModifyQuery(oSession, strSelectAll))
+	if (!ExecuteQuery(oSession, strSelectAll))
 	{
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
@@ -162,7 +151,7 @@ bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 	CString strQuery;
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
-	if (!ExecuteNoneModifyQuery(oSession, strQuery))
+	if (!ExecuteQuery(oSession, strQuery))
 	{
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
