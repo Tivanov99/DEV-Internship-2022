@@ -19,7 +19,7 @@ public:
 		/// Функция пренаписана от базов клас 'BaseService'.
 	/// </summary>
 	///<param name="oArray">Масив в който ще се добавят всички стойности.</param>
-	virtual void AddDefaultElements(CTypeArray& oArray) = 0;
+	virtual void AddDefaultElements() = 0;
 	
 	///<summary>
 		///Функция принтираща информация за обект намиращ се на позицията на nIndex.
@@ -27,7 +27,7 @@ public:
 	///</summary>
 	/// <param name="nIndex">Позиция на елемента в масива.</param>
 	/// <param name="oArray">Масив с елементи.</param>
-	virtual void ShowElementInfoAtIndex(const int nIndex, const CTypeArray& oArray) = 0;
+	virtual void ShowElementInfoAtIndex(const int nIndex) = 0;
 	
 	///<summary>Функция връщаща Pointer от подаден индекс като аргумент.</summary>
 	/// <param name="nIndex">Позиция на елемента в масива.</param>

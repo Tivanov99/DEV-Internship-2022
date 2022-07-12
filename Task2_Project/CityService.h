@@ -31,7 +31,7 @@ public:
 	/// <param name="strCurrentCityName">Текущото име на градът.</param>
 	/// <param name="strNewCityName">Новото име на градът.</param>
 	/// <param name="oCitiesArray">Масивът в който ще се търси град по подаденото текущо име "strCurrentCityName".</param>
-	void ChangeCityName(const CString &strCurrentCityName, const CString &strNewCityName, CCitiesArray& oCitiesArray);
+	void ChangeCityName(const CString &strCurrentCityName, const CString &strNewCityName);
 
 	///<summary>Функция променяща 'CITY_NAME' на обект подаден като аргумент.</summary>
 	/// <param name="оOldCity">Референция към обект.</param>
@@ -42,7 +42,7 @@ public:
 	/// <param name="newCityName">Текущото име на областта.</param>
 	/// <param name="strNewCityAreaName">Новото име на областта.</param>
 	/// <param name="oCitiesArray">Масив в който ще се търси обект по стойността "strCurrentCityAreaName".</param>
-	void ChangeCityAreaName(const CString &strCurrentCityAreaName, const CString &strNewCityAreaName, CCitiesArray& oCitiesArray);
+	void ChangeCityAreaName(const CString &strCurrentCityAreaName, const CString &strNewCityAreaName);
 
 	///<summary>Функция променяща 'AREA_NAME' на обект подаден като аргумент.</summary>
 	/// <param name="pOldCity">Референция към обект.</param>
@@ -53,8 +53,7 @@ public:
 	/// <param name="strCityName">Текущото име на градът.</param>
 	/// <param name="nNewCityPosalCode">Нов пощенски код.</param>
 	/// <param name="oCitiesArray">Масив в който ще се търси обект по стоиността 'strCityName'.param>
-	void ChangeCityPosalCodeByCityName(const CString &strCityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray);
-	
+	void ChangeCityPosalCodeByCityName(const CString& strCityName, const int nNewCityPosalCode);
 	///<summary>Функция променяща 'POSTAL_CODE' стойността на обект подаден като аргумент 'pCity'.</summary>
 	/// <param name="оCity">Референция към обект.</param>
 	/// <param name="nNewPostalCode">Нов пощенски код.</param>
@@ -65,12 +64,12 @@ public:
 		/// аргумент, пренаписана от базов клас 'BaseService'.
 	///  </summary>
 	/// <param name="citiesArray">Масив в който ще се добавят всички стойности.</param>
-	void AddDefaultElements(CCitiesArray& citiesArray) override;
+	void AddDefaultElements() override;
 
 	///<summary>Функция принтираща информация за обект намиращ се на позицията на nIndex, пренаписана от базов клас 'BaseService'.</summary>
 	/// <param name="nIndex">Позиция в масива.</param>
 	/// <param name="oArray">Масив със стойности.</param> 
-	void ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& oArray)override;
+	void ShowElementInfoAtIndex(const int nIndex)override;
 };
 
 

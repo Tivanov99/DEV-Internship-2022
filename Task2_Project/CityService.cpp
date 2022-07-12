@@ -41,7 +41,7 @@ void CityService::SetPostalCode(const int nSorce, CITIES& city)
 		city.lPOSTAL_CODE = nSorce;
 };
 
-void CityService::AddDefaultElements(CCitiesArray& oCities)
+void CityService::AddDefaultElements()
 {
 	CITIES oBurgasCity;
 	CString strBurgasCityName = _T("Bugras");
@@ -117,12 +117,12 @@ void CityService::AddDefaultElements(CCitiesArray& oCities)
 	oCities.Add(pVelinGradCity);
 };
 
-void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& oArray)
+void CityService::ShowElementInfoAtIndex(const int nIndex)
 {
-	if (nIndex > oArray.GetCount())
+	if (nIndex > oCities.GetCount())
 		return;
 
-	CITIES* pCity = oArray.GetAt(nIndex);
+	CITIES* pCity = oCities.GetAt(nIndex);
 
 	if (pCity == NULL)
 		return;
@@ -133,11 +133,11 @@ void CityService::ShowElementInfoAtIndex(const int nIndex, const CCitiesArray& o
 	_tprintf(_T("%s"), (LPCTSTR)info);
 };
 
-void CityService::ChangeCityName(const CString& strCityName, const CString& strNewCityName, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityName(const CString& strCityName, const CString& strNewCityName)
 {
-	for (INT_PTR i = 0; i < oCitiesArray.GetCount(); i++)
+	for (INT_PTR i = 0; i < oCities.GetCount(); i++)
 	{
-		CITIES* pCity = oCitiesArray.GetAt(i);
+		CITIES* pCity = oCities.GetAt(i);
 		if (pCity == NULL)
 			continue;
 
@@ -158,11 +158,11 @@ void CityService::ChangeCityName(CITIES& oCity, const CString& newCityName)
 	TCHAR* szBuffer = _tcsdup(newCityName);
 	_tcscpy_s(oCity.szCITY_NAME, szBuffer);
 }
-void CityService::ChangeCityAreaName(const CString& strCityAreaName, const CString& strNewCityAreaName, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityAreaName(const CString& strCityAreaName, const CString& strNewCityAreaName)
 {
-	for (INT_PTR i = 0; i < oCitiesArray.GetSize(); i++)
+	for (INT_PTR i = 0; i < oCities.GetSize(); i++)
 	{
-		CITIES* pCurrentCity = oCitiesArray.GetAt(i);
+		CITIES* pCurrentCity = oCities.GetAt(i);
 		if (pCurrentCity == NULL)
 			continue;
 
@@ -183,11 +183,11 @@ void CityService::ChangeCityAreaName(CITIES& pOldCity, const CString& strNewArea
 	_tcscpy_s(pOldCity.szAREA_NAME, szBuffer);
 };
 
-void CityService::ChangeCityPosalCodeByCityName(const CString& strCityName, const int nNewCityPosalCode, CCitiesArray& oCitiesArray)
+void CityService::ChangeCityPosalCodeByCityName(const CString& strCityName, const int nNewCityPosalCode)
 {
-	for (INT_PTR i = 0; i < oCitiesArray.GetSize(); i++)
+	for (INT_PTR i = 0; i < oCities.GetSize(); i++)
 	{
-		CITIES* pCurrentCity = oCitiesArray.GetAt(i);
+		CITIES* pCurrentCity = oCities.GetAt(i);
 		if (pCurrentCity == NULL)
 			continue;
 
