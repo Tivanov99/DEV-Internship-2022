@@ -21,7 +21,11 @@ public:
 	PhoneNumberService();
 	~PhoneNumberService();
 
-	PHONE_NUMBERS* GetByPhoneNumber(CString strPhoneNumber);
+	///<summary>
+		/// Функция която връща указател като резултат след търсене по 'strPhoneNumber'.
+	///</summary>
+	/// <param name="strPhoneNumber">Телефонен номер.</param>
+	PHONE_NUMBERS* GetByPhoneNumber(CString& strPhoneNumber);
 
 
 	///<summary>

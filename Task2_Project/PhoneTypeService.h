@@ -15,6 +15,13 @@ public:
 	PhoneTypeService();
 	~PhoneTypeService();
 
+
+	///<summary>
+		/// Функция която връща указател като резултат след търсене по 'strPhoneType'.
+	///</summary>
+	/// <param name="strPhoneNumber">Тип телефон.</param>
+	PHONE_TYPES* GetByPhoneType(CString& strPhoneType);
+
 	///<summary>
 		/// Функция добавяща всички дефоутни елементи в подаден масив като аргумент.
 		/// Функция пренаписана от базов клас 'BaseService'.

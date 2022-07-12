@@ -1,12 +1,13 @@
-﻿  CityService.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+﻿  PhoneNumberService.cpp
+  PhoneTypeService.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Task2_Project.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(151,23): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(44): warning C4715: 'CityService::GetByCityName': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(30): warning C4715: 'CityService::GetByAreaName': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(57): warning C4715: 'CityService::GetByPostalCode': not all control paths return a value
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(22): warning C4715: 'PhoneTypeService::GetByPhoneType': not all control paths return a value
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(24): warning C4715: 'PhoneNumberService::GetByPhoneNumber': not all control paths return a value
   Task2_Project.vcxproj -> C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\Task2_Project.exe

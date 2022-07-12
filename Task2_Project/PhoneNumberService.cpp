@@ -9,7 +9,7 @@ PhoneNumberService::~PhoneNumberService()
 {
 
 };
-PHONE_NUMBERS* PhoneNumberService::GetByPhoneNumber(CString strPhoneNumber)
+PHONE_NUMBERS* PhoneNumberService::GetByPhoneNumber(CString& strPhoneNumber)
 {
 	for (INT_PTR i = 0; i < oArray.GetCount(); i++)
 	{

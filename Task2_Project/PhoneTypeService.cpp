@@ -7,6 +7,20 @@ using namespace std;
 PhoneTypeService::PhoneTypeService() {};
 PhoneTypeService::~PhoneTypeService() {};
 
+PHONE_TYPES* PhoneTypeService::GetByPhoneType(CString& strPhoneType)
+{
+	for (INT_PTR i = 0; i < oArray.GetCount(); i++)
+	{
+		PHONE_TYPES* pPhoneType = oArray.GetAt(i);
+		CString strCurrentPhoneType;
+		strCurrentPhoneType.Format(_T("%s"), pPhoneType->szPHONE_TYPE);
+		if (strPhoneType != strCurrentPhoneType)
+			continue;
+
+		return pPhoneType;
+	}
+};
+
 void PhoneTypeService:: SetPhoneType(CString& strType, PHONE_TYPES& oPhone)
 {
 	CString strBuffer;
