@@ -7,13 +7,17 @@ PhoneNumberService::PhoneNumberService()
 };
 PhoneNumberService::~PhoneNumberService()
 {
-
+	while (phoneNumbersArray.GetCount() > 0)
+	{
+		delete phoneNumbersArray.GetAt(phoneNumbersArray.GetCount() - 1);
+	}
+	phoneNumbersArray.RemoveAll();
 };
 PHONE_NUMBERS* PhoneNumberService::GetByPhoneNumber(CString& strPhoneNumber)
 {
-	for (INT_PTR i = 0; i < oArray.GetCount(); i++)
+	for (INT_PTR i = 0; i < phoneNumbersArray.GetCount(); i++)
 	{
-		PHONE_NUMBERS* pPhoneNumber = oArray.GetAt(i);
+		PHONE_NUMBERS* pPhoneNumber = phoneNumbersArray.GetAt(i);
 		CString strCurrentPhoneNumber;
 		strCurrentPhoneNumber.Format(_T("%s"), pPhoneNumber->szPHONE_NUMBER);
 		if (strPhoneNumber != strCurrentPhoneNumber)
@@ -83,12 +87,12 @@ void PhoneNumberService::AddDefaultElements() {
 		*pSixthPhoneNumber = oSixthPhoneNumber;
 
 
-		oArray.Add(pFirstPhoneNumber);
-		oArray.Add(pSecondPhoneNumber);
-		oArray.Add(pThirdPhoneNumber);
-		oArray.Add(pFourthPhoneNumber);
-		oArray.Add(pFifthPhoneNumber);
-		oArray.Add(pSixthPhoneNumber);
+		phoneNumbersArray.Add(pFirstPhoneNumber);
+		phoneNumbersArray.Add(pSecondPhoneNumber);
+		phoneNumbersArray.Add(pThirdPhoneNumber);
+		phoneNumbersArray.Add(pFourthPhoneNumber);
+		phoneNumbersArray.Add(pFifthPhoneNumber);
+		phoneNumbersArray.Add(pSixthPhoneNumber);
 	}
 	catch (const std::exception&)
 	{
@@ -98,10 +102,10 @@ void PhoneNumberService::AddDefaultElements() {
 
 void PhoneNumberService::ShowElementInfoAtIndex(const int nIndex) {
 
-	if (nIndex > oArray.GetCount() - 1)
+	if (nIndex > phoneNumbersArray.GetCount() - 1)
 		return;
 
-	PHONE_NUMBERS* pTemp = oArray.GetAt(nIndex);
+	PHONE_NUMBERS* pTemp = phoneNumbersArray.GetAt(nIndex);
 
 	if (pTemp == NULL)
 		return;

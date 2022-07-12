@@ -8,9 +8,9 @@ private:
 	///<summary>Функция задаваща стойност на мембър 'PHONE_TYPE' на подаден обект като аргумент.</summary>
 	/// <param name="strType">Вид телефонен номер.</param>
 	/// <param name="oPhone">Референция към обект.</param>
-	void SetPhoneType(CString& strType, PHONE_TYPES& oPhone);
+	void SetPhoneType(const CString& strType, PHONE_TYPES& oPhone);
 
-	CPhoneTypesArray oArray;
+	CPhoneTypesArray phoneTypeArray;
 public:
 	PhoneTypeService();
 	~PhoneTypeService();

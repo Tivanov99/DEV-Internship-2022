@@ -8,18 +8,18 @@ using namespace std;
 CityService::CityService(){};
 CityService::~CityService()
 {
-	while (oCities.GetCount() > 0)
+	while (citiesArray.GetCount() > 0)
 	{
-		delete oCities.GetAt(oCities.GetCount() - 1);
+		delete citiesArray.GetAt(citiesArray.GetCount() - 1);
 	}
-	oCities.RemoveAll();
-};
+	citiesArray.RemoveAll();
+};	
 
 CITIES* CityService::GetByAreaName(const CString& strCityAreaName)
 {
-	for (INT_PTR i = 0; i < oCities.GetCount(); i++)
+	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
 	{
-		CITIES* pCity = oCities.GetAt(i);
+		CITIES* pCity = citiesArray.GetAt(i);
 		CString srtCurrentCityName;
 		srtCurrentCityName.Format(_T("%s"), pCity->szAREA_NAME);
 		if (srtCurrentCityName != strCityAreaName)
@@ -31,9 +31,9 @@ CITIES* CityService::GetByAreaName(const CString& strCityAreaName)
 
 CITIES* CityService::GetByCityName(const CString& strCityName)
 {
-	for (INT_PTR i = 0; i < oCities.GetCount(); i++)
+	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
 	{
-		CITIES* pCity = oCities.GetAt(i);
+		CITIES* pCity = citiesArray.GetAt(i);
 		CString srtCurrentCityName;
 		srtCurrentCityName.Format(_T("%s"), pCity->szAREA_NAME);
 		if (srtCurrentCityName != strCityName)
@@ -45,9 +45,9 @@ CITIES* CityService::GetByCityName(const CString& strCityName)
 
 CITIES* CityService::GetByPostalCode(const long lPostalCode)
 {
-	for (INT_PTR i = 0; i < oCities.GetCount(); i++)
+	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
 	{
-		CITIES* pCity = oCities.GetAt(i);
+		CITIES* pCity = citiesArray.GetAt(i);
 		
 		if (pCity->lPOSTAL_CODE != lPostalCode)
 			continue;
@@ -150,20 +150,20 @@ void CityService::AddDefaultElements()
 	CITIES* pRuseCity = new CITIES;
 	*pRuseCity = oRuseCity;
 
-	oCities.Add(pBurgas);
-	oCities.Add(pVarna);
-	oCities.Add(pSofiaCity);
-	oCities.Add(pPlovidCity);
-	oCities.Add(pRuseCity);
-	oCities.Add(pVelinGradCity);
+	citiesArray.Add(pBurgas);
+	citiesArray.Add(pVarna);
+	citiesArray.Add(pSofiaCity);
+	citiesArray.Add(pPlovidCity);
+	citiesArray.Add(pRuseCity);
+	citiesArray.Add(pVelinGradCity);
 };
 
 void CityService::ShowElementInfoAtIndex(const int nIndex)
 {
-	if (nIndex > oCities.GetCount())
+	if (nIndex > citiesArray.GetCount())
 		return;
 
-	CITIES* pCity = oCities.GetAt(nIndex);
+	CITIES* pCity = citiesArray.GetAt(nIndex);
 
 	if (pCity == NULL)
 		return;
@@ -176,9 +176,9 @@ void CityService::ShowElementInfoAtIndex(const int nIndex)
 
 void CityService::ChangeCityName(const CString& strCityName, const CString& strNewCityName)
 {
-	for (INT_PTR i = 0; i < oCities.GetCount(); i++)
+	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
 	{
-		CITIES* pCity = oCities.GetAt(i);
+		CITIES* pCity = citiesArray.GetAt(i);
 		if (pCity == NULL)
 			continue;
 
@@ -201,9 +201,9 @@ void CityService::ChangeCityName(CITIES& oCity, const CString& newCityName)
 }
 void CityService::ChangeCityAreaName(const CString& strCityAreaName, const CString& strNewCityAreaName)
 {
-	for (INT_PTR i = 0; i < oCities.GetSize(); i++)
+	for (INT_PTR i = 0; i < citiesArray.GetSize(); i++)
 	{
-		CITIES* pCurrentCity = oCities.GetAt(i);
+		CITIES* pCurrentCity = citiesArray.GetAt(i);
 		if (pCurrentCity == NULL)
 			continue;
 
@@ -226,9 +226,9 @@ void CityService::ChangeCityAreaName(CITIES& pOldCity, const CString& strNewArea
 
 void CityService::ChangeCityPosalCodeByCityName(const CString& strCityName, const int nNewCityPosalCode)
 {
-	for (INT_PTR i = 0; i < oCities.GetSize(); i++)
+	for (INT_PTR i = 0; i < citiesArray.GetSize(); i++)
 	{
-		CITIES* pCurrentCity = oCities.GetAt(i);
+		CITIES* pCurrentCity = citiesArray.GetAt(i);
 		if (pCurrentCity == NULL)
 			continue;
 

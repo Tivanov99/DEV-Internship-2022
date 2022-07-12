@@ -15,7 +15,7 @@ private:
 	/// <param name="oPhoneNumber">Референция към обект.</param>
 	void SetPhoneNumber(const CString& strPhoneNumber, PHONE_NUMBERS& oPhoneNumber);
 
-	CPhoneNumbersArray oArray;
+	CPhoneNumbersArray phoneNumbersArray;
 public:
 
 	PhoneNumberService();

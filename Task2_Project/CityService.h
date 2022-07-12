@@ -22,7 +22,7 @@ private:
 	///<param name="oCity">Името на околност което ще бъде зададено като стойност на "lPOSTAL_CODE"</param>
 	void SetPostalCode(const int nPostalCode, CITIES& oCity);
 
-	CCitiesArray oCities;
+	CCitiesArray citiesArray;
 public:
 	CityService();
 	~CityService();
