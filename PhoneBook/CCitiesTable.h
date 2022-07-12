@@ -115,7 +115,7 @@ private:
 	/// <param name="hResult">Обект съдържащ текущото състояние на заявката</param> 
 	/// <param name="oSession">Обект чрез който ще изпълни връзката към базата.</param> 
 	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
-	bool ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, const CString& strQuery);
+	bool ExecuteNoneModifyQuery(CSession& oSession, const CString& strQuery);
 
 	/// <summary>
 	///  Функция която изпълнява дадена заявка към отворена връзка.

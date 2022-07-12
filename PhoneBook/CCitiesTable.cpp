@@ -82,12 +82,11 @@ bool CCitiesTable::OpenSessionAndConnectionToDb(CDataSource& oDataSource, CSessi
 	return true;
 };
 
-bool CCitiesTable::ExecuteNoneModifyQuery(HRESULT& hResult, CSession& oSession, const CString& strQuery)
+bool CCitiesTable::ExecuteNoneModifyQuery(CSession& oSession, const CString& strQuery)
 {
-	hResult = Open(oSession, strQuery);
-	if (FAILED(hResult))
+	if (FAILED(Open(oSession, strQuery)))
 	{
-		ShowErrorMessage(hResult,strErrorExecutingQuery,strQuery);
+		ShowErrorMessage(strErrorExecutingQuery,strQuery);
 		return false;
 	}
 	return true;
