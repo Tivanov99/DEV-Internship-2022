@@ -50,7 +50,7 @@ public:
 	///</summary>
 	/// <param name="оnIndex">Позиция на елемента в масива.</param>
 	/// <param name="оoArray">Масив с елементи.</param>
-	void ShowElementInfoAtIndex(const int nIndex) override;
+	void ShowElementInfoAtIndex(const long lIndex) override;
 	
 	///<summary>
 		/// Функция добавяща всички дефоутни елементи в подаден масив като аргумент.

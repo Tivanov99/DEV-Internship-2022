@@ -35,6 +35,6 @@ public:
 	///</summary>
 	/// <param name="nIndex">Позиция на елемента в масива.</param>
 	/// <param name="oArray">Масив с елементи.</param>
-	void ShowElementInfoAtIndex(const int nIndex) override;
+	void ShowElementInfoAtIndex(const long lIndex) override;
 };
 

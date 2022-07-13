@@ -100,12 +100,12 @@ void PhoneNumberService::AddDefaultElements() {
 	}
 }
 
-void PhoneNumberService::ShowElementInfoAtIndex(const int nIndex) {
+void PhoneNumberService::ShowElementInfoAtIndex(const long lIndex) {
 
-	if (nIndex > phoneNumbersArray.GetCount() - 1)
+	if (lIndex > phoneNumbersArray.GetCount() - 1)
 		return;
 
-	PHONE_NUMBERS* pTemp = phoneNumbersArray.GetAt(nIndex);
+	PHONE_NUMBERS* pTemp = phoneNumbersArray.GetAt(lIndex);
 
 	if (pTemp == NULL)
 		return;

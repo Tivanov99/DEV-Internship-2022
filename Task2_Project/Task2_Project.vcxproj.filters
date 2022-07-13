@@ -48,9 +48,6 @@
     <ClInclude Include="PhoneTypeService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Task2_Project.cpp">

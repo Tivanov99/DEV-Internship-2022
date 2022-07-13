@@ -152,7 +152,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseService.h" />
-    <ClInclude Include="CContainer.h" />
     <ClInclude Include="CityService.h" />
     <ClInclude Include="CStringService.h" />
     <ClInclude Include="framework.h" />

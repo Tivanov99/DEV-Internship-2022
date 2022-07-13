@@ -35,9 +35,9 @@ void PhoneTypeService:: SetPhoneType(const CString& strType, PHONE_TYPES& oPhone
 };
 
 
-void PhoneTypeService::ShowElementInfoAtIndex(const int nIndex)
+void PhoneTypeService::ShowElementInfoAtIndex(const long lIndex)
 {
-		PHONE_TYPES* pTemp = phoneTypeArray.GetAt(nIndex);
+		PHONE_TYPES* pTemp = phoneTypeArray.GetAt(lIndex);
 		if (pTemp == NULL)
 			return;
 

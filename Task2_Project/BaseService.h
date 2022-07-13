@@ -8,7 +8,7 @@ class BaseService
 {
 
 private:
-	typedef CTypedPtrArray < CPtrArray, T*> CTypeArray;
+
 
 public:
 
@@ -28,6 +28,18 @@ public:
 	/// <param name="nIndex">Позиция на елемента в масива.</param>
 	/// <param name="oArray">Масив с елементи.</param>
 	virtual void ShowElementInfoAtIndex(const long lIndex) = 0;
+
+	///<summary>
+		///Функция принтираща информация за обект намиращ се на позицията на nIndex.
+		///Функция пренаписана от базов клас 'BaseService'.
+	///</summary>
+	/// <param name="nIndex">Позиция на елемента в масива.</param>
+	T* CreatePointer(T o)
+	{
+		T* pCities = new T;
+		*pCities = o;
+		return pCities;
+	};
 };
 
 template<class  T>
