@@ -1,19 +1,14 @@
 ﻿  CityService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  PhoneNumberService.cpp
-  PhoneTypeService.cpp
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(89,2): error C3861: 'SetPostalCode': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(94,2): error C3861: 'SetPostalCode': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(100,2): error C3861: 'SetPostalCode': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(106,2): error C3861: 'SetPostalCode': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(112,2): error C3861: 'SetPostalCode': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(118,2): error C3861: 'SetPostalCode': identifier not found
   Task2_Project.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(151,23): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(29): warning C4715: 'PhoneTypeService::GetByPhoneType': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(28): warning C4715: 'PhoneNumberService::GetByPhoneNumber': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(49): warning C4715: 'CityService::GetByCityName': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(35): warning C4715: 'CityService::GetByAreaName': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(62): warning C4715: 'CityService::GetByPostalCode': not all control paths return a value
-CityService.obj : error LNK2019: unresolved external symbol "private: void __cdecl CityService::SetPostalCode(long,struct CITIES &)" (?SetPostalCode@CityService@@AEAAXJAEAUCITIES@@@Z) referenced in function "public: virtual void __cdecl CityService::AddDefaultElements(void)" (?AddDefaultElements@CityService@@UEAAXXZ)
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\Task2_Project.exe : fatal error LNK1120: 1 unresolved externals

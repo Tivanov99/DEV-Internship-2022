@@ -80,7 +80,6 @@ void CityService::SetAreaName(const CString& strAreaName, CITIES& oCity)
 	TCHAR* szBuffer = _tcsdup(strAreaName);
 	_tcscpy_s(oCity.szAREA_NAME, szBuffer);
 };
-//TODO: REMOVE
 
 void CityService::AddDefaultElements()
 {
@@ -143,13 +142,6 @@ void CityService::AddDefaultElements()
 	citiesArray.Add(pPlovidCity);
 	citiesArray.Add(pRuseCity);
 	citiesArray.Add(pVelinGradCity);
-};
-
-CITIES* CreatePointer(CITIES oCities)
-{
-	CITIES* pCities = new CITIES;
-	*pCities = oCities;
-	return pCities;
 };
 
 void CityService::ShowElementInfoAtIndex(const long lIndex)

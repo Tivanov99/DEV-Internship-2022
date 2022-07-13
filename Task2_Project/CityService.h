@@ -7,20 +7,16 @@ using namespace std;
 class CityService : public BaseService<CITIES>
 {
 private:
-	///<summary>Функция задаваща сойност на 'CITY_NAME' на подаден като аругмент показател</summary>
+
+	///<summary>Функция задаваща всички стойности на подаден като аругмент показател</summary>
 	///<param name="strCityName">Името на град което ще бъде зададено като стойност</param>
-	///<param name="oCity">Обект чието "szCITY_NAME" ще бъде зададено с подадената стойност от "strCityName"</param>
-	void SetCityName(const CString& strCityName, CITIES& oCity);
-
-	///<summary>Функция задаваща сойност на 'AREA_NAME' на подаден като аругмент показател</summary>
 	///<param name="strAreaName">Името на област което ще бъде зададено като стойност</param>
-	///<param name="oCity"> Името на околност което ще бъде зададено като стойност на "szAREA_NAME"</param>
-	void SetAreaName(const CString& strAreaName, CITIES& oCity);
+	///<param name="oCity">Обект чието "szCITY_NAME" ще бъде зададено с подадената стойност от "strCityName"</param>
+	///<param name="lPostalCode">Обект чието "szCITY_NAME" ще бъде зададено с подадената стойност от "strCityName"</param>
+	void SetCityData(const CString& strCityName, const CString& strAreaNamem, const long lPostalCode, CITIES& oCity)
+	{
 
-	///<summary>Функция задаваща сойност на 'POSTAL_CODE' на подаден като аругмент показател</summary>
-	///<param name="nPostalCode">Пощенски код който ще бъде зададен като стойност</param>
-	///<param name="oCity">Името на околност което ще бъде зададено като стойност на "lPOSTAL_CODE"</param>
-	void SetPostalCode(const long lPostalCode, CITIES& oCity);
+	};
 
 	CCitiesArray citiesArray;
 public:
@@ -79,6 +75,7 @@ public:
 	///<param name="оCity">Референция към обект.</param>
 	///<param name="nNewPostalCode">Нов пощенски код.</param>
 	void ChangeCityPostalCode(CITIES& оCity, const long lNewPostalCode);
+
 
 	///<summary>
 		/// Функция добавяща всички дефоутни елементи в подаден масив като
