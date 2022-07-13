@@ -18,7 +18,8 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-#include "CContainer.h"
+#include "CSelfClearingTypedPtrArray.h"
+#include "CSelfClearingTypedPtrArray.h"
 
 
 // CPhoneBookApp
@@ -205,7 +206,7 @@ void CPhoneBookApp::PreLoadState()
 	//ME
 	CCitiesTable ÓCitiesTable;
 
-	CContainer<CITIES> oCitiesContainer;
+	CSelfClearingTypedPtrArray<CITIES> oCitiesContainer;
 
 
 	bool bIsSelectedAll = ÓCitiesTable.SelectAll(oCitiesContainer);

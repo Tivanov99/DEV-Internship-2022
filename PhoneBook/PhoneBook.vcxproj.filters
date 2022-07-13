@@ -48,7 +48,7 @@
     <ClInclude Include="Structures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CContainer.h">
+    <ClInclude Include="CSelfClearingTypedPtrArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,7 +74,7 @@
     <ClCompile Include="CCitiesTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CContainer.cpp">
+    <ClCompile Include="CSelfClearingTypedPtrArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
