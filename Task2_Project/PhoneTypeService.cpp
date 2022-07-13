@@ -5,20 +5,16 @@
 using namespace std;
 
 PhoneTypeService::PhoneTypeService() {};
-PhoneTypeService::~PhoneTypeService()
-{
-	while (phoneTypeArray.GetCount() > 0)
-	{
-		delete phoneTypeArray.GetAt(phoneTypeArray.GetCount() - 1);
-	}
-	phoneTypeArray.RemoveAll();
-};
+PhoneTypeService::~PhoneTypeService(){};
 
 PHONE_TYPES* PhoneTypeService::GetByPhoneType(CString& strPhoneType)
 {
 	for (INT_PTR i = 0; i < phoneTypeArray.GetCount(); i++)
 	{
 		PHONE_TYPES* pPhoneType = phoneTypeArray.GetAt(i);
+		if (pPhoneType == NULL)
+			continue;
+
 		CString strCurrentPhoneType;
 		strCurrentPhoneType.Format(_T("%s"), pPhoneType->szPHONE_TYPE);
 		if (strPhoneType != strCurrentPhoneType)
@@ -46,31 +42,16 @@ void PhoneTypeService::ShowElementInfoAtIndex(const long lIndex)
 void PhoneTypeService::AddDefaultElements()
 {
 		PHONE_TYPES oMobilePhoneType;
-		CString strMobile = _T("mobile");
-		SetPhoneType(strMobile, oMobilePhoneType);
-
+		SetPhoneType(_T("mobile"), oMobilePhoneType);
 
 		PHONE_TYPES oHomePhoneType;
-		CString strHome = _T("home");
-		SetPhoneType(strHome, oHomePhoneType);
-
+		SetPhoneType(_T("home"), oHomePhoneType);
 
 		PHONE_TYPES oOfficePhoneType;
-		CString strOffice = _T("office");
-		SetPhoneType(strOffice, oOfficePhoneType);
+		SetPhoneType(_T("office"), oOfficePhoneType);
 
-
-		PHONE_TYPES* pMobilePhoneType = new PHONE_TYPES;
-		*pMobilePhoneType = oMobilePhoneType;
-
-		PHONE_TYPES* pHomePhoneType = new PHONE_TYPES;
-		*pHomePhoneType = oHomePhoneType;
-
-		PHONE_TYPES* pOfficePhoneType = new PHONE_TYPES;
-		*pOfficePhoneType = oOfficePhoneType;
-
-		phoneTypeArray.Add(pMobilePhoneType);
-		phoneTypeArray.Add(pHomePhoneType);
-		phoneTypeArray.Add(pOfficePhoneType);
+		phoneTypeArray.Add(CreatePointer(oMobilePhoneType));
+		phoneTypeArray.Add(CreatePointer(oHomePhoneType));
+		phoneTypeArray.Add(CreatePointer(oOfficePhoneType));
 };
 

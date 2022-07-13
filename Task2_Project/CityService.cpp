@@ -58,6 +58,9 @@ CITIES* CityService::GetCityByCityName(const CString& strCityName)
 	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
 	{
 		CITIES* pCity = citiesArray.GetAt(i);
+		if (pCity == NULL)
+			continue;
+
 		CString srtCurrentCityName;
 		srtCurrentCityName.Format(_T("%s"), pCity->szAREA_NAME);
 		if (srtCurrentCityName != strCityName)
@@ -72,6 +75,8 @@ CITIES* CityService::GetCityByPostalCode(const long lPostalCode)
 	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
 	{
 		CITIES* pCity = citiesArray.GetAt(i);
+		if (pCity == NULL)
+			continue;
 		
 		if (pCity->lPOSTAL_CODE != lPostalCode)
 			continue;
@@ -95,15 +100,12 @@ void CityService::AddDefaultElements()
 	CITIES oPlovidCity;
 	SetCityData(_T("Plovdiv"), _T("Plovdiv"), 3000, oPlovidCity);
 
-
 	CITIES oRuseCity;
 	SetCityData(_T("Ruse"), _T("Ruse"), 4700, oRuseCity);
-
 
 	CITIES oVelinGradCity;
 	SetCityData(_T("VelinGrad"), _T("Pazardzhik"), 6000, oVelinGradCity);
 
-	//TODO check how to coppy stack obeject to heap !
 
 	oSelfClearingTypedArray.Add(CreatePointer(oBurgasCity));
 	oSelfClearingTypedArray.Add(CreatePointer(oVarnaCity));
