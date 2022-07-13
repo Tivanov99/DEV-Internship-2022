@@ -5,8 +5,8 @@
 const LPCSTR CCitiesTable::lpszSelectAllById = "SELECT * FROM CITIES WHERE ID = %d";
 const LPCSTR CCitiesTable::lpszInvalidRecordVersion = "Invalid version of current record! Please reload the record again.";
 const LPCSTR CCitiesTable::lpszErrorExecutingQuery = "Error executing query.Query : % s";
-const LPCSTR CCitiesTable ::lpszErrorInvalidQueryAcessor  = 
-	"Invalid query accessor! Use 0 for non-record-changing queries or 1 for record-changing queries";
+const LPCSTR CCitiesTable::lpszErrorInvalidQueryAcessor =
+"Invalid query accessor! Use 0 for non-record-changing queries or 1 for record-changing queries";
 const LPCSTR CCitiesTable::lpszSelectAll = "SELECT * FROM CITIES";
 const LPCSTR CCitiesTable::lpszEmptySelect = "SELECT TOP 0 * FROM CITIES";
 const LPCSTR CCitiesTable::lpszUnableToConnectServer = "Unable to connect to SQL Server database. Error: %d";
@@ -96,7 +96,11 @@ bool CCitiesTable::OpenDbConnectionAndSession()
 
 bool CCitiesTable::ExecuteQuery(const CString& strQuery, const int nQueryAccessor)
 {
-	//TODO: reutrn true ones
+	if (nQueryAccessor != NoneModifyColumnCode && nQueryAccessor != ModifyColumnCode)
+	{
+		ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
+		return false;
+	}
 	if (nQueryAccessor == NoneModifyColumnCode)
 	{
 		//изпълняваме команда
@@ -105,7 +109,6 @@ bool CCitiesTable::ExecuteQuery(const CString& strQuery, const int nQueryAccesso
 			ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
 			return false;
 		}
-		return true;
 	}
 	else if (nQueryAccessor == ModifyColumnCode)
 	{
@@ -117,10 +120,8 @@ bool CCitiesTable::ExecuteQuery(const CString& strQuery, const int nQueryAccesso
 			ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
 			return false;
 		}
-		return true;
 	}
-	ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
-	return false;
+	return true;
 }
 
 bool CCitiesTable::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesPtrArray)
@@ -129,7 +130,7 @@ bool CCitiesTable::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesPtrArray
 		return false;
 
 	// Изпълняваме командата
-	if (!ExecuteQuery((CString)lpszSelectAll,NoneModifyColumnCode))
+	if (!ExecuteQuery((CString)lpszSelectAll, NoneModifyColumnCode))
 	{
 		CloseDbConnectionAndSession();
 		return false;
@@ -153,7 +154,7 @@ bool CCitiesTable::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesPtrArray
 
 		hResult = MoveNext();
 
-		if (FAILED(hResult) && hResult!= DB_S_ENDOFROWSET)
+		if (FAILED(hResult) && hResult != DB_S_ENDOFROWSET)
 		{
 			ShowErrorMessage(lpszErrorOpeningRecord);
 			CloseDbConnectionAndSession();
@@ -176,7 +177,7 @@ bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 	CString strQuery;
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
-	if (!ExecuteQuery(strQuery,NoneModifyColumnCode))
+	if (!ExecuteQuery(strQuery, NoneModifyColumnCode))
 	{
 		CloseDbConnectionAndSession();
 		return false;
@@ -188,7 +189,7 @@ bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 		CloseDbConnectionAndSession();
 		return false;
 	}
-		recCities = m_recCITY;
+	recCities = m_recCITY;
 
 	CloseDbConnectionAndSession();
 	return true;
@@ -204,7 +205,7 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
 	// Изпълняваме командата
-	if (!ExecuteQuery(strQuery,ModifyColumnCode))
+	if (!ExecuteQuery(strQuery, ModifyColumnCode))
 	{
 		CloseDbConnectionAndSession();
 		return false;
@@ -233,9 +234,7 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 		return false;
 	}
 
-		CloseDbConnectionAndSession();
-
-
+	CloseDbConnectionAndSession();
 	return true;
 };
 
@@ -249,7 +248,7 @@ bool CCitiesTable::Insert(const CITIES& recCities)
 		ShowErrorMessage(lpszErrorExecutingQuery, (CString)lpszEmptySelect);
 		CloseDbConnectionAndSession();
 		return false;
-	} 
+	}
 
 	m_recCITY = recCities;
 
