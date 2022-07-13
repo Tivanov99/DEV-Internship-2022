@@ -13,10 +13,7 @@ private:
 	///<param name="strAreaName">Името на област което ще бъде зададено като стойност</param>
 	///<param name="oCity">Обект чието "szCITY_NAME" ще бъде зададено с подадената стойност от "strCityName"</param>
 	///<param name="lPostalCode">Обект чието "szCITY_NAME" ще бъде зададено с подадената стойност от "strCityName"</param>
-	void SetCityData(const CString& strCityName, const CString& strAreaNamem, const long lPostalCode, CITIES& oCity)
-	{
-
-	};
+	void SetCityData(const CString& strCityName, const CString& strAreaNamem, const long lPostalCode, CITIES& oCity);
 
 	CCitiesArray citiesArray;
 public:

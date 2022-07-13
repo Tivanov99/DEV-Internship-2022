@@ -16,6 +16,25 @@ CityService::~CityService()
 	citiesArray.RemoveAll();
 };	
 
+void CityService::SetCityData(const CString& strCityName, const CString& strAreaName, const long lPostalCode, CITIES& oCity)
+{
+	oCity.lPOSTAL_CODE = lPostalCode;
+
+	int nLengthOfArray = sizeof(oCity.szCITY_NAME) / sizeof(char);
+
+	if (strCityName.GetLength() > nLengthOfArray)
+		return;
+	TCHAR* szBuffer = _tcsdup(strCityName);
+	_tcscpy_s(oCity.szCITY_NAME, szBuffer);
+
+	int nLengthOfArray = sizeof(oCity.szAREA_NAME) / sizeof(TCHAR);
+	if (strAreaName.GetLength() > nLengthOfArray)
+		return;
+
+	TCHAR* szBuffer = _tcsdup(strAreaName);
+	_tcscpy_s(oCity.szAREA_NAME, szBuffer);
+};
+
 CITIES* CityService::GetByAreaName(const CString& strCityAreaName)
 {
 	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
@@ -61,61 +80,28 @@ CITIES* CityService::GetByPostalCode(const long lPostalCode)
 	}
 };
 
-void CityService::SetCityName(const CString& strCityName, CITIES& oCity)
-{
-	int nLengthOfArray = sizeof(oCity.szCITY_NAME) / sizeof(char);
-
-	if (strCityName.GetLength() > nLengthOfArray)
-		return;
-	TCHAR* szBuffer = _tcsdup(strCityName);
-	_tcscpy_s(oCity.szCITY_NAME, szBuffer);
-};
-
-void CityService::SetAreaName(const CString& strAreaName, CITIES& oCity)
-{
-	int nLengthOfArray = sizeof(oCity.szAREA_NAME) / sizeof(TCHAR);
-	if (strAreaName.GetLength() > nLengthOfArray)
-		return;
-
-	TCHAR* szBuffer = _tcsdup(strAreaName);
-	_tcscpy_s(oCity.szAREA_NAME, szBuffer);
-};
 
 void CityService::AddDefaultElements()
 {
 	CITIES oBurgasCity;
-	SetCityName(_T("Bugras"), oBurgasCity);
-	SetAreaName(_T("Bugras"), oBurgasCity);
-	SetPostalCode(8000, oBurgasCity);
+	SetCityData(_T("Bugras"), _T("Bugras"), 8000, oBurgasCity);
 
 	CITIES oVarnaCity;
-	SetCityName(_T("Varna"), oVarnaCity);
-	SetAreaName(_T("Varna"), oVarnaCity);
-	SetPostalCode(9000, oVarnaCity);
-
+	SetCityData(_T("Varna"), _T("Varna"), 9000, oVarnaCity);
 
 	CITIES oSofiaCity;
-	SetCityName(_T("Sofia"), oSofiaCity);
-	SetAreaName(_T("Sofia"), oSofiaCity);
-	SetPostalCode(1000, oSofiaCity);
-
+	SetCityData(_T("Sofia"), _T("Sofia"), 1000, oSofiaCity);
 
 	CITIES oPlovidCity;
-	SetCityName(_T("Plovdiv"), oPlovidCity);
-	SetAreaName(_T("Plovdiv"), oPlovidCity);
-	SetPostalCode(3000, oPlovidCity);
+	SetCityData(_T("Plovdiv"), _T("Plovdiv"), 3000, oPlovidCity);
 
 
 	CITIES oRuseCity;
-	SetCityName(_T("Ruse"), oRuseCity);
-	SetAreaName(_T("Ruse"), oRuseCity);
-	SetPostalCode(4700, oRuseCity);
+	SetCityData(_T("Ruse"), _T("Ruse"), 4700, oRuseCity);
 
 
 	CITIES oVelinGradCity;
-	SetCityName(_T("VelinGrad"), oVelinGradCity);
-	SetAreaName(_T("Pazardzhik"), oVelinGradCity);
-	SetPostalCode(6000, oVelinGradCity);
+	SetCityData(_T("VelinGrad"), _T("Pazardzhik"), 6000, oVelinGradCity);
 
 	//TODO check how to coppy stack obeject to heap !
 
