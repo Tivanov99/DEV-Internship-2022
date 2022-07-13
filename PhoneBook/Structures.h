@@ -14,7 +14,7 @@ struct CITIES
 	/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'CITIES'</summary>
 	long lID;
 	/// <summary>Променлива съдържаща текущата версия на запис.</summary>
-	long lUPDATE_COUNTER;
+	long lUpdateCounter;
 	/// <summary>Променлива съдържаща стойността от колона 'CITY_NAME' в таблицата 'CITIES'</summary>
 	TCHAR szCITY_NAME[CITY_NAME_SIZE];
 	/// <summary>Променлива съдържаща стойността от колона 'AREA_NAME' в таблицата 'CITIES'</summary>

@@ -7,6 +7,11 @@ public:
 	{};
 	~CSelfClearingTypedPtrArray()
 	{
+		RemoveAllElements();
+	};
+
+	private void RemoveAllElements()
+	{
 		for (INT_PTR i = 0; i < GetCount(); i++)
 		{
 			T* pCurrent = GetAt(i);
@@ -14,6 +19,6 @@ public:
 			pCurrent = NULL;
 		}
 		RemoveAll();
-	};
+	}
 };
 

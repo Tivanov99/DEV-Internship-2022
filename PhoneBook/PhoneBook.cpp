@@ -206,10 +206,11 @@ void CPhoneBookApp::PreLoadState()
 	//ME
 	CCitiesTable ÓCitiesTable;
 
-	CSelfClearingTypedPtrArray<CITIES> oCitiesContainer;
+	CSelfClearingTypedPtrArray<CITIES> oCitiesArray;
+	//TODO : add typedef
 
-
-	bool bIsSelectedAll = ÓCitiesTable.SelectAll(oCitiesContainer);
+	//TODO : check.
+	bool bIsSelectedAll = ÓCitiesTable.SelectAll(oCitiesArray);
 	if (!bIsSelectedAll)
 	{
 		CString strErrorMessage = _T("Invalid 'Select All' operation");
@@ -223,7 +224,9 @@ void CPhoneBookApp::PreLoadState()
 		AfxMessageBox(strErrorMessage);
 	}
 
-	CITIES oCity = *oCitiesContainer.GetAt(0);
+	CITIES oCity = *oCitiesArray.GetAt(0);
+	//TODO : CHECK FOR NULL 
+
 	CString strBurgasko = _T("Burgasko");
 	TCHAR* szBurgaskoBuffer = _tcsdup(strBurgasko);
 	_tcscpy_s(oCity.szCITY_NAME, szBurgaskoBuffer);
@@ -255,7 +258,7 @@ void CPhoneBookApp::PreLoadState()
 	_tcscpy_s(oNewCity.szAREA_NAME, strNewAreaName);
 	long lPostalCode = 7777;
 	oNewCity.lPOSTAL_CODE = lPostalCode;
-	oNewCity.lUPDATE_COUNTER = 0;
+	oNewCity.lUpdateCounter = 0;
 
 	bool bIsInserted = ÓCitiesTable.Insert(oNewCity);
 	if (!bIsInserted)

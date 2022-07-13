@@ -96,6 +96,7 @@ bool CCitiesTable::OpenDbConnectionAndSession()
 
 bool CCitiesTable::ExecuteQuery(const CString& strQuery, const int nQueryAccessor)
 {
+	//TODO: reutrn true ones
 	if (nQueryAccessor == NoneModifyColumnCode)
 	{
 		//изпълняваме команда
@@ -118,8 +119,8 @@ bool CCitiesTable::ExecuteQuery(const CString& strQuery, const int nQueryAccesso
 		}
 		return true;
 	}
-		ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
-		return false;
+	ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
+	return false;
 }
 
 bool CCitiesTable::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesPtrArray)
@@ -216,13 +217,13 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 		return false;
 	}
 
-	if (recCities.lUPDATE_COUNTER != m_recCITY.lUPDATE_COUNTER)
+	if (recCities.lUpdateCounter != m_recCITY.lUpdateCounter)
 	{
 		ShowErrorMessage(lpszInvalidRecordVersion);
 		return false;
 	}
 
-	m_recCITY.lUPDATE_COUNTER++;
+	m_recCITY.lUpdateCounter++;
 	m_recCITY = recCities;
 
 	if (FAILED(SetData(ModifyColumnCode)))

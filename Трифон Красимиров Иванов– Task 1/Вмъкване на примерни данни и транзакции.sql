@@ -1,5 +1,5 @@
 USE [PhoneBook]
-
+--TODO check select's for no lock
 DECLARE @ZERO_UPDATE_COUNTER_COLUMN_VALUE INT =0;
 
 BEGIN TRANSACTION base
@@ -41,18 +41,18 @@ BEGIN TRANSACTION AddDefaultData
 
 	
 	INSERT INTO [PERSONS]
-		([FIRST_NAME],[SECOND_NAME],[LAST_NAME],[CITY_ID],[ADDRESS],[UPDATE_COUNTER],[UCN])
-		VALUES
-		('Трифон','Красимиров','Иванов',@PLOVDIV_CITY_ID,'Жк.Възраждане/Ул.Цар Калоян №24',@ZERO_UPDATE_COUNTER_COLUMN_VALUE,9999999999),
-		('Христо','Стоянов','Петров',@VARNA_CITY_ID,'Жк.Тракия/Ул.Лозенград №3',@ZERO_UPDATE_COUNTER_COLUMN_VALUE,9999999999),
-		('Георги','Ангелов','Анастасов',@Burgas_CITY_ID,'Жк.Лазур/Ул.Христо Ботев №9',@ZERO_UPDATE_COUNTER_COLUMN_VALUE,9999999999),
-		('Трифон','Красимиров','Иванов',@SOFIA_CITY_ID,'Жк.Студентски град/Ул.Парижка комуна №8',@ZERO_UPDATE_COUNTER_COLUMN_VALUE,9999999999)
+	([FIRST_NAME],[SECOND_NAME],[LAST_NAME],[CITY_ID],[ADDRESS],[UPDATE_COUNTER],[UCN])
+	VALUES
+	('Трифон','Красимиров','Иванов',@PLOVDIV_CITY_ID,'Жк.Възраждане/Ул.Цар Калоян №24',@ZERO_UPDATE_COUNTER_COLUMN_VALUE,9999999999),
+	('Христо','Стоянов','Петров',@VARNA_CITY_ID,'Жк.Тракия/Ул.Лозенград №3',@ZERO_UPDATE_COUNTER_COLUMN_VALUE,9999999999),
+	('Георги','Ангелов','Анастасов',@Burgas_CITY_ID,'Жк.Лазур/Ул.Христо Ботев №9',@ZERO_UPDATE_COUNTER_COLUMN_VALUE,9999999999),
+	('Трифон','Красимиров','Иванов',@SOFIA_CITY_ID,'Жк.Студентски град/Ул.Парижка комуна №8',@ZERO_UPDATE_COUNTER_COLUMN_VALUE,9999999999)
 		
 	INSERT INTO [PHONE_TYPES] 
-		([PHONE_TYPE],[UPDATE_COUNTER]) VALUES
-		('Home',@ZERO_UPDATE_COUNTER_COLUMN_VALUE),
-		('Mobile',@ZERO_UPDATE_COUNTER_COLUMN_VALUE),
-		('Work',@ZERO_UPDATE_COUNTER_COLUMN_VALUE)
+	([PHONE_TYPE],[UPDATE_COUNTER]) VALUES
+	('Home',@ZERO_UPDATE_COUNTER_COLUMN_VALUE),
+	('Mobile',@ZERO_UPDATE_COUNTER_COLUMN_VALUE),
+	('Work',@ZERO_UPDATE_COUNTER_COLUMN_VALUE)
 
 	DECLARE @HOME_PHONE_TYPE_ID INT = (SELECT [ID] FROM PHONE_TYPES WHERE [PHONE_TYPE] ='Home');
 	DECLARE @MOBILE_PHONE_TYPE_ID INT = (SELECT [ID] FROM PHONE_TYPES WHERE [PHONE_TYPE] ='Mobile');
