@@ -99,8 +99,6 @@ private:
 	/// <summary>
 	///  Функция която отваря сесия и връзка към базата.
 	/// </summary>
-	/// <param name="m_oDataSource">Обект служещ за отваряне на връзка.</param> 
-	/// <param name="m_oSession">Обект служещ за отваряне на връзка.</param> 
 	bool OpenDbConnectionAndSession();
 
 	/// <summary>
@@ -116,16 +114,16 @@ private:
 	/// <summary>
 	///  Функция която изпълнява дадена заявка към отворена връзка.
 	/// </summary>
-	/// <param name="hResult">Обект съдържащ текущото състояние на заявката</param> 
-	/// <param name="m_oSession">Обект чрез който ще изпълни връзката към базата.</param> 
 	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
+	/// <param name="nQueryAccessor">
+		///Целочислено число което определя дали ще
+		/// се модифицират данните или не. 0 - не модофицра / 1 модифицира.
+	/// </param>  
 	bool ExecuteQuery(const CString& strQuery,const int nQueryAccessor);
 
 	/// <summary>
 	///  Функция която затваря връзката към базата.
 	/// </summary>
-	/// <param name="m_oSession">Обект чрез който ще се затвори връзката към базата.</param> 
-	/// <param name="m_oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
 	void CloseDbConnectionAndSession();
 
 	/// <summary>
