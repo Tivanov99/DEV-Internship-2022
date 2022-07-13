@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="BaseService.h" />
     <ClInclude Include="CityService.h" />
+    <ClInclude Include="CSelfClearingTypedPtrArray.h" />
     <ClInclude Include="CStringService.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />

@@ -20,19 +20,19 @@ void CityService::SetCityData(const CString& strCityName, const CString& strArea
 {
 	oCity.lPOSTAL_CODE = lPostalCode;
 
-	int nLengthOfArray = sizeof(oCity.szCITY_NAME) / sizeof(char);
+	int nCityNameArrayLength = sizeof(oCity.szCITY_NAME) / sizeof(char);
 
-	if (strCityName.GetLength() > nLengthOfArray)
+	if (strCityName.GetLength() > nCityNameArrayLength)
 		return;
-	TCHAR* szBuffer = _tcsdup(strCityName);
-	_tcscpy_s(oCity.szCITY_NAME, szBuffer);
+	TCHAR* szCityNameBuffer = _tcsdup(strCityName);
+	_tcscpy_s(oCity.szCITY_NAME, szCityNameBuffer);
 
-	int nLengthOfArray = sizeof(oCity.szAREA_NAME) / sizeof(TCHAR);
-	if (strAreaName.GetLength() > nLengthOfArray)
+	int nCityAreaNameArrayLength = sizeof(oCity.szAREA_NAME) / sizeof(TCHAR);
+	if (strAreaName.GetLength() > nCityAreaNameArrayLength)
 		return;
 
-	TCHAR* szBuffer = _tcsdup(strAreaName);
-	_tcscpy_s(oCity.szAREA_NAME, szBuffer);
+	TCHAR* szAreaNameBuffer = _tcsdup(strAreaName);
+	_tcscpy_s(oCity.szAREA_NAME, szAreaNameBuffer);
 };
 
 CITIES* CityService::GetByAreaName(const CString& strCityAreaName)
