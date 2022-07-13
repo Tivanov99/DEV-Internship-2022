@@ -52,7 +52,6 @@ private:
 	static const LPCSTR lpszErrorDeletingRecord;
 	static const LPCSTR lpszErrorInsertingRecord;
 	static const LPCSTR lpszInvalidRecordVersion;
-	
 
 public:
 	CCitiesTable();
