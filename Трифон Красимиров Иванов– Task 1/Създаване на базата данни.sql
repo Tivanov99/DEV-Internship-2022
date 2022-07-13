@@ -14,12 +14,12 @@ FILEGROUP MyDB_FG1
   ( NAME = 'PhoneBook_FG1_Dat1',
     FILENAME =
        'C:\Users\Public\Desktop\DATA\PhoneBook_FG1_Dat1.mdf',
-    SIZE = 1MB,
-    MAXSIZE=10MB,
+    SIZE=1GB,
+    MAXSIZE=5GB,
     FILEGROWTH=10%),
   ( NAME = 'PhoneBook_FG1_Dat2',
     FILENAME =
 	'C:\Users\Public\Desktop\DATA\PhoneBook_FG1_2.ndf',
-    SIZE = 1MB,
-    MAXSIZE=10MB,
+    SIZE=1GB,
+    MAXSIZE=5GB,
     FILEGROWTH=10%)

@@ -118,7 +118,7 @@ bool CCitiesTable::ExecuteQuery(const CString& strQuery, const int nQueryAccesso
 	return false;
 }
 
-bool CCitiesTable::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesArray)
+bool CCitiesTable::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesPtrArray)
 {
 	if (!OpenSessionAndConnectionToDb())
 		return false;
@@ -144,7 +144,7 @@ bool CCitiesTable::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesArray)
 	{
 		CITIES* pCurrentCity = new CITIES;
 		*pCurrentCity = m_recCITY;
-		oCitiesArray.Add(pCurrentCity);
+		oCitiesPtrArray.Add(pCurrentCity);
 
 		hResult = MoveNext();
 
