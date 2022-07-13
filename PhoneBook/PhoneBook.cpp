@@ -204,12 +204,12 @@ void CPhoneBookApp::PreLoadState()
 	CCitiesTable ÓCitiesTable;
 	CCitiesArray ÓCitiesArray;
 
-	/*bool bIsSelectedAll = ÓCitiesTable.SelectAll(ÓCitiesArray);
+	bool bIsSelectedAll = ÓCitiesTable.SelectAll(ÓCitiesArray);
 	if (!bIsSelectedAll)
 	{
 		CString strErrorMessage = _T("Invalid 'Select All' operation");
 		AfxMessageBox(strErrorMessage);
-	}*/
+	}
 
 	/*bool bIsDeleted = ÓCitiesTable.DeleteWhereID(10);
 	if (!bIsDeleted)
@@ -218,10 +218,10 @@ void CPhoneBookApp::PreLoadState()
 		AfxMessageBox(strErrorMessage);
 	}*/
 
-	/*CITIES oCity = *ÓCitiesArray.GetAt(0);*/
+	CITIES oCity = *ÓCitiesArray.GetAt(0);
 	CString strBurgasko = _T("Burgasko");
-	/*TCHAR* szBurgaskoBuffer = _tcsdup(strBurgasko);
-	_tcscpy_s(oCity.szCITY_NAME, szBurgaskoBuffer);*/
+	TCHAR* szBurgaskoBuffer = _tcsdup(strBurgasko);
+	_tcscpy_s(oCity.szCITY_NAME, szBurgaskoBuffer);
 
 	/*bool bIsUpdated = ÓCitiesTable.UpdateWhereID(1, oCity);
 	if (!bIsUpdated)

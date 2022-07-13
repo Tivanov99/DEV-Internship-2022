@@ -255,7 +255,7 @@ bool CCitiesTable::Insert(const CITIES& recCities)
 		ShowErrorMessage(lpszErrorExecutingQuery, (CString)lpszEmptySelect);
 		CloseSessionAndConnection(oDataSource, oSession);
 		return false;
-	}
+	} 
 
 	m_recCITY = recCities;
 
