@@ -216,7 +216,7 @@ void CPhoneBookApp::PreLoadState()
 		AfxMessageBox(strErrorMessage);
 	}
 
-	/*bool bIsDeleted = ÓCitiesTable.DeleteWhereID(10);
+	bool bIsDeleted = ÓCitiesTable.DeleteWhereID(10);
 	if (!bIsDeleted)
 	{
 		CString strErrorMessage = _T("Invalid 'Delete' operation");
@@ -244,23 +244,25 @@ void CPhoneBookApp::PreLoadState()
 		AfxMessageBox(strErrorMessage);
 	}
 
+	CITIES oNewCity;
+
 	CString strNewCityName = _T("Blagoev grad");
 	TCHAR* szCityNameBuffer = _tcsdup(strNewCityName);
-	_tcscpy_s(recCity.szCITY_NAME, szBurgaskoBuffer);
+	_tcscpy_s(oNewCity.szCITY_NAME, szCityNameBuffer);
 
 	CString strNewAreaName = _T("Botev");
 	TCHAR* szAreaNameBuffer = _tcsdup(strNewAreaName);
-	_tcscpy_s(recCity.szAREA_NAME, szAreaNameBuffer);
+	_tcscpy_s(oNewCity.szAREA_NAME, strNewAreaName);
 	long lPostalCode = 7777;
-	recCity.lPOSTAL_CODE = lPostalCode;
-	recCity.lUPDATE_COUNTER = 0;
+	oNewCity.lPOSTAL_CODE = lPostalCode;
+	oNewCity.lUPDATE_COUNTER = 0;
 
-	bool bIsInserted = ÓCitiesTable.Insert(recCity);
+	bool bIsInserted = ÓCitiesTable.Insert(oNewCity);
 	if (!bIsInserted)
 	{
 		CString strErrorMessage = _T("Invalid 'Insert' operation");
 		AfxMessageBox(strErrorMessage);
-	}*/
+	}
 
 }
 void CPhoneBookApp::LoadCustomState()

@@ -101,7 +101,7 @@ private:
 	/// </summary>
 	/// <param name="m_oDataSource">Обект служещ за отваряне на връзка.</param> 
 	/// <param name="m_oSession">Обект служещ за отваряне на връзка.</param> 
-	bool OpenSessionAndConnectionToDb();
+	bool OpenDbConnectionAndSession();
 
 	/// <summary>
 	///  Функция която създава рол-сет.
@@ -126,7 +126,7 @@ private:
 	/// </summary>
 	/// <param name="m_oSession">Обект чрез който ще се затвори връзката към базата.</param> 
 	/// <param name="m_oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
-	void CloseSessionAndConnection();
+	void CloseDbConnectionAndSession();
 
 	/// <summary>
 	///  Функция която извежда съобщение при неуспешен опит за прочитане на резултат от заявка.
