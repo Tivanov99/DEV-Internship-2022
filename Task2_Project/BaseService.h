@@ -1,3 +1,4 @@
+#include"CSelfClearingTypedPtrArray.h";
 
 #pragma once
 
@@ -8,7 +9,7 @@ class BaseService
 {
 
 private:
-
+	CSelfClearingTypedPtrArray<T> oSelfClearingTypedArray;
 
 public:
 
