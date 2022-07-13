@@ -269,7 +269,7 @@ bool CCitiesTable::DeleteWhereID(const long lID)
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
 	// Изпълняваме командата
-	if (!ExecuteQuery((CString)lpszEmptySelect, ModifyColumnCode))
+	if (!ExecuteQuery(strQuery, ModifyColumnCode))
 	{
 		ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
 		CloseSessionAndConnection();

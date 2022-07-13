@@ -1,18 +1,27 @@
 ﻿  CityService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(123,20): error C3861: 'CreatePointer': identifier not found
   PhoneNumberService.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(53,7): error C3668: 'PhoneNumberService::ShowElementInfoAtIndex': method with override specifier 'override' did not override any base class methods
   PhoneTypeService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(38,7): error C3668: 'PhoneTypeService::ShowElementInfoAtIndex': method with override specifier 'override' did not override any base class methods
   Task2_Project.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(53,7): error C3668: 'PhoneNumberService::ShowElementInfoAtIndex': method with override specifier 'override' did not override any base class methods
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(38,7): error C3668: 'PhoneTypeService::ShowElementInfoAtIndex': method with override specifier 'override' did not override any base class methods
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(27,19): error C2259: 'PhoneTypeService': cannot instantiate abstract class
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(5): message : see declaration of 'PhoneTypeService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(27,19): message : due to following members:
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(27,19): message : 'void BaseService<PHONE_TYPES>::ShowElementInfoAtIndex(const long)': is abstract
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(30): message : see declaration of 'BaseService<PHONE_TYPES>::ShowElementInfoAtIndex'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(36,21): error C2259: 'PhoneNumberService': cannot instantiate abstract class
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.h(8): message : see declaration of 'PhoneNumberService'
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(36,21): message : due to following members:
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(36,21): message : 'void BaseService<PHONE_NUMBERS>::ShowElementInfoAtIndex(const long)': is abstract
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(30): message : see declaration of 'BaseService<PHONE_NUMBERS>::ShowElementInfoAtIndex'
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(151,23): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(29): warning C4715: 'PhoneTypeService::GetByPhoneType': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(28): warning C4715: 'PhoneNumberService::GetByPhoneNumber': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(44): warning C4715: 'CityService::GetByCityName': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(30): warning C4715: 'CityService::GetByAreaName': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(57): warning C4715: 'CityService::GetByPostalCode': not all control paths return a value
-  Task2_Project.vcxproj -> C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\x64\Debug\Task2_Project.exe

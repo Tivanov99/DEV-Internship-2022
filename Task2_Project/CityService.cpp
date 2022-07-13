@@ -8,10 +8,9 @@ using namespace std;
 CityService::CityService(){};
 CityService::~CityService()
 {
-	//todo: use for 
-	while (citiesArray.GetCount() > 0)
+	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
 	{
-		delete citiesArray.GetAt(citiesArray.GetCount() - 1);
+		delete citiesArray.GetAt(i);
 		citiesArray[i] = NULL;
 	}
 	citiesArray.RemoveAll();
@@ -19,7 +18,7 @@ CityService::~CityService()
 
 CITIES* CityService::GetByAreaName(const CString& strCityAreaName)
 {
-	for (INT_PTR i = 0; i < m_oCitiesArray.GetCount(); i++)
+	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
 	{
 		//TODO: CHECLK FOR NULL
 		CITIES* pCity = citiesArray.GetAt(i);
@@ -82,65 +81,46 @@ void CityService::SetAreaName(const CString& strAreaName, CITIES& oCity)
 	_tcscpy_s(oCity.szAREA_NAME, szBuffer);
 };
 //TODO: REMOVE
-void CitySeEMOrvice::SetPostalCode(const long lSorce, CITIES& oCity)
-{
-	if (lSorce > 0)
-		oCity.lPOSTAL_CODE = lSorce;
-};
 
 void CityService::AddDefaultElements()
 {
 	CITIES oBurgasCity;
-	CString strBurgasCityName = _T("Bugras");
-	CString strBurgasAreaName = _T("Bugras");
-	SetCityName(strBurgasCityName, oBurgasCity);
-	SetAreaName(strBurgasAreaName, oBurgasCity);
+	SetCityName(_T("Bugras"), oBurgasCity);
+	SetAreaName(_T("Bugras"), oBurgasCity);
 	SetPostalCode(8000, oBurgasCity);
 
-	//TODO: CHECK HERE, SKIP CSTRING OBEJCTS
 	CITIES oVarnaCity;
-	consdCString strVarnaCityName = _T("Varna");
-	consdCString strVarnaAreaName = _T("Varna");
-	SetCityName(strVarnaCityName, oVarnaCity);
-	SetAreaName(strVarnaAreaName, oVarnaCity);
+	SetCityName(_T("Varna"), oVarnaCity);
+	SetAreaName(_T("Varna"), oVarnaCity);
 	SetPostalCode(9000, oVarnaCity);
 
 
 	CITIES oSofiaCity;
-	CString strSofiaCityName = _T("Sofia");
-	CString strSofiaAreaName = _T("Sofia");
-	SetCityName(strSofiaCityName, oSofiaCity);
-	SetAreaName(strSofiaAreaName, oSofiaCity);
+	SetCityName(_T("Sofia"), oSofiaCity);
+	SetAreaName(_T("Sofia"), oSofiaCity);
 	SetPostalCode(1000, oSofiaCity);
 
 
 	CITIES oPlovidCity;
-	CString strPlovdivCityName = _T("Plovdiv");
-	CString strPlovdivAreaName = _T("Plovdiv");
-	SetCityName(strPlovdivCityName, oPlovidCity);
-	SetAreaName(strPlovdivAreaName, oPlovidCity);
+	SetCityName(_T("Plovdiv"), oPlovidCity);
+	SetAreaName(_T("Plovdiv"), oPlovidCity);
 	SetPostalCode(3000, oPlovidCity);
 
 
 	CITIES oRuseCity;
-	CString strRuseCityName = _T("Ruse");
-	CString strRuseAreaName = _T("Ruse");
-	SetCityName(strRuseCityName, oRuseCity);
-	SetAreaName(strRuseAreaName, oRuseCity);
+	SetCityName(_T("Ruse"), oRuseCity);
+	SetAreaName(_T("Ruse"), oRuseCity);
 	SetPostalCode(4700, oRuseCity);
 
 
 	CITIES oVelinGradCity;
-	CString strVelinGradCityName = _T("VelinGrad");
-	CString strVelinGradAreaName = _T("Pazardzhik");
-	SetCityName(strVelinGradCityName, oVelinGradCity);
-	SetAreaName(strVelinGradAreaName, oVelinGradCity);
+	SetCityName(_T("VelinGrad"), oVelinGradCity);
+	SetAreaName(_T("Pazardzhik"), oVelinGradCity);
 	SetPostalCode(6000, oVelinGradCity);
 
 	//TODO check how to coppy stack obeject to heap !
 
-	CITIES* pBurgas = new CITIES;
-	*pBurgas = oBurgasCity;
+	CITIES* pBurgas = CreatePointer(oBurgasCity);
 
 	CITIES* pVarna = new CITIES;
 	*pVarna = oVarnaCity;
@@ -163,6 +143,13 @@ void CityService::AddDefaultElements()
 	citiesArray.Add(pPlovidCity);
 	citiesArray.Add(pRuseCity);
 	citiesArray.Add(pVelinGradCity);
+};
+
+CITIES* CreatePointer(CITIES oCities)
+{
+	CITIES* pCities = new CITIES;
+	*pCities = oCities;
+	return pCities;
 };
 
 void CityService::ShowElementInfoAtIndex(const long lIndex)
