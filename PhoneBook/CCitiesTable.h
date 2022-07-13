@@ -97,9 +97,9 @@ private:
 	/// <summary>
 	///  Функция която отваря сесия и връзка към базата.
 	/// </summary>
-	/// <param name="oDataSource">Обект служещ за отваряне на връзка.</param> 
-	/// <param name="oSession">Обект служещ за отваряне на връзка.</param> 
-	bool OpenSessionAndConnectionToDb(CDataSource& oDataSource, CSession& oSession);
+	/// <param name="m_oDataSource">Обект служещ за отваряне на връзка.</param> 
+	/// <param name="m_oSession">Обект служещ за отваряне на връзка.</param> 
+	bool OpenSessionAndConnectionToDb(CDataSource& m_oDataSource, CSession& m_oSession);
 
 	/// <summary>
 	///  Функция която създава рол-сет.
@@ -115,16 +115,16 @@ private:
 	///  Функция която изпълнява дадена заявка към отворена връзка.
 	/// </summary>
 	/// <param name="hResult">Обект съдържащ текущото състояние на заявката</param> 
-	/// <param name="oSession">Обект чрез който ще изпълни връзката към базата.</param> 
+	/// <param name="m_oSession">Обект чрез който ще изпълни връзката към базата.</param> 
 	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
-	bool ExecuteQuery(CSession& oSession, const CString& strQuery,const int nQueryAccessor);
+	bool ExecuteQuery(CSession& m_oSession, const CString& strQuery,const int nQueryAccessor);
 
 	/// <summary>
 	///  Функция която затваря връзката към базата.
 	/// </summary>
-	/// <param name="oSession">Обект чрез който ще се затвори връзката към базата.</param> 
-	/// <param name="oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
-	void CloseSessionAndConnection(CDataSource& oDataSource, CSession& oSession);
+	/// <param name="m_oSession">Обект чрез който ще се затвори връзката към базата.</param> 
+	/// <param name="m_oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
+	void CloseSessionAndConnection(CDataSource& m_oDataSource, CSession& m_oSession);
 
 	/// <summary>
 	///  Функция която извежда съобщение при неуспешен опит за прочитане на резултат от заявка.
@@ -139,5 +139,6 @@ private:
 
 	// Members
 	// -------------
-
+	CDataSource m_oDataSource;
+	CSession m_oSession;
 };

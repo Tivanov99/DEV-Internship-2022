@@ -25,11 +25,11 @@ CCitiesTable::~CCitiesTable()
 {
 };
 
-void CCitiesTable::CloseSessionAndConnection(CDataSource& oDataSource, CSession& oSession)
+void CCitiesTable::CloseSessionAndConnection(CDataSource& m_oDataSource, CSession& m_oSession)
 {
 	Close();
-	oSession.Close();
-	oDataSource.Close();
+	m_oSession.Close();
+	m_oDataSource.Close();
 };
 
 void CCitiesTable::ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery)
@@ -69,12 +69,12 @@ CDBPropSet CCitiesTable::GetModifyDBPropSet() const
 	return oUpdateDBPropSet;
 }
 
-bool CCitiesTable::OpenSessionAndConnectionToDb(CDataSource& oDataSource, CSession& oSession)
+bool CCitiesTable::OpenSessionAndConnectionToDb(CDataSource& m_oDataSource, CSession& m_oSession)
 {
 	CDBPropSet& oDBPropSet = GetDBPropSet();
 
 	// Свързваме се към базата данни
-	HRESULT hResult = oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
+	HRESULT hResult = m_oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
 
 	if (FAILED(hResult))
 	{
@@ -83,21 +83,21 @@ bool CCitiesTable::OpenSessionAndConnectionToDb(CDataSource& oDataSource, CSessi
 	}
 
 	// Отваряме сесия
-	hResult = oSession.Open(oDataSource);
+	hResult = m_oSession.Open(m_oDataSource);
 	if (FAILED(hResult))
 	{
 		AfxMessageBox((CString)lpszUnableToOpenSession, hResult);
-		oDataSource.Close();
+		m_oDataSource.Close();
 		return false;
 	}
 	return true;
 };
 
-bool CCitiesTable::ExecuteQuery(CSession& oSession, const CString& strQuery, const int nQueryAccessor)
+bool CCitiesTable::ExecuteQuery(const CString& strQuery, const int nQueryAccessor)
 {
 	if (nQueryAccessor == NoneModifyColumnCode)
 	{
-		if (FAILED(Open(oSession, strQuery)))
+		if (FAILED(Open(m_oSession, strQuery)))
 		{
 			ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
 			return false;
@@ -107,7 +107,7 @@ bool CCitiesTable::ExecuteQuery(CSession& oSession, const CString& strQuery, con
 	else if (nQueryAccessor == ModifyColumnCode)
 	{
 		CDBPropSet oUpdateDBPropSet = GetModifyDBPropSet();
-		if (FAILED(Open(oSession, strQuery,&oUpdateDBPropSet)))
+		if (FAILED(Open(m_oSession, strQuery,&oUpdateDBPropSet)))
 		{
 			ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
 			return false;
@@ -120,16 +120,13 @@ bool CCitiesTable::ExecuteQuery(CSession& oSession, const CString& strQuery, con
 
 bool CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 {
-	CDataSource oDataSource;
-	CSession oSession;
-
-	if (!OpenSessionAndConnectionToDb(oDataSource, oSession))
+	if (!OpenSessionAndConnectionToDb(m_oDataSource, m_oSession))
 		return false;
 
 	// Изпълняваме командата
-	if (!ExecuteQuery(oSession, (CString)lpszSelectAll,NoneModifyColumnCode))
+	if (!ExecuteQuery(m_oSession, (CString)lpszSelectAll,NoneModifyColumnCode))
 	{
-		CloseSessionAndConnection(oDataSource, oSession);
+		CloseSessionAndConnection(m_oDataSource, m_oSession);
 		return false;
 	}
 
@@ -138,7 +135,7 @@ bool CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 	if (FAILED(hResult))
 	{
 		ShowErrorMessage(lpszErrorOpeningRecord);
-		CloseSessionAndConnection(oDataSource,oSession);
+		CloseSessionAndConnection(m_oDataSource,m_oSession);
 		return false;
 	}
 
@@ -154,53 +151,47 @@ bool CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
 		if (FAILED(hResult) && hResult!= DB_S_ENDOFROWSET)
 		{
 			ShowErrorMessage(lpszErrorOpeningRecord);
-			CloseSessionAndConnection(oDataSource, oSession);
+			CloseSessionAndConnection(m_oDataSource, m_oSession);
 			return false;
 		}
 		// Logic with the result
 	}
 
 	// Затваряме командата, сесията и връзката с базата данни. 
-	CloseSessionAndConnection(oDataSource, oSession);
+	CloseSessionAndConnection(m_oDataSource, m_oSession);
 
 	return true;
 };
 
 bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 {
-	CDataSource oDataSource;
-	CSession oSession;
-
-	if (!OpenSessionAndConnectionToDb(oDataSource, oSession))
+	if (!OpenSessionAndConnectionToDb(m_oDataSource, m_oSession))
 		return false;
 
 	CString strQuery;
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
-	if (!ExecuteQuery(oSession, strQuery,NoneModifyColumnCode))
+	if (!ExecuteQuery(m_oSession, strQuery,NoneModifyColumnCode))
 	{
-		CloseSessionAndConnection(oDataSource, oSession);
+		CloseSessionAndConnection(m_oDataSource, m_oSession);
 		return false;
 	}
 
 	if (FAILED(MoveFirst()))
 	{
 		ShowErrorMessage(lpszErrorOpeningRecord);
-		CloseSessionAndConnection(oDataSource, oSession);
+		CloseSessionAndConnection(m_oDataSource, m_oSession);
 		return false;
 	}
 		recCities = m_recCITY;
 
-	CloseSessionAndConnection(oDataSource, oSession);
+	CloseSessionAndConnection(m_oDataSource, m_oSession);
 	return true;
 };
 
 bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 {
-	CDataSource oDataSource;
-	CSession oSession;
-
-	if (!OpenSessionAndConnectionToDb(oDataSource, oSession))
+	if (!OpenSessionAndConnectionToDb(m_oDataSource, m_oSession))
 		return false;
 
 	// Конструираме заявката
@@ -208,16 +199,16 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
 	// Изпълняваме командата
-	if (!ExecuteQuery(oSession, strQuery,ModifyColumnCode))
+	if (!ExecuteQuery(m_oSession, strQuery,ModifyColumnCode))
 	{
-		CloseSessionAndConnection(oDataSource, oSession);
+		CloseSessionAndConnection(m_oDataSource, m_oSession);
 		return false;
 	}
 
 	if (FAILED(MoveFirst()))
 	{
 		ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
-		CloseSessionAndConnection(oDataSource, oSession);
+		CloseSessionAndConnection(m_oDataSource, m_oSession);
 		return false;
 	}
 
@@ -233,27 +224,24 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	if (FAILED(SetData(ModifyColumnCode)))
 	{
 		ShowErrorMessage(lpszErrorUpdatingRecord);
-		CloseSessionAndConnection(oDataSource, oSession);
+		CloseSessionAndConnection(m_oDataSource, m_oSession);
 		return false;
 	}
 
-	CloseSessionAndConnection(oDataSource, oSession);
+	CloseSessionAndConnection(m_oDataSource, m_oSession);
 
 	return true;
 };
 
 bool CCitiesTable::Insert(const CITIES& recCities)
 {
-	CSession oSession;
-	CDataSource oDataSource;
-
-	if (!OpenSessionAndConnectionToDb(oDataSource, oSession))
+	if (!OpenSessionAndConnectionToDb(m_oDataSource, m_oSession))
 		return false;
 
-	if (!ExecuteQuery(oSession, (CString)lpszEmptySelect, ModifyColumnCode))
+	if (!ExecuteQuery(m_oSession, (CString)lpszEmptySelect, ModifyColumnCode))
 	{
 		ShowErrorMessage(lpszErrorExecutingQuery, (CString)lpszEmptySelect);
-		CloseSessionAndConnection(oDataSource, oSession);
+		CloseSessionAndConnection(m_oDataSource, m_oSession);
 		return false;
 	} 
 
@@ -262,20 +250,17 @@ bool CCitiesTable::Insert(const CITIES& recCities)
 	if (FAILED(__super::Insert(ModifyColumnCode)))
 	{
 		ShowErrorMessage(lpszErrorInsertingRecord);
-		CloseSessionAndConnection(oDataSource, oSession);
+		CloseSessionAndConnection(m_oDataSource, m_oSession);
 		return false;
 	}
 
-	CloseSessionAndConnection(oDataSource, oSession);
+	CloseSessionAndConnection(m_oDataSource, m_oSession);
 	return true;
 };
 
 bool CCitiesTable::DeleteWhereID(const long lID)
 {
-	CDataSource oDataSource;
-	CSession oSession;
-
-	if (!OpenSessionAndConnectionToDb(oDataSource, oSession))
+	if (!OpenSessionAndConnectionToDb(m_oDataSource, m_oSession))
 		return false;
 
 	// Конструираме заявката
@@ -283,27 +268,27 @@ bool CCitiesTable::DeleteWhereID(const long lID)
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
 	// Изпълняваме командата
-	if (!ExecuteQuery(oSession, (CString)lpszEmptySelect, ModifyColumnCode))
+	if (!ExecuteQuery(m_oSession, (CString)lpszEmptySelect, ModifyColumnCode))
 	{
 		ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-		CloseSessionAndConnection(oDataSource, oSession);
+		CloseSessionAndConnection(m_oDataSource, m_oSession);
 		return false;
 	}
 
 	if (MoveFirst() != S_OK)
 	{
 		ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
-		CloseSessionAndConnection(oDataSource, oSession);
+		CloseSessionAndConnection(m_oDataSource, m_oSession);
 		return false;
 	}
 
 	if (FAILED(Delete()))
 	{
 		ShowErrorMessage(lpszErrorDeletingRecord);
-		CloseSessionAndConnection(oDataSource, oSession);
+		CloseSessionAndConnection(m_oDataSource, m_oSession);
 		return false;
 	}
-	CloseSessionAndConnection(oDataSource, oSession);
+	CloseSessionAndConnection(m_oDataSource, m_oSession);
 
 	return true;
 };

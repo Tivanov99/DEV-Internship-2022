@@ -14,10 +14,10 @@
 #include "CitiesView.h"
 #include "CCitiesTable.h"
 
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-#include "TableArray.h"
 
 
 // CPhoneBookApp
@@ -206,7 +206,7 @@ void CPhoneBookApp::PreLoadState()
 
 	CCitiesArray ÓCitiesArray;
 
-	TableArray<CITIES> oTableArray;
+	//TableArray<CITIES> oTableArray;
 
 	bool bIsSelectedAll = ÓCitiesTable.SelectAll(ÓCitiesArray);
 	if (!bIsSelectedAll)
@@ -215,24 +215,24 @@ void CPhoneBookApp::PreLoadState()
 		AfxMessageBox(strErrorMessage);
 	}
 
-	/*bool bIsDeleted = ÓCitiesTable.DeleteWhereID(10);
+	bool bIsDeleted = ÓCitiesTable.DeleteWhereID(10);
 	if (!bIsDeleted)
 	{
 		CString strErrorMessage = _T("Invalid 'Delete' operation");
 		AfxMessageBox(strErrorMessage);
-	}*/
+	}
 
 	CITIES oCity = *ÓCitiesArray.GetAt(0);
 	CString strBurgasko = _T("Burgasko");
 	TCHAR* szBurgaskoBuffer = _tcsdup(strBurgasko);
 	_tcscpy_s(oCity.szCITY_NAME, szBurgaskoBuffer);
 
-	/*bool bIsUpdated = ÓCitiesTable.UpdateWhereID(1, oCity);
+	bool bIsUpdated = ÓCitiesTable.UpdateWhereID(1, oCity);
 	if (!bIsUpdated)
 	{
 		CString strErrorMessage = _T("Invalid 'Update Where ID' operation");
 		AfxMessageBox(strErrorMessage);
-	}*/
+	}
 
 	CITIES recCity;
 
