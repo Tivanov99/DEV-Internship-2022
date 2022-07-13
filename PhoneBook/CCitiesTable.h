@@ -99,7 +99,7 @@ private:
 	/// </summary>
 	/// <param name="m_oDataSource">Обект служещ за отваряне на връзка.</param> 
 	/// <param name="m_oSession">Обект служещ за отваряне на връзка.</param> 
-	bool OpenSessionAndConnectionToDb(CDataSource& m_oDataSource, CSession& m_oSession);
+	bool OpenSessionAndConnectionToDb();
 
 	/// <summary>
 	///  Функция която създава рол-сет.
@@ -117,14 +117,14 @@ private:
 	/// <param name="hResult">Обект съдържащ текущото състояние на заявката</param> 
 	/// <param name="m_oSession">Обект чрез който ще изпълни връзката към базата.</param> 
 	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
-	bool ExecuteQuery(CSession& m_oSession, const CString& strQuery,const int nQueryAccessor);
+	bool ExecuteQuery(const CString& strQuery,const int nQueryAccessor);
 
 	/// <summary>
 	///  Функция която затваря връзката към базата.
 	/// </summary>
 	/// <param name="m_oSession">Обект чрез който ще се затвори връзката към базата.</param> 
 	/// <param name="m_oDataSource">Обект чрез който ще се затвори връзката към базата.</param> 
-	void CloseSessionAndConnection(CDataSource& m_oDataSource, CSession& m_oSession);
+	void CloseSessionAndConnection();
 
 	/// <summary>
 	///  Функция която извежда съобщение при неуспешен опит за прочитане на резултат от заявка.
