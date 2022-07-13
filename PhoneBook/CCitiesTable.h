@@ -3,6 +3,8 @@
 #include <afxcontrolbars.h>
 #include <afxcontrolbars.h>
 #include "Structures.h"
+#include "CContainer.h"
+
 
 using namespace std;
 
@@ -64,7 +66,7 @@ public:
 	///  Функция която чете всики записи от таблицата "CITIES" и ги добавя в подаден като аргумент масив.
 	/// </summary>
 	/// <param name="oCitiesArray">Масив в който ще бъдат записани всички прочетени данни.</param>
-	bool SelectAll(CCitiesArray& oCitiesArray);
+	bool SelectAll(CContainer<CITIES>& oCitiesArray);
 
 	/// <summary>
 	///  Функция която чете запис от таблицата "CITIES" чието ID отговаря на "lID" и го презаписва в "recCities" аргумента.

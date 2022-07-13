@@ -118,7 +118,7 @@ bool CCitiesTable::ExecuteQuery(const CString& strQuery, const int nQueryAccesso
 	return false;
 }
 
-bool CCitiesTable::SelectAll(CCitiesArray& oCitiesArray)
+bool CCitiesTable::SelectAll(CContainer<CITIES>& oCitiesArray)
 {
 	if (!OpenSessionAndConnectionToDb())
 		return false;
