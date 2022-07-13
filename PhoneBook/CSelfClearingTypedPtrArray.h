@@ -10,7 +10,8 @@ public:
 		RemoveAllElements();
 	};
 
-	private void RemoveAllElements()
+private:
+	void RemoveAllElements()
 	{
 		for (INT_PTR i = 0; i < GetCount(); i++)
 		{

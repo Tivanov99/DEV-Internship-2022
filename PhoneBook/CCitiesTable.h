@@ -27,7 +27,7 @@ protected:
 		END_ACCESSOR()
 
 		BEGIN_ACCESSOR(ModifyColumnCode, true)
-		COLUMN_ENTRY(2, m_recCITY.lUpdate_Counter)
+		COLUMN_ENTRY(2, m_recCITY.lUpdateCounter)
 		COLUMN_ENTRY(3, m_recCITY.szCITY_NAME)
 		COLUMN_ENTRY(4, m_recCITY.szAREA_NAME)
 		COLUMN_ENTRY(5, m_recCITY.lPOSTAL_CODE)

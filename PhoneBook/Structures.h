@@ -29,4 +29,5 @@ struct CITIES
 };
 
 ///<summary>type-def презентиращ CTypedPtrArray който използва CPtrArray контейнер и таблицата CITIES< / summary >
-typedef CTypedPtrArray < CPtrArray, CITIES*> CCitiesArray;
+
+//typedef CSelfClearingTypedPtrArray<CITIES> CCitiesArray;

@@ -19,7 +19,7 @@
 #define new DEBUG_NEW
 #endif
 #include "CSelfClearingTypedPtrArray.h"
-#include "CSelfClearingTypedPtrArray.h"
+#include "Structures.h"
 
 
 // CPhoneBookApp
@@ -207,64 +207,53 @@ void CPhoneBookApp::PreLoadState()
 	CCitiesTable ÓCitiesTable;
 
 	CSelfClearingTypedPtrArray<CITIES> oCitiesArray;
-	//TODO : add typedef
 
-	//TODO : check.
-	bool bIsSelectedAll = ÓCitiesTable.SelectAll(oCitiesArray);
-	if (!bIsSelectedAll)
+	if (!ÓCitiesTable.SelectAll(oCitiesArray))
 	{
-		CString strErrorMessage = _T("Invalid 'Select All' operation");
-		AfxMessageBox(strErrorMessage);
+		AfxMessageBox(_T("Invalid 'Select All' operation"));
 	}
 
-	bool bIsDeleted = ÓCitiesTable.DeleteWhereID(10);
-	if (!bIsDeleted)
+	if (!ÓCitiesTable.DeleteWhereID(10))
 	{
-		CString strErrorMessage = _T("Invalid 'Delete' operation");
-		AfxMessageBox(strErrorMessage);
+		AfxMessageBox(_T("Invalid 'Delete' operation"));
 	}
 
-	CITIES oCity = *oCitiesArray.GetAt(0);
-	//TODO : CHECK FOR NULL 
+	CITIES* recCity = oCitiesArray.GetAt(0);
 
-	CString strBurgasko = _T("Burgasko");
-	TCHAR* szBurgaskoBuffer = _tcsdup(strBurgasko);
-	_tcscpy_s(oCity.szCITY_NAME, szBurgaskoBuffer);
-
-	bool bIsUpdated = ÓCitiesTable.UpdateWhereID(1, oCity);
-	if (!bIsUpdated)
+	if (recCity != NULL)
 	{
-		CString strErrorMessage = _T("Invalid 'Update Where ID' operation");
-		AfxMessageBox(strErrorMessage);
+		CString strBurgasko = _T("Burgasko");
+		TCHAR* szBurgaskoBuffer = _tcsdup(strBurgasko);
+		_tcscpy_s(recCity->szCITY_NAME, szBurgaskoBuffer);
+
+		if (!ÓCitiesTable.UpdateWhereID(1, *recCity))
+		{
+			AfxMessageBox(_T("Invalid 'Update Where ID' operation"));
+		}
+
+		if (!ÓCitiesTable.SelectWhereID(1, *recCity))
+		{
+			AfxMessageBox(_T("Invalid 'Select Where ID' operation"));
+		}
 	}
 
-	CITIES recCity;
 
-	bool bIsSelectedWhereId = ÓCitiesTable.SelectWhereID(1, recCity);
-	if (!bIsSelectedWhereId)
-	{
-		CString strErrorMessage = _T("Invalid 'Select Where ID' operation");
-		AfxMessageBox(strErrorMessage);
-	}
+	CITIES recCityForInsert;
+	CString strCityName = _T("Blagoev grad");
+	TCHAR* szCityNameBuffer = _tcsdup(strCityName);
+	_tcscpy_s(recCityForInsert.szCITY_NAME, szCityNameBuffer);
 
-	CITIES oNewCity;
-
-	CString strNewCityName = _T("Blagoev grad");
-	TCHAR* szCityNameBuffer = _tcsdup(strNewCityName);
-	_tcscpy_s(oNewCity.szCITY_NAME, szCityNameBuffer);
-
-	CString strNewAreaName = _T("Botev");
-	TCHAR* szAreaNameBuffer = _tcsdup(strNewAreaName);
-	_tcscpy_s(oNewCity.szAREA_NAME, strNewAreaName);
+	CString strAreaName = _T("Botev");
+	TCHAR* szAreaNameBuffer = _tcsdup(strAreaName);
+	_tcscpy_s(recCityForInsert.szAREA_NAME, strAreaName);
 	long lPostalCode = 7777;
-	oNewCity.lPOSTAL_CODE = lPostalCode;
-	oNewCity.lUpdateCounter = 0;
+	recCityForInsert.lPOSTAL_CODE = lPostalCode;
+	recCityForInsert.lUpdateCounter = 0;
 
-	bool bIsInserted = ÓCitiesTable.Insert(oNewCity);
+	bool bIsInserted = ÓCitiesTable.Insert(recCityForInsert);
 	if (!bIsInserted)
 	{
-		CString strErrorMessage = _T("Invalid 'Insert' operation");
-		AfxMessageBox(strErrorMessage);
+		AfxMessageBox(_T("Invalid 'Insert' operation"));
 	}
 
 }
