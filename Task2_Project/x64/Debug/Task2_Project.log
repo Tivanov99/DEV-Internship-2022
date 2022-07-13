@@ -1,20 +1,42 @@
 ﻿  pch.cpp
   CityService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(1,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(10,27): error C3861: 'GetCount': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(18): message : see reference to class template instantiation 'CSelfClearingTypedPtrArray<T>' being compiled
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(12,18): error C3861: 'GetAt': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(12,23): message : 'GetAt': function declaration must be available as none of the arguments depend on a template parameter
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(16,3): error C3861: 'RemoveAll': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(16,12): message : 'RemoveAll': function declaration must be available as none of the arguments depend on a template parameter
   CStringService.cpp
   PhoneNumberService.cpp
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(1,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(10,27): error C3861: 'GetCount': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(18): message : see reference to class template instantiation 'CSelfClearingTypedPtrArray<T>' being compiled
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(12,18): error C3861: 'GetAt': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(12,23): message : 'GetAt': function declaration must be available as none of the arguments depend on a template parameter
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(16,3): error C3861: 'RemoveAll': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(16,12): message : 'RemoveAll': function declaration must be available as none of the arguments depend on a template parameter
   PhoneTypeService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(1,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(10,27): error C3861: 'GetCount': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(18): message : see reference to class template instantiation 'CSelfClearingTypedPtrArray<T>' being compiled
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(12,18): error C3861: 'GetAt': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(12,23): message : 'GetAt': function declaration must be available as none of the arguments depend on a template parameter
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(16,3): error C3861: 'RemoveAll': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(16,12): message : 'RemoveAll': function declaration must be available as none of the arguments depend on a template parameter
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Task2_Project.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(1,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(10,27): error C3861: 'GetCount': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(18): message : see reference to class template instantiation 'CSelfClearingTypedPtrArray<T>' being compiled
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(12,18): error C3861: 'GetAt': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(12,23): message : 'GetAt': function declaration must be available as none of the arguments depend on a template parameter
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(16,3): error C3861: 'RemoveAll': identifier not found
+C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(16,12): message : 'RemoveAll': function declaration must be available as none of the arguments depend on a template parameter
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(151,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\Task2_Project.cpp(173,2): error C2146: syntax error: missing ';' before identifier 'ManageCities'
   Generating Code...
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneTypeService.cpp(29): warning C4715: 'PhoneTypeService::GetByPhoneType': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\PhoneNumberService.cpp(28): warning C4715: 'PhoneNumberService::GetByPhoneNumber': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(54): warning C4715: 'CityService::GetByAreaName': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(81): warning C4715: 'CityService::GetByPostalCode': not all control paths return a value
-C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.cpp(68): warning C4715: 'CityService::GetByCityName': not all control paths return a value

@@ -35,7 +35,7 @@ void CityService::SetCityData(const CString& strCityName, const CString& strArea
 	_tcscpy_s(oCity.szAREA_NAME, szAreaNameBuffer);
 };
 
-CITIES* CityService::GetByAreaName(const CString& strCityAreaName)
+CITIES* CityService::GetCityByAreaName(const CString& strCityAreaName)
 {
 	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
 	{
@@ -53,7 +53,7 @@ CITIES* CityService::GetByAreaName(const CString& strCityAreaName)
 	}
 };
 
-CITIES* CityService::GetByCityName(const CString& strCityName)
+CITIES* CityService::GetCityByCityName(const CString& strCityName)
 {
 	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
 	{
@@ -67,7 +67,7 @@ CITIES* CityService::GetByCityName(const CString& strCityName)
 	}
 };
 
-CITIES* CityService::GetByPostalCode(const long lPostalCode)
+CITIES* CityService::GetCityByPostalCode(const long lPostalCode)
 {
 	for (INT_PTR i = 0; i < citiesArray.GetCount(); i++)
 	{
@@ -105,29 +105,12 @@ void CityService::AddDefaultElements()
 
 	//TODO check how to coppy stack obeject to heap !
 
-	CITIES* pBurgas = CreatePointer(oBurgasCity);
-
-	CITIES* pVarna = new CITIES;
-	*pVarna = oVarnaCity;
-
-	CITIES* pVelinGradCity = new CITIES;
-	*pVelinGradCity = oVelinGradCity;
-
-	CITIES* pSofiaCity = new CITIES;
-	*pSofiaCity = oSofiaCity;
-
-	CITIES* pPlovidCity = new CITIES;
-	*pPlovidCity = oPlovidCity;
-
-	CITIES* pRuseCity = new CITIES;
-	*pRuseCity = oRuseCity;
-
-	citiesArray.Add(pBurgas);
-	citiesArray.Add(pVarna);
-	citiesArray.Add(pSofiaCity);
-	citiesArray.Add(pPlovidCity);
-	citiesArray.Add(pRuseCity);
-	citiesArray.Add(pVelinGradCity);
+	oSelfClearingTypedArray.Add(CreatePointer(oBurgasCity));
+	oSelfClearingTypedArray.Add(CreatePointer(oVarnaCity));
+	oSelfClearingTypedArray.Add(CreatePointer(oSofiaCity));
+	oSelfClearingTypedArray.Add(CreatePointer(oPlovidCity));
+	oSelfClearingTypedArray.Add(CreatePointer(oRuseCity));
+	oSelfClearingTypedArray.Add(CreatePointer(oVelinGradCity));
 };
 
 void CityService::ShowElementInfoAtIndex(const long lIndex)

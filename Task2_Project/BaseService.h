@@ -7,8 +7,7 @@ using namespace std;
 template<class  T>
 class BaseService
 {
-
-private:
+protected:
 	CSelfClearingTypedPtrArray<T> oSelfClearingTypedArray;
 
 public:
@@ -31,14 +30,13 @@ public:
 	virtual void ShowElementInfoAtIndex(const long lIndex) = 0;
 
 	///<summary>
-		///Функция принтираща информация за обект намиращ се на позицията на nIndex.
-		///Функция пренаписана от базов клас 'BaseService'.
+		///Функция създаваща показател.
 	///</summary>
-	/// <param name="nIndex">Позиция на елемента в масива.</param>
-	T* CreatePointer(T o)
+	/// <param name="oElement">Елемент съдържащ стойностите.</param>
+	T* CreatePointer(T oElement)
 	{
 		T* pCities = new T;
-		*pCities = o;
+		*pCities = oElement;
 		return pCities;
 	};
 };

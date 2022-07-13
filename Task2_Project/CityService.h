@@ -22,15 +22,15 @@ public:
 
 	///<summary>Функция връщата указател като резултат която търси обект по име на област'strCityAreaName'.</summary>
 	///<param name="strCityAreaName">Име на област</param>
-	CITIES* GetByAreaName(const CString& strCityAreaName);
+	CITIES* GetCityByAreaName(const CString& strCityAreaName);
 
 	///<summary>Функция връщата указател като резултат която търси обект по име на град'strCityName'.</summary>
 	///<param name="strCityName">Име на град</param>
-	CITIES* GetByCityName(const CString& strCityName);
+	CITIES* GetCityByCityName(const CString& strCityName);
 
 	///<summary>Функция връщата указател като резултат която търси обект по пощенски код 'lPostalCode'.</summary>
 	///<param name="lPostalCode">Пощенски код</param>
-	CITIES* GetByPostalCode(const long lPostalCode);
+	CITIES* GetCityByPostalCode(const long lPostalCode);
 
 	///<summary>
 		/// Функция променяща 'CITY_NAME' стойността на обект
