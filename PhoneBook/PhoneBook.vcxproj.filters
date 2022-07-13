@@ -48,7 +48,7 @@
     <ClInclude Include="Structures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TableArray.h">
+    <ClInclude Include="CContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,7 +74,7 @@
     <ClCompile Include="CCitiesTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TableArray.cpp">
+    <ClCompile Include="CContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

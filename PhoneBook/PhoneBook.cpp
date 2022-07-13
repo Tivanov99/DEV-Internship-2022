@@ -18,6 +18,7 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+#include "CContainer.h"
 
 
 // CPhoneBookApp
@@ -204,9 +205,8 @@ void CPhoneBookApp::PreLoadState()
 	//ME
 	CCitiesTable ÓCitiesTable;
 
-	CCitiesArray ÓCitiesArray;
+	CContainer<CITIES> oTableArray;
 
-	//TableArray<CITIES> oTableArray;
 
 	bool bIsSelectedAll = ÓCitiesTable.SelectAll(ÓCitiesArray);
 	if (!bIsSelectedAll)
