@@ -33,7 +33,7 @@ public:
 		///Функция създаваща показател.
 	///</summary>
 	/// <param name="oElement">Елемент съдържащ стойностите.</param>
-	T* CreatePointer(T oElement)
+	T* CreatePointer(T& oElement)
 	{
 		T* pCities = new T;
 		*pCities = oElement;

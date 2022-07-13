@@ -33,8 +33,7 @@ public:
 	///</summary>
 	/// <param name="strCurrentPhoneNumber">Текущ телефонен номер.</param>
 	/// <param name="strNewPhoneNumber">Нов телефонен номер.</param>
-	void ChangePhoneNumber(const CString &strCurrentPhoneNumber, const CString &strNewPhoneNumber,
-		CPhoneNumbersArray& oPhoneTypesArray);
+	void ChangePhoneNumber(const CString &strCurrentPhoneNumber, const CString &strNewPhoneNumber);
 
 
 	///<summary>

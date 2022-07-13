@@ -49,7 +49,7 @@ void ManagePhoneNumbers() {
 
 	CString strOldPhoneNumber = _T("0886372847");
 	CString strPhoneNumber = _T("0999999999");
-	service.ChangePhoneNumber(strOldPhoneNumber, strPhoneNumber, oPhoneTypesArray);
+	service.ChangePhoneNumber(strOldPhoneNumber, strPhoneNumber);
 	service.ShowElementInfoAtIndex(2);
 }
 
@@ -73,7 +73,7 @@ void CityAreaNameChanging(CityService& service)
 {
 	CString strCityName = _T("Ruse");
 	CITIES* oCity;
-	oCity = service.GetByCityName(strCityName);
+	oCity = service.GetCityByCityName(strCityName);
 
 	CString strCityAreaName = _T("RunskaFirst");
 	service.ChangeCityAreaName(*oCity, strCityAreaName);
@@ -97,7 +97,7 @@ void CityPostalCodeChanging(CityService& service)
 
 	long lCityPostalCode = 1000;
 
-	CITIES* oCity = service.GetByPostalCode(lCityPostalCode);
+	CITIES* oCity = service.GetCityByPostalCode(lCityPostalCode);
 	service.ChangeCityPostalCode(*oCity, 11111);
 	service.ShowElementInfoAtIndex(2);
 }

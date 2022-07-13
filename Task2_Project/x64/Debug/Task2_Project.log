@@ -1,5 +1,4 @@
-﻿  pch.cpp
-  CityService.cpp
+﻿  CityService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CityService.h(4,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(1,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(10,27): error C3861: 'GetCount': identifier not found
@@ -8,7 +7,6 @@ C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(12,1
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(12,23): message : 'GetAt': function declaration must be available as none of the arguments depend on a template parameter
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(16,3): error C3861: 'RemoveAll': identifier not found
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(16,12): message : 'RemoveAll': function declaration must be available as none of the arguments depend on a template parameter
-  CStringService.cpp
   PhoneNumberService.cpp
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\BaseService.h(1,9): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Trifon\Desktop\DEV-2022\Task2_Project\CSelfClearingTypedPtrArray.h(10,27): error C3861: 'GetCount': identifier not found

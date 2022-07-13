@@ -18,6 +18,9 @@ PHONE_NUMBERS* PhoneNumberService::GetByPhoneNumber(CString& strPhoneNumber)
 	for (INT_PTR i = 0; i < phoneNumbersArray.GetCount(); i++)
 	{
 		PHONE_NUMBERS* pPhoneNumber = phoneNumbersArray.GetAt(i);
+		if (pPhoneNumber == NULL)
+			continue;
+
 		CString strCurrentPhoneNumber;
 		strCurrentPhoneNumber.Format(_T("%s"), pPhoneNumber->szPHONE_NUMBER);
 		if (strPhoneNumber != strCurrentPhoneNumber)
@@ -38,66 +41,32 @@ void PhoneNumberService::SetPhoneNumber(const CString& strSorce, PHONE_NUMBERS& 
 	_tcscpy_s(oPhoneNumber.szPHONE_NUMBER, szBuffer);
 };
 
-void PhoneNumberService::AddDefaultElements() {
-	try
-	{
-		CString strFirstPhoneNumber = _T("0893668829");
+void PhoneNumberService::AddDefaultElements()
+{
 		PHONE_NUMBERS oFirstPhoneNumber;
-		SetPhoneNumber(strFirstPhoneNumber, oFirstPhoneNumber);
+		SetPhoneNumber(_T("0893668829"), oFirstPhoneNumber);
 
-		CString strSecondPhoneNumber = _T("0883737518");
 		PHONE_NUMBERS oSecondPhoneNumber;
-		SetPhoneNumber(strSecondPhoneNumber, oSecondPhoneNumber);
+		SetPhoneNumber(_T("0883737518"), oSecondPhoneNumber);
 
-
-		CString strThirdPhoneNumber = _T("0875462946");
 		PHONE_NUMBERS oThirdPhoneNumber;
-		SetPhoneNumber(strThirdPhoneNumber, oThirdPhoneNumber);
+		SetPhoneNumber(_T("0875462946"), oThirdPhoneNumber);
 
-		CString strFourthPhoneNumber = _T("0886372847");
 		PHONE_NUMBERS oFourthPhoneNumber;
-		SetPhoneNumber(strFourthPhoneNumber, oFourthPhoneNumber);
+		SetPhoneNumber(_T("0886372847"), oFourthPhoneNumber);
 
-
-		CString strFifthPhoneNumber = _T("0895467264");
 		PHONE_NUMBERS oFifthPhoneNumber;
-		SetPhoneNumber(strFifthPhoneNumber, oFifthPhoneNumber);
+		SetPhoneNumber(_T("0895467264"), oFifthPhoneNumber);
 
-		CString strSixthPhoneNumber = _T("0895467264");
 		PHONE_NUMBERS oSixthPhoneNumber;
-		SetPhoneNumber(strSixthPhoneNumber, oSixthPhoneNumber);
+		SetPhoneNumber(_T("0895467264"), oSixthPhoneNumber);
 
-
-		PHONE_NUMBERS* pFirstPhoneNumber = new PHONE_NUMBERS;
-		*pFirstPhoneNumber = oFirstPhoneNumber;
-
-		PHONE_NUMBERS* pSecondPhoneNumber = new PHONE_NUMBERS;
-		*pSecondPhoneNumber = oSecondPhoneNumber;
-
-		PHONE_NUMBERS* pThirdPhoneNumber = new PHONE_NUMBERS;
-		*pThirdPhoneNumber = oThirdPhoneNumber;
-
-		PHONE_NUMBERS* pFourthPhoneNumber = new PHONE_NUMBERS;
-		*pFourthPhoneNumber = oFourthPhoneNumber;
-
-		PHONE_NUMBERS* pFifthPhoneNumber = new PHONE_NUMBERS;
-		*pFifthPhoneNumber = oFifthPhoneNumber;
-
-		PHONE_NUMBERS* pSixthPhoneNumber = new PHONE_NUMBERS;
-		*pSixthPhoneNumber = oSixthPhoneNumber;
-
-
-		phoneNumbersArray.Add(pFirstPhoneNumber);
-		phoneNumbersArray.Add(pSecondPhoneNumber);
-		phoneNumbersArray.Add(pThirdPhoneNumber);
-		phoneNumbersArray.Add(pFourthPhoneNumber);
-		phoneNumbersArray.Add(pFifthPhoneNumber);
-		phoneNumbersArray.Add(pSixthPhoneNumber);
-	}
-	catch (const std::exception&)
-	{
-		cout << "Invalid 'Add' operation!" << endl;
-	}
+		oSelfClearingTypedArray.Add(CreatePointer(oFirstPhoneNumber));
+		oSelfClearingTypedArray.Add(CreatePointer(oSecondPhoneNumber));
+		oSelfClearingTypedArray.Add(CreatePointer(oThirdPhoneNumber));
+		oSelfClearingTypedArray.Add(CreatePointer(oFourthPhoneNumber));
+		oSelfClearingTypedArray.Add(CreatePointer(oFifthPhoneNumber));
+		oSelfClearingTypedArray.Add(CreatePointer(oSixthPhoneNumber));
 }
 
 void PhoneNumberService::ShowElementInfoAtIndex(const long lIndex) {
@@ -113,12 +82,13 @@ void PhoneNumberService::ShowElementInfoAtIndex(const long lIndex) {
 	cout << "Selected item info: " << "memory address: " << &pTemp << " value:" << pTemp->szPHONE_NUMBER << endl;
 }
 
-void PhoneNumberService::ChangePhoneNumber
-(const CString& oldPhoneNumber, const CString& strNewPhoneNumber, CPhoneNumbersArray& oPhoneTypesArray)
+void PhoneNumberService::ChangePhoneNumber(const CString& oldPhoneNumber, const CString& strNewPhoneNumber)
 {
-	for (INT_PTR i = 0; i < oPhoneTypesArray.GetCount(); i++)
+	for (INT_PTR i = 0; i < oSelfClearingTypedArray.GetCount(); i++)
 	{
-		PHONE_NUMBERS* pPhoneNumber = oPhoneTypesArray.GetAt(i);
+		PHONE_NUMBERS* pPhoneNumber = oSelfClearingTypedArray.GetAt(i);
+		if (pPhoneNumber == NULL)
+			continue;
 
 		CString currentPhoneNumber;
 		currentPhoneNumber.Format(_T("%s"), pPhoneNumber->szPHONE_NUMBER);
