@@ -16,6 +16,7 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+#include "CCitiesDocument.h"
 
 
 // CCitiesView
@@ -49,7 +50,7 @@ BOOL CCitiesView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CCitiesView::OnInitialUpdate()
 {
-	/*CListView::OnInitialUpdate();*/
+	CListView::OnInitialUpdate();
 
 
 	// TODO: You may populate your ListView with items by directly accessing
@@ -83,11 +84,10 @@ void CCitiesView::Dump(CDumpContext& dc) const
 	CListView::Dump(dc);
 }
 
-CCitiesDoc* CCitiesView::GetDocument() const // non-debug version is inline
+CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
 {
-
-	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CCitiesDoc)));
-	return (CCitiesDoc*)m_pDocument;
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CCitiesDocument)));
+	return (CCitiesDocument*)m_pDocument;
 }
 #endif //_DEBUG
 

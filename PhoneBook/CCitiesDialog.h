@@ -27,4 +27,5 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	CEdit m_EditBoxName;
+
 };

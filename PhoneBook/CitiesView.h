@@ -13,7 +13,7 @@ protected: // create from serialization only
 
 // Attributes
 public:
-	CCitiesDoc* GetDocument() const;
+	CCitiesDocument* GetDocument() const;
 
 // Operations
 public:
