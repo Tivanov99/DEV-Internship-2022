@@ -54,6 +54,9 @@
     <ClInclude Include="CCitiesData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CCitiesDLG.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -81,6 +84,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CCitiesData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CCitiesDLG.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
