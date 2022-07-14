@@ -7,5 +7,5 @@ CCitiesDocument::~CCitiesDocument() {};
 
 BOOL CCitiesDocument::OnNewDocument()
 {
-
+	oCitiesData.SelectAll(oCitiesArray);
 };
