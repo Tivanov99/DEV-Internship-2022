@@ -7,10 +7,5 @@ CCitiesDocument::~CCitiesDocument() {};
 
 BOOL CCitiesDocument::OnNewDocument()
 {
-	oCitiesData.SelectAll(oCitiesArray);
-};
-void CCitiesDocument::UpdateAllViews(CView* pSender, LPARAM lHint = 0L,
-	CObject* pHint = NULL)
-{
-
+	return oCitiesData.SelectAll(oCitiesArray);
 };

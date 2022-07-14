@@ -54,10 +54,10 @@
     <ClInclude Include="CCitiesData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CCitiesDLG.h">
+    <ClInclude Include="CCitiesDocument.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CCitiesDocument.h">
+    <ClInclude Include="CCitiesDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -89,10 +89,10 @@
     <ClCompile Include="CCitiesData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CCitiesDLG.cpp">
+    <ClCompile Include="CCitiesDocument.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CCitiesDocument.cpp">
+    <ClCompile Include="CCitiesDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

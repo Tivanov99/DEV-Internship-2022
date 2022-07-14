@@ -49,7 +49,7 @@ BOOL CCitiesView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CCitiesView::OnInitialUpdate()
 {
-	CListView::OnInitialUpdate();
+	/*CListView::OnInitialUpdate();*/
 
 
 	// TODO: You may populate your ListView with items by directly accessing
@@ -85,6 +85,7 @@ void CCitiesView::Dump(CDumpContext& dc) const
 
 CCitiesDoc* CCitiesView::GetDocument() const // non-debug version is inline
 {
+
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CCitiesDoc)));
 	return (CCitiesDoc*)m_pDocument;
 }

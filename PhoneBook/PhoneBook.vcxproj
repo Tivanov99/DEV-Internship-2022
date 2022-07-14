@@ -185,7 +185,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CCitiesData.h" />
-    <ClInclude Include="CCitiesDLG.h" />
+    <ClInclude Include="CCitiesDialog.h" />
     <ClInclude Include="CCitiesDocument.h" />
     <ClInclude Include="CCitiesTable.h" />
     <ClInclude Include="ChildFrm.h" />
@@ -202,7 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCitiesData.cpp" />
-    <ClCompile Include="CCitiesDLG.cpp" />
+    <ClCompile Include="CCitiesDialog.cpp" />
     <ClCompile Include="CCitiesDocument.cpp" />
     <ClCompile Include="CCitiesTable.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
