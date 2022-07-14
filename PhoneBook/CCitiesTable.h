@@ -41,6 +41,8 @@ protected:
 /// <summary>Клас за работа с таблица CITIES</summary>
 class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
 {
+	// Constants
+	// ----------------
 private:
 	static const LPCSTR lpszSelectAllById;
 	static const LPCSTR lpszSelectAll;   
@@ -55,6 +57,8 @@ private:
 	static const LPCSTR lpszErrorInsertingRecord;
 	static const LPCSTR lpszInvalidRecordVersion;
 
+	// Constructor / Destructor
+	// ----------------
 public:
 	CCitiesTable();
 	~CCitiesTable();

@@ -1,5 +1,6 @@
 #pragma once
-class CCitiesDLG
+class CCitiesDLG : public CDialog
 {
+
 };
 
