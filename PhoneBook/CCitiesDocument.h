@@ -12,6 +12,9 @@ public:
 	// Methods
 	// ----------------
 	BOOL OnNewDocument() override;
+	
+	void UpdateAllViews(CView* pSender, LPARAM lHint = 0L,
+		CObject* pHint = NULL);
 	// Members
 	// ----------------
 private:

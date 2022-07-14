@@ -56,6 +56,5 @@ public:
 	// ----------------
 private:
 	CCitiesTable m_CitiesTable;
-
 };
 
