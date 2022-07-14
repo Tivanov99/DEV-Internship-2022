@@ -9,7 +9,9 @@ public:
 	CCitiesDocument();
 	~CCitiesDocument();
 
-
+	// Methods
+	// ----------------
+	BOOL OnNewDocument() override;
 	// Members
 	// ----------------
 private:
