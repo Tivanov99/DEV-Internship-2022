@@ -22,6 +22,7 @@
 #include "Structures.h"
 
 
+
 // CPhoneBookApp
 
 BEGIN_MESSAGE_MAP(CPhoneBookApp, CWinAppEx)
@@ -255,7 +256,6 @@ void CPhoneBookApp::PreLoadState()
 	{
 		AfxMessageBox(_T("Invalid 'Insert' operation"));
 	}
-
 }
 void CPhoneBookApp::LoadCustomState()
 {
