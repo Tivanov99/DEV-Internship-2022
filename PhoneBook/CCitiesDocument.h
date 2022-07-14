@@ -16,5 +16,6 @@ public:
 	// ----------------
 private:
 		CCitiesData oCitiesData;
+		CSelfClearingTypedPtrArray<CITIES> oCitiesArray;
 };
 
