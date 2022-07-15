@@ -26,8 +26,6 @@ protected:
 	
 	DECLARE_MESSAGE_MAP()
 private:
-	CEdit m_EditBoxName;
-public:
-	//afx_msg void OnOptionsCities();
+	CListCtrl m_CitiesList;
 };
 

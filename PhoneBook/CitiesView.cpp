@@ -53,6 +53,10 @@ void CCitiesView::OnInitialUpdate()
 {
 	CListView::OnInitialUpdate();
 
+	CListCtrl& da = GetListCtrl();
+
+	da.InsertColumn(0, _T("Име"));
+	da.InsertColumn(1, _T("Регион"));
 
 	// TODO: You may populate your ListView with items by directly accessing
 	//  its list control through a call to GetListCtrl().

@@ -14,14 +14,14 @@ protected: // create from serialization only
 	CCitiesView() noexcept;
 	DECLARE_DYNCREATE(CCitiesView)
 
-// Attributes
+	// Attributes
 public:
 	CCitiesDocument* GetDocument() const;
 
-// Operations
+	// Operations
 public:
 
-// Overrides
+	// Overrides
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
@@ -37,20 +37,22 @@ public:
 
 protected:
 
-// Generated message map functions
+	// Generated message map functions
 protected:
 	afx_msg void OnFilePrintPreview();
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
-//public:
-//	afx_msg void OnTablesCities();
+	//public:
+	//	afx_msg void OnTablesCities();
 public:
 	afx_msg void OnTablesCities();
 };
 
 #ifndef _DEBUG  // debug version in CitiesView.cpp
 inline CCitiesDoc* CCitiesView::GetDocument() const
-   { return reinterpret_cast<CCitiesDoc*>(m_pDocument); }
+{
+	return reinterpret_cast<CCitiesDoc*>(m_pDocument);
+}
 #endif
 

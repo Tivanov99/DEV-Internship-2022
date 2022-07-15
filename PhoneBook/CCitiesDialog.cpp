@@ -26,7 +26,7 @@ CCitiesDialog::~CCitiesDialog()
 void CCitiesDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_EDB_CITIES_NAME, m_EditBoxName);
+	DDX_Control(pDX, IDC_CITIES_LIST, m_CitiesList);
 }
 
 
@@ -42,10 +42,12 @@ BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	m_EditBoxName.SetWindowText(_T("Burgas"));
+	m_CitiesList.InsertColumn(0, _T("Име"));
+	m_CitiesList.InsertColumn(1, _T("Регион"));
 
+	m_CitiesList.SetColumnWidth(0, 90);
+	m_CitiesList.SetColumnWidth(1, 90);
 
-	//m_EditBoxName.SetLimitText();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE
@@ -55,7 +57,6 @@ BOOL CCitiesDialog::OnInitDialog()
 void CCitiesDialog::OnOK()
 {
 	CString strText;
-	m_EditBoxName.GetWindowText(strText);
 	// TODO: Add your specialized code here and/or call the base class
 
 	CDialog::OnOK();
