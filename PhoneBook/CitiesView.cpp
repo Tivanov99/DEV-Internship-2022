@@ -17,6 +17,7 @@
 #define new DEBUG_NEW
 #endif
 #include "CCitiesDocument.h"
+#include "CCitiesDialog.h"
 
 
 // CCitiesView
@@ -26,6 +27,7 @@ IMPLEMENT_DYNCREATE(CCitiesView, CListView)
 BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+	ON_COMMAND(ID_TABLES_CITIES, &CCitiesView::OnTablesCities)
 END_MESSAGE_MAP()
 
 // CCitiesView construction/destruction
@@ -84,12 +86,21 @@ void CCitiesView::Dump(CDumpContext& dc) const
 	CListView::Dump(dc);
 }
 
-CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
+CCitiesDoc* CCitiesView::GetDocument() const // non-debug version is inline
 {
-	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CCitiesDocument)));
-	return (CCitiesDocument*)m_pDocument;
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CCitiesDoc)));
+	return (CCitiesDoc*)m_pDocument;
 }
 #endif //_DEBUG
 
 
 // CCitiesView message handlers
+
+
+
+
+void CCitiesView::OnTablesCities()
+{
+	CCitiesDialog oCitiesDialog;
+	oCitiesDialog.DoModal();
+}

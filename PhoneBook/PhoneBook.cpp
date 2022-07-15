@@ -205,7 +205,7 @@ void CPhoneBookApp::PreLoadState()
 	GetContextMenuManager()->AddMenu(strName, IDR_POPUP_EDIT);
 
 	//ME
-	CCitiesTable ÓCitiesTable;
+	/*CCitiesTable ÓCitiesTable;
 
 	CSelfClearingTypedPtrArray<CITIES> oCitiesArray;
 
@@ -255,7 +255,7 @@ void CPhoneBookApp::PreLoadState()
 	if (!bIsInserted)
 	{
 		AfxMessageBox(_T("Invalid 'Insert' operation"));
-	}
+	}*/
 }
 void CPhoneBookApp::LoadCustomState()
 {

@@ -7,6 +7,8 @@
 #include "PhoneBook.h"
 
 #include "ChildFrm.h"
+#include "CCitiesDialog.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

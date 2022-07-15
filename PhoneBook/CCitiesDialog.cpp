@@ -5,6 +5,8 @@
 #include "PhoneBook.h"
 #include "afxdialogex.h"
 #include "CCitiesDialog.h"
+#include "CCitiesDialog.h"
+
 
 
 // CCitiesDialog dialog
@@ -29,6 +31,7 @@ void CCitiesDialog::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(CCitiesDialog, CDialog)
+	//ON_COMMAND(ID_OPTIONS_CITIES, &CCitiesDialog::OnOptionsCities)
 END_MESSAGE_MAP()
 
 
@@ -41,7 +44,6 @@ BOOL CCitiesDialog::OnInitDialog()
 
 	m_EditBoxName.SetWindowText(_T("Burgas"));
 	//m_EditBoxName.SetLimitText();
-
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE
@@ -56,3 +58,4 @@ void CCitiesDialog::OnOK()
 
 	CDialog::OnOK();
 }
+
