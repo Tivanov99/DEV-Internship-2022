@@ -53,10 +53,38 @@ void CCitiesView::OnInitialUpdate()
 {
 	CListView::OnInitialUpdate();
 
-	CListCtrl& da = GetListCtrl();
+	CListCtrl& LSCCitiesList = GetListCtrl();
 
-	da.InsertColumn(0, _T("Име"));
-	da.InsertColumn(1, _T("Регион"));
+	LSCCitiesList.InsertItem(0, _T("Varna"));
+	LSCCitiesList.InsertItem(1, _T("Burgas"));
+	LSCCitiesList.InsertItem(2, _T("Sofia"));
+	LSCCitiesList.InsertItem(3, _T("Plovdiv"));
+
+
+	LSCCitiesList.InsertColumn(0, _T("Име"), LVCFMT_CENTER, 120,1);
+	LSCCitiesList.InsertColumn(1, _T("Регион"), LVCFMT_CENTER,120,1);
+	LSCCitiesList.InsertColumn(2, _T("Пощенски код"), LVCFMT_CENTER, 120,1);
+
+	LSCCitiesList.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
+
+
+	LSCCitiesList.SetItemText(0,1,_T("Варна"));
+	LSCCitiesList.SetItemText(0,2, _T("9000"));
+
+	LSCCitiesList.SetItemText(1,1, _T("Бургас"));
+	LSCCitiesList.SetItemText(1, 2,_T("8000"));
+				  
+	LSCCitiesList.SetItemText(2,1, _T("София"));
+	LSCCitiesList.SetItemText(2,2, _T("1000"));
+				  
+	LSCCitiesList.SetItemText(3,1, _T("Пловдив"));
+	LSCCitiesList.SetItemText(3,2, _T("4000"));
+
+
+
+	//CCitiesDocument* pCitiesDoc = NULL;
+	//pCitiesDoc->OnNewDocument();
+
 
 	// TODO: You may populate your ListView with items by directly accessing
 	//  its list control through a call to GetListCtrl().
@@ -102,6 +130,6 @@ CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
 
 void CCitiesView::OnTablesCities()
 {
-	CCitiesDialog oCitiesDialog;
-	oCitiesDialog.DoModal();
+	/*CCitiesDialog oCitiesDialog;
+	oCitiesDialog.DoModal();*/
 }

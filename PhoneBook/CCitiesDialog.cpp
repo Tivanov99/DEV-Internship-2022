@@ -42,18 +42,7 @@ BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	m_CitiesList.InsertColumn(0, _T("Име"));
-	m_CitiesList.InsertColumn(1, _T("Регион"));
-	m_CitiesList.InsertColumn(2, _T("Пощенски код"));
-
-	m_CitiesList.SetColumnWidth(0, 90);
-	m_CitiesList.SetColumnWidth(1, 90);
-	m_CitiesList.SetColumnWidth(2, 100);
-
-
-	int nColumnRowNumber = m_CitiesList.InsertItem(0, _T("Varna"));
-	m_CitiesList.SetItemText(nColumnRowNumber, 1, _T("Варна"));
-	m_CitiesList.SetItemText(nColumnRowNumber, 2, _T("9000"));
+	
 
 
 	return TRUE;  // return TRUE unless you set the focus to a control
