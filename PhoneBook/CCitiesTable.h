@@ -1,3 +1,5 @@
+#pragma once
+	
 #include <atldbcli.h>
 #include <iostream>
 #include <afxcontrolbars.h>
@@ -13,7 +15,8 @@ using namespace std;
 class CCityAccessor
 {
 protected:
-	CCityAccessor() {
+	CCityAccessor()
+	{
 
 	};
 	~CCityAccessor() {

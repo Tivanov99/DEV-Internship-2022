@@ -1,7 +1,6 @@
 
 // CitiesView.cpp : implementation of the CCitiesView class
 //
-
 #include "pch.h"
 #include "framework.h"
 // SHARED_HANDLERS can be defined in an ATL project implementing preview, thumbnail
@@ -86,17 +85,15 @@ void CCitiesView::Dump(CDumpContext& dc) const
 	CListView::Dump(dc);
 }
 
-CCitiesDoc* CCitiesView::GetDocument() const // non-debug version is inline
+CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CCitiesDoc)));
-	return (CCitiesDoc*)m_pDocument;
-}
+	return (CCitiesDocument*)m_pDocument;
+};
 #endif //_DEBUG
 
 
 // CCitiesView message handlers
-
-
 
 
 void CCitiesView::OnTablesCities()

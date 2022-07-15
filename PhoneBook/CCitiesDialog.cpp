@@ -5,7 +5,7 @@
 #include "PhoneBook.h"
 #include "afxdialogex.h"
 #include "CCitiesDialog.h"
-#include "CCitiesDialog.h"
+#include "CitiesView.h"
 
 
 
@@ -43,6 +43,8 @@ BOOL CCitiesDialog::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	m_EditBoxName.SetWindowText(_T("Burgas"));
+
+
 	//m_EditBoxName.SetLimitText();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
