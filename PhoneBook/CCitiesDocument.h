@@ -11,7 +11,9 @@ public:
 
 	// Methods
 	// ----------------
-	BOOL OnNewDocument() override;
+	virtual BOOL OnNewDocument();
+	const CSelfClearingTypedPtrArray<CITIES>& GetAllData();
+
 
 	// Members
 	// ----------------

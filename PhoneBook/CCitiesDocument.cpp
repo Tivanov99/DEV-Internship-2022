@@ -9,3 +9,8 @@ BOOL CCitiesDocument::OnNewDocument()
 {
 	return oCitiesData.SelectAll(oCitiesArray);
 };
+
+const CSelfClearingTypedPtrArray<CITIES>& CCitiesDocument::GetAllData()
+{
+	return oCitiesArray;
+}

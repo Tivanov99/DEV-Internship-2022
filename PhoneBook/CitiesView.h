@@ -16,7 +16,7 @@ protected: // create from serialization only
 
 	// Attributes
 public:
-	CCitiesDocument* GetDocument() const;
+	CCitiesDoc* GetDocument() const;
 
 	// Operations
 public:
@@ -43,8 +43,7 @@ protected:
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
-	//public:
-	//	afx_msg void OnTablesCities();
+
 public:
 	afx_msg void OnTablesCities();
 };

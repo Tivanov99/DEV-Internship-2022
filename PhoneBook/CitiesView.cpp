@@ -81,10 +81,8 @@ void CCitiesView::OnInitialUpdate()
 	LSCCitiesList.SetItemText(3,2, _T("4000"));
 
 
-
-	//CCitiesDocument* pCitiesDoc = NULL;
-	//pCitiesDoc->OnNewDocument();
-
+	CCitiesDocument cDoc = GetDocument();
+	m_pDocument->OnNewDocument();
 
 	// TODO: You may populate your ListView with items by directly accessing
 	//  its list control through a call to GetListCtrl().
@@ -117,10 +115,10 @@ void CCitiesView::Dump(CDumpContext& dc) const
 	CListView::Dump(dc);
 }
 
-CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
+CCitiesDoc* CCitiesView::GetDocument() const // non-debug version is inline
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CCitiesDoc)));
-	return (CCitiesDocument*)m_pDocument;
+	return (CCitiesDoc*)m_pDocument;
 };
 #endif //_DEBUG
 
