@@ -16,7 +16,7 @@ protected: // create from serialization only
 
 	// Attributes
 public:
-	CCitiesDoc* GetDocument() const;
+	CCitiesDocument* GetDocument() const;
 
 	// Operations
 public:
@@ -49,9 +49,9 @@ public:
 };
 
 #ifndef _DEBUG  // debug version in CitiesView.cpp
-inline CCitiesDoc* CCitiesView::GetDocument() const
+inline CCitiesDocument* CCitiesView::GetDocument() const
 {
-	return reinterpret_cast<CCitiesDoc*>(m_pDocument);
+	return reinterpret_cast<CCitiesDocument*>(m_pDocument);
 }
 #endif
 

@@ -12,13 +12,13 @@ public:
 	// Methods
 	// ----------------
 	virtual BOOL OnNewDocument();
-	const CSelfClearingTypedPtrArray<CITIES>& GetAllData();
+	const CSelfClearingTypedPtrArray< CITIES>& GetAllData();
 
 
 	// Members
 	// ----------------
 private:
-		CCitiesData oCitiesData;
-		CSelfClearingTypedPtrArray<CITIES> oCitiesArray;
+		CCitiesData m_CitiesData;
+		CSelfClearingTypedPtrArray< CITIES> oCitiesArray;
 };
 
