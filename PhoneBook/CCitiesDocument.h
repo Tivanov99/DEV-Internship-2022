@@ -3,22 +3,42 @@
 
 class CCitiesDocument :public CDocument
 {
-	// Constructor / Destructor
-	// ----------------
+protected: // create from serialization only
+	CCitiesDocument() noexcept;
+	DECLARE_DYNCREATE(CCitiesDocument)
+
+	// Attributes
 public:
-	CCitiesDocument();
-	~CCitiesDocument();
 
-	// Methods
-	// ----------------
+	// Operations
+public:
+
+	// Overrides
+public:
 	virtual BOOL OnNewDocument();
-	const CSelfClearingTypedPtrArray< CITIES>& GetAllData();
+	virtual void Serialize(CArchive& ar);
+#ifdef SHARED_HANDLERS
+	virtual void InitializeSearchContent();
+	virtual void OnDrawThumbnail(CDC& dc, LPRECT lprcBounds);
+#endif // SHARED_HANDLERS
 
+	// Implementation
+public:
+	virtual ~CCitiesDocument();
+#ifdef _DEBUG
+	virtual void AssertValid() const;
+	virtual void Dump(CDumpContext& dc) const;
+#endif
 
-	// Members
-	// ----------------
-private:
-		CCitiesData m_CitiesData;
-		CSelfClearingTypedPtrArray< CITIES> oCitiesArray;
+protected:
+
+	// Generated message map functions
+protected:
+	DECLARE_MESSAGE_MAP()
+
+#ifdef SHARED_HANDLERS
+	// Helper function that sets search content for a Search Handler
+	void SetSearchContent(const CString& value);
+#endif // SHARED_HANDLERS
 };
 

@@ -34,7 +34,6 @@ END_MESSAGE_MAP()
 CCitiesView::CCitiesView() noexcept
 {
 	// TODO: add construction code here
-
 }
 
 CCitiesView::~CCitiesView()

@@ -4,6 +4,7 @@
 
 
 #pragma once
+#include "CCitiesData.h"
 
 
 class CCitiesDoc : public CDocument
