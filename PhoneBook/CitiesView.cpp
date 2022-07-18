@@ -23,11 +23,14 @@
 
 IMPLEMENT_DYNCREATE(CCitiesView, CListView)
 
+
 BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
 	ON_COMMAND(ID_TABLES_CITIES, &CCitiesView::OnTablesCities)
 END_MESSAGE_MAP()
+
+
 
 // CCitiesView construction/destruction
 
@@ -50,7 +53,6 @@ BOOL CCitiesView::PreCreateWindow(CREATESTRUCT& cs)
 
 
 //TODO: Ask for view base class which will contains pure virtual method for fill view data.
-
 
 void CCitiesView::OnInitialUpdate()
 {
