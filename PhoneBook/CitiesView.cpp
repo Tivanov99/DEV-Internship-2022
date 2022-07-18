@@ -57,15 +57,15 @@ void CCitiesView::OnInitialUpdate()
 	CListView::OnInitialUpdate();
 
 	CListCtrl& LSCCitiesList = GetListCtrl();
-	
+
 	LSCCitiesList.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
 
 	CCitiesDocument* doc = GetDocument();
 
 	AddColumns(LSCCitiesList);
+	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrCitiesArray = doc->GetAllData();
+	FillView(LSCCitiesList, oCSelfClearingPtrCitiesArray);
 
-	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrArray = doc->GetAllData();
-	FillView(LSCCitiesList, oCSelfClearingPtrArray);
 }
 void CCitiesView::AddColumns(CListCtrl& LSCCitiesList)
 {

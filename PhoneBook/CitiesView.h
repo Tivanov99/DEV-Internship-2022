@@ -32,8 +32,6 @@ public:
 	/// </summary>
 	/// <param name="LSCCitiesList">Лист контрола към която ще бъдат добавени колините.</param>
 	void AddColumns(CListCtrl& LSCCitiesList);
-	// Operations
-public:
 
 	// Overrides
 public:
