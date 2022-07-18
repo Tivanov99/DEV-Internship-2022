@@ -57,20 +57,23 @@ void CCitiesView::OnInitialUpdate()
 	CListView::OnInitialUpdate();
 
 	CListCtrl& LSCCitiesList = GetListCtrl();
-	LSCCitiesList.InsertColumn(0, _T("Име"), LVCFMT_CENTER, 120,1);
-	LSCCitiesList.InsertColumn(1, _T("Регион"), LVCFMT_CENTER,120,1);
-	LSCCitiesList.InsertColumn(2, _T("Пощенски код"), LVCFMT_CENTER, 120,1);
-
+	
+	AddColumns(LSCCitiesList);
 
 	LSCCitiesList.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
 
 	CCitiesDocument* doc = GetDocument();
 
 	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrArray = doc->GetAllData();
-	FillView(LSCCitiesList, oCSelfClearingPtrArray)
-
-	// TODO: You may populate your ListView with items by directly accesВ		sing
-	//  its list control through a call to GetListCtrl().
+	FillView(LSCCitiesList, oCSelfClearingPtrArray);
+}
+void AddColumns(CListCtrl& LSCCitiesList)
+{
+	int nColumnWidth = 120;
+	int nColumnNumber = 0;
+	LSCCitiesList.InsertColumn(nColumnNumber, _T("Име"), LVCFMT_LEFT, nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(++nColumnNumber, _T("Регион"), LVCFMT_CENTER, nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(++nColumnNumber, _T("Пощенски код"), LVCFMT_CENTER, nColumnWidth, 1);
 }
 
 void CCitiesView ::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrArray)

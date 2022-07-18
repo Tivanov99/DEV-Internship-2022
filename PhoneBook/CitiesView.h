@@ -21,7 +21,7 @@ public:
 	//Methods
 public:
 	void FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrArray);
-
+	void AddColumns(CListCtrl& LSCCitiesList);
 	// Operations
 public:
 
