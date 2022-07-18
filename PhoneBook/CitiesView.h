@@ -20,6 +20,11 @@ public:
 
 	//Methods
 public:
+	/// <summary>
+	/// Функция която попълва цялата информация за градовете.
+	/// </summary>
+	/// <param name="LSCCitiesList">Лист контрола в която ще се попълват данните.</param>
+	/// <param name="oCSelfClearingPtrArray">Масив съдържащ всички записи за градовете прочетени от базата.</param>
 	void FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrArray);
 	void AddColumns(CListCtrl& LSCCitiesList);
 	// Operations
