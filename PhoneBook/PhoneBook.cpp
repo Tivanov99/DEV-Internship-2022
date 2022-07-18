@@ -203,59 +203,6 @@ void CPhoneBookApp::PreLoadState()
 	bNameValid = strName.LoadString(IDS_EDIT_MENU);
 	ASSERT(bNameValid);
 	GetContextMenuManager()->AddMenu(strName, IDR_POPUP_EDIT);
-
-	//ME
-	/*CCitiesTable ÓCitiesTable;
-
-	CSelfClearingTypedPtrArray<CITIES> oCitiesArray;
-
-	if (!ÓCitiesTable.SelectAll(oCitiesArray))
-	{
-		AfxMessageBox(_T("Invalid 'Select All' operation"));
-	}
-
-	if (!ÓCitiesTable.DeleteWhereID(10))
-	{
-		AfxMessageBox(_T("Invalid 'Delete' operation"));
-	}
-
-	CITIES* recCity = oCitiesArray.GetAt(0);
-
-	if (recCity != NULL)
-	{
-		CString strBurgasko = _T("Burgasko");
-		TCHAR* szBurgaskoBuffer = _tcsdup(strBurgasko);
-		_tcscpy_s(recCity->szCITY_NAME, szBurgaskoBuffer);
-
-		if (!ÓCitiesTable.UpdateWhereID(1, *recCity))
-		{
-			AfxMessageBox(_T("Invalid 'Update Where ID' operation"));
-		}
-
-		if (!ÓCitiesTable.SelectWhereID(1, *recCity))
-		{
-			AfxMessageBox(_T("Invalid 'Select Where ID' operation"));
-		}
-	}
-
-
-	CITIES recCityForInsert;
-	CString strCityName = _T("Blagoev grad");
-	TCHAR* szCityNameBuffer = _tcsdup(strCityName);
-	_tcscpy_s(recCityForInsert.szCITY_NAME, szCityNameBuffer);
-
-	CString strAreaName = _T("Botev");
-	TCHAR* szAreaNameBuffer = _tcsdup(strAreaName);
-	_tcscpy_s(recCityForInsert.szAREA_NAME, strAreaName);
-	long lPostalCode = 7777;
-	recCityForInsert.lPOSTAL_CODE = lPostalCode;
-	recCityForInsert.lUpdateCounter = 0;
-
-	bool bIsInserted = ÓCitiesTable.Insert(recCityForInsert);
-	if (!bIsInserted)
-	{
-		AfxMessageBox(_T("Invalid 'Insert' operation"));
-	}*/
 }
 void CPhoneBookApp::LoadCustomState()
 {

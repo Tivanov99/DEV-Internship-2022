@@ -60,10 +60,11 @@ void CCitiesView::OnInitialUpdate()
 
 	LSCCitiesList.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
 
-	CCitiesDocument* doc = GetDocument();
+
+	CCitiesDocument* pCCitiesDocument = GetDocument();
 
 	AddColumns(LSCCitiesList);
-	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrCitiesArray = doc->GetAllData();
+	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrCitiesArray = pCCitiesDocument->GetAllData();
 	FillView(LSCCitiesList, oCSelfClearingPtrCitiesArray);
 
 }
