@@ -31,7 +31,7 @@ public:
 #endif
 	//Methods
 
-private:
+public:
 	const CSelfClearingTypedPtrArray< CITIES>& GetAllData();
 
 	//Members

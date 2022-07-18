@@ -83,6 +83,14 @@ void CCitiesView::OnInitialUpdate()
 	CCitiesDocument* doc = GetDocument();
 	doc->OnNewDocument();
 
+	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrArray = doc->GetAllData();
+
+	for (INT_PTR i = 0; i < oCSelfClearingPtrArray.GetCount(); i++)
+	{
+		CITIES* oCurrentCity = oCSelfClearingPtrArray.GetAt(i);
+		if (oCurrentCity == NULL)
+			continue;
+	}
 
 	// TODO: You may populate your ListView with items by directly accessing
 	//  its list control through a call to GetListCtrl().
