@@ -29,6 +29,15 @@ public:
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
 #endif
+	//Methods
+
+private:
+	const CSelfClearingTypedPtrArray< CITIES>& GetAllData();
+
+	//Members
+private:
+	CSelfClearingTypedPtrArray< CITIES> oCitiesSelfClearingPtrArray;
+	CCitiesData m_CitiesData;
 
 protected:
 

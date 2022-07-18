@@ -2,9 +2,13 @@
 #include "CCitiesDocument.h"
 
 
+IMPLEMENT_DYNCREATE(CCitiesDocument, CDocument)
+
+BEGIN_MESSAGE_MAP(CCitiesDocument, CDocument)
+END_MESSAGE_MAP()
 
 
-CCitiesDocument::CCitiesDocument() {};
+CCitiesDocument::CCitiesDocument()noexcept {};
 CCitiesDocument::~CCitiesDocument() {};
 
 
@@ -12,7 +16,7 @@ BOOL CCitiesDocument::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
-	return m_CitiesData.SelectAll(oCitiesArray);
+	return m_CitiesData.SelectAll(oCitiesSelfClearingPtrArray);
 };
 
 // CCitiesDoc serialization
@@ -31,7 +35,7 @@ void CCitiesDocument::Serialize(CArchive& ar)
 
 const CSelfClearingTypedPtrArray< CITIES>& CCitiesDocument::GetAllData()
 {
-	return oCitiesArray;
+	return oCitiesSelfClearingPtrArray;
 }
 
 #ifdef _DEBUG
