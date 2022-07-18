@@ -49,6 +49,9 @@ BOOL CCitiesView::PreCreateWindow(CREATESTRUCT& cs)
 }
 
 
+//TODO: Ask for view base class which will contains pure virtual method for fill view data.
+
+
 void CCitiesView::OnInitialUpdate()
 {
 	CListView::OnInitialUpdate();
@@ -64,7 +67,14 @@ void CCitiesView::OnInitialUpdate()
 	CCitiesDocument* doc = GetDocument();
 
 	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrArray = doc->GetAllData();
+	FillView(LSCCitiesList, oCSelfClearingPtrArray)
 
+	// TODO: You may populate your ListView with items by directly accesÂ		sing
+	//  its list control through a call to GetListCtrl().
+}
+
+void CCitiesView ::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrArray)
+{
 	for (INT_PTR i = 0; i < oCSelfClearingPtrArray.GetCount(); i++)
 	{
 		CITIES* oCurrentCity = oCSelfClearingPtrArray.GetAt(i);
@@ -87,9 +97,6 @@ void CCitiesView::OnInitialUpdate()
 		LSCCitiesList.SetItemText(nRowNumber, nColumnNumber, strAreaName);
 		LSCCitiesList.SetItemText(nRowNumber, ++nColumnNumber, strPostalCode);
 	}
-
-	// TODO: You may populate your ListView with items by directly accesÂ		sing
-	//  its list control through a call to GetListCtrl().
 }
 
 void CCitiesView::OnRButtonUp(UINT /* nFlags */, CPoint point)

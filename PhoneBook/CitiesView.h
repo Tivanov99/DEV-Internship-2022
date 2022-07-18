@@ -18,6 +18,10 @@ protected: // create from serialization only
 public:
 	CCitiesDocument* GetDocument() const;
 
+	//Methods
+public:
+	void FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrArray);
+
 	// Operations
 public:
 
