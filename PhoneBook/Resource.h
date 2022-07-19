@@ -40,6 +40,7 @@
 #define IDC_EDB_AREA_NAME               1006
 #define IDC_EDB_POSTAL_CODE             1007
 #define IDC_STT_POSTAL_CODE             1008
+#define IDC_EDIT4                       1010
 #define ID_TABLES_CITIES                32771
 #define ID_TABLES_CITIES32772           32772
 #define ID_TABLES_DA                    32773
@@ -55,7 +56,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        312
 #define _APS_NEXT_COMMAND_VALUE         32779
-#define _APS_NEXT_CONTROL_VALUE         1010
+#define _APS_NEXT_CONTROL_VALUE         1011
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif
