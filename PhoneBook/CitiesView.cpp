@@ -143,8 +143,20 @@ CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
 
 void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
+	CListCtrl& LSCCitiesList = GetListCtrl();
+
+	int nSelectedRowOfFirstColumn = LSCCitiesList.GetSelectionMark();
+	int nColumnIndex = 0;
+
+	CString strCityName = LSCCitiesList.GetItemText(nSelectedRowOfFirstColumn, nColumnIndex++);
+	CString strAreaName = LSCCitiesList.GetItemText(nSelectedRowOfFirstColumn, nColumnIndex++);
+	CString strPostalCode = LSCCitiesList.GetItemText(nSelectedRowOfFirstColumn, nColumnIndex);
+
+
 	CCitiesDialog oCitiesDialog;
 	oCitiesDialog.DoModal();
+
+
 	// TODO: Add your message handler code here and/or call default
 	CListView::OnLButtonDblClk(nFlags, point);
 }
