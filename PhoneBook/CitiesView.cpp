@@ -152,7 +152,8 @@ void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CString strAreaName = LSCCitiesList.GetItemText(nSelectedRowOfFirstColumn, nColumnIndex++);
 	CString strPostalCode = LSCCitiesList.GetItemText(nSelectedRowOfFirstColumn, nColumnIndex);
 
-	CCitiesDialog oCitiesDialog;
+	CITIES oCity;
+	CCitiesDialog oCitiesDialog(oCity);
 	oCitiesDialog.DoModal();
 
 	// TODO: Add your message handler code here and/or call default

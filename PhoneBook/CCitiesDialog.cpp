@@ -13,10 +13,10 @@
 
 IMPLEMENT_DYNAMIC(CCitiesDialog, CDialog)
 
-CCitiesDialog::CCitiesDialog(CWnd* pParent /*=nullptr*/)
+CCitiesDialog::CCitiesDialog(CITIES& recCity, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_CITIES_DIALOG, pParent)
 {
-
+	m_recCity = recCity;
 }
 
 CCitiesDialog::~CCitiesDialog()

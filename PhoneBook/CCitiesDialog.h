@@ -1,5 +1,6 @@
 #pragma once
 #include "afxdialogex.h"
+#include "Structures.h"
 
 
 // CCitiesDialog dialog
@@ -9,7 +10,7 @@ class CCitiesDialog : public CDialog
 	DECLARE_DYNAMIC(CCitiesDialog)
 
 public:
-	CCitiesDialog(CWnd* pParent = nullptr);   // standard constructor
+	CCitiesDialog(CITIES& recCity, CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CCitiesDialog();
 
 // Dialog Data
@@ -27,6 +28,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	CListCtrl m_CitiesList;
+	CITIES m_recCity;
 public:
 	CEdit StrCitiesName;
 	CEdit StrAreaName;
