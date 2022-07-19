@@ -63,14 +63,11 @@ void CCitiesView::OnInitialUpdate()
 
 	LSCCitiesList.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
 
-
-
 	CCitiesDocument* pCCitiesDocument = GetDocument();
 
 	AddColumns(LSCCitiesList);
 	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrCitiesArray = pCCitiesDocument->GetAllData();
 	FillView(LSCCitiesList, oCSelfClearingPtrCitiesArray);
-
 }
 void CCitiesView::AddColumns(CListCtrl& LSCCitiesList)
 {
@@ -146,7 +143,8 @@ CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
 
 void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
+	CCitiesDialog oCitiesDialog;
+	oCitiesDialog.DoModal();
 	// TODO: Add your message handler code here and/or call default
-	int nDa = 1;
 	CListView::OnLButtonDblClk(nFlags, point);
 }
