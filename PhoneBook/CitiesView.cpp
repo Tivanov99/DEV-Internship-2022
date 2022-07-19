@@ -152,18 +152,14 @@ void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CString strAreaName = LSCCitiesList.GetItemText(nSelectedRowOfFirstColumn, nColumnIndex++);
 	CString strPostalCode = LSCCitiesList.GetItemText(nSelectedRowOfFirstColumn, nColumnIndex);
 
+	CCitiesDocument* pCCitiesDocument = GetDocument();
+
+
 
 	CCitiesDialog oCitiesDialog;
-	
 
-	//oCitiesDialog.StrCitiesName.SetCueBanner(strCityName);
-	/*oCitiesDialog.StrAreaName.SetWindowText(strAreaName.GetString());
-	oCitiesDialog.nPostalCode.SetWindowText(strPostalCode.GetString());*/
 
 	oCitiesDialog.DoModal();
-
-
-
 
 	// TODO: Add your message handler code here and/or call default
 	CListView::OnLButtonDblClk(nFlags, point);
