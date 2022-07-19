@@ -16,7 +16,8 @@ BOOL CCitiesDocument::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
-	return m_CitiesData.SelectAll(oCitiesSelfClearingPtrArray);
+		m_CitiesData.SelectAll(oCitiesSelfClearingPtrArray);
+		return TRUE;
 };
 
 // CCitiesDoc serialization

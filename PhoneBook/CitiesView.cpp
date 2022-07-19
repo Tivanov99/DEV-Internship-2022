@@ -27,7 +27,8 @@ IMPLEMENT_DYNCREATE(CCitiesView, CListView)
 BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
-	ON_COMMAND(ID_TABLES_CITIES, &CCitiesView::OnTablesCities)
+	/*ON_COMMAND(ID_TABLES_CITIES, &CCitiesView::OnTablesCities)*/
+	ON_WM_LBUTTONDBLCLK()
 END_MESSAGE_MAP()
 
 
@@ -63,6 +64,7 @@ void CCitiesView::OnInitialUpdate()
 	LSCCitiesList.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
 
 
+
 	CCitiesDocument* pCCitiesDocument = GetDocument();
 
 	AddColumns(LSCCitiesList);
@@ -79,7 +81,7 @@ void CCitiesView::AddColumns(CListCtrl& LSCCitiesList)
 	LSCCitiesList.InsertColumn(++nColumnNumber, _T("Пощенски код"), LVCFMT_CENTER, nColumnWidth, 1);
 }
 
-void CCitiesView ::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrArray)
+void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrArray)
 {
 	for (INT_PTR i = 0; i < oCSelfClearingPtrArray.GetCount(); i++)
 	{
@@ -142,9 +144,9 @@ CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
 
 // CCitiesView message handlers
 
-
-void CCitiesView::OnTablesCities()
+void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	/*CCitiesDialog oCitiesDialog;
-	oCitiesDialog.DoModal();*/
+	// TODO: Add your message handler code here and/or call default
+	int nDa = 1;
+	CListView::OnLButtonDblClk(nFlags, point);
 }
