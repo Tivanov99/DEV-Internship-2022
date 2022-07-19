@@ -26,7 +26,9 @@ CCitiesDialog::~CCitiesDialog()
 void CCitiesDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_CITIES_LIST, m_CitiesList);
+	DDX_Control(pDX, IDC_EDB_CITIES_NAME, StrCitiesName);
+	DDX_Control(pDX, IDC_EDB_AREA_NAME, StrAreaName);
+	DDX_Control(pDX, IDC_EDB_POSTAL_CODE, nPostalCode);
 }
 
 

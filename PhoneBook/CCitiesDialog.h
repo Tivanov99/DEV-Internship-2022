@@ -27,5 +27,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	CListCtrl m_CitiesList;
+public:
+	CEdit StrCitiesName;
+	CEdit StrAreaName;
+	CEdit nPostalCode;
 };
 
