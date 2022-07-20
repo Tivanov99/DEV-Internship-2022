@@ -139,5 +139,7 @@ void CCitiesDialog::UnLockAllInputFileds()
 void CCitiesDialog::OnBnClickedBtnDeleteRecord()
 {
 	CCitiesConfirmDeleteDialog oConfirmDialog;
+
 	oConfirmDialog.DoModal();
+
 }

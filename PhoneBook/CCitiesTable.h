@@ -10,6 +10,7 @@
 
 using namespace std;
 
+//TODO: USE ENUMERATION
 #define NoneModifyColumnCode 0
 #define ModifyColumnCode 1
 class CCityAccessor

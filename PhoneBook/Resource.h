@@ -47,30 +47,19 @@
 #define IDC_BTN_UPDATE_RECORD           1024
 #define ID_TABLES_CITIES                32771
 #define ID_TABLES_CITIES32772           32772
-#define ID_TABLES_DA                    32773
-#define ID_OPTIONS_CITIES               32774
-#define ID_OPTIONS_CITTIES              32775
-#define ID_CITIES_DA                    32776
 #define ID_TABLES_CITIES32777           32777
 #define ID_TABLES_CITIES32778           32778
-#define ID_CITIES_EDIT                  32779
-#define ID_CITIES_DELETE                32780
-#define ID_CITIES_INSERT                32781
-#define ID_EDIT_EDIT                    32782
-#define ID_EDIT_DELETE                  32783
-#define ID_EDIT_EDIT32784               32784
-#define ID_EDIT_EDIT32785               32785
-#define ID_CONTEXT_EDIT                 32786
-#define ID_EDIT_EDIT_RECORD             32787
-#define ID_EDIT_DELETE32788             32788
-#define ID_EDIT_DELETE_RECORD           32789
+#define ID_EDIT_EDIT                    32792
+#define ID_EDIT_EDIT_RECORD             32793
+#define ID_EDIT_DELETE                  32794
+#define ID_EDIT_DELETE_RECORD           32795
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        320
-#define _APS_NEXT_COMMAND_VALUE         32790
+#define _APS_NEXT_COMMAND_VALUE         32796
 #define _APS_NEXT_CONTROL_VALUE         1026
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

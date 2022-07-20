@@ -32,6 +32,7 @@ void CCitiesTable::CloseDbConnectionAndSession()
 	m_oDataSource.Close();
 };
 
+
 void CCitiesTable::ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery)
 {
 	CString strError;
