@@ -38,6 +38,8 @@ BEGIN_MESSAGE_MAP(CCitiesDialog, CDialog)
 	//ON_COMMAND(ID_OPTIONS_CITIES, &CCitiesDialog::OnOptionsCities)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONDBLCLK()
+	ON_BN_CLICKED(IDC_CHB_UPDATE_RECORD, &CCitiesDialog::OnBnClickedChbUpdateRecord)
+	ON_BN_CLICKED(IDC_CHB_DELETE_RECORD, &CCitiesDialog::OnBnClickedChbDeleteRecord)
 END_MESSAGE_MAP()
 
 
@@ -70,3 +72,16 @@ void CCitiesDialog::OnOK()
 
 
 
+
+
+void CCitiesDialog::OnBnClickedChbUpdateRecord()
+{
+	int da = 0;
+	// TODO: Add your control notification handler code here
+}
+
+
+void CCitiesDialog::OnBnClickedChbDeleteRecord()
+{
+	// TODO: Add your control notification handler code here
+}

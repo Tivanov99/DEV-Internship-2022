@@ -35,5 +35,7 @@ public:
 	CEdit nPostalCode;
 	CButton CHBUpdate;
 	CButton CHBDelete;
+	afx_msg void OnBnClickedChbUpdateRecord();
+	afx_msg void OnBnClickedChbDeleteRecord();
 };
 

@@ -41,7 +41,6 @@
 #define IDC_EDB_POSTAL_CODE             1007
 #define IDC_STT_POSTAL_CODE             1008
 #define IDC_CHB_UPDATE_RECORD           1021
-#define IDC_CHECK2                      1022
 #define IDC_CHB_DELETE_RECORD           1022
 #define ID_TABLES_CITIES                32771
 #define ID_TABLES_CITIES32772           32772
