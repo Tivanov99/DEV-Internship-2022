@@ -154,9 +154,10 @@ void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 	CCitiesDocument* oCitiesDoc = GetDocument();
 
-	CITIES* rec_City ;
-	/*CCitiesDialog oCitiesDialog(oCity);
-	oCitiesDialog.DoModal();*/
+	CITIES* rec_City = oCitiesDoc->GetCityById(lCitiesId);
+
+	CCitiesDialog oCitiesDialog(*rec_City);
+	oCitiesDialog.DoModal();
 
 	// TODO: Add your message handler code here and/or call default
 	CListView::OnLButtonDblClk(nFlags, point);
