@@ -76,12 +76,19 @@ void CCitiesDialog::OnOK()
 
 void CCitiesDialog::OnBnClickedChbUpdateRecord()
 {
-	int da = 0;
+
+	if (CHBDelete.GetCheck() == 1)
+	{
+		CHBDelete.SetCheck(0);
+	}
 	// TODO: Add your control notification handler code here
 }
 
 
 void CCitiesDialog::OnBnClickedChbDeleteRecord()
 {
-	// TODO: Add your control notification handler code here
+	 if (CHBUpdate.GetCheck() == 1)
+	{
+		 CHBUpdate.SetCheck(0);
+	}
 }
