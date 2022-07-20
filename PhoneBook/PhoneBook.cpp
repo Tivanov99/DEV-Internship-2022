@@ -173,6 +173,8 @@ protected:
 // Implementation
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnEditEditRecord();
 };
 
 CAboutDlg::CAboutDlg() noexcept : CDialogEx(IDD_ABOUTBOX)
@@ -185,6 +187,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
+	ON_COMMAND(ID_EDIT_EDIT_RECORD, &CAboutDlg::OnEditEditRecord)
 END_MESSAGE_MAP()
 
 // App command to run the dialog
@@ -215,4 +218,7 @@ void CPhoneBookApp::SaveCustomState()
 // CPhoneBookApp message handlers
 
 
-
+void CAboutDlg::OnEditEditRecord()
+{
+	// TODO: Add your command handler code here
+}
