@@ -53,7 +53,7 @@ BOOL CCitiesDialog::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	LockAllInputFileds();
-	
+
 	FillingInputFields();
 
 	BTNDelete.EnableWindow(0);
@@ -82,21 +82,20 @@ void CCitiesDialog::OnOK()
 
 void CCitiesDialog::OnBnClickedChbUpdateRecord()
 {
-	BTNDelete.EnableWindow(0);
-
-	UnLockAllInputFileds();
-
 	if (CHBDelete.GetCheck() == 1)
 	{
 		CHBDelete.SetCheck(0);
 	}
-	if (CHBUpdate.GetCheck() == 0)
+	if (CHBUpdate.GetCheck() == 1)
 	{
-		BTNUpdate.EnableWindow(0);
+		BTNDelete.EnableWindow(0);
+		BTNUpdate.EnableWindow(1);
+		UnLockAllInputFileds();
 	}
 	else
 	{
-	BTNUpdate.EnableWindow(1);
+		BTNUpdate.EnableWindow(0);
+		LockAllInputFileds();
 	}
 	// TODO: Add your control notification handler code here
 }
@@ -104,20 +103,19 @@ void CCitiesDialog::OnBnClickedChbUpdateRecord()
 
 void CCitiesDialog::OnBnClickedChbDeleteRecord()
 {
-	BTNUpdate.EnableWindow(0);
-	LockAllInputFileds();
 	if (CHBUpdate.GetCheck() == 1)
 	{
 		CHBUpdate.SetCheck(0);
 	}
-	int da = CHBDelete.GetCheck();
-	if (CHBDelete.GetCheck() == 0)
+	if (CHBDelete.GetCheck() == 1)
 	{
-		BTNDelete.EnableWindow(0);
+		BTNDelete.EnableWindow(1);
+		BTNUpdate.EnableWindow(0);
+		LockAllInputFileds();
 	}
 	else
 	{
-		BTNDelete.EnableWindow(1);
+		BTNDelete.EnableWindow(0);
 	}
 }
 
