@@ -58,13 +58,19 @@
 #define ID_CITIES_INSERT                32781
 #define ID_EDIT_EDIT                    32782
 #define ID_EDIT_DELETE                  32783
+#define ID_EDIT_EDIT32784               32784
+#define ID_EDIT_EDIT32785               32785
+#define ID_CONTEXT_EDIT                 32786
+#define ID_EDIT_EDIT_RECORD             32787
+#define ID_EDIT_DELETE32788             32788
+#define ID_EDIT_DELETE_RECORD           32789
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        320
-#define _APS_NEXT_COMMAND_VALUE         32784
+#define _APS_NEXT_COMMAND_VALUE         32790
 #define _APS_NEXT_CONTROL_VALUE         1026
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
