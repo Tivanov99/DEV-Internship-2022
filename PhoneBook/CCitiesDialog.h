@@ -33,7 +33,7 @@ public:
 	CEdit StrCitiesName;
 	CEdit StrAreaName;
 	CEdit nPostalCode;
-	CButton CHBUpdateRecord;
-	CButton CHBDeleteRecord;
+	CButton CHBUpdate;
+	CButton CHBDelete;
 };
 
