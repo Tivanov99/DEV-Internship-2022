@@ -44,6 +44,13 @@ BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
+	StrCitiesName.SetWindowText(m_recCity.szCITY_NAME);
+	StrAreaName.SetWindowText(m_recCity.szAREA_NAME);
+	CString strPostalCode;
+	strPostalCode.Format(_T("%d"), m_recCity.lPOSTAL_CODE);
+	nPostalCode.SetWindowText(strPostalCode);
+
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE
 }

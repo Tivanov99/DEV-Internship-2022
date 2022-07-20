@@ -153,6 +153,7 @@ void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CString strPostalCode = LSCCitiesList.GetItemText(nSelectedRowOfFirstColumn, nColumnIndex);
 
 	CITIES oCity;
+
 	CCitiesDialog oCitiesDialog(oCity);
 	oCitiesDialog.DoModal();
 
