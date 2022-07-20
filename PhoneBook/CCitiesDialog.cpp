@@ -58,6 +58,8 @@ BOOL CCitiesDialog::OnInitDialog()
 	strPostalCode.Format(_T("%d"), m_recCity.lPOSTAL_CODE);
 	nPostalCode.SetWindowText(strPostalCode);
 
+	BTNDelete.EnableWindow(0);
+	BTNUpdate.EnableWindow(0);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE
