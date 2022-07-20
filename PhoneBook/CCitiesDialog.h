@@ -37,5 +37,8 @@ public:
 	CButton CHBDelete;
 	afx_msg void OnBnClickedChbUpdateRecord();
 	afx_msg void OnBnClickedChbDeleteRecord();
+private:
+	CButton BNTDelete;
+	CButton BTNUpdate;
 };
 

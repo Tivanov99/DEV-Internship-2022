@@ -31,6 +31,8 @@ void CCitiesDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDB_POSTAL_CODE, nPostalCode);
 	DDX_Control(pDX, IDC_CHB_UPDATE_RECORD, CHBUpdate);
 	DDX_Control(pDX, IDC_CHB_DELETE_RECORD, CHBDelete);
+	DDX_Control(pDX, IDC_BTN_UPDATE_RECORD, BTNUpdate);
+	DDX_Control(pDX, IDC_BTN_DELETE_RECORD, BNTDelete);
 }
 
 
@@ -72,8 +74,6 @@ void CCitiesDialog::OnOK()
 
 
 
-
-
 void CCitiesDialog::OnBnClickedChbUpdateRecord()
 {
 
@@ -91,4 +91,5 @@ void CCitiesDialog::OnBnClickedChbDeleteRecord()
 	{
 		 CHBUpdate.SetCheck(0);
 	}
+
 }
