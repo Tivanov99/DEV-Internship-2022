@@ -41,8 +41,13 @@ const CSelfClearingTypedPtrArray< CITIES>& CCitiesDocument::GetAllData()
 
 CITIES* CCitiesDocument::GetCityById(long lID)
 {
-
-}
+	CITIES* pCity = oCitiesSelfClearingPtrArray.GetAt(lID - 1);
+	if (pCity == NULL)
+	{
+		AfxMessageBox(_T("Somethin wrong with record. Try again."));
+	}
+	return pCity;
+} 
 
 #ifdef _DEBUG
 void CCitiesDocument::AssertValid() const
