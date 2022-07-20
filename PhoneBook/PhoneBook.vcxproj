@@ -184,6 +184,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CCitiesConfirmDeleteDialog.h" />
     <ClInclude Include="CCitiesData.h" />
     <ClInclude Include="CCitiesDialog.h" />
     <ClInclude Include="CCitiesDocument.h" />
@@ -201,6 +202,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CCitiesConfirmDeleteDialog.cpp" />
     <ClCompile Include="CCitiesData.cpp" />
     <ClCompile Include="CCitiesDialog.cpp" />
     <ClCompile Include="CCitiesDocument.cpp" />

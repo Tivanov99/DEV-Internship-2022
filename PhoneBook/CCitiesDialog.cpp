@@ -6,6 +6,7 @@
 #include "afxdialogex.h"
 #include "CCitiesDialog.h"
 #include "CitiesView.h"
+#include "CCitiesConfirmDeleteDialog.h"
 
 
 
@@ -137,7 +138,8 @@ void CCitiesDialog::UnLockAllInputFileds()
 
 void CCitiesDialog::OnBnClickedBtnDeleteRecord()
 {
-	AfxMessageBox(_T("Желаете ли да изтриете този запис ?"));
+	CCitiesConfirmDeleteDialog oConfirmDialog;
 
+	oConfirmDialog.DoModal();
 	// TODO: Add your control notification handler code here
 }
