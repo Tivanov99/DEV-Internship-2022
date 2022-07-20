@@ -29,8 +29,7 @@ BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	ON_WM_RBUTTONUP()
 	/*ON_COMMAND(ID_TABLES_CITIES, &CCitiesView::OnTablesCities)*/
 	ON_WM_LBUTTONDBLCLK()
-	ON_COMMAND(ID_EDIT_EDIT_RECORD, &CCitiesView::OnEditEditRecord)
-	ON_COMMAND(ID_EDIT_DELETE_RECORD, &CCitiesView::OnEditDeleteRecord)
+	ON_COMMAND(ID_EDIT_DELETE32804, &CCitiesView::OnDelete)
 END_MESSAGE_MAP()
 
 
@@ -169,13 +168,27 @@ void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 
 
-void CCitiesView::OnEditEditRecord()
-{
-	// TODO: Add your command handler code here
-}
+//
 
 
-void CCitiesView::OnEditDeleteRecord()
+void CCitiesView::OnDelete()
 {
-	// TODO: Add your command handler code here
+	int msgboxID = MessageBox(
+		(LPCWSTR)L"Желаете ли записът да бъде изтрит?",
+		(LPCWSTR)L"Изтриване на запис",
+		MB_ICONINFORMATION | IDOK
+	);
+	int da = 0;
+	switch (msgboxID)
+	{
+	case IDOK: da++;
+		break;
+
+	case IDCANCEL: da += 2;
+		break;
+
+	default:
+		break;
+	}
+
 }

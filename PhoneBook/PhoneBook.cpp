@@ -174,8 +174,6 @@ protected:
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnEditEditRecord();
-	afx_msg void OnEditDeleteRecord();
 };
 
 CAboutDlg::CAboutDlg() noexcept : CDialogEx(IDD_ABOUTBOX)
@@ -188,8 +186,6 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
-	ON_COMMAND(ID_EDIT_EDIT_RECORD, &CAboutDlg::OnEditEditRecord)
-	ON_COMMAND(ID_EDIT_DELETE_RECORD, &CAboutDlg::OnEditDeleteRecord)
 END_MESSAGE_MAP()
 
 // App command to run the dialog

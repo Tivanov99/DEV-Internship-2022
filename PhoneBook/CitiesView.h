@@ -61,6 +61,8 @@ protected:
 public:
 	afx_msg void OnTablesCities();
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+	
+	afx_msg void OnDelete();
 };
 
 #ifndef _DEBUG  // debug version in CitiesView.cpp
