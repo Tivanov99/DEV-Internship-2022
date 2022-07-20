@@ -82,14 +82,14 @@ void CCitiesDialog::OnOK()
 
 void CCitiesDialog::OnBnClickedChbUpdateRecord()
 {
-	if (CHBDelete.GetCheck() == 1)
+	if (CHBDelete.GetCheck() == nTurnOn)
 	{
-		CHBDelete.SetCheck(0);
+		CHBDelete.SetCheck(nTurnOff);
 	}
-	if (CHBUpdate.GetCheck() == 1)
+	if (CHBUpdate.GetCheck() == nTurnOn)
 	{
-		BTNDelete.EnableWindow(0);
-		BTNUpdate.EnableWindow(1);
+		BTNDelete.EnableWindow(nTurnOff);
+		BTNUpdate.EnableWindow(nTurnOn);
 		UnLockAllInputFileds();
 	}
 	else
@@ -103,32 +103,32 @@ void CCitiesDialog::OnBnClickedChbUpdateRecord()
 
 void CCitiesDialog::OnBnClickedChbDeleteRecord()
 {
-	if (CHBUpdate.GetCheck() == 1)
+	if (CHBUpdate.GetCheck() == nTurnOn)
 	{
-		CHBUpdate.SetCheck(0);
+		CHBUpdate.SetCheck(nTurnOff);
+		BTNUpdate.EnableWindow(nTurnOff);
 	}
-	if (CHBDelete.GetCheck() == 1)
+	if (CHBDelete.GetCheck() == nTurnOn)
 	{
-		BTNDelete.EnableWindow(1);
-		BTNUpdate.EnableWindow(0);
+		BTNDelete.EnableWindow(nTurnOn);
 		LockAllInputFileds();
 	}
 	else
 	{
-		BTNDelete.EnableWindow(0);
+		BTNDelete.EnableWindow(nTurnOff);
 	}
 }
 
 void CCitiesDialog::LockAllInputFileds()
 {
-	StrCitiesName.EnableWindow(0);
-	StrAreaName.EnableWindow(0);
-	lPostalCode.EnableWindow(0);
+	StrCitiesName.EnableWindow(nTurnOff);
+	StrAreaName.EnableWindow(nTurnOff);
+	lPostalCode.EnableWindow(nTurnOff);
 }
 
 void CCitiesDialog::UnLockAllInputFileds()
 {
-	StrCitiesName.EnableWindow(1);
-	StrAreaName.EnableWindow(1);
-	lPostalCode.EnableWindow(1);
+	StrCitiesName.EnableWindow(nTurnOn);
+	StrAreaName.EnableWindow(nTurnOn);
+	lPostalCode.EnableWindow(nTurnOn);
 }
