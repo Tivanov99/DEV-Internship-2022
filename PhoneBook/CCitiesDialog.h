@@ -24,19 +24,21 @@ protected:
 	virtual BOOL OnInitDialog();
 	virtual void OnOK();
 
-	
+	//Members
 	DECLARE_MESSAGE_MAP()
 private:
 	CListCtrl m_CitiesList;
 	CITIES m_recCity;
-public:
 	CEdit StrCitiesName;
 	CEdit StrAreaName;
-	CEdit nPostalCode;
+	CEdit lPostalCode;
 	CButton CHBUpdate;
 	CButton CHBDelete;
 	afx_msg void OnBnClickedChbUpdateRecord();
 	afx_msg void OnBnClickedChbDeleteRecord();
+	//Methods
+private:
+	void FillingInputFields();
 private:
 	CButton BTNDelete;
 	CButton BTNUpdate;

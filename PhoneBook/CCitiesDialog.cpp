@@ -28,7 +28,7 @@ void CCitiesDialog::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_EDB_CITIES_NAME, StrCitiesName);
 	DDX_Control(pDX, IDC_EDB_AREA_NAME, StrAreaName);
-	DDX_Control(pDX, IDC_EDB_POSTAL_CODE, nPostalCode);
+	DDX_Control(pDX, IDC_EDB_POSTAL_CODE, lPostalCode);
 	DDX_Control(pDX, IDC_CHB_UPDATE_RECORD, CHBUpdate);
 	DDX_Control(pDX, IDC_CHB_DELETE_RECORD, CHBDelete);
 	DDX_Control(pDX, IDC_BTN_UPDATE_RECORD, BTNUpdate);
@@ -51,12 +51,8 @@ END_MESSAGE_MAP()
 BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-
-	StrCitiesName.SetWindowText(m_recCity.szCITY_NAME);
-	StrAreaName.SetWindowText(m_recCity.szAREA_NAME);
-	CString strPostalCode;
-	strPostalCode.Format(_T("%d"), m_recCity.lPOSTAL_CODE);
-	nPostalCode.SetWindowText(strPostalCode);
+	
+	FillingInputFields();
 
 	BTNDelete.EnableWindow(0);
 	BTNUpdate.EnableWindow(0);
@@ -64,7 +60,14 @@ BOOL CCitiesDialog::OnInitDialog()
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE
 }
-
+void CCitiesDialog::FillingInputFields()
+{
+	StrCitiesName.SetWindowText(m_recCity.szCITY_NAME);
+	StrAreaName.SetWindowText(m_recCity.szAREA_NAME);
+	CString strPostalCode;
+	strPostalCode.Format(_T("%d"), m_recCity.lPOSTAL_CODE);
+	lPostalCode.SetWindowText(strPostalCode);
+}
 
 void CCitiesDialog::OnOK()
 {
@@ -75,10 +78,12 @@ void CCitiesDialog::OnOK()
 }
 
 
-
 void CCitiesDialog::OnBnClickedChbUpdateRecord()
 {
 	BTNDelete.EnableWindow(0);
+	StrCitiesName.EnableWindow(1);
+	StrAreaName.EnableWindow(1);
+	lPostalCode.EnableWindow(1);
 	if (CHBDelete.GetCheck() == 1)
 	{
 		CHBDelete.SetCheck(0);
@@ -91,9 +96,14 @@ void CCitiesDialog::OnBnClickedChbUpdateRecord()
 void CCitiesDialog::OnBnClickedChbDeleteRecord()
 {
 	BTNUpdate.EnableWindow(0);
+	StrCitiesName.EnableWindow(0);
+	StrAreaName.EnableWindow(0);
+	lPostalCode.EnableWindow(0);
 	if (CHBUpdate.GetCheck() == 1)
 	{
 		CHBUpdate.SetCheck(0);
 	}
 	BTNDelete.EnableWindow(1);
 }
+
+
