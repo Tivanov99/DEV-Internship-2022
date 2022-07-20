@@ -24,6 +24,7 @@ CCitiesConfirmDeleteDialog::~CCitiesConfirmDeleteDialog()
 void CCitiesConfirmDeleteDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
+	DDX_Control(pDX, IDOK, BTNConfirm);
 }
 
 

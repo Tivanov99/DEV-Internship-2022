@@ -139,7 +139,5 @@ void CCitiesDialog::UnLockAllInputFileds()
 void CCitiesDialog::OnBnClickedBtnDeleteRecord()
 {
 	CCitiesConfirmDeleteDialog oConfirmDialog;
-
 	oConfirmDialog.DoModal();
-	// TODO: Add your control notification handler code here
 }

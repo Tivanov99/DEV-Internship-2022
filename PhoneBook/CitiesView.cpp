@@ -60,6 +60,8 @@ void CCitiesView::OnInitialUpdate()
 	CListView::OnInitialUpdate();
 
 	CListCtrl& LSCCitiesList = GetListCtrl();
+	LSCCitiesList.SetExtendedStyle(LSCCitiesList.GetExtendedStyle() |LVS_EX_FULLROWSELECT);
+
 
 	LSCCitiesList.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
 
