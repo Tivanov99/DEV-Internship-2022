@@ -54,5 +54,7 @@ private:
 	CButton BTNUpdate;
 	afx_msg void OnBnClickedChbUpdateRecord();
 	afx_msg void OnBnClickedChbDeleteRecord();
+public:
+	afx_msg void OnBnClickedBtnDeleteRecord();
 };
 

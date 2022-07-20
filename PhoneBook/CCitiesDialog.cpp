@@ -42,6 +42,7 @@ BEGIN_MESSAGE_MAP(CCitiesDialog, CDialog)
 	ON_WM_LBUTTONDBLCLK()
 	ON_BN_CLICKED(IDC_CHB_UPDATE_RECORD, &CCitiesDialog::OnBnClickedChbUpdateRecord)
 	ON_BN_CLICKED(IDC_CHB_DELETE_RECORD, &CCitiesDialog::OnBnClickedChbDeleteRecord)
+	ON_BN_CLICKED(IDC_BTN_DELETE_RECORD, &CCitiesDialog::OnBnClickedBtnDeleteRecord)
 END_MESSAGE_MAP()
 
 
@@ -131,4 +132,12 @@ void CCitiesDialog::UnLockAllInputFileds()
 	StrCitiesName.EnableWindow(nTurnOn);
 	StrAreaName.EnableWindow(nTurnOn);
 	lPostalCode.EnableWindow(nTurnOn);
+}
+
+
+void CCitiesDialog::OnBnClickedBtnDeleteRecord()
+{
+	AfxMessageBox(_T("Желаете ли да изтриете този запис ?"));
+
+	// TODO: Add your control notification handler code here
 }
