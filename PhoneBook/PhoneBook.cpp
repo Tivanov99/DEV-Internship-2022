@@ -220,13 +220,3 @@ void CPhoneBookApp::SaveCustomState()
 // CPhoneBookApp message handlers
 
 
-void CAboutDlg::OnEditEditRecord()
-{
-	// TODO: Add your command handler code here
-}
-
-
-void CAboutDlg::OnEditDeleteRecord()
-{
-	// TODO: Add your command handler code here
-}
