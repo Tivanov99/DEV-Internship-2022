@@ -98,10 +98,13 @@ void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtr
 		CString strPostalCode;
 		strPostalCode.Format(_T("%d"), oCurrentCity->lPOSTAL_CODE);
 
+		
 		LSCCitiesList.InsertItem(nRowNumber, strCityName);
 		LSCCitiesList.SetItemText(nRowNumber, nColumnNumber, strAreaName);
 		LSCCitiesList.SetItemText(nRowNumber, ++nColumnNumber, strPostalCode);
+		BOOL bSet = LSCCitiesList.SetItemData(nRowNumber, oCurrentCity->lID);
 	}
+
 }
 
 void CCitiesView::OnRButtonUp(UINT /* nFlags */, CPoint point)
@@ -148,15 +151,14 @@ void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	int nSelectedRowOfFirstColumn = LSCCitiesList.GetSelectionMark();
 	int nColumnIndex = 0;
 
-	CString strCityName = LSCCitiesList.GetItemText(nSelectedRowOfFirstColumn, nColumnIndex++);
-	CString strAreaName = LSCCitiesList.GetItemText(nSelectedRowOfFirstColumn, nColumnIndex++);
-	CString strPostalCode = LSCCitiesList.GetItemText(nSelectedRowOfFirstColumn, nColumnIndex);
+	
+	DWORD_PTR oData = LSCCitiesList.GetItemData(nSelectedRowOfFirstColumn);
 
-	CITIES oCity;
 
-	CCitiesDialog oCitiesDialog(oCity);
-	oCitiesDialog.DoModal();
+	/*CCitiesDialog oCitiesDialog(oCity);
+	oCitiesDialog.DoModal();*/
 
 	// TODO: Add your message handler code here and/or call default
 	CListView::OnLButtonDblClk(nFlags, point);
 }
+

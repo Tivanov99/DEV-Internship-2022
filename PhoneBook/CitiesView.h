@@ -32,7 +32,8 @@ public:
 	/// </summary>
 	/// <param name="LSCCitiesList">Лист контрола към която ще бъдат добавени колините.</param>
 	void AddColumns(CListCtrl& LSCCitiesList);
-
+private:
+	
 	// Overrides
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
