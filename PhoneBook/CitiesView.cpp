@@ -178,10 +178,11 @@ void CCitiesView::OnDelete()
 		(LPCWSTR)L"Изтриване на запис",
 		MB_ICONINFORMATION | IDOK
 	);
+
 	int da = 0;
 	switch (msgboxID)
 	{
-	case IDOK: da++;
+	case IDOK:
 		break;
 
 	case IDCANCEL: da += 2;
@@ -191,4 +192,15 @@ void CCitiesView::OnDelete()
 		break;
 	}
 
+
+	CListCtrl& LSCCitiesList = GetListCtrl();
+
+	int nSelectedRowOfFirstColumn = LSCCitiesList.GetSelectionMark();
+
+	long lCitiesId = LSCCitiesList.GetItemData(nSelectedRowOfFirstColumn);
+
+	CCitiesDocument* oCitiesDoc = GetDocument();
+
+	CITIES* rec_City = oCitiesDoc->GetCityById(lCitiesId);
+	//TODO: add delete by Id to CCitiesDocument
 }
