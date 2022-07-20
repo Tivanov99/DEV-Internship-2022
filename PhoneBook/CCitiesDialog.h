@@ -39,6 +39,9 @@ private:
 	//Methods
 private:
 	void FillingInputFields();
+	void LockAllInputFileds();
+	void UnLockAllInputFileds();
+
 private:
 	CButton BTNDelete;
 	CButton BTNUpdate;

@@ -52,9 +52,7 @@ BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	StrCitiesName.EnableWindow(0);
-	StrAreaName.EnableWindow(0);
-	lPostalCode.EnableWindow(0);
+	LockAllInputFileds();
 	
 	FillingInputFields();
 
@@ -85,9 +83,9 @@ void CCitiesDialog::OnOK()
 void CCitiesDialog::OnBnClickedChbUpdateRecord()
 {
 	BTNDelete.EnableWindow(0);
-	StrCitiesName.EnableWindow(1);
-	StrAreaName.EnableWindow(1);
-	lPostalCode.EnableWindow(1);
+
+	UnLockAllInputFileds();
+
 	if (CHBDelete.GetCheck() == 1)
 	{
 		CHBDelete.SetCheck(0);
@@ -107,9 +105,7 @@ void CCitiesDialog::OnBnClickedChbUpdateRecord()
 void CCitiesDialog::OnBnClickedChbDeleteRecord()
 {
 	BTNUpdate.EnableWindow(0);
-	StrCitiesName.EnableWindow(0);
-	StrAreaName.EnableWindow(0);
-	lPostalCode.EnableWindow(0);
+	LockAllInputFileds();
 	if (CHBUpdate.GetCheck() == 1)
 	{
 		CHBUpdate.SetCheck(0);
@@ -121,8 +117,20 @@ void CCitiesDialog::OnBnClickedChbDeleteRecord()
 	}
 	else
 	{
-	BTNDelete.EnableWindow(1);
+		BTNDelete.EnableWindow(1);
 	}
 }
 
+void CCitiesDialog::LockAllInputFileds()
+{
+	StrCitiesName.EnableWindow(0);
+	StrAreaName.EnableWindow(0);
+	lPostalCode.EnableWindow(0);
+}
 
+void CCitiesDialog::UnLockAllInputFileds()
+{
+	StrCitiesName.EnableWindow(1);
+	StrAreaName.EnableWindow(1);
+	lPostalCode.EnableWindow(1);
+}
