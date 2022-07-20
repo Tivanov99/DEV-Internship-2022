@@ -32,7 +32,7 @@ void CCitiesDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_CHB_UPDATE_RECORD, CHBUpdate);
 	DDX_Control(pDX, IDC_CHB_DELETE_RECORD, CHBDelete);
 	DDX_Control(pDX, IDC_BTN_UPDATE_RECORD, BTNUpdate);
-	DDX_Control(pDX, IDC_BTN_DELETE_RECORD, BNTDelete);
+	DDX_Control(pDX, IDC_BTN_DELETE_RECORD, BTNDelete);
 }
 
 
@@ -76,20 +76,22 @@ void CCitiesDialog::OnOK()
 
 void CCitiesDialog::OnBnClickedChbUpdateRecord()
 {
-
+	BTNDelete.EnableWindow(0);
 	if (CHBDelete.GetCheck() == 1)
 	{
 		CHBDelete.SetCheck(0);
 	}
+	BTNUpdate.EnableWindow(1);
 	// TODO: Add your control notification handler code here
 }
 
 
 void CCitiesDialog::OnBnClickedChbDeleteRecord()
 {
-	 if (CHBUpdate.GetCheck() == 1)
+	BTNUpdate.EnableWindow(0);
+	if (CHBUpdate.GetCheck() == 1)
 	{
-		 CHBUpdate.SetCheck(0);
+		CHBUpdate.SetCheck(0);
 	}
-
+	BTNDelete.EnableWindow(1);
 }
