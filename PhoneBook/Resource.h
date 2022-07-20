@@ -42,7 +42,6 @@
 #define IDC_STT_POSTAL_CODE             1008
 #define IDC_CHB_UPDATE_RECORD           1021
 #define IDC_CHB_DELETE_RECORD           1022
-#define IDC_BTN_DELETE_REC              1023
 #define IDC_BTN_DELETE_RECORD           1023
 #define IDC_BTN_UPDATE_RECORD           1024
 #define ID_TABLES_CITIES                32771

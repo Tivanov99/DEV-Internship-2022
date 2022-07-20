@@ -51,6 +51,10 @@ END_MESSAGE_MAP()
 BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
+
+	StrCitiesName.EnableWindow(0);
+	StrAreaName.EnableWindow(0);
+	lPostalCode.EnableWindow(0);
 	
 	FillingInputFields();
 
@@ -88,7 +92,14 @@ void CCitiesDialog::OnBnClickedChbUpdateRecord()
 	{
 		CHBDelete.SetCheck(0);
 	}
+	if (CHBUpdate.GetCheck() == 0)
+	{
+		BTNUpdate.EnableWindow(0);
+	}
+	else
+	{
 	BTNUpdate.EnableWindow(1);
+	}
 	// TODO: Add your control notification handler code here
 }
 
@@ -103,7 +114,15 @@ void CCitiesDialog::OnBnClickedChbDeleteRecord()
 	{
 		CHBUpdate.SetCheck(0);
 	}
+	int da = CHBDelete.GetCheck();
+	if (CHBDelete.GetCheck() == 0)
+	{
+		BTNDelete.EnableWindow(0);
+	}
+	else
+	{
 	BTNDelete.EnableWindow(1);
+	}
 }
 
 
