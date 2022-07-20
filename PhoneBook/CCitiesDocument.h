@@ -33,7 +33,7 @@ public:
 
 public:
 	const CSelfClearingTypedPtrArray< CITIES>& GetAllData();
-
+	CITIES* GetCityById(long lID);
 	//Members
 private:
 	CSelfClearingTypedPtrArray< CITIES> oCitiesSelfClearingPtrArray;

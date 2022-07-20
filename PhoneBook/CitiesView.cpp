@@ -102,7 +102,7 @@ void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtr
 		LSCCitiesList.InsertItem(nRowNumber, strCityName);
 		LSCCitiesList.SetItemText(nRowNumber, nColumnNumber, strAreaName);
 		LSCCitiesList.SetItemText(nRowNumber, ++nColumnNumber, strPostalCode);
-		BOOL bSet = LSCCitiesList.SetItemData(nRowNumber, oCurrentCity->lID);
+		LSCCitiesList.SetItemData(nRowNumber, oCurrentCity->lID);
 	}
 
 }
@@ -149,12 +149,12 @@ void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CListCtrl& LSCCitiesList = GetListCtrl();
 
 	int nSelectedRowOfFirstColumn = LSCCitiesList.GetSelectionMark();
-	int nColumnIndex = 0;
-
 	
-	DWORD_PTR oData = LSCCitiesList.GetItemData(nSelectedRowOfFirstColumn);
+	DWORD_PTR lCitiesId = LSCCitiesList.GetItemData(nSelectedRowOfFirstColumn);
 
+	CCitiesDocument* oCitiesDoc = GetDocument();
 
+	CITIES* rec_City ;
 	/*CCitiesDialog oCitiesDialog(oCity);
 	oCitiesDialog.DoModal();*/
 

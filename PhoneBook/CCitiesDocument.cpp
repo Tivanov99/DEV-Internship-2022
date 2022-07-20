@@ -39,6 +39,11 @@ const CSelfClearingTypedPtrArray< CITIES>& CCitiesDocument::GetAllData()
 	return oCitiesSelfClearingPtrArray;
 }
 
+CITIES* CCitiesDocument::GetCityById(long lID)
+{
+
+}
+
 #ifdef _DEBUG
 void CCitiesDocument::AssertValid() const
 {
