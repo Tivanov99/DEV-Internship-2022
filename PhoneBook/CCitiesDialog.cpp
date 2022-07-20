@@ -29,6 +29,8 @@ void CCitiesDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDB_CITIES_NAME, StrCitiesName);
 	DDX_Control(pDX, IDC_EDB_AREA_NAME, StrAreaName);
 	DDX_Control(pDX, IDC_EDB_POSTAL_CODE, nPostalCode);
+	DDX_Control(pDX, IDC_CHB_UPDATE_RECORD, CHBUpdateRecord);
+	DDX_Control(pDX, IDC_CHB_DELETE_RECORD, CHBDeleteRecord);
 }
 
 
