@@ -168,6 +168,11 @@ const long CCitiesView::GetSelectedRecordId()
 {
 	CListCtrl& LSCCitiesList = GetListCtrl();
 	const int nSelectedRowOfFirstColumn = LSCCitiesList.GetSelectionMark();
+	if (nSelectedRowOfFirstColumn == -1)
+	{
+		AfxMessageBox(_T("This function is only called on record!"));
+		return -1;
+	}
 	const long lRecordID = LSCCitiesList.GetItemData(nSelectedRowOfFirstColumn);
 	return lRecordID;
 }
@@ -176,15 +181,19 @@ const long CCitiesView::GetSelectedRecordId()
 void CCitiesView::OnContextMenuDelete()
 {
 	const int msgboxID = MessageBox(
-		(LPCWSTR)L"Желаете ли записът да бъде изтрит?",
-		(LPCWSTR)L"Изтриване на запис",
+		(LPCWSTR)L"Do you want the record to be deleted?",
+		(LPCWSTR)L"Delete record.",
 		MB_ICONINFORMATION | IDOK
 	);
 
 	if (msgboxID == IDOK)
 	{
-		CCitiesDocument* oCitiesDoc = GetDocument();
-		oCitiesDoc->DeleteCityById(GetSelectedRecordId());
+		const long lCityID = GetSelectedRecordId();
+		if (lCityID != -1)
+		{
+			CCitiesDocument* oCitiesDoc = GetDocument();
+			oCitiesDoc->DeleteCityById(lCityID);
+		}
 	}
 }
 void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
