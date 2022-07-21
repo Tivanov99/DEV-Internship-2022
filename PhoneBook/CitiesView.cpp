@@ -27,7 +27,6 @@ IMPLEMENT_DYNCREATE(CCitiesView, CListView)
 BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
-	/*ON_COMMAND(ID_TABLES_CITIES, &CCitiesView::OnTablesCities)*/
 	ON_WM_LBUTTONDBLCLK()
 	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CCitiesView::OnContextMenuDelete)
 	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnContextMenuEdit)
@@ -144,21 +143,6 @@ CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
 #endif //_DEBUG
 
 
-// CCitiesView message handlers
-
-void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
-{
-	/*CCitiesDocument* oCitiesDoc = GetDocument();
-
-	CITIES* rec_City = oCitiesDoc->GetCityById(GetSelectedRecordData());*/
-
-	/*CCitiesDialog oCitiesDialog(*rec_City);
-	oCitiesDialog.DoModal();*/
-
-	// TODO: Add your message handler code here and/or call default
-	CListView::OnLButtonDblClk(nFlags, point);
-}
-
 const int CCitiesView::GetNumberOfSelectedRow()
 {
 	CListCtrl& LSCCitiesList = GetListCtrl();
@@ -221,11 +205,6 @@ void CCitiesView::OnContextMenuEdit()
 	const CITIES* pCity = GetSelectedRecordData();
 	if (pCity == NULL)
 		return;
-
-	const int nNumberOfSelectedRow = GetNumberOfSelectedRow();
-	CListCtrl& LSCCitiesList = GetListCtrl();
-
-
 
 	// TODO: Add your command handler code here
 }

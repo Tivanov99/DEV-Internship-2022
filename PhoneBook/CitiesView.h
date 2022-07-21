@@ -59,8 +59,6 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
-	afx_msg void OnTablesCities();
-	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenuDelete();
 	afx_msg void OnContextMenuEdit();
 };
