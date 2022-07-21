@@ -38,7 +38,6 @@ END_MESSAGE_MAP()
 
 CCitiesView::CCitiesView() noexcept
 {
-	// TODO: add construction code here
 }
 
 CCitiesView::~CCitiesView()
@@ -72,6 +71,7 @@ void CCitiesView::OnInitialUpdate()
 	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrCitiesArray = pCCitiesDocument->GetAllCities();
 	FillView(LSCCitiesList, oCSelfClearingPtrCitiesArray);
 }
+
 void CCitiesView::AddColumns(CListCtrl& LSCCitiesList)
 {
 	const int nColumnWidth = 120;
@@ -110,7 +110,6 @@ void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtr
 		LSCCitiesList.SetItemText(nRowNumber, ++nColumnNumber, strPostalCode);
 		LSCCitiesList.SetItemData(nRowNumber, oCurrentCity->lID);
 	}
-
 }
 
 void CCitiesView::OnRButtonUp(UINT /* nFlags */, CPoint point)
@@ -150,30 +149,36 @@ CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
 
 // CCitiesView message handlers
 
-void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
+//void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
+//{
+//	CCitiesDocument* oCitiesDoc = GetDocument();
+//
+//	CITIES* rec_City = oCitiesDoc->GetCityById(GetSelectedRecordId());
+//
+//	CCitiesDialog oCitiesDialog(*rec_City);
+//	oCitiesDialog.DoModal();
+//
+//	// TODO: Add your message handler code here and/or call default
+//	CListView::OnLButtonDblClk(nFlags, point);
+//}
+
+const int CCitiesView::GetNumberOfSelectedRow()
 {
-	CCitiesDocument* oCitiesDoc = GetDocument();
-
-	CITIES* rec_City = oCitiesDoc->GetCityById(GetSelectedRecordId());
-
-	CCitiesDialog oCitiesDialog(*rec_City);
-	oCitiesDialog.DoModal();
-
-	// TODO: Add your message handler code here and/or call default
-	CListView::OnLButtonDblClk(nFlags, point);
+	CListCtrl& LSCCitiesList = GetListCtrl();
+	const int nSelectedRow = LSCCitiesList.GetSelectionMark();
+	return nSelectedRow;
 }
-
 
 const long CCitiesView::GetSelectedRecordId()
 {
-	CListCtrl& LSCCitiesList = GetListCtrl();
-	const int nSelectedRowOfFirstColumn = LSCCitiesList.GetSelectionMark();
-	if (nSelectedRowOfFirstColumn == -1)
+	const int nSelectedRow = GetNumberOfSelectedRow();
+	if (nSelectedRow == -1)
 	{
 		AfxMessageBox(_T("This function is only called on record!"));
 		return -1;
 	}
-	const long lRecordID = LSCCitiesList.GetItemData(nSelectedRowOfFirstColumn);
+	CListCtrl& LSCCitiesList = GetListCtrl();
+	const long lRecordID = LSCCitiesList.GetItemData(nSelectedRow);
 	return lRecordID;
 }
 //
@@ -199,11 +204,18 @@ void CCitiesView::OnContextMenuDelete()
 
 void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
+	/*CListCtrl& LSCCitiesList = GetListCtrl();
+	LSCCitiesList.DeleteItem()*/
+
 	switch (lHint)
 	{
+	case ContextMenuOperations::Create: break;
+	case ContextMenuOperations::Delete:
+		
+		break;
+	case ContextMenuOperations::Update: break;
 	default:
 		break;
 	}
-	//TODO: make switch statement based on lHint
 }
 //TODO: Add method (OVERRIDE) which gonna handle types of changes, delete, edit, create, 

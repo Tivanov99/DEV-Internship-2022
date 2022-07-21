@@ -34,6 +34,7 @@ public:
 	void AddColumns(CListCtrl& LSCCitiesList);
 private:
 	const long GetSelectedRecordId();
+	const int GetNumberOfSelectedRow();
 	// Overrides
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
