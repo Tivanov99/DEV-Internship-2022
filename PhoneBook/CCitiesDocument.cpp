@@ -71,7 +71,7 @@ bool CCitiesDocument::DeleteCityById(long lID)
 		return false;
 	}
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
-	OnUpdateAllViews(NULL, NULL);
+	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
 	return true;
 }
 void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)

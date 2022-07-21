@@ -196,8 +196,14 @@ void CCitiesView::OnContextMenuDelete()
 		oCitiesDoc->DeleteCityById(lCityID);
 	}
 }
+
 void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
-
+	switch (lHint)
+	{
+	default:
+		break;
+	}
+	//TODO: make switch statement based on lHint
 }
 //TODO: Add method (OVERRIDE) which gonna handle types of changes, delete, edit, create, 
