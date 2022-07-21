@@ -29,7 +29,7 @@ BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	ON_WM_RBUTTONUP()
 	/*ON_COMMAND(ID_TABLES_CITIES, &CCitiesView::OnTablesCities)*/
 	ON_WM_LBUTTONDBLCLK()
-	ON_COMMAND(ID_EDIT_DELETE32804, &CCitiesView::OnDelete)
+	ON_COMMAND(ID_EDIT_DELETE32804, &CCitiesView::OnContextMenuDelete)
 END_MESSAGE_MAP()
 
 
@@ -101,6 +101,9 @@ void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtr
 		CString strPostalCode;
 		strPostalCode.Format(_T("%d"), oCurrentCity->lPOSTAL_CODE);
 
+		/*int nColumnCount = LSCCitiesList.GetItemCount();
+		LPINT pColumnsBuffer = (LPINT)malloc(nColumnCount * sizeof(int));
+		LSCCitiesList.GetColumnOrderArray(pColumnsBuffer, 1);*/
 
 		LSCCitiesList.InsertItem(nRowNumber, strCityName);
 		LSCCitiesList.SetItemText(nRowNumber, nColumnNumber, strAreaName);
@@ -170,9 +173,8 @@ const long CCitiesView::GetSelectedRecordId()
 }
 //
 
-void CCitiesView::OnDelete()
+void CCitiesView::OnContextMenuDelete()
 {
-
 	const int msgboxID = MessageBox(
 		(LPCWSTR)L"Желаете ли записът да бъде изтрит?",
 		(LPCWSTR)L"Изтриване на запис",
@@ -185,3 +187,8 @@ void CCitiesView::OnDelete()
 		oCitiesDoc->DeleteCityById(GetSelectedRecordId());
 	}
 }
+void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
+{
+
+}
+//TODO: Add method (OVERRIDE) which gonna handle types of changes, delete, edit, create, 
