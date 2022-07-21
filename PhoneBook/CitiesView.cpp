@@ -199,8 +199,8 @@ void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 
 void CCitiesView::OnContextMenuDelete()
 {
-	const long lCityID = GetSelectedRecordData();
-	if (lCityID == -1)
+	const CITIES* pCity = GetSelectedRecordData();
+	if (pCity == NULL)
 		return;
 
 	const int msgboxID = MessageBox(
@@ -212,37 +212,20 @@ void CCitiesView::OnContextMenuDelete()
 	if (msgboxID == IDOK)
 	{
 		CCitiesDocument* oCitiesDoc = GetDocument();
-		oCitiesDoc->DeleteCityById(lCityID);
+		oCitiesDoc->DeleteCityById(pCity->lID);
 	}
 }
 
 void CCitiesView::OnContextMenuEdit()
 {
-	const long lCityID = GetSelectedRecordData();
-	if (lCityID == -1)
+	const CITIES* pCity = GetSelectedRecordData();
+	if (pCity == NULL)
 		return;
 
 	const int nNumberOfSelectedRow = GetNumberOfSelectedRow();
 	CListCtrl& LSCCitiesList = GetListCtrl();
 
-	CITIES* pCity = reinterpret_cast<CITIES*>(LSCCitiesList.GetItemData(nNumberOfSelectedRow));
 
-	/*for (INT_PTR nCurrentColumnIndex = 0; nCurrentColumnIndex < nColumnCount; nCurrentColumnIndex++)
-	{
-		CString strCityName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, nCurrentColumnIndex);
-
-	}
-
-	CITIES* rec_City ;
-
-	CCitiesDialog oCitiesDialog(ContextMenuOperations ::Update ,*rec_City);
-
-	if (oCitiesDialog.DoModal() != IDOK)
-	{
-		CString strCityName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 0);
-		CString strAreaName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 1);
-		CString strPostal = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 2);
-	}*/
 
 	// TODO: Add your command handler code here
 }
