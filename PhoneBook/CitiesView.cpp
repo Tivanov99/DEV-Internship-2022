@@ -149,18 +149,18 @@ CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
 
 // CCitiesView message handlers
 
-//void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
-//{
-//	CCitiesDocument* oCitiesDoc = GetDocument();
-//
-//	CITIES* rec_City = oCitiesDoc->GetCityById(GetSelectedRecordId());
-//
-//	CCitiesDialog oCitiesDialog(*rec_City);
-//	oCitiesDialog.DoModal();
-//
-//	// TODO: Add your message handler code here and/or call default
-//	CListView::OnLButtonDblClk(nFlags, point);
-//}
+void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
+{
+	CCitiesDocument* oCitiesDoc = GetDocument();
+
+	CITIES* rec_City = oCitiesDoc->GetCityById(GetSelectedRecordId());
+
+	CCitiesDialog oCitiesDialog(*rec_City);
+	oCitiesDialog.DoModal();
+
+	// TODO: Add your message handler code here and/or call default
+	CListView::OnLButtonDblClk(nFlags, point);
+}
 
 const int CCitiesView::GetNumberOfSelectedRow()
 {
@@ -204,14 +204,15 @@ void CCitiesView::OnContextMenuDelete()
 
 void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
-	/*CListCtrl& LSCCitiesList = GetListCtrl();
-	LSCCitiesList.DeleteItem()*/
+	int nNumberOfSelectedRow = GetNumberOfSelectedRow();
+	CListCtrl& LSCCitiesList = GetListCtrl();
+	
 
 	switch (lHint)
 	{
 	case ContextMenuOperations::Create: break;
 	case ContextMenuOperations::Delete:
-		
+		LSCCitiesList.DeleteItem(nNumberOfSelectedRow);
 		break;
 	case ContextMenuOperations::Update: break;
 	default:
