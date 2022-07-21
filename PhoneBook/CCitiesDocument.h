@@ -30,10 +30,12 @@ public:
 	virtual void Dump(CDumpContext& dc) const;
 #endif
 	//Methods
-
 public:
 	const CSelfClearingTypedPtrArray< CITIES>& GetAllCities();
 	CITIES* GetCityById(long lID);
+	bool DeleteCityById(long lID);
+private:
+	void OnUpdateAllViews();
 	//Members
 private:
 	CSelfClearingTypedPtrArray< CITIES> oCitiesSelfClearingPtrArray;

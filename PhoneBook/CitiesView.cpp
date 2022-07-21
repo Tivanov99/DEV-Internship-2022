@@ -69,7 +69,7 @@ void CCitiesView::OnInitialUpdate()
 	CCitiesDocument* pCCitiesDocument = GetDocument();
 
 	AddColumns(LSCCitiesList);
-	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrCitiesArray = pCCitiesDocument->GetAllData();
+	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrCitiesArray = pCCitiesDocument->GetAllCities();
 	FillView(LSCCitiesList, oCSelfClearingPtrCitiesArray);
 }
 void CCitiesView::AddColumns(CListCtrl& LSCCitiesList)

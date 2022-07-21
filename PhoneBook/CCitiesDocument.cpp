@@ -16,8 +16,8 @@ BOOL CCitiesDocument::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
-		m_CitiesData.SelectAll(oCitiesSelfClearingPtrArray);
-		return TRUE;
+	m_CitiesData.SelectAll(oCitiesSelfClearingPtrArray);
+	return TRUE;
 };
 
 // CCitiesDoc serialization
@@ -34,7 +34,7 @@ void CCitiesDocument::Serialize(CArchive& ar)
 	}
 }
 
-const CSelfClearingTypedPtrArray< CITIES>& CCitiesDocument::GetAllData()
+const CSelfClearingTypedPtrArray< CITIES>& CCitiesDocument::GetAllCities()
 {
 	return oCitiesSelfClearingPtrArray;
 }
@@ -47,7 +47,7 @@ CITIES* CCitiesDocument::GetCityById(long lID)
 		AfxMessageBox(_T("Somethin wrong with record. Try again."));
 	}
 	return pCity;
-} 
+}
 
 #ifdef _DEBUG
 void CCitiesDocument::AssertValid() const
@@ -60,3 +60,15 @@ void CCitiesDocument::Dump(CDumpContext& dc) const
 	CDocument::Dump(dc);
 }
 #endif //_DEBUG
+
+bool CCitiesDocument::DeleteCityById(long lID)
+{
+	const bool bDeleteResult = m_CitiesData.DeleteWhereID(lID);
+
+	if (!bDeleteResult)
+	{
+		TRACE(_T("Deletion from database returned error. City id: %d"), lID);
+		return false;
+	}
+
+}
