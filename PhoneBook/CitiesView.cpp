@@ -30,7 +30,7 @@ BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	/*ON_COMMAND(ID_TABLES_CITIES, &CCitiesView::OnTablesCities)*/
 	ON_WM_LBUTTONDBLCLK()
 	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CCitiesView::OnContextMenuDelete)
-	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnEditContextEdit)
+	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnContextMenuEdit)
 END_MESSAGE_MAP()
 
 
@@ -102,10 +102,6 @@ void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtr
 		CString strPostalCode;
 		strPostalCode.Format(_T("%d"), oCurrentCity->lPOSTAL_CODE);
 
-		/*int nColumnCount = LSCCitiesList.GetItemCount();
-		LPINT pColumnsBuffer = (LPINT)malloc(nColumnCount * sizeof(int));
-		LSCCitiesList.GetColumnOrderArray(pColumnsBuffer, 1);*/
-
 		LSCCitiesList.InsertItem(nRowNumber, strCityName);
 		LSCCitiesList.SetItemText(nRowNumber, nColumnNumber, strAreaName);
 		LSCCitiesList.SetItemText(nRowNumber, ++nColumnNumber, strPostalCode);
@@ -152,9 +148,9 @@ CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
 
 void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	CCitiesDocument* oCitiesDoc = GetDocument();
+	/*CCitiesDocument* oCitiesDoc = GetDocument();
 
-	CITIES* rec_City = oCitiesDoc->GetCityById(GetSelectedRecordId());
+	CITIES* rec_City = oCitiesDoc->GetCityById(GetSelectedRecordData());*/
 
 	/*CCitiesDialog oCitiesDialog(*rec_City);
 	oCitiesDialog.DoModal();*/
@@ -170,17 +166,17 @@ const int CCitiesView::GetNumberOfSelectedRow()
 	return nSelectedRow;
 }
 
-const long CCitiesView::GetSelectedRecordId()
+const CITIES* CCitiesView::GetSelectedRecordData()
 {
 	const int nSelectedRow = GetNumberOfSelectedRow();
 	if (nSelectedRow == -1)
 	{
 		AfxMessageBox(_T("This function is only called on record!"));
-		return -1;
+		return NULL;
 	}
 	CListCtrl& LSCCitiesList = GetListCtrl();
-	const long lRecordID = LSCCitiesList.GetItemData(nSelectedRow);
-	return lRecordID;
+	CITIES* pCity = reinterpret_cast<CITIES*>(LSCCitiesList.GetItemData(nSelectedRow));
+	return pCity;
 }
 //
 
@@ -203,7 +199,7 @@ void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 
 void CCitiesView::OnContextMenuDelete()
 {
-	const long lCityID = GetSelectedRecordId();
+	const long lCityID = GetSelectedRecordData();
 	if (lCityID == -1)
 		return;
 
@@ -220,17 +216,16 @@ void CCitiesView::OnContextMenuDelete()
 	}
 }
 
-void CCitiesView::OnEditContextEdit()
+void CCitiesView::OnContextMenuEdit()
 {
-	const long lCityID = GetSelectedRecordId();
+	const long lCityID = GetSelectedRecordData();
 	if (lCityID == -1)
 		return;
 
 	const int nNumberOfSelectedRow = GetNumberOfSelectedRow();
 	CListCtrl& LSCCitiesList = GetListCtrl();
 
-	CHeaderCtrl* pHeader = LSCCitiesList.GetHeaderCtrl();
-	int nColumnsCount = pHeader->GetItemCount();
+	CITIES* pCity = reinterpret_cast<CITIES*>(LSCCitiesList.GetItemData(nNumberOfSelectedRow));
 
 	/*for (INT_PTR nCurrentColumnIndex = 0; nCurrentColumnIndex < nColumnCount; nCurrentColumnIndex++)
 	{

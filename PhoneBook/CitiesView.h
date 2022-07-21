@@ -33,7 +33,7 @@ public:
 	/// <param name="LSCCitiesList">Лист контрола към която ще бъдат добавени колините.</param>
 	void AddColumns(CListCtrl& LSCCitiesList);
 private:
-	const long GetSelectedRecordId();
+	const CITIES* GetSelectedRecordData();
 	const int GetNumberOfSelectedRow();
 	// Overrides
 public:
@@ -62,7 +62,7 @@ public:
 	afx_msg void OnTablesCities();
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenuDelete();
-	afx_msg void OnEditContextEdit();
+	afx_msg void OnContextMenuEdit();
 };
 
 #ifndef _DEBUG  // debug version in CitiesView.cpp
