@@ -32,7 +32,7 @@ public:
 	//Methods
 
 public:
-	const CSelfClearingTypedPtrArray< CITIES>& GetAllData();
+	const CSelfClearingTypedPtrArray< CITIES>& GetAllCities();
 	CITIES* GetCityById(long lID);
 	//Members
 private:
