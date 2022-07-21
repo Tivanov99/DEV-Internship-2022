@@ -62,6 +62,7 @@ public:
 	afx_msg void OnTablesCities();
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenuDelete();
+	afx_msg void OnEditContextEdit();
 };
 
 #ifndef _DEBUG  // debug version in CitiesView.cpp

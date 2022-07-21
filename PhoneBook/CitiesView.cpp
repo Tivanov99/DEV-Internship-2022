@@ -30,6 +30,7 @@ BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	/*ON_COMMAND(ID_TABLES_CITIES, &CCitiesView::OnTablesCities)*/
 	ON_WM_LBUTTONDBLCLK()
 	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CCitiesView::OnContextMenuDelete)
+	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnEditContextEdit)
 END_MESSAGE_MAP()
 
 
@@ -183,6 +184,23 @@ const long CCitiesView::GetSelectedRecordId()
 }
 //
 
+void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
+{
+	int nNumberOfSelectedRow = GetNumberOfSelectedRow();
+	CListCtrl& LSCCitiesList = GetListCtrl();
+	
+	switch (lHint)
+	{
+	case ContextMenuOperations::Create: break;
+	case ContextMenuOperations::Delete:
+		LSCCitiesList.DeleteItem(nNumberOfSelectedRow);
+		break;
+	case ContextMenuOperations::Update: break;
+	default:
+		break;
+	}
+}
+
 void CCitiesView::OnContextMenuDelete()
 {
 	const long lCityID = GetSelectedRecordId();
@@ -202,20 +220,19 @@ void CCitiesView::OnContextMenuDelete()
 	}
 }
 
-void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
+void CCitiesView::OnEditContextEdit()
 {
+	const long lCityID = GetSelectedRecordId();
+	if (lCityID == -1)
+		return;
+
 	int nNumberOfSelectedRow = GetNumberOfSelectedRow();
 	CListCtrl& LSCCitiesList = GetListCtrl();
-	
-	switch (lHint)
-	{
-	case ContextMenuOperations::Create: break;
-	case ContextMenuOperations::Delete:
-		LSCCitiesList.DeleteItem(nNumberOfSelectedRow);
-		break;
-	case ContextMenuOperations::Update: break;
-	default:
-		break;
-	}
+
+	DWORD_PTR recCity = LSCCitiesList.GetItemData(nNumberOfSelectedRow);
+
+
+	// TODO: Add your command handler code here
 }
-//TODO: Add method (OVERRIDE) which gonna handle types of changes, delete, edit, create, 
+
+//TODO: Ask tomorrow which is better to namage list data or every time make request to db for data.

@@ -244,6 +244,6 @@ ROLLBACK TRANSACTION Insert_People
 INSERT INTO [CITIES]
 	([CITY_NAME],[AREA_NAME],[POSTAL_CODE], [UPDATE_COUNTER])
 	VALUES
-	('Смолян', 'Смолян',1111,@ZERO_UPDATE_COUNTER_COLUMN_VALUE),	
-	('Приморско','Приморско',8002,@ZERO_UPDATE_COUNTER_COLUMN_VALUE),
-	('Созопол','Созопол',9010,@ZERO_UPDATE_COUNTER_COLUMN_VALUE);
+	('Смолян', 'Смолян',1111,0),	
+	('Приморско','Приморско',8002,0),
+	('Созопол','Созопол',9010,0);
