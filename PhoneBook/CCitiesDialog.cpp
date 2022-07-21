@@ -14,10 +14,10 @@
 
 IMPLEMENT_DYNAMIC(CCitiesDialog, CDialog)
 
-CCitiesDialog::CCitiesDialog(ContextMenuOperations eOperations, CITIES& recCity, CWnd* pParent /*=nullptr*/)
+CCitiesDialog::CCitiesDialog(int nOperations, CITIES& recCity, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_CITIES_DIALOG, pParent)
 {
-	m_recCity = recCity;
+	//m_recCity = recCity;
 }
 
 CCitiesDialog::~CCitiesDialog()
@@ -27,7 +27,6 @@ CCitiesDialog::~CCitiesDialog()
 void CCitiesDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_EDB_CITIES_NAME, StrCitiesName);
 }
 
 
@@ -44,13 +43,6 @@ END_MESSAGE_MAP()
 BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-
-	LockAllInputFileds();
-
-	FillingInputFields();
-
-	BTNDelete.EnableWindow(0);
-	BTNUpdate.EnableWindow(0);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE
@@ -72,65 +64,3 @@ void CCitiesDialog::OnOK()
 	CDialog::OnOK();
 }
 
-
-void CCitiesDialog::OnBnClickedChbUpdateRecord()
-{
-	if (CHBDelete.GetCheck() == nTurnOn)
-	{
-		CHBDelete.SetCheck(nTurnOff);
-	}
-	if (CHBUpdate.GetCheck() == nTurnOn)
-	{
-		BTNDelete.EnableWindow(nTurnOff);
-		BTNUpdate.EnableWindow(nTurnOn);
-		UnLockAllInputFileds();
-	}
-	else
-	{
-		BTNUpdate.EnableWindow(0);
-		LockAllInputFileds();
-	}
-	// TODO: Add your control notification handler code here
-}
-
-
-void CCitiesDialog::OnBnClickedChbDeleteRecord()
-{
-	if (CHBUpdate.GetCheck() == nTurnOn)
-	{
-		CHBUpdate.SetCheck(nTurnOff);
-		BTNUpdate.EnableWindow(nTurnOff);
-	}
-	if (CHBDelete.GetCheck() == nTurnOn)
-	{
-		BTNDelete.EnableWindow(nTurnOn);
-		LockAllInputFileds();
-	}
-	else
-	{
-		BTNDelete.EnableWindow(nTurnOff);
-	}
-}
-
-void CCitiesDialog::LockAllInputFileds()
-{
-	StrCitiesName.EnableWindow(nTurnOff);
-	StrAreaName.EnableWindow(nTurnOff);
-	lPostalCode.EnableWindow(nTurnOff);
-}
-
-void CCitiesDialog::UnLockAllInputFileds()
-{
-	StrCitiesName.EnableWindow(nTurnOn);
-	StrAreaName.EnableWindow(nTurnOn);
-	lPostalCode.EnableWindow(nTurnOn);
-}
-
-
-void CCitiesDialog::OnBnClickedBtnDeleteRecord()
-{
-	CCitiesConfirmDeleteDialog oConfirmDialog;
-
-	oConfirmDialog.DoModal();
-
-}

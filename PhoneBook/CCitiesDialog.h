@@ -8,16 +8,11 @@
 class CCitiesDialog : public CDialog
 {
 	DECLARE_DYNAMIC(CCitiesDialog)
-	// Constants
-	// ----------------
-	const int nTurnOn = 1;
-	const int nTurnOff = 0;
-
 
 	// Constructor / Destructor
 	// ----------------
 public:
-	CCitiesDialog(ContextMenuOperations eOperations, CITIES& recCity, CWnd* pParent = nullptr);   // standard constructor
+	CCitiesDialog(int nOperations, CITIES& recCity, CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CCitiesDialog();
 
 // Dialog Data
@@ -30,8 +25,6 @@ public:
 	// ----------------
 private:
 	void FillingInputFields();
-	void LockAllInputFileds();
-	void UnLockAllInputFileds();
 
 	// Overrides
 	// ----------------
@@ -48,13 +41,5 @@ private:
 	CEdit StrCitiesName;
 	CEdit StrAreaName;
 	CEdit lPostalCode;
-	CButton CHBUpdate;
-	CButton CHBDelete;
-	CButton BTNDelete;
-	CButton BTNUpdate;
-	afx_msg void OnBnClickedChbUpdateRecord();
-	afx_msg void OnBnClickedChbDeleteRecord();
-public:
-	afx_msg void OnBnClickedBtnDeleteRecord();
 };
 

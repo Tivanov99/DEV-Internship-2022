@@ -156,8 +156,8 @@ void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 	CITIES* rec_City = oCitiesDoc->GetCityById(GetSelectedRecordId());
 
-	CCitiesDialog oCitiesDialog(*rec_City);
-	oCitiesDialog.DoModal();
+	/*CCitiesDialog oCitiesDialog(*rec_City);
+	oCitiesDialog.DoModal();*/
 
 	// TODO: Add your message handler code here and/or call default
 	CListView::OnLButtonDblClk(nFlags, point);
@@ -230,18 +230,22 @@ void CCitiesView::OnEditContextEdit()
 	CListCtrl& LSCCitiesList = GetListCtrl();
 	const int nColumnCount = LSCCitiesList.GetItemCount();
 
-	for (INT_PTR nCurrentColumnIndex = 0; nCurrentColumnIndex <=nColumnCount; nCurrentColumnIndex++)
+	for (INT_PTR nCurrentColumnIndex = 0; nCurrentColumnIndex < nColumnCount; nCurrentColumnIndex++)
 	{
 		CString strCityName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, nCurrentColumnIndex);
 
 	}
 
+	CITIES* rec_City ;
 
+	CCitiesDialog oCitiesDialog(ContextMenuOperations ::Update ,*rec_City);
 
-
-	CString strCityName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 0);
-	CString strAreaName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 1);
-	CString strPostal = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 2);
+	if (oCitiesDialog.DoModal() != IDOK)
+	{
+		CString strCityName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 0);
+		CString strAreaName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 1);
+		CString strPostal = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 2);
+	}
 
 	// TODO: Add your command handler code here
 }
