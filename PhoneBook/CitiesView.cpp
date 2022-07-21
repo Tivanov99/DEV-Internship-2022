@@ -109,7 +109,7 @@ void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtr
 		LSCCitiesList.InsertItem(nRowNumber, strCityName);
 		LSCCitiesList.SetItemText(nRowNumber, nColumnNumber, strAreaName);
 		LSCCitiesList.SetItemText(nRowNumber, ++nColumnNumber, strPostalCode);
-		LSCCitiesList.SetItemData(nRowNumber, oCurrentCity->lID);
+		LSCCitiesList.SetItemData(nRowNumber, reinterpret_cast<DWORD_PTR>(oCurrentCity));
 	}
 }
 
@@ -228,9 +228,11 @@ void CCitiesView::OnEditContextEdit()
 
 	const int nNumberOfSelectedRow = GetNumberOfSelectedRow();
 	CListCtrl& LSCCitiesList = GetListCtrl();
-	const int nColumnCount = LSCCitiesList.GetItemCount();
 
-	for (INT_PTR nCurrentColumnIndex = 0; nCurrentColumnIndex < nColumnCount; nCurrentColumnIndex++)
+	CHeaderCtrl* pHeader = LSCCitiesList.GetHeaderCtrl();
+	int nColumnsCount = pHeader->GetItemCount();
+
+	/*for (INT_PTR nCurrentColumnIndex = 0; nCurrentColumnIndex < nColumnCount; nCurrentColumnIndex++)
 	{
 		CString strCityName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, nCurrentColumnIndex);
 
@@ -245,7 +247,7 @@ void CCitiesView::OnEditContextEdit()
 		CString strCityName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 0);
 		CString strAreaName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 1);
 		CString strPostal = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 2);
-	}
+	}*/
 
 	// TODO: Add your command handler code here
 }
