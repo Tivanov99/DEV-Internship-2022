@@ -41,27 +41,15 @@
 #define IDC_EDB_AREA_NAME               1006
 #define IDC_EDB_POSTAL_CODE             1007
 #define IDC_STT_POSTAL_CODE             1008
-#define IDC_CHB_UPDATE_RECORD           1021
-#define IDC_CHB_DELETE_RECORD           1022
-#define IDC_BTN_DELETE_RECORD           1023
-#define IDC_BTN_UPDATE_RECORD           1024
-#define ID_TABLES_CITIES                32771
-#define ID_TABLES_CITIES32772           32772
-#define ID_TABLES_CITIES32777           32777
-#define ID_TABLES_CITIES32778           32778
-#define ID_EDIT_EDIT                    32799
-#define ID_EDIT_EDIT_RECORD             32800
-#define ID_EDIT_DELETE                  32801
-#define ID_EDIT_DELETE_RECORD           32802
-#define ID_EDIT_EDIT32803               32803
-#define ID_EDIT_DELETE32804             32804
+#define ID_EDIT_CONTEXT_DELETE          32805
+#define ID_EDIT_CONTEXT_EDIT            32807
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        320
-#define _APS_NEXT_COMMAND_VALUE         32805
+#define _APS_NEXT_COMMAND_VALUE         32808
 #define _APS_NEXT_CONTROL_VALUE         1026
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

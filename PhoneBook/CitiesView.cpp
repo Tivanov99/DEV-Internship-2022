@@ -29,7 +29,7 @@ BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	ON_WM_RBUTTONUP()
 	/*ON_COMMAND(ID_TABLES_CITIES, &CCitiesView::OnTablesCities)*/
 	ON_WM_LBUTTONDBLCLK()
-	ON_COMMAND(ID_EDIT_DELETE32804, &CCitiesView::OnContextMenuDelete)
+	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CCitiesView::OnContextMenuDelete)
 END_MESSAGE_MAP()
 
 
@@ -207,7 +207,6 @@ void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 	int nNumberOfSelectedRow = GetNumberOfSelectedRow();
 	CListCtrl& LSCCitiesList = GetListCtrl();
 	
-
 	switch (lHint)
 	{
 	case ContextMenuOperations::Create: break;

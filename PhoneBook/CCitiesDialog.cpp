@@ -28,12 +28,6 @@ void CCitiesDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_EDB_CITIES_NAME, StrCitiesName);
-	DDX_Control(pDX, IDC_EDB_AREA_NAME, StrAreaName);
-	DDX_Control(pDX, IDC_EDB_POSTAL_CODE, lPostalCode);
-	DDX_Control(pDX, IDC_CHB_UPDATE_RECORD, CHBUpdate);
-	DDX_Control(pDX, IDC_CHB_DELETE_RECORD, CHBDelete);
-	DDX_Control(pDX, IDC_BTN_UPDATE_RECORD, BTNUpdate);
-	DDX_Control(pDX, IDC_BTN_DELETE_RECORD, BTNDelete);
 }
 
 
@@ -41,9 +35,6 @@ BEGIN_MESSAGE_MAP(CCitiesDialog, CDialog)
 	//ON_COMMAND(ID_OPTIONS_CITIES, &CCitiesDialog::OnOptionsCities)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONDBLCLK()
-	ON_BN_CLICKED(IDC_CHB_UPDATE_RECORD, &CCitiesDialog::OnBnClickedChbUpdateRecord)
-	ON_BN_CLICKED(IDC_CHB_DELETE_RECORD, &CCitiesDialog::OnBnClickedChbDeleteRecord)
-	ON_BN_CLICKED(IDC_BTN_DELETE_RECORD, &CCitiesDialog::OnBnClickedBtnDeleteRecord)
 END_MESSAGE_MAP()
 
 
