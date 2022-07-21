@@ -62,7 +62,7 @@ void CCitiesView::OnInitialUpdate()
 
 	CListCtrl& LSCCitiesList = GetListCtrl();
 
-	LSCCitiesList.SetExtendedStyle(LSCCitiesList.GetExtendedStyle() |LVS_EX_FULLROWSELECT);
+	LSCCitiesList.SetExtendedStyle(LSCCitiesList.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
 
 	LSCCitiesList.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
 
@@ -74,7 +74,7 @@ void CCitiesView::OnInitialUpdate()
 }
 void CCitiesView::AddColumns(CListCtrl& LSCCitiesList)
 {
-	int nColumnWidth = 120;
+	const int nColumnWidth = 120;
 	int nColumnNumber = 0;
 	LSCCitiesList.InsertColumn(nColumnNumber, _T("Име"), LVCFMT_LEFT, nColumnWidth, 1);
 	LSCCitiesList.InsertColumn(++nColumnNumber, _T("Регион"), LVCFMT_CENTER, nColumnWidth, 1);
@@ -101,7 +101,7 @@ void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtr
 		CString strPostalCode;
 		strPostalCode.Format(_T("%d"), oCurrentCity->lPOSTAL_CODE);
 
-		
+
 		LSCCitiesList.InsertItem(nRowNumber, strCityName);
 		LSCCitiesList.SetItemText(nRowNumber, nColumnNumber, strAreaName);
 		LSCCitiesList.SetItemText(nRowNumber, ++nColumnNumber, strPostalCode);
@@ -149,15 +149,9 @@ CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
 
 void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	CListCtrl& LSCCitiesList = GetListCtrl();
-
-	int nSelectedRowOfFirstColumn = LSCCitiesList.GetSelectionMark();
-	
-	DWORD_PTR lCitiesId = LSCCitiesList.GetItemData(nSelectedRowOfFirstColumn);
-
 	CCitiesDocument* oCitiesDoc = GetDocument();
 
-	CITIES* rec_City = oCitiesDoc->GetCityById(lCitiesId);
+	CITIES* rec_City = oCitiesDoc->GetCityById(GetSelectedRecordId());
 
 	CCitiesDialog oCitiesDialog(*rec_City);
 	oCitiesDialog.DoModal();
@@ -167,37 +161,25 @@ void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 }
 
 
-long CCitiesView::GetSelectedRecordId()
+const long CCitiesView::GetSelectedRecordId()
 {
 	CListCtrl& LSCCitiesList = GetListCtrl();
-	int nSelectedRowOfFirstColumn = LSCCitiesList.GetSelectionMark();
-	return LSCCitiesList.GetItemData(nSelectedRowOfFirstColumn);
+	const int nSelectedRowOfFirstColumn = LSCCitiesList.GetSelectionMark();
+	const long lRecordID = LSCCitiesList.GetItemData(nSelectedRowOfFirstColumn);
+	return lRecordID;
 }
 //
-
 
 void CCitiesView::OnDelete()
 {
 	CCitiesDocument* oCitiesDoc = GetDocument();
 
-	int msgboxID = MessageBox(
+	const int msgboxID = MessageBox(
 		(LPCWSTR)L"Желаете ли записът да бъде изтрит?",
 		(LPCWSTR)L"Изтриване на запис",
 		MB_ICONINFORMATION | IDOK
 	);
 
-	int da = 0;
-	switch (msgboxID)
-	{
-	case IDOK:
+	if (msgboxID == IDOK)
 		oCitiesDoc->DeleteCityById(GetSelectedRecordId());
-		break;
-	case IDCANCEL: da += 2;
-		break;
-
-	default:
-		break;
-	}
-
-	//TODO: add delete by Id to CCitiesDocument
 }
