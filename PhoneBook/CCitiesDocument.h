@@ -35,7 +35,7 @@ public:
 	CITIES* GetCityById(long lID);
 	bool DeleteCityById(long lID);
 private:
-	void OnUpdateAllViews();
+	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	//Members
 private:
 	CSelfClearingTypedPtrArray< CITIES> oCitiesSelfClearingPtrArray;
