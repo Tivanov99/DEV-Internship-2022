@@ -172,7 +172,6 @@ const long CCitiesView::GetSelectedRecordId()
 
 void CCitiesView::OnDelete()
 {
-	CCitiesDocument* oCitiesDoc = GetDocument();
 
 	const int msgboxID = MessageBox(
 		(LPCWSTR)L"Желаете ли записът да бъде изтрит?",
@@ -181,5 +180,8 @@ void CCitiesView::OnDelete()
 	);
 
 	if (msgboxID == IDOK)
+	{
+		CCitiesDocument* oCitiesDoc = GetDocument();
 		oCitiesDoc->DeleteCityById(GetSelectedRecordId());
+	}
 }
