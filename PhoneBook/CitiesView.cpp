@@ -180,6 +180,10 @@ const long CCitiesView::GetSelectedRecordId()
 
 void CCitiesView::OnContextMenuDelete()
 {
+	const long lCityID = GetSelectedRecordId();
+	if (lCityID == -1)
+		return;
+
 	const int msgboxID = MessageBox(
 		(LPCWSTR)L"Do you want the record to be deleted?",
 		(LPCWSTR)L"Delete record.",
@@ -188,12 +192,8 @@ void CCitiesView::OnContextMenuDelete()
 
 	if (msgboxID == IDOK)
 	{
-		const long lCityID = GetSelectedRecordId();
-		if (lCityID != -1)
-		{
-			CCitiesDocument* oCitiesDoc = GetDocument();
-			oCitiesDoc->DeleteCityById(lCityID);
-		}
+		CCitiesDocument* oCitiesDoc = GetDocument();
+		oCitiesDoc->DeleteCityById(lCityID);
 	}
 }
 void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
