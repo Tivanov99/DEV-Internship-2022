@@ -167,12 +167,19 @@ void CCitiesView::OnLButtonDblClk(UINT nFlags, CPoint point)
 }
 
 
-
+long CCitiesView::GetSelectedRecordId()
+{
+	CListCtrl& LSCCitiesList = GetListCtrl();
+	int nSelectedRowOfFirstColumn = LSCCitiesList.GetSelectionMark();
+	return LSCCitiesList.GetItemData(nSelectedRowOfFirstColumn);
+}
 //
 
 
 void CCitiesView::OnDelete()
 {
+	CCitiesDocument* oCitiesDoc = GetDocument();
+
 	int msgboxID = MessageBox(
 		(LPCWSTR)L"Желаете ли записът да бъде изтрит?",
 		(LPCWSTR)L"Изтриване на запис",
@@ -183,8 +190,8 @@ void CCitiesView::OnDelete()
 	switch (msgboxID)
 	{
 	case IDOK:
+		oCitiesDoc->DeleteCityById(GetSelectedRecordId());
 		break;
-
 	case IDCANCEL: da += 2;
 		break;
 
@@ -192,15 +199,5 @@ void CCitiesView::OnDelete()
 		break;
 	}
 
-
-	CListCtrl& LSCCitiesList = GetListCtrl();
-
-	int nSelectedRowOfFirstColumn = LSCCitiesList.GetSelectionMark();
-
-	long lCitiesId = LSCCitiesList.GetItemData(nSelectedRowOfFirstColumn);
-
-	CCitiesDocument* oCitiesDoc = GetDocument();
-
-	CITIES* rec_City = oCitiesDoc->GetCityById(lCitiesId);
 	//TODO: add delete by Id to CCitiesDocument
 }
