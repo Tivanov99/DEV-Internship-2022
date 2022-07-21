@@ -226,11 +226,22 @@ void CCitiesView::OnEditContextEdit()
 	if (lCityID == -1)
 		return;
 
-	int nNumberOfSelectedRow = GetNumberOfSelectedRow();
+	const int nNumberOfSelectedRow = GetNumberOfSelectedRow();
 	CListCtrl& LSCCitiesList = GetListCtrl();
+	const int nColumnCount = LSCCitiesList.GetItemCount();
 
-	DWORD_PTR recCity = LSCCitiesList.GetItemData(nNumberOfSelectedRow);
+	for (INT_PTR nCurrentColumnIndex = 0; nCurrentColumnIndex <=nColumnCount; nCurrentColumnIndex++)
+	{
+		CString strCityName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, nCurrentColumnIndex);
 
+	}
+
+
+
+
+	CString strCityName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 0);
+	CString strAreaName = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 1);
+	CString strPostal = LSCCitiesList.GetItemText(nNumberOfSelectedRow, 2);
 
 	// TODO: Add your command handler code here
 }

@@ -17,7 +17,7 @@ class CCitiesDialog : public CDialog
 	// Constructor / Destructor
 	// ----------------
 public:
-	CCitiesDialog(CITIES& recCity, CWnd* pParent = nullptr);   // standard constructor
+	CCitiesDialog(ContextMenuOperations eOperations, CITIES& recCity, CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CCitiesDialog();
 
 // Dialog Data
