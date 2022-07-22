@@ -51,6 +51,7 @@ BOOL CCitiesDialog::OnInitDialog()
 
 	StrCitiesName.SetLimitText(nMaxCityNameLenght);
 	StrAreaName.SetLimitText(nMaxCityAreaNameLenght);
+	StrPostalCode.SetLimitText(nMinNumbersPostalCode);
 
 	FillingInputFields();
 	SetDialogWindowAndOkButtonText();
@@ -61,6 +62,7 @@ void CCitiesDialog::FillingInputFields()
 {
 	StrCitiesName.SetWindowText(m_recCity.szCITY_NAME);
 	StrAreaName.SetWindowText(m_recCity.szAREA_NAME);
+
 	CString strPostalCode;
 	strPostalCode.Format(_T("%d"), m_recCity.lPOSTAL_CODE);
 	StrPostalCode.SetWindowText(strPostalCode);

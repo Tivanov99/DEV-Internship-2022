@@ -56,7 +56,7 @@ private:
 	CITIES m_recCity;
 	CEdit StrCitiesName;
 	CEdit StrAreaName;
-	CEdit lPostalCode;
+	CEdit StrPostalCode;
 	ContextMenuOperations m_eOperations;
 public:
 	CButton btn_Ok;
