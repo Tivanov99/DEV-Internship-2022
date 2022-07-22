@@ -69,13 +69,19 @@ void CCitiesDialog::FillingInputFields()
 
 void CCitiesDialog::OnOK()
 {
-	bool bValidCityName = ValidateTextData(StrCitiesName, nMinCityNameLenght, nMaxCityNameLenght);
-	if (!bValidCityName)
+	CString strCityNameErrorMessage = ValidateTextData(StrCitiesName, nMinCityNameLenght, nMaxCityNameLenght);
+	if (strCityNameErrorMessage.GetLength()>0)
+	{
+		AfxMessageBox(_T("The 'City name' field: ") + strCityNameErrorMessage);
 		return;
+	}
 
-	bool bValidAreaName = ValidateTextData(StrAreaName, nMinCityAreaNameLenght, nMaxCityAreaNameLenght);
-	if (!bValidAreaName)
+	CString strAreaNameErrorMessage = ValidateTextData(StrAreaName, nMinCityAreaNameLenght, nMaxCityAreaNameLenght);
+	if (strAreaNameErrorMessage.GetLength() > 0)
+	{
+		AfxMessageBox(_T("The 'Area name' field: ") + strAreaNameErrorMessage);
 		return;
+	}
 
 	bool bValidPostalCode = ValidatePostalCode();
 	if (!bValidPostalCode)
@@ -112,18 +118,18 @@ CString CCitiesDialog::ValidateTextData(const CEdit& oCEdit, const int nMinLengh
 
 	if (strData.GetLength() < nMinLenght)
 	{
-		strErrorMessage.Format(_T("value must be between %d and %d characters", nMinLenght, nMaxLenght));
+		strErrorMessage.AppendFormat(_T("The minimum length must be at least %i! "), nMinLenght);
 	}
 	if (strData.GetLength() > nMaxLenght)
 	{
-		AfxMessageBox(_T("Invalid data in input filed!"));
+		strErrorMessage.AppendFormat(_T("The maximum length is %i! "), nMaxLenght);
 	}
 	if (!CheckForNotAllowedChars(strData))
 	{
-		AfxMessageBox(_T("Invalid data in input filed!"));
+		strErrorMessage.Append(_T("The text field contains forbidden characters!"));
 	}
 
-	return strData;
+	return strErrorMessage;
 }
 
 bool CCitiesDialog::ValidatePostalCode()
