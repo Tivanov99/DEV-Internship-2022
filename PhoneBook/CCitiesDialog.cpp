@@ -91,17 +91,53 @@ void CCitiesDialog::SetDialogWindowAndOkButtonText()
 }
 
 
-bool CCitiesDialog::ValidateTextData(CString strValue,int minLenght, int maxLenght)
+bool CCitiesDialog::ValidateCityName()
 {
 	CString strCityName;
 	StrCitiesName.GetWindowText(strCityName);
-	if (strCityName.GetLength()<nMinCityNameLenght)
+	if (strCityName.GetLength() < nMinCityNameLenght)
 		return false;
 	if (strCityName.GetString() == m_recCity.szCITY_NAME)
 		return false;
+	if (!CheckForNotAllowedChars(strCityName))
+		return false;
 
+	return true;
+}
+bool CCitiesDialog::ValidateAreaName()
+{
+	CString strAreaName;
+	StrAreaName.GetWindowText(strAreaName);
+
+	if (strAreaName.GetLength() < nMinCityAreaNameLenght)
+		return false;
+	if (strAreaName.GetString() == m_recCity.szAREA_NAME)
+		return false;
+	if (!CheckForNotAllowedChars(strAreaName))
+		return false;
+
+	return true;
 }
 bool CCitiesDialog::ValidatePostalCode()
 {
 
+}
+bool CCitiesDialog::CheckForNotAllowedChars(CString strValue)
+{
+	for (INT_PTR i = 0; i < strValue.GetLength(); i++)
+	{
+		switch (strValue.GetAt(i))
+		{
+		case '!': return false;
+		case '.': return false;
+		case '?': return false;
+		case ';': return false;
+		case ':': return false;
+		case ',': return false;
+		case '|': return false;
+		default:
+			break;
+		}
+	}
+	return true;
 }

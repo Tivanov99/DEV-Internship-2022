@@ -35,9 +35,10 @@ public:
 private:
 	void FillingInputFields();
 	void SetDialogWindowAndOkButtonText();
-	bool ValidateTextData(CString strValue, int minLenght, int maxLenght);
+	bool ValidateCityName();
+	bool ValidateAreaName();
 	bool ValidatePostalCode();
-
+	bool CheckForNotAllowedChars(CString strValue);
 
 	// Overrides
 	// ----------------
