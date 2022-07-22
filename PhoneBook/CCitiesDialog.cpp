@@ -14,10 +14,11 @@
 
 IMPLEMENT_DYNAMIC(CCitiesDialog, CDialog)
 
-CCitiesDialog::CCitiesDialog(int nOperations, CITIES& recCity, CWnd* pParent /*=nullptr*/)
+CCitiesDialog::CCitiesDialog(ContextMenuOperations eOperations, CITIES& recCity, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_CITIES_DIALOG, pParent)
 {
 	m_recCity = recCity;
+	m_eOperations = eOperations;
 }
 
 CCitiesDialog::~CCitiesDialog()
@@ -47,15 +48,9 @@ END_MESSAGE_MAP()
 BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
+	FillingInputFields();
 
-	StrCitiesName.SetWindowText(m_recCity.szCITY_NAME);
-	StrAreaName.SetWindowText(m_recCity.szAREA_NAME);
-	CString strPostalCode;
-	strPostalCode.Format(_T("%d"), m_recCity.lPOSTAL_CODE);
-	lPostalCode.SetWindowText(strPostalCode);
-
-	return TRUE;  // return TRUE unless you set the focus to a control
-				  // EXCEPTION: OCX Property Pages should return FALSE
+	return TRUE;  
 }
 void CCitiesDialog::FillingInputFields()
 {

@@ -12,7 +12,7 @@ class CCitiesDialog : public CDialog
 	// Constructor / Destructor
 	// ----------------
 public:
-	CCitiesDialog(int nOperations, CITIES& recCity, CWnd* pParent = nullptr);   // standard constructor
+	CCitiesDialog(ContextMenuOperations eOperations, CITIES& recCity, CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CCitiesDialog();
 
 // Dialog Data
@@ -41,6 +41,7 @@ private:
 	CEdit StrCitiesName;
 	CEdit StrAreaName;
 	CEdit lPostalCode;
+	ContextMenuOperations m_eOperations;
 public:
 	CButton btn_Ok;
 };
