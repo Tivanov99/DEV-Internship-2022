@@ -213,7 +213,7 @@ void CCitiesView::OnContextMenuEdit()
 		return;
 	}
 
-	// TODO: Add your command handler code here
+
 }
 
 //TODO: Ask tomorrow which is better to namage list data or every time make request to db for data.

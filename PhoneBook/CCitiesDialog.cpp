@@ -95,8 +95,12 @@ void CCitiesDialog::OnOK()
 
 	CString strCityName;
 	StrCitiesName.GetWindowText(strCityName);
+	_tcscpy(m_recCity.szCITY_NAME, strCityName);
 
-	//TODO: Map input values to m_recCity;
+	CString strAreaName;
+	StrAreaName.GetWindowText(strAreaName);
+	_tcscpy(m_recCity.szAREA_NAME, strAreaName);
+
 	CDialog::OnOK();
 }
 
