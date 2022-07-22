@@ -91,29 +91,16 @@ void CCitiesDialog::SetDialogWindowAndOkButtonText()
 }
 
 
-bool CCitiesDialog::ValidateCityName()
+bool CCitiesDialog::ValidateTextData(CString strOldData, CString strNewData, int nMinLenght,int nMaxLenght)
 {
 	CString strCityName;
 	StrCitiesName.GetWindowText(strCityName);
+
 	if (strCityName.GetLength() < nMinCityNameLenght)
 		return false;
 	if (strCityName.GetString() == m_recCity.szCITY_NAME)
 		return false;
 	if (!CheckForNotAllowedChars(strCityName))
-		return false;
-
-	return true;
-}
-bool CCitiesDialog::ValidateAreaName()
-{
-	CString strAreaName;
-	StrAreaName.GetWindowText(strAreaName);
-
-	if (strAreaName.GetLength() < nMinCityAreaNameLenght)
-		return false;
-	if (strAreaName.GetString() == m_recCity.szAREA_NAME)
-		return false;
-	if (!CheckForNotAllowedChars(strAreaName))
 		return false;
 
 	return true;

@@ -35,8 +35,7 @@ public:
 private:
 	void FillingInputFields();
 	void SetDialogWindowAndOkButtonText();
-	bool ValidateCityName();
-	bool ValidateAreaName();
+	bool ValidateTextData(CString strOldData, CString strNewData, int nMinLenght, int nMaxLenght);
 	bool ValidatePostalCode();
 	bool CheckForNotAllowedChars(CString strValue);
 
