@@ -50,7 +50,7 @@ protected:
 	// ----------------
 private:
 	CListCtrl m_CitiesList;
-	CITIES m_recCity;
+	CITIES& m_recCity;
 	CEdit StrCitiesName;
 	CEdit StrAreaName;
 	CEdit StrPostalCode;

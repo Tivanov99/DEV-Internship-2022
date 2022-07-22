@@ -206,14 +206,24 @@ void CCitiesView::OnContextMenuEdit()
 	if (pCity == NULL)
 		return;
 
-	CCitiesDialog oCitiesDialog(ContextMenuOperations::Edit, *pCity);
+
+	CITIES oCity;
+	CString strCityName=_T("Burgas");
+	_tcscpy_s(oCity.szCITY_NAME, strCityName);
+
+	CString strAreaName = _T("Burgaska");
+	_tcscpy_s(oCity.szAREA_NAME, strAreaName);
+
+	oCity.lPOSTAL_CODE = 8000;
+
+	CCitiesDialog oCitiesDialog(ContextMenuOperations::Edit, oCity);
 
 	if (oCitiesDialog.DoModal() != IDOK)
 	{
 		return;
 	}
 
-
+	int da = 0;
 }
 
 //TODO: Ask tomorrow which is better to namage list data or every time make request to db for data.

@@ -15,10 +15,10 @@
 IMPLEMENT_DYNAMIC(CCitiesDialog, CDialog)
 
 CCitiesDialog::CCitiesDialog(ContextMenuOperations eOperations, CITIES& recCity, CWnd* pParent /*=nullptr*/)
-	: CDialog(IDD_CITIES_DIALOG, pParent)
+	: CDialog(IDD_CITIES_DIALOG, pParent),m_recCity(recCity),m_eOperations(eOperations)
 {
-	m_recCity = recCity;
-	m_eOperations = eOperations;
+	/*m_recCity = recCity;
+	m_eOperations = eOperations;*/
 }
 
 CCitiesDialog::~CCitiesDialog()
@@ -95,11 +95,11 @@ void CCitiesDialog::OnOK()
 
 	CString strCityName;
 	StrCitiesName.GetWindowText(strCityName);
-	_tcscpy(m_recCity.szCITY_NAME, strCityName);
+	_tcscpy_s(m_recCity.szCITY_NAME, strCityName);
 
 	CString strAreaName;
 	StrAreaName.GetWindowText(strAreaName);
-	_tcscpy(m_recCity.szAREA_NAME, strAreaName);
+	_tcscpy_s(m_recCity.szAREA_NAME, strAreaName);
 
 	CDialog::OnOK();
 }
