@@ -150,7 +150,7 @@ const int CCitiesView::GetNumberOfSelectedRow()
 	return nSelectedRow;
 }
 
- CITIES* CCitiesView::GetSelectedRecordData()
+CITIES* CCitiesView::GetSelectedRecordData()
 {
 	const int nSelectedRow = GetNumberOfSelectedRow();
 	if (nSelectedRow == -1)
@@ -168,7 +168,7 @@ void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
 	int nNumberOfSelectedRow = GetNumberOfSelectedRow();
 	CListCtrl& LSCCitiesList = GetListCtrl();
-	
+
 	switch (lHint)
 	{
 	case ContextMenuOperations::Create: break;
@@ -202,11 +202,16 @@ void CCitiesView::OnContextMenuDelete()
 
 void CCitiesView::OnContextMenuEdit()
 {
-	 CITIES* pCity = GetSelectedRecordData();
+	CITIES* pCity = GetSelectedRecordData();
 	if (pCity == NULL)
 		return;
 
 	CCitiesDialog oCitiesDialog(1, *pCity);
+
+	if (oCitiesDialog.DoModal() != IDOK)
+	{
+		return;
+	}
 
 	// TODO: Add your command handler code here
 }

@@ -27,11 +27,15 @@ CCitiesDialog::~CCitiesDialog()
 void CCitiesDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
+
+	DDX_Control(pDX, IDC_EDB_CITIES_NAME, StrCitiesName);
+	DDX_Control(pDX, IDC_EDB_AREA_NAME, StrAreaName);
+	DDX_Control(pDX, IDC_EDB_POSTAL_CODE, lPostalCode);
+	DDX_Control(pDX, IDOK, btn_Ok);
 }
 
 
 BEGIN_MESSAGE_MAP(CCitiesDialog, CDialog)
-	//ON_COMMAND(ID_OPTIONS_CITIES, &CCitiesDialog::OnOptionsCities)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONDBLCLK()
 END_MESSAGE_MAP()
@@ -43,6 +47,12 @@ END_MESSAGE_MAP()
 BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
+
+	StrCitiesName.SetWindowText(m_recCity.szCITY_NAME);
+	StrAreaName.SetWindowText(m_recCity.szAREA_NAME);
+	CString strPostalCode;
+	strPostalCode.Format(_T("%d"), m_recCity.lPOSTAL_CODE);
+	lPostalCode.SetWindowText(strPostalCode);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE
@@ -58,7 +68,6 @@ void CCitiesDialog::FillingInputFields()
 
 void CCitiesDialog::OnOK()
 {
-	int nDa = 0;
 	CDialog::OnOK();
 }
 

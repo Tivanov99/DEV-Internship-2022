@@ -41,5 +41,7 @@ private:
 	CEdit StrCitiesName;
 	CEdit StrAreaName;
 	CEdit lPostalCode;
+public:
+	CButton btn_Ok;
 };
 
