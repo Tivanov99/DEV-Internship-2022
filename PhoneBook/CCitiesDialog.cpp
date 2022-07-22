@@ -15,10 +15,8 @@
 IMPLEMENT_DYNAMIC(CCitiesDialog, CDialog)
 
 CCitiesDialog::CCitiesDialog(ContextMenuOperations eOperations, CITIES& recCity, CWnd* pParent /*=nullptr*/)
-	: CDialog(IDD_CITIES_DIALOG, pParent),m_recCity(recCity),m_eOperations(eOperations)
+	: CDialog(IDD_CITIES_DIALOG, pParent), m_recCity(recCity), m_eOperations(eOperations)
 {
-	/*m_recCity = recCity;
-	m_eOperations = eOperations;*/
 }
 
 CCitiesDialog::~CCitiesDialog()
@@ -49,10 +47,12 @@ BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
+	if (m_eOperations != ContextMenuOperations::Create)
+	{
+		FillingInputFields();
+	}
 	StrCitiesName.SetLimitText(nMaxCityNameLenght);
 	StrAreaName.SetLimitText(nMaxCityAreaNameLenght);
-
-	FillingInputFields();
 	SetDialogWindowAndOkButtonText();
 	return TRUE;
 }
@@ -147,7 +147,7 @@ CString CCitiesDialog::ValidateTextData(const CEdit& oCEdit, const int nMinLengh
 }
 
 
-long CCitiesDialog :: GetPostalCodeFromInputFiled()
+long CCitiesDialog::GetPostalCodeFromInputFiled()
 {
 	CString strNewPostalCode;
 	StrPostalCode.GetWindowText(strNewPostalCode);

@@ -94,5 +94,12 @@ bool CCitiesDocument::UpdateCity(CITIES& recCity)
 }
 bool CCitiesDocument::InsertCity(CITIES& recCity)
 {
-
+	bool bInsert = m_CitiesData.Insert(recCity);
+	if (bInsert)
+	{
+		//TODO: Chech here for object ?
+		//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
+		return true;
+	}
+	return false;
 }

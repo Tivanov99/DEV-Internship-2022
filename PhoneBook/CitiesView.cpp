@@ -221,11 +221,9 @@ void CCitiesView::OnContextMenuEdit()
 
 void CCitiesView::OnContextMenuInsert()
 {
-	CITIES* pCity = GetSelectedRecordData();
-	if (pCity == NULL)
-		return;
+	CITIES pCity;
 
-	CCitiesDialog oCitiesDialog(ContextMenuOperations::Create, *pCity);
+	CCitiesDialog oCitiesDialog(ContextMenuOperations::Create, pCity);
 
 	if (oCitiesDialog.DoModal() != IDOK)
 	{
@@ -233,4 +231,5 @@ void CCitiesView::OnContextMenuInsert()
 	}
 
 	CCitiesDocument* oCitiesDoc = GetDocument();
+	oCitiesDoc->InsertCity(pCity);
 }
