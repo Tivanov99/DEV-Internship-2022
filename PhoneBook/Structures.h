@@ -31,7 +31,7 @@ struct CITIES
 //typedef CSelfClearingTypedPtrArray<CITIES> CCitiesArray;
 enum ContextMenuOperations
 {
-	Update,
+	Edit,
 	Delete,
 	Create
 };

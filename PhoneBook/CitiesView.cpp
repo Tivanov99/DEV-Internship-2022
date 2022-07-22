@@ -175,7 +175,7 @@ void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 	case ContextMenuOperations::Delete:
 		LSCCitiesList.DeleteItem(nNumberOfSelectedRow);
 		break;
-	case ContextMenuOperations::Update: break;
+	case ContextMenuOperations::Edit: break;
 	default:
 		break;
 	}
@@ -206,7 +206,7 @@ void CCitiesView::OnContextMenuEdit()
 	if (pCity == NULL)
 		return;
 
-	CCitiesDialog oCitiesDialog(1, *pCity);
+	CCitiesDialog oCitiesDialog(ContextMenuOperations::Edit, *pCity);
 
 	if (oCitiesDialog.DoModal() != IDOK)
 	{

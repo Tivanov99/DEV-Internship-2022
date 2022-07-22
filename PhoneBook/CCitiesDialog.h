@@ -25,7 +25,7 @@ public:
 	// ----------------
 private:
 	void FillingInputFields();
-
+	void SetDialogWindowText();
 	// Overrides
 	// ----------------
 protected:

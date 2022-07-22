@@ -49,9 +49,10 @@ BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	FillingInputFields();
-
+	SetDialogWindowAndOkButtonText();
 	return TRUE;  
 }
+
 void CCitiesDialog::FillingInputFields()
 {
 	StrCitiesName.SetWindowText(m_recCity.szCITY_NAME);
@@ -63,6 +64,24 @@ void CCitiesDialog::FillingInputFields()
 
 void CCitiesDialog::OnOK()
 {
+
 	CDialog::OnOK();
 }
 
+
+void CCitiesDialog :: SetDialogWindowAndOkButtonText()
+{
+	switch (m_eOperations)
+	{
+	case  ContextMenuOperations::Create:
+		this->SetWindowText(_T("Add city"));
+		btn_Ok.SetWindowText(_T("Add"));
+		break;
+	case  ContextMenuOperations::Edit:
+		this->SetWindowText(_T("Edit city"));
+		btn_Ok.SetWindowText(_T("Edit"));
+		break;
+	default:
+		break;
+	}
+}
