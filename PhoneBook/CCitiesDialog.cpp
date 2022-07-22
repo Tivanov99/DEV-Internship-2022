@@ -31,7 +31,7 @@ void CCitiesDialog::DoDataExchange(CDataExchange* pDX)
 
 	DDX_Control(pDX, IDC_EDB_CITIES_NAME, StrCitiesName);
 	DDX_Control(pDX, IDC_EDB_AREA_NAME, StrAreaName);
-	DDX_Control(pDX, IDC_EDB_POSTAL_CODE, lPostalCode);
+	DDX_Control(pDX, IDC_EDB_POSTAL_CODE, StrPostalCode);
 	DDX_Control(pDX, IDOK, btn_Ok);
 }
 
@@ -63,11 +63,21 @@ void CCitiesDialog::FillingInputFields()
 	StrAreaName.SetWindowText(m_recCity.szAREA_NAME);
 	CString strPostalCode;
 	strPostalCode.Format(_T("%d"), m_recCity.lPOSTAL_CODE);
-	lPostalCode.SetWindowText(strPostalCode);
+	StrPostalCode.SetWindowText(strPostalCode);
 }
 
 void CCitiesDialog::OnOK()
 {
+	CString strNewCityName;
+	StrCitiesName.GetWindowText(strNewCityName);
+
+	CString strNewCityAreaName;
+	StrAreaName.GetWindowText(strNewCityAreaName);
+
+	CString strNewPostalCode;
+	StrPostalCode.GetWindowText(strNewPostalCode);
+
+	long ldata = _wtol(strNewPostalCode);
 
 	CDialog::OnOK();
 }
@@ -91,23 +101,35 @@ void CCitiesDialog::SetDialogWindowAndOkButtonText()
 }
 
 
-bool CCitiesDialog::ValidateTextData(CString strOldData, CString strNewData, int nMinLenght,int nMaxLenght)
+bool CCitiesDialog::ValidateTextData(CString strOldData, CString strNewData,
+	int nMinLenght, int nMaxLenght)
 {
-	CString strCityName;
-	StrCitiesName.GetWindowText(strCityName);
-
-	if (strCityName.GetLength() < nMinCityNameLenght)
+	if (strNewData.GetLength() < nMinLenght)
 		return false;
-	if (strCityName.GetString() == m_recCity.szCITY_NAME)
+	if (strNewData.GetLength() > nMaxLenght)
 		return false;
-	if (!CheckForNotAllowedChars(strCityName))
+	if (strNewData == strOldData)
+		return false;
+	if (!CheckForNotAllowedChars(strNewData))
 		return false;
 
 	return true;
 }
-bool CCitiesDialog::ValidatePostalCode()
+bool CCitiesDialog::ValidatePostalCode(CString strPostalCode)
 {
+	/*const int nLenght =10;
+	char szArr[nLenght];
 
+	_tcscpy(szArr, strNewPostalCode);
+
+	if (strNewPostalCode.GetLength() < nMinNumbersPostalCode)
+		return false;
+
+	char* pEnd;
+	long StrPostalCode = strtol(szArr, &pEnd, 10);
+*/
+
+	return true;
 }
 bool CCitiesDialog::CheckForNotAllowedChars(CString strValue)
 {

@@ -15,6 +15,9 @@ class CCitiesDialog : public CDialog
 	int nMaxCityAreaNameLenght =32;
 	int nMinCityAreaNameLenght = 4;
 
+	int nMinNumbersPostalCode = 3;
+
+
 
 	DECLARE_DYNAMIC(CCitiesDialog)
 
@@ -36,7 +39,7 @@ private:
 	void FillingInputFields();
 	void SetDialogWindowAndOkButtonText();
 	bool ValidateTextData(CString strOldData, CString strNewData, int nMinLenght, int nMaxLenght);
-	bool ValidatePostalCode();
+	bool ValidatePostalCode(CString strPostalCode);
 	bool CheckForNotAllowedChars(CString strValue);
 
 	// Overrides
