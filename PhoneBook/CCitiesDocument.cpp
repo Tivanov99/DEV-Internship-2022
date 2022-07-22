@@ -78,3 +78,16 @@ void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 {
 	UpdateAllViews(NULL, lHint, pHint);
 }
+
+bool CCitiesDocument::UpdateCity(CITIES& recCity)
+{
+	bool bUpdate = m_CitiesData.UpdateWhereID(recCity.lID, recCity);
+	if (bUpdate)
+	{
+		CITIES oCity;
+		m_CitiesData.SelectWhereID(recCity.lID, oCity);
+		//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
+		return true;
+	}
+	return false;
+}
