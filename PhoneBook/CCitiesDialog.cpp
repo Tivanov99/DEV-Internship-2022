@@ -69,12 +69,17 @@ void CCitiesDialog::FillingInputFields()
 
 void CCitiesDialog::OnOK()
 {
-	ValidateTextData(StrCitiesName, nMinCityNameLenght, nMaxCityNameLenght);
+	bool bValidCityName = ValidateTextData(StrCitiesName, nMinCityNameLenght, nMaxCityNameLenght);
+	if (!bValidCityName)
+		return;
 
-	ValidateTextData(StrAreaName, nMinCityAreaNameLenght, nMaxCityAreaNameLenght);
+	bool bValidAreaName = ValidateTextData(StrAreaName, nMinCityAreaNameLenght, nMaxCityAreaNameLenght);
+	if (!bValidAreaName)
+		return;
 
-	ValidatePostalCode();
-	
+	bool bValidPostalCode = ValidatePostalCode();
+	if (!bValidPostalCode)
+		return;
 
 	CDialog::OnOK();
 }
@@ -98,20 +103,29 @@ void CCitiesDialog::SetDialogWindowAndOkButtonText()
 }
 
 
-bool CCitiesDialog::ValidateTextData(const CEdit& oCEdit ,const int nMinLenght, const int nMaxLenght)
+CString CCitiesDialog::ValidateTextData(const CEdit& oCEdit, const int nMinLenght, const int nMaxLenght)
 {
 	CString strData;
 	oCEdit.GetWindowText(strData);
 
-	if (strData.GetLength() < nMinLenght)
-		return false;
-	if (strData.GetLength() > nMaxLenght)
-		return false;
-	if (!CheckForNotAllowedChars(strData))
-		return false;
+	CString strErrorMessage;
 
-	return true;
+	if (strData.GetLength() < nMinLenght)
+	{
+		strErrorMessage.Format(_T("value must be between %d and %d characters", nMinLenght, nMaxLenght));
+	}
+	if (strData.GetLength() > nMaxLenght)
+	{
+		AfxMessageBox(_T("Invalid data in input filed!"));
+	}
+	if (!CheckForNotAllowedChars(strData))
+	{
+		AfxMessageBox(_T("Invalid data in input filed!"));
+	}
+
+	return strData;
 }
+
 bool CCitiesDialog::ValidatePostalCode()
 {
 	CString strNewPostalCode;
@@ -123,6 +137,7 @@ bool CCitiesDialog::ValidatePostalCode()
 	}
 	return true;
 }
+
 bool CCitiesDialog::CheckForNotAllowedChars(const CString& strValue)
 {
 	for (INT_PTR i = 0; i < strValue.GetLength(); i++)
