@@ -70,7 +70,7 @@ void CCitiesDialog::FillingInputFields()
 void CCitiesDialog::OnOK()
 {
 	CString strCityNameErrorMessage = ValidateTextData(StrCitiesName, nMinCityNameLenght, nMaxCityNameLenght);
-	if (strCityNameErrorMessage.GetLength()>0)
+	if (strCityNameErrorMessage.GetLength() > 0)
 	{
 		AfxMessageBox(_T("The 'City name' field: ") + strCityNameErrorMessage);
 		return;
@@ -85,8 +85,18 @@ void CCitiesDialog::OnOK()
 
 	bool bValidPostalCode = ValidatePostalCode();
 	if (!bValidPostalCode)
+	{
+		AfxMessageBox(_T("The 'Postal Code' filed must be positive number!"));
 		return;
+	}
 
+	long lPostalCode = GetPostalCodeFromInputFiled();
+	m_recCity.lPOSTAL_CODE = lPostalCode;
+
+	CString strCityName;
+	StrCitiesName.GetWindowText(strCityName);
+
+	//TODO: Map input values to m_recCity;
 	CDialog::OnOK();
 }
 
@@ -132,11 +142,19 @@ CString CCitiesDialog::ValidateTextData(const CEdit& oCEdit, const int nMinLengh
 	return strErrorMessage;
 }
 
-bool CCitiesDialog::ValidatePostalCode()
+
+long CCitiesDialog :: GetPostalCodeFromInputFiled()
 {
 	CString strNewPostalCode;
 	StrPostalCode.GetWindowText(strNewPostalCode);
 	long lPostalCode = _wtol(strNewPostalCode);
+
+	return lPostalCode;
+}
+bool CCitiesDialog::ValidatePostalCode()
+{
+	long lPostalCode = GetPostalCodeFromInputFiled();
+
 	if (lPostalCode <= 0)
 	{
 		return false;

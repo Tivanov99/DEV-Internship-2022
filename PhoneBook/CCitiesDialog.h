@@ -15,9 +15,6 @@ class CCitiesDialog : public CDialog
 	int nMaxCityAreaNameLenght =32;
 	int nMinCityAreaNameLenght = 4;
 
-
-
-
 	DECLARE_DYNAMIC(CCitiesDialog)
 
 	// Constructor / Destructor
@@ -40,6 +37,7 @@ private:
 	CString ValidateTextData(const CEdit& oEdit, const int nMinLenght, const int nMaxLenght);
 	bool ValidatePostalCode();
 	bool CheckForNotAllowedChars(const CString& strValue);
+	long GetPostalCodeFromInputFiled();
 
 	// Overrides
 	// ----------------
