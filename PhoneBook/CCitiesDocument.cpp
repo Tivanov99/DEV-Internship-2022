@@ -86,8 +86,13 @@ bool CCitiesDocument::UpdateCity(CITIES& recCity)
 	{
 		CITIES oCity;
 		m_CitiesData.SelectWhereID(recCity.lID, oCity);
+		//TODO: Chech here for object ?
 		//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
 		return true;
 	}
 	return false;
+}
+bool CCitiesDocument::InsertCity(CITIES& recCity)
+{
+
 }

@@ -30,6 +30,7 @@ BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	ON_WM_LBUTTONDBLCLK()
 	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CCitiesView::OnContextMenuDelete)
 	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnContextMenuEdit)
+	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CCitiesView::OnContextMenuInsert)
 END_MESSAGE_MAP()
 
 
@@ -217,4 +218,19 @@ void CCitiesView::OnContextMenuEdit()
 	oCitiesDoc->UpdateCity(*pCity);
 }
 
-//TODO: Ask tomorrow which is better to namage list data or every time make request to db for data.
+
+void CCitiesView::OnContextMenuInsert()
+{
+	CITIES* pCity = GetSelectedRecordData();
+	if (pCity == NULL)
+		return;
+
+	CCitiesDialog oCitiesDialog(ContextMenuOperations::Create, *pCity);
+
+	if (oCitiesDialog.DoModal() != IDOK)
+	{
+		return;
+	}
+
+	CCitiesDocument* oCitiesDoc = GetDocument();
+}

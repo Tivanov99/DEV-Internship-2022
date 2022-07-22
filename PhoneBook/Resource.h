@@ -41,16 +41,16 @@
 #define IDC_EDB_AREA_NAME               1006
 #define IDC_EDB_POSTAL_CODE             1007
 #define IDC_STT_POSTAL_CODE             1008
-#define IDC_EDIT1                       1026
 #define ID_EDIT_CONTEXT_DELETE          32805
 #define ID_EDIT_CONTEXT_EDIT            32807
+#define ID_EDIT_CONTEXT_INSERT          32809
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        320
-#define _APS_NEXT_COMMAND_VALUE         32808
+#define _APS_NEXT_COMMAND_VALUE         32810
 #define _APS_NEXT_CONTROL_VALUE         1027
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

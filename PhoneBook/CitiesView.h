@@ -61,6 +61,7 @@ protected:
 public:
 	afx_msg void OnContextMenuDelete();
 	afx_msg void OnContextMenuEdit();
+	afx_msg void OnContextMenuInsert();
 };
 
 #ifndef _DEBUG  // debug version in CitiesView.cpp
