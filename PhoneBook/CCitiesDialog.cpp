@@ -69,15 +69,12 @@ void CCitiesDialog::FillingInputFields()
 
 void CCitiesDialog::OnOK()
 {
-	CString strNewCityName;
-	StrCitiesName.GetWindowText(strNewCityName);
+	ValidateTextData(StrCitiesName, nMinCityNameLenght, nMaxCityNameLenght);
 
-	CString strNewCityAreaName;
-	StrAreaName.GetWindowText(strNewCityAreaName);
+	ValidateTextData(StrAreaName, nMinCityAreaNameLenght, nMaxCityAreaNameLenght);
 
-	CString strNewPostalCode;
-	StrPostalCode.GetWindowText(strNewPostalCode);
-	long ldata = _wtol(strNewPostalCode);
+	ValidatePostalCode();
+	
 
 	CDialog::OnOK();
 }
@@ -101,32 +98,32 @@ void CCitiesDialog::SetDialogWindowAndOkButtonText()
 }
 
 
-bool CCitiesDialog::ValidateTextData(const CString& strOldData, const CString& strNewData,
-	const int nMinLenght, const int nMaxLenght)
+bool CCitiesDialog::ValidateTextData(const CEdit& oCEdit ,const int nMinLenght, const int nMaxLenght)
 {
-	if (strNewData.GetLength() < nMinLenght)
+	CString strData;
+	oCEdit.GetWindowText(strData);
+
+	if (strData.GetLength() < nMinLenght)
 		return false;
-	if (strNewData.GetLength() > nMaxLenght)
+	if (strData.GetLength() > nMaxLenght)
 		return false;
-	if (strNewData == strOldData)
-		return false;
-	if (!CheckForNotAllowedChars(strNewData))
+	if (!CheckForNotAllowedChars(strData))
 		return false;
 
 	return true;
 }
-bool CCitiesDialog::ValidatePostalCode(const CString& strPostalCode)
+bool CCitiesDialog::ValidatePostalCode()
 {
 	CString strNewPostalCode;
 	StrPostalCode.GetWindowText(strNewPostalCode);
 	long lPostalCode = _wtol(strNewPostalCode);
-	if (lPostalCode <=0)
+	if (lPostalCode <= 0)
 	{
 		return false;
 	}
 	return true;
 }
-bool CCitiesDialog::CheckForNotAllowedChars(CString& strValue)
+bool CCitiesDialog::CheckForNotAllowedChars(const CString& strValue)
 {
 	for (INT_PTR i = 0; i < strValue.GetLength(); i++)
 	{

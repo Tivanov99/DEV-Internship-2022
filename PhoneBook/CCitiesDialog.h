@@ -37,8 +37,8 @@ public:
 private:
 	void FillingInputFields();
 	void SetDialogWindowAndOkButtonText();
-	bool ValidateTextData(const CString& strOldData, const CString& strNewData, const int nMinLenght, const int nMaxLenght);
-	bool ValidatePostalCode(const CString& strPostalCode);
+	bool ValidateTextData(const CEdit& oEdit, const int nMinLenght, const int nMaxLenght);
+	bool ValidatePostalCode();
 	bool CheckForNotAllowedChars(const CString& strValue);
 
 	// Overrides
