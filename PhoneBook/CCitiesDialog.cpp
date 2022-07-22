@@ -101,8 +101,8 @@ void CCitiesDialog::SetDialogWindowAndOkButtonText()
 }
 
 
-bool CCitiesDialog::ValidateTextData(CString strOldData, CString strNewData,
-	int nMinLenght, int nMaxLenght)
+bool CCitiesDialog::ValidateTextData(const CString& strOldData, const CString& strNewData,
+	const int nMinLenght, const int nMaxLenght)
 {
 	if (strNewData.GetLength() < nMinLenght)
 		return false;
@@ -115,7 +115,7 @@ bool CCitiesDialog::ValidateTextData(CString strOldData, CString strNewData,
 
 	return true;
 }
-bool CCitiesDialog::ValidatePostalCode(CString& strPostalCode)
+bool CCitiesDialog::ValidatePostalCode(const CString& strPostalCode)
 {
 	CString strNewPostalCode;
 	StrPostalCode.GetWindowText(strNewPostalCode);
@@ -126,7 +126,7 @@ bool CCitiesDialog::ValidatePostalCode(CString& strPostalCode)
 	}
 	return true;
 }
-bool CCitiesDialog::CheckForNotAllowedChars(CString strValue)
+bool CCitiesDialog::CheckForNotAllowedChars(CString& strValue)
 {
 	for (INT_PTR i = 0; i < strValue.GetLength(); i++)
 	{
