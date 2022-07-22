@@ -48,6 +48,10 @@ END_MESSAGE_MAP()
 BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
+
+	StrCitiesName.SetLimitText(nMaxCityNameLenght);
+	StrAreaName.SetLimitText(nMaxCityAreaNameLenght);
+
 	FillingInputFields();
 	SetDialogWindowAndOkButtonText();
 	return TRUE;
@@ -87,12 +91,14 @@ void CCitiesDialog::SetDialogWindowAndOkButtonText()
 }
 
 
-bool CCitiesDialog::ValidateCityName()
+bool CCitiesDialog::ValidateTextData(CString strValue,int minLenght, int maxLenght)
 {
-
-}
-bool CCitiesDialog::ValidateAreaName()
-{
+	CString strCityName;
+	StrCitiesName.GetWindowText(strCityName);
+	if (strCityName.GetLength()<nMinCityNameLenght)
+		return false;
+	if (strCityName.GetString() == m_recCity.szCITY_NAME)
+		return false;
 
 }
 bool CCitiesDialog::ValidatePostalCode()

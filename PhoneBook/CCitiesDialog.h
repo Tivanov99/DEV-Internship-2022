@@ -7,6 +7,15 @@
 
 class CCitiesDialog : public CDialog
 {
+	//Constants
+	// ----------------
+	int nMaxCityNameLenght =32;
+	int nMinCityNameLenght = 4;
+
+	int nMaxCityAreaNameLenght =32;
+	int nMinCityAreaNameLenght = 4;
+
+
 	DECLARE_DYNAMIC(CCitiesDialog)
 
 	// Constructor / Destructor
@@ -26,8 +35,7 @@ public:
 private:
 	void FillingInputFields();
 	void SetDialogWindowAndOkButtonText();
-	bool ValidateCityName();
-	bool ValidateAreaName();
+	bool ValidateTextData(CString strValue, int minLenght, int maxLenght);
 	bool ValidatePostalCode();
 
 
