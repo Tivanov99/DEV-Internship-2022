@@ -17,7 +17,7 @@ IMPLEMENT_DYNAMIC(CCitiesDialog, CDialog)
 CCitiesDialog::CCitiesDialog(int nOperations, CITIES& recCity, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_CITIES_DIALOG, pParent)
 {
-	//m_recCity = recCity;
+	m_recCity = recCity;
 }
 
 CCitiesDialog::~CCitiesDialog()
@@ -58,9 +58,7 @@ void CCitiesDialog::FillingInputFields()
 
 void CCitiesDialog::OnOK()
 {
-	CString strText;
-	// TODO: Add your specialized code here and/or call the base class
-
+	int nDa = 0;
 	CDialog::OnOK();
 }
 

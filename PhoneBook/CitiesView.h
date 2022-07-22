@@ -33,7 +33,7 @@ public:
 	/// <param name="LSCCitiesList">Лист контрола към която ще бъдат добавени колините.</param>
 	void AddColumns(CListCtrl& LSCCitiesList);
 private:
-	const CITIES* GetSelectedRecordData();
+	 CITIES* GetSelectedRecordData();
 	const int GetNumberOfSelectedRow();
 	// Overrides
 public:

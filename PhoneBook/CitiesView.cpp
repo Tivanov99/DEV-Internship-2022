@@ -150,7 +150,7 @@ const int CCitiesView::GetNumberOfSelectedRow()
 	return nSelectedRow;
 }
 
-const CITIES* CCitiesView::GetSelectedRecordData()
+ CITIES* CCitiesView::GetSelectedRecordData()
 {
 	const int nSelectedRow = GetNumberOfSelectedRow();
 	if (nSelectedRow == -1)
@@ -202,9 +202,11 @@ void CCitiesView::OnContextMenuDelete()
 
 void CCitiesView::OnContextMenuEdit()
 {
-	const CITIES* pCity = GetSelectedRecordData();
+	 CITIES* pCity = GetSelectedRecordData();
 	if (pCity == NULL)
 		return;
+
+	CCitiesDialog oCitiesDialog(1, *pCity);
 
 	// TODO: Add your command handler code here
 }
