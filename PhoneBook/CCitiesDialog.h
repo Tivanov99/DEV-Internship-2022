@@ -25,7 +25,12 @@ public:
 	// ----------------
 private:
 	void FillingInputFields();
-	void SetDialogWindowText();
+	void SetDialogWindowAndOkButtonText();
+	bool ValidateCityName();
+	bool ValidateAreaName();
+	bool ValidatePostalCode();
+
+
 	// Overrides
 	// ----------------
 protected:

@@ -50,7 +50,7 @@ BOOL CCitiesDialog::OnInitDialog()
 	CDialog::OnInitDialog();
 	FillingInputFields();
 	SetDialogWindowAndOkButtonText();
-	return TRUE;  
+	return TRUE;
 }
 
 void CCitiesDialog::FillingInputFields()
@@ -69,7 +69,7 @@ void CCitiesDialog::OnOK()
 }
 
 
-void CCitiesDialog :: SetDialogWindowAndOkButtonText()
+void CCitiesDialog::SetDialogWindowAndOkButtonText()
 {
 	switch (m_eOperations)
 	{
@@ -84,4 +84,18 @@ void CCitiesDialog :: SetDialogWindowAndOkButtonText()
 	default:
 		break;
 	}
+}
+
+
+bool CCitiesDialog::ValidateCityName()
+{
+
+}
+bool CCitiesDialog::ValidateAreaName()
+{
+
+}
+bool CCitiesDialog::ValidatePostalCode()
+{
+
 }
