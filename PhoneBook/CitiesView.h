@@ -7,7 +7,6 @@
 #include "CCitiesDocument.h"
 
 
-
 class CCitiesView : public CListView
 {
 protected: // create from serialization only
@@ -35,6 +34,7 @@ public:
 private:
 	 CITIES* GetSelectedRecordData();
 	const int GetNumberOfSelectedRow();
+	const int GetColumnCount();
 	// Overrides
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

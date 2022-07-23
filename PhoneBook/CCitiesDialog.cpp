@@ -48,9 +48,8 @@ BOOL CCitiesDialog::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	if (m_eOperations != ContextMenuOperations::Create)
-	{
 		FillingInputFields();
-	}
+
 	StrCitiesName.SetLimitText(nMaxCityNameLenght);
 	StrAreaName.SetLimitText(nMaxCityAreaNameLenght);
 	SetDialogWindowAndOkButtonText();

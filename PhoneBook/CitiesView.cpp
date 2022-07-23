@@ -86,6 +86,9 @@ void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtr
 {
 	for (INT_PTR i = 0; i < oCSelfClearingPtrArray.GetCount(); i++)
 	{
+		CITIES oCity;
+
+		
 		CITIES* oCurrentCity = oCSelfClearingPtrArray.GetAt(i);
 		if (oCurrentCity == NULL)
 			continue;
@@ -102,12 +105,15 @@ void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtr
 		CString strPostalCode;
 		strPostalCode.Format(_T("%d"), oCurrentCity->lPOSTAL_CODE);
 
+		int nColumnCount = GetColumnCount();
+
 		LSCCitiesList.InsertItem(nRowNumber, strCityName);
 		LSCCitiesList.SetItemText(nRowNumber, nColumnNumber, strAreaName);
 		LSCCitiesList.SetItemText(nRowNumber, ++nColumnNumber, strPostalCode);
 		LSCCitiesList.SetItemData(nRowNumber, reinterpret_cast<DWORD_PTR>(oCurrentCity));
 	}
 }
+
 
 void CCitiesView::OnRButtonUp(UINT /* nFlags */, CPoint point)
 {
@@ -162,6 +168,17 @@ CITIES* CCitiesView::GetSelectedRecordData()
 	CListCtrl& LSCCitiesList = GetListCtrl();
 	CITIES* pCity = reinterpret_cast<CITIES*>(LSCCitiesList.GetItemData(nSelectedRow));
 	return pCity;
+}
+
+const int CCitiesView::GetColumnCount()
+{
+	CListCtrl& LSCCitiesList = GetListCtrl();
+
+	CHeaderCtrl* oHeaderCtrl = LSCCitiesList.GetHeaderCtrl();
+
+	int nColumnCount = oHeaderCtrl->GetItemCount();
+
+	return nColumnCount;
 }
 //
 
