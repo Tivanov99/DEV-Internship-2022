@@ -90,6 +90,13 @@ void CCitiesDialog::OnOK()
 		return;
 	}
 
+	SetDataToRecord();
+
+	CDialog::OnOK();
+}
+
+void CCitiesDialog ::SetDataToRecord()
+{
 	long lPostalCode = GetPostalCodeFromInputFiled();
 	m_recCity.lPOSTAL_CODE = lPostalCode;
 
@@ -100,10 +107,7 @@ void CCitiesDialog::OnOK()
 	CString strAreaName;
 	StrAreaName.GetWindowText(strAreaName);
 	_tcscpy_s(m_recCity.szAREA_NAME, strAreaName);
-
-	CDialog::OnOK();
 }
-
 
 void CCitiesDialog::SetDialogWindowAndOkButtonText()
 {
@@ -159,11 +163,7 @@ bool CCitiesDialog::ValidatePostalCode()
 {
 	long lPostalCode = GetPostalCodeFromInputFiled();
 
-	if (lPostalCode <= 0)
-	{
-		return false;
-	}
-	return true;
+	return	lPostalCode <= 0 ? false : true;
 }
 
 bool CCitiesDialog::CheckForNotAllowedChars(const CString& strValue)
@@ -180,7 +180,7 @@ bool CCitiesDialog::CheckForNotAllowedChars(const CString& strValue)
 		case ',': return false;
 		case '|': return false;
 		default:
-			break;
+			continue;
 		}
 	}
 	return true;

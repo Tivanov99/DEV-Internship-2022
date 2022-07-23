@@ -9,10 +9,10 @@ class CCitiesDialog : public CDialog
 {
 	//Constants
 	// ----------------
-	int nMaxCityNameLenght =32;
+	int nMaxCityNameLenght = 32;
 	int nMinCityNameLenght = 4;
 
-	int nMaxCityAreaNameLenght =32;
+	int nMaxCityAreaNameLenght = 32;
 	int nMinCityAreaNameLenght = 4;
 
 	DECLARE_DYNAMIC(CCitiesDialog)
@@ -23,12 +23,12 @@ public:
 	CCitiesDialog(ContextMenuOperations eOperations, CITIES& recCity, CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CCitiesDialog();
 
-// Dialog Data
+	// Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_CITIES_DIALOG };
 #endif
 	DECLARE_MESSAGE_MAP()
-	
+
 	// Methods
 	// ----------------
 private:
@@ -38,7 +38,7 @@ private:
 	bool ValidatePostalCode();
 	bool CheckForNotAllowedChars(const CString& strValue);
 	long GetPostalCodeFromInputFiled();
-
+	void SetDataToRecord();
 	// Overrides
 	// ----------------
 protected:
@@ -49,7 +49,6 @@ protected:
 	// Members
 	// ----------------
 private:
-	CListCtrl m_CitiesList;
 	CITIES& m_recCity;
 	CEdit StrCitiesName;
 	CEdit StrAreaName;
