@@ -113,6 +113,7 @@ BOOL CPhoneBookApp::InitInstance()
 		RUNTIME_CLASS(CCitiesDocument),
 		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
 		RUNTIME_CLASS(CCitiesView));
+
 	if (!pDocTemplate)
 		return FALSE;
 	AddDocTemplate(pDocTemplate);

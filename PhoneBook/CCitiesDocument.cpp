@@ -16,7 +16,7 @@ BOOL CCitiesDocument::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
-	m_CitiesData.SelectAll(oCitiesSelfClearingPtrArray);
+	m_CitiesData.SelectAll(m_oCitiesArray);
 	return TRUE;
 };
 
@@ -36,12 +36,12 @@ void CCitiesDocument::Serialize(CArchive& ar)
 
 const CSelfClearingTypedPtrArray< CITIES>& CCitiesDocument::GetAllCities()
 {
-	return oCitiesSelfClearingPtrArray;
+	return m_oCitiesArray;
 }
 
 CITIES* CCitiesDocument::GetCityById(long lID)
 {
-	CITIES* pCity = oCitiesSelfClearingPtrArray.GetAt(lID - 1);
+	CITIES* pCity = m_oCitiesArray.GetAt(lID - 1);
 	if (pCity == NULL)
 	{
 		AfxMessageBox(_T("Somethin wrong with record. Try again."));
@@ -74,6 +74,7 @@ bool CCitiesDocument::DeleteCityById(long lID)
 	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
 	return true;
 }
+
 void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 {
 	UpdateAllViews(NULL, lHint, pHint);

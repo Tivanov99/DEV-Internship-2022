@@ -40,7 +40,7 @@ private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	//Members
 private:
-	CSelfClearingTypedPtrArray< CITIES> oCitiesSelfClearingPtrArray;
+	CSelfClearingTypedPtrArray< CITIES> m_oCitiesArray;
 	CCitiesData m_CitiesData;
 
 protected:
