@@ -27,8 +27,8 @@ public:
 	/// Функция която попълва цялата информация за градовете.
 	/// </summary>
 	/// <param name="LSCCitiesList">Лист контрола в която ще се попълват данните.</param>
-	/// <param name="oCSelfClearingPtrArray">Масив съдържащ всички записи за градовете прочетени от базата.</param>
-	void FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrArray);
+	/// <param name="oCitiesArray">Масив съдържащ всички записи за градовете прочетени от базата.</param>
+	void FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<CITIES>& oCitiesArray);
 
 	/// <summary>
 	/// Метод добавящ всички колони към подадена като аргумент лист контрола.
