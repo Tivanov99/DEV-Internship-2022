@@ -80,27 +80,25 @@ void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 	UpdateAllViews(NULL, lHint, pHint);
 }
 
-bool CCitiesDocument::UpdatePerson(CITIES& recCity)
+bool CCitiesDocument::UpdateCity(CITIES& recCity)
 {
 	bool bUpdate = m_CitiesData.UpdateWhereID(recCity.lID, recCity);
-	if (bUpdate)
-	{
-		CITIES oCity;
-		m_CitiesData.SelectWhereID(recCity.lID, oCity);
-		//TODO: Chech here for object ?
-		//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
-		return true;
-	}
-	return false;
+	if (!bUpdate)
+		return false;
+
+	CITIES oCity;
+	m_CitiesData.SelectWhereID(recCity.lID, oCity);
+	//TODO: Chech here for object ?
+	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
+	return true;
 }
-bool CCitiesDocument::InsertPerson(CITIES& recCity)
+bool CCitiesDocument::InsertCity(CITIES& recCity)
 {
 	bool bInsert = m_CitiesData.Insert(recCity);
-	if (bInsert)
-	{
-		//TODO: Chech here for object ?
-		//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
-		return true;
-	}
-	return false;
+	if (!bInsert)
+		return false;
+
+	//TODO: Chech here for object ?
+	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
+	return true;
 }

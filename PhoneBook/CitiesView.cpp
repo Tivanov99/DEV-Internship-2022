@@ -277,5 +277,5 @@ void CCitiesView::OnContextMenuInsert()
 	if (!oCitiesDoc->InsertPerson(oCity))
 		return;
 
-	//InsertNewItemToCListCtrl();
+	InsertNewItemToCListCtrl();
 }

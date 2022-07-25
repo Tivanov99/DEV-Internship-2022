@@ -50,6 +50,7 @@ class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>, public CBaseTab
 	// ----------------
 private:
 	static const LPCSTR lpszSelectAllById;
+	static const LPCSTR lpszSelectLastById;
 	static const LPCSTR lpszSelectAll;   
 	static const LPCSTR lpszEmptySelect;
 	
@@ -75,6 +76,14 @@ public:
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	/// <param name="recCities">Референция която ще присвои резултата от функцията</param>
 	bool SelectWhereID(const long lID, CITIES& recCities);
+
+
+	/// <summary>
+	///  Функция която чете последен запис от таблицата "CITIES" чието ID отговаря на "lID" и го презаписва в "recCities" аргумента.
+	/// </summary>
+	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
+	/// <param name="recCities">Референция която ще присвои резултата от функцията</param>
+	CITIES* SelectLastWhereID();
 
 	/// <summary>
 	///  Функция която прави промяна на запис от таблицата "CITIES" чието ID отговаря на "lID" аргумента,

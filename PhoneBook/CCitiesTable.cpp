@@ -3,6 +3,7 @@
 
 
 const LPCSTR CCitiesTable::lpszSelectAllById = "SELECT * FROM CITIES WHERE ID = %d";
+const LPCSTR CCitiesTable::lpszSelectLastById = "SELECT * FROM CITIES WHERE ID = %d";
 const LPCSTR CCitiesTable::lpszSelectAll = "SELECT * FROM CITIES";
 const LPCSTR CCitiesTable::lpszEmptySelect = "SELECT TOP 0 * FROM CITIES";
 
@@ -121,6 +122,37 @@ bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 
 	CloseDbConnectionAndSession();
 	return true;
+};
+
+CITIES* CCitiesTable::SelectLastWhereID()
+{
+	if (!OpenDbConnectionAndSession())
+		return NULL;
+
+	CString strQuery;
+	strQuery.Format((CString)lpszSelectAllById);
+
+	if (!ExecuteQuery(strQuery, NoneModifyColumnCode))
+	{
+		CloseDbConnectionAndSession();
+		return NULL;
+	}
+
+	if (FAILED(MoveFirst()))
+	{
+		ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+		CloseDbConnectionAndSession();
+		return NULL;
+	}
+
+	CITIES* pCity = NULL;
+	*pCity = m_recCITY;
+
+	if (pCity == NULL)
+		return NULL;
+
+	CloseDbConnectionAndSession();
+	return pCity;
 };
 
 bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
