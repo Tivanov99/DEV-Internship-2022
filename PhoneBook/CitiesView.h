@@ -53,6 +53,17 @@ private:
 	/// </summary>
 	/// <returns>Цяло число представящо брой на колоните.</returns>
 	const int GetColumnCount();
+
+	/// <summary>
+	/// Добавя нов запис към лист контролата.
+	/// </summary>
+	/// <param name="pCity">Пойнтър представляващ нов запис</param>
+	void InsertNewItemToCListCtrl(CITIES* pCity);
+
+	/// <summary>
+	/// Конфигурира всичко нужно за държанието и изгледа на лист контролата.
+	/// </summary>
+	void ConfigurateCListCtrl();
 	// Overrides
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

@@ -60,17 +60,24 @@ void CCitiesView::OnInitialUpdate()
 {
 	CListView::OnInitialUpdate();
 
+	ConfigurateCListCtrl();
+
+	CListCtrl& LSCCitiesList = GetListCtrl();
+	CCitiesDocument* pCCitiesDocument = GetDocument();
+
+	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrCitiesArray = pCCitiesDocument->GetAllCities();
+	FillView(LSCCitiesList, oCSelfClearingPtrCitiesArray);
+}
+
+void CCitiesView::ConfigurateCListCtrl()
+{
 	CListCtrl& LSCCitiesList = GetListCtrl();
 
 	LSCCitiesList.SetExtendedStyle(LSCCitiesList.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
 
 	LSCCitiesList.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
 
-	CCitiesDocument* pCCitiesDocument = GetDocument();
-
 	AddColumns(LSCCitiesList);
-	const CSelfClearingTypedPtrArray<CITIES>& oCSelfClearingPtrCitiesArray = pCCitiesDocument->GetAllCities();
-	FillView(LSCCitiesList, oCSelfClearingPtrCitiesArray);
 }
 
 void CCitiesView::AddColumns(CListCtrl& LSCCitiesList)
@@ -86,22 +93,11 @@ void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtr
 {
 	for (INT_PTR i = 0; i < oCSelfClearingPtrArray.GetCount(); i++)
 	{
-		CITIES* oCurrentCity = oCSelfClearingPtrArray.GetAt(i);
-		if (oCurrentCity == NULL)
+		CITIES* pCurrentCity = oCSelfClearingPtrArray.GetAt(i);
+		if (pCurrentCity == NULL)
 			continue;
 
-		int nRowNumber = i;
-		int nColumnNumber = 1;
-
-		CString strPostalCode;
-		strPostalCode.Format(_T("%d"), oCurrentCity->lPOSTAL_CODE);
-
-		int nColumnCount = GetColumnCount();
-
-		LSCCitiesList.InsertItem(nRowNumber, oCurrentCity->szCITY_NAME);
-		LSCCitiesList.SetItemText(nRowNumber, nColumnNumber, oCurrentCity->szAREA_NAME);
-		LSCCitiesList.SetItemText(nRowNumber, ++nColumnNumber, strPostalCode);
-		LSCCitiesList.SetItemData(nRowNumber, reinterpret_cast<DWORD_PTR>(oCurrentCity));
+		InsertNewItemToCListCtrl(pCurrentCity);
 	}
 }
 
@@ -206,9 +202,8 @@ void CCitiesView::OnContextMenuDelete()
 	{
 		CCitiesDocument* oCitiesDoc = GetDocument();
 		if (!oCitiesDoc->DeletePersonById(pCity->lID))
-		{
-			//TODO: Show message
-		}
+			return;
+
 		const int nSelectedRow = GetNumberOfSelectedRow();
 
 		CListCtrl& LSCCitiesList = GetListCtrl();
@@ -233,9 +228,8 @@ void CCitiesView::OnContextMenuEdit()
 
 	
 	if (!oCitiesDoc->UpdatePerson(*pCity))
-	{
-		//TODO: Show message
-	}
+		return;
+
 		CString strPostalCode;
 		strPostalCode.Format(_T("%d"), pCity->lPOSTAL_CODE);
 
@@ -248,6 +242,24 @@ void CCitiesView::OnContextMenuEdit()
 		LSCCitiesList.SetItemText(nSelectedRow, nColumnNumber, strPostalCode);
 }
 
+void CCitiesView::InsertNewItemToCListCtrl(CITIES* pCity)
+{
+	CListCtrl& LSCCitiesList = GetListCtrl();
+
+	const int nRow = LSCCitiesList.GetItemCount();
+
+	LSCCitiesList.InsertItem(nRow, pCity->szCITY_NAME);
+
+	int nColumnNumber = 1;
+
+	LSCCitiesList.SetItemText(nRow, nColumnNumber++, pCity->szAREA_NAME);
+
+	CString strPostalCode;
+	strPostalCode.Format(_T("%d"), pCity->lPOSTAL_CODE);
+	LSCCitiesList.SetItemText(nRow, nColumnNumber, strPostalCode);
+
+	LSCCitiesList.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCity));
+}
 
 void CCitiesView::OnContextMenuInsert()
 {
@@ -263,22 +275,7 @@ void CCitiesView::OnContextMenuInsert()
 	CCitiesDocument* oCitiesDoc = GetDocument();
 
 	if (!oCitiesDoc->InsertPerson(oCity))
-	{
-		//TODO: Show message
-	}
+		return;
 
-	CString strPostalCode;
-	strPostalCode.Format(_T("%d"), oCity.lPOSTAL_CODE);
-
-	CListCtrl& LSCCitiesList = GetListCtrl();
-
-	const int nRow = LSCCitiesList.GetItemCount();
-
-	LSCCitiesList.InsertItem(nRow, oCity.szCITY_NAME);
-
-	int nColumnNumber = 1;
-
-	LSCCitiesList.SetItemText(nRow, nColumnNumber++, oCity.szAREA_NAME);
-	LSCCitiesList.SetItemText(nRow, nColumnNumber, strPostalCode);
-	LSCCitiesList.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(&oCity));
+	//InsertNewItemToCListCtrl();
 }
