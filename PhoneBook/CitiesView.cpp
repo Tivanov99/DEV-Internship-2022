@@ -86,9 +86,6 @@ void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtr
 {
 	for (INT_PTR i = 0; i < oCSelfClearingPtrArray.GetCount(); i++)
 	{
-		CITIES oCity;
-
-		
 		CITIES* oCurrentCity = oCSelfClearingPtrArray.GetAt(i);
 		if (oCurrentCity == NULL)
 			continue;
@@ -210,8 +207,12 @@ void CCitiesView::OnContextMenuDelete()
 		CCitiesDocument* oCitiesDoc = GetDocument();
 		if (!oCitiesDoc->DeletePersonById(pCity->lID))
 		{
-
+			
 		}
+		const int nSelectedRow = GetNumberOfSelectedRow();
+
+		CListCtrl& LSCCitiesList = GetListCtrl();
+		LSCCitiesList.DeleteItem(nSelectedRow);
 	}
 }
 
@@ -229,7 +230,22 @@ void CCitiesView::OnContextMenuEdit()
 	}
 
 	CCitiesDocument* oCitiesDoc = GetDocument();
-	oCitiesDoc->UpdatePerson(*pCity);
+
+	
+	if (!oCitiesDoc->UpdatePerson(*pCity))
+	{
+		//TODO: Show message
+	}
+		CString strPostalCode;
+		strPostalCode.Format(_T("%d"), pCity->lPOSTAL_CODE);
+
+		const int nSelectedRow = GetNumberOfSelectedRow();
+		CListCtrl& LSCCitiesList = GetListCtrl();
+		int nColumnNumber = 0;
+
+		LSCCitiesList.SetItemText(nSelectedRow, nColumnNumber++, pCity->szCITY_NAME);
+		LSCCitiesList.SetItemText(nSelectedRow, nColumnNumber++, pCity->szAREA_NAME);
+		LSCCitiesList.SetItemText(nSelectedRow, nColumnNumber, strPostalCode);
 }
 
 
@@ -245,5 +261,24 @@ void CCitiesView::OnContextMenuInsert()
 	}
 
 	CCitiesDocument* oCitiesDoc = GetDocument();
-	oCitiesDoc->InsertPerson(oCity);
+
+	if (!oCitiesDoc->InsertPerson(oCity))
+	{
+		//TODO: Show message
+	}
+
+	CString strPostalCode;
+	strPostalCode.Format(_T("%d"), oCity.lPOSTAL_CODE);
+
+	CListCtrl& LSCCitiesList = GetListCtrl();
+
+	const int nRow = LSCCitiesList.GetItemCount();
+
+	LSCCitiesList.InsertItem(nRow, oCity.szCITY_NAME);
+
+	int nColumnNumber = 1;
+
+	LSCCitiesList.SetItemText(nRow, nColumnNumber++, oCity.szAREA_NAME);
+	LSCCitiesList.SetItemText(nRow, nColumnNumber, strPostalCode);
+	LSCCitiesList.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(&oCity));
 }
