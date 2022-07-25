@@ -207,7 +207,7 @@ void CCitiesView::OnContextMenuDelete()
 		CCitiesDocument* oCitiesDoc = GetDocument();
 		if (!oCitiesDoc->DeletePersonById(pCity->lID))
 		{
-			
+			//TODO: Show message
 		}
 		const int nSelectedRow = GetNumberOfSelectedRow();
 

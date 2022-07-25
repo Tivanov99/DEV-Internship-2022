@@ -33,17 +33,17 @@ bool CBaseTable::OpenDbConnectionAndSession()
 	HRESULT hResult = m_oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
 
 	//Отваряме връзка към дб
-	if (FAILED(hResult))
+	if (hResult != S_OK)
 	{
-		AfxMessageBox((CString)lpszUnableToConnectServer, hResult);
+		ShowErrorMessage(lpszUnableToConnectServer, NULL);
 		return false;
 	}
 
 	// Отваряме сесия
 	hResult = m_oSession.Open(m_oDataSource);
-	if (FAILED(hResult))
+	if (hResult!=S_OK)
 	{
-		AfxMessageBox((CString)lpszUnableToOpenSession, hResult);
+		ShowErrorMessage(lpszUnableToOpenSession,NULL);
 		m_oDataSource.Close();
 		return false;
 	}

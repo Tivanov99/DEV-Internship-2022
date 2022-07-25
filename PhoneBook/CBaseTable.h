@@ -11,13 +11,13 @@ public:
 
 public:
 	const LPCSTR lpszInvalidRecordVersion = "Invalid version of current record! Please reload the record again.";
-	const LPCSTR lpszErrorExecutingQuery = "Error executing query.Query : % s";
+	const LPCSTR lpszErrorExecutingQuery = "Error executing query.Query : %s";
 	const LPCSTR lpszErrorInvalidQueryAcessor =
 		"Invalid query accessor! Use 0 for non-record-changing queries or 1 for record-changing queries";
 	const LPCSTR lpszUnableToConnectServer = "Unable to connect to SQL Server database. Error: %d";
 	const LPCSTR lpszUnableToOpenSession = "Unable to open session. Error: %d";
 	const LPCSTR lpszErrorOpeningRecord = "Error opening record.Query %s";
-	const LPCSTR lpszErrorUpdatingRecord = "Error updating record.Error:% d.Query : % s";
+	const LPCSTR lpszErrorUpdatingRecord = "Error updating record with id: %d";
 	const LPCSTR lpszErrorDeletingRecord = "Delete failed.";
 	const LPCSTR lpszErrorInsertingRecord = "Insert failed.";
 
