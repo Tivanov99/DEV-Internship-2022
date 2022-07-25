@@ -32,14 +32,31 @@ public:
 	/// <param name="LSCCitiesList">Лист контрола към която ще бъдат добавени колините.</param>
 	void AddColumns(CListCtrl& LSCCitiesList);
 private:
-	 CITIES* GetSelectedRecordData();
+	 /// <summary>
+	 /// Връща указател записан в 'item data' при добавянето на записа в CListCtrl.
+	 /// </summary>
+	 /// <returns></returns>
+	 CITIES* GetSelectedRecordItemData();
+
+	/// <summary>
+	/// Според това къде потребител е кликнал връща номер на ред (-1 когато не е кликнато на нито един от запситие,и освен това извежда и предупредително съобщение, в  противен случай номер на ред).
+	/// </summary>
+	/// <returns>Номер на ред в диапазона -1 до N</returns>
 	const int GetNumberOfSelectedRow();
+
+	/// <summary>
+	/// Метод връщащ броя на колоните в CListCtrl.
+	/// </summary>
+	/// <returns>Цяло число представящо брой на колоните.</returns>
 	const int GetColumnCount();
 	// Overrides
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint) override;
 protected:
+	/// <summary>
+	/// Метод подготвящ всично нужно по CListCtrl при стартирането на програмата.
+	/// </summary>
 	virtual void OnInitialUpdate(); // called first time after construct
 
 // Implementation
@@ -58,9 +75,20 @@ protected:
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
 
-public:
+private:
+	/// <summary>
+	///Изтрива посочен запис при десен клик върху запис във view-то и 'Delete' от контекстното меню.
+	/// </summary>
 	afx_msg void OnContextMenuDelete();
+
+	/// <summary>
+	/// При десен клик върху запис извиква диалогов прозорец попълнен с неговите данни.
+	/// </summary>
 	afx_msg void OnContextMenuEdit();
+
+	/// <summary>
+	/// При десен клик без значение къде е извършен той и 'Insert' от контекстното меню извиква диалогов прозорец в който да бъдат попълнени данните на записа.
+	/// </summary>
 	afx_msg void OnContextMenuInsert();
 };
 

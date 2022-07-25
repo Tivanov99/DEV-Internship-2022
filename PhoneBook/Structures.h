@@ -9,10 +9,13 @@
 /// <summary>
 ///  Дискова структура CITIES предназначена за таблицата 'CITIES'
 /// </summary>
+
 struct CITIES
 {
 	/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'CITIES'</summary>
+	
 	long lID;
+
 	/// <summary>Променлива съдържаща текущата версия на запис.</summary>
 	long lUpdateCounter;
 	/// <summary>Променлива съдържаща стойността от колона 'CITY_NAME' в таблицата 'CITIES'</summary>
@@ -35,3 +38,4 @@ enum ContextMenuOperations
 	Delete,
 	Create
 };
+

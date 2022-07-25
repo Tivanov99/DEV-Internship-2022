@@ -96,19 +96,13 @@ void CCitiesView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtr
 		int nRowNumber = i;
 		int nColumnNumber = 1;
 
-		CString strCityName;
-		strCityName.Format(_T("%s"), oCurrentCity->szCITY_NAME);
-
-		CString strAreaName;
-		strAreaName.Format(_T("%s"), oCurrentCity->szAREA_NAME);
-
 		CString strPostalCode;
 		strPostalCode.Format(_T("%d"), oCurrentCity->lPOSTAL_CODE);
 
 		int nColumnCount = GetColumnCount();
 
-		LSCCitiesList.InsertItem(nRowNumber, strCityName);
-		LSCCitiesList.SetItemText(nRowNumber, nColumnNumber, strAreaName);
+		LSCCitiesList.InsertItem(nRowNumber, oCurrentCity->szCITY_NAME);
+		LSCCitiesList.SetItemText(nRowNumber, nColumnNumber, oCurrentCity->szAREA_NAME);
 		LSCCitiesList.SetItemText(nRowNumber, ++nColumnNumber, strPostalCode);
 		LSCCitiesList.SetItemData(nRowNumber, reinterpret_cast<DWORD_PTR>(oCurrentCity));
 	}
@@ -157,7 +151,7 @@ const int CCitiesView::GetNumberOfSelectedRow()
 	return nSelectedRow;
 }
 
-CITIES* CCitiesView::GetSelectedRecordData()
+CITIES* CCitiesView::GetSelectedRecordItemData()
 {
 	const int nSelectedRow = GetNumberOfSelectedRow();
 	if (nSelectedRow == -1)
@@ -201,7 +195,7 @@ void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 
 void CCitiesView::OnContextMenuDelete()
 {
-	const CITIES* pCity = GetSelectedRecordData();
+	const CITIES* pCity = GetSelectedRecordItemData();
 	if (pCity == NULL)
 		return;
 
@@ -220,7 +214,7 @@ void CCitiesView::OnContextMenuDelete()
 
 void CCitiesView::OnContextMenuEdit()
 {
-	CITIES* pCity = GetSelectedRecordData();
+	CITIES* pCity = GetSelectedRecordItemData();
 	if (pCity == NULL)
 		return;
 
