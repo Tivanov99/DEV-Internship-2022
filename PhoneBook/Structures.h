@@ -43,7 +43,7 @@ struct PERSONS {
 	/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'PERSONS'</summary>
 	long lID;
 	/// <summary>?</summary>
-	long lUPDATE_COUNTER;
+	long lUpdateCounter;
 	/// <summary>Променлива съдържаща стойността от колона 'FIRST_NAME' в таблицата  'PERSONS'</summary>
 	TCHAR szFIRST_NAME[FIRST_NAME_SIZE];
 	/// <summary>Променлива съдържаща стойността от колона 'SECOND_NAME' в таблицата  'PERSONS'</summary>
@@ -71,7 +71,7 @@ struct PHONE_NUMBERS {
 	/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'PHONE_NUMBERS'</summary>
 	long lID;
 	/// <summary>?</summary>
-	long lUPDATE_COUNTER;
+	long lUpdateCounter;
 	/// <summary>
 		/// Променлива съдържаща вторичен ключ (от колона 'PHONE_TYPE_ID' в таблицата 'PHONE_TYPES')
 		/// сочещ към колоната 'ID' в таблицата 'PHONE_NUMBERS'</summary>;
@@ -94,7 +94,7 @@ struct PHONE_TYPES {
 	/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'PHONE_TYPES'</summary>
 	long lID;
 	/// <summary>?</summary>
-	long lUPDATE_COUNTER;
+	long lUpdateCounter;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_TYPE' в таблицата  'PHONE_TYPES'</summary>
 	TCHAR szPHONE_TYPE[PHONE_TYPE_SIZE];
 	PHONE_TYPES()

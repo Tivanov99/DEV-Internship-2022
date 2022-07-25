@@ -1,4 +1,7 @@
 #pragma once
+#include "Structures.h"
+#include "CSelfClearingTypedPtrArray.h"
+
 class CPersonsDocument :public CDocument
 {
 protected: // create from serialization only
@@ -26,10 +29,29 @@ public:
 
 	//Methods
 public:
-	const CSelfClearingTypedPtrArray< CITIES>& GetAllCities();
-	CITIES* GetCityById(long lID);
-	bool DeleteCityById(long lID);
-	bool UpdateCity(CITIES& recCity);
-	bool InsertCity(CITIES& recCity);
+	const CSelfClearingTypedPtrArray<PERSONS>& GetAllCities();
+	PERSONS* GetPersonById(long lID);
+	bool DeletePersonById(long lID);
+	bool UpdatePerson(PERSONS& recCity);
+	bool InsertPerson(PERSONS& recCity);
+
+private:
+	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
+	//Members
+
+private:
+	CSelfClearingTypedPtrArray< PERSONS> m_oPersonsArray;
+	CCitiesData m_PersonsData;
+
+protected:
+
+	// Generated message map functions
+protected:
+	DECLARE_MESSAGE_MAP()
+
+#ifdef SHARED_HANDLERS
+	// Helper function that sets search content for a Search Handler
+	void SetSearchContent(const CString& value);
+#endif // SHARED_HANDLERS
 };
 

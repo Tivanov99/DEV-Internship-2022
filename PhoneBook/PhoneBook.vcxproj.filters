@@ -60,6 +60,18 @@
     <ClInclude Include="CCitiesDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CPersonsView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CPersonsDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CPersonsData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CPersonsTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -93,6 +105,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CCitiesDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CPersonsView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CPersonsDocument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CPersonsData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CPersonsTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -208,7 +208,10 @@ void CCitiesView::OnContextMenuDelete()
 	if (msgboxID == IDOK)
 	{
 		CCitiesDocument* oCitiesDoc = GetDocument();
-		oCitiesDoc->DeleteCityById(pCity->lID);
+		if (!oCitiesDoc->DeletePersonById(pCity->lID))
+		{
+
+		}
 	}
 }
 
@@ -226,7 +229,7 @@ void CCitiesView::OnContextMenuEdit()
 	}
 
 	CCitiesDocument* oCitiesDoc = GetDocument();
-	oCitiesDoc->UpdateCity(*pCity);
+	oCitiesDoc->UpdatePerson(*pCity);
 }
 
 
@@ -242,5 +245,5 @@ void CCitiesView::OnContextMenuInsert()
 	}
 
 	CCitiesDocument* oCitiesDoc = GetDocument();
-	oCitiesDoc->InsertCity(oCity);
+	oCitiesDoc->InsertPerson(oCity);
 }
