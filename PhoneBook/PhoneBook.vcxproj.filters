@@ -60,9 +60,6 @@
     <ClInclude Include="CCitiesDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CCitiesConfirmDeleteDialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -96,9 +93,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CCitiesDialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CCitiesConfirmDeleteDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

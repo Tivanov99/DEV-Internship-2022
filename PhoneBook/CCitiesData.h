@@ -55,6 +55,9 @@ public:
 	// Members
 	// ----------------
 private:
+	/// <summary>
+	/// Мембър за достъп до класът съдържащ бизнес логиката.
+	/// </summary>
 	CCitiesTable m_CitiesTable;
 };
 
