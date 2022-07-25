@@ -49,9 +49,9 @@ CITIES* CCitiesDocument::GetCityById(long lID)
 	return pCity;
 }
 
-CITIES* CCitiesDocument::GetLastCity()
+CITIES* CCitiesDocument::GetLastCityRecord()
 {
-	CITIES* pCity = m_CitiesData.SelectLastCityRecord();
+	return m_CitiesData.SelectLast();
 }
 
 #ifdef _DEBUG

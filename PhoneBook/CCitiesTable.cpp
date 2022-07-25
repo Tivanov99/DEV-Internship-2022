@@ -144,15 +144,11 @@ CITIES* CCitiesTable::SelectLast()
 		CloseDbConnectionAndSession();
 		return NULL;
 	}
-
-	CITIES* pCity = NULL;
-	*pCity = m_recCITY;
-
-	if (pCity == NULL)
-		return NULL;
+	CITIES* pCurrentCity = new CITIES;
+	*pCurrentCity = m_recCITY;
 
 	CloseDbConnectionAndSession();
-	return pCity;
+	return pCurrentCity;
 };
 
 bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)

@@ -33,7 +33,7 @@ public:
 public:
 	const CSelfClearingTypedPtrArray< CITIES>& GetAllCities();
 	CITIES* GetCityById(long lID);
-	CITIES* GetLastCity();
+	CITIES* GetLastCityRecord();
 	bool DeleteCityById(long lID);
 	bool UpdateCity(CITIES& recCity);
 	bool InsertCity(CITIES& recCity);

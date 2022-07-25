@@ -31,7 +31,7 @@ public:
 	/// <summary>
 	///  Функция която чете последно добавен запис от таблицата "CITIES" и го връща като указател.
 	/// </summary>
-	CITIES* SelectLastCityRecord();
+	CITIES* SelectLast();
 
 	/// <summary>
 	///  Функция която прави промяна на запис от таблицата "CITIES" чието ID отговаря на "lID" аргумента,

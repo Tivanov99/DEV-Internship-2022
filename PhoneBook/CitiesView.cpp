@@ -277,5 +277,11 @@ void CCitiesView::OnContextMenuInsert()
 	if (!oCitiesDoc->InsertCity(oCity))
 		return;
 
-	InsertNewItemToCListCtrl();
+	/*CITIES* pCity = oCitiesDoc->GetLastCityRecord();
+	if (pCity == NULL)
+		return;
+	InsertNewItemToCListCtrl(pCity);
+
+	delete pCity;
+	pCity = NULL;*/
 }
