@@ -39,7 +39,7 @@ const CSelfClearingTypedPtrArray< CITIES>& CCitiesDocument::GetAllCities()
 	return m_oCitiesArray;
 }
 
-CITIES* CCitiesDocument::GetPersonById(long lID)
+CITIES* CCitiesDocument::GetCityById(long lID)
 {
 	CITIES* pCity = m_oCitiesArray.GetAt(lID - 1);
 	if (pCity == NULL)
@@ -47,6 +47,11 @@ CITIES* CCitiesDocument::GetPersonById(long lID)
 		AfxMessageBox(_T("Somethin wrong with record. Try again."));
 	}
 	return pCity;
+}
+
+CITIES* CCitiesDocument::GetLastCity()
+{
+
 }
 
 #ifdef _DEBUG
@@ -61,7 +66,7 @@ void CCitiesDocument::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-bool CCitiesDocument::DeletePersonById(long lID)
+bool CCitiesDocument::DeleteCityById(long lID)
 {
 	const bool bDeleteResult = m_CitiesData.DeleteWhereID(lID);
 

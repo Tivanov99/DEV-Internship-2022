@@ -3,7 +3,7 @@
 
 
 const LPCSTR CCitiesTable::lpszSelectAllById = "SELECT * FROM CITIES WHERE ID = %d";
-const LPCSTR CCitiesTable::lpszSelectLastById = "SELECT * FROM CITIES WHERE ID = %d";
+const LPCSTR CCitiesTable::lpszSelectLastById = "SELECT TOP 1 * FROM CITIES  ORDER BY ID Desc";
 const LPCSTR CCitiesTable::lpszSelectAll = "SELECT * FROM CITIES";
 const LPCSTR CCitiesTable::lpszEmptySelect = "SELECT TOP 0 * FROM CITIES";
 
@@ -130,7 +130,7 @@ CITIES* CCitiesTable::SelectLastWhereID()
 		return NULL;
 
 	CString strQuery;
-	strQuery.Format((CString)lpszSelectAllById);
+	strQuery.Format((CString)lpszSelectLastById);
 
 	if (!ExecuteQuery(strQuery, NoneModifyColumnCode))
 	{
