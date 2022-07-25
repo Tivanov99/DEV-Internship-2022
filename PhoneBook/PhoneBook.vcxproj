@@ -193,6 +193,7 @@
     <ClInclude Include="CPersonsDocument.h" />
     <ClInclude Include="CPersonsTable.h" />
     <ClInclude Include="CPersonsView.h" />
+    <ClInclude Include="CTable.h" />
     <ClInclude Include="Structures.h" />
     <ClInclude Include="CitiesDoc.h" />
     <ClInclude Include="CitiesView.h" />
@@ -216,6 +217,7 @@
     <ClCompile Include="CPersonsDocument.cpp" />
     <ClCompile Include="CPersonsTable.cpp" />
     <ClCompile Include="CPersonsView.cpp" />
+    <ClCompile Include="CTable.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -1,6 +1,7 @@
 #pragma once
 #include "Structures.h"
 #include "CSelfClearingTypedPtrArray.h"
+#include "CPersonsData.h"
 
 class CPersonsDocument :public CDocument
 {
@@ -41,7 +42,7 @@ private:
 
 private:
 	CSelfClearingTypedPtrArray< PERSONS> m_oPersonsArray;
-	CCitiesData m_PersonsData;
+	CPersonsData m_PersonsData;
 
 protected:
 
