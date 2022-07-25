@@ -27,3 +27,8 @@ bool CCitiesData::DeleteWhereID(const long lID)
 {
 	return m_CitiesTable.DeleteWhereID(lID);
 }
+
+CITIES* CCitiesData::SelectLastCityRecord()
+{
+	return m_CitiesTable.SelectLast();
+}

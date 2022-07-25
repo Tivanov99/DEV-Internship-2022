@@ -29,6 +29,11 @@ public:
 	bool SelectWhereID(const long lID, CITIES& recCities);
 
 	/// <summary>
+	///  Функция която чете последно добавен запис от таблицата "CITIES" и го връща като указател.
+	/// </summary>
+	CITIES* SelectLastCityRecord();
+
+	/// <summary>
 	///  Функция която прави промяна на запис от таблицата "CITIES" чието ID отговаря на "lID" аргумента,
 	///  и ще приложи промените от аргумента "recCities" в записа извлечен от базата.
 	/// </summary>

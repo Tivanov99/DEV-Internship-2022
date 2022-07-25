@@ -124,7 +124,7 @@ bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 	return true;
 };
 
-CITIES* CCitiesTable::SelectLastWhereID()
+CITIES* CCitiesTable::SelectLast()
 {
 	if (!OpenDbConnectionAndSession())
 		return NULL;
