@@ -6,6 +6,7 @@
 #include <afxcontrolbars.h>
 #include "Structures.h"
 #include "CSelfClearingTypedPtrArray.h"
+#include "CBaseTable.h"
 
 
 using namespace std;
@@ -43,7 +44,7 @@ protected:
 // CCitiesTable
 
 /// <summary>Клас за работа с таблица CITIES</summary>
-class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>
+class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>, public CBaseTable
 {
 	// Constants
 	// ----------------
@@ -51,15 +52,7 @@ private:
 	static const LPCSTR lpszSelectAllById;
 	static const LPCSTR lpszSelectAll;   
 	static const LPCSTR lpszEmptySelect;
-	static const LPCSTR lpszUnableToConnectServer;
-	static const LPCSTR lpszUnableToOpenSession ;
-	static const LPCSTR lpszErrorExecutingQuery;
-	static const LPCSTR lpszErrorInvalidQueryAcessor;
-	static const LPCSTR lpszErrorOpeningRecord;
-	static const LPCSTR lpszErrorUpdatingRecord;
-	static const LPCSTR lpszErrorDeletingRecord;
-	static const LPCSTR lpszErrorInsertingRecord;
-	static const LPCSTR lpszInvalidRecordVersion;
+	
 
 	// Constructor / Destructor
 	// ----------------
@@ -103,22 +96,22 @@ public:
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	bool DeleteWhereID(const long lID);
 
-private:
-	/// <summary>
-	///  Функция която отваря сесия и връзка към базата.
-	/// </summary>
-	bool OpenDbConnectionAndSession();
-
-	/// <summary>
-	///  Функция която създава рол-сет.
-	/// </summary>
-	CDBPropSet GetDBPropSet() const;
-
-	/// <summary>
-	///  Функция която създава рол-сет предназначен за модифициране на данни.
-	/// </summary>
-	CDBPropSet GetModifyDBPropSet() const;
-
+//private:
+//	/// <summary>
+//	///  Функция която отваря сесия и връзка към базата.
+//	/// </summary>
+//	bool OpenDbConnectionAndSession();
+//
+//	/// <summary>
+//	///  Функция която създава рол-сет.
+//	/// </summary>
+//	CDBPropSet GetDBPropSet() const;
+//
+//	/// <summary>
+//	///  Функция която създава рол-сет предназначен за модифициране на данни.
+//	/// </summary>
+//	CDBPropSet GetModifyDBPropSet() const;
+//
 	/// <summary>
 	///  Функция която изпълнява дадена заявка към отворена връзка.
 	/// </summary>
@@ -128,25 +121,25 @@ private:
 		/// се модифицират данните или не. 0 - не модофицра / 1 модифицира.
 	/// </param>  
 	bool ExecuteQuery(const CString& strQuery,const int nQueryAccessor);
-
+//
 	/// <summary>
 	///  Функция която затваря връзката към базата.
 	/// </summary>
 	void CloseDbConnectionAndSession();
-
-	/// <summary>
-	///  Функция която извежда съобщение при неуспешен опит за прочитане на резултат от заявка.
-	/// </summary>
-	/// <param name="hResult">Обект съдържащ съобщението на възникналата грешка.</param> 
-	/// <param name="strErrorMessage">Обект който съдържа подробно разяснение за текущата грешка.</param>  
-	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
-	void ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery = NULL);
-
-	// Overrides
-	// -------------
-
-	// Members
-	// -------------
-	CDataSource m_oDataSource;
-	CSession m_oSession;
+//
+//	/// <summary>
+//	///  Функция която извежда съобщение при неуспешен опит за прочитане на резултат от заявка.
+//	/// </summary>
+//	/// <param name="hResult">Обект съдържащ съобщението на възникналата грешка.</param> 
+//	/// <param name="strErrorMessage">Обект който съдържа подробно разяснение за текущата грешка.</param>  
+//	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
+//	void ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery = NULL);
+//
+//	// Overrides
+//	// -------------
+//
+//	// Members
+//	// -------------
+//	CDataSource m_oDataSource;
+//	CSession m_oSession;
 };

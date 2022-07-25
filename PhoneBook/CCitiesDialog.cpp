@@ -6,7 +6,6 @@
 #include "afxdialogex.h"
 #include "CCitiesDialog.h"
 #include "CitiesView.h"
-#include "CCitiesConfirmDeleteDialog.h"
 
 
 

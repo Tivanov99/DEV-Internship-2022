@@ -184,6 +184,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CBaseTable.h" />
     <ClInclude Include="CCitiesData.h" />
     <ClInclude Include="CCitiesDialog.h" />
     <ClInclude Include="CCitiesDocument.h" />
@@ -193,7 +194,6 @@
     <ClInclude Include="CPersonsDocument.h" />
     <ClInclude Include="CPersonsTable.h" />
     <ClInclude Include="CPersonsView.h" />
-    <ClInclude Include="CTable.h" />
     <ClInclude Include="Structures.h" />
     <ClInclude Include="CitiesDoc.h" />
     <ClInclude Include="CitiesView.h" />
@@ -206,6 +206,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBaseTable.cpp" />
     <ClCompile Include="CCitiesData.cpp" />
     <ClCompile Include="CCitiesDialog.cpp" />
     <ClCompile Include="CCitiesDocument.cpp" />
@@ -217,7 +218,6 @@
     <ClCompile Include="CPersonsDocument.cpp" />
     <ClCompile Include="CPersonsTable.cpp" />
     <ClCompile Include="CPersonsView.cpp" />
-    <ClCompile Include="CTable.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
