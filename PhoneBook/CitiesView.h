@@ -64,10 +64,12 @@ private:
 	/// Конфигурира всичко нужно за държанието и изгледа на лист контролата.
 	/// </summary>
 	void ConfigurateCListCtrl();
+
 	// Overrides
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint) override;
+
 protected:
 	/// <summary>
 	/// Метод подготвящ всично нужно по CListCtrl при стартирането на програмата.

@@ -44,7 +44,7 @@ PERSONS* CPersonsDocument::GetPersonById(long lID)
 	PERSONS* pPerson = m_oPersonsArray.GetAt(lID);
 	if (pPerson == NULL)
 	{
-		AfxMessageBox(_T("Somethin wrong with record. Try again."));
+		AfxMessageBox(_T("Failed to read data about person."));
 	}
 	return pPerson;
 }
@@ -67,10 +67,7 @@ bool CPersonsDocument::DeletePersonById(long lID)
 	const bool bDeleteResult = m_PersonsData.DeleteWhereID(lID);
 
 	if (!bDeleteResult)
-	{
-		TRACE(_T("Deletion from database returned error. City id: %d"), lID);
 		return false;
-	}
 
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
 	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
