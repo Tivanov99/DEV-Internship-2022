@@ -16,13 +16,13 @@ protected: // create from serialization only
 	// Attributes
 public:
 	/// <summary>
-	/// Връща документ чрез който се достъпват информацията от базата данни.
+	/// Връща документ чрез който се достъпва информацията от базата данни.
 	/// </summary>
 	/// <returns>Указател на документа.</returns>
 	CCitiesDocument* GetDocument() const;
 
 	//Methods
-public:
+private:
 	/// <summary>
 	/// Функция която попълва цялата информация за градовете.
 	/// </summary>
@@ -35,7 +35,7 @@ public:
 	/// </summary>
 	/// <param name="LSCCitiesList">Лист контрола към която ще бъдат добавени колините.</param>
 	void AddColumns(CListCtrl& LSCCitiesList);
-private:
+
 	 /// <summary>
 	 /// Връща указател записан в 'item data' при добавянето на записа в CListCtrl.
 	 /// </summary>

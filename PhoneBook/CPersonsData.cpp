@@ -1,9 +1,12 @@
 #include "pch.h"
 #include "CPersonsData.h"
 
-CPersonsData::CPersonsData(){};
+CPersonsData::CPersonsData() {
 
-CPersonsData::~CPersonsData(){};
+};
+CPersonsData::~CPersonsData() {
+
+};
 
 bool CPersonsData::SelectAll(CSelfClearingTypedPtrArray<PERSONS>& oPersonsArray)
 {

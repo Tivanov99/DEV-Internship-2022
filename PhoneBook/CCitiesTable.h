@@ -17,8 +17,7 @@ class CCityAccessor
 {
 protected:
 	CCityAccessor()
-	{
-	};
+	{};
 	~CCityAccessor() {
 	};
 	CITIES m_recCITY;

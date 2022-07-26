@@ -1,9 +1,8 @@
 #pragma once
 #include "CPersonsDocument.h"
-
-class CPersonsView :public CListView
+class CPersonsView : public CListView
 {
-protected: // create from serialization only
+protected:
 	CPersonsView() noexcept;
 	DECLARE_DYNCREATE(CPersonsView)
 
@@ -16,9 +15,9 @@ public:
 	CPersonsDocument* GetDocument() const;
 
 	//Methods
-private:
+public:
 	/// <summary>
-	/// Функция която попълва цялата информация за градовете.
+	/// Функция която попълва цялата информация за хората.
 	/// </summary>
 	/// <param name="LSCCitiesList">Лист контрола в която ще се попълват данните.</param>
 	/// <param name="oPersonsArray">Масив съдържащ всички записи за градовете прочетени от базата.</param>
@@ -29,11 +28,11 @@ private:
 	/// </summary>
 	/// <param name="LSCCitiesList">Лист контрола към която ще бъдат добавени колините.</param>
 	void AddColumns(CListCtrl& LSCCitiesList);
-
+private:
 	/// <summary>
-	 /// Връща указател записан в 'item data' при добавянето на записа в CListCtrl.
-	 /// </summary>
-	 /// <returns></returns>
+	/// Връща указател записан в 'item data' при добавянето на записа в CListCtrl.
+	/// </summary>
+	/// <returns></returns>
 	PERSONS* GetSelectedRecordItemData();
 
 	/// <summary>
@@ -51,8 +50,8 @@ private:
 	/// <summary>
 	/// Добавя нов запис към лист контролата.
 	/// </summary>
-	/// <param name="pPerson">Пойнтър представляващ нов запис</param>
-	void InsertNewItemToCListCtrl(PERSONS* pPerson);
+	/// <param name="pCity">Пойнтър представляващ нов запис</param>
+	void InsertNewItemToCListCtrl(CITIES* pCity);
 
 	/// <summary>
 	/// Конфигурира всичко нужно за държанието и изгледа на лист контролата.
@@ -70,7 +69,7 @@ protected:
 	/// </summary>
 	virtual void OnInitialUpdate(); // called first time after construct
 
-// Implementation
+	// Implementation
 public:
 	virtual ~CPersonsView();
 #ifdef _DEBUG
@@ -85,6 +84,11 @@ protected:
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
-
 };
 
+#ifndef _DEBUG  // debug version in CitiesView.cpp
+inline CPersonsDocument* CPersonsView::GetDocument() const
+{
+	return reinterpret_cast<CPersonsDocument*>(m_pDocument);
+}
+#endif

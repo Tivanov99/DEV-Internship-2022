@@ -201,7 +201,7 @@ void CCitiesView::OnContextMenuDelete()
 	if (msgboxID == IDOK)
 	{
 		CCitiesDocument* oCitiesDoc = GetDocument();
-		if (!oCitiesDoc->DeletePersonById(pCity->lID))
+		if (!oCitiesDoc->DeleteCityById(pCity->lID))
 			return;
 
 		const int nSelectedRow = GetNumberOfSelectedRow();
@@ -227,7 +227,7 @@ void CCitiesView::OnContextMenuEdit()
 	CCitiesDocument* oCitiesDoc = GetDocument();
 
 	
-	if (!oCitiesDoc->UpdatePerson(*pCity))
+	if (!oCitiesDoc->UpdateCity(*pCity))
 		return;
 
 		CString strPostalCode;
@@ -274,14 +274,14 @@ void CCitiesView::OnContextMenuInsert()
 
 	CCitiesDocument* pCitiesDoc = GetDocument();
 
-	if (!pCitiesDoc->InsertPerson(oCity))
+	if (!pCitiesDoc->InsertCity(oCity))
 		return;
 
-	CITIES* pCity = pCitiesDoc->GetLastCityRecord();
+	/*CITIES* pCity = pCitiesDoc->GetLastCityRecord();
 
 	if (pCity == NULL)
 		return;
-	InsertNewItemToCListCtrl(pCity);
+	InsertNewItemToCListCtrl(pCity);*/
 
 	
 }

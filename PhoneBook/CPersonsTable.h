@@ -48,7 +48,7 @@ private:
 	static const LPCSTR lpszSelectAll;
 	static const LPCSTR lpszEmptySelect;
 
-protected:
+public:
 	CPersonsTable();
 	~CPersonsTable();
 	

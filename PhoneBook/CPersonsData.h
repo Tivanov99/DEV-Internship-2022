@@ -1,6 +1,5 @@
 #pragma once
 #include "Structures.h"
-#include "CSelfClearingTypedPtrArray.h";
 #include "CPersonsTable.h"
 
 class CPersonsData 
@@ -8,11 +7,10 @@ class CPersonsData
 	// Constructor / Destructor
 	// ----------------
 public:
-	CPersonsData();
-	~CPersonsData();
-
 	// Methods
 	// ----------------
+	CPersonsData();
+	~CPersonsData();
 
 	/// <summary>
 	///  Функция която чете всики записи от таблицата "PERSONS" и ги добавя в подаден като аргумент масив.
