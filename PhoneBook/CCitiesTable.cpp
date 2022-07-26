@@ -54,7 +54,7 @@ bool CCitiesTable::ExecuteQuery(const CString& strQuery, const int nQueryAccesso
 	return true;
 }
 
-bool CCitiesTable::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesPtrArray)
+bool CCitiesTable::SelectAll(CSelfClearingTypedPtrArray<PERSONS>& oCitiesPtrArray)
 {
 	if (!OpenDbConnectionAndSession())
 		return false;
@@ -78,7 +78,7 @@ bool CCitiesTable::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesPtrArray
 	// Прочитаме всички данни
 	while (hResult != DB_S_ENDOFROWSET)
 	{
-		CITIES* pCurrentCity = new CITIES;
+		PERSONS* pCurrentCity = new PERSONS;
 		*pCurrentCity = m_recCITY;
 		oCitiesPtrArray.Add(pCurrentCity);
 
@@ -99,7 +99,7 @@ bool CCitiesTable::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesPtrArray
 	return true;
 };
 
-bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
+bool CCitiesTable::SelectWhereID(const long lID, PERSONS& recCities)
 {
 	if (!OpenDbConnectionAndSession())
 		return false;
@@ -125,7 +125,7 @@ bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 	return true;
 };
 
-CITIES* CCitiesTable::SelectLast()
+PERSONS* CCitiesTable::SelectLast()
 {
 	if (!OpenDbConnectionAndSession())
 		return NULL;
@@ -145,14 +145,14 @@ CITIES* CCitiesTable::SelectLast()
 		CloseDbConnectionAndSession();
 		return NULL;
 	}
-	CITIES* pCurrentCity = new CITIES;
+	PERSONS* pCurrentCity = new PERSONS;
 	*pCurrentCity = m_recCITY;
 
 	CloseDbConnectionAndSession();
 	return pCurrentCity;
 };
 
-bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
+bool CCitiesTable::UpdateWhereID(const long lID, const PERSONS& recCities)
 {
 	if (!OpenDbConnectionAndSession())
 		return false;
@@ -195,7 +195,7 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	return true;
 };
 
-bool CCitiesTable::Insert(const CITIES& recCities)
+bool CCitiesTable::Insert(const PERSONS& recCities)
 {
 	if (!OpenDbConnectionAndSession())
 		return false;

@@ -41,6 +41,13 @@ protected:
 };
 class CPersonsTable : private CCommand<CAccessor<CPersonAccessor>>, public CBaseTable<PERSONS>
 {
+	// Constants
+	// ----------------
+private:
+	static const LPCSTR lpszSelectAllById;
+	static const LPCSTR lpszSelectAll;
+	static const LPCSTR lpszEmptySelect;
+
 protected:
 	CPersonsTable();
 	~CPersonsTable();
@@ -58,12 +65,6 @@ public:
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	/// <param name="recPersons">Референция която ще присвои резултата от функцията</param>
 	bool SelectWhereID(const long lID, PERSONS& recPersons) override;
-
-
-	/// <summary>
-	///  Функция която чете последен запис от таблицата "CITIES"и го връща като указател.
-	/// </summary>
-	CITIES* SelectLast();
 
 	/// <summary>
 	///  Функция която прави промяна на запис от таблицата "PERSONS" чието ID отговаря на "lID" аргумента,
@@ -85,6 +86,21 @@ public:
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	bool DeleteWhereID(const long lID) override;
 
+private:
+	/// <summary>
+	///  Функция която изпълнява дадена заявка към отворена връзка.
+	/// </summary>
+	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
+	/// <param name="nQueryAccessor">
+		///Целочислено число което определя дали ще
+		/// се модифицират данните или не. 0 - не модофицра / 1 модифицира.
+	/// </param>  
+	bool ExecuteQuery(const CString& strQuery, const int nQueryAccessor) override;
+
+	/// <summary>
+	///  Функция която затваря връзката към базата.
+	/// </summary>
+	void CloseDbConnectionAndSession() override;
 
 };
 

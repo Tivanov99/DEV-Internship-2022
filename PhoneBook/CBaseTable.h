@@ -13,6 +13,7 @@ private:
 
 private:
 	friend class CCitiesTable;
+	friend class CPersonsTable;
 
 	// Methods
 // -------------
@@ -59,6 +60,21 @@ private:
 	/// <param name="strErrorMessage">Обект който съдържа подробно разяснение за текущата грешка.</param>
 	/// <param name="strQuery">Обект който съдържа текущата заявка.</param>
 	void ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery);
+
+	/// <summary>
+	///  Функция която изпълнява дадена заявка към отворена връзка.
+	/// </summary>
+	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
+	/// <param name="nQueryAccessor">
+		///Целочислено число което определя дали ще
+		/// се модифицират данните или не. 0 - не модофицра / 1 модифицира.
+	/// </param>  
+	bool virtual ExecuteQuery(const CString& strQuery, const int nQueryAccessor) = 0;
+
+	/// <summary>
+	///  Функция която затваря връзката към базата.
+	/// </summary>
+	void virtual  CloseDbConnectionAndSession() = 0;
 
 	// Overrides
 	// -------------

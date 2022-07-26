@@ -111,10 +111,10 @@ private:
 		///Целочислено число което определя дали ще
 		/// се модифицират данните или не. 0 - не модофицра / 1 модифицира.
 	/// </param>  
-	bool ExecuteQuery(const CString& strQuery,const int nQueryAccessor);
+	bool ExecuteQuery(const CString& strQuery,const int nQueryAccessor) override;
 
 	/// <summary>
 	///  Функция която затваря връзката към базата.
 	/// </summary>
-	void CloseDbConnectionAndSession();
+	void CloseDbConnectionAndSession() override;
 };
