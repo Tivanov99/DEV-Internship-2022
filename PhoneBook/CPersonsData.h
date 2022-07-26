@@ -1,5 +1,7 @@
 #pragma once
 #include "Structures.h"
+#include "CSelfClearingTypedPtrArray.h";
+
 class CPersonsData 
 {
 	// Constructor / Destructor
@@ -14,7 +16,7 @@ public:
 	/// <summary>
 	///  Функция която чете всики записи от таблицата "PERSONS" и ги добавя в подаден като аргумент масив.
 	/// </summary>
-	/// <param name="oCitiesArray">Масив в който ще бъдат записани всички прочетени данни.</param>
+	/// <param name="oPersonsArray">Масив в който ще бъдат записани всички прочетени данни.</param>
 	bool SelectAll(CSelfClearingTypedPtrArray<PERSONS>& oPersonsArray);
 
 	/// <summary>
