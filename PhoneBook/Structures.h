@@ -47,7 +47,7 @@ struct PERSONS {
 	/// <summary>Променлива съдържаща стойността от колона 'FIRST_NAME' в таблицата  'PERSONS'</summary>
 	TCHAR szFIRST_NAME[FIRST_NAME_SIZE];
 	/// <summary>Променлива съдържаща стойността от колона 'SECOND_NAME' в таблицата  'PERSONS'</summary>
-	char szSECOND_NAME[SECOND_NAME_SIZE];
+	TCHAR szSECOND_NAME[SECOND_NAME_SIZE];
 	/// <summary>Променлива съдържаща стойността от колоната 'LAST_NAME' в таблицата  'PERSONS'</summary>
 	TCHAR szLAST_NAME[LAST_NAME_SIZE];
 	/// <summary>Променлива съдържаща вторичен ключ (от колона 'CITY_ID' в таблицата  'PERSONS')
