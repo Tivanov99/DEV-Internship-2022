@@ -41,7 +41,7 @@ const CSelfClearingTypedPtrArray< PERSONS>& CPersonsDocument::GetAllPersons()
 
 PERSONS* CPersonsDocument::GetPersonById(long lID)
 {
-	PERSONS* pPerson = m_oPersonsArray.GetAt(lID - 1);
+	PERSONS* pPerson = m_oPersonsArray.GetAt(lID);
 	if (pPerson == NULL)
 	{
 		AfxMessageBox(_T("Somethin wrong with record. Try again."));
@@ -88,10 +88,10 @@ bool CPersonsDocument::UpdatePerson(PERSONS& recPerson)
 	if (!bUpdate)
 		return false;
 
-	CITIES oCity;
-	m_PersonsData.SelectWhereID(recPerson.lID, oCity);
+	PERSONS oPerson;
+	m_PersonsData.SelectWhereID(recPerson.lID, oPerson);
 	//TODO: Chech here for object ?
-	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
+	//OnUpdateAllViews(ContextMenuOperations::Edit, &oPerson);
 	return true;
 }
 bool CPersonsDocument::InsertPerson(PERSONS& recCity)
@@ -101,6 +101,6 @@ bool CPersonsDocument::InsertPerson(PERSONS& recCity)
 		return false;
 
 	//TODO: Chech here for object ?
-	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
+	//OnUpdateAllViews(ContextMenuOperations::Edit, &oPerson);
 	return true;
 }

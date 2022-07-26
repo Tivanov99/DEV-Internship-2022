@@ -1,5 +1,6 @@
 #pragma once
 #include "CCitiesTable.h"
+
 class CCitiesData
 {
 	// Constructor / Destructor

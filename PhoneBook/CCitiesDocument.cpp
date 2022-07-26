@@ -41,7 +41,7 @@ const CSelfClearingTypedPtrArray<CITIES>& CCitiesDocument::GetAllPersons()
 
 CITIES* CCitiesDocument::GetCityById(long lID)
 {
-	CITIES* pCity = m_oCitiesArray.GetAt(lID - 1);
+	CITIES* pCity = m_oCitiesArray.GetAt(lID);
 	if (pCity == NULL)
 	{
 		AfxMessageBox(_T("Somethin wrong with record. Try again."));

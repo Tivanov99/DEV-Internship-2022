@@ -35,7 +35,6 @@ public:
 	bool DeletePersonById(long lID);
 	bool UpdatePerson(PERSONS& recPerson);
 	bool InsertPerson(PERSONS& recPerson);
-
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	//Members
