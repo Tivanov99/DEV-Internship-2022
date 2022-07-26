@@ -272,16 +272,16 @@ void CCitiesView::OnContextMenuInsert()
 		return;
 	}
 
-	CCitiesDocument* oCitiesDoc = GetDocument();
+	CCitiesDocument* pCitiesDoc = GetDocument();
 
-	if (!oCitiesDoc->InsertCity(oCity))
+	if (!pCitiesDoc->InsertCity(oCity))
 		return;
 
-	/*CITIES* pCity = oCitiesDoc->GetLastCityRecord();
+	CITIES* pCity = pCitiesDoc->GetLastCityRecord();
+
 	if (pCity == NULL)
 		return;
 	InsertNewItemToCListCtrl(pCity);
 
-	delete pCity;
-	pCity = NULL;*/
+	
 }

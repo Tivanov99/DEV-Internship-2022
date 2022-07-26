@@ -14,6 +14,8 @@ private:
 private:
 	friend class CCitiesTable;
 
+	// Methods
+// -------------
 private:
 	const LPCSTR lpszInvalidRecordVersion = "Invalid version of current record! Please reload the record again.";
 	const LPCSTR lpszErrorExecutingQuery = "Error executing query.Query : %s";
@@ -51,13 +53,12 @@ private:
 	/// </summary>
 	CDBPropSet GetModifyDBPropSet() const;
 
-	///<summary>
+	/// <summary>
 	///  Функция която извежда съобщение при неуспешен опит за прочитане на резултат от заявка.
 	/// </summary>
-	/// <param name="hResult">Обект съдържащ съобщението на възникналата грешка.</param> 
-	/// <param name="strErrorMessage">Обект който съдържа подробно разяснение за текущата грешка.</param>  
-	/// <param name="strQuery">Обект който съдържа текущата заявка.</param> 
-	void ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery );
+	/// <param name="strErrorMessage">Обект който съдържа подробно разяснение за текущата грешка.</param>
+	/// <param name="strQuery">Обект който съдържа текущата заявка.</param>
+	void ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery);
 
 	// Overrides
 	// -------------

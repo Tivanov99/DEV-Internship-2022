@@ -75,6 +75,7 @@ bool CCitiesDocument::DeleteCityById(long lID)
 		TRACE(_T("Deletion from database returned error. City id: %d"), lID);
 		return false;
 	}
+
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
 	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
 	return true;
