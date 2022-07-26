@@ -125,33 +125,6 @@ bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 	return true;
 };
 
-CITIES* CCitiesTable::SelectLast()
-{
-	if (!OpenDbConnectionAndSession())
-		return NULL;
-
-	CString strQuery;
-	strQuery.Format((CString)lpszSelectLastById);
-
-	if (!ExecuteQuery(strQuery, NoneModifyColumnCode))
-	{
-		CloseDbConnectionAndSession();
-		return NULL;
-	}
-
-	if (FAILED(MoveFirst()))
-	{
-		ShowErrorMessage(lpszErrorOpeningRecord, NULL);
-		CloseDbConnectionAndSession();
-		return NULL;
-	}
-	CITIES* pCurrentCity = new CITIES;
-	*pCurrentCity = m_recCITY;
-
-	CloseDbConnectionAndSession();
-	return pCurrentCity;
-};
-
 bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 {
 	if (!OpenDbConnectionAndSession())

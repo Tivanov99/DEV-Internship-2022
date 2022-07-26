@@ -18,10 +18,8 @@ class CCityAccessor
 protected:
 	CCityAccessor()
 	{
-
 	};
 	~CCityAccessor() {
-
 	};
 	CITIES m_recCITY;
 
@@ -75,12 +73,6 @@ public:
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	/// <param name="recCities">Референция която ще присвои резултата от функцията</param>
 	bool SelectWhereID(const long lID, CITIES& recCities) override;
-
-
-	/// <summary>
-	///  Функция която чете последен запис от таблицата "CITIES"и го връща като указател.
-	/// </summary>
-	CITIES* SelectLast();
 
 	/// <summary>
 	///  Функция която прави промяна на запис от таблицата "CITIES" чието ID отговаря на "lID" аргумента,

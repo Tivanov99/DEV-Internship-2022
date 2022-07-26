@@ -2,10 +2,6 @@
 #include "CCitiesTable.h"
 class CCitiesData
 {
-	// Constants
-	// ----------------
-
-
 	// Constructor / Destructor
 	// ----------------
 public:
@@ -27,11 +23,6 @@ public:
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	/// <param name="recCities">Референция която ще присвои резултата от функцията</param>
 	bool SelectWhereID(const long lID, CITIES& recCities);
-
-	/// <summary>
-	///  Функция която чете последно добавен запис от таблицата "CITIES" и го връща като указател.
-	/// </summary>
-	CITIES* SelectLast();
 
 	/// <summary>
 	///  Функция която прави промяна на запис от таблицата "CITIES" чието ID отговаря на "lID" аргумента,

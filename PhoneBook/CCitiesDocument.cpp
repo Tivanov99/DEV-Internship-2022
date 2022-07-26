@@ -34,12 +34,12 @@ void CCitiesDocument::Serialize(CArchive& ar)
 	}
 }
 
-const CSelfClearingTypedPtrArray< CITIES>& CCitiesDocument::GetAllPersons()
+const CSelfClearingTypedPtrArray<CITIES>& CCitiesDocument::GetAllPersons()
 {
 	return m_oCitiesArray;
 }
 
-CITIES* CCitiesDocument::GetPersonById(long lID)
+CITIES* CCitiesDocument::GetCityById(long lID)
 {
 	CITIES* pCity = m_oCitiesArray.GetAt(lID - 1);
 	if (pCity == NULL)
@@ -47,11 +47,6 @@ CITIES* CCitiesDocument::GetPersonById(long lID)
 		AfxMessageBox(_T("Somethin wrong with record. Try again."));
 	}
 	return pCity;
-}
-
-CITIES* CCitiesDocument::GetLastCityRecord()
-{
-	return m_CitiesData.SelectLast();
 }
 
 #ifdef _DEBUG
@@ -66,7 +61,7 @@ void CCitiesDocument::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-bool CCitiesDocument::DeletePersonById(long lID)
+bool CCitiesDocument::DeleteCityById(long lID)
 {
 	const bool bDeleteResult = m_CitiesData.DeleteWhereID(lID);
 
@@ -86,7 +81,7 @@ void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 	UpdateAllViews(NULL, lHint, pHint);
 }
 
-bool CCitiesDocument::UpdatePerson(CITIES& recCity)
+bool CCitiesDocument::UpdateCity(CITIES& recCity)
 {
 	bool bUpdate = m_CitiesData.UpdateWhereID(recCity.lID, recCity);
 	if (!bUpdate)
@@ -98,7 +93,7 @@ bool CCitiesDocument::UpdatePerson(CITIES& recCity)
 	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
 	return true;
 }
-bool CCitiesDocument::InsertPerson(CITIES& recCity)
+bool CCitiesDocument::InsertCity(CITIES& recCity)
 {
 	bool bInsert = m_CitiesData.Insert(recCity);
 	if (!bInsert)
