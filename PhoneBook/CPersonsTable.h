@@ -101,6 +101,5 @@ private:
 	///  Функция която затваря връзката към базата.
 	/// </summary>
 	void CloseDbConnectionAndSession() override;
-
 };
 

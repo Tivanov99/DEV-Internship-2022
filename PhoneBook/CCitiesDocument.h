@@ -31,12 +31,12 @@ public:
 #endif
 	//Methods
 public:
-	const CSelfClearingTypedPtrArray< CITIES>& GetAllCities();
-	CITIES* GetCityById(long lID);
+	const CSelfClearingTypedPtrArray< CITIES>& GetAllPersons();
+	CITIES* GetPersonById(long lID);
 	CITIES* GetLastCityRecord();
-	bool DeleteCityById(long lID);
-	bool UpdateCity(CITIES& recCity);
-	bool InsertCity(CITIES& recCity);
+	bool DeletePersonById(long lID);
+	bool UpdatePerson(CITIES& recCity);
+	bool InsertPerson(CITIES& recCity);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	//Members

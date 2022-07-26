@@ -34,12 +34,12 @@ void CCitiesDocument::Serialize(CArchive& ar)
 	}
 }
 
-const CSelfClearingTypedPtrArray< CITIES>& CCitiesDocument::GetAllCities()
+const CSelfClearingTypedPtrArray< CITIES>& CCitiesDocument::GetAllPersons()
 {
 	return m_oCitiesArray;
 }
 
-CITIES* CCitiesDocument::GetCityById(long lID)
+CITIES* CCitiesDocument::GetPersonById(long lID)
 {
 	CITIES* pCity = m_oCitiesArray.GetAt(lID - 1);
 	if (pCity == NULL)
@@ -66,7 +66,7 @@ void CCitiesDocument::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-bool CCitiesDocument::DeleteCityById(long lID)
+bool CCitiesDocument::DeletePersonById(long lID)
 {
 	const bool bDeleteResult = m_CitiesData.DeleteWhereID(lID);
 
@@ -86,7 +86,7 @@ void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 	UpdateAllViews(NULL, lHint, pHint);
 }
 
-bool CCitiesDocument::UpdateCity(CITIES& recCity)
+bool CCitiesDocument::UpdatePerson(CITIES& recCity)
 {
 	bool bUpdate = m_CitiesData.UpdateWhereID(recCity.lID, recCity);
 	if (!bUpdate)
@@ -98,7 +98,7 @@ bool CCitiesDocument::UpdateCity(CITIES& recCity)
 	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
 	return true;
 }
-bool CCitiesDocument::InsertCity(CITIES& recCity)
+bool CCitiesDocument::InsertPerson(CITIES& recCity)
 {
 	bool bInsert = m_CitiesData.Insert(recCity);
 	if (!bInsert)

@@ -2,9 +2,9 @@
 #include "CPersonsTable.h"
 
 
-const LPCSTR CPersonsTable::lpszSelectAllById = "SELECT * FROM CITIES WHERE ID = %d";
-const LPCSTR CPersonsTable::lpszSelectAll = "SELECT * FROM CITIES";
-const LPCSTR CPersonsTable::lpszEmptySelect = "SELECT TOP 0 * FROM CITIES";
+const LPCSTR CPersonsTable::lpszSelectAllById = "SELECT * FROM PERSONS WHERE ID = %d";
+const LPCSTR CPersonsTable::lpszSelectAll = "SELECT * FROM PERSONS";
+const LPCSTR CPersonsTable::lpszEmptySelect = "SELECT TOP 0 * FROM PERSONS";
 
 /////////////////////////////////////////////////////////////////////////////
 // CCitiesTable
