@@ -5,7 +5,6 @@
 #include <afxcontrolbars.h>
 #include <afxcontrolbars.h>
 #include "Structures.h"
-#include "CSelfClearingTypedPtrArray.h"
 #include "CBaseTable.h"
 
 
@@ -44,7 +43,7 @@ protected:
 // CCitiesTable
 
 /// <summary>Клас за работа с таблица CITIES</summary>
-class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>, public CBaseTable
+class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>, public CBaseTable<CITIES>
 {
 	// Constants
 	// ----------------
@@ -68,14 +67,14 @@ public:
 	///  Функция която чете всики записи от таблицата "CITIES" и ги добавя в подаден като аргумент масив.
 	/// </summary>
 	/// <param name="oCitiesArray">Масив в който ще бъдат записани всички прочетени данни.</param>
-	bool SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesArray);
+	bool SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesArray) override;
 
 	/// <summary>
 	///  Функция която чете запис от таблицата "CITIES" чието ID отговаря на "lID" и го презаписва в "recCities" аргумента.
 	/// </summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	/// <param name="recCities">Референция която ще присвои резултата от функцията</param>
-	bool SelectWhereID(const long lID, CITIES& recCities);
+	bool SelectWhereID(const long lID, CITIES& recCities) override;
 
 
 	/// <summary>
@@ -89,19 +88,19 @@ public:
 	/// </summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	/// <param name="recCities">Референция която съдържа вече променените данни.</param>
-	bool UpdateWhereID(const long lID, const CITIES& recCities);
+	bool UpdateWhereID(const long lID, const CITIES& recCities) override;
 
 	/// <summary>
 	///  Функция която добавя запис подаден като аргумент към таблицата "CITIES".
 	/// </summary>
 	/// <param name="recCities">Референция която съдържа нов обект.</param>
-	bool Insert(const CITIES& recCities);
+	bool Insert(const CITIES& recCities) override;
 
 	/// <summary>
 	///  Функция която изтрива запис от таблицата "CITIES" който отговавя на "lID" аргумента.
 	/// </summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
-	bool DeleteWhereID(const long lID);
+	bool DeleteWhereID(const long lID) override;
 
 //private:
 //	/// <summary>

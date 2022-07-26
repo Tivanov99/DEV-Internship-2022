@@ -1,18 +1,17 @@
 #pragma once
 #include "pch.h"
 #include "CBaseTable.h"
-#include <atldbcli.h>
-#include <iostream>
-#include <afxcontrolbars.h>
 
+template <class T>
 
-
-CBaseTable::CBaseTable()
+CBaseTable< T>::CBaseTable()
 {};
-CBaseTable::~CBaseTable()
+template <class T>
+CBaseTable<T>::~CBaseTable()
 {};
 
-CDBPropSet CBaseTable::GetDBPropSet() const
+template <class T>
+CDBPropSet CBaseTable<T>::GetDBPropSet() const
 {
 	CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
 	oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65"));	// сървър
@@ -25,7 +24,8 @@ CDBPropSet CBaseTable::GetDBPropSet() const
 	return oDBPropSet;
 };
 
-bool CBaseTable::OpenDbConnectionAndSession()
+template <class T>
+bool CBaseTable< T>::OpenDbConnectionAndSession()
 {
 	CDBPropSet& oDBPropSet = GetDBPropSet();
 
@@ -50,7 +50,8 @@ bool CBaseTable::OpenDbConnectionAndSession()
 	return true;
 };
 
-CDBPropSet CBaseTable::GetModifyDBPropSet() const
+template <class T>
+CDBPropSet CBaseTable< T>::GetModifyDBPropSet() const
 {
 	CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
 	oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
@@ -60,8 +61,8 @@ CDBPropSet CBaseTable::GetModifyDBPropSet() const
 	return oUpdateDBPropSet;
 };
 
-
-void CBaseTable::ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery)
+template <class T>
+void CBaseTable<T>::ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery)
 {
 	CString strError;
 	if (strQuery.GetString() != NULL)

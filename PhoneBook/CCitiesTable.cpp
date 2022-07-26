@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 #include "CCitiesTable.h"
+#include "CBaseTable.cpp"
 
 
 const LPCSTR CCitiesTable::lpszSelectAllById = "SELECT * FROM CITIES WHERE ID = %d";
