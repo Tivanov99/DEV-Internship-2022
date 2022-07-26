@@ -1,6 +1,7 @@
 #pragma once
 #include "Structures.h"
 #include "CSelfClearingTypedPtrArray.h";
+#include "CPersonsTable.h"
 
 class CPersonsData 
 {
@@ -45,5 +46,7 @@ public:
 	/// </summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	bool DeleteWhereID(const long lID);
+private:
+	CPersonsTable m_PersonsTable;
 };
 
