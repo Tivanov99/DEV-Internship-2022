@@ -44,12 +44,24 @@ private:
 	/// <returns>Връша въвдената стойност в полето.</returns>
 	long GetPostalCodeFromInputFiled();
 
+	/// <summary>
+	/// Задава сойносите попълнени в полетата на записът който подложи на обработка.
+	/// </summary>
 	void SetDataToRecord();
 	// Overrides
 	// ----------------
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+
+	/// <summary>
+	///Надстройва диалоговия прозорец при стартиране и попълва всички данни на подадения обект в полетата; 
+	/// </summary>
+	/// <returns></returns>
 	virtual BOOL OnInitDialog();
+
+	/// <summary>
+	/// Извиква се при натиска не бутона 'Ок'.
+	/// </summary>
 	virtual void OnOK();
 
 	// Members
