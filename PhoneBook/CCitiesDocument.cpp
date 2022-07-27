@@ -9,7 +9,8 @@ END_MESSAGE_MAP()
 
 
 CCitiesDocument::CCitiesDocument()noexcept {};
-CCitiesDocument::~CCitiesDocument() {};
+CCitiesDocument::~CCitiesDocument() {
+};
 
 
 BOOL CCitiesDocument::OnNewDocument()
@@ -70,6 +71,8 @@ bool CCitiesDocument::DeleteCityById(long lID)
 		TRACE(_T("Deletion from database returned error. City id: %d"), lID);
 		return false;
 	}
+
+	m_oCitiesArray.RemoveAt(lID);
 
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
 	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);

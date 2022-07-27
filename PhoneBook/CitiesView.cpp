@@ -204,10 +204,12 @@ void CCitiesView::OnContextMenuDelete()
 		if (!oCitiesDoc->DeleteCityById(pCity->lID))
 			return;
 
-		const int nSelectedRow = GetNumberOfSelectedRow();
+		OnInitialUpdate();
+
+		/*const int nSelectedRow = GetNumberOfSelectedRow();
 
 		CListCtrl& LSCCitiesList = GetListCtrl();
-		LSCCitiesList.DeleteItem(nSelectedRow);
+		LSCCitiesList.DeleteItem(nSelectedRow);*/
 	}
 }
 
@@ -283,5 +285,5 @@ void CCitiesView::OnContextMenuInsert()
 		return;
 	InsertNewItemToCListCtrl(pCity);*/
 
-	
+	//TODO: Use OnUpdateAllViews method from CCitiesDocument.
 }
