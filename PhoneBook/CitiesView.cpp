@@ -80,9 +80,9 @@ void CCitiesView::AddColumns(CListCtrl& LSCCitiesList)
 {
 	const int nColumnWidth = 120;
 	int nColumnNumber = 0;
-	LSCCitiesList.InsertColumn(nColumnNumber, _T("Име"), LVCFMT_LEFT, nColumnWidth, 1);
-	LSCCitiesList.InsertColumn(++nColumnNumber, _T("Регион"), LVCFMT_CENTER, nColumnWidth, 1);
-	LSCCitiesList.InsertColumn(++nColumnNumber, _T("Пощенски код"), LVCFMT_CENTER, nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Име"), LVCFMT_LEFT, nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Регион"), LVCFMT_CENTER, nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(nColumnNumber, _T("Пощенски код"), LVCFMT_CENTER, nColumnWidth, 1);
 }
 
 void CCitiesView::FillView()

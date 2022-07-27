@@ -6,24 +6,39 @@ CCitiesData::~CCitiesData() {};
 
 bool CCitiesData::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesArray)
 {
-	return m_CitiesTable.SelectAll(oCitiesArray);
+	if (!m_CitiesTable.SelectAll(oCitiesArray))
+		return false;
+
+	return true;
 };
 bool CCitiesData::SelectWhereID(const long lID, CITIES& recCities)
 {
-	return m_CitiesTable.SelectWhereID(lID, recCities);
+	if (!m_CitiesTable.SelectWhereID(lID, recCities))
+		return false;
+
+	return true;
 }
 
 bool CCitiesData::UpdateWhereID(const long lID, const CITIES& recCities)
 {
-	return m_CitiesTable.UpdateWhereID(lID, recCities);
+	if (!m_CitiesTable.UpdateWhereID(lID, recCities))
+		return false;
+
+	return true;
 }
 
 bool CCitiesData::Insert(const CITIES& recCities)
 {
-	return m_CitiesTable.Insert(recCities);
+	if (!m_CitiesTable.Insert(recCities))
+		return false;
+
+	return true;
 }
 
 bool CCitiesData::DeleteWhereID(const long lID)
 {
-	return m_CitiesTable.DeleteWhereID(lID);
+	if (!m_CitiesTable.DeleteWhereID(lID))
+		return false;
+
+	return true;
 }
