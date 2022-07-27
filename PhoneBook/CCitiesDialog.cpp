@@ -8,9 +8,6 @@
 #include "CitiesView.h"
 #include "GlobalConstants.h"
 
-
-
-
 // CCitiesDialog dialog
 
 IMPLEMENT_DYNAMIC(CCitiesDialog, CDialog)
@@ -139,10 +136,3 @@ long CCitiesDialog::GetPostalCodeFromInputFiled()
 
 	return lPostalCode;
 }
-
-
-
-
-
-
-
