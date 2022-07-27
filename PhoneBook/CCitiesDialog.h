@@ -48,9 +48,8 @@ private:
 	/// </summary>
 	/// <param name="oEdit">Референция на променлива презентираща входно поле.</param>
 	/// <param name="nMinLenght">Константна минимална дължина на текстовото поле.</param>
-	/// <param name="nMaxLenght">Константна максимална дължина на текстовото поле.</param>
 	/// <returns>Съобщение съдържащо допуснатите грешки, ако има такива.</returns>
-	CString ValidateTextData(const CEdit& oEdit, const int nMinLenght, const int nMaxLenght);
+	CString ValidateTextData(const CEdit& oEdit, const int nMinLenght);
 
 	/// <summary>
 	/// Валидира 'пощенски код' при обработка на запис.

@@ -67,14 +67,14 @@ void CCitiesDialog::FillingInputFields()
 
 void CCitiesDialog::OnOK()
 {
-	CString strCityNameErrorMessage = ValidateTextData(m_edbCityName, nMinCityNameLenght, nMaxCityNameLenght);
+	CString strCityNameErrorMessage = ValidateTextData(m_edbCityName, nMinCityNameLenght);
 	if (strCityNameErrorMessage.GetLength() > 0)
 	{
 		AfxMessageBox(_T("The 'City name' field: ") + strCityNameErrorMessage);
 		return;
 	}
 
-	CString strAreaNameErrorMessage = ValidateTextData(m_edbCityAreaName, nMinCityAreaNameLenght, nMaxCityAreaNameLenght);
+	CString strAreaNameErrorMessage = ValidateTextData(m_edbCityAreaName, nMinCityAreaNameLenght);
 	if (strAreaNameErrorMessage.GetLength() > 0)
 	{
 		AfxMessageBox(_T("The 'Area name' field: ") + strAreaNameErrorMessage);
@@ -123,7 +123,7 @@ void CCitiesDialog::SetDialogTitle()
 }
 
 
-CString CCitiesDialog::ValidateTextData(const CEdit& oCEdit, const int nMinLenght, const int nMaxLenght)
+CString CCitiesDialog::ValidateTextData(const CEdit& oCEdit, const int nMinLenght)
 {
 	CString strData;
 	oCEdit.GetWindowText(strData);
@@ -133,10 +133,6 @@ CString CCitiesDialog::ValidateTextData(const CEdit& oCEdit, const int nMinLengh
 	if (strData.GetLength() < nMinLenght)
 	{
 		strErrorMessage.AppendFormat(_T("The minimum length must be at least %i! "), nMinLenght);
-	}
-	if (strData.GetLength() > nMaxLenght)
-	{
-		strErrorMessage.AppendFormat(_T("The maximum length is %i! "), nMaxLenght);
 	}
 	if (!CheckForNotAllowedChars(strData))
 	{
