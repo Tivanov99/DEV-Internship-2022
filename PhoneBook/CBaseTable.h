@@ -7,7 +7,7 @@
 template<class T>
 class CBaseTable
 {
-private:
+public:
 	CBaseTable();
 	~CBaseTable();
 
@@ -38,6 +38,7 @@ public:
 	bool virtual Insert(const T& rec) = 0;
 
 	bool virtual DeleteWhereID(const long lID) = 0;
+
 private:
 	/// <summary>
 	///  Функция която отваря сесия и връзка към базата.

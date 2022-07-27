@@ -3,7 +3,6 @@
 #include <atldbcli.h>
 #include <iostream>
 #include <afxcontrolbars.h>
-#include <afxcontrolbars.h>
 #include "Structures.h"
 #include "CSelfClearingTypedPtrArray.h"
 #include "CBaseTable.h"
@@ -21,9 +20,7 @@ protected:
 	CPersonAccessor()
 	{
 	};
-	~CPersonAccessor() {
-
-	};
+	~CPersonAccessor() {};
 	PERSONS m_recPERSON;
 
 	BEGIN_ACCESSOR_MAP(CPersonAccessor, 2)
@@ -36,9 +33,11 @@ protected:
 		COLUMN_ENTRY(3, m_recPERSON.szFIRST_NAME)
 		COLUMN_ENTRY(4, m_recPERSON.szSECOND_NAME)
 		COLUMN_ENTRY(5, m_recPERSON.szLAST_NAME)
-		END_ACCESSOR(6, m_recPERSON.szADDRESS)
+		COLUMN_ENTRY(6, m_recPERSON.szADDRESS)
+		END_ACCESSOR()
 	END_ACCESSOR_MAP()
 };
+
 class CPersonsTable : private CCommand<CAccessor<CPersonAccessor>>, public CBaseTable<PERSONS>
 {
 	// Constants

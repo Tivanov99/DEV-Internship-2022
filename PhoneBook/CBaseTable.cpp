@@ -3,9 +3,9 @@
 #include "CBaseTable.h"
 
 template <class T>
-
 CBaseTable< T>::CBaseTable()
 {};
+
 template <class T>
 CBaseTable<T>::~CBaseTable()
 {};

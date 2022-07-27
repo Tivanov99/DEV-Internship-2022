@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CPersonsTable.h"
+#include "CBaseTable.cpp"
 
 
 const LPCSTR CPersonsTable::lpszSelectAllById = "SELECT * FROM PERSONS WHERE ID = %d";
@@ -7,7 +8,7 @@ const LPCSTR CPersonsTable::lpszSelectAll = "SELECT * FROM PERSONS";
 const LPCSTR CPersonsTable::lpszEmptySelect = "SELECT TOP 0 * FROM PERSONS";
 
 /////////////////////////////////////////////////////////////////////////////
-// CCitiesTable
+// CPersonsTable
 
 CPersonsTable::CPersonsTable()
 {};

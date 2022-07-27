@@ -8,14 +8,14 @@
 IMPLEMENT_DYNCREATE(CPersonsView, CListView)
 
 
-//BEGIN_MESSAGE_MAP(CPersonsView, CListView)
-//	ON_WM_CONTEXTMENU()
-//	ON_WM_RBUTTONUP()
-//	ON_WM_LBUTTONDBLCLK()
-//	/*ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CCitiesView::OnContextMenuDelete)
-//	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnContextMenuEdit)
-//	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CCitiesView::OnContextMenuInsert)*/
-//END_MESSAGE_MAP()
+BEGIN_MESSAGE_MAP(CPersonsView, CListView)
+	/*ON_WM_CONTEXTMENU()
+	ON_WM_RBUTTONUP()
+	ON_WM_LBUTTONDBLCLK()*/
+	/*ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CCitiesView::OnContextMenuDelete)
+	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnContextMenuEdit)
+	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CCitiesView::OnContextMenuInsert)*/
+END_MESSAGE_MAP()
 
 // CCitiesView construction/destruction
 
@@ -117,6 +117,7 @@ PERSONS* CPersonsView::GetSelectedRecordItemData()
 
 	PERSONS* pPerson = reinterpret_cast<PERSONS*>(LSCCitiesList.GetItemData(nSelectedRow));
 	return pPerson;*/
+	return NULL;
 }
 
 const int CPersonsView::GetColumnCount()
