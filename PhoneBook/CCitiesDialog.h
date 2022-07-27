@@ -78,7 +78,7 @@ private:
 	/// <summary>
 	/// Мембър отговарящ за входното поле съдържащо името на градът.
 	/// </summary>
-	CEdit m_edbCityPostalCode;
+	CEdit m_edbCityName;
 
 	/// <summary>
 	/// Мембър отговарящ за входното поле съдържащо името на областта.
@@ -94,7 +94,7 @@ private:
 	/// Мембър съдържащ типът на текущата операция подаден като аргумент при извикването на диалога.
 	/// </summary>
 	ContextMenuOperations m_eOperations;
-public:
+private:
 	CButton btn_Ok;
 };
 

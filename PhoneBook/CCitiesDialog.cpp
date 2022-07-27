@@ -26,7 +26,7 @@ void CCitiesDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 
-	DDX_Control(pDX, IDC_EDB_CITIES_NAME, m_edbCityPostalCode);
+	DDX_Control(pDX, IDC_EDB_CITIES_NAME, m_edbCityName);
 	DDX_Control(pDX, IDC_EDB_AREA_NAME, m_edbCityAreaName);
 	DDX_Control(pDX, IDC_EDB_POSTAL_CODE, m_edbCityPostalCode);
 	DDX_Control(pDX, IDOK, btn_Ok);
@@ -49,7 +49,7 @@ BOOL CCitiesDialog::OnInitDialog()
 	if (m_eOperations != ContextMenuOperations::Create)
 		FillingInputFields();
 
-	m_edbCityPostalCode.SetLimitText(nMaxCityNameLenght);
+	m_edbCityName.SetLimitText(nMaxCityNameLenght);
 	m_edbCityAreaName.SetLimitText(nMaxCityAreaNameLenght);
 	SetDialogTitle();
 	return TRUE;
@@ -57,7 +57,7 @@ BOOL CCitiesDialog::OnInitDialog()
 
 void CCitiesDialog::FillingInputFields()
 {
-	m_edbCityPostalCode.SetWindowText(m_recCity.szCITY_NAME);
+	m_edbCityName.SetWindowText(m_recCity.szCITY_NAME);
 	m_edbCityAreaName.SetWindowText(m_recCity.szAREA_NAME);
 
 	CString strPostalCode;
@@ -67,7 +67,7 @@ void CCitiesDialog::FillingInputFields()
 
 void CCitiesDialog::OnOK()
 {
-	CString strCityNameErrorMessage = ValidateTextData(m_edbCityPostalCode, nMinCityNameLenght, nMaxCityNameLenght);
+	CString strCityNameErrorMessage = ValidateTextData(m_edbCityName, nMinCityNameLenght, nMaxCityNameLenght);
 	if (strCityNameErrorMessage.GetLength() > 0)
 	{
 		AfxMessageBox(_T("The 'City name' field: ") + strCityNameErrorMessage);
@@ -99,7 +99,7 @@ void CCitiesDialog ::SetDataToRecord()
 	m_recCity.lPOSTAL_CODE = lPostalCode;
 
 	CString strCityName;
-	m_edbCityPostalCode.GetWindowText(strCityName);
+	m_edbCityName.GetWindowText(strCityName);
 	_tcscpy_s(m_recCity.szCITY_NAME, strCityName);
 
 	CString strAreaName;
