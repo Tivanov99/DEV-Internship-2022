@@ -50,7 +50,7 @@ private:
 	/// </summary>
 	/// <returns>Въща 'true' или 'false' според това дали всико е валидно.</returns>
 	bool ValidatePostalCode();
-	bool CheckForNotAllowedChars(const CString& strValue);
+	bool CheckForSymbols(const CString& strValue) const;
 	long GetPostalCodeFromInputFiled();
 	void SetDataToRecord();
 	// Overrides

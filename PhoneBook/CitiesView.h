@@ -26,15 +26,15 @@ private:
 	/// <summary>
 	/// Функция която попълва цялата информация за градовете.
 	/// </summary>
-	/// <param name="LSCCitiesList">Лист контрола в която ще се попълват данните.</param>
+	/// <param name="оListCtrl">Лист контрола в която ще се попълват данните.</param>
 	/// <param name="oCitiesArray">Масив съдържащ всички записи за градовете прочетени от базата.</param>
-	void FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<CITIES>& oCitiesArray);
+	void FillView();
 
 	/// <summary>
 	/// Метод добавящ всички колони към подадена като аргумент лист контрола.
 	/// </summary>
-	/// <param name="LSCCitiesList">Лист контрола към която ще бъдат добавени колините.</param>
-	void AddColumns(CListCtrl& LSCCitiesList);
+	/// <param name="оListCtrl">Лист контрола към която ще бъдат добавени колините.</param>
+	void AddColumns(CListCtrl& оListCtrl);
 
 	 /// <summary>
 	 /// Връща указател записан в 'item data' при добавянето на записа в CListCtrl.

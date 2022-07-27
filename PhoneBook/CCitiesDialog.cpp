@@ -137,7 +137,7 @@ CString CCitiesDialog::ValidateTextData(const CEdit& oCEdit, const int nMinLengh
 	{
 		strErrorMessage.AppendFormat(_T("The minimum length must be at least %i! "), nMinLenght);
 	}
-	if (!CheckForNotAllowedChars(strData))
+	if (!CheckForSymbols(strData))
 	{
 		strErrorMessage.Append(_T("The text field contains forbidden characters!"));
 	}
@@ -161,7 +161,7 @@ bool CCitiesDialog::ValidatePostalCode()
 	return	lPostalCode <= 0 ? false : true;
 }
 
-bool CCitiesDialog::CheckForNotAllowedChars(const CString& strValue)
+bool CCitiesDialog::CheckForSymbols(const CString& strValue) const
 {
 	for (INT_PTR i = 0; i < strValue.GetLength(); i++)
 	{
