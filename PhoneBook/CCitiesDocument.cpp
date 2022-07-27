@@ -84,6 +84,43 @@ void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 	UpdateAllViews(NULL, lHint, pHint);
 }
 
+void CCitiesDocument::DeleteCityByIdFromCitiesArray(long lID)
+{
+	long lIndex = GetCityIndexById(lID);
+
+	if (lIndex == -1)
+		return;
+
+	CITIES* pCity = m_oCitiesArray.GetAt(lIndex);
+
+	m_oCitiesArray.RemoveAt(lIndex);
+
+}
+
+void CCitiesDocument::AddCityToCitiesArray(CITIES& recCity)
+{
+}
+
+long CCitiesDocument::GetCityIndexById(long lID)
+{
+	if (lID < 0 || lID >= m_oCitiesArray.GetCount())
+	{
+		AfxMessageBox(_T("The city was not found in the document! City Id - %d"), lID);
+	}
+
+	for (INT_PTR i = 0; i < m_oCitiesArray.GetCount(); i++)
+	{
+		CITIES* pCity = m_oCitiesArray.GetAt(i);
+
+		if (pCity->lID != lID)
+			continue;
+
+		return i;
+	}
+
+	return -1;
+}
+
 bool CCitiesDocument::UpdateCity(CITIES& recCity)
 {
 	bool bUpdate = m_CitiesData.UpdateWhereID(recCity.lID, recCity);
@@ -105,13 +142,4 @@ bool CCitiesDocument::InsertCity(CITIES& recCity)
 	//TODO: Chech here for object ?
 	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
 	return true;
-}
-
-void DeleteCityByIdFromCitiesArray(long lID)
-{
-
-}
-void AddCityToCitiesArray(CITIES& recCity)
-{
-
 }
