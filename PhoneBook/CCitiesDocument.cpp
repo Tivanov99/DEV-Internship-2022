@@ -73,7 +73,7 @@ bool CCitiesDocument::DeleteCityById(long lID)
 		return false;
 	}
 
-	m_oCitiesArray.RemoveAt(lID);
+	DeleteCityByIndexFromCitiesArray(lID);
 
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
 	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
@@ -85,33 +85,41 @@ void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 	UpdateAllViews(NULL, lHint, pHint);
 }
 
-void CCitiesDocument::DeleteCityByIdFromCitiesArray(long lID)
+bool CCitiesDocument::DeleteCityByIndexFromCitiesArray(long lIndex)
 {
-	long lIndex = GetCityIndexById(lID);
-
 	if (lIndex == -1)
-		return;
-
-	CITIES* pCity = m_oCitiesArray.GetAt(lIndex);
-	if (pCity == NULL)
 	{
-		AfxMessageBox(_T("The city was not found in the document! City Id - %d"), lID);
-		return;
+		AfxMessageBox(_T("The city was not found in the document! City Id - %d"), lIndex);
+		return false;
 	}
 
+	CITIES* pCity = m_oCitiesArray.GetAt(lIndex);
+
+	delete pCity;
+	pCity = NULL;
 	m_oCitiesArray.RemoveAt(lIndex);
 
+	return true;
 }
 
 void CCitiesDocument::AddCityToCitiesArray(CITIES& recCity)
 {
+	CITIES* pCity = new CITIES();
+	*pCity = recCity;
+	if (pCity == NULL)
+	{
+		delete pCity;
+		AfxMessageBox(_T("Failed to add city to document."));
+	}
+	m_oCitiesArray.Add(pCity);
 }
 
-long CCitiesDocument::GetCityIndexById(long lID)
+long CCitiesDocument::GetCityIndexFromCitiesArrayById(long lID)
 {
-	if (lID < 0 || lID >= m_oCitiesArray.GetCount())
+	if (lID < 0 )
 	{
 		AfxMessageBox(_T("City with ID  - (%d)  was not found in the document."), lID);
+		return -1;
 	}
 
 	for (INT_PTR i = 0; i < m_oCitiesArray.GetCount(); i++)
@@ -129,22 +137,30 @@ long CCitiesDocument::GetCityIndexById(long lID)
 
 bool CCitiesDocument::UpdateCity(CITIES& recCity)
 {
-	bool bUpdate = m_CitiesData.UpdateWhereID(recCity.lID, recCity);
-	if (!bUpdate)
+	if (!m_CitiesData.UpdateWhereID(recCity.lID, recCity))
 		return false;
 
-	CITIES oCity;
-	m_CitiesData.SelectWhereID(recCity.lID, oCity);
+	long lCityIndex = GetCityIndexFromCitiesArrayById(recCity.lID);
+
+	if (!DeleteCityByIndexFromCitiesArray(lCityIndex))
+		return false;
+
+	CITIES* pCity = new CITIES();
+	*pCity = recCity;
+
+	m_oCitiesArray.InsertAt(lCityIndex, pCity);
+
 	//TODO: Chech here for object ?
 	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
 	return true;
 }
 bool CCitiesDocument::InsertCity(CITIES& recCity)
 {
-	bool bInsert = m_CitiesData.Insert(recCity);
-	if (!bInsert)
+	if (!m_CitiesData.Insert(recCity))
 		return false;
 
+	
+	AddCityToCitiesArray(recCity);
 	//TODO: Chech here for object ?
 	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
 	return true;
