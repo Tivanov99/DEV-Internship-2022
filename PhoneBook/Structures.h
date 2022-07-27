@@ -104,10 +104,4 @@ struct PHONE_TYPES {
 };
 
 //typedef CSelfClearingTypedPtrArray<CITIES> CCitiesArray;
-enum ContextMenuOperations
-{
-	Edit,
-	Delete,
-	Create
-};
 

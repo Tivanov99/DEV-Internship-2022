@@ -1,6 +1,7 @@
 #pragma once
 #include "afxdialogex.h"
 #include "Structures.h"
+#include "Enumerations.h"
 
 
 // CCitiesDialog dialog
@@ -40,7 +41,7 @@ private:
 	/// <summary>
 	/// Според командата в 'm_eOperations' задава име на прозореца и на бутона за потвърждаване на операцията.
 	/// </summary>
-	void SetDialogWindowAndOkButtonText();
+	void SetDialogTitle();
 
 	/// <summary>
 	/// Валидира текстови данни идващи от променлива на входно поле подадена като аргумент, и при възникване на грешка конструира и връща поянително съобщение.
@@ -77,17 +78,17 @@ private:
 	/// <summary>
 	/// Мембър отговарящ за входното поле съдържащо името на градът.
 	/// </summary>
-	CEdit StrCitiesName;
+	CEdit m_edbCityPostalCode;
 
 	/// <summary>
 	/// Мембър отговарящ за входното поле съдържащо името на областта.
 	/// </summary>
-	CEdit StrAreaName;
+	CEdit m_edbCityAreaName;
 	
 	/// <summary>
 	/// Мембър отговарящ за входното поле съдържащо пощенски код.
 	/// </summary>
-	CEdit StrPostalCode;
+	CEdit m_edbCityPostalCode;
 
 	/// <summary>
 	/// Мембър съдържащ типът на текущата операция подаден като аргумент при извикването на диалога.

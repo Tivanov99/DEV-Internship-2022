@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CCitiesDocument.h"
+#include "Enumerations.h"
 
 
 IMPLEMENT_DYNCREATE(CCitiesDocument, CDocument)
@@ -92,6 +93,11 @@ void CCitiesDocument::DeleteCityByIdFromCitiesArray(long lID)
 		return;
 
 	CITIES* pCity = m_oCitiesArray.GetAt(lIndex);
+	if (pCity == NULL)
+	{
+		AfxMessageBox(_T("The city was not found in the document! City Id - %d"), lID);
+		return;
+	}
 
 	m_oCitiesArray.RemoveAt(lIndex);
 
@@ -105,7 +111,7 @@ long CCitiesDocument::GetCityIndexById(long lID)
 {
 	if (lID < 0 || lID >= m_oCitiesArray.GetCount())
 	{
-		AfxMessageBox(_T("The city was not found in the document! City Id - %d"), lID);
+		AfxMessageBox(_T("City with ID  - (%d)  was not found in the document."), lID);
 	}
 
 	for (INT_PTR i = 0; i < m_oCitiesArray.GetCount(); i++)
