@@ -139,7 +139,7 @@ CString CCitiesDialog::ValidateTextData(const CEdit& oCEdit, const int nMinLengh
 	}
 	if (!CheckForSymbols(strData))
 	{
-		strErrorMessage.Append(_T("The text field contains forbidden characters!"));
+		strErrorMessage.Append(_T("The text field contains forbidden sybmols!"));
 	}
 
 	return strErrorMessage;
@@ -167,16 +167,17 @@ bool CCitiesDialog::CheckForSymbols(const CString& strValue) const
 	{
 		switch (strValue.GetAt(i))
 		{
-		case '!': return false;
-		case '.': return false;
-		case '?': return false;
-		case ';': return false;
-		case ':': return false;
-		case ',': return false;
-		case '|': return false;
+		case '!':;
+		case '.':;
+		case '?':;
+		case ';':;
+		case ':':;
+		case ',':;
+		case '|':;
 		default:
 			continue;
 		}
+		return false;
 	}
 	return true;
 }

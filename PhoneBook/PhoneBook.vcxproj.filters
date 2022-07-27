@@ -99,6 +99,9 @@
     <ClInclude Include="GlobalConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TextValidator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -156,6 +159,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GlobalConstants.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextValidator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
