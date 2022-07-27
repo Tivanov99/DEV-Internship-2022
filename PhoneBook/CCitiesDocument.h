@@ -38,6 +38,8 @@ public:
 	bool InsertCity(CITIES& recCity);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
+	void DeleteCityByIdFromCitiesArray(long lID);
+	void AddCityToCitiesArray(CITIES& recCity);
 	//Members
 private:
 	CSelfClearingTypedPtrArray<CITIES> m_oCitiesArray;

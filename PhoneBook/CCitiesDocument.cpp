@@ -106,3 +106,12 @@ bool CCitiesDocument::InsertCity(CITIES& recCity)
 	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
 	return true;
 }
+
+void DeleteCityByIdFromCitiesArray(long lID)
+{
+
+}
+void AddCityToCitiesArray(CITIES& recCity)
+{
+
+}
