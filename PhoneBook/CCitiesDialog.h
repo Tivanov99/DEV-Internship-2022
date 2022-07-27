@@ -2,6 +2,7 @@
 #include "afxdialogex.h"
 #include "Structures.h"
 #include "Enumerations.h"
+#include "DataValidator.h"
 
 
 // CCitiesDialog dialog
@@ -38,20 +39,11 @@ private:
 	void SetDialogTitle();
 
 	/// <summary>
-	/// Валидира текстови данни идващи от променлива на входно поле подадена като аргумент, и при възникване на грешка конструира и връща поянително съобщение.
+	/// Взема въвдената стойност от полето за пощенски код.
 	/// </summary>
-	/// <param name="oEdit">Референция на променлива презентираща входно поле.</param>
-	/// <param name="nMinLenght">Константна минимална дължина на текстовото поле.</param>
-	/// <returns>Съобщение съдържащо допуснатите грешки, ако има такива.</returns>
-	CString ValidateTextData(const CEdit& oEdit, const int nMinLenght);
-
-	/// <summary>
-	/// Валидира 'пощенски код' при обработка на запис.
-	/// </summary>
-	/// <returns>Въща 'true' или 'false' според това дали всико е валидно.</returns>
-	bool ValidatePostalCode();
-	bool CheckForSymbols(const CString& strValue) const;
+	/// <returns>Връша въвдената стойност в полето.</returns>
 	long GetPostalCodeFromInputFiled();
+
 	void SetDataToRecord();
 	// Overrides
 	// ----------------
@@ -87,6 +79,12 @@ private:
 	/// Мембър съдържащ типът на текущата операция подаден като аргумент при извикването на диалога.
 	/// </summary>
 	ContextMenuOperations m_eOperations;
+
+
+	/// <summary>
+	/// Мембър съдържащ методи за валидиране на сойностите в текстовите полета.
+	/// </summary>
+	DataValidator m_oDataValidator;
 private:
 	CButton btn_Ok;
 };

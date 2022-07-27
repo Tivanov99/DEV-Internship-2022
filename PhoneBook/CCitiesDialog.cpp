@@ -70,22 +70,28 @@ void CCitiesDialog::FillingInputFields()
 
 void CCitiesDialog::OnOK()
 {
-	CString strCityNameErrorMessage = ValidateTextData(m_edbCityName, GlobalConstants::_nMinCityNameSize);
+	CString strCityName;
+	m_edbCityName.GetWindowText(strCityName);
+
+	CString strCityNameErrorMessage = m_oDataValidator.ValidateTextData(strCityName, GlobalConstants::_nMinCityNameSize);
 	if (strCityNameErrorMessage.GetLength() > 0)
 	{
 		AfxMessageBox(_T("The 'City name' field: ") + strCityNameErrorMessage);
 		return;
 	}
 
-	CString strAreaNameErrorMessage = ValidateTextData(m_edbCityAreaName, GlobalConstants::_nMinCityAreaNameSize);
+	CString strCityAreaName;
+	m_edbCityAreaName.GetWindowText(strCityAreaName);
+
+	CString strAreaNameErrorMessage = m_oDataValidator.ValidateTextData(strCityAreaName, GlobalConstants::_nMinCityAreaNameSize);
 	if (strAreaNameErrorMessage.GetLength() > 0)
 	{
 		AfxMessageBox(_T("The 'Area name' field: ") + strAreaNameErrorMessage);
 		return;
 	}
 
-	bool bValidPostalCode = ValidatePostalCode();
-	if (!bValidPostalCode)
+	long lPostalCode = GetPostalCodeFromInputFiled();
+	if (!m_oDataValidator.ValidatePostalCode(lPostalCode))
 	{
 		AfxMessageBox(_T("The 'Postal Code' filed must be positive number!"));
 		return;
@@ -125,27 +131,6 @@ void CCitiesDialog::SetDialogTitle()
 	}
 }
 
-
-CString CCitiesDialog::ValidateTextData(const CEdit& oCEdit, const int nMinLenght)
-{
-	CString strData;
-	oCEdit.GetWindowText(strData);
-
-	CString strErrorMessage;
-
-	if (strData.GetLength() < nMinLenght)
-	{
-		strErrorMessage.AppendFormat(_T("The minimum length must be at least %i! "), nMinLenght);
-	}
-	if (!CheckForSymbols(strData))
-	{
-		strErrorMessage.Append(_T("The text field contains forbidden sybmols!"));
-	}
-
-	return strErrorMessage;
-}
-
-
 long CCitiesDialog::GetPostalCodeFromInputFiled()
 {
 	CString strNewPostalCode;
@@ -154,30 +139,10 @@ long CCitiesDialog::GetPostalCodeFromInputFiled()
 
 	return lPostalCode;
 }
-bool CCitiesDialog::ValidatePostalCode()
-{
-	long lPostalCode = GetPostalCodeFromInputFiled();
 
-	return	lPostalCode <= 0 ? false : true;
-}
 
-bool CCitiesDialog::CheckForSymbols(const CString& strValue) const
-{
-	for (INT_PTR i = 0; i < strValue.GetLength(); i++)
-	{
-		switch (strValue.GetAt(i))
-		{
-		case '!':;
-		case '.':;
-		case '?':;
-		case ';':;
-		case ':':;
-		case ',':;
-		case '|':;
-		default:
-			continue;
-		}
-		return false;
-	}
-	return true;
-}
+
+
+
+
+

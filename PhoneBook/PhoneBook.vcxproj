@@ -195,6 +195,7 @@
     <ClInclude Include="CPersonsDocument.h" />
     <ClInclude Include="CPersonsTable.h" />
     <ClInclude Include="CPersonsView.h" />
+    <ClInclude Include="DataValidator.h" />
     <ClInclude Include="Enumerations.h" />
     <ClInclude Include="GlobalConstants.h" />
     <ClInclude Include="PersonsView.h" />
@@ -208,7 +209,6 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="CSelfClearingTypedPtrArray.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="TextValidator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CBaseTable.cpp" />
@@ -224,6 +224,7 @@
     <ClCompile Include="CPersonsDocument.cpp" />
     <ClCompile Include="CPersonsTable.cpp" />
     <ClCompile Include="CPersonsView.cpp" />
+    <ClCompile Include="DataValidator.cpp" />
     <ClCompile Include="GlobalConstants.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="pch.cpp">
@@ -235,7 +236,6 @@
     <ClCompile Include="PersonsView.cpp" />
     <ClCompile Include="PhoneBook.cpp" />
     <ClCompile Include="CSelfClearingTypedPtrArray.cpp" />
-    <ClCompile Include="TextValidator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PhoneBook.rc" />
