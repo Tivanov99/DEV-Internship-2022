@@ -6,6 +6,8 @@
 #include "afxdialogex.h"
 #include "CCitiesDialog.h"
 #include "CitiesView.h"
+#include "GlobalConstants.h"
+
 
 
 
@@ -49,9 +51,10 @@ BOOL CCitiesDialog::OnInitDialog()
 	if (m_eOperations != ContextMenuOperations::Create)
 		FillingInputFields();
 
-	m_edbCityName.SetLimitText(nMaxCityNameLenght);
-	m_edbCityAreaName.SetLimitText(nMaxCityAreaNameLenght);
+	m_edbCityName.SetLimitText(GlobalConstants::_nCityNameSize);
+	m_edbCityAreaName.SetLimitText(GlobalConstants::_nCityAreaNameSize);
 	SetDialogTitle();
+
 	return TRUE;
 }
 
@@ -67,14 +70,14 @@ void CCitiesDialog::FillingInputFields()
 
 void CCitiesDialog::OnOK()
 {
-	CString strCityNameErrorMessage = ValidateTextData(m_edbCityName, nMinCityNameLenght);
+	CString strCityNameErrorMessage = ValidateTextData(m_edbCityName, GlobalConstants::_nMinCityNameSize);
 	if (strCityNameErrorMessage.GetLength() > 0)
 	{
 		AfxMessageBox(_T("The 'City name' field: ") + strCityNameErrorMessage);
 		return;
 	}
 
-	CString strAreaNameErrorMessage = ValidateTextData(m_edbCityAreaName, nMinCityAreaNameLenght);
+	CString strAreaNameErrorMessage = ValidateTextData(m_edbCityAreaName, GlobalConstants::_nMinCityAreaNameSize);
 	if (strAreaNameErrorMessage.GetLength() > 0)
 	{
 		AfxMessageBox(_T("The 'Area name' field: ") + strAreaNameErrorMessage);

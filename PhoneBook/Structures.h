@@ -1,10 +1,6 @@
 #pragma once
 #include <afxtempl.h>
-
-
-
-#define CITY_NAME_SIZE	32
-#define AREA_NAME_SIZE	32
+#include "GlobalConstants.h"
 
 /// <summary>
 ///  Дискова структура CITIES предназначена за таблицата 'CITIES'
@@ -19,9 +15,9 @@ struct CITIES
 	/// <summary>Променлива съдържаща текущата версия на запис.</summary>
 	long lUpdateCounter;
 	/// <summary>Променлива съдържаща стойността от колона 'CITY_NAME' в таблицата 'CITIES'</summary>
-	TCHAR szCITY_NAME[CITY_NAME_SIZE];
+	TCHAR szCITY_NAME[GlobalConstants::_nCityNameSize];
 	/// <summary>Променлива съдържаща стойността от колона 'AREA_NAME' в таблицата 'CITIES'</summary>
-	TCHAR szAREA_NAME[AREA_NAME_SIZE];
+	TCHAR szAREA_NAME[GlobalConstants::_nCityAreaNameSize];
 	/// <summary>Променлива съдържаща стойността от колона 'POSTAL_CODE' в таблицата 'CITIES'</summary>
 	long lPOSTAL_CODE;
 
@@ -31,10 +27,6 @@ struct CITIES
 	}
 };
 
-#define FIRST_NAME_SIZE		32
-#define SECOND_NAME_SIZE	32
-#define LAST_NAME_SIZE		32
-#define ADDRESS_SIZE		256
 
 /// <summary>
 ///  Дискова структура PERSONS предназначена за таблицата 'PERSONS'
@@ -45,24 +37,22 @@ struct PERSONS {
 	/// <summary>?</summary>
 	long lUpdateCounter;
 	/// <summary>Променлива съдържаща стойността от колона 'FIRST_NAME' в таблицата  'PERSONS'</summary>
-	TCHAR szFIRST_NAME[FIRST_NAME_SIZE];
+	TCHAR szFIRST_NAME[GlobalConstants::_nPersonFirstNameSize];
 	/// <summary>Променлива съдържаща стойността от колона 'SECOND_NAME' в таблицата  'PERSONS'</summary>
-	TCHAR szSECOND_NAME[SECOND_NAME_SIZE];
+	TCHAR szSECOND_NAME[GlobalConstants::_nPersonSecondNameSize];
 	/// <summary>Променлива съдържаща стойността от колоната 'LAST_NAME' в таблицата  'PERSONS'</summary>
-	TCHAR szLAST_NAME[LAST_NAME_SIZE];
+	TCHAR szLAST_NAME[GlobalConstants::_nPersonLastNameSize];
 	/// <summary>Променлива съдържаща вторичен ключ (от колона 'CITY_ID' в таблицата  'PERSONS')
 	/// <summary>сочещ към таблицата 'CITIES' и колона 'ID'</summary>
 	long lCITY_ID;
 	/// <summary>Променлива съдържаща стойността от колоната 'ADDRESS' в таблицата  'PERSONS'</summary>
-	TCHAR szADDRESS[ADDRESS_SIZE];
+	TCHAR szADDRESS[GlobalConstants::_nPersonAddressSize];
 
 	PERSONS()
 	{
 		SecureZeroMemory(this, sizeof(*this));
 	}
 };
-
-#define PHONE_NUMBER_SIZE	16
 
 /// <summary>
 ///  Дискова структура 'PHONE_NUMBERS' предназначена за таблицата 'PHONE_NUMBERS'
@@ -78,7 +68,7 @@ struct PHONE_NUMBERS {
 	/// </summary>
 	long lPHONE_TYPE_ID;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_NUMBER' в таблицата  'PHONE_NUMBERS'</summary>
-	TCHAR szPHONE_NUMBER[PHONE_NUMBER_SIZE];
+	TCHAR szPHONE_NUMBER[GlobalConstants::_nPhoneNumberSize];
 
 	PHONE_NUMBERS()
 	{

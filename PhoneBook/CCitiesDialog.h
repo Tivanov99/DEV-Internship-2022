@@ -10,12 +10,6 @@ class CCitiesDialog : public CDialog
 {
 	//Constants
 	// ----------------
-	int nMaxCityNameLenght = 32;
-	int nMinCityNameLenght = 4;
-
-	int nMaxCityAreaNameLenght = 32;
-	int nMinCityAreaNameLenght = 4;
-
 	DECLARE_DYNAMIC(CCitiesDialog)
 
 	// Constructor / Destructor
