@@ -1,6 +1,9 @@
 ﻿#include "pch.h"
 #include "CPersonsView.h"
 #include "Enumerations.h"
+#include "resource.h"
+#include "PhoneBook.h"
+
 
 
 
@@ -12,9 +15,8 @@ IMPLEMENT_DYNCREATE(CPersonsView, CListView)
 
 
 BEGIN_MESSAGE_MAP(CPersonsView, CListView)
-	/*ON_WM_CONTEXTMENU()
-	ON_WM_RBUTTONUP()
-	ON_WM_LBUTTONDBLCLK()*/
+	ON_WM_CONTEXTMENU()
+	ON_WM_LBUTTONDBLCLK()
 	/*ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CCitiesView::OnContextMenuDelete)
 	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnContextMenuEdit)
 	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CCitiesView::OnContextMenuInsert)*/
@@ -40,11 +42,14 @@ void CPersonsView::OnInitialUpdate()
 
 	ConfigurateCListCtrl();
 
-	CListCtrl& LSCCitiesList = GetListCtrl();
-	CPersonsDocument* pCPersonsDocument = GetDocument();
+	FillView();
+}
 
-	const CSelfClearingTypedPtrArray<PERSONS>& oCSelfClearingPtrPersonsArray = pCPersonsDocument->GetAllPersons();
-	FillView(LSCCitiesList, oCSelfClearingPtrPersonsArray);
+void CPersonsView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
+{
+#ifndef SHARED_HANDLERS
+	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
+#endif
 }
 
 void CPersonsView::ConfigurateCListCtrl()
@@ -68,15 +73,21 @@ void CPersonsView::AddColumns(CListCtrl& LSCCitiesList)
 	//LSCCitiesList.InsertColumn(nColumnNumber, _T("Телефонен номер"), LVCFMT_CENTER, nColumnWidth, 1);
 }
 
-void CPersonsView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<PERSONS>& oPersonsArray)
+void CPersonsView::FillView()
 {
+	CListCtrl& оListCtrl = GetListCtrl();
+
+	CPersonsDocument* pPersonsDocument = GetDocument();
+
+	const CSelfClearingTypedPtrArray<PERSONS>& oPersonsArray = pPersonsDocument->GetAllPersons();
+
 	for (INT_PTR i = 0; i < oPersonsArray.GetCount(); i++)
 	{
 		PERSONS* pCurrentPerson = oPersonsArray.GetAt(i);
 		if (pCurrentPerson == NULL)
 			continue;
 
-		InsertNewItemToCListCtrl(pCurrentPerson);
+		InsertNewRecordToCListCtrl(pCurrentPerson);
 	}
 }
 
@@ -137,7 +148,7 @@ void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 	}
 }
 
-void CPersonsView::InsertNewItemToCListCtrl(PERSONS* pPerson)
+void CPersonsView::InsertNewRecordToCListCtrl(PERSONS* pPerson)
 {
 	CListCtrl& LSCCitiesList = GetListCtrl();
 

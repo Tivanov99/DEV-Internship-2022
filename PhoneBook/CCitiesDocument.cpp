@@ -36,7 +36,7 @@ void CCitiesDocument::Serialize(CArchive& ar)
 	}
 }
 
-const CSelfClearingTypedPtrArray<CITIES>& CCitiesDocument::GetAllPersons()
+const CSelfClearingTypedPtrArray<CITIES>& CCitiesDocument::GetAllCities()
 {
 	return m_oCitiesArray;
 }

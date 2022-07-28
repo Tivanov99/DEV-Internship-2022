@@ -18,11 +18,9 @@ public:
 	//Methods
 private:
 	/// <summary>
-	/// Функция която попълва цялата информация за градовете.
+	/// Функция която попълва цялата информация за хората.
 	/// </summary>
-	/// <param name="LSCCitiesList">Лист контрола в която ще се попълват данните.</param>
-	/// <param name="oPersonsArray">Масив съдържащ всички записи за градовете прочетени от базата.</param>
-	void FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<PERSONS>& oPersonsArray);
+	void FillView();
 
 	/// <summary>
 	/// Метод добавящ всички колони към подадена като аргумент лист контрола.
@@ -46,7 +44,7 @@ private:
 	/// Добавя нов запис към лист контролата.
 	/// </summary>
 	/// <param name="pPerson">Пойнтър представляващ нов запис</param>
-	void InsertNewItemToCListCtrl(PERSONS* pPerson);
+	void InsertNewRecordToCListCtrl(PERSONS* pPerson);
 
 	/// <summary>
 	/// Конфигурира всичко нужно за държанието и изгледа на лист контролата.
@@ -75,9 +73,6 @@ public:
 
 	// Generated message map functions
 protected:
-	afx_msg void OnFilePrintPreview();
-	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
-
 };

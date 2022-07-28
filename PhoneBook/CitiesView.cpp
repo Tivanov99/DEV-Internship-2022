@@ -92,7 +92,7 @@ void CCitiesView::FillView()
 
 	CCitiesDocument* pCCitiesDocument = GetDocument();
 
-	const CSelfClearingTypedPtrArray<CITIES>& oCitiesArray = pCCitiesDocument->GetAllPersons();
+	const CSelfClearingTypedPtrArray<CITIES>& oCitiesArray = pCCitiesDocument->GetAllCities();
 
 	for (INT_PTR i = 0; i < oCitiesArray.GetCount(); i++)
 	{

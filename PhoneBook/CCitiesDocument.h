@@ -31,7 +31,7 @@ public:
 #endif
 	//Methods
 public:
-	const CSelfClearingTypedPtrArray< CITIES>& GetAllPersons();
+	const CSelfClearingTypedPtrArray< CITIES>& GetAllCities();
 	CITIES* GetCityById(long lID);
 	bool DeleteCityById(long lID);
 	bool UpdateCity(CITIES& recCity);
