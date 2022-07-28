@@ -102,7 +102,7 @@ bool CCitiesDocument::DeleteCityByIndexFromCitiesArray(long lIndex)
 	return true;
 }
 
-void CCitiesDocument::AddCityToCitiesArray(CITIES& recCity)
+CITIES* CCitiesDocument::AddCityToCitiesArray(CITIES& recCity)
 {
 	CITIES* pCity = new CITIES();
 	*pCity = recCity;
@@ -112,6 +112,8 @@ void CCitiesDocument::AddCityToCitiesArray(CITIES& recCity)
 		AfxMessageBox(_T("Failed to add city to document."));
 	}
 	m_oCitiesArray.Add(pCity);
+
+	return pCity;
 }
 
 long CCitiesDocument::GetCityIndexFromCitiesArrayById(long lID)
@@ -149,14 +151,15 @@ bool CCitiesDocument::UpdateCity(CITIES& recCity)
 	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
 	return true;
 }
-bool CCitiesDocument::InsertCity(CITIES& recCity)
+CITIES* CCitiesDocument::InsertCity(CITIES& recCity)
 {
 	if (!m_CitiesData.Insert(recCity))
-		return false;
-
+		return NULL;
 	
-	AddCityToCitiesArray(recCity);
+	CITIES* pCity = AddCityToCitiesArray(recCity);
+
+
 	//TODO: Chech here for object ?
 	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
-	return true;
+	return pCity;
 }

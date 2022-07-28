@@ -278,14 +278,12 @@ void CCitiesView::OnContextMenuInsert()
 
 	CCitiesDocument* pCitiesDoc = GetDocument();
 
-	if (!pCitiesDoc->InsertCity(oCity))
+	oCity.lUpdateCounter = 0;
+	CITIES* pCity = pCitiesDoc->InsertCity(oCity);
+	if (pCity==NULL)
 		return;
 
-	/*CITIES* pCity = pCitiesDoc->GetLastCityRecord();
-
-	if (pCity == NULL)
-		return;
-	InsertNewRecordToCListCtrl(pCity);*/
+	InsertNewRecordToCListCtrl(pCity);
 
 	//TODO: Use OnUpdateAllViews method from CCitiesDocument.
 }

@@ -35,11 +35,11 @@ public:
 	CITIES* GetCityById(long lID);
 	bool DeleteCityById(long lID);
 	bool UpdateCity(CITIES& recCity);
-	bool InsertCity(CITIES& recCity);
+	CITIES* InsertCity(CITIES& recCity);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	bool DeleteCityByIndexFromCitiesArray(long lID);
-	void AddCityToCitiesArray(CITIES& recCity);
+	CITIES* AddCityToCitiesArray(CITIES& recCity);
 	long GetCityIndexFromCitiesArrayById(long lID);
 
 	//Members
