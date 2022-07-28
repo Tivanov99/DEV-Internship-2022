@@ -142,13 +142,8 @@ bool CCitiesDocument::UpdateCity(CITIES& recCity)
 
 	long lCityIndex = GetCityIndexFromCitiesArrayById(recCity.lID);
 
-	if (!DeleteCityByIndexFromCitiesArray(lCityIndex))
-		return false;
-
-	CITIES* pCity = new CITIES();
+	CITIES* pCity = m_oCitiesArray.GetAt(lCityIndex);
 	*pCity = recCity;
-
-	m_oCitiesArray.InsertAt(lCityIndex, pCity);
 
 	//TODO: Chech here for object ?
 	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);

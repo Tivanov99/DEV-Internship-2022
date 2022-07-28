@@ -99,7 +99,7 @@ void CCitiesView::FillView()
 		if (pCurrentCity == NULL)
 			continue;
 
-		InsertNewItemToCListCtrl(pCurrentCity);
+		InsertNewRecordToCListCtrl(pCurrentCity);
 	}
 }
 
@@ -219,7 +219,9 @@ void CCitiesView::OnContextMenuEdit()
 	if (pCity == NULL)
 		return;
 
-	CCitiesDialog oCitiesDialog(ContextMenuOperations::Edit, *pCity);
+	CITIES oCity = *pCity;
+
+	CCitiesDialog oCitiesDialog(ContextMenuOperations::Edit, oCity);
 
 	if (oCitiesDialog.DoModal() != IDOK)
 	{
@@ -227,9 +229,8 @@ void CCitiesView::OnContextMenuEdit()
 	}
 
 	CCitiesDocument* pCitiesDocument = GetDocument();
-
 	
-	if (!pCitiesDocument->UpdateCity(*pCity))
+	if (!pCitiesDocument->UpdateCity(oCity))
 		return;
 
 		CString strPostalCode;
@@ -242,9 +243,10 @@ void CCitiesView::OnContextMenuEdit()
 		ÓListCtrl.SetItemText(nSelectedRow, nColumnNumber++, pCity->szCITY_NAME);
 		ÓListCtrl.SetItemText(nSelectedRow, nColumnNumber++, pCity->szAREA_NAME);
 		ÓListCtrl.SetItemText(nSelectedRow, nColumnNumber, strPostalCode);
+		//TODO: Add item data
 }
 
-void CCitiesView::InsertNewItemToCListCtrl(CITIES* pCity)
+void CCitiesView::InsertNewRecordToCListCtrl(CITIES* pCity)
 {
 	CListCtrl& ÓListCtrl = GetListCtrl();
 
@@ -283,7 +285,7 @@ void CCitiesView::OnContextMenuInsert()
 
 	if (pCity == NULL)
 		return;
-	InsertNewItemToCListCtrl(pCity);*/
+	InsertNewRecordToCListCtrl(pCity);*/
 
 	//TODO: Use OnUpdateAllViews method from CCitiesDocument.
 }

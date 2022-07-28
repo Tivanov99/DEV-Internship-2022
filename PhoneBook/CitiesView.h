@@ -58,7 +58,7 @@ private:
 	/// Добавя нов запис към лист контролата.
 	/// </summary>
 	/// <param name="pCity">Пойнтър представляващ нов запис</param>
-	void InsertNewItemToCListCtrl(CITIES* pCity);
+	void InsertNewRecordToCListCtrl(CITIES* pCity);
 
 	/// <summary>
 	/// Конфигурира всичко нужно за държанието и изгледа на лист контролата.
