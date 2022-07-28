@@ -37,6 +37,9 @@ public:
 	bool InsertPerson(PERSONS& recPerson);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
+	bool DeleteCityByIndexFromCitiesArray(long lID);
+	PERSONS* AddPersonToPersonsArray(PERSONS& recPerson);
+	long GetCityIndexFromCitiesArrayById(long lID);
 	//Members
 
 private:
