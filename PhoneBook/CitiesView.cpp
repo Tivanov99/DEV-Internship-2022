@@ -117,7 +117,6 @@ void CCitiesView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 #endif
 }
 
-
 // CCitiesView diagnostics
 
 #ifdef _DEBUG
@@ -159,18 +158,6 @@ CITIES* CCitiesView::GetSelectedRecordItemData()
 	return pCity;
 }
 
-const int CCitiesView::GetColumnCount()
-{
-	CListCtrl& ÓListCtrl = GetListCtrl();
-
-	CHeaderCtrl* oHeaderCtrl = ÓListCtrl.GetHeaderCtrl();
-
-	int nColumnCount = oHeaderCtrl->GetItemCount();
-
-	return nColumnCount;
-}
-//
-
 void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
 	int nNumberOfSelectedRow = GetSelectedRowNumber();
@@ -193,9 +180,12 @@ void CCitiesView::OnContextMenuDelete()
 	const CITIES* pCity = GetSelectedRecordItemData();
 	if (pCity == NULL)
 		return;
+	
+	CString strMessage;
+	strMessage.Format(_T("Do you want the record to be deleted? City name : %s"), pCity->szCITY_NAME);
 
 	const int msgboxID = MessageBox(
-		(LPCWSTR)L"Do you want the record to be deleted?",
+		(LPCWSTR)strMessage,
 		(LPCWSTR)L"Delete record.",
 		MB_ICONINFORMATION | IDOK
 	);
@@ -203,13 +193,14 @@ void CCitiesView::OnContextMenuDelete()
 	if (msgboxID == IDOK)
 	{
 		CCitiesDocument* pCitiesDocument = GetDocument();
+
 		if (!pCitiesDocument->DeleteCityById(pCity->lID))
 			return;
 
-		/*const int nSelectedRow = GetSelectedRowNumber();
+		const int nSelectedRow = GetSelectedRowNumber();
 
 		CListCtrl& ÓListCtrl = GetListCtrl();
-		ÓListCtrl.DeleteItem(nSelectedRow);*/
+		ÓListCtrl.DeleteItem(nSelectedRow);
 	}
 }
 

@@ -49,12 +49,6 @@ private:
 	const int GetSelectedRowNumber();
 
 	/// <summary>
-	/// Метод връщащ броя на колоните в CListCtrl.
-	/// </summary>
-	/// <returns>Цяло число представящо брой на колоните.</returns>
-	const int GetColumnCount();
-
-	/// <summary>
 	/// Добавя нов запис към лист контролата.
 	/// </summary>
 	/// <param name="pCity">Пойнтър представляващ нов запис</param>
