@@ -139,7 +139,7 @@ CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
 #endif //_DEBUG
 
 
-const int CCitiesView::GetNumberOfSelectedRow()
+const int CCitiesView::GetSelectedRowNumber()
 {
 	CListCtrl& ÓListCtrl = GetListCtrl();
 	const int nSelectedRow = ÓListCtrl.GetSelectionMark();
@@ -148,7 +148,7 @@ const int CCitiesView::GetNumberOfSelectedRow()
 
 CITIES* CCitiesView::GetSelectedRecordItemData()
 {
-	const int nSelectedRow = GetNumberOfSelectedRow();
+	const int nSelectedRow = GetSelectedRowNumber();
 	if (nSelectedRow == -1)
 	{
 		AfxMessageBox(_T("This function is only called on record!"));
@@ -173,7 +173,7 @@ const int CCitiesView::GetColumnCount()
 
 void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
-	int nNumberOfSelectedRow = GetNumberOfSelectedRow();
+	int nNumberOfSelectedRow = GetSelectedRowNumber();
 	CListCtrl& ÓListCtrl = GetListCtrl();
 
 	switch (lHint)
@@ -206,9 +206,7 @@ void CCitiesView::OnContextMenuDelete()
 		if (!pCitiesDocument->DeleteCityById(pCity->lID))
 			return;
 
-		OnInitialUpdate();
-
-		/*const int nSelectedRow = GetNumberOfSelectedRow();
+		/*const int nSelectedRow = GetSelectedRowNumber();
 
 		CListCtrl& ÓListCtrl = GetListCtrl();
 		ÓListCtrl.DeleteItem(nSelectedRow);*/
@@ -237,7 +235,7 @@ void CCitiesView::OnContextMenuEdit()
 		CString strPostalCode;
 		strPostalCode.Format(_T("%d"), pCity->lPOSTAL_CODE);
 
-		const int nSelectedRow = GetNumberOfSelectedRow();
+		const int nSelectedRow = GetSelectedRowNumber();
 		CListCtrl& ÓListCtrl = GetListCtrl();
 		int nColumnNumber = 0;
 

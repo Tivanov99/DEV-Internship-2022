@@ -107,7 +107,7 @@ const int CPersonsView::GetNumberOfSelectedRow()
 
 PERSONS* CPersonsView::GetSelectedRecordItemData()
 {
-	/*const int nSelectedRow = GetNumberOfSelectedRow();
+	/*const int nSelectedRow = GetSelectedRowNumber();
 	if (nSelectedRow == -1)
 	{
 		AfxMessageBox(_T("This function is only called on record!"));
