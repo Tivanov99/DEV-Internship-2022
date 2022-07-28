@@ -1,5 +1,8 @@
-#include "pch.h"
+п»ї#include "pch.h"
 #include "CPersonsView.h"
+#include "Enumerations.h"
+
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -60,10 +63,10 @@ void CPersonsView::AddColumns(CListCtrl& LSCCitiesList)
 {
 	const int nColumnWidth = 120;
 	int nColumnNumber = 0;
-	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Име"), LVCFMT_LEFT, nColumnWidth, 1);
-	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Презиме"), LVCFMT_CENTER, nColumnWidth, 1);
-	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Фамилия"), LVCFMT_CENTER, nColumnWidth, 1);
-	LSCCitiesList.InsertColumn(nColumnNumber, _T("Телефонен номер"), LVCFMT_CENTER, nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(nColumnNumber++, _T("РРјРµ"), LVCFMT_LEFT, nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(nColumnNumber++, _T("РџСЂРµР·РёРјРµ"), LVCFMT_CENTER, nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Р¤Р°РјРёР»РёСЏ"), LVCFMT_CENTER, nColumnWidth, 1);
+	//LSCCitiesList.InsertColumn(nColumnNumber, _T("РўРµР»РµС„РѕРЅРµРЅ РЅРѕРјРµСЂ"), LVCFMT_CENTER, nColumnWidth, 1);
 }
 
 void CPersonsView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPtrArray<PERSONS>& oPersonsArray)
@@ -120,16 +123,6 @@ PERSONS* CPersonsView::GetSelectedRecordItemData()
 	return NULL;
 }
 
-const int CPersonsView::GetColumnCount()
-{
-	CListCtrl& LSCCitiesList = GetListCtrl();
-
-	CHeaderCtrl* oHeaderCtrl = LSCCitiesList.GetHeaderCtrl();
-
-	int nColumnCount = oHeaderCtrl->GetItemCount();
-
-	return nColumnCount;
-}
 //
 
 void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
@@ -161,12 +154,7 @@ void CPersonsView::InsertNewItemToCListCtrl(PERSONS* pPerson)
 
 	LSCCitiesList.SetItemText(nRow, nColumnNumber++, pPerson->szSECOND_NAME);
 
-	LSCCitiesList.SetItemText(nRow, nColumnNumber++, pPerson->szLAST_NAME);
+	LSCCitiesList.SetItemText(nRow, nColumnNumber, pPerson->szLAST_NAME);
 
-
-	/*CString strPostalCode;
-	strPostalCode.Format(_T("%d"), pCity->lPOSTAL_CODE);
-	LSCCitiesList.SetItemText(nRow, nColumnNumber, strPostalCode);
-
-	LSCCitiesList.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCity));*/
+	LSCCitiesList.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pPerson));
 }

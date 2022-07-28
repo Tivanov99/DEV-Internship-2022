@@ -84,12 +84,6 @@
     <ClInclude Include="CPersonsTable.h">
       <Filter>PERSONS</Filter>
     </ClInclude>
-    <ClInclude Include="CPersonsView.h">
-      <Filter>PERSONS</Filter>
-    </ClInclude>
-    <ClInclude Include="PersonsView.h">
-      <Filter>PERSONS</Filter>
-    </ClInclude>
     <ClInclude Include="CBaseView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -149,12 +143,6 @@
     <ClCompile Include="CPersonsTable.cpp">
       <Filter>Source Files\PERSONS</Filter>
     </ClCompile>
-    <ClCompile Include="CPersonsView.cpp">
-      <Filter>Source Files\PERSONS</Filter>
-    </ClCompile>
-    <ClCompile Include="PersonsView.cpp">
-      <Filter>Source Files\PERSONS</Filter>
-    </ClCompile>
     <ClCompile Include="CBaseView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -163,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="DataValidator.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CPersonsView.cpp">
+      <Filter>Source Files\PERSONS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

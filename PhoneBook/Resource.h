@@ -44,9 +44,7 @@
 #define ID_EDIT_CONTEXT_DELETE          32805
 #define ID_EDIT_CONTEXT_EDIT            32807
 #define ID_EDIT_CONTEXT_INSERT          32809
-#define ID_EDIT_READDATA                32810
 #define ID_EDIT_CONTEXT_READ_DATA       32811
-#define ID_EDIT_READDATA32812           32812
 
 // Next default values for new objects
 // 
