@@ -52,6 +52,12 @@ BOOL CCitiesDialog::OnInitDialog()
 	m_edbCityAreaName.SetLimitText(GlobalConstants::_nCityAreaNameSize);
 	SetDialogTitle();
 
+	if (m_eOperations == ContextMenuOperations::Read)
+	{
+		m_edbCityName.EnableWindow(false);
+		m_edbCityAreaName.EnableWindow(false);
+		m_edbCityPostalCode.EnableWindow(false);
+	}
 	return TRUE;
 }
 
@@ -99,7 +105,7 @@ void CCitiesDialog::OnOK()
 	CDialog::OnOK();
 }
 
-void CCitiesDialog ::SetDataToRecord()
+void CCitiesDialog::SetDataToRecord()
 {
 	long lPostalCode = GetPostalCodeFromInputFiled();
 	m_recCity.lPOSTAL_CODE = lPostalCode;
@@ -119,6 +125,9 @@ void CCitiesDialog::SetDialogTitle()
 	{
 	case  ContextMenuOperations::Create:
 		this->SetWindowText(_T("Add city"));
+		break;
+	case  ContextMenuOperations::Read:
+		this->SetWindowText(_T("Read city data"));
 		break;
 	case  ContextMenuOperations::Edit:
 		this->SetWindowText(_T("Edit city"));

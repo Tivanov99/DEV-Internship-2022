@@ -151,6 +151,7 @@ bool CCitiesDocument::UpdateCity(CITIES& recCity)
 	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
 	return true;
 }
+
 CITIES* CCitiesDocument::InsertCity(CITIES& recCity)
 {
 	if (!m_CitiesData.Insert(recCity))

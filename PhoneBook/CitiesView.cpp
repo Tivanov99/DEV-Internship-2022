@@ -31,6 +31,7 @@ BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CCitiesView::OnContextMenuDelete)
 	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnContextMenuEdit)
 	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CCitiesView::OnContextMenuInsert)
+	ON_COMMAND(ID_EDIT_CONTEXT_READ_DATA, &CCitiesView::OnEditContextReadData)
 END_MESSAGE_MAP()
 
 
@@ -165,7 +166,8 @@ void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 
 	switch (lHint)
 	{
-	case ContextMenuOperations::Create: break;
+	case ContextMenuOperations::Create:
+		break;
 	case ContextMenuOperations::Delete:
 		ÓListCtrl.DeleteItem(nNumberOfSelectedRow);
 		break;
@@ -281,4 +283,18 @@ void CCitiesView::UpdateRecord(CITIES& oCity)
 	ÓListCtrl.SetItemText(nSelectedRow, nColumnNumber++, oCity.szCITY_NAME);
 	ÓListCtrl.SetItemText(nSelectedRow, nColumnNumber++, oCity.szAREA_NAME);
 	ÓListCtrl.SetItemText(nSelectedRow, nColumnNumber, strPostalCode);
+}
+
+
+void CCitiesView::OnEditContextReadData()
+{
+	CITIES* pCity = GetSelectedRecordItemData();
+	if (pCity == NULL)
+		return;
+
+	CITIES oCity = *pCity;
+
+	CCitiesDialog oCitiesDialog(ContextMenuOperations::Read, oCity);
+
+	oCitiesDialog.DoModal();
 }

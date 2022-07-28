@@ -106,6 +106,9 @@ private:
 	/// При десен клик без значение къде е извършен той и 'Insert' от контекстното меню извиква диалогов прозорец в който да бъдат попълнени данните на записа.
 	/// </summary>
 	afx_msg void OnContextMenuInsert();
+public:
+	afx_msg void OnEditContextMenuReadData();
+	afx_msg void OnEditContextReadData();
 };
 
 #ifndef _DEBUG  // debug version in CitiesView.cpp

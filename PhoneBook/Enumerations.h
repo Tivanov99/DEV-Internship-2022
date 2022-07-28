@@ -2,5 +2,6 @@ enum ContextMenuOperations
 {
 	Edit,
 	Delete,
-	Create
+	Create,
+	Read
 };
