@@ -233,17 +233,30 @@ void CCitiesView::OnContextMenuEdit()
 	if (!pCitiesDocument->UpdateCity(oCity))
 		return;
 
-		CString strPostalCode;
-		strPostalCode.Format(_T("%d"), pCity->lPOSTAL_CODE);
+	UpdateRecord(oCity);
+}
 
-		const int nSelectedRow = GetSelectedRowNumber();
-		CListCtrl& ÓListCtrl = GetListCtrl();
-		int nColumnNumber = 0;
 
-		ÓListCtrl.SetItemText(nSelectedRow, nColumnNumber++, pCity->szCITY_NAME);
-		ÓListCtrl.SetItemText(nSelectedRow, nColumnNumber++, pCity->szAREA_NAME);
-		ÓListCtrl.SetItemText(nSelectedRow, nColumnNumber, strPostalCode);
-		//TODO: Add item data
+void CCitiesView::OnContextMenuInsert()
+{
+	CITIES oCity;
+	oCity.lUpdateCounter = 0;
+
+	CCitiesDialog oCitiesDialog(ContextMenuOperations::Create, oCity);
+
+	if (oCitiesDialog.DoModal() != IDOK)
+		return;
+
+	CCitiesDocument* pCitiesDoc = GetDocument();
+
+	CITIES* pCity = pCitiesDoc->InsertCity(oCity);
+
+	if (pCity==NULL)
+		return;
+
+	InsertNewRecordToCListCtrl(pCity);
+
+	//TODO: Use OnUpdateAllViews method from CCitiesDocument.
 }
 
 void CCitiesView::InsertNewRecordToCListCtrl(CITIES* pCity)
@@ -265,25 +278,16 @@ void CCitiesView::InsertNewRecordToCListCtrl(CITIES* pCity)
 	ÓListCtrl.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCity));
 }
 
-void CCitiesView::OnContextMenuInsert()
+void CCitiesView::UpdateRecord(CITIES& oCity)
 {
-	CITIES oCity;
+	CString strPostalCode;
+	strPostalCode.Format(_T("%d"), oCity.lPOSTAL_CODE);
 
-	CCitiesDialog oCitiesDialog(ContextMenuOperations::Create, oCity);
+	const int nSelectedRow = GetSelectedRowNumber();
+	CListCtrl& ÓListCtrl = GetListCtrl();
+	int nColumnNumber = 0;
 
-	if (oCitiesDialog.DoModal() != IDOK)
-	{
-		return;
-	}
-
-	CCitiesDocument* pCitiesDoc = GetDocument();
-
-	oCity.lUpdateCounter = 0;
-	CITIES* pCity = pCitiesDoc->InsertCity(oCity);
-	if (pCity==NULL)
-		return;
-
-	InsertNewRecordToCListCtrl(pCity);
-
-	//TODO: Use OnUpdateAllViews method from CCitiesDocument.
+	ÓListCtrl.SetItemText(nSelectedRow, nColumnNumber++, oCity.szCITY_NAME);
+	ÓListCtrl.SetItemText(nSelectedRow, nColumnNumber++, oCity.szAREA_NAME);
+	ÓListCtrl.SetItemText(nSelectedRow, nColumnNumber, strPostalCode);
 }

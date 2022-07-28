@@ -65,6 +65,11 @@ private:
 	/// </summary>
 	void ConfigurateCListCtrl();
 
+	/// <summary>
+	/// Подменя старите стойности с нови на запис който е бил редактиран.
+	/// </summary>
+	/// <param name="pCity">Референция която сърържа новите стойности.</param>
+	void UpdateRecord(CITIES& pCity);
 	// Overrides
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
