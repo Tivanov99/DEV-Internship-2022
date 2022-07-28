@@ -13,6 +13,8 @@
 #include "CitiesDoc.h"
 #include "CitiesView.h"
 #include "CCitiesTable.h"
+#include "CPersonsDocument.h"
+#include "CPersonsView.h"
 
 
 #ifdef _DEBUG
@@ -110,9 +112,9 @@ BOOL CPhoneBookApp::InitInstance()
 	//  serve as the connection between documents, frame windows and views
 	CMultiDocTemplate* pDocTemplate;
 	pDocTemplate = new CMultiDocTemplate(IDR_PhoneBookTYPE,
-		RUNTIME_CLASS(CCitiesDocument),
+		RUNTIME_CLASS(CPersonsDocument),
 		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
-		RUNTIME_CLASS(CCitiesView));
+		RUNTIME_CLASS(CPersonsView));
 
 	if (!pDocTemplate)
 		return FALSE;

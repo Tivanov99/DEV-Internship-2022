@@ -194,6 +194,7 @@
     <ClInclude Include="CPersonsData.h" />
     <ClInclude Include="CPersonsDocument.h" />
     <ClInclude Include="CPersonsTable.h" />
+    <ClInclude Include="CPersonsView.h" />
     <ClInclude Include="DataValidator.h" />
     <ClInclude Include="Enumerations.h" />
     <ClInclude Include="GlobalConstants.h" />

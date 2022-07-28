@@ -7,7 +7,6 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-#include "Enumerations.h"
 
 IMPLEMENT_DYNCREATE(CPersonsView, CListView)
 
@@ -32,7 +31,7 @@ BOOL CPersonsView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
-	return CPersonsView::PreCreateWindow(cs);
+	return CListView::PreCreateWindow(cs);
 }
 
 void CPersonsView::OnInitialUpdate()
@@ -86,12 +85,12 @@ void CPersonsView::FillView(CListCtrl& LSCCitiesList, const CSelfClearingTypedPt
 #ifdef _DEBUG
 void CPersonsView::AssertValid() const
 {
-	CPersonsView::AssertValid();
+	CListView::AssertValid();
 }
 
 void CPersonsView::Dump(CDumpContext& dc) const
 {
-	CPersonsView::Dump(dc);
+	CListView::Dump(dc);
 }
 
 CPersonsDocument* CPersonsView::GetDocument() const // non-debug version is inline
@@ -110,20 +109,16 @@ const int CPersonsView::GetNumberOfSelectedRow()
 
 PERSONS* CPersonsView::GetSelectedRecordItemData()
 {
-	/*const int nSelectedRow = GetSelectedRowNumber();
+	const int nSelectedRow = GetNumberOfSelectedRow();
 	if (nSelectedRow == -1)
 	{
 		AfxMessageBox(_T("This function is only called on record!"));
 		return NULL;
 	}
-	CListCtrl& LSCCitiesList = GetListCtrl();
-
-	PERSONS* pPerson = reinterpret_cast<PERSONS*>(LSCCitiesList.GetItemData(nSelectedRow));
-	return pPerson;*/
-	return NULL;
+	CListCtrl& оListCtrl = GetListCtrl();
+	PERSONS* pPerson = reinterpret_cast<PERSONS*>(оListCtrl.GetItemData(nSelectedRow));
+	return pPerson;
 }
-
-//
 
 void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
