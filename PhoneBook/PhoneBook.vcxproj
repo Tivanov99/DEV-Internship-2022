@@ -192,6 +192,7 @@
     <ClInclude Include="CCitiesTable.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="CPersonsData.h" />
+    <ClInclude Include="CPersonsDialog.h" />
     <ClInclude Include="CPersonsDocument.h" />
     <ClInclude Include="CPersonsTable.h" />
     <ClInclude Include="CPersonsView.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="CitiesDoc.cpp" />
     <ClCompile Include="CitiesView.cpp" />
     <ClCompile Include="CPersonsData.cpp" />
+    <ClCompile Include="CPersonsDialog.cpp" />
     <ClCompile Include="CPersonsDocument.cpp" />
     <ClCompile Include="CPersonsTable.cpp" />
     <ClCompile Include="CPersonsView.cpp" />

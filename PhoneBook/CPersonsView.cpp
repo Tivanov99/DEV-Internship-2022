@@ -32,6 +32,23 @@ CPersonsView::CPersonsView() noexcept {};
 
 CPersonsView::~CPersonsView() {};
 
+#ifdef _DEBUG
+void CPersonsView::AssertValid() const
+{
+	CListView::AssertValid();
+}
+
+void CPersonsView::Dump(CDumpContext& dc) const
+{
+	CListView::Dump(dc);
+}
+
+CPersonsDocument* CPersonsView::GetDocument() const // non-debug version is inline
+{
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CPersonsDocument)));
+	return (CPersonsDocument*)m_pDocument;
+};
+#endif //_DEBUG
 
 BOOL CPersonsView::PreCreateWindow(CREATESTRUCT& cs)
 {
@@ -72,9 +89,7 @@ void CPersonsView::AddColumns(CListCtrl& LSCCitiesList)
 	const int nColumnWidth = 120;
 	int nColumnNumber = 0;
 	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Име"), LVCFMT_LEFT, nColumnWidth, 1);
-	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Презиме"), LVCFMT_CENTER, nColumnWidth, 1);
 	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Фамилия"), LVCFMT_CENTER, nColumnWidth, 1);
-	//LSCCitiesList.InsertColumn(nColumnNumber, _T("Телефонен номер"), LVCFMT_CENTER, nColumnWidth, 1);
 }
 
 void CPersonsView::FillView()
@@ -94,26 +109,6 @@ void CPersonsView::FillView()
 		InsertNewRecordToCListCtrl(pCurrentPerson);
 	}
 }
-
-// CCitiesView diagnostics
-
-#ifdef _DEBUG
-void CPersonsView::AssertValid() const
-{
-	CListView::AssertValid();
-}
-
-void CPersonsView::Dump(CDumpContext& dc) const
-{
-	CListView::Dump(dc);
-}
-
-CPersonsDocument* CPersonsView::GetDocument() const // non-debug version is inline
-{
-	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CPersonsDocument)));
-	return (CPersonsDocument*)m_pDocument;
-};
-#endif //_DEBUG
 
 const int CPersonsView::GetSelectedRowNumber()
 {

@@ -102,6 +102,9 @@
     <ClInclude Include="DialogWindowEnumeration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CPersonsDialog.h">
+      <Filter>PERSONS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -159,6 +162,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CPersonsView.cpp">
+      <Filter>Source Files\PERSONS</Filter>
+    </ClCompile>
+    <ClCompile Include="CPersonsDialog.cpp">
       <Filter>Source Files\PERSONS</Filter>
     </ClCompile>
   </ItemGroup>
