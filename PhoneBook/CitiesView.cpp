@@ -196,13 +196,7 @@ void CCitiesView::OnContextMenuDelete()
 	{
 		CCitiesDocument* pCitiesDocument = GetDocument();
 
-		if (!pCitiesDocument->DeleteCityById(pCity->lID))
-			return;
-
-		const int nSelectedRow = GetSelectedRowNumber();
-
-		CListCtrl& îListCtrl = GetListCtrl();
-		îListCtrl.DeleteItem(nSelectedRow);
+		pCitiesDocument->DeleteCityById(pCity->lID);
 	}
 }
 

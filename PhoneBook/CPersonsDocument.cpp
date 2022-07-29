@@ -74,7 +74,7 @@ bool CPersonsDocument::DeletePersonById(long lID)
 	DeletePersonFromPersonsArray(lID);
 
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
-	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
+	//OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
 	return true;
 }
 
@@ -100,6 +100,8 @@ bool CPersonsDocument::InsertPerson(PERSONS& recCity)
 	bool bInsert = m_PersonsData.Insert(recCity);
 	if (!bInsert)
 		return false;
+
+	AddPersonToPersonsArray(recCity);
 
 	//TODO: Chech here for object ?
 	//OnUpdateAllViews(ContextMenuOperations::Edit, &oPerson);

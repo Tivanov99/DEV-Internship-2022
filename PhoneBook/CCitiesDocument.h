@@ -38,9 +38,9 @@ public:
 	CITIES* InsertCity(CITIES& recCity);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
-	bool DeleteCityByIndexFromCitiesArray(long lID);
+	bool DeleteCityFromCitiesArray(long lID);
 	CITIES* AddCityToCitiesArray(CITIES& recCity);
-	long GetCityIndexFromCitiesArrayById(long lID);
+	long GetCityIndexFromCitiesArray(long lID);
 
 	//Members
 private:

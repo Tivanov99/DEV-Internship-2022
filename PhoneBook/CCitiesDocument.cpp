@@ -41,15 +41,6 @@ const CSelfClearingTypedPtrArray<CITIES>& CCitiesDocument::GetAllCities()
 	return m_oCitiesArray;
 }
 
-CITIES* CCitiesDocument::GetCityById(long lID)
-{
-	CITIES* pCity = m_oCitiesArray.GetAt(lID);
-	if (pCity == NULL)
-	{
-		AfxMessageBox(_T("Somethin wrong with record. Try again."));
-	}
-	return pCity;
-}
 
 #ifdef _DEBUG
 void CCitiesDocument::AssertValid() const
@@ -62,6 +53,16 @@ void CCitiesDocument::Dump(CDumpContext& dc) const
 	CDocument::Dump(dc);
 }
 #endif //_DEBUG
+
+CITIES* CCitiesDocument::GetCityById(long lID)
+{
+	CITIES* pCity = m_oCitiesArray.GetAt(lID);
+	if (pCity == NULL)
+	{
+		AfxMessageBox(_T("Somethin wrong with record. Try again."));
+	}
+	return pCity;
+}
 
 bool CCitiesDocument::DeleteCityById(long lID)
 {
@@ -85,6 +86,35 @@ void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 	UpdateAllViews(NULL, lHint, pHint);
 }
 
+
+bool CCitiesDocument::UpdateCity(CITIES& recCity)
+{
+	if (!m_CitiesData.UpdateWhereID(recCity.lID, recCity))
+		return false;
+
+	long lCityIndex = GetCityIndexFromCitiesArray(recCity.lID);
+
+	CITIES* pCity = m_oCitiesArray.GetAt(lCityIndex);
+	*pCity = recCity;
+
+	//TODO: Chech here for object ?
+	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
+	return true;
+}
+
+CITIES* CCitiesDocument::InsertCity(CITIES& recCity)
+{
+	if (!m_CitiesData.Insert(recCity))
+		return NULL;
+	
+	CITIES* pCity = AddCityToCitiesArray(recCity);
+
+
+	//TODO: Chech here for object ?
+	OnUpdateAllViews(ContextMenuOperations::Edit, NULL);
+	return pCity;
+}
+
 bool CCitiesDocument::DeleteCityFromCitiesArray(long lCityId)
 {
 	if (lCityId == -1)
@@ -93,7 +123,7 @@ bool CCitiesDocument::DeleteCityFromCitiesArray(long lCityId)
 		return false;
 	}
 
-	long lCityIndex = GetCityIndexFromCitiesArrayById(lCityId);
+	long lCityIndex = GetCityIndexFromCitiesArray(lCityId);
 
 	CITIES* pCity = m_oCitiesArray.GetAt(lCityIndex);
 
@@ -118,7 +148,7 @@ CITIES* CCitiesDocument::AddCityToCitiesArray(CITIES& recCity)
 	return pCity;
 }
 
-long CCitiesDocument::GetCityIndexFromCitiesArrayById(long lID)
+long CCitiesDocument::GetCityIndexFromCitiesArray(long lID)
 {
 	if (lID < 0 )
 	{
@@ -137,32 +167,4 @@ long CCitiesDocument::GetCityIndexFromCitiesArrayById(long lID)
 	}
 
 	return -1;
-}
-
-bool CCitiesDocument::UpdateCity(CITIES& recCity)
-{
-	if (!m_CitiesData.UpdateWhereID(recCity.lID, recCity))
-		return false;
-
-	long lCityIndex = GetCityIndexFromCitiesArrayById(recCity.lID);
-
-	CITIES* pCity = m_oCitiesArray.GetAt(lCityIndex);
-	*pCity = recCity;
-
-	//TODO: Chech here for object ?
-	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
-	return true;
-}
-
-CITIES* CCitiesDocument::InsertCity(CITIES& recCity)
-{
-	if (!m_CitiesData.Insert(recCity))
-		return NULL;
-	
-	CITIES* pCity = AddCityToCitiesArray(recCity);
-
-
-	//TODO: Chech here for object ?
-	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
-	return pCity;
 }
