@@ -72,8 +72,6 @@ bool CPersonsDocument::DeletePersonById(long lID)
 
 	DeletePersonFromPersonsArray(lID);
 
-	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
-
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
 	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
 	return true;
@@ -92,6 +90,8 @@ bool CPersonsDocument::UpdatePerson(PERSONS& recPerson)
 
 	PERSONS oPerson;
 	m_PersonsData.SelectWhereID(recPerson.lID, oPerson);
+
+
 	//TODO: Chech here for object ?
 	//OnUpdateAllViews(ContextMenuOperations::EditData, &oPerson);
 	return true;

@@ -187,6 +187,6 @@ void CPersonsView::OnContextMenuDelete()
 	{
 		CPersonsDocument* pPersonsDocument = GetDocument();
 
-		!pPersonsDocument->DeletePersonById(pPerson->lID);
+		pPersonsDocument->DeletePersonById(pPerson->lID);
 	}
 }
