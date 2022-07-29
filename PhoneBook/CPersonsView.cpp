@@ -21,6 +21,9 @@ BEGIN_MESSAGE_MAP(CPersonsView, CListView)
 	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnContextMenuEdit)
 	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CCitiesView::OnContextMenuInsert)*/
 	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CPersonsView::OnContextMenuDelete)
+	ON_COMMAND(ID_EDIT_CONTEXT_READ_DATA, &CPersonsView::OnEditContextReadData)
+	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CPersonsView::OnContextMenuInsert)
+	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CPersonsView::OnContextMenuEdit)
 END_MESSAGE_MAP()
 
 // CCitiesView construction/destruction
@@ -189,4 +192,22 @@ void CPersonsView::OnContextMenuDelete()
 
 		pPersonsDocument->DeletePersonById(pPerson->lID);
 	}
+}
+
+
+void CPersonsView::OnEditContextReadData()
+{
+	// TODO: Add your command handler code here
+}
+
+
+void CPersonsView::OnContextMenuInsert()
+{
+	// TODO: Add your command handler code here
+}
+
+
+void CPersonsView::OnContextMenuEdit()
+{
+	// TODO: Add your command handler code here
 }

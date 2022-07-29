@@ -77,4 +77,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnContextMenuDelete();
+	afx_msg void OnEditContextReadData();
+	afx_msg void OnContextMenuInsert();
+	afx_msg void OnContextMenuEdit();
 };
