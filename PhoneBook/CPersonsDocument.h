@@ -39,7 +39,7 @@ private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	bool DeleteCityByIndexFromCitiesArray(long lID);
 	PERSONS* AddPersonToPersonsArray(PERSONS& recPerson);
-	long GetCityIndexFromCitiesArrayById(long lID);
+	long GetPersonIndexFromPersonsArrayById(long lID);
 	//Members
 
 private:

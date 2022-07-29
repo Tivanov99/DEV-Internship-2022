@@ -102,3 +102,55 @@ bool CPersonsDocument::InsertPerson(PERSONS& recCity)
 	//OnUpdateAllViews(ContextMenuOperations::Edit, &oPerson);
 	return true;
 }
+
+bool CPersonsDocument::DeleteCityByIndexFromCitiesArray(long lIndex)
+{
+	if (lIndex == -1)
+	{
+		AfxMessageBox(_T("The city was not found in the document! City Id - %d"), lIndex);
+		return false;
+	}
+
+	PERSONS* pPerson = m_oPersonsArray.GetAt(lIndex);
+
+	delete pPerson;
+	pPerson = NULL;
+	m_oPersonsArray.RemoveAt(lIndex);
+
+	return true;
+}
+
+PERSONS* CPersonsDocument::AddPersonToPersonsArray(PERSONS& recPerson)
+{
+	PERSONS* pPerson = new PERSONS();
+	*pPerson = recPerson;
+	if (pPerson == NULL)
+	{
+		delete pPerson;
+		AfxMessageBox(_T("Failed to add city to document."));
+	}
+	m_oPersonsArray.Add(pPerson);
+
+	return pPerson;
+}
+
+long CPersonsDocument::GetPersonIndexFromPersonsArrayById(long lID)
+{
+	if (lID < 0)
+	{
+		AfxMessageBox(_T("City with ID  - (%d)  was not found in the document."), lID);
+		return -1;
+	}
+
+	for (INT_PTR i = 0; i < m_oPersonsArray.GetCount(); i++)
+	{
+		PERSONS* pPerson = m_oPersonsArray.GetAt(i);
+
+		if (pPerson->lID != lID)
+			continue;
+
+		return i;
+	}
+
+	return -1;
+}
