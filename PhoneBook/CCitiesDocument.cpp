@@ -98,7 +98,7 @@ bool CCitiesDocument::UpdateCity(CITIES& recCity)
 	*pCity = recCity;
 
 	//TODO: Chech here for object ?
-	//OnUpdateAllViews(ContextMenuOperations::Edit, &oCity);
+	//OnUpdateAllViews(ContextMenuOperations::EditData, &oCity);
 	return true;
 }
 

@@ -45,14 +45,14 @@ BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	if (m_eOperation != DialogWindowActions::Create)
+	if (m_eOperation != DialogWindowActions::InsertData)
 		FillingInputFields();
 
 	m_edbCityName.SetLimitText(GlobalConstants::_nCityNameSize);
 	m_edbCityAreaName.SetLimitText(GlobalConstants::_nCityAreaNameSize);
 	SetDialogTitle();
 
-	if (m_eOperation == DialogWindowActions::Read)
+	if (m_eOperation == DialogWindowActions::ReadData)
 	{
 		m_edbCityName.EnableWindow(false);
 		m_edbCityAreaName.EnableWindow(false);
@@ -123,13 +123,13 @@ void CCitiesDialog::SetDialogTitle()
 {
 	switch (m_eOperation)
 	{
-	case  DialogWindowActions::Create:
+	case  DialogWindowActions::InsertData:
 		this->SetWindowText(_T("Add city"));
 		break;
-	case  DialogWindowActions::Read:
+	case  DialogWindowActions::ReadData:
 		this->SetWindowText(_T("Read city data"));
 		break;
-	case  DialogWindowActions::Edit:
+	case  DialogWindowActions::EditData:
 		this->SetWindowText(_T("Edit city"));
 		break;
 	default:

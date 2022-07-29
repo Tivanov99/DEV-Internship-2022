@@ -99,6 +99,9 @@
     <ClInclude Include="CPersonsView.h">
       <Filter>PERSONS</Filter>
     </ClInclude>
+    <ClInclude Include="DialogWindowEnumeration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">

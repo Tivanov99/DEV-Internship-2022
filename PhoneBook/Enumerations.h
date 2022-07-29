@@ -1,13 +1,6 @@
 enum ContextMenuOperations
 {
+	Insert,
 	Edit,
-	Delete,
-	Create
-};
-
-enum DialogWindowActions
-{
-	Edit,
-	Create,
-	Read
+	Delete
 };

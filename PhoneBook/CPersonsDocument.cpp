@@ -93,7 +93,7 @@ bool CPersonsDocument::UpdatePerson(PERSONS& recPerson)
 	PERSONS oPerson;
 	m_PersonsData.SelectWhereID(recPerson.lID, oPerson);
 	//TODO: Chech here for object ?
-	//OnUpdateAllViews(ContextMenuOperations::Edit, &oPerson);
+	//OnUpdateAllViews(ContextMenuOperations::EditData, &oPerson);
 	return true;
 }
 bool CPersonsDocument::InsertPerson(PERSONS& recCity)
@@ -105,7 +105,7 @@ bool CPersonsDocument::InsertPerson(PERSONS& recCity)
 	AddPersonToPersonsArray(recCity);
 
 	//TODO: Chech here for object ?
-	//OnUpdateAllViews(ContextMenuOperations::Edit, &oPerson);
+	//OnUpdateAllViews(ContextMenuOperations::EditData, &oPerson);
 	return true;
 }
 

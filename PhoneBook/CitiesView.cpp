@@ -163,7 +163,7 @@ void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 
 	switch (lHint)
 	{
-	case ContextMenuOperations::Create:
+	case ContextMenuOperations::Insert:
 		break;
 	case ContextMenuOperations::Delete:
 		ÓListCtrl.DeleteItem(nNumberOfSelectedRow);
@@ -205,7 +205,7 @@ void CCitiesView::OnContextMenuEdit()
 
 	CITIES oCity = *pCity;
 
-	CCitiesDialog oCitiesDialog(DialogWindowActions::Edit, oCity);
+	CCitiesDialog oCitiesDialog(DialogWindowActions::EditData, oCity);
 
 	if (oCitiesDialog.DoModal() != IDOK)
 	{
@@ -226,7 +226,7 @@ void CCitiesView::OnContextMenuInsert()
 	CITIES oCity;
 	oCity.lUpdateCounter = 0;
 
-	CCitiesDialog oCitiesDialog(DialogWindowActions::Create, oCity);
+	CCitiesDialog oCitiesDialog(DialogWindowActions::InsertData, oCity);
 
 	if (oCitiesDialog.DoModal() != IDOK)
 		return;
@@ -270,7 +270,7 @@ void CCitiesView::OnEditContextReadData()
 
 	CITIES oCity = *pCity;
 
-	CCitiesDialog oCitiesDialog(DialogWindowActions::Read, oCity);
+	CCitiesDialog oCitiesDialog(DialogWindowActions::ReadData, oCity);
 
 	oCitiesDialog.DoModal();
 }

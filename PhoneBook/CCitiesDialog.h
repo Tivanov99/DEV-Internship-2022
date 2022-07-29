@@ -3,6 +3,7 @@
 #include "Structures.h"
 #include "Enumerations.h"
 #include "DataValidator.h"
+#include "DialogWindowEnumeration.h"
 
 
 // CCitiesDialog dialog

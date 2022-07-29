@@ -196,6 +196,7 @@
     <ClInclude Include="CPersonsTable.h" />
     <ClInclude Include="CPersonsView.h" />
     <ClInclude Include="DataValidator.h" />
+    <ClInclude Include="DialogWindowEnumeration.h" />
     <ClInclude Include="Enumerations.h" />
     <ClInclude Include="GlobalConstants.h" />
     <ClInclude Include="Structures.h" />
