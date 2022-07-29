@@ -205,7 +205,7 @@ void CCitiesView::OnContextMenuEdit()
 
 	CITIES oCity = *pCity;
 
-	CCitiesDialog oCitiesDialog(ContextMenuOperations::Edit, oCity);
+	CCitiesDialog oCitiesDialog(DialogWindowActions::Edit, oCity);
 
 	if (oCitiesDialog.DoModal() != IDOK)
 	{
@@ -226,7 +226,7 @@ void CCitiesView::OnContextMenuInsert()
 	CITIES oCity;
 	oCity.lUpdateCounter = 0;
 
-	CCitiesDialog oCitiesDialog(ContextMenuOperations::Create, oCity);
+	CCitiesDialog oCitiesDialog(DialogWindowActions::Create, oCity);
 
 	if (oCitiesDialog.DoModal() != IDOK)
 		return;
@@ -270,7 +270,7 @@ void CCitiesView::OnEditContextReadData()
 
 	CITIES oCity = *pCity;
 
-	CCitiesDialog oCitiesDialog(ContextMenuOperations::Read, oCity);
+	CCitiesDialog oCitiesDialog(DialogWindowActions::Read, oCity);
 
 	oCitiesDialog.DoModal();
 }

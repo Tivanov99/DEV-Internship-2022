@@ -16,7 +16,7 @@ class CCitiesDialog : public CDialog
 	// Constructor / Destructor
 	// ----------------
 public:
-	CCitiesDialog(ContextMenuOperations eOperations, CITIES& recCity, CWnd* pParent = nullptr);   // standard constructor
+	CCitiesDialog(DialogWindowActions eOperations, CITIES& recCity, CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CCitiesDialog();
 
 	// Dialog Data
@@ -34,7 +34,7 @@ private:
 	void FillingInputFields();
 
 	/// <summary>
-	/// Според командата в 'm_eOperations' задава име на прозореца и на бутона за потвърждаване на операцията.
+	/// Според командата в 'm_eOperation' задава име на прозореца и на бутона за потвърждаване на операцията.
 	/// </summary>
 	void SetDialogTitle();
 
@@ -90,7 +90,7 @@ private:
 	/// <summary>
 	/// Мембър съдържащ типът на текущата операция подаден като аргумент при извикването на диалога.
 	/// </summary>
-	ContextMenuOperations m_eOperations;
+	DialogWindowActions m_eOperation;
 
 
 	/// <summary>

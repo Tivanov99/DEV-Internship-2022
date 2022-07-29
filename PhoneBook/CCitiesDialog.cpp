@@ -12,8 +12,8 @@
 
 IMPLEMENT_DYNAMIC(CCitiesDialog, CDialog)
 
-CCitiesDialog::CCitiesDialog(ContextMenuOperations eOperations, CITIES& recCity, CWnd* pParent /*=nullptr*/)
-	: CDialog(IDD_CITIES_DIALOG, pParent), m_recCity(recCity), m_eOperations(eOperations)
+CCitiesDialog::CCitiesDialog(DialogWindowActions eOperation, CITIES& recCity, CWnd* pParent /*=nullptr*/)
+	: CDialog(IDD_CITIES_DIALOG, pParent), m_recCity(recCity), m_eOperation(eOperation)
 {
 }
 
@@ -45,14 +45,14 @@ BOOL CCitiesDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	if (m_eOperations != ContextMenuOperations::Create)
+	if (m_eOperation != DialogWindowActions::Create)
 		FillingInputFields();
 
 	m_edbCityName.SetLimitText(GlobalConstants::_nCityNameSize);
 	m_edbCityAreaName.SetLimitText(GlobalConstants::_nCityAreaNameSize);
 	SetDialogTitle();
 
-	if (m_eOperations == ContextMenuOperations::Read)
+	if (m_eOperation == DialogWindowActions::Read)
 	{
 		m_edbCityName.EnableWindow(false);
 		m_edbCityAreaName.EnableWindow(false);
@@ -121,15 +121,15 @@ void CCitiesDialog::SetDataToRecord()
 
 void CCitiesDialog::SetDialogTitle()
 {
-	switch (m_eOperations)
+	switch (m_eOperation)
 	{
-	case  ContextMenuOperations::Create:
+	case  DialogWindowActions::Create:
 		this->SetWindowText(_T("Add city"));
 		break;
-	case  ContextMenuOperations::Read:
+	case  DialogWindowActions::Read:
 		this->SetWindowText(_T("Read city data"));
 		break;
-	case  ContextMenuOperations::Edit:
+	case  DialogWindowActions::Edit:
 		this->SetWindowText(_T("Edit city"));
 		break;
 	default:

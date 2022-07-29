@@ -75,6 +75,7 @@ bool CPersonsDocument::DeletePersonById(long lID)
 	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
 
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
+	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
 	return true;
 }
 
