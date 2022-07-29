@@ -54,6 +54,38 @@ BOOL CCitiesView::PreCreateWindow(CREATESTRUCT& cs)
 	return CListView::PreCreateWindow(cs);
 }
 
+// CCitiesView diagnostics
+
+#ifdef _DEBUG
+void CCitiesView::AssertValid() const
+{
+	CListView::AssertValid();
+}
+
+void CCitiesView::Dump(CDumpContext& dc) const
+{
+	CListView::Dump(dc);
+}
+
+CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
+{
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CCitiesDocument)));
+	return (CCitiesDocument*)m_pDocument;
+};
+#endif //_DEBUG
+
+void CCitiesView::OnRButtonUp(UINT /* nFlags */, CPoint point)
+{
+	ClientToScreen(&point);
+	OnContextMenu(this, point);
+}
+
+void CCitiesView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
+{
+#ifndef SHARED_HANDLERS
+	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
+#endif
+}
 
 //TODO: Ask for view base class which will contains pure virtual method for fill view data.
 
@@ -103,41 +135,6 @@ void CCitiesView::FillView()
 		InsertNewRecordToCListCtrl(pCurrentCity);
 	}
 }
-
-
-void CCitiesView::OnRButtonUp(UINT /* nFlags */, CPoint point)
-{
-	ClientToScreen(&point);
-	OnContextMenu(this, point);
-}
-
-void CCitiesView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
-{
-#ifndef SHARED_HANDLERS
-	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
-#endif
-}
-
-// CCitiesView diagnostics
-
-#ifdef _DEBUG
-void CCitiesView::AssertValid() const
-{
-	CListView::AssertValid();
-}
-
-void CCitiesView::Dump(CDumpContext& dc) const
-{
-	CListView::Dump(dc);
-}
-
-CCitiesDocument* CCitiesView::GetDocument() const // non-debug version is inline
-{
-	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CCitiesDocument)));
-	return (CCitiesDocument*)m_pDocument;
-};
-#endif //_DEBUG
-
 
 const int CCitiesView::GetSelectedRowNumber()
 {
@@ -265,6 +262,19 @@ void CCitiesView::InsertNewRecordToCListCtrl(CITIES* pCity)
 	ÓListCtrl.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCity));
 }
 
+void CCitiesView::OnEditContextReadData()
+{
+	CITIES* pCity = GetSelectedRecordItemData();
+	if (pCity == NULL)
+		return;
+
+	CITIES oCity = *pCity;
+
+	CCitiesDialog oCitiesDialog(ContextMenuOperations::Read, oCity);
+
+	oCitiesDialog.DoModal();
+}
+
 void CCitiesView::UpdateRecord(CITIES& oCity)
 {
 	CString strPostalCode;
@@ -280,15 +290,3 @@ void CCitiesView::UpdateRecord(CITIES& oCity)
 }
 
 
-void CCitiesView::OnEditContextReadData()
-{
-	CITIES* pCity = GetSelectedRecordItemData();
-	if (pCity == NULL)
-		return;
-
-	CITIES oCity = *pCity;
-
-	CCitiesDialog oCitiesDialog(ContextMenuOperations::Read, oCity);
-
-	oCitiesDialog.DoModal();
-}

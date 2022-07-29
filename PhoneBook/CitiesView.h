@@ -98,7 +98,7 @@ private:
 	afx_msg void OnContextMenuDelete();
 
 	/// <summary>
-	/// При десен клик върху запис извиква диалогов прозорец попълнен с неговите данни.
+	/// При десен клик върху запис извиква диалогов прозорец попълнен с неговите данни даващ възможност за редакция.
 	/// </summary>
 	afx_msg void OnContextMenuEdit();
 
@@ -106,8 +106,10 @@ private:
 	/// При десен клик без значение къде е извършен той и 'Insert' от контекстното меню извиква диалогов прозорец в който да бъдат попълнени данните на записа.
 	/// </summary>
 	afx_msg void OnContextMenuInsert();
-public:
-	afx_msg void OnEditContextMenuReadData();
+
+	/// <summary>
+	/// При десен клик върху запис извиква диалогов прозорец попълнен с неговите данни.
+	/// </summary>
 	afx_msg void OnEditContextReadData();
 };
 
