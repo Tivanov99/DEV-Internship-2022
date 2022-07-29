@@ -14,7 +14,7 @@ public:
 
 	// Dialog Data
 #ifdef AFX_DESIGN_TIME
-	enum { IDD = IDD_CITIES_DIALOG };
+	enum { IDD = IDD_PERSONS_DIALOG };
 #endif
 	DECLARE_MESSAGE_MAP()
 
