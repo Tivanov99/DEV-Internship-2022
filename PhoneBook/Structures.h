@@ -36,16 +36,18 @@ struct PERSONS {
 	long lID;
 	/// <summary>?</summary>
 	long lUpdateCounter;
-	/// <summary>Променлива съдържаща стойността от колона 'FIRST_NAME' в таблицата  'PERSONS'</summary>
+	/// <summary>Променлива съдържаща стойността от колона 'FIRST_NAME' в таблицата  'PERSONS'.</summary>
 	TCHAR szFIRST_NAME[GlobalConstants::_nPersonFirstNameSize];
-	/// <summary>Променлива съдържаща стойността от колона 'SECOND_NAME' в таблицата  'PERSONS'</summary>
+	/// <summary>Променлива съдържаща стойността от колона 'SECOND_NAME' в таблицата  'PERSONS'.</summary>
 	TCHAR szSECOND_NAME[GlobalConstants::_nPersonSecondNameSize];
-	/// <summary>Променлива съдържаща стойността от колоната 'LAST_NAME' в таблицата  'PERSONS'</summary>
+	/// <summary>Променлива съдържаща стойността от колоната 'LAST_NAME' в таблицата  'PERSONS'.</summary>
 	TCHAR szLAST_NAME[GlobalConstants::_nPersonLastNameSize];
-	/// <summary>Променлива съдържаща вторичен ключ (от колона 'CITY_ID' в таблицата  'PERSONS')
-	/// <summary>сочещ към таблицата 'CITIES' и колона 'ID'</summary>
+	/// <summary>Променлива съдържаща стойността от колоната UCN в таблицата  'PERSONS'.</summary>
+	TCHAR szUCN[GlobalConstants::_nPersonUcnSize];
+	/// <summary>Променлива съдържаща вторичен ключ (от колона 'CITY_ID' в таблицата  'PERSONS').
+	/// <summary>сочещ към таблицата 'CITIES' и колона 'ID'.</summary>
 	long lCITY_ID;
-	/// <summary>Променлива съдържаща стойността от колоната 'ADDRESS' в таблицата  'PERSONS'</summary>
+	/// <summary>Променлива съдържаща стойността от колоната 'ADDRESS' в таблицата  'PERSONS'.</summary>
 	TCHAR szADDRESS[GlobalConstants::_nPersonAddressSize];
 
 	PERSONS()

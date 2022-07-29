@@ -70,6 +70,9 @@ bool CPersonsDocument::DeletePersonById(long lID)
 	if (!bDeleteResult)
 		return false;
 
+
+	DeletePersonFromPersonsArray(lID);
+
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
 	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
 	return true;
@@ -103,19 +106,21 @@ bool CPersonsDocument::InsertPerson(PERSONS& recCity)
 	return true;
 }
 
-bool CPersonsDocument::DeleteCityByIndexFromCitiesArray(long lIndex)
+bool CPersonsDocument::DeletePersonFromPersonsArray(long lPersonId)
 {
-	if (lIndex == -1)
+	if (lPersonId == -1)
 	{
-		AfxMessageBox(_T("The city was not found in the document! City Id - %d"), lIndex);
+		AfxMessageBox(_T("The person was not found in the document! Person Id - %d"), lPersonId);
 		return false;
 	}
 
-	PERSONS* pPerson = m_oPersonsArray.GetAt(lIndex);
+	long lPersonIndex = GetPersonIndexFromPersonsArray(lPersonId);
+
+	PERSONS* pPerson = m_oPersonsArray.GetAt(lPersonIndex);
 
 	delete pPerson;
 	pPerson = NULL;
-	m_oPersonsArray.RemoveAt(lIndex);
+	m_oPersonsArray.RemoveAt(lPersonIndex);
 
 	return true;
 }
@@ -134,7 +139,7 @@ PERSONS* CPersonsDocument::AddPersonToPersonsArray(PERSONS& recPerson)
 	return pPerson;
 }
 
-long CPersonsDocument::GetPersonIndexFromPersonsArrayById(long lID)
+long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 {
 	if (lID < 0)
 	{

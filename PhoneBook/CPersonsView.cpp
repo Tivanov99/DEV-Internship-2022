@@ -20,6 +20,7 @@ BEGIN_MESSAGE_MAP(CPersonsView, CListView)
 	/*ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CCitiesView::OnContextMenuDelete)
 	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnContextMenuEdit)
 	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CCitiesView::OnContextMenuInsert)*/
+	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CPersonsView::OnContextMenuDelete)
 END_MESSAGE_MAP()
 
 // CCitiesView construction/destruction
@@ -163,4 +164,33 @@ void CPersonsView::InsertNewRecordToCListCtrl(PERSONS* pPerson)
 	LSCCitiesList.SetItemText(nRow, nColumnNumber, pPerson->szLAST_NAME);
 
 	LSCCitiesList.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pPerson));
+}
+
+void CPersonsView::OnContextMenuDelete()
+{
+	const PERSONS* pPerson = GetSelectedRecordItemData();
+	if (pPerson == NULL)
+		return;
+
+	CString strMessage;
+	strMessage.Format(_T("Do you want the record to be deleted? First name : %s Last name : %s"), pPerson->szFIRST_NAME, pPerson->szLAST_NAME);
+
+	const int msgboxID = MessageBox(
+		(LPCWSTR)strMessage,
+		(LPCWSTR)L"Delete record.",
+		MB_ICONINFORMATION | IDOK
+	);
+
+	if (msgboxID == IDOK)
+	{
+		CPersonsDocument* pPersonsDocument = GetDocument();
+
+		if (!pPersonsDocument->DeletePersonById(pPerson->lID))
+			return;
+
+		/*const int nSelectedRow = GetNumberOfSelectedRow();
+
+		CListCtrl& оListCtrl = GetListCtrl();
+		оListCtrl.DeleteItem(nSelectedRow);*/
+	}
 }

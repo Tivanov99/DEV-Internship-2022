@@ -73,7 +73,7 @@ bool CCitiesDocument::DeleteCityById(long lID)
 		return false;
 	}
 
-	DeleteCityByIndexFromCitiesArray(lID);
+	DeleteCityFromCitiesArray(lID);
 
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
 	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
@@ -85,19 +85,21 @@ void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 	UpdateAllViews(NULL, lHint, pHint);
 }
 
-bool CCitiesDocument::DeleteCityByIndexFromCitiesArray(long lIndex)
+bool CCitiesDocument::DeleteCityFromCitiesArray(long lCityId)
 {
-	if (lIndex == -1)
+	if (lCityId == -1)
 	{
-		AfxMessageBox(_T("The city was not found in the document! City Id - %d"), lIndex);
+		AfxMessageBox(_T("The city was not found in the document! City Id - %d"), lCityId);
 		return false;
 	}
 
-	CITIES* pCity = m_oCitiesArray.GetAt(lIndex);
+	long lCityIndex = GetCityIndexFromCitiesArrayById(lCityId);
+
+	CITIES* pCity = m_oCitiesArray.GetAt(lCityIndex);
 
 	delete pCity;
 	pCity = NULL;
-	m_oCitiesArray.RemoveAt(lIndex);
+	m_oCitiesArray.RemoveAt(lCityIndex);
 
 	return true;
 }
