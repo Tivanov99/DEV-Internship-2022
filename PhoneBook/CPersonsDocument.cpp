@@ -40,16 +40,6 @@ const CSelfClearingTypedPtrArray< PERSONS>& CPersonsDocument::GetAllPersons()
 	return m_oPersonsArray;
 }
 
-PERSONS* CPersonsDocument::GetPersonById(long lID)
-{
-	PERSONS* pPerson = m_oPersonsArray.GetAt(lID);
-	if (pPerson == NULL)
-	{
-		AfxMessageBox(_T("Failed to read data about person."));
-	}
-	return pPerson;
-}
-
 
 #ifdef _DEBUG
 void CPersonsDocument::AssertValid() const
@@ -63,6 +53,16 @@ void CPersonsDocument::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
+PERSONS* CPersonsDocument::GetPersonById(long lID)
+{
+	PERSONS* pPerson = m_oPersonsArray.GetAt(lID);
+	if (pPerson == NULL)
+	{
+		AfxMessageBox(_T("Failed to read data about person."));
+	}
+	return pPerson;
+}
+
 bool CPersonsDocument::DeletePersonById(long lID)
 {
 	const bool bDeleteResult = m_PersonsData.DeleteWhereID(lID);
@@ -70,11 +70,11 @@ bool CPersonsDocument::DeletePersonById(long lID)
 	if (!bDeleteResult)
 		return false;
 
-
 	DeletePersonFromPersonsArray(lID);
 
+	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
+
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
-	//OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
 	return true;
 }
 

@@ -112,7 +112,7 @@ CPersonsDocument* CPersonsView::GetDocument() const // non-debug version is inli
 };
 #endif //_DEBUG
 
-const int CPersonsView::GetNumberOfSelectedRow()
+const int CPersonsView::GetSelectedRowNumber()
 {
 	CListCtrl& LSCCitiesList = GetListCtrl();
 	const int nSelectedRow = LSCCitiesList.GetSelectionMark();
@@ -121,7 +121,7 @@ const int CPersonsView::GetNumberOfSelectedRow()
 
 PERSONS* CPersonsView::GetSelectedRecordItemData()
 {
-	const int nSelectedRow = GetNumberOfSelectedRow();
+	const int nSelectedRow = GetSelectedRowNumber();
 	if (nSelectedRow == -1)
 	{
 		AfxMessageBox(_T("This function is only called on record!"));
@@ -134,16 +134,19 @@ PERSONS* CPersonsView::GetSelectedRecordItemData()
 
 void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
-	int nNumberOfSelectedRow = GetNumberOfSelectedRow();
+	int nNumberOfSelectedRow = GetSelectedRowNumber();
 	CListCtrl& LSCCitiesList = GetListCtrl();
 
 	switch (lHint)
 	{
-	case ContextMenuOperations::Create: break;
+	case ContextMenuOperations::Create:
+		break;
 	case ContextMenuOperations::Delete:
 		LSCCitiesList.DeleteItem(nNumberOfSelectedRow);
 		break;
-	case ContextMenuOperations::Edit: break;
+	case ContextMenuOperations::Edit:
+
+		break;
 	default:
 		break;
 	}
@@ -185,12 +188,6 @@ void CPersonsView::OnContextMenuDelete()
 	{
 		CPersonsDocument* pPersonsDocument = GetDocument();
 
-		if (!pPersonsDocument->DeletePersonById(pPerson->lID))
-			return;
-
-		/*const int nSelectedRow = GetNumberOfSelectedRow();
-
-		CListCtrl& оListCtrl = GetListCtrl();
-		оListCtrl.DeleteItem(nSelectedRow);*/
+		!pPersonsDocument->DeletePersonById(pPerson->lID);
 	}
 }
