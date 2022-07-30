@@ -1,6 +1,8 @@
 #pragma once
 #include "Structures.h"
 #include "CPersonsTable.h"
+#include "CCitiesTable.h"
+
 
 class CPersonsData 
 {
@@ -13,10 +15,16 @@ public:
 	~CPersonsData();
 
 	/// <summary>
+	///  Функция която чете всики записи от таблицата "CITIES" и ги добавя в подаден като аргумент масив.
+	/// </summary>
+	/// <param name="oPersonsArray">Масив в който ще бъдат записани всички прочетени данни.</param>
+	bool SelectAllCities(CCitiesArray& oCitiesArray);
+
+	/// <summary>
 	///  Функция която чете всики записи от таблицата "PERSONS" и ги добавя в подаден като аргумент масив.
 	/// </summary>
 	/// <param name="oPersonsArray">Масив в който ще бъдат записани всички прочетени данни.</param>
-	bool SelectAll(CSelfClearingTypedPtrArray<PERSONS>& oPersonsArray);
+	bool SelectAll(CPersonsArray& oPersonsArray);
 
 	/// <summary>
 	///  Функция която чете запис от таблицата "PERSONS" чието ID отговаря на "lID" и го презаписва в "recPersons" аргумента.
@@ -48,6 +56,8 @@ private:
 	/// <summary>
 	/// Мембър за достъп до класът съдържащ бизнес логиката.
 	/// </summary>
-	CPersonsTable m_PersonsTable;
+	CPersonsTable m_oPersonsTable;
+
+	CCitiesTable m_oCitiesTable;
 };
 

@@ -51,7 +51,6 @@
 #define IDC_STT_PERSON_UCN              1036
 #define IDC_EDB_PERSON_UCN              1037
 #define IDC_STT_PERSON_PHONE_NUMBERS    1038
-#define IDC_LIST1                       1041
 #define IDC_CMB_LSC_PERONS_PHONE_NUMBERS 1041
 #define ID_EDIT_CONTEXT_DELETE          32805
 #define ID_EDIT_CONTEXT_EDIT            32807

@@ -30,11 +30,13 @@ public:
 
 	//Methods
 public:
-	const CSelfClearingTypedPtrArray<PERSONS>& GetAllPersons();
+	const CPersonsArray& GetAllPersons();
 	PERSONS* GetPersonById(long lID);
 	bool DeletePersonById(long lID);
 	bool UpdatePerson(PERSONS& recPerson);
 	bool InsertPerson(PERSONS& recPerson);
+
+	const CCitiesArray GetAllCities();
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	bool DeletePersonFromPersonsArray(long lPersonId);
@@ -43,8 +45,9 @@ private:
 	//Members
 
 private:
-	CSelfClearingTypedPtrArray<PERSONS> m_oPersonsArray;
+	CPersonsArray m_oPersonsArray;
 	CPersonsData m_PersonsData;
+
 
 protected:
 

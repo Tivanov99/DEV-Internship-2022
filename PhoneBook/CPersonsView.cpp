@@ -98,7 +98,7 @@ void CPersonsView::FillView()
 
 	CPersonsDocument* pPersonsDocument = GetDocument();
 
-	const CSelfClearingTypedPtrArray<PERSONS>& oPersonsArray = pPersonsDocument->GetAllPersons();
+	const CPersonsArray& oPersonsArray = pPersonsDocument->GetAllPersons();
 
 	for (INT_PTR i = 0; i < oPersonsArray.GetCount(); i++)
 	{
@@ -209,6 +209,9 @@ void CPersonsView::OnContextMenuEdit()
 	PERSONS oPerson = *pPerson;
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson);
+
+	if (!oPersonsDialog.DoModal())
+		return;
 
 	// TODO: Add your command handler code here
 }
