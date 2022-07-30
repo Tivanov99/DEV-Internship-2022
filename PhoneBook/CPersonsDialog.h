@@ -72,11 +72,35 @@ private:
 	/// Мембър съдържащ методи за валидиране на сойностите в текстовите полета.
 	/// </summary>
 	DataValidator m_oDataValidator;
+
+	/// <summary>
+	/// Мембър отговарящ за входното поле съдържащо името на контакта.
+	/// </summary>
 	CEdit m_edbPersonFirstName;
+
+	/// <summary>
+	/// Мембър отговарящ за входното поле съдържащо презимето на контакта.
+	/// </summary>
 	CEdit m_edbPersonSecondName;
+
+	/// <summary>
+	/// Мембър отговарящ за входното поле съдържащо фамилното име на контакта.
+	/// </summary>
 	CEdit m_edbPersonLastName;
+
+	/// <summary>
+	/// Мембър отговарящ за входното поле съдържащо егн-то на контакта.
+	/// </summary>
 	CEdit m_edbPersonUcn;
+
+	/// <summary>
+	/// Мембър отговарящ за падащото меню с всички градове в него.
+	/// </summary>
 	CComboBox m_cmbCitiesNames;
+
+	/// <summary>
+	/// Мембър отговарящ всички телефонни номера и техния тип за текущият контакт.
+	/// </summary>
 	CListCtrl m_lscPhoneNumbers;
 };
 
