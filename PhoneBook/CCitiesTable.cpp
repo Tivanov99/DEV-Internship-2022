@@ -4,7 +4,6 @@
 
 
 const LPCSTR CCitiesTable::lpszSelectAllById = "SELECT * FROM CITIES WHERE ID = %d";
-const LPCSTR CCitiesTable::lpszSelectLastById = "SELECT TOP 1 * FROM CITIES  ORDER BY ID Desc";
 const LPCSTR CCitiesTable::lpszSelectAll = "SELECT * FROM CITIES";
 const LPCSTR CCitiesTable::lpszEmptySelect = "SELECT TOP 0 * FROM CITIES";
 
@@ -26,32 +25,27 @@ void CCitiesTable::CloseDbConnectionAndSession()
 
 bool CCitiesTable::ExecuteQuery(const CString& strQuery, const int nQueryAccessor)
 {
-	if (nQueryAccessor != NoneModifyColumnCode && nQueryAccessor != ModifyColumnCode)
+	bool bResult = false;
+	switch (nQueryAccessor)
 	{
+	case NoneModifyColumnCode:
+		FAILED(Open(m_oSession, strQuery)) ?
+			ShowErrorMessage(lpszErrorExecutingQuery, strQuery) : 
+			bResult = true;
+		break;
+
+	case ModifyColumnCode:
+		FAILED(Open(m_oSession, strQuery, &GetModifyDBPropSet())) ?
+			ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
+			bResult = true;
+		break;
+
+	default:
 		ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
-		return false;
+		break;
 	}
-	if (nQueryAccessor == NoneModifyColumnCode)
-	{
-		//изпълняваме команда
-		if (FAILED(Open(m_oSession, strQuery)))
-		{
-			ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-			return false;
-		}
-	}
-	else if (nQueryAccessor == ModifyColumnCode)
-	{
-		//настройваме row-set
-		CDBPropSet oUpdateDBPropSet = GetModifyDBPropSet();
-		//изпълняваме команда
-		if (FAILED(Open(m_oSession, strQuery, &oUpdateDBPropSet)))
-		{
-			ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-			return false;
-		}
-	}
-	return true;
+	
+	return bResult;
 }
 
 bool CCitiesTable::SelectAll(CCitiesArray& oCitiesPtrArray)
@@ -70,7 +64,7 @@ bool CCitiesTable::SelectAll(CCitiesArray& oCitiesPtrArray)
 	HRESULT hResult = MoveFirst();
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(lpszErrorOpeningRecord,NULL);
+		ShowErrorMessage(lpszErrorOpeningRecord, NULL);
 		CloseDbConnectionAndSession();
 		return false;
 	}

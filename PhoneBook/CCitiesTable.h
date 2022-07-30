@@ -46,7 +46,6 @@ class CCitiesTable : private CCommand<CAccessor<CCityAccessor>>, public CBaseTab
 	// ----------------
 private:
 	static const LPCSTR lpszSelectAllById;
-	static const LPCSTR lpszSelectLastById;
 	static const LPCSTR lpszSelectAll;   
 	static const LPCSTR lpszEmptySelect;
 	

@@ -29,6 +29,12 @@ protected:
 #pragma once
 class CPhoneNumbersTable : public CBaseTable<PHONE_NUMBERS>
 {
+	// Constants
+	// ----------------
+private:
+	static const LPCSTR lpszSelectById;
+	static const LPCSTR lpszSelectAll;
+	static const LPCSTR lpszEmptySelect;
 
 	// Constructor / Destructor
 	// ----------------
