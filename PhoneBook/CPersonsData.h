@@ -17,7 +17,7 @@ public:
 	/// <summary>
 	///  Функция която чете всики записи от таблицата "CITIES" и ги добавя в подаден като аргумент масив.
 	/// </summary>
-	/// <param name="oPersonsArray">Масив в който ще бъдат записани всички прочетени данни.</param>
+	/// <param name="oCitiesArray">Масив в който ще бъдат записани всички прочетени данни.</param>
 	bool SelectAllCities(CCitiesArray& oCitiesArray);
 
 	/// <summary>

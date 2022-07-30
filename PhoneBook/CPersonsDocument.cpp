@@ -35,7 +35,7 @@ void CPersonsDocument::Serialize(CArchive& ar)
 	}
 }
 
-const CSelfClearingTypedPtrArray< PERSONS>& CPersonsDocument::GetAllPersons()
+const CPersonsArray& CPersonsDocument::GetAllPersons()
 {
 	return m_oPersonsArray;
 }
@@ -75,6 +75,11 @@ bool CPersonsDocument::DeletePersonById(long lID)
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
 	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
 	return true;
+}
+
+const CCitiesArray CPersonsDocument::GetAllCities(CCitiesArray& oCitiesArray)
+{
+	m_PersonsData.SelectAllCities(oCitiesArray);
 }
 
 void CPersonsDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
