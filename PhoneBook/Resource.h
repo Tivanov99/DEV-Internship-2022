@@ -52,6 +52,8 @@
 #define IDC_EDB_PERSON_UCN              1037
 #define IDC_STT_PERSON_PHONE_NUMBERS    1038
 #define IDC_CMB_LSC_PERONS_PHONE_NUMBERS 1041
+#define IDC_LIST1                       1042
+#define IDC_LSC_PERSON_PHONE_NUMBERS    1043
 #define ID_EDIT_CONTEXT_DELETE          32805
 #define ID_EDIT_CONTEXT_EDIT            32807
 #define ID_EDIT_CONTEXT_INSERT          32809
@@ -63,7 +65,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        322
 #define _APS_NEXT_COMMAND_VALUE         32813
-#define _APS_NEXT_CONTROL_VALUE         1042
+#define _APS_NEXT_CONTROL_VALUE         1044
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

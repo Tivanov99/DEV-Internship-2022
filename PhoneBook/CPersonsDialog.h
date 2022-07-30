@@ -24,27 +24,26 @@ public:
 #endif
 	DECLARE_MESSAGE_MAP()
 
+	// Methods
+	// ----------------
 private:
 	/// <summary>
 	/// Попълва всички входни полета с данните идващи от 'm_recPerson'.
 	/// </summary>
-	void FillAllFields();
+	void FillPersonDataFields();
 
 	/// <summary>
 	/// Според командата в 'm_eOperation' задава име на прозореца.
 	/// </summary>
 	void SetDialogTitle();
 
-	/*/// <summary>
-	/// Взема въвдената стойност от полето за пощенски код.
-	/// </summary>
-	/// <returns>Връша въвдената стойност в полето за пощенски код.</returns>
-	long GetPostalCodeFromInputFiled();
-
 	/// <summary>
 	/// Задава сойносите попълнени в полетата на записът който подлежи на обработка.
 	/// </summary>
-	void SetDataToRecord();*/
+	void SetDataToRecord();
+
+
+
 	// Overrides
 	// ----------------
 protected:
@@ -69,6 +68,9 @@ private:
 	/// </summary>
 	PERSONS& m_recPerson;
 
+	/// <summary>
+	/// Референция към подаден масив  при извикването на диалога който съдържа всички градове.
+	/// </summary>
 	CCitiesArray& m_oCitiesArray;
 
 	/// <summary>
@@ -105,5 +107,10 @@ private:
 	/// Мембър отговарящ за падащото меню с всички градове в него.
 	/// </summary>
 	CComboBox m_cmbCitiesNames;
+
+	/// <summary>
+	/// Мембър отговарящ за всички телефонни номера в него.
+	/// </summary>
+	CListCtrl m_lscPersonPhoneNumbers;
 };
 
