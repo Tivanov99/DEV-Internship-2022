@@ -15,7 +15,7 @@ class CPersonsDialog : public CDialog
 	DECLARE_DYNAMIC(CPersonsDialog)
 
 public:
-	CPersonsDialog(DialogWindowActions eOperations, PERSONS& recPerson, CWnd* pParent = nullptr);  // standard constructor
+	CPersonsDialog(DialogWindowActions eOperations, PERSONS& recPerson,CCitiesArray& oCitiesArray, CWnd* pParent = nullptr);  // standard constructor
 	virtual ~CPersonsDialog();
 
 	// Dialog Data
@@ -68,6 +68,8 @@ private:
 	/// Референция към подаден запис при извикването на диалога.
 	/// </summary>
 	PERSONS& m_recPerson;
+
+	CCitiesArray& m_oCitiesArray;
 
 	/// <summary>
 	/// Мембър съдържащ типът на текущата операция подаден като аргумент при извикването на диалога.

@@ -7,8 +7,8 @@
 
 IMPLEMENT_DYNAMIC(CPersonsDialog, CDialog)
 
-CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerson, CWnd* pParent /*=nullptr*/)
-	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation)
+CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerson, CCitiesArray& oCitiesArray, CWnd* pParent /*=nullptr*/)
+	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation), m_oCitiesArray(oCitiesArray)
 {
 }
 CPersonsDialog :: ~CPersonsDialog() {};

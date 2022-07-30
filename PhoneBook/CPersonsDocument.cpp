@@ -77,9 +77,12 @@ bool CPersonsDocument::DeletePersonById(long lID)
 	return true;
 }
 
-const CCitiesArray CPersonsDocument::GetAllCities(CCitiesArray& oCitiesArray)
+bool CPersonsDocument::GetAllCities(CCitiesArray& oCitiesArray)
 {
-	m_PersonsData.SelectAllCities(oCitiesArray);
+	if (!m_PersonsData.SelectAllCities(oCitiesArray))
+		return false;
+
+	return true;
 }
 
 void CPersonsDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)

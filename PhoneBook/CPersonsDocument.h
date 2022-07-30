@@ -36,7 +36,7 @@ public:
 	bool UpdatePerson(PERSONS& recPerson);
 	bool InsertPerson(PERSONS& recPerson);
 
-	const CCitiesArray GetAllCities(CCitiesArray& oCitiesArray);
+	bool GetAllCities(CCitiesArray& oCitiesArray);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	bool DeletePersonFromPersonsArray(long lPersonId);

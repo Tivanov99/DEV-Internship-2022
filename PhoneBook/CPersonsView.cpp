@@ -208,7 +208,14 @@ void CPersonsView::OnContextMenuEdit()
 
 	PERSONS oPerson = *pPerson;
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson);
+
+	CPersonsDocument* pPersonDocument = GetDocument();
+
+	CCitiesArray oCitiesArray;
+
+	pPersonDocument->GetAllCities(oCitiesArray);
+		
+	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray);
 
 	if (!oPersonsDialog.DoModal())
 		return;
