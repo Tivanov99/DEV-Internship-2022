@@ -33,6 +33,16 @@ private:
 	void FillPersonDataFields();
 
 	/// <summary>
+	/// Попълва 'm_cmbCitiesNames' с всички градове идващи като аргумент 'oCitiesArray' при извикването на диалога.
+	/// </summary>
+	void FillCitiesComboBox();
+
+	/// <summary>
+	/// Попълва 'm_lscPersonPhoneNumbers' с всички телефонни номера идващи като аргумент 'oCitiesArray' при извикването на диалога.
+	/// </summary>
+	void FillPhoneNumbers();
+
+	/// <summary>
 	/// Според командата в 'm_eOperation' задава име на прозореца.
 	/// </summary>
 	void SetDialogTitle();
@@ -41,7 +51,6 @@ private:
 	/// Задава сойносите попълнени в полетата на записът който подлежи на обработка.
 	/// </summary>
 	void SetDataToRecord();
-
 
 
 	// Overrides

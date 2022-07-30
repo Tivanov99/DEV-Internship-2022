@@ -35,7 +35,7 @@ BOOL CPersonsDialog::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	if (m_eOperation != DialogWindowActions::InsertData)
-		FillAllFields();
+		FillPersonDataFields();
 
 	SetDialogTitle();
 
@@ -69,7 +69,7 @@ void CPersonsDialog::SetDialogTitle()
 	}
 }
 
-void CPersonsDialog::FillAllFields()
+void CPersonsDialog::FillPersonDataFields()
 {
 	m_edbPersonFirstName.SetWindowText(m_recPerson.szFIRST_NAME);
 	m_edbPersonSecondName.SetWindowText(m_recPerson.szSECOND_NAME);

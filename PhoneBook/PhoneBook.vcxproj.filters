@@ -25,6 +25,18 @@
     <Filter Include="Source Files\PERSONS">
       <UniqueIdentifier>{303fe5f4-5a2e-4965-928e-389e08ed815a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PHONE_NUMERS">
+      <UniqueIdentifier>{b8242b1e-d7da-4518-8d51-26aa95088273}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PHONE_TYPES">
+      <UniqueIdentifier>{683404fd-8e16-4d95-bcf0-c1718fa5d25d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PHONE_NUMBERS">
+      <UniqueIdentifier>{e13e2113-cc96-46b5-9c89-49f1c98e7d02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PHONE_TYPES">
+      <UniqueIdentifier>{80c21068-ef2e-45bf-b823-bc87d8c6d232}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PhoneBook.h">
