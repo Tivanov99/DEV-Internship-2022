@@ -5,11 +5,15 @@
 #pragma once
 class CPhoneNumbersTable : public CBaseTable<PHONE_NUMBERS>
 {
+	// Constructor / Destructor
+	// ----------------
 public:
 	CPhoneNumbersTable();
 	~CPhoneNumbersTable();
 
-public:
+
+	// Methods
+	// ----------------
 
 };
 

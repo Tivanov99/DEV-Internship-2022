@@ -58,6 +58,49 @@ private:
 	/// <param name="strQuery">Обект който съдържа текущата заявка.</param>
 	void ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery);
 
+	
+	// Overrides
+	// -------------
+public:
+	/// <summary>
+	///  Функция която чете всики записи от таблица която е подадена като тип при наследяване
+	///  на класът и ги добавя в подаден като аргумент масив.
+	/// </summary>
+	/// <param name="oArray">Масив в който ще бъдат записани всички прочетени данни.</param>
+	bool virtual SelectAll(CSelfClearingTypedPtrArray<T>& oArray) = 0;
+
+	/// <summary>
+	///  Функция която чете запис от таблицата която е подадена като тип при наследяване
+	///  на класът чието ID отговаря на "lID" и го презаписва в "rec" аргумента.
+	/// </summary>
+	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
+	/// <param name="rec">Референция която ще присвои резултата от функцията</param>
+	bool virtual SelectWhereID(const long lID, T& rec) = 0;
+
+	/// <summary>
+	///  Функция която прави промяна на запис от таблицата  която е подадена като тип при наследяване
+	///  на класът чието ID отговаря на "lID" аргумента,
+	///  и ще приложи промените от аргумента "rec" в записа извлечен от базата.
+	/// </summary>
+	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
+	/// <param name="rec">Референция която съдържа вече променените данни.</param>
+	bool virtual UpdateWhereID(const long lID, const T& rec) = 0;
+
+	/// <summary>
+	///  Функция която добавя запис подаден като аргумент към таблицата която е подадена като тип при наследяване
+	///  на класът.
+	/// </summary>
+	/// <param name="rec">Референция която съдържа новия обект.</param>
+	bool virtual Insert(const T& rec) = 0;
+
+	/// <summary>
+	///  Функция която изтрива запис от таблицата която е подадена като тип при наследяване
+	///  на класът който отговавя на "lID" аргумента.
+	/// </summary>
+	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
+	bool virtual DeleteWhereID(const long lID) = 0;
+
+private:
 	/// <summary>
 	///  Функция която изпълнява дадена заявка към отворена връзка.
 	/// </summary>
@@ -72,20 +115,6 @@ private:
 	///  Функция която затваря връзката към базата.
 	/// </summary>
 	void virtual  CloseDbConnectionAndSession() = 0;
-
-
-	// Overrides
-	// -------------
-public:
-	bool virtual SelectAll(CSelfClearingTypedPtrArray<T>& oArray) = 0;
-
-	bool virtual SelectWhereID(const long lID, T& rec) = 0;
-
-	bool virtual UpdateWhereID(const long lID, const T& rec) = 0;
-
-	bool virtual Insert(const T& rec) = 0;
-
-	bool virtual DeleteWhereID(const long lID) = 0;
 
 private:
 	// Members
