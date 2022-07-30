@@ -34,7 +34,7 @@ BOOL CPersonsDialog::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	if (m_eOperation != DialogWindowActions::InsertData)
-		FillingInputFields();
+		FillAllFields();
 
 	/*m_edbCityName.SetLimitText(GlobalConstants::_nCityNameSize);
 	m_edbCityAreaName.SetLimitText(GlobalConstants::_nCityAreaNameSize);*/
@@ -70,12 +70,29 @@ void CPersonsDialog::SetDialogTitle()
 	}
 }
 
-void CPersonsDialog::FillingInputFields()
+void CPersonsDialog::FillAllFields()
 {
 	m_edbPersonFirstName.SetWindowText(m_recPerson.szFIRST_NAME);
 	m_edbPersonSecondName.SetWindowText(m_recPerson.szSECOND_NAME);
 	m_edbPersonLastName.SetWindowText(m_recPerson.szLAST_NAME);
 	m_edbPersonUcn.SetWindowText(m_recPerson.szUCN);
+
+	for (INT_PTR i = 0; i < m_oCitiesArray.GetCount(); i++)
+	{
+		CITIES* pCity = m_oCitiesArray.GetAt(i);
+		if (pCity == NULL)
+			continue;
+
+		if (pCity->lID == m_recPerson.lCITY_ID)
+		{
+			m_cmbCitiesNames.SetWindowText(pCity->szCITY_NAME);
+			continue;	
+		}
+
+		int nResult = m_cmbCitiesNames.AddString(pCity->szCITY_NAME);
+		m_cmbCitiesNames.SetItemData(nResult, reinterpret_cast<DWORD_PTR>(pCity));
+	}
+	
 }
 
 void CPersonsDialog::OnOK()
@@ -108,6 +125,12 @@ void CPersonsDialog::OnOK()
 	}
 
 	SetDataToRecord();*/
+
+	
+
+
+	CITIES* pItem3 = (CITIES*)m_cmbCitiesNames.GetItemData(m_cmbCitiesNames.GetCurSel());
+
 
 	CDialog::OnOK();
 }

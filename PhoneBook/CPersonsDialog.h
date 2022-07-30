@@ -28,7 +28,7 @@ private:
 	/// <summary>
 	/// Попълва всички входни полета с данните идващи от 'm_recPerson'.
 	/// </summary>
-	void FillingInputFields();
+	void FillAllFields();
 
 	/// <summary>
 	/// Според командата в 'm_eOperation' задава име на прозореца.
