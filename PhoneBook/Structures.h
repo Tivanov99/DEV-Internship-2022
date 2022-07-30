@@ -1,6 +1,7 @@
 #pragma once
 #include <afxtempl.h>
 #include "GlobalConstants.h"
+#include "CSelfClearingTypedPtrArray.h"
 
 /// <summary>
 ///  ƒискова структура CITIES предназначена за таблицата 'CITIES'
@@ -95,5 +96,7 @@ struct PHONE_TYPES {
 	};
 };
 
-//typedef CSelfClearingTypedPtrArray<CITIES> CCitiesArray;
-
+typedef CSelfClearingTypedPtrArray<CITIES> CCitiesArray;
+typedef CSelfClearingTypedPtrArray<PERSONS> CPersonsArray;
+typedef CSelfClearingTypedPtrArray<PHONE_NUMBERS> CPhoneNumbersArray;
+typedef CSelfClearingTypedPtrArray<PHONE_TYPES> CPhoneTypesArray;
