@@ -53,7 +53,7 @@ bool CPersonsTable::ExecuteQuery(const CString& strQuery, const int nQueryAccess
 	return true;
 }
 
-bool CPersonsTable::SelectAll(CSelfClearingTypedPtrArray<PERSONS>& oPersonsPtrArray)
+bool CPersonsTable::SelectAll(CPersonsArray& oPersonsPtrArray)
 {
 	if (!OpenDbConnectionAndSession())
 		return false;

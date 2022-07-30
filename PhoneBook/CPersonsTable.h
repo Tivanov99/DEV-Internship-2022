@@ -58,7 +58,7 @@ public:
 	// Overrides
 	// ----------------
 public:
-	bool SelectAll(CSelfClearingTypedPtrArray<PERSONS>& oArray) override;
+	bool SelectAll(CPersonsArray& oArray) override;
 
 	bool SelectWhereID(const long lID, PERSONS& recPersons) override;
 
