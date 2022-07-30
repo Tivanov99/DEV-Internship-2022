@@ -4,3 +4,9 @@ enum ContextMenuOperations
 	Edit,
 	Delete
 };
+
+enum AccessorTypes
+{
+	NoneModifying,
+	Modifying
+};

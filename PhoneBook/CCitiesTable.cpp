@@ -23,18 +23,18 @@ void CCitiesTable::CloseDbConnectionAndSession()
 	m_oDataSource.Close();
 };
 
-bool CCitiesTable::ExecuteQuery(const CString& strQuery, const int nQueryAccessor)
+bool CCitiesTable::ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor)
 {
 	bool bResult = false;
-	switch (nQueryAccessor)
+	switch (eQueryAccessor)
 	{
-	case NoneModifyColumnCode:
+	case AccessorTypes::NoneModifying:
 		FAILED(Open(m_oSession, strQuery)) ?
 			ShowErrorMessage(lpszErrorExecutingQuery, strQuery) : 
 			bResult = true;
 		break;
 
-	case ModifyColumnCode:
+	case AccessorTypes::Modifying:
 		FAILED(Open(m_oSession, strQuery, &GetModifyDBPropSet())) ?
 			ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
 			bResult = true;
@@ -44,7 +44,6 @@ bool CCitiesTable::ExecuteQuery(const CString& strQuery, const int nQueryAccesso
 		ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
 		break;
 	}
-	
 	return bResult;
 }
 
@@ -54,7 +53,7 @@ bool CCitiesTable::SelectAll(CCitiesArray& oCitiesPtrArray)
 		return false;
 
 	// Изпълняваме командата
-	if (!ExecuteQuery((CString)lpszSelectAll, NoneModifyColumnCode))
+	if (!ExecuteQuery((CString)lpszSelectAll, AccessorTypes::NoneModifying))
 	{
 		CloseDbConnectionAndSession();
 		return false;
@@ -101,7 +100,7 @@ bool CCitiesTable::SelectWhereID(const long lID, CITIES& recCities)
 	CString strQuery;
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
-	if (!ExecuteQuery(strQuery, NoneModifyColumnCode))
+	if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
 	{
 		CloseDbConnectionAndSession();
 		return false;
@@ -129,7 +128,7 @@ bool CCitiesTable::UpdateWhereID(const long lID, const CITIES& recCities)
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
 	// Изпълняваме командата
-	if (!ExecuteQuery(strQuery, ModifyColumnCode))
+	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
 	{
 		CloseDbConnectionAndSession();
 		return false;
@@ -167,7 +166,7 @@ bool CCitiesTable::Insert(const CITIES& recCities)
 	if (!OpenDbConnectionAndSession())
 		return false;
 
-	if (!ExecuteQuery((CString)lpszEmptySelect, ModifyColumnCode))
+	if (!ExecuteQuery((CString)lpszEmptySelect, AccessorTypes::Modifying))
 	{
 		ShowErrorMessage(lpszErrorExecutingQuery, (CString)lpszEmptySelect);
 		CloseDbConnectionAndSession();
@@ -197,7 +196,7 @@ bool CCitiesTable::DeleteWhereID(const long lID)
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
 	// Изпълняваме командата
-	if (!ExecuteQuery(strQuery, ModifyColumnCode))
+	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
 	{
 		ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
 		CloseDbConnectionAndSession();

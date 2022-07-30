@@ -1,6 +1,7 @@
 #pragma once
 #include <atldbcli.h>
 #include <iostream>
+#include "Enumerations.h"
 #include <afxcontrolbars.h>
 #include "CSelfClearingTypedPtrArray.h"
 
@@ -74,7 +75,7 @@ public:
 
 private:
 	
-	bool virtual ExecuteQuery(const CString& strQuery, const int nQueryAccessor) = 0;
+	bool virtual ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor) = 0;
 	
 	void virtual  CloseDbConnectionAndSession() = 0;
 
