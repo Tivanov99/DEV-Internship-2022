@@ -93,7 +93,7 @@
     <ClInclude Include="GlobalConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DataValidator.h">
+    <ClInclude Include="CitiesDataValidator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CPersonsView.h">
@@ -158,7 +158,7 @@
     <ClCompile Include="GlobalConstants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DataValidator.cpp">
+    <ClCompile Include="CitiesDataValidator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CPersonsView.cpp">

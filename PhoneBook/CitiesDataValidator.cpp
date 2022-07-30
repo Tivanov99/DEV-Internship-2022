@@ -1,12 +1,12 @@
 #include "pch.h"
-#include "DataValidator.h"
+#include "CitiesDataValidator.h"
 
 
-DataValidator::DataValidator() {};
-DataValidator::~DataValidator() {};
+CCitiesDataValidator::CCitiesDataValidator() {};
+CCitiesDataValidator::~CCitiesDataValidator() {};
 
 
-CString DataValidator::ValidateTextData(const CString& strData, const int nMinLenght) const
+CString CCitiesDataValidator::ValidateTextData(const CString& strData, const int nMinLenght) const
 {
 	CString strErrorMessage;
 
@@ -23,7 +23,7 @@ CString DataValidator::ValidateTextData(const CString& strData, const int nMinLe
 }
 
 
-bool DataValidator::CheckForSymbols(const CString& strValue) const
+bool CCitiesDataValidator::CheckForSymbols(const CString& strValue) const
 {
 	for (INT_PTR i = 0; i < strValue.GetLength(); i++)
 	{
@@ -44,7 +44,7 @@ bool DataValidator::CheckForSymbols(const CString& strValue) const
 	return true;
 }
 
-bool DataValidator::ValidatePostalCode(const long& lPostalCode)const
+bool CCitiesDataValidator::ValidatePostalCode(const long& lPostalCode)const
 {
 	return	lPostalCode <= 0 ? false : true;
 }

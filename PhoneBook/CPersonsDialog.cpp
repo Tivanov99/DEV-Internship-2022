@@ -36,8 +36,6 @@ BOOL CPersonsDialog::OnInitDialog()
 	if (m_eOperation != DialogWindowActions::InsertData)
 		FillAllFields();
 
-	/*m_edbCityName.SetLimitText(GlobalConstants::_nCityNameSize);
-	m_edbCityAreaName.SetLimitText(GlobalConstants::_nCityAreaNameSize);*/
 	SetDialogTitle();
 
 	if (m_eOperation == DialogWindowActions::ReadData)

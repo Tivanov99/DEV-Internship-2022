@@ -2,7 +2,7 @@
 #include "afxdialogex.h"
 #include "Structures.h"
 #include "Enumerations.h"
-#include "DataValidator.h"
+#include "CitiesDataValidator.h"
 #include "DialogWindowEnumeration.h"
 
 
@@ -97,7 +97,7 @@ private:
 	/// <summary>
 	/// Мембър съдържащ методи за валидиране на сойностите в текстовите полета.
 	/// </summary>
-	DataValidator m_oDataValidator;
+	CCitiesDataValidator m_oDataValidator;
 private:
 	CButton btn_Ok;
 };

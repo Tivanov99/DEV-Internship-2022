@@ -1,9 +1,10 @@
 #pragma once
-class DataValidator
+#include <afxstr.h>
+class CCitiesDataValidator
 {
 public:
-	DataValidator();
-	~DataValidator();
+	CCitiesDataValidator();
+	~CCitiesDataValidator();
 public:
 	/// <summary>
 	/// Валидира текстови данни идващи от променлива на входно поле подадена като аргумент, и при възникване на грешка конструира и връща поянително съобщение.

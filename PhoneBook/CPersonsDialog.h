@@ -2,7 +2,7 @@
 #include "Structures.h"
 #include "afxdialogex.h"
 #include "Structures.h"
-#include "DataValidator.h"
+
 #include "Enumerations.h"
 #include "DialogWindowEnumeration.h"
 #include "../../ListCtrl/ComboListCtrl.h"
@@ -79,7 +79,7 @@ private:
 	/// <summary>
 	/// Мембър съдържащ методи за валидиране на сойностите в текстовите полета.
 	/// </summary>
-	DataValidator m_oDataValidator;
+	//CCitiesDataValidator m_oDataValidator;
 
 	/// <summary>
 	/// Мембър отговарящ за входното поле съдържащо името на контакта.
