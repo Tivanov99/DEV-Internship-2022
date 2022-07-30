@@ -1,6 +1,7 @@
 #pragma once
 #include "CPersonsDocument.h"
 
+
 class CPersonsView :public CListView
 {
 protected: // create from serialization only

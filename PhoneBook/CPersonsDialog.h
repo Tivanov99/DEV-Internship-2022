@@ -1,8 +1,13 @@
 #pragma once
-#include "DialogWindowEnumeration.h"
+#include "Structures.h"
+#include "afxdialogex.h"
 #include "Structures.h"
 #include "DataValidator.h"
+#include "Enumerations.h"
+#include "DialogWindowEnumeration.h"
 #include "../../ListCtrl/ComboListCtrl.h"
+
+
 class CPersonsDialog : public CDialog
 {
 	//Constants
@@ -10,7 +15,7 @@ class CPersonsDialog : public CDialog
 	DECLARE_DYNAMIC(CPersonsDialog)
 
 public:
-	CPersonsDialog(DialogWindowActions eOperations, PERSONS& recPerson,  CWnd* pParent = nullptr);   // standard constructor
+	CPersonsDialog(DialogWindowActions eOperations, PERSONS& recPerson, CWnd* pParent = nullptr);  // standard constructor
 	virtual ~CPersonsDialog();
 
 	// Dialog Data
@@ -20,17 +25,17 @@ public:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	/// <summary>
+	/*/// <summary>
 	/// Попълва всички входни полета с данните идващи от 'm_recPerson'.
 	/// </summary>
-	void FillingInputFields();
+	void FillingInputFields();*/
 
 	/// <summary>
 	/// Според командата в 'm_eOperation' задава име на прозореца.
 	/// </summary>
 	void SetDialogTitle();
 
-	/// <summary>
+	/*/// <summary>
 	/// Взема въвдената стойност от полето за пощенски код.
 	/// </summary>
 	/// <returns>Връша въвдената стойност в полето за пощенски код.</returns>
@@ -39,7 +44,7 @@ private:
 	/// <summary>
 	/// Задава сойносите попълнени в полетата на записът който подлежи на обработка.
 	/// </summary>
-	void SetDataToRecord();
+	void SetDataToRecord();*/
 	// Overrides
 	// ----------------
 protected:
@@ -98,11 +103,5 @@ private:
 	/// Мембър отговарящ за падащото меню с всички градове в него.
 	/// </summary>
 	CComboBox m_cmbCitiesNames;
-
-public:
-	/// <summary>
-	/// Мембър отговарящ всички телефонни номера и техния тип за текущият контакт.
-	/// </summary>
-	CComboListCtrl m_cmblscPhoneNumbers;
 };
 

@@ -1,6 +1,5 @@
 ﻿#include "pch.h"
 #include "CPersonsView.h"
-#include "Enumerations.h"
 #include "resource.h"
 #include "PhoneBook.h"
 #include "CPersonsDialog.h"
@@ -209,7 +208,7 @@ void CPersonsView::OnContextMenuEdit()
 
 	PERSONS oPerson = *pPerson;
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson,);
+	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson);
 
 	// TODO: Add your command handler code here
 }
