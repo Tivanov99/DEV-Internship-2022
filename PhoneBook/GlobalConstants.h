@@ -15,6 +15,8 @@ public:
 	static const int _nPersonAddressSize = 256;
 
 	static const int _nPhoneNumberSize = 16;
+
+	static const int _nColumnWidth = 120;
 };
 
 

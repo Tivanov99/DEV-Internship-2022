@@ -3,6 +3,7 @@
 #include "Enumerations.h"
 #include "resource.h"
 #include "PhoneBook.h"
+#include "CPersonsDialog.h"
 
 
 
@@ -81,15 +82,15 @@ void CPersonsView::ConfigurateCListCtrl()
 
 	LSCCitiesList.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
 
-	AddColumns(LSCCitiesList);
+	AddColumns();	
 }
 
-void CPersonsView::AddColumns(CListCtrl& LSCCitiesList)
+void CPersonsView::AddColumns()
 {
-	const int nColumnWidth = 120;
+	CListCtrl& LSCCitiesList = GetListCtrl();
 	int nColumnNumber = 0;
-	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Име"), LVCFMT_LEFT, nColumnWidth, 1);
-	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Фамилия"), LVCFMT_CENTER, nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Име"), LVCFMT_LEFT, GlobalConstants::_nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Фамилия"), LVCFMT_CENTER, GlobalConstants::_nColumnWidth, 1);
 }
 
 void CPersonsView::FillView()
@@ -204,5 +205,11 @@ void CPersonsView::OnContextMenuInsert()
 
 void CPersonsView::OnContextMenuEdit()
 {
+	PERSONS* pPerson = GetSelectedRecordItemData();
+
+	PERSONS oPerson = *pPerson;
+
+	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson,);
+
 	// TODO: Add your command handler code here
 }

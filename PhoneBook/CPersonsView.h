@@ -25,8 +25,7 @@ private:
 	/// <summary>
 	/// Метод добавящ всички колони към подадена като аргумент лист контрола.
 	/// </summary>
-	/// <param name="LSCCitiesList">Лист контрола към която ще бъдат добавени колините.</param>
-	void AddColumns(CListCtrl& LSCCitiesList);
+	void AddColumns();
 
 	/// <summary>
 	 /// Връща указател записан в 'item data' при добавянето на записа в CListCtrl.

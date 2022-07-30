@@ -2,6 +2,7 @@
 #include "DialogWindowEnumeration.h"
 #include "Structures.h"
 #include "DataValidator.h"
+#include "../../ListCtrl/ComboListCtrl.h"
 class CPersonsDialog : public CDialog
 {
 	//Constants
@@ -9,7 +10,7 @@ class CPersonsDialog : public CDialog
 	DECLARE_DYNAMIC(CPersonsDialog)
 
 public:
-	CPersonsDialog(DialogWindowActions eOperations, PERSONS& recPerson, CCitiesArray& oCitiesArray, CWnd* pParent = nullptr);   // standard constructor
+	CPersonsDialog(DialogWindowActions eOperations, PERSONS& recPerson,  CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CPersonsDialog();
 
 	// Dialog Data
@@ -20,7 +21,7 @@ public:
 
 private:
 	/// <summary>
-	/// Попълва всички входни полета с данните идващи от 'm_recCity'.
+	/// Попълва всички входни полета с данните идващи от 'm_recPerson'.
 	/// </summary>
 	void FillingInputFields();
 
@@ -98,9 +99,10 @@ private:
 	/// </summary>
 	CComboBox m_cmbCitiesNames;
 
+public:
 	/// <summary>
 	/// Мембър отговарящ всички телефонни номера и техния тип за текущият контакт.
 	/// </summary>
-	CListCtrl m_lscPhoneNumbers;
+	CComboListCtrl m_cmblscPhoneNumbers;
 };
 

@@ -63,13 +63,16 @@ struct PERSONS {
 struct PHONE_NUMBERS {
 	/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'PHONE_NUMBERS'</summary>
 	long lID;
+
 	/// <summary>?</summary>
 	long lUpdateCounter;
+
 	/// <summary>
 		/// Променлива съдържаща вторичен ключ (от колона 'PHONE_TYPE_ID' в таблицата 'PHONE_TYPES')
 		/// сочещ към колоната 'ID' в таблицата 'PHONE_NUMBERS'</summary>;
 	/// </summary>
 	long lPHONE_TYPE_ID;
+
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_NUMBER' в таблицата  'PHONE_NUMBERS'</summary>
 	TCHAR szPHONE_NUMBER[GlobalConstants::_nPhoneNumberSize];
 
