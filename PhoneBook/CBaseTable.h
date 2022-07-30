@@ -7,16 +7,8 @@
 template<class T>
 class CBaseTable
 {
-public:
-	CBaseTable();
-	~CBaseTable();
-
-private:
-	friend class CCitiesTable;
-	friend class CPersonsTable;
-
-	// Methods
-// -------------
+	// Constants
+	// ----------------
 private:
 	const LPCSTR lpszInvalidRecordVersion = "Invalid version of current record! Please reload the record again.";
 	const LPCSTR lpszErrorExecutingQuery = "Error executing query.Query : %s";
@@ -28,17 +20,21 @@ private:
 	const LPCSTR lpszErrorUpdatingRecord = "Error updating record with id: %d";
 	const LPCSTR lpszErrorDeletingRecord = "Delete failed.";
 	const LPCSTR lpszErrorInsertingRecord = "Insert failed.";
+
+	// Constructor / Destructor
+	// ----------------
 public:
-	bool virtual SelectAll(CSelfClearingTypedPtrArray<T>& oArray) = 0;
+	CBaseTable();
+	~CBaseTable();
 
-	bool virtual SelectWhereID(const long lID, T& rec) = 0;
+private:
+	friend class CCitiesTable;
+	friend class CPersonsTable;
+	friend class CPhoneNumbersTable;
 
-	bool virtual UpdateWhereID(const long lID, const T& rec) = 0;
 
-	bool virtual Insert(const T& rec) = 0;
-
-	bool virtual DeleteWhereID(const long lID) = 0;
-
+	// Methods
+	// ----------------
 private:
 	/// <summary>
 	///  Функция която отваря сесия и връзка към базата.
@@ -77,9 +73,21 @@ private:
 	/// </summary>
 	void virtual  CloseDbConnectionAndSession() = 0;
 
+
 	// Overrides
 	// -------------
+public:
+	bool virtual SelectAll(CSelfClearingTypedPtrArray<T>& oArray) = 0;
 
+	bool virtual SelectWhereID(const long lID, T& rec) = 0;
+
+	bool virtual UpdateWhereID(const long lID, const T& rec) = 0;
+
+	bool virtual Insert(const T& rec) = 0;
+
+	bool virtual DeleteWhereID(const long lID) = 0;
+
+private:
 	// Members
 	// -------------
 	CDataSource m_oDataSource;

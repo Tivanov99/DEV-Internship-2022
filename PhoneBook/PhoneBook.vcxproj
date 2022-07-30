@@ -197,6 +197,7 @@
     <ClInclude Include="CPersonsTable.h" />
     <ClInclude Include="CPersonsView.h" />
     <ClInclude Include="CitiesDataValidator.h" />
+    <ClInclude Include="CPhoneNumbersTable.h" />
     <ClInclude Include="DialogWindowEnumeration.h" />
     <ClInclude Include="Enumerations.h" />
     <ClInclude Include="GlobalConstants.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="CPersonsTable.cpp" />
     <ClCompile Include="CPersonsView.cpp" />
     <ClCompile Include="CitiesDataValidator.cpp" />
+    <ClCompile Include="CPhoneNumbersTable.cpp" />
     <ClCompile Include="GlobalConstants.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="pch.cpp">
