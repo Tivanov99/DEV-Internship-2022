@@ -34,7 +34,7 @@ BOOL CPersonsDialog::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	if (m_eOperation != DialogWindowActions::InsertData)
-		//FillingInputFields();
+		FillingInputFields();
 
 	/*m_edbCityName.SetLimitText(GlobalConstants::_nCityNameSize);
 	m_edbCityAreaName.SetLimitText(GlobalConstants::_nCityAreaNameSize);*/
@@ -49,7 +49,6 @@ BOOL CPersonsDialog::OnInitDialog()
 		m_cmbCitiesNames.EnableWindow(false);
 		//m_cmblscPhoneNumbers.EnableWindow(false);
 	}
-
 
 	return TRUE;
 }
@@ -70,6 +69,15 @@ void CPersonsDialog::SetDialogTitle()
 		break;
 	}
 }
+
+void CPersonsDialog::FillingInputFields()
+{
+	m_edbPersonFirstName.SetWindowText(m_recPerson.szFIRST_NAME);
+	m_edbPersonSecondName.SetWindowText(m_recPerson.szSECOND_NAME);
+	m_edbPersonLastName.SetWindowText(m_recPerson.szLAST_NAME);
+	m_edbPersonUcn.SetWindowText(m_recPerson.szUCN);
+}
+
 void CPersonsDialog::OnOK()
 {
 	/*CString strCityName;

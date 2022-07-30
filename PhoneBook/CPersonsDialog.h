@@ -25,10 +25,10 @@ public:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	/*/// <summary>
+	/// <summary>
 	/// Попълва всички входни полета с данните идващи от 'm_recPerson'.
 	/// </summary>
-	void FillingInputFields();*/
+	void FillingInputFields();
 
 	/// <summary>
 	/// Според командата в 'm_eOperation' задава име на прозореца.
