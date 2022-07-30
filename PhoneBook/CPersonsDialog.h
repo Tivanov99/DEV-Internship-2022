@@ -25,7 +25,7 @@ private:
 	void FillingInputFields();
 
 	/// <summary>
-	/// Според командата в 'm_eOperation' задава име на прозореца и на бутона за потвърждаване на операцията.
+	/// Според командата в 'm_eOperation' задава име на прозореца.
 	/// </summary>
 	void SetDialogTitle();
 
@@ -72,5 +72,11 @@ private:
 	/// Мембър съдържащ методи за валидиране на сойностите в текстовите полета.
 	/// </summary>
 	DataValidator m_oDataValidator;
+	CEdit m_edbPersonFirstName;
+	CEdit m_edbPersonSecondName;
+	CEdit m_edbPersonLastName;
+	CEdit m_edbPersonUcn;
+	CComboBox m_cmbCitiesNames;
+	CListCtrl m_lscPhoneNumbers;
 };
 
