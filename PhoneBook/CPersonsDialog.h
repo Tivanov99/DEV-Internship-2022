@@ -11,7 +11,8 @@ class CPersonsDialog : public CDialog
 	DECLARE_DYNAMIC(CPersonsDialog)
 
 public:
-	CPersonsDialog(DialogWindowActions eOperations, PERSONS& recPerson,CCitiesArray& oCitiesArray, CWnd* pParent = nullptr);  // standard constructor
+	CPersonsDialog(DialogWindowActions eOperations, PERSONS& recPerson,CCitiesArray& oCitiesArray
+		, CPhoneNumbersArray& oPhoneNumbersArray, CWnd* pParent = nullptr);  // standard constructor
 	virtual ~CPersonsDialog();
 
 	// Dialog Data
@@ -77,6 +78,11 @@ private:
 	/// Референция към подаден масив  при извикването на диалога който съдържа всички градове.
 	/// </summary>
 	CCitiesArray& m_oCitiesArray;
+
+	/// <summary>
+	/// Референция към подаден масив  при извикването на диалога който съдържа всички телефонни номера.
+	/// </summary>
+	CPhoneNumbersArray& m_oPhoneNumbersArray;
 
 	/// <summary>
 	/// Мембър съдържащ типът на текущата операция подаден като аргумент при извикването на диалога.
