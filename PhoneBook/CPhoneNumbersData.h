@@ -5,12 +5,13 @@ class CPhoneNumbersData
 {
 	// Constructor / Destructor
 	// ----------------
+public:
 	CPhoneNumbersData();
 	~CPhoneNumbersData();
 
-
 	// Methods
 	// ----------------
+public:
 	/// <summary>
 	///  Функция която чете всики записи от таблицата "PHONE_NUMBERS" и ги добавя в подаден като аргумент масив.
 	/// </summary>
@@ -50,6 +51,6 @@ private:
 	/// <summary>
 	/// Мембър за достъп до класът съдържащ бизнес логиката.
 	/// </summary>
-	CPhoneNumbersTable m_CitiesTable;
+	CPhoneNumbersTable m_PhoneNumbersTable;
 };
 
