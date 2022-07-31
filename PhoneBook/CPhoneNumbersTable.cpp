@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CPhoneNumbersTable.h"
+#include "CBaseTable.cpp"
 
 const LPCSTR CPhoneNumbersTable::lpszSelectById = "SELECT * FROM PHONE_NUMBERS WHERE ID = %d";
 const LPCSTR CPhoneNumbersTable::lpszSelectAll = "SELECT * FROM PHONE_NUMBERS";
@@ -182,3 +183,35 @@ bool CPhoneNumbersTable::DeleteWhereID(const long lID)
 
 	return true;
 };
+
+
+void CPhoneNumbersTable::CloseDbConnectionAndSession()
+{
+	Close();
+	m_oSession.Close();
+	m_oDataSource.Close();
+};
+
+bool CPhoneNumbersTable::ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor)
+{
+	bool bResult = false;
+	switch (eQueryAccessor)
+	{
+	case AccessorTypes::NoneModifying:
+		FAILED(Open(m_oSession, strQuery)) ?
+			ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
+			bResult = true;
+		break;
+
+	case AccessorTypes::Modifying:
+		FAILED(Open(m_oSession, strQuery, &GetModifyDBPropSet())) ?
+			ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
+			bResult = true;
+		break;
+
+	default:
+		ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
+		break;
+	}
+	return bResult;
+}

@@ -10,7 +10,7 @@ protected: // create from serialization only
 
 	// Attributes
 public:
-	/// <summary>
+	/// <summary
 	/// Връща документ чрез който се достъпват информацията от базата данни.
 	/// </summary>
 	/// <returns>Указател на документа.</returns>

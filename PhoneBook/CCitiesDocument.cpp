@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CCitiesDocument.h"
-#include "Enumerations.h"
 
 
 IMPLEMENT_DYNCREATE(CCitiesDocument, CDocument)

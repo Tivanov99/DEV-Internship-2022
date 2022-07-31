@@ -23,34 +23,28 @@ void CPersonsTable::CloseDbConnectionAndSession()
 	m_oDataSource.Close();
 };
 
-bool CPersonsTable::ExecuteQuery(const CString& strQuery, const int nQueryAccessor)
+bool CPersonsTable::ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor)
 {
-	if (nQueryAccessor != NoneModifyColumnCode && nQueryAccessor != ModifyColumnCode)
+	bool bResult = false;
+	switch (eQueryAccessor)
 	{
+	case AccessorTypes::NoneModifying:
+		FAILED(Open(m_oSession, strQuery)) ?
+			ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
+			bResult = true;
+		break;
+
+	case AccessorTypes::Modifying:
+		FAILED(Open(m_oSession, strQuery, &GetModifyDBPropSet())) ?
+			ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
+			bResult = true;
+		break;
+
+	default:
 		ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
-		return false;
+		break;
 	}
-	if (nQueryAccessor == NoneModifyColumnCode)
-	{
-		//изпълняваме команда
-		if (FAILED(Open(m_oSession, strQuery)))
-		{
-			ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-			return false;
-		}
-	}
-	else if (nQueryAccessor == ModifyColumnCode)
-	{
-		//настройваме row-set
-		CDBPropSet oUpdateDBPropSet = GetModifyDBPropSet();
-		//изпълняваме команда
-		if (FAILED(Open(m_oSession, strQuery, &oUpdateDBPropSet)))
-		{
-			ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-			return false;
-		}
-	}
-	return true;
+	return bResult;
 }
 
 bool CPersonsTable::SelectAll(CPersonsArray& oPersonsPtrArray)
@@ -59,7 +53,7 @@ bool CPersonsTable::SelectAll(CPersonsArray& oPersonsPtrArray)
 		return false;
 
 	// Изпълняваме командата
-	if (!ExecuteQuery((CString)lpszSelectAll, NoneModifyColumnCode))
+	if (!ExecuteQuery((CString)lpszSelectAll, AccessorTypes::NoneModifying))
 	{
 		CloseDbConnectionAndSession();
 		return false;
@@ -106,7 +100,7 @@ bool CPersonsTable::SelectWhereID(const long lID, PERSONS& recPersons)
 	CString strQuery;
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
-	if (!ExecuteQuery(strQuery, NoneModifyColumnCode))
+	if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
 	{
 		CloseDbConnectionAndSession();
 		return false;
@@ -135,7 +129,7 @@ bool CPersonsTable::UpdateWhereID(const long lID, const PERSONS& recPersons)
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
 	// Изпълняваме командата
-	if (!ExecuteQuery(strQuery, ModifyColumnCode))
+	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
 	{
 		CloseDbConnectionAndSession();
 		return false;
@@ -173,7 +167,7 @@ bool CPersonsTable::Insert(const PERSONS& recPersons)
 	if (!OpenDbConnectionAndSession())
 		return false;
 
-	if (!ExecuteQuery((CString)lpszEmptySelect, ModifyColumnCode))
+	if (!ExecuteQuery((CString)lpszEmptySelect, AccessorTypes::Modifying))
 	{
 		ShowErrorMessage(lpszErrorExecutingQuery, (CString)lpszEmptySelect);
 		CloseDbConnectionAndSession();
@@ -203,7 +197,7 @@ bool CPersonsTable::DeleteWhereID(const long lID)
 	strQuery.Format((CString)lpszSelectAllById, lID);
 
 	// Изпълняваме командата
-	if (!ExecuteQuery(strQuery, ModifyColumnCode))
+	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
 	{
 		ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
 		CloseDbConnectionAndSession();

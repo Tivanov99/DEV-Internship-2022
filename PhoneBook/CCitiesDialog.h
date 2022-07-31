@@ -1,7 +1,6 @@
 #pragma once
 #include "afxdialogex.h"
 #include "Structures.h"
-#include "Enumerations.h"
 #include "CitiesDataValidator.h"
 #include "DialogWindowEnumeration.h"
 

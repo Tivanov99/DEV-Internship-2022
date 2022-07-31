@@ -1,6 +1,7 @@
 #pragma once
 #include "CCitiesData.h"
 
+
 class CCitiesDocument :public CDocument
 {
 protected: // create from serialization only
@@ -31,7 +32,7 @@ public:
 #endif
 	//Methods
 public:
-	const CSelfClearingTypedPtrArray< CITIES>& GetAllCities();
+	const CCitiesArray& GetAllCities();
 	CITIES* GetCityById(long lID);
 	bool DeleteCityById(long lID);
 	bool UpdateCity(CITIES& recCity);
@@ -44,7 +45,7 @@ private:
 
 	//Members
 private:
-	CSelfClearingTypedPtrArray<CITIES> m_oCitiesArray;
+	CCitiesArray m_oCitiesArray;
 	CCitiesData m_CitiesData;
 
 protected:

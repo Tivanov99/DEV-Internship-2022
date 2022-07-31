@@ -1,9 +1,5 @@
 #pragma once
 #include "Structures.h"
-#include "afxdialogex.h"
-#include "Structures.h"
-
-#include "Enumerations.h"
 #include "DialogWindowEnumeration.h"
 #include "../../ListCtrl/ComboListCtrl.h"
 

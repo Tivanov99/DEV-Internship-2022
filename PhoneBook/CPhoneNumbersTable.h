@@ -26,6 +26,9 @@ protected:
 	END_ACCESSOR_MAP()
 };
 
+
+/////////////////////////////////////////////////////////////////////////////
+// CPhoneNumbersTable
 #pragma once
 class CPhoneNumbersTable : private CCommand<CAccessor<CPhoneNumberAccessor>>, public CBaseTable<PHONE_NUMBERS>
 {

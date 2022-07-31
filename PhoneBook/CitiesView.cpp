@@ -19,6 +19,7 @@
 #include "CCitiesDialog.h"
 
 
+
 // CCitiesView
 
 IMPLEMENT_DYNCREATE(CCitiesView, CListView)
@@ -124,7 +125,7 @@ void CCitiesView::FillView()
 
 	CCitiesDocument* pCCitiesDocument = GetDocument();
 
-	const CSelfClearingTypedPtrArray<CITIES>& oCitiesArray = pCCitiesDocument->GetAllCities();
+	const CCitiesArray& oCitiesArray = pCCitiesDocument->GetAllCities();
 
 	for (INT_PTR i = 0; i < oCitiesArray.GetCount(); i++)
 	{
