@@ -10,7 +10,7 @@ IMPLEMENT_DYNAMIC(CPersonsDialog, CDialog)
 CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerson, CCitiesArray& oCitiesArray,
 	CPhoneNumbersArray& oPhoneNumbersArray, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation), m_oCitiesArray(oCitiesArray)
-	,m_oPhoneNumbersArray(oPhoneNumbersArray)
+	, m_oPhoneNumbersArray(oPhoneNumbersArray)
 {
 }
 CPersonsDialog :: ~CPersonsDialog() {};
@@ -37,10 +37,13 @@ BOOL CPersonsDialog::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	if (m_eOperation != DialogWindowActions::InsertData)
+	{
 		FillPersonDataFields();
+		FillCitiesComboBox();
+	}
 
 	SetDialogTitle();
-
+	ConfiguratePhoneNumbersLsc();
 	if (m_eOperation == DialogWindowActions::ReadData)
 	{
 		m_edbPersonFirstName.EnableWindow(false);
@@ -53,6 +56,18 @@ BOOL CPersonsDialog::OnInitDialog()
 
 	return TRUE;
 }
+
+void CPersonsDialog::ConfiguratePhoneNumbersLsc()
+{
+	m_lscPersonPhoneNumbers.SetExtendedStyle(m_lscPersonPhoneNumbers.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
+	m_lscPersonPhoneNumbers.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
+
+	const int nColumnWidth = 120;
+	int nColumnNumber = 0;
+	m_lscPersonPhoneNumbers.InsertColumn(nColumnNumber++, _T("Телефонен номер"), LVCFMT_LEFT, nColumnWidth, 1);
+	m_lscPersonPhoneNumbers.InsertColumn(nColumnNumber++, _T("Тип"), LVCFMT_CENTER, nColumnWidth, 1);
+}
+
 void CPersonsDialog::SetDialogTitle()
 {
 	switch (m_eOperation)
@@ -77,7 +92,10 @@ void CPersonsDialog::FillPersonDataFields()
 	m_edbPersonSecondName.SetWindowText(m_recPerson.szSECOND_NAME);
 	m_edbPersonLastName.SetWindowText(m_recPerson.szLAST_NAME);
 	m_edbPersonUcn.SetWindowText(m_recPerson.szUCN);
+}
 
+void CPersonsDialog::FillCitiesComboBox()
+{
 	for (INT_PTR i = 0; i < m_oCitiesArray.GetCount(); i++)
 	{
 		CITIES* pCity = m_oCitiesArray.GetAt(i);
@@ -87,13 +105,17 @@ void CPersonsDialog::FillPersonDataFields()
 		if (pCity->lID == m_recPerson.lCITY_ID)
 		{
 			m_cmbCitiesNames.SetWindowText(pCity->szCITY_NAME);
-			continue;	
+			continue;
 		}
 
 		int nResult = m_cmbCitiesNames.AddString(pCity->szCITY_NAME);
 		m_cmbCitiesNames.SetItemData(nResult, reinterpret_cast<DWORD_PTR>(pCity));
 	}
-	
+}
+
+void CPersonsDialog::FillPhoneNumbers()
+{
+
 }
 
 void CPersonsDialog::OnOK()
@@ -127,7 +149,7 @@ void CPersonsDialog::OnOK()
 
 	SetDataToRecord();*/
 
-	
+
 
 
 	CITIES* pItem3 = (CITIES*)m_cmbCitiesNames.GetItemData(m_cmbCitiesNames.GetCurSel());

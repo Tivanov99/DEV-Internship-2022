@@ -1,7 +1,6 @@
 #pragma once
 #include "Structures.h"
 #include "DialogWindowEnumeration.h"
-#include "../../ListCtrl/ComboListCtrl.h"
 
 
 class CPersonsDialog : public CDialog
@@ -49,6 +48,7 @@ private:
 	/// </summary>
 	void SetDataToRecord();
 
+	void ConfiguratePhoneNumbersLsc();
 
 	// Overrides
 	// ----------------

@@ -231,6 +231,41 @@ bool CPhoneNumbersTable::DeleteWhereID(const long lID)
 };
 
 
+bool CPhoneNumbersTable::DeleteWherePersonID(const long lID)
+{
+	if (!OpenDbConnectionAndSession())
+		return false;
+
+	// Конструираме заявката
+	CString strQuery;
+	strQuery.Format((CString)lpszSelectAllByPersonId, lID);
+
+	// Изпълняваме командата
+	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
+	{
+		ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
+		CloseDbConnectionAndSession();
+		return false;
+	}
+
+	if (MoveFirst() != S_OK)
+	{
+		ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
+		CloseDbConnectionAndSession();
+		return false;
+	}
+
+	if (FAILED(Delete()))
+	{
+		ShowErrorMessage(lpszErrorDeletingRecord, NULL);
+		CloseDbConnectionAndSession();
+		return false;
+	}
+	CloseDbConnectionAndSession();
+
+	return true;
+}
+
 void CPhoneNumbersTable::CloseDbConnectionAndSession()
 {
 	Close();

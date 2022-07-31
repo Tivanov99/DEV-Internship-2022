@@ -51,6 +51,8 @@ public:
 public:
 	bool SelectAllByPersonId(long lID, CPhoneNumbersArray& oPhoneNumbersArray);
 
+	bool DeleteWherePersonID(const long lID);
+
 	// Overrides
 	// ----------------
 public:
@@ -63,6 +65,9 @@ public:
 	bool Insert(const PHONE_NUMBERS& recPhoneNumber) override;
 
 	bool DeleteWhereID(const long lID) override;
+
+
+
 
 private:
 	bool ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor) override;

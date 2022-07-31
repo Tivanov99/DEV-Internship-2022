@@ -203,6 +203,9 @@ void CPersonsView::OnContextMenuEdit()
 {
 	PERSONS* pPerson = GetSelectedRecordItemData();
 
+	if (pPerson == NULL)
+		return;
+
 	PERSONS oPerson = *pPerson;
 
 
