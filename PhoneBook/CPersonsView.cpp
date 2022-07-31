@@ -209,10 +209,12 @@ void CPersonsView::OnContextMenuEdit()
 	CPersonsDocument* pPersonDocument = GetDocument();
 
 	CCitiesArray oCitiesArray;
-
 	pPersonDocument->GetAllCities(oCitiesArray);
-		
-	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray);
+
+	CPhoneNumbersArray oPhoneNumbersArray;
+	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersArray);
+
+	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oPhoneNumbersArray);
 
 	if (!oPersonsDialog.DoModal())
 		return;
