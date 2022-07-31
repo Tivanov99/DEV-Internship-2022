@@ -27,7 +27,7 @@ protected:
 };
 
 #pragma once
-class CPhoneNumbersTable : public CBaseTable<PHONE_NUMBERS>
+class CPhoneNumbersTable : private CCommand<CAccessor<CPhoneNumberAccessor>>, public CBaseTable<PHONE_NUMBERS>
 {
 	// Constants
 	// ----------------
@@ -46,18 +46,18 @@ public:
 	// Overrides
 	// ----------------
 public:
-	bool SelectAll(CPhoneNumbersArray& oArray) override;
+	bool SelectAll(CPhoneNumbersArray& oPhoneNumbersArray) override;
 
-	bool SelectWhereID(const long lID, PHONE_NUMBERS& rec) override;
+	bool SelectWhereID(const long lID, PHONE_NUMBERS& recPhoneNumber) override;
 
-	bool UpdateWhereID(const long lID, const PHONE_NUMBERS& rec) override;
+	bool UpdateWhereID(const long lID, const PHONE_NUMBERS& recPhoneNumber) override;
 
-	bool Insert(const PHONE_NUMBERS& rec) override;
+	bool Insert(const PHONE_NUMBERS& recPhoneNumber) override;
 
 	bool DeleteWhereID(const long lID) override;
 
 private:
-	bool ExecuteQuery(const CString& strQuery, const int nQueryAccessor) override;
+	bool ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor) override;
 
 	void CloseDbConnectionAndSession() override;
 };
