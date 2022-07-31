@@ -38,6 +38,7 @@ private:
 	static const LPCSTR lpszSelectById;
 	static const LPCSTR lpszSelectAll;
 	static const LPCSTR lpszEmptySelect;
+	static const LPCSTR lpszSelectAllByPersonId;
 
 	// Constructor / Destructor
 	// ----------------

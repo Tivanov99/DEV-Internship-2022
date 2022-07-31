@@ -55,3 +55,10 @@ bool CPersonsData::DeleteWhereID(const long lID)
 	return true;
 }
 
+bool CPersonsData::SelectAllPhoneNumbersByPersonId(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
+{
+	if (m_oPhoneNumbersTable.SelectAllByPersonId(lPersonID, oPhoneNumbersArray))
+		return false;
+
+	return true;
+}

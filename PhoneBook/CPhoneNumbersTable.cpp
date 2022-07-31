@@ -3,15 +3,57 @@
 #include "CBaseTable.cpp"
 
 const LPCSTR CPhoneNumbersTable::lpszSelectById = "SELECT * FROM PHONE_NUMBERS WHERE ID = %d";
+const LPCSTR CPhoneNumbersTable::lpszSelectAllByPersonId = "SELECT * FROM PHONE_NUMBERS WHERE PERSON_ID = %d";
 const LPCSTR CPhoneNumbersTable::lpszSelectAll = "SELECT * FROM PHONE_NUMBERS";
 const LPCSTR CPhoneNumbersTable::lpszEmptySelect = "SELECT TOP 0 * FROM PHONE_NUMBERS";
+
 
 CPhoneNumbersTable::CPhoneNumbersTable() {};
 CPhoneNumbersTable::~CPhoneNumbersTable() {};
 
 bool CPhoneNumbersTable::SelectAllByPersonId(long lID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
+	if (!OpenDbConnectionAndSession())
+		return false;
 
+	CString strQuery;
+	strQuery.Format((CString)lpszSelectAllByPersonId, lID);
+
+	if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
+	{
+		CloseDbConnectionAndSession();
+		return false;
+	}
+
+	HRESULT hResult = MoveFirst();
+	if (FAILED(hResult))
+	{
+		ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+		CloseDbConnectionAndSession();
+		return false;
+	}
+
+	while (hResult != DB_S_ENDOFROWSET)
+	{
+		PHONE_NUMBERS* pCurrentPhoneNumber = new PHONE_NUMBERS;
+		*pCurrentPhoneNumber = m_recPhoneNumber;
+		oPhoneNumbersArray.Add(pCurrentPhoneNumber);
+
+		hResult = MoveNext();
+
+		if (FAILED(hResult) && hResult != DB_S_ENDOFROWSET)
+		{
+			ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+			CloseDbConnectionAndSession();
+			return false;
+		}
+		// Logic with the result
+	}
+
+	// Затваряме командата, сесията и връзката с базата данни. 
+	CloseDbConnectionAndSession();
+
+	return true;
 }
 
 bool CPhoneNumbersTable::SelectAll(CPhoneNumbersArray& oPhoneNumbersArray)
@@ -58,9 +100,6 @@ bool CPhoneNumbersTable::SelectAll(CPhoneNumbersArray& oPhoneNumbersArray)
 
 	return true;
 }
-
-
-
 
 bool CPhoneNumbersTable::SelectWhereID(const long lID, PHONE_NUMBERS& recPhoneNumber)
 {
