@@ -68,6 +68,11 @@ struct PHONE_NUMBERS {
 	long lUpdateCounter;
 
 	/// <summary>
+		/// Променлива съдържаща вторичен ключ сочещ към колоната 'ID' в таблицата 'PERSONS'</summary>;
+	/// </summary>
+	long lPERSON_ID;
+
+	/// <summary>
 		/// Променлива съдържаща вторичен ключ (от колона 'PHONE_TYPE_ID' в таблицата 'PHONE_TYPES')
 		/// сочещ към колоната 'ID' в таблицата 'PHONE_NUMBERS'</summary>;
 	/// </summary>

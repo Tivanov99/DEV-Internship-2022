@@ -45,6 +45,10 @@ public:
 	CPhoneNumbersTable();
 	~CPhoneNumbersTable();
 
+	// Methods
+	// ----------------
+public:
+	bool SelectAllByPersonId(long lID, CPhoneNumbersArray& oPhoneNumbersArray);
 
 	// Overrides
 	// ----------------

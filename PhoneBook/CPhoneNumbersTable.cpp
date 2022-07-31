@@ -9,6 +9,11 @@ const LPCSTR CPhoneNumbersTable::lpszEmptySelect = "SELECT TOP 0 * FROM PHONE_NU
 CPhoneNumbersTable::CPhoneNumbersTable() {};
 CPhoneNumbersTable::~CPhoneNumbersTable() {};
 
+bool CPhoneNumbersTable::SelectAllByPersonId(long lID, CPhoneNumbersArray& oPhoneNumbersArray)
+{
+
+}
+
 bool CPhoneNumbersTable::SelectAll(CPhoneNumbersArray& oPhoneNumbersArray)
 {
 	if (!OpenDbConnectionAndSession())
@@ -53,6 +58,8 @@ bool CPhoneNumbersTable::SelectAll(CPhoneNumbersArray& oPhoneNumbersArray)
 
 	return true;
 }
+
+
 
 
 bool CPhoneNumbersTable::SelectWhereID(const long lID, PHONE_NUMBERS& recPhoneNumber)

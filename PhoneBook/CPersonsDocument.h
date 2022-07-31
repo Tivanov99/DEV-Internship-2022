@@ -37,6 +37,7 @@ public:
 	bool InsertPerson(PERSONS& recPerson);
 
 	bool GetAllCities(CCitiesArray& oCitiesArray);
+	bool GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	bool DeletePersonFromPersonsArray(long lPersonId);
@@ -47,7 +48,7 @@ private:
 private:
 	CPersonsArray m_oPersonsArray;
 	CPersonsData m_PersonsData;
-
+	
 protected:
 
 	// Generated message map functions

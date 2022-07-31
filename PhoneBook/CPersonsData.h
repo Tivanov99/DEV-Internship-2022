@@ -2,7 +2,7 @@
 #include "Structures.h"
 #include "CPersonsTable.h"
 #include "CCitiesTable.h"
-
+#include "CPhoneNumbersTable.h"
 
 class CPersonsData 
 {
@@ -59,5 +59,7 @@ private:
 	CPersonsTable m_oPersonsTable;
 
 	CCitiesTable m_oCitiesTable;
+
+	CPhoneNumbersTable m_oPhoneNumbersTable;
 };
 

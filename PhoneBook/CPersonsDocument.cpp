@@ -169,3 +169,8 @@ long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 
 	return -1;
 }
+
+bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
+{
+
+}
