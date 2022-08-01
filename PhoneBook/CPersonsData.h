@@ -63,14 +63,5 @@ public:
 
 private:
 	DbConnector m_oDbConnector;
-
-	/// <summary>
-	/// Мембър за достъп до класът съдържащ бизнес логиката.
-	/// </summary>
-	CPersonsTable m_oPersonsTable;
-
-	CCitiesTable m_oCitiesTable;
-
-	CPhoneNumbersTable m_oPhoneNumbersTable;
 };
 

@@ -1,19 +1,19 @@
 #include "pch.h"
 #include "CPersonsData.h"
 
-CPersonsData::CPersonsData()
-	:m_oPersonsTable(m_oDbConnector.GetSession()),
-	 m_oPhoneNumbersTable(m_oDbConnector.GetSession()),
-	 m_oCitiesTable(m_oDbConnector.GetSession())
-{
-};
+CPersonsData::CPersonsData(){};
 CPersonsData::~CPersonsData() {};
 
 bool CPersonsData::SelectAllCities(CCitiesArray& oCitiesArray)
 {
 	m_oDbConnector.OpenDbConnectionAndSession();
-	if (!m_oCitiesTable.SelectAll(oCitiesArray))
+	CCitiesTable oCitiesTable(m_oDbConnector.GetSession());
+
+	if (!oCitiesTable.SelectAll(oCitiesArray))
+	{
+		m_oDbConnector.CloseDbConnectionAndSession();
 		return false;
+	}
 
 	m_oDbConnector.CloseDbConnectionAndSession();
 	return true;
@@ -23,7 +23,10 @@ bool CPersonsData::SelectAll(CPersonsArray& oPersonsArray)
 	m_oDbConnector.OpenDbConnectionAndSession();
 	CPersonsTable ÓPersonsTable(m_oDbConnector.GetSession());
 	if (!ÓPersonsTable.SelectAll(oPersonsArray))
+	{
+		m_oDbConnector.CloseDbConnectionAndSession();
 		return false;
+	}
 
 	m_oDbConnector.CloseDbConnectionAndSession();
 	return true;
@@ -35,7 +38,10 @@ bool CPersonsData::SelectWhereID(const long lID, PERSONS& recPersons)
 	CPersonsTable ÓPersonsTable(m_oDbConnector.GetSession());
 
 	if (!ÓPersonsTable.SelectWhereID(lID, recPersons))
+	{
+		m_oDbConnector.CloseDbConnectionAndSession();
 		return false;
+	}
 
 	m_oDbConnector.CloseDbConnectionAndSession();
 	return true;
@@ -47,7 +53,10 @@ bool CPersonsData::UpdateWhereID(const long lID, const PERSONS& recPersons)
 	CPersonsTable ÓPersonsTable(m_oDbConnector.GetSession());
 
 	if (!ÓPersonsTable.UpdateWhereID(lID, recPersons))
+	{
+		m_oDbConnector.CloseDbConnectionAndSession();
 		return false;
+	}
 
 	m_oDbConnector.CloseDbConnectionAndSession();
 
@@ -60,7 +69,10 @@ bool CPersonsData::Insert(const PERSONS& recPersons)
 	CPersonsTable ÓPersonsTable(m_oDbConnector.GetSession());
 
 	if (!ÓPersonsTable.Insert(recPersons))
+	{
+	m_oDbConnector.CloseDbConnectionAndSession();
 		return false;
+	}
 
 	m_oDbConnector.CloseDbConnectionAndSession();
 
@@ -69,24 +81,28 @@ bool CPersonsData::Insert(const PERSONS& recPersons)
 
 bool CPersonsData::DeleteWhereID(const long lID)
 {
+	m_oDbConnector.OpenDbConnectionAndSession();
 	CSession oSession = m_oDbConnector.GetSession();
 
-	m_oDbConnector.OpenDbConnectionAndSession();
-
 	oSession.StartTransaction();
+	CPhoneNumbersTable oPhoneNumbersTable(oSession);
 
-	if (!m_oPhoneNumbersTable.DeleteWherePersonID(1))
+	if (!oPhoneNumbersTable.DeleteWherePersonID(lID))
 	{
 		oSession.Abort();
+		m_oDbConnector.CloseDbConnectionAndSession();
 		return false;
 	}
 
 	CPersonsTable ÓPersonsTable(m_oDbConnector.GetSession());
-	if (!ÓPersonsTable.DeleteWhereID(1))
+	if (!ÓPersonsTable.DeleteWhereID(lID))
 	{
 		oSession.Abort();
+		m_oDbConnector.CloseDbConnectionAndSession();
 		return false;
 	}
+
+	oSession.Commit();
 
 	m_oDbConnector.CloseDbConnectionAndSession();
 
@@ -96,9 +112,13 @@ bool CPersonsData::DeleteWhereID(const long lID)
 bool CPersonsData::SelectAllPhoneNumbersByPersonId(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
 	m_oDbConnector.OpenDbConnectionAndSession();
+	CPhoneNumbersTable oPhoneNumbersTable(m_oDbConnector.GetSession());
 
-	if (m_oPhoneNumbersTable.SelectAllByPersonId(lPersonID, oPhoneNumbersArray))
+	if (oPhoneNumbersTable.SelectAllByPersonId(lPersonID, oPhoneNumbersArray))
+	{
+		m_oDbConnector.CloseDbConnectionAndSession();
 		return false;
+	}
 
 	m_oDbConnector.CloseDbConnectionAndSession();
 
