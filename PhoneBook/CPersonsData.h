@@ -3,6 +3,7 @@
 #include "CPersonsTable.h"
 #include "CCitiesTable.h"
 #include "CPhoneNumbersTable.h"
+#include "DbConnector.h"
 
 class CPersonsData 
 {
@@ -61,6 +62,8 @@ public:
 	bool DeleteWhereID(const long lID);
 
 private:
+	DbConnector m_oDbConnector;
+
 	/// <summary>
 	/// Мембър за достъп до класът съдържащ бизнес логиката.
 	/// </summary>
@@ -69,8 +72,5 @@ private:
 	CCitiesTable m_oCitiesTable;
 
 	CPhoneNumbersTable m_oPhoneNumbersTable;
-
-	CSession m_oSession;
-
 };
 

@@ -54,3 +54,8 @@ bool DbConnector::OpenDbConnectionAndSession()
 	}
 	return true;
 };
+
+CSession& DbConnector::GetSession()
+{
+	return m_oSession;
+}

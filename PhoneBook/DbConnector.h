@@ -4,18 +4,19 @@ class DbConnector
 {
 	// Constants
 	// ----------------
+
 	static const LPCSTR lpszUnableToConnectServer;
 	static const LPCSTR lpszUnableToOpenSession;
+
 	// Constructor / Destructor
 	// ----------------
 public:
 	DbConnector();
 	~DbConnector();
 
-public:
 	// Methods
 	// ----------------
-
+public:
 	/// <summary>
 	///  Функция която създава рол-сет.
 	/// </summary>
@@ -31,9 +32,14 @@ public:
 	/// </summary>
 	void  CloseDbConnectionAndSession();
 
+	/// <summary>
+	/// Getter
+	/// </summary>
+	CSession& GetSession();
+
 	// Members
 	// -------------
-public:
+private:
 	CDataSource m_oDataSource;
 	CSession m_oSession;
 };
