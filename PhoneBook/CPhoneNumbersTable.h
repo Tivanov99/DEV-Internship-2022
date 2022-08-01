@@ -1,7 +1,7 @@
 #include "Structures.h"
 #include "CBaseTable.h"
 #include "CBaseTable.cpp"
-#include "CDataAccessor.h"
+#include "CTableAccessor.h"
 
 #define NoneModifyColumnCode 0
 #define ModifyColumnCode 1

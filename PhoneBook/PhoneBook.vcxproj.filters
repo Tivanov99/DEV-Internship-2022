@@ -129,7 +129,7 @@
     <ClInclude Include="ErrorVisualizator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CDataAccessor.h">
+    <ClInclude Include="CTableAccessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -204,9 +204,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ErrorVisualizator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CDataAccessor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

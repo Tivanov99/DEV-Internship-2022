@@ -6,6 +6,7 @@
 #include "Structures.h"
 #include "CSelfClearingTypedPtrArray.h"
 #include "CBaseTable.h"
+#include "CTableAccessor.h"
 
 
 using namespace std;
@@ -16,12 +17,15 @@ using namespace std;
 
 class CPersonAccessor : public CTableAccessor<PERSONS>
 {
-protected:
+public:
 	CPersonAccessor()
 	{
-	};
-	~CPersonAccessor() {};
 
+	};
+	~CPersonAccessor()
+	{};
+
+protected:
 	BEGIN_ACCESSOR_MAP(CPersonAccessor, 2)
 		BEGIN_ACCESSOR(NoneModifyColumnCode, true)
 		COLUMN_ENTRY(1, m_recTableRecord.lID)
@@ -41,13 +45,6 @@ protected:
 
 class CPersonsTable : public CBaseTable<PERSONS, CPersonAccessor>
 {
-//	// Constants
-//	// ----------------
-//private:
-//	static const LPCSTR lpszSelectAllById;
-//	static const LPCSTR lpszSelectAll;
-//	static const LPCSTR lpszEmptySelect;
-
 	// Constructor / Destructor
 	// ----------------
 public:

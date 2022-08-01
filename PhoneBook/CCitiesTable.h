@@ -7,8 +7,7 @@
 #include "Structures.h"
 #include "CBaseTable.h"
 #include "CBaseTable.cpp"
-#include "CDataAccessor.h"
-
+#include "CTableAccessor.h"
 
 
 using namespace std;

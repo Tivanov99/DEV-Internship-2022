@@ -190,7 +190,7 @@
     <ClInclude Include="CCitiesDialog.h" />
     <ClInclude Include="CCitiesDocument.h" />
     <ClInclude Include="CCitiesTable.h" />
-    <ClInclude Include="CDataAccessor.h" />
+    <ClInclude Include="CTableAccessor.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="CPersonsData.h" />
     <ClInclude Include="CPersonsDialog.h" />
@@ -223,7 +223,6 @@
     <ClCompile Include="CCitiesDialog.cpp" />
     <ClCompile Include="CCitiesDocument.cpp" />
     <ClCompile Include="CCitiesTable.cpp" />
-    <ClCompile Include="CDataAccessor.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="CitiesDoc.cpp" />
     <ClCompile Include="CitiesView.cpp" />
