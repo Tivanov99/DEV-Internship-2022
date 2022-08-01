@@ -26,6 +26,11 @@ public:
 	/// </summary>
 	bool OpenDbConnectionAndSession();
 
+	/// <summary>
+	///  Функция която затваря връзката към базата.
+	/// </summary>
+	void  CloseDbConnectionAndSession();
+
 	// Members
 	// -------------
 public:

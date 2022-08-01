@@ -79,11 +79,6 @@ private:
 	/// </param>  
 	bool ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor) override;
 
-	/// <summary>
-	///  Функция която затваря връзката към базата.
-	/// </summary>
-	void CloseDbConnectionAndSession() override;
-
 	void CloseRowSet() override;
 };
 

@@ -32,7 +32,6 @@ private:
 	friend class CPersonsTable;
 	friend class CPhoneNumbersTable;
 
-
 	// Methods
 	// ----------------
 private:
@@ -58,8 +57,6 @@ private:
 	
 	bool virtual ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor) = 0;
 	
-	void virtual  CloseDbConnectionAndSession() = 0;
-
 	void virtual CloseRowSet() = 0;
 
 private:

@@ -17,12 +17,6 @@ CCitiesTable::~CCitiesTable()
 {
 };
 
-void CCitiesTable::CloseDbConnectionAndSession()
-{
-	m_oSession.Close();
-	m_oDataSource.Close();
-};
-
 void CCitiesTable::CloseRowSet()
 {
 	Close();

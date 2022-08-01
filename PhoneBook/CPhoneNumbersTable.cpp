@@ -271,13 +271,6 @@ bool CPhoneNumbersTable::DeleteWherePersonID(const long lID)
 	return true;
 }
 
-void CPhoneNumbersTable::CloseDbConnectionAndSession()
-{
-	Close();
-	m_oSession.Close();
-	m_oDataSource.Close();
-};
-
 bool CPhoneNumbersTable::ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor)
 {
 	bool bResult = false;

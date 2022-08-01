@@ -80,9 +80,6 @@ public:
 private:
 	bool ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor) override;
 
-	void CloseDbConnectionAndSession() override;
-
 	void CloseRowSet() override;
-
 };
 

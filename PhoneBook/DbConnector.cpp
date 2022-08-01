@@ -10,6 +10,12 @@ const LPCSTR DbConnector::lpszUnableToOpenSession = "Unable to open session. Err
 DbConnector::DbConnector() {};
 DbConnector :: ~DbConnector() {};
 
+void DbConnector::CloseDbConnectionAndSession()
+{
+	m_oSession.Close();
+	m_oDataSource.Close();
+};
+
 
 CDBPropSet DbConnector::GetDBPropSet() const
 {

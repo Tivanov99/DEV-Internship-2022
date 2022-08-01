@@ -18,12 +18,6 @@ CPersonsTable::~CPersonsTable()
 {
 };
 
-void CPersonsTable::CloseDbConnectionAndSession()
-{
-	m_oSession.Close();
-	m_oDataSource.Close();
-};
-
 bool CPersonsTable::ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor)
 {
 	bool bResult = false;
