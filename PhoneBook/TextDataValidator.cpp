@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "TextDataValidator.h"
 
+TextDataValidator::TextDataValidator() {};
+TextDataValidator::~TextDataValidator() {};
 
 CString TextDataValidator::ValidateTextData(const CString& strData, const int nMinLenght) const
 {

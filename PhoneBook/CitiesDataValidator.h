@@ -4,6 +4,8 @@
 class CCitiesDataValidator : public TextDataValidator
 {
 public:
+	// Constructor/Destructor
+	// ----------------
 	CCitiesDataValidator();
 	~CCitiesDataValidator();
 public:

@@ -1,6 +1,7 @@
 #pragma once
 #include "Structures.h"
 #include "DialogWindowEnumeration.h"
+#include "TextDataValidator.h"
 
 
 class CPersonsDialog : public CDialog
@@ -42,11 +43,6 @@ private:
 	/// Според командата в 'm_eOperation' задава име на прозореца.
 	/// </summary>
 	void SetDialogTitle();
-
-	/// <summary>
-	/// Задава сойносите попълнени в полетата на записът който подлежи на обработка.
-	/// </summary>
-	void SetDataToRecord();
 
 	void ConfiguratePhoneNumbersLsc();
 
@@ -123,5 +119,10 @@ private:
 	/// Мембър отговарящ за всички телефонни номера в него.
 	/// </summary>
 	CListCtrl m_lscPersonPhoneNumbers;
+
+	/// <summary>
+	/// Мембър помагащ с валидацията на стойносите във входните тексови полета.
+	/// </summary>
+	TextDataValidator m_oTextValidator;
 };
 
