@@ -129,31 +129,36 @@ void CPersonsDialog::OnOK()
 	CString strPersonFirstName;
 	m_edbPersonFirstName.GetWindowText(strPersonFirstName);
 
-	CString strCityNameErrorMessage = m_oDataValidator.ValidateTextData(strPersonFirstName, GlobalConstants::_nMinCityNameSize);
-	if (strCityNameErrorMessage.GetLength() > 0)
+	CString strPersonFirstNameErrorMessage = m_oTextValidator.ValidateTextData(strPersonFirstName, GlobalConstants::_nPersonFirstNameMinSize);
+	if (strPersonFirstNameErrorMessage.GetLength() > 0)
 	{
-		AfxMessageBox(_T("The 'City name' field: ") + strCityNameErrorMessage);
+		AfxMessageBox(_T("The 'First name' field: ") + strPersonFirstNameErrorMessage);
 		return;
 	}
 
-	CString strCityAreaName;
-	m_edbCityAreaName.GetWindowText(strCityAreaName);
+	CString strPersonSecondName;
+	m_edbPersonSecondName.GetWindowText(strPersonSecondName);
 
-	CString strAreaNameErrorMessage = m_oDataValidator.ValidateTextData(strCityAreaName, GlobalConstants::_nMinCityAreaNameSize);
-	if (strAreaNameErrorMessage.GetLength() > 0)
+	CString strPersonSecondNameErrorMessage = m_oTextValidator.ValidateTextData(strPersonSecondName, GlobalConstants::_nPersonSecondNameMinSize);
+	if (strPersonSecondNameErrorMessage.GetLength() > 0)
 	{
-		AfxMessageBox(_T("The 'Area name' field: ") + strAreaNameErrorMessage);
+		AfxMessageBox(_T("The 'Second name' field: ") + strPersonSecondNameErrorMessage);
 		return;
 	}
 
-	long lPostalCode = GetPostalCodeFromInputFiled();
-	if (!m_oDataValidator.ValidatePostalCode(lPostalCode))
+
+	CString strPersonLastdName;
+	m_edbPersonLastName.GetWindowText(strPersonLastdName);
+
+	CString strPersonLastNameErrorMessage = m_oTextValidator.ValidateTextData(strPersonLastdName,
+		GlobalConstants::_nPersonLastNameMinSize);
+	if (strPersonLastNameErrorMessage.GetLength() > 0)
 	{
-		AfxMessageBox(_T("The 'Postal Code' filed must be positive number!"));
+		AfxMessageBox(_T("The 'Last name' field: ") + strPersonLastNameErrorMessage);
 		return;
 	}
 
-	SetDataToRecord();
+	
 
 	CITIES* pCity = (CITIES*)m_cmbCitiesNames.GetItemData(m_cmbCitiesNames.GetCurSel());
 
