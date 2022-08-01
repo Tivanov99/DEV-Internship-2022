@@ -78,7 +78,7 @@ void CPersonsView::ConfigurateCListCtrl()
 
 	LSCCitiesList.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
 
-	AddColumns();	
+	AddColumns();
 }
 
 void CPersonsView::AddColumns()
@@ -213,7 +213,25 @@ void CPersonsView::OnEditContextReadData()
 
 void CPersonsView::OnContextMenuInsert()
 {
-	// TODO: Add your command handler code here
+	PERSONS* pPerson = GetSelectedRecordItemData();
+
+	if (pPerson == NULL)
+		return;
+
+	PERSONS oPerson = *pPerson;
+
+	CPersonsDocument* pPersonDocument = GetDocument();
+
+	CCitiesArray oCitiesArray;
+	pPersonDocument->GetAllCities(oCitiesArray);
+
+	CPhoneNumbersArray oPhoneNumbersArray;
+	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersArray);
+
+	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oPhoneNumbersArray);
+
+	if (!oPersonsDialog.DoModal())
+		return;
 }
 
 
@@ -239,5 +257,7 @@ void CPersonsView::OnContextMenuEdit()
 	if (!oPersonsDialog.DoModal())
 		return;
 
-	// TODO: Add your command handler code here
+	bool bResult = pPersonDocument->UpdatePerson(oPerson);
+	if (!bResult)
+		AfxMessageBox(_T("Record update failed."));
 }
