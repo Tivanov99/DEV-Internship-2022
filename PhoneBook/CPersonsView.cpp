@@ -189,7 +189,25 @@ void CPersonsView::OnContextMenuDelete()
 
 void CPersonsView::OnEditContextReadData()
 {
-	// TODO: Add your command handler code here
+	PERSONS* pPerson = GetSelectedRecordItemData();
+
+	if (pPerson == NULL)
+		return;
+
+	PERSONS oPerson = *pPerson;
+
+	CPersonsDocument* pPersonDocument = GetDocument();
+
+	CCitiesArray oCitiesArray;
+	pPersonDocument->GetAllCities(oCitiesArray);
+
+	CPhoneNumbersArray oPhoneNumbersArray;
+	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersArray);
+
+	CPersonsDialog oPersonsDialog(DialogWindowActions::ReadData, oPerson, oCitiesArray, oPhoneNumbersArray);
+
+	if (!oPersonsDialog.DoModal())
+		return;
 }
 
 
@@ -207,7 +225,6 @@ void CPersonsView::OnContextMenuEdit()
 		return;
 
 	PERSONS oPerson = *pPerson;
-
 
 	CPersonsDocument* pPersonDocument = GetDocument();
 
