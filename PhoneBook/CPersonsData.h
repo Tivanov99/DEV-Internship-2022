@@ -59,6 +59,7 @@ public:
 	/// </summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	bool DeleteWhereID(const long lID);
+
 private:
 	/// <summary>
 	/// Мембър за достъп до класът съдържащ бизнес логиката.
@@ -68,5 +69,8 @@ private:
 	CCitiesTable m_oCitiesTable;
 
 	CPhoneNumbersTable m_oPhoneNumbersTable;
+
+	CSession m_oSession;
+
 };
 

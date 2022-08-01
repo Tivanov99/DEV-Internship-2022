@@ -52,5 +52,7 @@ private:
 	/// Мембър за достъп до класът съдържащ бизнес логиката.
 	/// </summary>
 	CPhoneNumbersTable m_PhoneNumbersTable;
+
+	CSession m_oSession;
 };
 

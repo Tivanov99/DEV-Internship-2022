@@ -52,7 +52,7 @@ private:
 	// Constructor / Destructor
 	// ----------------
 public:
-	CPersonsTable();
+	CPersonsTable(CSession& oSession);
 	~CPersonsTable();
 	
 	// Overrides
@@ -83,5 +83,7 @@ private:
 	///  Функция която затваря връзката към базата.
 	/// </summary>
 	void CloseDbConnectionAndSession() override;
+
+	void CloseRowSet() override;
 };
 

@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "CCitiesData.h"
 
-CCitiesData::CCitiesData() {};
+CCitiesData::CCitiesData()
+	:m_CitiesTable(m_oSession)
+{};
 CCitiesData::~CCitiesData() {};
 
 bool CCitiesData::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesArray)

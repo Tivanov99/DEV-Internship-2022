@@ -16,7 +16,6 @@ private:
 	const LPCSTR lpszErrorInvalidQueryAcessor =
 		"Invalid query accessor! Use 0 for non-record-changing queries or 1 for record-changing queries";
 	const LPCSTR lpszUnableToConnectServer = "Unable to connect to SQL Server database. Error: %d";
-	const LPCSTR lpszUnableToOpenSession = "Unable to open session. Error: %d";
 	const LPCSTR lpszErrorOpeningRecord = "Error opening record.Query %s";
 	const LPCSTR lpszErrorUpdatingRecord = "Error updating record with id: %d";
 	const LPCSTR lpszErrorDeletingRecord = "Delete failed.";
@@ -25,7 +24,7 @@ private:
 	// Constructor / Destructor
 	// ----------------
 public:
-	CBaseTable();
+	CBaseTable(CSession& oSession);
 	~CBaseTable();
 
 private:
@@ -38,27 +37,9 @@ private:
 	// ----------------
 private:
 	/// <summary>
-	///  Функция която отваря сесия и връзка към базата.
-	/// </summary>
-	bool OpenDbConnectionAndSession();
-
-	/// <summary>
-	///  Функция която създава рол-сет.
-	/// </summary>
-	CDBPropSet GetDBPropSet() const;
-
-	/// <summary>
 	///  Функция която създава рол-сет предназначен за модифициране на данни.
 	/// </summary>
 	CDBPropSet GetModifyDBPropSet() const;
-
-	/// <summary>
-	///  Функция която извежда съобщение при неуспешен опит за прочитане на резултат от заявка.
-	/// </summary>
-	/// <param name="strErrorMessage">Обект който съдържа подробно разяснение за текущата грешка.</param>
-	/// <param name="strQuery">Обект който съдържа текущата заявка.</param>
-	void ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery);
-
 	
 	// Overrides
 	// -------------
@@ -79,10 +60,12 @@ private:
 	
 	void virtual  CloseDbConnectionAndSession() = 0;
 
+	void virtual CloseRowSet() = 0;
+
 private:
 	// Members
 	// -------------
 	CDataSource m_oDataSource;
-	CSession m_oSession;
+	CSession& m_oSession;
 };
 

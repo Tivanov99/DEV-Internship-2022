@@ -57,5 +57,6 @@ private:
 	/// </summary>
 	CCitiesTable m_CitiesTable;
 
+	CSession m_oSession;
 };
 

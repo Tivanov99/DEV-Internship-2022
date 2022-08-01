@@ -10,15 +10,16 @@ const LPCSTR CPersonsTable::lpszEmptySelect = "SELECT TOP 0 * FROM PERSONS";
 /////////////////////////////////////////////////////////////////////////////
 // CPersonsTable
 
-CPersonsTable::CPersonsTable()
-{};
+CPersonsTable::CPersonsTable(CSession& oSession)
+	:CBaseTable(oSession)
+{
+};
 CPersonsTable::~CPersonsTable()
 {
 };
 
 void CPersonsTable::CloseDbConnectionAndSession()
 {
-	Close();
 	m_oSession.Close();
 	m_oDataSource.Close();
 };
@@ -217,7 +218,12 @@ bool CPersonsTable::DeleteWhereID(const long lID)
 		CloseDbConnectionAndSession();
 		return false;
 	}
+	m_oSession.Commit();
 	CloseDbConnectionAndSession();
-
 	return true;
 };
+
+void CPersonsTable::CloseRowSet()
+{
+	Close();
+}

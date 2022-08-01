@@ -199,8 +199,10 @@
     <ClInclude Include="CitiesDataValidator.h" />
     <ClInclude Include="CPhoneNumbersData.h" />
     <ClInclude Include="CPhoneNumbersTable.h" />
+    <ClInclude Include="DbConnector.h" />
     <ClInclude Include="DialogWindowEnumeration.h" />
     <ClInclude Include="Enumerations.h" />
+    <ClInclude Include="ErrorVisualizator.h" />
     <ClInclude Include="GlobalConstants.h" />
     <ClInclude Include="Structures.h" />
     <ClInclude Include="CitiesDoc.h" />
@@ -231,6 +233,8 @@
     <ClCompile Include="CitiesDataValidator.cpp" />
     <ClCompile Include="CPhoneNumbersData.cpp" />
     <ClCompile Include="CPhoneNumbersTable.cpp" />
+    <ClCompile Include="DbConnector.cpp" />
+    <ClCompile Include="ErrorVisualizator.cpp" />
     <ClCompile Include="GlobalConstants.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="pch.cpp">

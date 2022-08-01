@@ -8,7 +8,10 @@ const LPCSTR CPhoneNumbersTable::lpszSelectAll = "SELECT * FROM PHONE_NUMBERS";
 const LPCSTR CPhoneNumbersTable::lpszEmptySelect = "SELECT TOP 0 * FROM PHONE_NUMBERS";
 
 
-CPhoneNumbersTable::CPhoneNumbersTable() {};
+CPhoneNumbersTable::CPhoneNumbersTable(CSession& oSession)
+	:CBaseTable(oSession)
+{
+};
 CPhoneNumbersTable::~CPhoneNumbersTable() {};
 
 bool CPhoneNumbersTable::SelectAllByPersonId(long lID, CPhoneNumbersArray& oPhoneNumbersArray)
@@ -236,6 +239,8 @@ bool CPhoneNumbersTable::DeleteWherePersonID(const long lID)
 	if (!OpenDbConnectionAndSession())
 		return false;
 
+	//m_oSession.StartTransaction();
+
 	// Конструираме заявката
 	CString strQuery;
 	strQuery.Format((CString)lpszSelectAllByPersonId, lID);
@@ -295,4 +300,9 @@ bool CPhoneNumbersTable::ExecuteQuery(const CString& strQuery, AccessorTypes eQu
 		break;
 	}
 	return bResult;
+}
+
+void CPhoneNumbersTable::CloseRowSet()
+{
+	Close();
 }

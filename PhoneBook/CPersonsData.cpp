@@ -1,12 +1,11 @@
 #include "pch.h"
 #include "CPersonsData.h"
 
-CPersonsData::CPersonsData() {
-
+CPersonsData::CPersonsData()
+	:m_oPersonsTable(m_oSession), m_oPhoneNumbersTable(m_oSession), m_oCitiesTable(m_oSession)
+{
 };
-CPersonsData::~CPersonsData() {
-
-};
+CPersonsData::~CPersonsData() {};
 
 bool CPersonsData::SelectAllCities(CCitiesArray& oCitiesArray)
 {
@@ -49,9 +48,19 @@ bool CPersonsData::Insert(const PERSONS& recPersons)
 
 bool CPersonsData::DeleteWhereID(const long lID)
 {
-	if (!m_oPersonsTable.DeleteWhereID(lID))
-		return false;
+	
+	//TODO: Check here for deleteting all phone numbers with that id.m_oSession
 
+	if (!m_oPhoneNumbersTable.DeleteWherePersonID(1))
+	{
+		m_oSession.Abort();
+		return false;
+	}
+	if (!m_oPersonsTable.DeleteWhereID(1))
+	{
+		m_oSession.Abort();
+		return false;
+	}
 	return true;
 }
 

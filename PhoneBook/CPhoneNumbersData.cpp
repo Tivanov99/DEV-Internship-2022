@@ -2,7 +2,9 @@
 #include "CPhoneNumbersData.h"
 
 
-CPhoneNumbersData::CPhoneNumbersData() {};
+CPhoneNumbersData::CPhoneNumbersData():m_PhoneNumbersTable(m_oSession)
+{
+};
 CPhoneNumbersData::~CPhoneNumbersData() {};
 
 bool CPhoneNumbersData::SelectAll(CPhoneNumbersArray& oPhoneNumbersArray)

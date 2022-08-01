@@ -55,7 +55,7 @@ private:
 	// Constructor / Destructor
 	// ----------------
 public:
-	CCitiesTable();
+	CCitiesTable(CSession& oSession);
 	~CCitiesTable();
 	
 	// Methods
@@ -109,4 +109,9 @@ private:
 	///  Функция която затваря връзката към базата.
 	/// </summary>
 	void CloseDbConnectionAndSession() override;
+
+	/// <summary>
+	/// Затваря row-set.
+	/// </summary>
+	void virtual CloseRowSet() override;
 };

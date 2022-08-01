@@ -10,7 +10,8 @@ const LPCSTR CCitiesTable::lpszEmptySelect = "SELECT TOP 0 * FROM CITIES";
 /////////////////////////////////////////////////////////////////////////////
 // CCitiesTable
 
-CCitiesTable::CCitiesTable()
+CCitiesTable::CCitiesTable(CSession& oSession)
+	:CBaseTable(oSession)
 {};
 CCitiesTable::~CCitiesTable()
 {
@@ -18,10 +19,14 @@ CCitiesTable::~CCitiesTable()
 
 void CCitiesTable::CloseDbConnectionAndSession()
 {
-	Close();
 	m_oSession.Close();
 	m_oDataSource.Close();
 };
+
+void CCitiesTable::CloseRowSet()
+{
+	Close();
+}
 
 bool CCitiesTable::ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor)
 {
