@@ -146,7 +146,6 @@ void CPersonsDialog::OnOK()
 		return;
 	}
 
-
 	CString strPersonLastdName;
 	m_edbPersonLastName.GetWindowText(strPersonLastdName);
 
@@ -158,10 +157,9 @@ void CPersonsDialog::OnOK()
 		return;
 	}
 
-	
-
 	CITIES* pCity = (CITIES*)m_cmbCitiesNames.GetItemData(m_cmbCitiesNames.GetCurSel());
 
+	m_recPerson.lCITY_ID = pCity->lID;
 
 	CDialog::OnOK();
 }
