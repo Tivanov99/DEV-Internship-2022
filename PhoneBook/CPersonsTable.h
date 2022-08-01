@@ -14,28 +14,27 @@ using namespace std;
 #define NoneModifyColumnCode 0
 #define ModifyColumnCode 1
 
-class CPersonAccessor
+class CPersonAccessor : public CTableAccessor<PERSONS>
 {
 protected:
 	CPersonAccessor()
 	{
 	};
 	~CPersonAccessor() {};
-	PERSONS m_recPERSON;
 
 	BEGIN_ACCESSOR_MAP(CPersonAccessor, 2)
 		BEGIN_ACCESSOR(NoneModifyColumnCode, true)
-		COLUMN_ENTRY(1, m_recPERSON.lID)
+		COLUMN_ENTRY(1, m_recTableRecord.lID)
 		END_ACCESSOR()
 
 		BEGIN_ACCESSOR(ModifyColumnCode, true)
-		COLUMN_ENTRY(2, m_recPERSON.lUpdateCounter)
-		COLUMN_ENTRY(3, m_recPERSON.szFIRST_NAME)
-		COLUMN_ENTRY(4, m_recPERSON.szSECOND_NAME)
-		COLUMN_ENTRY(5, m_recPERSON.szLAST_NAME)
-		COLUMN_ENTRY(6, m_recPERSON.szUCN)
-		COLUMN_ENTRY(7, m_recPERSON.lCITY_ID)
-		COLUMN_ENTRY(8, m_recPERSON.szADDRESS)
+		COLUMN_ENTRY(2, m_recTableRecord.lUpdateCounter)
+		COLUMN_ENTRY(3, m_recTableRecord.szFIRST_NAME)
+		COLUMN_ENTRY(4, m_recTableRecord.szSECOND_NAME)
+		COLUMN_ENTRY(5, m_recTableRecord.szLAST_NAME)
+		COLUMN_ENTRY(6, m_recTableRecord.szUCN)
+		COLUMN_ENTRY(7, m_recTableRecord.lCITY_ID)
+		COLUMN_ENTRY(8, m_recTableRecord.szADDRESS)
 		END_ACCESSOR()
 	END_ACCESSOR_MAP()
 };

@@ -2,7 +2,7 @@
 #include "Structures.h"
 #include "CPersonsTable.h"
 #include "CCitiesTable.h"
-#include "CPhoneNumbersTable.h"
+//#include "CPhoneNumbersTable.h"
 #include "DbConnector.h"
 
 class CPersonsData 

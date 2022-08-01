@@ -1,6 +1,7 @@
 #pragma once
 #include "Structures.h"
-#include "CPhoneNumbersTable.h"
+#include "DbConnector.h"
+
 class CPhoneNumbersData
 {
 	// Constructor / Destructor
@@ -51,8 +52,6 @@ private:
 	/// <summary>
 	/// Мембър за достъп до класът съдържащ бизнес логиката.
 	/// </summary>
-	CPhoneNumbersTable m_PhoneNumbersTable;
-
-	CSession m_oSession;
+	DbConnector m_oDbConnector;
 };
 

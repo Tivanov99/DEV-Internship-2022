@@ -6,7 +6,7 @@ CCitiesData::CCitiesData()
 {};
 CCitiesData::~CCitiesData() {};
 
-bool CCitiesData::SelectAll(CSelfClearingTypedPtrArray<CITIES>& oCitiesArray)
+bool CCitiesData::SelectAll(CCitiesArray& oCitiesArray)
 {
 	if (!m_CitiesTable.SelectAll(oCitiesArray))
 		return false;

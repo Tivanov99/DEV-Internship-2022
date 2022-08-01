@@ -61,7 +61,7 @@ CPersonsTable::~CPersonsTable()
 //	while (hResult != DB_S_ENDOFROWSET)
 //	{
 //		PERSONS* pCurrentPerson = new PERSONS;
-//		*pCurrentPerson = m_recPERSON;
+//		*pCurrentPerson = m_recTableRecord;
 //		oPersonsPtrArray.Add(pCurrentPerson);
 //
 //		hResult = MoveNext();
@@ -92,7 +92,7 @@ CPersonsTable::~CPersonsTable()
 //		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
 //		return false;
 //	}
-//	recPersons = m_recPERSON;
+//	recPersons = m_recTableRecord;
 //
 //	return true;
 //};
@@ -114,14 +114,14 @@ CPersonsTable::~CPersonsTable()
 //		return false;
 //	}
 //
-//	if (recPersons.lUpdateCounter != m_recPERSON.lUpdateCounter)
+//	if (recPersons.lUpdateCounter != m_recTableRecord.lUpdateCounter)
 //	{
 //		ErrorMessageVisualizator::ShowErrorMessage(lpszInvalidRecordVersion, NULL);
 //		return false;
 //	}
 //
-//	m_recPERSON.lUpdateCounter++;
-//	m_recPERSON = recPersons;
+//	m_recTableRecord.lUpdateCounter++;
+//	m_recTableRecord = recPersons;
 //
 //	if (FAILED(SetData(ModifyColumnCode)))
 //	{
@@ -140,7 +140,7 @@ CPersonsTable::~CPersonsTable()
 //		return false;
 //	}
 //
-//	m_recPERSON = recPersons;
+//	m_recTableRecord = recPersons;
 //
 //	if (FAILED(__super::InsertRecord(ModifyColumnCode)))
 //	{

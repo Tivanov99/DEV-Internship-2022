@@ -88,14 +88,14 @@ bool CPersonsData::DeleteWhereID(const long lID)
 
 	//TODO : Check here for hresult;
 
-	CPhoneNumbersTable oPhoneNumbersTable(oSession);
+	/*CPhoneNumbersTable oPhoneNumbersTable(oSession);*/
 
-	if (!oPhoneNumbersTable.DeleteWherePersonID(lID))
+	/*if (!oPhoneNumbersTable.DeleteWherePersonID(lID))
 	{
 		oSession.Abort();
 		m_oDbConnector.CloseDbConnectionAndSession();
 		return false;
-	}
+	}*/
 
 	CPersonsTable ÓPersonsTable(m_oDbConnector.GetSession());
 	if (!ÓPersonsTable.DeleteWhereID(lID))
@@ -115,13 +115,13 @@ bool CPersonsData::DeleteWhereID(const long lID)
 bool CPersonsData::SelectAllPhoneNumbersByPersonId(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
 	m_oDbConnector.OpenDbConnectionAndSession();
-	CPhoneNumbersTable oPhoneNumbersTable(m_oDbConnector.GetSession());
+	/*CPhoneNumbersTable oPhoneNumbersTable(m_oDbConnector.GetSession());*/
 
-	if (oPhoneNumbersTable.SelectAllByPersonId(lPersonID, oPhoneNumbersArray))
+	/*if (oPhoneNumbersTable.SelectAllByPersonId(lPersonID, oPhoneNumbersArray))
 	{
 		m_oDbConnector.CloseDbConnectionAndSession();
 		return false;
-	}
+	}*/
 
 	m_oDbConnector.CloseDbConnectionAndSession();
 

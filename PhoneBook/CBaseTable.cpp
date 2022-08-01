@@ -3,6 +3,8 @@
 #include "CBaseTable.h"
 #include "ErrorVisualizator.h"
 
+#define NoneModifyColumnCode 0
+#define ModifyColumnCode 1
 
 template <typename Record_Type, class Table_AcessorType>
 CBaseTable< Record_Type, Table_AcessorType>::CBaseTable(CSession& oSession, TCHAR* pszTableName)
@@ -55,9 +57,9 @@ template <typename Record_Type, class Table_AcessorType>
 bool CBaseTable< Record_Type, Table_AcessorType>::SelectAll(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray)
 {
 	CString strQuery;
-	strQuery.Format(_T("SELECT * FROM %s"), m_strTableName,);
+	strQuery.Format(_T("SELECT * FROM %s"), m_strTableName);
 	// Изпълняваме командата
-	if (!ExecuteQuery((CString)lpszSelectAll, AccessorTypes::NoneModifying))
+	if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
 		return false;
 
 	//TODO: CHECK HERE
@@ -71,8 +73,8 @@ bool CBaseTable< Record_Type, Table_AcessorType>::SelectAll(CSelfClearingTypedPt
 	// Прочитаме всички данни
 	while (hResult != DB_S_ENDOFROWSET)
 	{
-		Record_Type* pCurrentPerson = new PERSONS;
-		*pCurrentPerson = m_recPERSON;
+		Record_Type* pCurrentPerson = new Record_Type;
+		*pCurrentPerson = m_recTableRecord;
 		oPtrArray.Add(pCurrentPerson);
 
 		hResult = MoveNext();
@@ -106,7 +108,7 @@ bool CBaseTable< Record_Type, Table_AcessorType>::SelectWhereID(const long lID, 
 		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
 		return false;
 	}
-	recTableRecord = m_recPERSON;
+	recTableRecord = m_recTableRecord;
 
 	return true;
 };
@@ -129,14 +131,14 @@ bool CBaseTable< Record_Type, Table_AcessorType>::UpdateWhereID(const long lID, 
 		return false;
 	}
 
-	if (recTableRecord.lUpdateCounter != m_recPERSON.lUpdateCounter)
+	if (recTableRecord.lUpdateCounter != m_recTableRecord.lUpdateCounter)
 	{
 		ErrorMessageVisualizator::ShowErrorMessage(lpszInvalidRecordVersion, NULL);
 		return false;
 	}
 
-	m_recPERSON.lUpdateCounter++;
-	m_recPERSON = recTableRecord;
+	m_recTableRecord.lUpdateCounter++;
+	m_recTableRecord = recTableRecord;
 
 	if (FAILED(SetData(ModifyColumnCode)))
 	{
@@ -156,13 +158,13 @@ bool CBaseTable< Record_Type, Table_AcessorType>::InsertRecord(const Record_Type
 
 	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
 	{
-		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery);
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery,NULL);
 		return false;
 	}
 
-	m_recPERSON = recTableRecord;
+	m_recTableRecord = recTableRecord;
 
-	if (FAILED(CCommand<CAccessor<Table_AcessorType>>::InsertRecord(ModifyColumnCode)))
+	if (FAILED(CCommand<CAccessor<Table_AcessorType>>::Insert(ModifyColumnCode)))
 	{
 		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorInsertingRecord, NULL);
 		return false;
