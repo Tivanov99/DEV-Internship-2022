@@ -39,9 +39,8 @@ BOOL CPersonsDialog::OnInitDialog()
 	if (m_eOperation != DialogWindowActions::InsertData)
 	{
 		FillPersonDataFields();
-		FillCitiesComboBox();
 	}
-
+	FillCitiesComboBox();
 	SetDialogTitle();
 	ConfiguratePhoneNumbersLsc();
 	if (m_eOperation == DialogWindowActions::ReadData)

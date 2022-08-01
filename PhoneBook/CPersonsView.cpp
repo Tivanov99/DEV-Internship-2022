@@ -213,25 +213,21 @@ void CPersonsView::OnEditContextReadData()
 
 void CPersonsView::OnContextMenuInsert()
 {
-	PERSONS* pPerson = GetSelectedRecordItemData();
-
-	if (pPerson == NULL)
-		return;
-
-	PERSONS oPerson = *pPerson;
-
 	CPersonsDocument* pPersonDocument = GetDocument();
 
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
-
 	CPhoneNumbersArray oPhoneNumbersArray;
-	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersArray);
-
-	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oPhoneNumbersArray);
+	PERSONS oPerson;
+	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oPhoneNumbersArray);
 
 	if (!oPersonsDialog.DoModal())
 		return;
+
+	bool bInsertResult = pPersonDocument->InsertPerson(oPerson);
+	if(!bInsertResult)
+		AfxMessageBox(_T("Record insert failed."));
+	//TODO: Check for inserting phone numbers
 }
 
 
