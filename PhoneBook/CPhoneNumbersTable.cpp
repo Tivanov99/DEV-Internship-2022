@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CPhoneNumbersTable.h"
 #include "CBaseTable.cpp"
+#include "ErrorVisualizator.h"
 
 const LPCSTR CPhoneNumbersTable::lpszSelectById = "SELECT * FROM PHONE_NUMBERS WHERE ID = %d";
 const LPCSTR CPhoneNumbersTable::lpszSelectAllByPersonId = "SELECT * FROM PHONE_NUMBERS WHERE PERSON_ID = %d";
@@ -16,23 +17,16 @@ CPhoneNumbersTable::~CPhoneNumbersTable() {};
 
 bool CPhoneNumbersTable::SelectAllByPersonId(long lID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
-	if (!OpenDbConnectionAndSession())
-		return false;
-
 	CString strQuery;
 	strQuery.Format((CString)lpszSelectAllByPersonId, lID);
 
 	if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
-	{
-		CloseDbConnectionAndSession();
 		return false;
-	}
 
 	HRESULT hResult = MoveFirst();
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(lpszErrorOpeningRecord, NULL);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
 		return false;
 	}
 
@@ -46,37 +40,26 @@ bool CPhoneNumbersTable::SelectAllByPersonId(long lID, CPhoneNumbersArray& oPhon
 
 		if (FAILED(hResult) && hResult != DB_S_ENDOFROWSET)
 		{
-			ShowErrorMessage(lpszErrorOpeningRecord, NULL);
-			CloseDbConnectionAndSession();
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
 			return false;
 		}
 		// Logic with the result
 	}
-
-	// Затваряме командата, сесията и връзката с базата данни. 
-	CloseDbConnectionAndSession();
 
 	return true;
 }
 
 bool CPhoneNumbersTable::SelectAll(CPhoneNumbersArray& oPhoneNumbersArray)
 {
-	if (!OpenDbConnectionAndSession())
-		return false;
-
 	// Изпълняваме командата
 	if (!ExecuteQuery((CString)lpszSelectAll, AccessorTypes::NoneModifying))
-	{
-		CloseDbConnectionAndSession();
 		return false;
-	}
 
 	//TODO: CHECK HERE
 	HRESULT hResult = MoveFirst();
 	if (FAILED(hResult))
 	{
-		ShowErrorMessage(lpszErrorOpeningRecord, NULL);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
 		return false;
 	}
 
@@ -91,71 +74,52 @@ bool CPhoneNumbersTable::SelectAll(CPhoneNumbersArray& oPhoneNumbersArray)
 
 		if (FAILED(hResult) && hResult != DB_S_ENDOFROWSET)
 		{
-			ShowErrorMessage(lpszErrorOpeningRecord, NULL);
-			CloseDbConnectionAndSession();
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
 			return false;
 		}
 		// Logic with the result
 	}
-
-	// Затваряме командата, сесията и връзката с базата данни. 
-	CloseDbConnectionAndSession();
 
 	return true;
 }
 
 bool CPhoneNumbersTable::SelectWhereID(const long lID, PHONE_NUMBERS& recPhoneNumber)
 {
-	if (!OpenDbConnectionAndSession())
-		return false;
-
 	CString strQuery;
 	strQuery.Format((CString)lpszSelectById, lID);
 
 	if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
-	{
-		CloseDbConnectionAndSession();
 		return false;
-	}
 
 	if (FAILED(MoveFirst()))
 	{
-		ShowErrorMessage(lpszErrorOpeningRecord, NULL);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator ::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
 		return false;
 	}
 	recPhoneNumber = m_recPhoneNumber;
 
-	CloseDbConnectionAndSession();
 	return true;
 };
 
 bool CPhoneNumbersTable::UpdateWhereID(const long lID, const PHONE_NUMBERS& recPhoneNumber)
 {
-	if (!OpenDbConnectionAndSession())
-		return false;
-
 	// Конструираме заявката
 	CString strQuery;
 	strQuery.Format((CString)lpszSelectById, lID);
 
 	// Изпълняваме командата
 	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
-	{
-		CloseDbConnectionAndSession();
 		return false;
-	}
 
 	if (FAILED(MoveFirst()))
 	{
-		ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
 		return false;
 	}
 
 	if (recPhoneNumber.lUpdateCounter != m_recPhoneNumber.lUpdateCounter)
 	{
-		ShowErrorMessage(lpszInvalidRecordVersion, NULL);
+		ErrorMessageVisualizator::ShowErrorMessage(lpszInvalidRecordVersion, NULL);
 		return false;
 	}
 
@@ -164,24 +128,18 @@ bool CPhoneNumbersTable::UpdateWhereID(const long lID, const PHONE_NUMBERS& recP
 
 	if (FAILED(SetData(ModifyColumnCode)))
 	{
-		ShowErrorMessage(lpszErrorUpdatingRecord, NULL);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorUpdatingRecord, NULL);
 		return false;
 	}
 
-	CloseDbConnectionAndSession();
 	return true;
 };
 
 bool CPhoneNumbersTable::Insert(const PHONE_NUMBERS& recPhoneNumber)
 {
-	if (!OpenDbConnectionAndSession())
-		return false;
-
 	if (!ExecuteQuery((CString)lpszEmptySelect, AccessorTypes::Modifying))
 	{
-		ShowErrorMessage(lpszErrorExecutingQuery, (CString)lpszEmptySelect);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, (CString)lpszEmptySelect);
 		return false;
 	}
 
@@ -189,20 +147,15 @@ bool CPhoneNumbersTable::Insert(const PHONE_NUMBERS& recPhoneNumber)
 
 	if (FAILED(__super::Insert(ModifyColumnCode)))
 	{
-		ShowErrorMessage(lpszErrorInsertingRecord, NULL);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorInsertingRecord, NULL);
 		return false;
 	}
 
-	CloseDbConnectionAndSession();
 	return true;
 };
 
 bool CPhoneNumbersTable::DeleteWhereID(const long lID)
 {
-	if (!OpenDbConnectionAndSession())
-		return false;
-
 	// Конструираме заявката
 	CString strQuery;
 	strQuery.Format((CString)lpszSelectById, lID);
@@ -210,25 +163,21 @@ bool CPhoneNumbersTable::DeleteWhereID(const long lID)
 	// Изпълняваме командата
 	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
 	{
-		ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
 		return false;
 	}
 
 	if (MoveFirst() != S_OK)
 	{
-		ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator ::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
 		return false;
 	}
 
 	if (FAILED(Delete()))
 	{
-		ShowErrorMessage(lpszErrorDeletingRecord, NULL);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorDeletingRecord, NULL);
 		return false;
 	}
-	CloseDbConnectionAndSession();
 
 	return true;
 };
@@ -236,9 +185,6 @@ bool CPhoneNumbersTable::DeleteWhereID(const long lID)
 
 bool CPhoneNumbersTable::DeleteWherePersonID(const long lID)
 {
-	if (!OpenDbConnectionAndSession())
-		return false;
-
 	//m_oSession.StartTransaction();
 
 	// Конструираме заявката
@@ -248,26 +194,22 @@ bool CPhoneNumbersTable::DeleteWherePersonID(const long lID)
 	// Изпълняваме командата
 	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
 	{
-		ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
+
 		return false;
 	}
 
 	if (MoveFirst() != S_OK)
 	{
-		ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator ::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
 		return false;
 	}
 
 	if (FAILED(Delete()))
 	{
-		ShowErrorMessage(lpszErrorDeletingRecord, NULL);
-		CloseDbConnectionAndSession();
+		ErrorMessageVisualizator :: ShowErrorMessage(lpszErrorDeletingRecord, NULL);
 		return false;
 	}
-	CloseDbConnectionAndSession();
-
 	return true;
 }
 
@@ -278,18 +220,18 @@ bool CPhoneNumbersTable::ExecuteQuery(const CString& strQuery, AccessorTypes eQu
 	{
 	case AccessorTypes::NoneModifying:
 		FAILED(Open(m_oSession, strQuery)) ?
-			ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
+			ErrorMessageVisualizator ::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
 			bResult = true;
 		break;
 
 	case AccessorTypes::Modifying:
 		FAILED(Open(m_oSession, strQuery, &GetModifyDBPropSet())) ?
-			ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
+			ErrorMessageVisualizator ::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
 			bResult = true;
 		break;
 
 	default:
-		ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
+		ErrorMessageVisualizator ::ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
 		break;
 	}
 	return bResult;

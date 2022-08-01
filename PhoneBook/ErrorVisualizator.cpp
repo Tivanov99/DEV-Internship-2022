@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "ErrorVisualizator.h"
 
-void ErrorVisualizator::ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery)
+void ErrorMessageVisualizator::ShowErrorMessage(const LPCSTR strErrorMessage, const CString& strQuery)
 {
 	CString strError;
 	if (strQuery.GetString() != NULL)

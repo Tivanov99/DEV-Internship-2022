@@ -29,7 +29,7 @@ bool CCitiesTable::ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAcc
 	{
 	case AccessorTypes::NoneModifying:
 		FAILED(Open(m_oSession, strQuery)) ?
-			ShowErrorMessage(lpszErrorExecutingQuery, strQuery) : 
+			ErrorMessageVisualizator ::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) : 
 			bResult = true;
 		break;
 

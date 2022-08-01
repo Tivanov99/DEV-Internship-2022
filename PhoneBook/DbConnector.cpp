@@ -40,7 +40,7 @@ bool DbConnector::OpenDbConnectionAndSession()
 	//Отваряме връзка към дб
 	if (hResult != S_OK)
 	{
-		ErrorVisualizator::ShowErrorMessage(lpszUnableToConnectServer, NULL);
+		ErrorMessageVisualizator::ShowErrorMessage(lpszUnableToConnectServer, NULL);
 		return false;
 	}
 
@@ -48,7 +48,7 @@ bool DbConnector::OpenDbConnectionAndSession()
 	hResult = m_oSession.Open(m_oDataSource);
 	if (hResult != S_OK)
 	{
-		ErrorVisualizator::ShowErrorMessage(lpszUnableToOpenSession, NULL);
+		ErrorMessageVisualizator::ShowErrorMessage(lpszUnableToOpenSession, NULL);
 		m_oDataSource.Close();
 		return false;
 	}
