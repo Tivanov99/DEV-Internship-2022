@@ -132,7 +132,7 @@ void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 	int nNumberOfSelectedRow = GetSelectedRowNumber();
 	CListCtrl& LSCCitiesList = GetListCtrl();
 
-	/*switch (lHint)
+	switch (lHint)
 	{
 	case ContextMenuOperations::InsertRecord:
 		break;
@@ -143,7 +143,7 @@ void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 		break;
 	default:
 		break;
-	}*/
+	}
 }
 
 void CPersonsView::InsertNewRecordToCListCtrl(PERSONS* pPerson)
