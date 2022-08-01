@@ -185,8 +185,6 @@ bool CPhoneNumbersTable::DeleteWhereID(const long lID)
 
 bool CPhoneNumbersTable::DeleteWherePersonID(const long lID)
 {
-	//m_oSession.StartTransaction();
-
 	// Конструираме заявката
 	CString strQuery;
 	strQuery.Format((CString)lpszSelectAllByPersonId, lID);
@@ -195,7 +193,6 @@ bool CPhoneNumbersTable::DeleteWherePersonID(const long lID)
 	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
 	{
 		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-
 		return false;
 	}
 

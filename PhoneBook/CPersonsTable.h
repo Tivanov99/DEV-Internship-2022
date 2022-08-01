@@ -40,7 +40,7 @@ protected:
 	END_ACCESSOR_MAP()
 };
 
-class CPersonsTable : private CCommand<CAccessor<CPersonAccessor>>, public CBaseTable<PERSONS>
+class CPersonsTable : private CCommand<CAccessor<CPersonAccessor>>, public CBaseTable<PERSONS, CPersonAccessor>
 {
 	// Constants
 	// ----------------
@@ -54,31 +54,5 @@ private:
 public:
 	CPersonsTable(CSession& oSession);
 	~CPersonsTable();
-	
-	// Overrides
-	// ----------------
-public:
-	bool SelectAll(CPersonsArray& oArray) override;
-
-	bool SelectWhereID(const long lID, PERSONS& recPersons) override;
-
-	bool UpdateWhereID(const long lID, const PERSONS& recPersons) override;
-
-	bool Insert(const PERSONS& recPersons) override;
-
-	bool DeleteWhereID(const long lID) override;
-
-private:
-	/// <summary>
-	///  Функция която изпълнява дадена заявка към отворена връзка.
-	/// </summary>
-	/// <param name="strQuery">Обект съдържащ текущата заявка.</param> 
-	/// <param name="nQueryAccessor">
-		///Целочислено число което определя дали ще
-		/// се модифицират данните или не. 0 - не модофицра / 1 модифицира.
-	/// </param>  
-	bool ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor) override;
-
-	void CloseRowSet() override;
 };
 

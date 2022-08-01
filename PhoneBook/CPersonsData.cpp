@@ -85,6 +85,9 @@ bool CPersonsData::DeleteWhereID(const long lID)
 	CSession oSession = m_oDbConnector.GetSession();
 
 	oSession.StartTransaction();
+
+	//TODO : Check here for hresult;
+
 	CPhoneNumbersTable oPhoneNumbersTable(oSession);
 
 	if (!oPhoneNumbersTable.DeleteWherePersonID(lID))

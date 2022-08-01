@@ -5,12 +5,12 @@
 #include <afxcontrolbars.h>
 #include "CSelfClearingTypedPtrArray.h"
 
-template<class T>
-class CBaseTable
+template <typename Record_Type, class Table_AcessorType>
+class CBaseTable : public CCommand<CAccessor<Table_AcessorType>>
 {
 	// Constants
 	// ----------------
-private:
+public:
 	const LPCSTR lpszInvalidRecordVersion = "Invalid version of current record! Please reload the record again.";
 	const LPCSTR lpszErrorExecutingQuery = "Error executing query.Query : %s";
 	const LPCSTR lpszErrorInvalidQueryAcessor =
@@ -24,17 +24,13 @@ private:
 	// Constructor / Destructor
 	// ----------------
 public:
-	CBaseTable(CSession& oSession);
+	CBaseTable(CSession& oSession, TCHAR* pszTableName);
 	~CBaseTable();
 
-private:
-	friend class CCitiesTable;
-	friend class CPersonsTable;
-	friend class CPhoneNumbersTable;
 
 	// Methods
 	// ----------------
-private:
+public:
 	/// <summary>
 	///  Функция която създава рол-сет предназначен за модифициране на данни.
 	/// </summary>
@@ -43,26 +39,29 @@ private:
 	// Overrides
 	// -------------
 public:
-	bool virtual SelectAll(CSelfClearingTypedPtrArray<T>& oArray) = 0;
+	bool  SelectAll(CSelfClearingTypedPtrArray<Record_Type>& oArray);
 
-	bool virtual SelectWhereID(const long lID, T& rec) = 0;
+	bool  SelectWhereID(const long lID, Record_Type& recTableRecord) ;
 
-	bool virtual UpdateWhereID(const long lID, const T& rec) = 0;
+	bool  UpdateWhereID(const long lID, const Record_Type& recTableRecord) ;
 
-	bool virtual Insert(const T& rec) = 0;
+	bool  Insert(const Record_Type& recTableRecord);
 
-	bool virtual DeleteWhereID(const long lID) = 0;
+	bool  DeleteWhereID(const long lID) ;
 
-private:
+public:
 	
-	bool virtual ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor) = 0;
+	bool virtual ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor);
 	
-	void virtual CloseRowSet() = 0;
+	void virtual CloseRowSet();
 
-private:
 	// Members
 	// -------------
+public:
 	CDataSource m_oDataSource;
 	CSession& m_oSession;
+
+private:
+	CString m_strTableName;
 };
 
