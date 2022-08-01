@@ -134,7 +134,7 @@ void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 
 	/*switch (lHint)
 	{
-	case ContextMenuOperations::Insert:
+	case ContextMenuOperations::InsertRecord:
 		break;
 	case ContextMenuOperations::Delete:
 		LSCCitiesList.DeleteItem(nNumberOfSelectedRow);

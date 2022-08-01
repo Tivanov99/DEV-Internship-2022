@@ -63,12 +63,12 @@ bool CPersonsData::UpdateWhereID(const long lID, const PERSONS& recPersons)
 	return true;
 }
 
-bool CPersonsData::Insert(const PERSONS& recPersons)
+bool CPersonsData::InsertRecord(const PERSONS& recPersons)
 {
 	m_oDbConnector.OpenDbConnectionAndSession();
 	CPersonsTable ÓPersonsTable(m_oDbConnector.GetSession());
 
-	if (!ÓPersonsTable.Insert(recPersons))
+	if (!ÓPersonsTable.InsertRecord(recPersons))
 	{
 	m_oDbConnector.CloseDbConnectionAndSession();
 		return false;

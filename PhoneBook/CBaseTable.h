@@ -45,9 +45,9 @@ public:
 
 	bool  UpdateWhereID(const long lID, const Record_Type& recTableRecord) ;
 
-	bool  Insert(const Record_Type& recTableRecord);
+	bool  InsertRecord(const Record_Type& recTableRecord);
 
-	bool  DeleteWhereID(const long lID) ;
+	bool  DeleteWhereID(const long lID);
 
 public:
 	

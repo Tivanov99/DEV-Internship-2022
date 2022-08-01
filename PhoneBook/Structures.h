@@ -51,7 +51,7 @@ struct PERSONS {
 	/// <summary>Променлива съдържаща стойността от колоната 'ADDRESS' в таблицата  'PERSONS'.</summary>
 	TCHAR szADDRESS[GlobalConstants::_nPersonAddressSize];
 
-	PERSONS()
+	~PERSONS()
 	{
 		SecureZeroMemory(this, sizeof(*this));
 	}
@@ -81,7 +81,7 @@ struct PHONE_NUMBERS {
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_NUMBER' в таблицата  'PHONE_NUMBERS'</summary>
 	TCHAR szPHONE_NUMBER[GlobalConstants::_nPhoneNumberSize];
 
-	PHONE_NUMBERS()
+	~PHONE_NUMBERS()
 	{
 		SecureZeroMemory(this, sizeof(*this));
 	}
@@ -98,7 +98,7 @@ struct PHONE_TYPES {
 	long lUpdateCounter;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_TYPE' в таблицата  'PHONE_TYPES'</summary>
 	TCHAR szPHONE_TYPE[PHONE_TYPE_SIZE];
-	PHONE_TYPES()
+	~PHONE_TYPES()
 	{
 		SecureZeroMemory(this, sizeof(*this));
 	};

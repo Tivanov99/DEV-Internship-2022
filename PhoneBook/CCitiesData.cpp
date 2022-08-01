@@ -29,9 +29,9 @@ bool CCitiesData::UpdateWhereID(const long lID, const CITIES& recCities)
 	return true;
 }
 
-bool CCitiesData::Insert(const CITIES& recCities)
+bool CCitiesData::InsertRecord(const CITIES& recCities)
 {
-	if (!m_CitiesTable.Insert(recCities))
+	if (!m_CitiesTable.InsertRecord(recCities))
 		return false;
 
 	return true;

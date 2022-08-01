@@ -1,6 +1,6 @@
 enum ContextMenuOperations
 {
-	Insert,
+	InsertRecord,
 	Edit,
 	Delete
 };

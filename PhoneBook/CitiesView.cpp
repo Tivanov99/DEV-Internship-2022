@@ -164,7 +164,7 @@ void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 
 	switch (lHint)
 	{
-	case ContextMenuOperations::Insert:
+	case ContextMenuOperations::InsertRecord:
 		break;
 	case ContextMenuOperations::Delete:
 		ÓListCtrl.DeleteItem(nNumberOfSelectedRow);

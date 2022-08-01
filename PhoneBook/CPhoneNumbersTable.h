@@ -30,15 +30,15 @@ protected:
 /////////////////////////////////////////////////////////////////////////////
 // CPhoneNumbersTable
 #pragma once
-class CPhoneNumbersTable : private CCommand<CAccessor<CPhoneNumberAccessor>>, public CBaseTable<PHONE_NUMBERS>
+class CPhoneNumbersTable :  public CBaseTable<PHONE_NUMBERS, CPhoneNumberAccessor>
 {
 	// Constants
 	// ----------------
-private:
-	static const LPCSTR lpszSelectById;
-	static const LPCSTR lpszSelectAll;
-	static const LPCSTR lpszEmptySelect;
-	static const LPCSTR lpszSelectAllByPersonId;
+//private:
+//	static const LPCSTR lpszSelectById;
+//	static const LPCSTR lpszSelectAll;
+//	static const LPCSTR lpszEmptySelect;
+//	static const LPCSTR lpszSelectAllByPersonId;
 
 	// Constructor / Destructor
 	// ----------------
@@ -48,38 +48,38 @@ public:
 
 	// Methods
 	// ----------------
-public:
-	/// <summary>
-	/// Изчита всички записи от таблицата според където колоната 'lPERSON_ID' съдържа стойност равна на аргумента 'lID'.
-	/// </summary>
-	/// <param name="lID">Стойност според която ще се изчетат всички записи.</param>
-	/// <param name="oPhoneNumbersArray">Референция към масив който ще бъде напълнен с всички прочетени записи</param>
-	/// <returns>Върща 'true' или 'false' според това дали всичко е успешно</returns>
-	bool SelectAllByPersonId(long lID, CPhoneNumbersArray& oPhoneNumbersArray);
-
-	/// <summary>
-	/// Изтрива всички записи от таблицата 
-	/// </summary>
-	/// <param name="lID"></param>
-	/// <returns></returns>
-	bool DeleteWherePersonID(const long lID);
-
-	// Overrides
-	// ----------------
-public:
-	bool SelectAll(CPhoneNumbersArray& oPhoneNumbersArray) override;
-
-	bool SelectWhereID(const long lID, PHONE_NUMBERS& recPhoneNumber) override;
-
-	bool UpdateWhereID(const long lID, const PHONE_NUMBERS& recPhoneNumber) override;
-
-	bool Insert(const PHONE_NUMBERS& recPhoneNumber) override;
-
-	bool DeleteWhereID(const long lID) override;
-
-private:
-	bool ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor) override;
-
-	void CloseRowSet() override;
+//public:
+//	/// <summary>
+//	/// Изчита всички записи от таблицата според където колоната 'lPERSON_ID' съдържа стойност равна на аргумента 'lID'.
+//	/// </summary>
+//	/// <param name="lID">Стойност според която ще се изчетат всички записи.</param>
+//	/// <param name="oPhoneNumbersArray">Референция към масив който ще бъде напълнен с всички прочетени записи</param>
+//	/// <returns>Върща 'true' или 'false' според това дали всичко е успешно</returns>
+//	bool SelectAllByPersonId(long lID, CPhoneNumbersArray& oPhoneNumbersArray);
+//
+//	/// <summary>
+//	/// Изтрива всички записи от таблицата 
+//	/// </summary>
+//	/// <param name="lID"></param>
+//	/// <returns></returns>
+//	bool DeleteWherePersonID(const long lID);
+//
+//	// Overrides
+//	// ----------------
+//public:
+//	bool SelectAll(CPhoneNumbersArray& oPhoneNumbersArray) override;
+//
+//	bool SelectWhereID(const long lID, PHONE_NUMBERS& recPhoneNumber) override;
+//
+//	bool UpdateWhereID(const long lID, const PHONE_NUMBERS& recPhoneNumber) override;
+//
+//	bool InsertRecord(const PHONE_NUMBERS& recPhoneNumber) override;
+//
+//	bool DeleteWhereID(const long lID) override;
+//
+//private:
+//	bool ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor) override;
+//
+//	void CloseRowSet() override;
 };
 

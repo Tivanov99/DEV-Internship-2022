@@ -1,5 +1,5 @@
 #pragma once
-static class ErrorMessageVisualizator
+class ErrorMessageVisualizator
 {
 public:
 	/// <summary>

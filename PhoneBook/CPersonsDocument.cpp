@@ -105,7 +105,7 @@ bool CPersonsDocument::UpdatePerson(PERSONS& recPerson)
 }
 bool CPersonsDocument::InsertPerson(PERSONS& recCity)
 {
-	bool bInsert = m_PersonsData.Insert(recCity);
+	bool bInsert = m_PersonsData.InsertRecord(recCity);
 	if (!bInsert)
 		return false;
 

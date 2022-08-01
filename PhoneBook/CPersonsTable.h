@@ -40,14 +40,14 @@ protected:
 	END_ACCESSOR_MAP()
 };
 
-class CPersonsTable : private CCommand<CAccessor<CPersonAccessor>>, public CBaseTable<PERSONS, CPersonAccessor>
+class CPersonsTable : public CBaseTable<PERSONS, CPersonAccessor>
 {
-	// Constants
-	// ----------------
-private:
-	static const LPCSTR lpszSelectAllById;
-	static const LPCSTR lpszSelectAll;
-	static const LPCSTR lpszEmptySelect;
+//	// Constants
+//	// ----------------
+//private:
+//	static const LPCSTR lpszSelectAllById;
+//	static const LPCSTR lpszSelectAll;
+//	static const LPCSTR lpszEmptySelect;
 
 	// Constructor / Destructor
 	// ----------------

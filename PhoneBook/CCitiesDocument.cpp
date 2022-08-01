@@ -103,7 +103,7 @@ bool CCitiesDocument::UpdateCity(CITIES& recCity)
 
 CITIES* CCitiesDocument::InsertCity(CITIES& recCity)
 {
-	if (!m_CitiesData.Insert(recCity))
+	if (!m_CitiesData.InsertRecord(recCity))
 		return NULL;
 	
 	CITIES* pCity = AddCityToCitiesArray(recCity);

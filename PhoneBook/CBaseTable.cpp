@@ -1,6 +1,8 @@
 #pragma once
 #include "pch.h"
 #include "CBaseTable.h"
+#include "ErrorVisualizator.h"
+
 
 template <typename Record_Type, class Table_AcessorType>
 CBaseTable< Record_Type, Table_AcessorType>::CBaseTable(CSession& oSession, TCHAR* pszTableName)
@@ -31,13 +33,13 @@ bool CBaseTable< Record_Type, Table_AcessorType>::ExecuteQuery(const CString& st
 	switch (eQueryAccessor)
 	{
 	case AccessorTypes::NoneModifying:
-		FAILED(Open(m_oSession, strQuery)) ?
+		FAILED(CCommand<CAccessor<Table_AcessorType>>::Open(m_oSession, strQuery)) ?
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
 			bResult = true;
 		break;
 
 	case AccessorTypes::Modifying:
-		FAILED(Open(m_oSession, strQuery, &GetModifyDBPropSet())) ?
+		FAILED(CCommand<CAccessor<Table_AcessorType>>::Open(m_oSession, strQuery, &GetModifyDBPropSet())) ?
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
 			bResult = true;
 		break;
@@ -52,12 +54,14 @@ bool CBaseTable< Record_Type, Table_AcessorType>::ExecuteQuery(const CString& st
 template <typename Record_Type, class Table_AcessorType>
 bool CBaseTable< Record_Type, Table_AcessorType>::SelectAll(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray)
 {
+	CString strQuery;
+	strQuery.Format(_T("SELECT * FROM %s"), m_strTableName,);
 	// Изпълняваме командата
 	if (!ExecuteQuery((CString)lpszSelectAll, AccessorTypes::NoneModifying))
 		return false;
 
 	//TODO: CHECK HERE
-	HRESULT hResult = MoveFirst();
+	HRESULT hResult = CCommand<CAccessor<Table_AcessorType>>::MoveFirst();
 	if (FAILED(hResult))
 	{
 		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
@@ -67,7 +71,7 @@ bool CBaseTable< Record_Type, Table_AcessorType>::SelectAll(CSelfClearingTypedPt
 	// Прочитаме всички данни
 	while (hResult != DB_S_ENDOFROWSET)
 	{
-		PERSONS* pCurrentPerson = new PERSONS;
+		Record_Type* pCurrentPerson = new PERSONS;
 		*pCurrentPerson = m_recPERSON;
 		oPtrArray.Add(pCurrentPerson);
 
@@ -88,9 +92,10 @@ bool CBaseTable< Record_Type, Table_AcessorType>::SelectAll(CSelfClearingTypedPt
 template <typename Record_Type, class Table_AcessorType>
 bool CBaseTable< Record_Type, Table_AcessorType>::SelectWhereID(const long lID, Record_Type& recTableRecord)
 {
-	CString strQuery;
-	strQuery.Format((CString)lpszSelectAllById, lID);
 
+	CString strQuery;
+	strQuery.Format(_T("SELECT * FROM %s WHERE ID = %d"), m_strTableName, lID);
+	
 	if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
 	{
 		return false;
@@ -112,7 +117,7 @@ bool CBaseTable< Record_Type, Table_AcessorType>::UpdateWhereID(const long lID, 
 {
 	// Конструираме заявката
 	CString strQuery;
-	strQuery.Format((CString)lpszSelectAllById, lID);
+	strQuery.Format(_T("SELECT * FROM %s WHERE ID = %d"), m_strTableName, lID);
 
 	// Изпълняваме командата
 	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
@@ -144,17 +149,20 @@ bool CBaseTable< Record_Type, Table_AcessorType>::UpdateWhereID(const long lID, 
 
 
 template <typename Record_Type, class Table_AcessorType>
-bool CBaseTable< Record_Type, Table_AcessorType>::Insert(const Record_Type& recTableRecord)
+bool CBaseTable< Record_Type, Table_AcessorType>::InsertRecord(const Record_Type& recTableRecord)
 {
-	if (!ExecuteQuery((CString)lpszEmptySelect, AccessorTypes::Modifying))
+	CString strQuery;
+	strQuery.Format(_T("SELECT TOP 0 * FROM %s"), m_strTableName);
+
+	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
 	{
-		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, (CString)lpszEmptySelect);
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery);
 		return false;
 	}
 
 	m_recPERSON = recTableRecord;
 
-	if (FAILED(__super::Insert(ModifyColumnCode)))
+	if (FAILED(CCommand<CAccessor<Table_AcessorType>>::InsertRecord(ModifyColumnCode)))
 	{
 		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorInsertingRecord, NULL);
 		return false;
@@ -168,7 +176,7 @@ bool CBaseTable< Record_Type, Table_AcessorType>::DeleteWhereID(const long lID)
 {
 	// Конструираме заявката
 	CString strQuery;
-	strQuery.Format((CString)lpszSelectAllById, lID);
+	strQuery.Format(_T("SELECT * FROM %s WHERE ID = %d"), m_strTableName, lID);
 
 	// Изпълняваме командата
 	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))

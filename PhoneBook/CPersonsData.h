@@ -53,7 +53,7 @@ public:
 	///  Функция която добавя запис подаден като аргумент към таблицата "PERSONS".
 	/// </summary>
 	/// <param name="recPersons">Референция която съдържа нов обект.</param>
-	bool Insert(const PERSONS& recPersons);
+	bool InsertRecord(const PERSONS& recPersons);
 
 	/// <summary>
 	///  Функция която изтрива запис от таблицата "PERSONS" който отговавя на "lID" аргумента.

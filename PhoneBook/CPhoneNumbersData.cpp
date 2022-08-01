@@ -31,9 +31,9 @@ bool CPhoneNumbersData::UpdateWhereID(const long lID, const PHONE_NUMBERS& recPh
 	return true;
 }
 
-bool CPhoneNumbersData::Insert(const PHONE_NUMBERS& recPhoneNumbers)
+bool CPhoneNumbersData::InsertRecord(const PHONE_NUMBERS& recPhoneNumbers)
 {
-	if (!m_PhoneNumbersTable.Insert(recPhoneNumbers))
+	if (!m_PhoneNumbersTable.InsertRecord(recPhoneNumbers))
 		return false;
 
 	return true;

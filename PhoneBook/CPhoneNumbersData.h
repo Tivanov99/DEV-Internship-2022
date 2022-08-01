@@ -37,7 +37,7 @@ public:
 	///  Функция която добавя запис подаден като аргумент към таблицата "PHONE_NUMBERS".
 	/// </summary>
 	/// <param name="recPhoneNumbers">Референция която съдържа нов обект.</param>
-	bool Insert(const PHONE_NUMBERS& recPhoneNumbers);
+	bool InsertRecord(const PHONE_NUMBERS& recPhoneNumbers);
 
 	/// <summary>
 	///  Функция която изтрива запис от таблицата "CITIES" който отговавя на "lID" аргумента.
