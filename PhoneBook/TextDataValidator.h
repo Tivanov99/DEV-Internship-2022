@@ -1,6 +1,15 @@
 #pragma once
 class TextDataValidator
 {
+	// Constructor/Destructor
+	// ----------------
+public:
+	TextDataValidator();
+	~TextDataValidator();
+
+	// Methods
+	// ----------------
+public:
 	/// <summary>
 	/// Валидира текстови данни идващи от променлива на входно поле подадена като аргумент, и при възникване на грешка конструира и връща поянително съобщение.
 	/// </summary>
