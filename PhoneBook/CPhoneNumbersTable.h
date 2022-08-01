@@ -37,5 +37,11 @@ class CPhoneNumbersTable :  public CBaseTable<PHONE_NUMBERS, CPhoneNumberAccesso
 public:
 	CPhoneNumbersTable(CSession& oSession);
 	~CPhoneNumbersTable();
+
+	// Methods
+	// ----------------
+public:
+	bool DeleteWherePersonID(long lID);
+	bool SelectAllByPersonId(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray);
 };
 

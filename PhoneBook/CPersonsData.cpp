@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CPersonsData.h"
+#include "CPhoneNumbersTable.h"
 
 CPersonsData::CPersonsData(){};
 CPersonsData::~CPersonsData() {};
@@ -84,18 +85,23 @@ bool CPersonsData::DeleteWhereID(const long lID)
 	m_oDbConnector.OpenDbConnectionAndSession();
 	CSession oSession = m_oDbConnector.GetSession();
 
-	oSession.StartTransaction();
+	HRESULT hReuslt = oSession.StartTransaction();
 
-	//TODO : Check here for hresult;
-
-	/*CPhoneNumbersTable oPhoneNumbersTable(oSession);*/
-
-	/*if (!oPhoneNumbersTable.DeleteWherePersonID(lID))
+	if (hReuslt != S_OK)
 	{
 		oSession.Abort();
 		m_oDbConnector.CloseDbConnectionAndSession();
 		return false;
-	}*/
+	}
+
+	CPhoneNumbersTable oPhoneNumbersTable(oSession);
+
+	if (!oPhoneNumbersTable.DeleteWherePersonID(lID))
+	{
+		oSession.Abort();
+		m_oDbConnector.CloseDbConnectionAndSession();
+		return false;
+	}
 
 	CPersonsTable ÓPersonsTable(m_oDbConnector.GetSession());
 	if (!ÓPersonsTable.DeleteWhereID(lID))
@@ -112,16 +118,16 @@ bool CPersonsData::DeleteWhereID(const long lID)
 	return true;
 }
 
-bool CPersonsData::SelectAllPhoneNumbersByPersonId(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
+bool CPersonsData::SelectAllPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
 	m_oDbConnector.OpenDbConnectionAndSession();
-	/*CPhoneNumbersTable oPhoneNumbersTable(m_oDbConnector.GetSession());*/
+	CPhoneNumbersTable oPhoneNumbersTable(m_oDbConnector.GetSession());
 
-	/*if (oPhoneNumbersTable.SelectAllByPersonId(lPersonID, oPhoneNumbersArray))
+	if (oPhoneNumbersTable.SelectAllByPersonId(lPersonID, oPhoneNumbersArray))
 	{
 		m_oDbConnector.CloseDbConnectionAndSession();
 		return false;
-	}*/
+	}
 
 	m_oDbConnector.CloseDbConnectionAndSession();
 
