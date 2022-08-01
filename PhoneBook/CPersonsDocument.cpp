@@ -172,7 +172,7 @@ long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 
 bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
-	if (m_PersonsData.SelectAllPhoneNumbersByPersonId(lPersonID, oPhoneNumbersArray))
+	if (m_PersonsData.SelectAllPhoneNumbers(lPersonID, oPhoneNumbersArray))
 		return false;
 
 	return true;
