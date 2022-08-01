@@ -215,6 +215,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="CSelfClearingTypedPtrArray.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TextDataValidator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CBaseTable.cpp" />
@@ -246,6 +247,7 @@
     </ClCompile>
     <ClCompile Include="PhoneBook.cpp" />
     <ClCompile Include="CSelfClearingTypedPtrArray.cpp" />
+    <ClCompile Include="TextDataValidator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PhoneBook.rc" />

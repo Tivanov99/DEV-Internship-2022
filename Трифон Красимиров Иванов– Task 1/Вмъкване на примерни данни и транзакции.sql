@@ -247,3 +247,10 @@ INSERT INTO [CITIES]
 	('Смолян', 'Смолян',1111,0),	
 	('Приморско','Приморско',8002,0),
 	('Созопол','Созопол',9010,0);
+
+	INSERT INTO [PHONE_NUMBERS] ([UPDATE_COUNTER]
+      ,[PERSON_ID]
+      ,[PHONE_TYPE_ID]
+      ,[PHONE_NUMBER])
+	  VALUES
+	  (0,1,1,'0899628127')

@@ -88,9 +88,16 @@ void CPersonsDialog::SetDialogTitle()
 void CPersonsDialog::FillPersonDataFields()
 {
 	m_edbPersonFirstName.SetWindowText(m_recPerson.szFIRST_NAME);
+	m_edbPersonFirstName.SetLimitText(GlobalConstants::_nPersonFirstNameSize);
+
 	m_edbPersonSecondName.SetWindowText(m_recPerson.szSECOND_NAME);
+	m_edbPersonSecondName.SetLimitText(GlobalConstants::_nPersonSecondNameSize);
+
 	m_edbPersonLastName.SetWindowText(m_recPerson.szLAST_NAME);
+	m_edbPersonLastName.SetLimitText(GlobalConstants::_nPersonLastNameSize);
+
 	m_edbPersonUcn.SetWindowText(m_recPerson.szUCN);
+	m_edbPersonUcn.SetLimitText(GlobalConstants::_nPersonUcnSize);
 }
 
 void CPersonsDialog::FillCitiesComboBox()
@@ -119,10 +126,10 @@ void CPersonsDialog::FillPhoneNumbers()
 
 void CPersonsDialog::OnOK()
 {
-	/*CString strCityName;
-	m_edbCityName.GetWindowText(strCityName);
+	CString strPersonFirstName;
+	m_edbPersonFirstName.GetWindowText(strPersonFirstName);
 
-	CString strCityNameErrorMessage = m_oDataValidator.ValidateTextData(strCityName, GlobalConstants::_nMinCityNameSize);
+	CString strCityNameErrorMessage = m_oDataValidator.ValidateTextData(strPersonFirstName, GlobalConstants::_nMinCityNameSize);
 	if (strCityNameErrorMessage.GetLength() > 0)
 	{
 		AfxMessageBox(_T("The 'City name' field: ") + strCityNameErrorMessage);
@@ -146,12 +153,9 @@ void CPersonsDialog::OnOK()
 		return;
 	}
 
-	SetDataToRecord();*/
+	SetDataToRecord();
 
-
-
-
-	CITIES* pItem3 = (CITIES*)m_cmbCitiesNames.GetItemData(m_cmbCitiesNames.GetCurSel());
+	CITIES* pCity = (CITIES*)m_cmbCitiesNames.GetItemData(m_cmbCitiesNames.GetCurSel());
 
 
 	CDialog::OnOK();
