@@ -37,5 +37,36 @@ bool CPhoneNumbersTable::DeleteWherePersonID(long lID)
 
 bool CPhoneNumbersTable::SelectAllByPersonId(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
+	CString strQuery;
+	strQuery.Format(_T("SELECT * FROM PHONE_NUMBERS WHERE  PERSON_ID = %i"), lPersonID);
+	// Изпълняваме командата
+	if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
+		return false;
 
+	//TODO: CHECK HERE
+	HRESULT hResult = MoveFirst();
+	if (FAILED(hResult))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+		return false;
+	}
+
+	// Прочитаме всички данни
+	while (hResult != DB_S_ENDOFROWSET)
+	{
+		PHONE_NUMBERS* pCurrentPhoneNumber = new PHONE_NUMBERS;
+		*pCurrentPhoneNumber = m_recTableRecord;
+		oPhoneNumbersArray.Add(pCurrentPhoneNumber);
+
+		hResult = MoveNext();
+
+		if (FAILED(hResult) && hResult != DB_S_ENDOFROWSET)
+		{
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+			return false;
+		}
+		// Logic with the result
+	}
+
+	return true;
 }

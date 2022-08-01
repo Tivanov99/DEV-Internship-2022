@@ -63,7 +63,7 @@ bool CBaseTable< Record_Type, Table_AcessorType>::SelectAll(CSelfClearingTypedPt
 		return false;
 
 	//TODO: CHECK HERE
-	HRESULT hResult = CCommand<CAccessor<Table_AcessorType>>::MoveFirst();
+	HRESULT hResult = MoveFirst();
 	if (FAILED(hResult))
 	{
 		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
@@ -73,9 +73,9 @@ bool CBaseTable< Record_Type, Table_AcessorType>::SelectAll(CSelfClearingTypedPt
 	// Прочитаме всички данни
 	while (hResult != DB_S_ENDOFROWSET)
 	{
-		Record_Type* pCurrentPerson = new Record_Type;
-		*pCurrentPerson = m_recTableRecord;
-		oPtrArray.Add(pCurrentPerson);
+		Record_Type* pCurrentRecord = new Record_Type;
+		*pCurrentRecord = m_recTableRecord;
+		oPtrArray.Add(pCurrentRecord);
 
 		hResult = MoveNext();
 
