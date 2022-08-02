@@ -16,6 +16,12 @@ public:
 	~CPersonsData();
 
 	/// <summary>
+	///  Функция която чете всики записи от таблицата "PHONE_TYPES" и ги добавя в подаден като аргумент масив.
+	/// </summary>
+	/// <param name="oCitiesArray">Масив в който ще бъдат записани всички прочетени данни.</param>
+	bool SelectAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray);
+
+	/// <summary>
 	///  Функция която чете всики записи от таблицата "CITIES" и ги добавя в подаден като аргумент масив.
 	/// </summary>
 	/// <param name="oCitiesArray">Масив в който ще бъдат записани всички прочетени данни.</param>

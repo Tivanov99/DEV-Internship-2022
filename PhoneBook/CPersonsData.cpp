@@ -12,6 +12,7 @@ bool CPersonsData::SelectAllCities(CCitiesArray& oCitiesArray)
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
 	pDatabaseConnector->OpenDbConnectionAndSession();
+
 	CCitiesTable oCitiesTable(pDatabaseConnector->GetSession());
 
 	if (!oCitiesTable.SelectAll(oCitiesArray))
@@ -148,4 +149,9 @@ bool CPersonsData::SelectAllPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPh
 	pDatabaseConnector->CloseDbConnectionAndSession();
 
 	return true;
+}
+bool CPersonsData::SelectAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
+{
+	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
+
 }
