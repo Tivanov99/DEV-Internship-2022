@@ -11,7 +11,6 @@
 
 #define NoneModifyColumnCode 0
 #define ModifyColumnCode 1
-
 class CPhoneTypesAccessor : public CTableAccessor<PHONE_TYPES>
 {
 protected:
@@ -28,11 +27,14 @@ protected:
 		BEGIN_ACCESSOR(ModifyColumnCode, true)
 		COLUMN_ENTRY(2, m_recTableRecord.lUpdateCounter)
 		COLUMN_ENTRY(3, m_recTableRecord.szPHONE_TYPE)
+	
 		END_ACCESSOR()
 	END_ACCESSOR_MAP()
 };
 
-class CPhoneTypesTable 
+class CPhoneTypesTable:public CBaseTable< PHONE_TYPES, CPhoneTypesAccessor>
 {
+	CPhoneTypesTable(CSession& oSession);
+	~CPhoneTypesTable();
 };
 
