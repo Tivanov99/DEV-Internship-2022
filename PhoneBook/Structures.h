@@ -98,6 +98,7 @@ struct PHONE_TYPES {
 	long lUpdateCounter;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_TYPE' в таблицата  'PHONE_TYPES'</summary>
 	TCHAR szPHONE_TYPE[PHONE_TYPE_SIZE];
+
 	~PHONE_TYPES()
 	{
 		SecureZeroMemory(this, sizeof(*this));

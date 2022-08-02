@@ -135,6 +135,9 @@
     <ClInclude Include="TextDataValidator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CPhoneTypesTable.h">
+      <Filter>PHONE_TYPES</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -211,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="TextDataValidator.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CPhoneTypesTable.cpp">
+      <Filter>Source Files\PHONE_TYPES</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

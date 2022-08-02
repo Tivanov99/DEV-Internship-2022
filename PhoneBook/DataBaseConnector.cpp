@@ -3,7 +3,6 @@
 #include "ErrorVisualizator.h"
 
 
-
 const LPCSTR DataBaseConnector::lpszUnableToConnectServer = "Unable to connect to SQL Server database. Error: %d";
 const LPCSTR DataBaseConnector::lpszUnableToOpenSession = "Unable to open session. Error: %d";
 
