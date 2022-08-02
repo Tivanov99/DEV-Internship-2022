@@ -3,7 +3,7 @@
 #include "CPersonsTable.h"
 #include "CCitiesTable.h"
 //#include "CPhoneNumbersTable.h"
-#include "DbConnector.h"
+#include "DataBaseConnector.h"
 
 class CPersonsData 
 {
@@ -60,8 +60,5 @@ public:
 	/// </summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	bool DeleteWhereID(const long lID);
-
-private:
-	DbConnector m_oDbConnector;
 };
 

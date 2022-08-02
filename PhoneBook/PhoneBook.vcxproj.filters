@@ -123,7 +123,7 @@
     <ClInclude Include="CPhoneNumbersData.h">
       <Filter>PHONE_NUMERS</Filter>
     </ClInclude>
-    <ClInclude Include="DbConnector.h">
+    <ClInclude Include="DataBaseConnector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ErrorVisualizator.h">
@@ -203,7 +203,7 @@
     <ClCompile Include="CPhoneNumbersData.cpp">
       <Filter>Source Files\PHONE_NUMBERS</Filter>
     </ClCompile>
-    <ClCompile Include="DbConnector.cpp">
+    <ClCompile Include="DataBaseConnector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ErrorVisualizator.cpp">

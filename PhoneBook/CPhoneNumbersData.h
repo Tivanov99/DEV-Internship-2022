@@ -1,6 +1,6 @@
 #pragma once
 #include "Structures.h"
-#include "DbConnector.h"
+#include "DataBaseConnector.h"
 
 class CPhoneNumbersData
 {
@@ -48,10 +48,5 @@ public:
 
 	// Members
 	// ----------------
-private:
-	/// <summary>
-	/// Мембър за достъп до класът съдържащ бизнес логиката.
-	/// </summary>
-	DbConnector m_oDbConnector;
 };
 

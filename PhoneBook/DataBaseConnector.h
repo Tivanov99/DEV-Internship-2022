@@ -1,18 +1,22 @@
 #pragma once
 #include <atldbcli.h>
-class DbConnector
+
+class DataBaseConnector
 {
+	static DataBaseConnector* m_pInstance;
+
 	// Constants
 	// ----------------
+private:
 
 	static const LPCSTR lpszUnableToConnectServer;
 	static const LPCSTR lpszUnableToOpenSession;
 
 	// Constructor / Destructor
 	// ----------------
-public:
-	DbConnector();
-	~DbConnector();
+private:
+	DataBaseConnector();
+	~DataBaseConnector();
 
 	// Methods
 	// ----------------
@@ -36,6 +40,8 @@ public:
 	/// Getter
 	/// </summary>
 	CSession& GetSession();
+
+	static DataBaseConnector* GetInstance();
 
 	// Members
 	// -------------

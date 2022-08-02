@@ -1,23 +1,23 @@
 #include "pch.h"
-#include "DbConnector.h"
+#include "DataBaseConnector.h"
 #include "ErrorVisualizator.h"
 
 
 
-const LPCSTR DbConnector::lpszUnableToConnectServer = "Unable to connect to SQL Server database. Error: %d";
-const LPCSTR DbConnector::lpszUnableToOpenSession = "Unable to open session. Error: %d";
+const LPCSTR DataBaseConnector::lpszUnableToConnectServer = "Unable to connect to SQL Server database. Error: %d";
+const LPCSTR DataBaseConnector::lpszUnableToOpenSession = "Unable to open session. Error: %d";
 
-DbConnector::DbConnector() {};
-DbConnector :: ~DbConnector() {};
+DataBaseConnector::DataBaseConnector() {};
+DataBaseConnector :: ~DataBaseConnector() {};
 
-void DbConnector::CloseDbConnectionAndSession()
+void DataBaseConnector::CloseDbConnectionAndSession()
 {
 	m_oSession.Close();
 	m_oDataSource.Close();
 };
 
 
-CDBPropSet DbConnector::GetDBPropSet() const
+CDBPropSet DataBaseConnector::GetDBPropSet() const
 {
 	CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
 	oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65"));	// сървър
@@ -30,7 +30,7 @@ CDBPropSet DbConnector::GetDBPropSet() const
 	return oDBPropSet;
 };
 
-bool DbConnector::OpenDbConnectionAndSession()
+bool DataBaseConnector::OpenDbConnectionAndSession()
 {
 	CDBPropSet& oDBPropSet = GetDBPropSet();
 
@@ -55,7 +55,15 @@ bool DbConnector::OpenDbConnectionAndSession()
 	return true;
 };
 
-CSession& DbConnector::GetSession()
+CSession& DataBaseConnector::GetSession()
 {
 	return m_oSession;
+}
+
+DataBaseConnector* DataBaseConnector::GetInstance()
+{
+	if (!m_pInstance)
+		m_pInstance = new DataBaseConnector;
+
+	return m_pInstance;
 }
