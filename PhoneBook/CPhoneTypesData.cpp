@@ -24,25 +24,25 @@ bool CPhoneTypesData::SelectWhereID(const long lID, PHONE_TYPES& recPhoneType)
 	return true;
 }
 
-bool CCitiesData::UpdateWhereID(const long lID, const CITIES& recCities)
+bool CPhoneTypesData::UpdateWhereID(const long lID, const PHONE_TYPES& recPhoneType)
 {
-	if (!m_CitiesTable.UpdateWhereID(lID, recCities))
+	if (!m_PhoneTypesTable.UpdateWhereID(lID, recPhoneType))
 		return false;
 
 	return true;
 }
 
-bool CCitiesData::InsertRecord(const CITIES& recCities)
+bool CPhoneTypesData::InsertRecord(const PHONE_TYPES& recPhoneType)
 {
-	if (!m_CitiesTable.InsertRecord(recCities))
+	if (!m_PhoneTypesTable.InsertRecord(recPhoneType))
 		return false;
 
 	return true;
 }
 
-bool CCitiesData::DeleteWhereID(const long lID)
+bool CPhoneTypesData::DeleteWhereID(const long lID)
 {
-	if (!m_CitiesTable.DeleteWhereID(lID))
+	if (!m_PhoneTypesTable.DeleteWhereID(lID))
 		return false;
 
 	return true;
