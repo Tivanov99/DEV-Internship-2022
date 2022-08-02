@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CPersonsData.h"
 #include "CPhoneNumbersTable.h"
+#include "CPhoneTypesTable.h"
 
 CPersonsData::CPersonsData()
 {
@@ -154,4 +155,11 @@ bool CPersonsData::SelectAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
+	pDatabaseConnector->OpenDbConnectionAndSession();
+	CPhoneTypesTable oPhoneTypesTable(pDatabaseConnector->GetSession());
+
+	if (!oPhoneTypesTable.SelectAll(oPhoneTypesArray))
+		return false;
+
+	return true;
 }
