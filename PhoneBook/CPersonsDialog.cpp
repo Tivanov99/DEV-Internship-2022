@@ -8,9 +8,9 @@
 IMPLEMENT_DYNAMIC(CPersonsDialog, CDialog)
 
 CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerson, CCitiesArray& oCitiesArray,
-	CPhoneNumbersArray& oPhoneNumbersArray, CWnd* pParent /*=nullptr*/)
+	CPhoneNumbersArray& oPhoneNumbersArray, CPhoneTypesArray& oPhoneTypesArray, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation), m_oCitiesArray(oCitiesArray)
-	, m_oPhoneNumbersArray(oPhoneNumbersArray)
+	, m_oPhoneNumbersArray(oPhoneNumbersArray), m_oPhoneTypesArray(oPhoneTypesArray)
 {
 }
 CPersonsDialog :: ~CPersonsDialog() {};
