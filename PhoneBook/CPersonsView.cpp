@@ -201,10 +201,13 @@ void CPersonsView::OnEditContextReadData()
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
 
+	CPhoneTypesArray oPhoneTypesArray;
+	pPersonDocument->GetAllPhoneTypes(oPhoneTypesArray);
+
 	CPhoneNumbersArray oPhoneNumbersArray;
 	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersArray);
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::ReadData, oPerson, oCitiesArray, oPhoneNumbersArray);
+	CPersonsDialog oPersonsDialog(DialogWindowActions::ReadData, oPerson, oCitiesArray, oPhoneNumbersArray, oPhoneTypesArray);
 
 	if (!oPersonsDialog.DoModal())
 		return;
@@ -220,9 +223,11 @@ void CPersonsView::OnContextMenuInsert()
 
 	CPhoneNumbersArray oPhoneNumbersArray;
 
+	CPhoneTypesArray oPhoneTypesArray;
+
 	PERSONS oPerson;
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oPhoneNumbersArray);
+	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oPhoneNumbersArray, oPhoneTypesArray);
 
 	if (!oPersonsDialog.DoModal())
 		return;
@@ -251,7 +256,10 @@ void CPersonsView::OnContextMenuEdit()
 	CPhoneNumbersArray oPhoneNumbersArray;
 	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersArray);
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oPhoneNumbersArray);
+	CPhoneTypesArray oPhoneTypesArray;
+	pPersonDocument->GetAllPhoneTypes(oPhoneTypesArray);
+
+	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oPhoneNumbersArray, oPhoneTypesArray);
 
 	if (!oPersonsDialog.DoModal())
 		return;

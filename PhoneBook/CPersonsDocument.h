@@ -1,6 +1,5 @@
 #pragma once
 #include "Structures.h"
-#include "CSelfClearingTypedPtrArray.h"
 #include "CPersonsData.h"
 
 class CPersonsDocument :public CDocument

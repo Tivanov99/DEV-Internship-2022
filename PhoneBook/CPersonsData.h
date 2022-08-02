@@ -27,7 +27,6 @@ public:
 	/// <param name="oCitiesArray">Масив в който ще бъдат записани всички прочетени данни.</param>
 	bool SelectAllCities(CCitiesArray& oCitiesArray);
 
-
 	/// <summary>
 	///  Функция която чете всики записи от таблицата "PHONE_NUMBERS" и ги добавя в подаден като аргумент масив.
 	/// </summary>

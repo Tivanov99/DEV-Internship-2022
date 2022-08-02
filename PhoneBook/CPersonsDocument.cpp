@@ -38,7 +38,13 @@ const CPersonsArray& CPersonsDocument::GetAllPersons()
 {
 	return m_oPersonsArray;
 }
+bool CPersonsDocument::GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
+{
+	if (!m_PersonsData.SelectAllPhoneTypes(oPhoneTypesArray))
+		return false;
 
+	return true;
+}
 
 #ifdef _DEBUG
 void CPersonsDocument::AssertValid() const

@@ -8,6 +8,19 @@ CPersonsData::CPersonsData()
 };
 CPersonsData::~CPersonsData() {};
 
+bool CPersonsData::SelectAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
+{
+	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
+
+	pDatabaseConnector->OpenDbConnectionAndSession();
+	CPhoneTypesTable oPhoneTypesTable(pDatabaseConnector->GetSession());
+
+	if (!oPhoneTypesTable.SelectAll(oPhoneTypesArray))
+		return false;
+
+	return true;
+}
+
 bool CPersonsData::SelectAllCities(CCitiesArray& oCitiesArray)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
@@ -148,18 +161,6 @@ bool CPersonsData::SelectAllPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPh
 	}
 
 	pDatabaseConnector->CloseDbConnectionAndSession();
-
-	return true;
-}
-bool CPersonsData::SelectAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
-{
-	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
-
-	pDatabaseConnector->OpenDbConnectionAndSession();
-	CPhoneTypesTable oPhoneTypesTable(pDatabaseConnector->GetSession());
-
-	if (!oPhoneTypesTable.SelectAll(oPhoneTypesArray))
-		return false;
 
 	return true;
 }
