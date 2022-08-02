@@ -142,7 +142,7 @@
       <Filter>PHONE_TYPES</Filter>
     </ClInclude>
     <ClInclude Include="CPhoneTypesDocument.h">
-      <Filter>Header Files</Filter>
+      <Filter>PHONE_TYPES</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -228,7 +228,7 @@
       <Filter>Source Files\PHONE_TYPES</Filter>
     </ClCompile>
     <ClCompile Include="CPhoneTypesDocument.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\PHONE_TYPES</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

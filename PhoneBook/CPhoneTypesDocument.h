@@ -35,17 +35,17 @@ public:
 	PHONE_TYPES* GetPhoneTypeById(long lID);
 	bool DeletePhoneTypeById(long lID);
 	bool UpdatePhoneType(PHONE_TYPES& recPhoneType);
-	CITIES* InsertPhoneType(PHONE_TYPES& recPhoneType);
+	PHONE_TYPES* InsertPhoneType(PHONE_TYPES& recPhoneType);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	bool DeletePhoneTypeFromPhoneTypesArray(long lID);
-	CITIES* AddPhoneTypeToPhoneTypesArray(PHONE_TYPES& recPhoneType);
-	//long GetCityIndexFromCitiesArray(long lID);
+	PHONE_TYPES* AddPhoneTypeToPhoneTypesArray(PHONE_TYPES& recPhoneType);
+	long GetPhoneTypeIndexFromPhoneTypesArray(long lID);
 
 	//Members
 private:
 	CPhoneTypesArray m_oPhoneTypesArray;
-	CPhoneTypesData m_CitiesData;
+	CPhoneTypesData m_PhoneTypesData;
 
 protected:
 
