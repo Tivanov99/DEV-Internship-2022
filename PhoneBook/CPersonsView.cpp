@@ -217,8 +217,11 @@ void CPersonsView::OnContextMenuInsert()
 
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
+
 	CPhoneNumbersArray oPhoneNumbersArray;
+
 	PERSONS oPerson;
+
 	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oPhoneNumbersArray);
 
 	if (!oPersonsDialog.DoModal())
