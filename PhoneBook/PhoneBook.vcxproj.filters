@@ -138,6 +138,9 @@
     <ClInclude Include="CPhoneTypesTable.h">
       <Filter>PHONE_TYPES</Filter>
     </ClInclude>
+    <ClInclude Include="CPhoneTypesData.h">
+      <Filter>PHONE_TYPES</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -216,6 +219,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CPhoneTypesTable.cpp">
+      <Filter>Source Files\PHONE_TYPES</Filter>
+    </ClCompile>
+    <ClCompile Include="CPhoneTypesData.cpp">
       <Filter>Source Files\PHONE_TYPES</Filter>
     </ClCompile>
   </ItemGroup>

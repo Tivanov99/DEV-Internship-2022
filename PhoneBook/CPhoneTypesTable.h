@@ -34,6 +34,7 @@ protected:
 
 class CPhoneTypesTable:public CBaseTable< PHONE_TYPES, CPhoneTypesAccessor>
 {
+public:
 	CPhoneTypesTable(CSession& oSession);
 	~CPhoneTypesTable();
 };
