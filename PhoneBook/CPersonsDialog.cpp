@@ -50,7 +50,7 @@ BOOL CPersonsDialog::OnInitDialog()
 		m_edbPersonLastName.EnableWindow(false);
 		m_edbPersonUcn.EnableWindow(false);
 		m_cmbCitiesNames.EnableWindow(false);
-		//m_cmblscPhoneNumbers.EnableWindow(false);
+		m_lscPersonPhoneNumbers.EnableWindow(false);
 	}
 
 	return TRUE;

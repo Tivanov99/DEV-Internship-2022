@@ -9,6 +9,8 @@ const LPCSTR DataBaseConnector::lpszUnableToOpenSession = "Unable to open sessio
 DataBaseConnector::DataBaseConnector() {};
 DataBaseConnector :: ~DataBaseConnector() {};
 
+DataBaseConnector* DataBaseConnector::m_pInstance = NULL;
+
 void DataBaseConnector::CloseDbConnectionAndSession()
 {
 	m_oSession.Close();

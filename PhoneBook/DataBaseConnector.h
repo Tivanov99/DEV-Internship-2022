@@ -4,7 +4,7 @@
 class DataBaseConnector
 {
 	static DataBaseConnector* m_pInstance;
-
+	
 	// Constants
 	// ----------------
 private:

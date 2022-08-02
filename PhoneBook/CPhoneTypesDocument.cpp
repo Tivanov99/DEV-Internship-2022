@@ -64,7 +64,7 @@ bool CPhoneTypesDocument::DeletePhoneTypeById(long lID)
 
 	if (!bDeleteResult)
 	{
-		TRACE(_T("Deletion from database returned error. City id: %d"), lID);
+		TRACE(_T("Deletion from database returned error. Phone type id: %d"), lID);
 		return false;
 	}
 
@@ -113,7 +113,7 @@ bool CPhoneTypesDocument::DeletePhoneTypeFromPhoneTypesArray(long lID)
 {
 	if (lID == -1)
 	{
-		AfxMessageBox(_T("The city was not found in the document! City Id - %d"), lID);
+		AfxMessageBox(_T("The phone type was not found in the document! Phone type Id - %d"), lID);
 		return false;
 	}
 
@@ -135,7 +135,7 @@ PHONE_TYPES* CPhoneTypesDocument::AddPhoneTypeToPhoneTypesArray(PHONE_TYPES& rec
 	if (pPhoneType == NULL)
 	{
 		delete pPhoneType;
-		AfxMessageBox(_T("Failed to add city to document."));
+		AfxMessageBox(_T("Failed to add phone type to document."));
 	}
 	m_oPhoneTypesArray.Add(pPhoneType);
 
@@ -146,7 +146,7 @@ long CPhoneTypesDocument::GetPhoneTypeIndexFromPhoneTypesArray(long lID)
 {
 	if (lID < 0)
 	{
-		AfxMessageBox(_T("City with ID  - (%d)  was not found in the document."), lID);
+		AfxMessageBox(_T("Phone type with ID  - (%d)  was not found in the document."), lID);
 		return -1;
 	}
 
