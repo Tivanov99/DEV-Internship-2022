@@ -70,9 +70,7 @@ PERSONS* CPersonsDocument::GetPersonById(long lID)
 
 bool CPersonsDocument::DeletePersonById(long lID)
 {
-	const bool bDeleteResult = m_ÓPersonsData.DeleteWhereID(lID);
-
-	if (!bDeleteResult)
+	if (!m_ÓPersonsData.DeleteWhereID(lID))
 		return false;
 
 	DeletePersonFromPersonsArray(lID);
@@ -97,12 +95,11 @@ void CPersonsDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 
 bool CPersonsDocument::UpdatePerson(PERSONS& recPerson)
 {
-	bool bUpdate = m_ÓPersonsData.UpdateWhereID(recPerson.lID, recPerson);
-	if (!bUpdate)
+	if (!m_ÓPersonsData.UpdateWhereID(recPerson.lID, recPerson))
 		return false;
 
-	PERSONS oPerson;
-	m_ÓPersonsData.SelectWhereID(recPerson.lID, oPerson);
+	/*PERSONS oPerson;
+	m_ÓPersonsData.SelectWhereID(recPerson.lID, oPerson);*/
 
 
 	//TODO: Chech here for object ?
@@ -111,8 +108,7 @@ bool CPersonsDocument::UpdatePerson(PERSONS& recPerson)
 }
 bool CPersonsDocument::InsertPerson(PERSONS& recCity)
 {
-	bool bInsert = m_ÓPersonsData.InsertRecord(recCity);
-	if (!bInsert)
+	if (!m_ÓPersonsData.InsertRecord(recCity))
 		return false;
 
 	AddPersonToPersonsArray(recCity);
@@ -178,8 +174,42 @@ long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 
 bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
-	if (m_ÓPersonsData.SelectAllPhoneNumbers(lPersonID, oPhoneNumbersArray))
+	if (!m_ÓPersonsData.SelectAllPhoneNumbers(lPersonID, oPhoneNumbersArray))
 		return false;
 
 	return true;
+}
+
+bool CPersonsDocument::GetPersonPhoneNumbersAndTypes(map<PHONE_NUMBERS, PHONE_TYPES>& oMap,const long lPersonID)
+{
+	CPhoneNumbersArray oPhoneNumbersArray;
+	if (!m_ÓPersonsData.SelectAllPhoneNumbers(lPersonID, oPhoneNumbersArray))
+		return false;
+
+	CPhoneTypesArray oPhoneTypesArray;
+	if (!m_ÓPersonsData.SelectAllPhoneTypes(oPhoneTypesArray))
+		return false;
+
+	for (INT_PTR i = 0; i < oPhoneNumbersArray.GetCount(); i++)
+	{
+		PHONE_NUMBERS* pPhoneNumers = oPhoneNumbersArray.GetAt(i);
+		if (pPhoneNumers == NULL)
+			continue;
+
+		PHONE_TYPES* pPhoneType = oPhoneTypesArray.
+	}
+
+}
+PHONE_TYPES* CPersonsDocument::GetPhoneTypeById(long lID, CPhoneTypesArray& oPhoneTypesArray)
+{
+	for (INT_PTR i = 0; i < oPhoneTypesArray.GetCount(); i++)
+	{
+		PHONE_TYPES* pCurrentPhoneType = oPhoneTypesArray.GetAt(i);
+		if (pCurrentPhoneType == NULL)
+			continue;
+
+		if (pCurrentPhoneType->lID == lID)
+			return pCurrentPhoneType;
+	}
+	return NULL;
 }

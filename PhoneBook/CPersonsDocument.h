@@ -38,12 +38,14 @@ public:
 	bool GetAllCities(CCitiesArray& oCitiesArray);
 	bool GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray);
 	bool GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray);
-
+	
+	bool GetPersonPhoneNumbersAndTypes(map<PHONE_NUMBERS, PHONE_TYPES>& oMap,const long lPersonID);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	bool DeletePersonFromPersonsArray(long lPersonId);
 	PERSONS* AddPersonToPersonsArray(PERSONS& recPerson);
 	long GetPersonIndexFromPersonsArray(long lID);
+	PHONE_TYPES* GetPhoneTypeById(long lID, CPhoneTypesArray& oPhoneTypesArray);
 
 	//Members
 	//------------------------
