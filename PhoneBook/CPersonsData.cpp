@@ -15,7 +15,7 @@ bool CPersonsData::SelectAllPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPh
 	pDatabaseConnector->OpenDbConnectionAndSession();
 	CPhoneNumbersTable oPhoneNumbersTable(pDatabaseConnector->GetSession());
 
-	if (oPhoneNumbersTable.SelectAllByPersonId(lPersonID, oPhoneNumbersArray))
+	if (!oPhoneNumbersTable.SelectAllByPersonId(lPersonID, oPhoneNumbersArray))
 	{
 		pDatabaseConnector->CloseDbConnectionAndSession();
 		return false;

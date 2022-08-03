@@ -200,9 +200,9 @@ bool CPersonsDocument::GetPersonPhoneNumbersAndTypes(map<PHONE_NUMBERS*, PHONE_T
 		if (pPhoneType == NULL)
 			continue;
 
-		oMap.insert(pair<PHONE_NUMBERS*, PHONE_TYPES*>(pPhoneNumers, pPhoneType));
+		oMap.insert(pair<PHONE_NUMBERS*, PHONE_TYPES*>(new PHONE_NUMBERS(*pPhoneNumers), new PHONE_TYPES(*pPhoneType)));
 	}
-
+	return true;
 }
 PHONE_TYPES* CPersonsDocument::GetPhoneTypeById(long lID, CPhoneTypesArray& oPhoneTypesArray)
 {

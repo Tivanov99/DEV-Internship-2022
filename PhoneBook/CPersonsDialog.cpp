@@ -8,9 +8,9 @@
 IMPLEMENT_DYNAMIC(CPersonsDialog, CDialog)
 
 CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerson, CCitiesArray& oCitiesArray,
-	CPhoneNumbersArray& oPhoneNumbersArray, CPhoneTypesArray& oPhoneTypesArray, CWnd* pParent /*=nullptr*/)
-	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation), m_oCitiesArray(oCitiesArray)
-	, m_oPhoneNumbersArray(oPhoneNumbersArray), m_oPhoneTypesArray(oPhoneTypesArray)
+	map<PHONE_NUMBERS*, PHONE_TYPES*>& oMap, CWnd* pParent /*=nullptr*/)
+	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation), m_oCitiesArray(oCitiesArray),
+	m_oMap(oMap)
 {
 }
 CPersonsDialog :: ~CPersonsDialog() {};
@@ -122,16 +122,23 @@ void CPersonsDialog::FillCitiesComboBox()
 
 void CPersonsDialog::FillPhoneNumbers()
 {
-	for (INT_PTR i = 0; i < m_oPhoneNumbersArray.GetCount(); i++)
+
+	map<PHONE_NUMBERS*, PHONE_TYPES*>::iterator itr;
+
+	for (itr = m_oMap.begin(); itr != m_oMap.end(); ++itr)
 	{
-		PHONE_NUMBERS* pCurrentPhoneNumber = m_oPhoneNumbersArray.GetAt(i);
+		PHONE_NUMBERS* pCurrentPhoneNumber = itr->first;
 		if (pCurrentPhoneNumber == NULL)
+			continue;
+
+		PHONE_TYPES* pCurrentPhoneType = itr->second;
+		if (pCurrentPhoneType == NULL)
 			continue;
 
 		const int nRow = m_lscPersonPhoneNumbers.GetItemCount();
 
 		m_lscPersonPhoneNumbers.InsertItem(nRow, pCurrentPhoneNumber->szPHONE_NUMBER);
-
+		m_lscPersonPhoneNumbers.SetItemText(nRow,1, pCurrentPhoneNumber->szPHONE_NUMBER);
 	}
 }
 

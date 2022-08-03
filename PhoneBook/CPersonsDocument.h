@@ -38,7 +38,6 @@ public:
 	bool GetAllCities(CCitiesArray& oCitiesArray);
 	bool GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray);
 	bool GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray);
-	
 	bool GetPersonPhoneNumbersAndTypes(map<PHONE_NUMBERS*, PHONE_TYPES*>& oMap,const long lPersonID);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);

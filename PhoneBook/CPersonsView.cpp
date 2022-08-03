@@ -209,13 +209,11 @@ void CPersonsView::OnEditContextReadData()
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
 
-	CPhoneTypesArray oPhoneTypesArray;
-	pPersonDocument->GetAllPhoneTypes(oPhoneTypesArray);
+	map<PHONE_NUMBERS*, PHONE_TYPES*> oMap;
 
-	CPhoneNumbersArray oPhoneNumbersArray;
-	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersArray);
+	pPersonDocument->GetPersonPhoneNumbersAndTypes(oMap, pPerson->lID);
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::ReadData, oPerson, oCitiesArray, oPhoneNumbersArray, oPhoneTypesArray);
+	CPersonsDialog oPersonsDialog(DialogWindowActions::ReadData, oPerson, oCitiesArray, oMap);
 
 	if (!oPersonsDialog.DoModal())
 		return;
@@ -229,13 +227,11 @@ void CPersonsView::OnContextMenuInsert()
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
 
-	CPhoneNumbersArray oPhoneNumbersArray;
-
-	CPhoneTypesArray oPhoneTypesArray;
+	map<PHONE_NUMBERS*, PHONE_TYPES*> oMap;
 
 	PERSONS oPerson;
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oPhoneNumbersArray, oPhoneTypesArray);
+	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oMap);
 
 	if (!oPersonsDialog.DoModal())
 		return;
@@ -261,15 +257,11 @@ void CPersonsView::OnContextMenuEdit()
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
 
-	CPhoneNumbersArray oPhoneNumbersArray;
-	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersArray);
+	map<PHONE_NUMBERS*, PHONE_TYPES*> oMap;
 
-	CPhoneTypesArray oPhoneTypesArray;
-	pPersonDocument->GetAllPhoneTypes(oPhoneTypesArray);
+	pPersonDocument->GetPersonPhoneNumbersAndTypes(oMap, pPerson->lID);
 
-	map<PHONE_NUMBERS, PHONE_TYPES> mapp;
-
-	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oPhoneNumbersArray, oPhoneTypesArray);
+	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oMap);
 
 	if (!oPersonsDialog.DoModal())
 		return;

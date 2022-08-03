@@ -2,6 +2,10 @@
 #include "Structures.h"
 #include "DialogWindowEnumeration.h"
 #include "TextDataValidator.h"
+#include <map>
+using namespace std;
+
+
 
 
 class CPersonsDialog : public CDialog
@@ -12,7 +16,7 @@ class CPersonsDialog : public CDialog
 
 public:
 	CPersonsDialog(DialogWindowActions eOperations, PERSONS& recPerson,CCitiesArray& oCitiesArray
-		, CPhoneNumbersArray& oPhoneNumbersArray, CPhoneTypesArray& oPhoneTypesArray, CWnd* pParent = nullptr);  // standard constructor
+		, map<PHONE_NUMBERS*, PHONE_TYPES*>& oMap, CWnd* pParent = nullptr);  // standard constructor
 	virtual ~CPersonsDialog();
 
 	// Dialog Data
@@ -65,6 +69,9 @@ protected:
 	// Members
 	// ----------------
 private:
+
+	map<PHONE_NUMBERS*, PHONE_TYPES*>& m_oMap;
+
 	/// <summary>
 	/// Референция към подаден запис при извикването на диалога.
 	/// </summary>
@@ -74,16 +81,6 @@ private:
 	/// Референция към подаден масив  при извикването на диалога който съдържа всички градове.
 	/// </summary>
 	const CCitiesArray& m_oCitiesArray;
-
-	/// <summary>
-	/// Референция към подаден масив  при извикването на диалога който съдържа всички телефонни номера.
-	/// </summary>
-	CPhoneNumbersArray& m_oPhoneNumbersArray;
-
-	/// <summary>
-	/// Референция към подаден масив  при извикването на диалога който съдържа всички типове телефонни номера.
-	/// </summary>
-	const CPhoneTypesArray& m_oPhoneTypesArray;
 
 	/// <summary>
 	/// Мембър съдържащ типът на текущата операция подаден като аргумент при извикването на диалога.
