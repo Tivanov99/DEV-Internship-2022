@@ -8,6 +8,24 @@ CPersonsData::CPersonsData()
 };
 CPersonsData::~CPersonsData() {};
 
+bool CPersonsData::SelectAllPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
+{
+	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
+
+	pDatabaseConnector->OpenDbConnectionAndSession();
+	CPhoneNumbersTable oPhoneNumbersTable(pDatabaseConnector->GetSession());
+
+	if (oPhoneNumbersTable.SelectAllByPersonId(lPersonID, oPhoneNumbersArray))
+	{
+		pDatabaseConnector->CloseDbConnectionAndSession();
+		return false;
+	}
+
+	pDatabaseConnector->CloseDbConnectionAndSession();
+
+	return true;
+}
+
 bool CPersonsData::SelectAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
@@ -148,20 +166,3 @@ bool CPersonsData::DeleteWhereID(const long lID)
 	return true;
 }
 
-bool CPersonsData::SelectAllPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
-{
-	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
-
-	pDatabaseConnector->OpenDbConnectionAndSession();
-	CPhoneNumbersTable oPhoneNumbersTable(pDatabaseConnector->GetSession());
-
-	if (oPhoneNumbersTable.SelectAllByPersonId(lPersonID, oPhoneNumbersArray))
-	{
-		pDatabaseConnector->CloseDbConnectionAndSession();
-		return false;
-	}
-
-	pDatabaseConnector->CloseDbConnectionAndSession();
-
-	return true;
-}

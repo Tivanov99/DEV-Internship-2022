@@ -2,18 +2,22 @@
 #include "Structures.h"
 #include "CPersonsTable.h"
 #include "CCitiesTable.h"
-//#include "CPhoneNumbersTable.h"
 #include "DataBaseConnector.h"
+#include <map>
+
 
 class CPersonsData 
 {
 	// Constructor / Destructor
 	// ----------------
 public:
-	// Methods
-	// ----------------
+	
 	CPersonsData();
 	~CPersonsData();
+
+	// Methods
+	// ----------------
+public:
 
 	/// <summary>
 	///  Функция която чете всики записи от таблицата "PHONE_TYPES" и ги добавя в подаден като аргумент масив.

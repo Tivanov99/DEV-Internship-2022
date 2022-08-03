@@ -38,6 +38,7 @@ public:
 	bool GetAllCities(CCitiesArray& oCitiesArray);
 	bool GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray);
 	bool GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray);
+
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	bool DeletePersonFromPersonsArray(long lPersonId);

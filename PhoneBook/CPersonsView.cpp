@@ -7,6 +7,7 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+#include <map>
 
 IMPLEMENT_DYNCREATE(CPersonsView, CListView)
 
@@ -62,7 +63,7 @@ void CPersonsView::OnContextMenu(CWnd* pWnd, CPoint point)
 	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
 #endif
 
-	/*CMenu oMenu;
+	CMenu oMenu;
 	oMenu.LoadMenu(IDR_POPUP_EDIT);
 
 
@@ -76,7 +77,7 @@ void CPersonsView::OnContextMenu(CWnd* pWnd, CPoint point)
 	{
 		oMenu.RemoveMenu(ID_EDIT_CONTEXT_EDIT, MF_BYCOMMAND);
 		oMenu.RemoveMenu(ID_EDIT_CONTEXT_READ_DATA, MF_BYCOMMAND);
-	}*/
+	}
 }
 
 void CPersonsView::ConfigurateCListCtrl()
@@ -265,6 +266,8 @@ void CPersonsView::OnContextMenuEdit()
 
 	CPhoneTypesArray oPhoneTypesArray;
 	pPersonDocument->GetAllPhoneTypes(oPhoneTypesArray);
+
+	map<PHONE_NUMBERS, PHONE_TYPES> mapp;
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oPhoneNumbersArray, oPhoneTypesArray);
 

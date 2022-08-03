@@ -132,7 +132,6 @@ void CPersonsDialog::FillPhoneNumbers()
 
 		m_lscPersonPhoneNumbers.InsertItem(nRow, pCurrentPhoneNumber->szPHONE_NUMBER);
 
-		/*m_lscPersonPhoneNumbers.SetItemText(i, 1, pCurrentPhoneNumber->szPHONE_NUMBER);*/
 	}
 }
 
