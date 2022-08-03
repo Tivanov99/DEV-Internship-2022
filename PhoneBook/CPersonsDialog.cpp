@@ -36,6 +36,8 @@ BOOL CPersonsDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
+	ConfiguratePhoneNumbersLsc();
+
 	if (m_eOperation != DialogWindowActions::InsertData)
 	{
 		FillPersonDataFields();
@@ -43,7 +45,6 @@ BOOL CPersonsDialog::OnInitDialog()
 	}
 	FillCitiesComboBox();
 	SetDialogTitle();
-	ConfiguratePhoneNumbersLsc();
 	if (m_eOperation == DialogWindowActions::ReadData)
 	{
 		m_edbPersonFirstName.EnableWindow(false);
@@ -62,10 +63,9 @@ void CPersonsDialog::ConfiguratePhoneNumbersLsc()
 	m_lscPersonPhoneNumbers.SetExtendedStyle(m_lscPersonPhoneNumbers.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
 	m_lscPersonPhoneNumbers.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
 
-	const int nColumnWidth = 120;
 	int nColumnNumber = 0;
-	m_lscPersonPhoneNumbers.InsertColumn(nColumnNumber++, _T("Телефонен номер"), LVCFMT_LEFT, nColumnWidth, 1);
-	m_lscPersonPhoneNumbers.InsertColumn(nColumnNumber++, _T("Тип"), LVCFMT_CENTER, nColumnWidth, 1);
+	m_lscPersonPhoneNumbers.InsertColumn(nColumnNumber++, _T("Номер"), LVCFMT_LEFT, GlobalConstants::_nColumnWidth, 1);
+	m_lscPersonPhoneNumbers.InsertColumn(nColumnNumber++, _T("Тип"), LVCFMT_CENTER, GlobalConstants::_nColumnWidth, 1);
 }
 
 void CPersonsDialog::SetDialogTitle()
@@ -138,7 +138,11 @@ void CPersonsDialog::FillPhoneNumbers()
 		const int nRow = m_lscPersonPhoneNumbers.GetItemCount();
 
 		m_lscPersonPhoneNumbers.InsertItem(nRow, pCurrentPhoneNumber->szPHONE_NUMBER);
-		m_lscPersonPhoneNumbers.SetItemText(nRow,1, pCurrentPhoneNumber->szPHONE_NUMBER);
+
+		BOOL DA = m_lscPersonPhoneNumbers.SetItemText(nRow,1, pCurrentPhoneType->szPHONE_TYPE);
+
+		m_lscPersonPhoneNumbers.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCurrentPhoneNumber));
+		int nda = 0;
 	}
 }
 
