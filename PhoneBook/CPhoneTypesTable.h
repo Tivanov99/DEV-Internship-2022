@@ -10,6 +10,7 @@
 
 #define NoneModifyColumnCode 0
 #define ModifyColumnCode 1
+
 class CPhoneTypesAccessor : public CTableAccessor<PHONE_TYPES>
 {
 protected:
