@@ -82,13 +82,19 @@ public:
 		strQuery.Format(_T("SELECT * FROM %s"), m_strTableName);
 		// Изпълняваме командата
 		if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
+		{
+			CloseRowSet();
 			return false;
+
+		}
 
 		//TODO: CHECK HERE
 		HRESULT hResult = MoveFirst();
 		if (FAILED(hResult))
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+			CloseRowSet();
+
 			return false;
 		}
 
@@ -104,10 +110,13 @@ public:
 			if (FAILED(hResult) && hResult != DB_S_ENDOFROWSET)
 			{
 				ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+				CloseRowSet();
+
 				return false;
 			}
 			// Logic with the result
 		}
+		CloseRowSet();
 
 		return true;
 	};
@@ -121,15 +130,21 @@ public:
 
 		if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
 		{
+			CloseRowSet();
+
 			return false;
 		}
 
 		if (FAILED(MoveFirst()))
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+			CloseRowSet();
+
 			return false;
 		}
 		recTableRecord = m_recTableRecord;
+
+		CloseRowSet();
 
 		return true;
 	};
@@ -143,17 +158,24 @@ public:
 
 		// Изпълняваме командата
 		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
+		{
+			CloseRowSet();
 			return false;
+		}
 
 		if (FAILED(MoveFirst()))
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
+			CloseRowSet();
+
 			return false;
 		}
 
 		if (recTableRecord.lUpdateCounter != m_recTableRecord.lUpdateCounter)
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszInvalidRecordVersion, NULL);
+			CloseRowSet();
+
 			return false;
 		}
 
@@ -163,8 +185,11 @@ public:
 		if (FAILED(SetData(ModifyColumnCode)))
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorUpdatingRecord, NULL);
+			CloseRowSet();
+
 			return false;
 		}
+		CloseRowSet();
 
 		return true;
 	};
@@ -178,6 +203,8 @@ public:
 		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, NULL);
+			CloseRowSet();
+
 			return false;
 		}
 
@@ -186,8 +213,11 @@ public:
 		if (FAILED(CCommand<CAccessor<Table_AcessorType>>::Insert(ModifyColumnCode)))
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorInsertingRecord, NULL);
+			CloseRowSet();
+
 			return false;
 		}
+		CloseRowSet();
 
 		return true;
 	};
@@ -202,21 +232,25 @@ public:
 		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
+			CloseRowSet();
 			return false;
 		}
 
 		if (MoveFirst() != S_OK)
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
+			CloseRowSet();
 			return false;
 		}
 
 		if (FAILED(Delete()))
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorDeletingRecord, NULL);
+			CloseRowSet();
 			return false;
 		}
 		m_oSession.Commit();
+		CloseRowSet();
 		return true;
 	};
 

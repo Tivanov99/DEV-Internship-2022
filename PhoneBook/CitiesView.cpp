@@ -209,9 +209,7 @@ void CCitiesView::OnContextMenuEdit()
 	CCitiesDialog oCitiesDialog(DialogWindowActions::EditData, oCity);
 
 	if (oCitiesDialog.DoModal() != IDOK)
-	{
 		return;
-	}
 
 	CCitiesDocument* pCitiesDocument = GetDocument();
 	

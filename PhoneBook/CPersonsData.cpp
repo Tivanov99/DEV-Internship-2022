@@ -30,7 +30,9 @@ bool CPersonsData::SelectAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
-	pDatabaseConnector->OpenDbConnectionAndSession();
+	if (!pDatabaseConnector->OpenDbConnectionAndSession())
+		return false;
+
 	CPhoneTypesTable oPhoneTypesTable(pDatabaseConnector->GetSession());
 
 	if (!oPhoneTypesTable.SelectAll(oPhoneTypesArray))
@@ -43,7 +45,8 @@ bool CPersonsData::SelectAllCities(CCitiesArray& oCitiesArray)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
-	pDatabaseConnector->OpenDbConnectionAndSession();
+	if (!pDatabaseConnector->OpenDbConnectionAndSession())
+		return false;
 
 	CCitiesTable oCitiesTable(pDatabaseConnector->GetSession());
 
@@ -60,7 +63,9 @@ bool CPersonsData::SelectAll(CPersonsArray& oPersonsArray)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
-	pDatabaseConnector->OpenDbConnectionAndSession();
+	if (!pDatabaseConnector->OpenDbConnectionAndSession())
+		return false;
+
 	CPersonsTable ÓPersonsTable(pDatabaseConnector->GetSession());
 	if (!ÓPersonsTable.SelectAll(oPersonsArray))
 	{
@@ -76,7 +81,9 @@ bool CPersonsData::SelectWhereID(const long lID, PERSONS& recPersons)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
-	pDatabaseConnector->OpenDbConnectionAndSession();
+	if (!pDatabaseConnector->OpenDbConnectionAndSession())
+		return false;
+
 	CPersonsTable ÓPersonsTable(pDatabaseConnector->GetSession());
 
 	if (!ÓPersonsTable.SelectWhereID(lID, recPersons))
@@ -93,7 +100,9 @@ bool CPersonsData::UpdateWhereID(const long lID, const PERSONS& recPersons)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
-	pDatabaseConnector->OpenDbConnectionAndSession();
+	if (!pDatabaseConnector->OpenDbConnectionAndSession())
+		return false;
+
 	CPersonsTable ÓPersonsTable(pDatabaseConnector->GetSession());
 
 	if (!ÓPersonsTable.UpdateWhereID(lID, recPersons))
@@ -111,7 +120,9 @@ bool CPersonsData::InsertRecord(const PERSONS& recPersons)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
-	pDatabaseConnector->OpenDbConnectionAndSession();
+	if (!pDatabaseConnector->OpenDbConnectionAndSession())
+		return false;
+
 	CPersonsTable ÓPersonsTable(pDatabaseConnector->GetSession());
 
 	if (!ÓPersonsTable.InsertRecord(recPersons))
