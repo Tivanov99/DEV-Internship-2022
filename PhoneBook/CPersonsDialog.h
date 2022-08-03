@@ -126,5 +126,7 @@ private:
 	/// Мембър помагащ с валидацията на стойносите във входните тексови полета.
 	/// </summary>
 	TextDataValidator m_oTextValidator;
+public:
+	afx_msg void OnBnClickedCancel();
 };
 

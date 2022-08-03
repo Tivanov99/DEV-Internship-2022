@@ -30,6 +30,7 @@ void CPersonsDialog::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CPersonsDialog, CDialog)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONDBLCLK()
+	ON_BN_CLICKED(IDCANCEL, &CPersonsDialog::OnBnClickedCancel)
 END_MESSAGE_MAP()
 
 BOOL CPersonsDialog::OnInitDialog()
@@ -139,10 +140,9 @@ void CPersonsDialog::FillPhoneNumbers()
 
 		m_lscPersonPhoneNumbers.InsertItem(nRow, pCurrentPhoneNumber->szPHONE_NUMBER);
 
-		BOOL DA = m_lscPersonPhoneNumbers.SetItemText(nRow,1, pCurrentPhoneType->szPHONE_TYPE);
+		m_lscPersonPhoneNumbers.SetItemText(nRow,1, pCurrentPhoneType->szPHONE_TYPE);
 
 		m_lscPersonPhoneNumbers.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCurrentPhoneNumber));
-		int nda = 0;
 	}
 }
 
@@ -184,4 +184,10 @@ void CPersonsDialog::OnOK()
 	m_recPerson.lCITY_ID = pCity->lID;
 
 	CDialog::OnOK();
+}
+
+void CPersonsDialog::OnBnClickedCancel()
+{
+	// TODO: Add your control notification handler code here
+	CDialog::OnCancel();
 }

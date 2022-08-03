@@ -263,7 +263,7 @@ void CPersonsView::OnContextMenuEdit()
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oMap);
 
-	if (!oPersonsDialog.DoModal())
+	if (oPersonsDialog.DoModal()!= IDOK)
 		return;
 
 	bool bResult = pPersonDocument->UpdatePerson(oPerson);
