@@ -266,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\PhoneBook.rc2" />
+    <None Include="res\test1.bin" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

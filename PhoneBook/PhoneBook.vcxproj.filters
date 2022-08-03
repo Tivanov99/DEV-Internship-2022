@@ -254,5 +254,8 @@
     <None Include="res\PhoneBook.rc2">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="res\test1.bin">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

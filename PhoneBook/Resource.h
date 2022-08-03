@@ -53,18 +53,22 @@
 #define IDC_STT_PERSON_PHONE_NUMBERS    1038
 #define IDC_CMB_LSC_PERONS_PHONE_NUMBERS 1041
 #define IDC_LSC_PERSON_PHONE_NUMBERS    1043
-#define IDC_EDIT1                       1044
 #define ID_EDIT_CONTEXT_DELETE          32805
 #define ID_EDIT_CONTEXT_EDIT            32807
 #define ID_EDIT_CONTEXT_INSERT          32809
 #define ID_EDIT_CONTEXT_READ_DATA       32811
+#define ID_INSERT_DELETE                32813
+#define ID_INSERT_READ                  32814
+#define ID_INSERT_EDIT                  32815
+#define ID_INSERT_INSERT                32816
+#define ID_EDIT_COPY32817               32817
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        322
-#define _APS_NEXT_COMMAND_VALUE         32813
+#define _APS_NEXT_RESOURCE_VALUE        328
+#define _APS_NEXT_COMMAND_VALUE         32818
 #define _APS_NEXT_CONTROL_VALUE         1045
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

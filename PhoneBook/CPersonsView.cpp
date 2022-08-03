@@ -44,8 +44,6 @@ CPersonsDocument* CPersonsView::GetDocument() const // non-debug version is inli
 
 BOOL CPersonsView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: Modify the Window class or styles here by modifying
-	//  the CREATESTRUCT cs
 	return CListView::PreCreateWindow(cs);
 }
 
@@ -58,11 +56,27 @@ void CPersonsView::OnInitialUpdate()
 	FillView();
 }
 
-void CPersonsView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
+void CPersonsView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
 #ifndef SHARED_HANDLERS
 	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
 #endif
+
+	/*CMenu oMenu;
+	oMenu.LoadMenu(IDR_POPUP_EDIT);
+
+
+	int nCount = oMenu.GetMenuItemCount();
+
+
+	CListCtrl& oListCtrl = GetListCtrl();
+	const int nSelectedItem = oListCtrl.HitTest(point);
+
+	if (nSelectedItem == -1)
+	{
+		oMenu.RemoveMenu(ID_EDIT_CONTEXT_EDIT, MF_BYCOMMAND);
+		oMenu.RemoveMenu(ID_EDIT_CONTEXT_READ_DATA, MF_BYCOMMAND);
+	}*/
 }
 
 void CPersonsView::ConfigurateCListCtrl()
@@ -228,7 +242,7 @@ void CPersonsView::OnContextMenuInsert()
 		return;
 
 	bool bInsertResult = pPersonDocument->InsertPerson(oPerson);
-	if(!bInsertResult)
+	if (!bInsertResult)
 		AfxMessageBox(_T("Record insert failed."));
 	//TODO: Check for inserting phone numbers
 }
