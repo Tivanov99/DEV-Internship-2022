@@ -73,7 +73,7 @@ private:
 	/// <summary>
 	/// Референция към подаден масив  при извикването на диалога който съдържа всички градове.
 	/// </summary>
-	CCitiesArray& m_oCitiesArray;
+	const CCitiesArray& m_oCitiesArray;
 
 	/// <summary>
 	/// Референция към подаден масив  при извикването на диалога който съдържа всички телефонни номера.
@@ -83,7 +83,7 @@ private:
 	/// <summary>
 	/// Референция към подаден масив  при извикването на диалога който съдържа всички типове телефонни номера.
 	/// </summary>
-	CPhoneTypesArray& m_oPhoneTypesArray;
+	const CPhoneTypesArray& m_oPhoneTypesArray;
 
 	/// <summary>
 	/// Мембър съдържащ типът на текущата операция подаден като аргумент при извикването на диалога.

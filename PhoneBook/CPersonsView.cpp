@@ -14,16 +14,11 @@ IMPLEMENT_DYNCREATE(CPersonsView, CListView)
 BEGIN_MESSAGE_MAP(CPersonsView, CListView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_LBUTTONDBLCLK()
-	/*ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CCitiesView::OnContextMenuDelete)
-	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnContextMenuEdit)
-	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CCitiesView::OnContextMenuInsert)*/
 	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CPersonsView::OnContextMenuDelete)
 	ON_COMMAND(ID_EDIT_CONTEXT_READ_DATA, &CPersonsView::OnEditContextReadData)
 	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CPersonsView::OnContextMenuInsert)
 	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CPersonsView::OnContextMenuEdit)
 END_MESSAGE_MAP()
-
-// CCitiesView construction/destruction
 
 CPersonsView::CPersonsView() noexcept {};
 

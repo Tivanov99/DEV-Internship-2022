@@ -16,7 +16,7 @@ BOOL CPersonsDocument::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
-	m_PersonsData.SelectAll(m_oPersonsArray);
+	m_ÓPersonsData.SelectAll(m_oPersonsArray);
 	return TRUE;
 };
 
@@ -40,7 +40,7 @@ const CPersonsArray& CPersonsDocument::GetAllPersons()
 }
 bool CPersonsDocument::GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
 {
-	if (!m_PersonsData.SelectAllPhoneTypes(oPhoneTypesArray))
+	if (!m_ÓPersonsData.SelectAllPhoneTypes(oPhoneTypesArray))
 		return false;
 
 	return true;
@@ -70,7 +70,7 @@ PERSONS* CPersonsDocument::GetPersonById(long lID)
 
 bool CPersonsDocument::DeletePersonById(long lID)
 {
-	const bool bDeleteResult = m_PersonsData.DeleteWhereID(lID);
+	const bool bDeleteResult = m_ÓPersonsData.DeleteWhereID(lID);
 
 	if (!bDeleteResult)
 		return false;
@@ -84,7 +84,7 @@ bool CPersonsDocument::DeletePersonById(long lID)
 
 bool CPersonsDocument::GetAllCities(CCitiesArray& oCitiesArray)
 {
-	if (!m_PersonsData.SelectAllCities(oCitiesArray))
+	if (!m_ÓPersonsData.SelectAllCities(oCitiesArray))
 		return false;
 
 	return true;
@@ -97,12 +97,12 @@ void CPersonsDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 
 bool CPersonsDocument::UpdatePerson(PERSONS& recPerson)
 {
-	bool bUpdate = m_PersonsData.UpdateWhereID(recPerson.lID, recPerson);
+	bool bUpdate = m_ÓPersonsData.UpdateWhereID(recPerson.lID, recPerson);
 	if (!bUpdate)
 		return false;
 
 	PERSONS oPerson;
-	m_PersonsData.SelectWhereID(recPerson.lID, oPerson);
+	m_ÓPersonsData.SelectWhereID(recPerson.lID, oPerson);
 
 
 	//TODO: Chech here for object ?
@@ -111,7 +111,7 @@ bool CPersonsDocument::UpdatePerson(PERSONS& recPerson)
 }
 bool CPersonsDocument::InsertPerson(PERSONS& recCity)
 {
-	bool bInsert = m_PersonsData.InsertRecord(recCity);
+	bool bInsert = m_ÓPersonsData.InsertRecord(recCity);
 	if (!bInsert)
 		return false;
 
@@ -178,7 +178,7 @@ long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 
 bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
-	if (m_PersonsData.SelectAllPhoneNumbers(lPersonID, oPhoneNumbersArray))
+	if (m_ÓPersonsData.SelectAllPhoneNumbers(lPersonID, oPhoneNumbersArray))
 		return false;
 
 	return true;

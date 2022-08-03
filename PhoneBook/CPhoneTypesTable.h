@@ -5,7 +5,6 @@
 #include <afxcontrolbars.h>
 #include "Structures.h"
 #include "CBaseTable.h"
-#include "CBaseTable.cpp"
 #include "CTableAccessor.h"
 
 

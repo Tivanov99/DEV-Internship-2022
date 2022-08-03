@@ -111,12 +111,13 @@ bool CPersonsData::DeleteWhereID(const long lID)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
-	pDatabaseConnector->OpenDbConnectionAndSession();
+	if (!pDatabaseConnector->OpenDbConnectionAndSession())
+	{
+		return false;
+	}
 	CSession oSession = pDatabaseConnector->GetSession();
 
-	HRESULT hReuslt = oSession.StartTransaction();
-
-	if (hReuslt != S_OK)
+	if (oSession.StartTransaction() != S_OK)
 	{
 		oSession.Abort();
 		pDatabaseConnector->CloseDbConnectionAndSession();

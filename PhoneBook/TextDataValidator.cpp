@@ -20,7 +20,6 @@ CString TextDataValidator::ValidateTextData(const CString& strData, const int nM
 	return strErrorMessage;
 }
 
-
 bool TextDataValidator::CheckForSymbols(const CString& strValue) const
 {
 	for (INT_PTR i = 0; i < strValue.GetLength(); i++)

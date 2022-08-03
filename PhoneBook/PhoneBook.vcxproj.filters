@@ -161,9 +161,6 @@
     <ClCompile Include="CSelfClearingTypedPtrArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CBaseTable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CCitiesData.cpp">
       <Filter>Source Files\CITIES</Filter>
     </ClCompile>

@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "CPersonsTable.h"
-#include "CBaseTable.cpp"
 #include "ErrorVisualizator.h"
 
 

@@ -43,11 +43,12 @@ private:
 	bool DeletePersonFromPersonsArray(long lPersonId);
 	PERSONS* AddPersonToPersonsArray(PERSONS& recPerson);
 	long GetPersonIndexFromPersonsArray(long lID);
-	//Members
 
+	//Members
+	//------------------------
 private:
 	CPersonsArray m_oPersonsArray;
-	CPersonsData m_PersonsData;
+	CPersonsData m_ÓPersonsData;
 	
 protected:
 

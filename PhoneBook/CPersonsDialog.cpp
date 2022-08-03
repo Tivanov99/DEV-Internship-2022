@@ -38,6 +38,7 @@ BOOL CPersonsDialog::OnInitDialog()
 
 	if (m_eOperation != DialogWindowActions::InsertData)
 	{
+		
 		FillPersonDataFields();
 	}
 	FillCitiesComboBox();
@@ -110,7 +111,10 @@ void CPersonsDialog::FillCitiesComboBox()
 
 		if (pCity->lID == m_recPerson.lCITY_ID)
 		{
-			m_cmbCitiesNames.SetWindowText(pCity->szCITY_NAME);
+			CString strCityName;
+			strCityName.Append(pCity->szCITY_NAME);
+			strCityName.Append(_T("(Current)"));
+			m_cmbCitiesNames.AddString(strCityName);
 			continue;
 		}
 
