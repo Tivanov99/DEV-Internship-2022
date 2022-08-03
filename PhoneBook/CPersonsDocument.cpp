@@ -180,7 +180,7 @@ bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray&
 	return true;
 }
 
-bool CPersonsDocument::GetPersonPhoneNumbersAndTypes(map<PHONE_NUMBERS, PHONE_TYPES>& oMap,const long lPersonID)
+bool CPersonsDocument::GetPersonPhoneNumbersAndTypes(map<PHONE_NUMBERS*, PHONE_TYPES*>& oMap,const long lPersonID)
 {
 	CPhoneNumbersArray oPhoneNumbersArray;
 	if (!m_ÓPersonsData.SelectAllPhoneNumbers(lPersonID, oPhoneNumbersArray))
@@ -196,7 +196,11 @@ bool CPersonsDocument::GetPersonPhoneNumbersAndTypes(map<PHONE_NUMBERS, PHONE_TY
 		if (pPhoneNumers == NULL)
 			continue;
 
-		PHONE_TYPES* pPhoneType = oPhoneTypesArray.
+		PHONE_TYPES* pPhoneType = GetPhoneTypeById(pPhoneNumers->lPHONE_TYPE_ID, oPhoneTypesArray);
+		if (pPhoneType == NULL)
+			continue;
+
+		oMap.insert(pair<PHONE_NUMBERS*, PHONE_TYPES*>(pPhoneNumers, pPhoneType));
 	}
 
 }
