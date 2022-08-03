@@ -165,8 +165,6 @@ void CPersonsView::InsertNewRecordToCListCtrl(PERSONS* pPerson)
 
 	int nColumnNumber = 1;
 
-	LSCCitiesList.SetItemText(nRow, nColumnNumber++, pPerson->szSECOND_NAME);
-
 	LSCCitiesList.SetItemText(nRow, nColumnNumber, pPerson->szLAST_NAME);
 
 	LSCCitiesList.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pPerson));

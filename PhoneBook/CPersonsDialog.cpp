@@ -38,8 +38,8 @@ BOOL CPersonsDialog::OnInitDialog()
 
 	if (m_eOperation != DialogWindowActions::InsertData)
 	{
-
 		FillPersonDataFields();
+		FillPhoneNumbers();
 	}
 	FillCitiesComboBox();
 	SetDialogTitle();
@@ -122,7 +122,18 @@ void CPersonsDialog::FillCitiesComboBox()
 
 void CPersonsDialog::FillPhoneNumbers()
 {
+	for (INT_PTR i = 0; i < m_oPhoneNumbersArray.GetCount(); i++)
+	{
+		PHONE_NUMBERS* pCurrentPhoneNumber = m_oPhoneNumbersArray.GetAt(i);
+		if (pCurrentPhoneNumber == NULL)
+			continue;
 
+		const int nRow = m_lscPersonPhoneNumbers.GetItemCount();
+
+		m_lscPersonPhoneNumbers.InsertItem(nRow, pCurrentPhoneNumber->szPHONE_NUMBER);
+
+		/*m_lscPersonPhoneNumbers.SetItemText(i, 1, pCurrentPhoneNumber->szPHONE_NUMBER);*/
+	}
 }
 
 void CPersonsDialog::OnOK()

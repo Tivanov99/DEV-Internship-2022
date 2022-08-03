@@ -19,8 +19,9 @@ protected:
 
 		BEGIN_ACCESSOR(ModifyColumnCode, true)
 		COLUMN_ENTRY(2, m_recTableRecord.lUpdateCounter)
-		COLUMN_ENTRY(3, m_recTableRecord.lPHONE_TYPE_ID)
-		COLUMN_ENTRY(4, m_recTableRecord.szPHONE_NUMBER)
+		COLUMN_ENTRY(3, m_recTableRecord.lPERSON_ID)
+		COLUMN_ENTRY(4, m_recTableRecord.lPHONE_TYPE_ID)
+		COLUMN_ENTRY(5, m_recTableRecord.szPHONE_NUMBER)
 		END_ACCESSOR()
 	END_ACCESSOR_MAP()
 };
