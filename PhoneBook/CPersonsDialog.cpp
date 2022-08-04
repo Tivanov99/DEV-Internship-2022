@@ -78,7 +78,6 @@ void CPersonsDialog::ManageContextMenuItems(CCmdUI* pCmdUI)
 }
 
 
-
 BOOL CPersonsDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();

@@ -1,5 +1,6 @@
 #pragma once
 #include "afxdialogex.h"
+#include "Structures.h"
 
 
 // CPhoneNumbersDialog dialog
@@ -11,7 +12,7 @@ class CPhoneNumbersDialog : public CDialog
 	//Constructor/Destructor
 	//-----------------
 public:
-	CPhoneNumbersDialog(CWnd* pParent = nullptr);   // standard constructor
+	CPhoneNumbersDialog(PHONE_NUMBERS& recPhoneNumber,CPhoneTypesArray& oPhonetypesArray, CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CPhoneNumbersDialog();
 
 // Dialog Data
@@ -35,7 +36,23 @@ protected:
 	//Members
 	//-----------------
 private:
+	/// <summary>
+	/// Мембър съдържащ запис представляващ телефонен номер.
+	/// </summary>
+	PHONE_NUMBERS& m_recPhoneNumber;
+
+	/// <summary>
+	/// Мембър съдържащ всички типове телефонен номер
+	/// </summary>
+	CPhoneTypesArray& m_oPhonetypesArray;
+
+	/// <summary>
+	/// Мембър представляващ входното поле за телефонен номер в диалога.
+	/// </summary>
 	CEdit m_edbPhoneNumber;
 
+	/// <summary>
+	/// Мембър представляващ входното поле за типър телефонен номер в диалога.
+	/// </summary>
 	CEdit m_edbPhoneType;
 };
