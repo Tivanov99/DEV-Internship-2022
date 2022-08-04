@@ -190,6 +190,7 @@
     <ClInclude Include="CCitiesDialog.h" />
     <ClInclude Include="CCitiesDocument.h" />
     <ClInclude Include="CCitiesTable.h" />
+    <ClInclude Include="CPhoneNumbersDialog.h" />
     <ClInclude Include="CPhoneTypesData.h" />
     <ClInclude Include="CPhoneTypesDocument.h" />
     <ClInclude Include="CPhoneTypesTable.h" />
@@ -237,6 +238,7 @@
     <ClCompile Include="CPersonsView.cpp" />
     <ClCompile Include="CitiesDataValidator.cpp" />
     <ClCompile Include="CPhoneNumbersData.cpp" />
+    <ClCompile Include="CPhoneNumbersDialog.cpp" />
     <ClCompile Include="CPhoneNumbersTable.cpp" />
     <ClCompile Include="CPhoneTypesData.cpp" />
     <ClCompile Include="CPhoneTypesDocument.cpp" />
