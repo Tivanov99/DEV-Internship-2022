@@ -39,9 +39,9 @@ void CPersonsView::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 
 void CPersonsView::ManageContextMenuItems(CCmdUI* pCmdUI)
 {
-	long lIndex = GetSelectedRowNumber();
+	CListCtrl& LSCCitiesList = GetListCtrl();
 
-	if (lIndex == -1)
+	if (LSCCitiesList.GetSelectedCount() == 0)
 		pCmdUI->Enable(false);
 }
 

@@ -51,9 +51,7 @@ void CPersonsDialog::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 
 void CPersonsDialog::ManageContextMenuItems(CCmdUI* pCmdUI)
 {
-	long lIndex =  m_lscPersonPhoneNumbers.GetSelectionMark();
-
-	if (lIndex == -1)
+	if (m_lscPersonPhoneNumbers.GetSelectedCount() == 0)
 	{
 		pCmdUI->Enable(false);
 	}
