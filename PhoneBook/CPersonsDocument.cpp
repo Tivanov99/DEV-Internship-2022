@@ -174,7 +174,7 @@ long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 
 bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
-	if (!m_ÓPersonsData.SelectAllPhoneNumbers(lPersonID, oPhoneNumbersArray))
+	if (!m_ÓPersonsData.SelectAllPhoneNumbersByPersonId(lPersonID, oPhoneNumbersArray))
 		return false;
 
 	return true;
@@ -183,7 +183,7 @@ bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray&
 bool CPersonsDocument::GetPersonPhoneNumbersAndTypes(map<PHONE_NUMBERS*, PHONE_TYPES*>& oMap,const long lPersonID)
 {
 	CPhoneNumbersArray oPhoneNumbersArray;
-	if (!m_ÓPersonsData.SelectAllPhoneNumbers(lPersonID, oPhoneNumbersArray))
+	if (!m_ÓPersonsData.SelectAllPhoneNumbersByPersonId(lPersonID, oPhoneNumbersArray))
 		return false;
 
 	CPhoneTypesArray oPhoneTypesArray;

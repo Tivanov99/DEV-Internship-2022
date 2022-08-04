@@ -76,12 +76,14 @@ public:
 		return bResult;
 	}
 
-	bool SelectAll(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray)
+	bool SelectAll(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray, CString strSqlQuery, long lID=NULL)
 	{
 		CString strQuery;
-		strQuery.Format(SqlQueries::SelectAll, m_strTableName);
 
-		//strQuery.Format(_T("SELECT * FROM %s"), m_strTableName);
+		lID == NULL?
+			strQuery.Format(strSqlQuery, m_strTableName) :
+			strQuery.Format(strSqlQuery, m_strTableName, lID);
+
 		// Изпълняваме командата
 		if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
 		{
@@ -96,12 +98,11 @@ public:
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
 			CloseRowSet();
-
 			return false;
 		}
 
 		// Прочитаме всички данни
-		while (hResult != DB_S_ENDOFROWSET)
+		while (hResult == S_OK)
 		{
 			Record_Type* pCurrentRecord = new Record_Type;
 			*pCurrentRecord = m_recTableRecord;
@@ -132,7 +133,7 @@ public:
 		if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
 		{
 			CloseRowSet();
-
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
 			return false;
 		}
 

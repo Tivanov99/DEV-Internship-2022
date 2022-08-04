@@ -15,7 +15,7 @@ bool CPhoneNumbersData::SelectAll(CPhoneNumbersArray& oPhoneNumbersArray)
 
 	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
 
-	if (!oPhoneNumbersTable.SelectAll(oPhoneNumbersArray))
+	if (!oPhoneNumbersTable.SelectAll(oPhoneNumbersArray,SqlQueries::SelectAll))
 	{
 		pDbConnector->CloseDbConnectionAndSession();
 		return false;

@@ -11,7 +11,7 @@ CPhoneTypesData::~CPhoneTypesData() {};
 
 bool CPhoneTypesData::SelectAll(CPhoneTypesArray& oPhoneTyesArray)
 {
-	if (!m_PhoneTypesTable.SelectAll(oPhoneTyesArray))
+	if (!m_PhoneTypesTable.SelectAll(oPhoneTyesArray, SqlQueries::SelectAll))
 		return false;
 
 	return true;

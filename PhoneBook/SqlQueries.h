@@ -6,5 +6,6 @@ public:
 	static const CString SelectWhereID;
 	static const CString SelectWhereID;
 	static const CString EmptySelect;
+	static const CString SelectByPersonID;
 };
 

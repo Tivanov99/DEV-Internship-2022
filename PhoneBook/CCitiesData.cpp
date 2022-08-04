@@ -8,7 +8,7 @@ CCitiesData::~CCitiesData() {};
 
 bool CCitiesData::SelectAll(CCitiesArray& oCitiesArray)
 {
-	if (!m_CitiesTable.SelectAll(oCitiesArray))
+	if (!m_CitiesTable.SelectAll(oCitiesArray,SqlQueries::SelectAll))
 		return false;
 
 	return true;

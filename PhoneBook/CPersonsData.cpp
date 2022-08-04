@@ -8,14 +8,14 @@ CPersonsData::CPersonsData()
 };
 CPersonsData::~CPersonsData() {};
 
-bool CPersonsData::SelectAllPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
+bool CPersonsData::SelectAllPhoneNumbersByPersonId(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
 	pDatabaseConnector->OpenDbConnectionAndSession();
 	CPhoneNumbersTable oPhoneNumbersTable(pDatabaseConnector->GetSession());
 
-	if (!oPhoneNumbersTable.SelectAllByPersonId(lPersonID, oPhoneNumbersArray))
+	if (!oPhoneNumbersTable.SelectAll(oPhoneNumbersArray, SqlQueries::SelectByPersonID, lPersonID))
 	{
 		pDatabaseConnector->CloseDbConnectionAndSession();
 		return false;
@@ -35,7 +35,7 @@ bool CPersonsData::SelectAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
 
 	CPhoneTypesTable oPhoneTypesTable(pDatabaseConnector->GetSession());
 
-	if (!oPhoneTypesTable.SelectAll(oPhoneTypesArray))
+	if (!oPhoneTypesTable.SelectAll(oPhoneTypesArray,SqlQueries::SelectAll))
 		return false;
 
 	return true;
@@ -50,7 +50,7 @@ bool CPersonsData::SelectAllCities(CCitiesArray& oCitiesArray)
 
 	CCitiesTable oCitiesTable(pDatabaseConnector->GetSession());
 
-	if (!oCitiesTable.SelectAll(oCitiesArray))
+	if (!oCitiesTable.SelectAll(oCitiesArray, SqlQueries::SelectAll))
 	{
 		pDatabaseConnector->CloseDbConnectionAndSession();
 		return false;
@@ -67,7 +67,7 @@ bool CPersonsData::SelectAll(CPersonsArray& oPersonsArray)
 		return false;
 
 	CPersonsTable îPersonsTable(pDatabaseConnector->GetSession());
-	if (!îPersonsTable.SelectAll(oPersonsArray))
+	if (!îPersonsTable.SelectAll(oPersonsArray, SqlQueries::SelectAll))
 	{
 		pDatabaseConnector->CloseDbConnectionAndSession();
 		return false;
@@ -155,7 +155,7 @@ bool CPersonsData::DeleteWhereID(const long lID)
 
 	CPhoneNumbersTable oPhoneNumbersTable(oSession);
 
-	if (!oPhoneNumbersTable.DeleteWherePersonID(lID))
+	if (!oPhoneNumbersTable.DeleteWhereID(lID, SqlQueries::SelectByPersonID))
 	{
 		oSession.Abort();
 		pDatabaseConnector->CloseDbConnectionAndSession();
