@@ -33,6 +33,7 @@
 #define IDD_CITIES_DIALOG               310
 #define IDD_COMFIRM_DELETE              318
 #define IDD_PERSONS_DIALOG              320
+#define IDD_PHONE_NUMBERS_DIALOG        328
 #define IDC_EDB_CITIES_NAME             1001
 #define IDC_CITIES_LIST                 1002
 #define IDC_STT_NAME                    1003
@@ -53,6 +54,11 @@
 #define IDC_STT_PERSON_PHONE_NUMBERS    1038
 #define IDC_CMB_LSC_PERONS_PHONE_NUMBERS 1041
 #define IDC_LSC_PERSON_PHONE_NUMBERS    1043
+#define IDC_STT_PHONE_NUMBER            1045
+#define IDC_STT_PHONE_TYPE              1046
+#define IDC_EDB_PHONE_NUMBER            1047
+#define IDC_EDIT2                       1048
+#define IDC_EDB_PHONE_TYPE              1048
 #define ID_EDIT_CONTEXT_DELETE          32805
 #define ID_EDIT_CONTEXT_EDIT            32807
 #define ID_EDIT_CONTEXT_INSERT          32809
@@ -67,9 +73,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        328
+#define _APS_NEXT_RESOURCE_VALUE        330
 #define _APS_NEXT_COMMAND_VALUE         32818
-#define _APS_NEXT_CONTROL_VALUE         1045
+#define _APS_NEXT_CONTROL_VALUE         1049
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif
