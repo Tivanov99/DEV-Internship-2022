@@ -4,7 +4,7 @@
 #include "Enumerations.h"
 #include <afxcontrolbars.h>
 #include "ErrorVisualizator.h"
-
+#include "SqlQueries.h"
 
 #define NoneModifyColumnCode 0
 #define ModifyColumnCode 1
@@ -79,7 +79,9 @@ public:
 	bool SelectAll(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray)
 	{
 		CString strQuery;
-		strQuery.Format(_T("SELECT * FROM %s"), m_strTableName);
+		strQuery.Format(SqlQueries::SelectAll, m_strTableName);
+
+		//strQuery.Format(_T("SELECT * FROM %s"), m_strTableName);
 		// Изпълняваме командата
 		if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
 		{
@@ -124,9 +126,8 @@ public:
 
 	bool SelectWhereID(const long lID, Record_Type& recTableRecord)
 	{
-
 		CString strQuery;
-		strQuery.Format(_T("SELECT * FROM %s WHERE ID = %d"), m_strTableName, lID);
+		strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
 
 		if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
 		{
@@ -154,7 +155,7 @@ public:
 	{
 		// Конструираме заявката
 		CString strQuery;
-		strQuery.Format(_T("SELECT * FROM %s WHERE ID = %d"), m_strTableName, lID);
+		strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
 
 		// Изпълняваме командата
 		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
@@ -198,7 +199,7 @@ public:
 	bool InsertRecord(const Record_Type& recTableRecord)
 	{
 		CString strQuery;
-		strQuery.Format(_T("SELECT TOP 0 * FROM %s"), m_strTableName);
+		strQuery.Format(SqlQueries::EmptySelect, m_strTableName);
 
 		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
 		{
@@ -226,7 +227,7 @@ public:
 	{
 		// Конструираме заявката
 		CString strQuery;
-		strQuery.Format(_T("SELECT * FROM %s WHERE ID = %d"), m_strTableName, lID);
+		strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
 
 		// Изпълняваме командата
 		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))

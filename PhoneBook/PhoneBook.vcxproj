@@ -208,6 +208,7 @@
     <ClInclude Include="Enumerations.h" />
     <ClInclude Include="ErrorVisualizator.h" />
     <ClInclude Include="GlobalConstants.h" />
+    <ClInclude Include="SqlQueries.h" />
     <ClInclude Include="Structures.h" />
     <ClInclude Include="CitiesDoc.h" />
     <ClInclude Include="CitiesView.h" />
@@ -252,6 +253,7 @@
     </ClCompile>
     <ClCompile Include="PhoneBook.cpp" />
     <ClCompile Include="CSelfClearingTypedPtrArray.cpp" />
+    <ClCompile Include="SqlQueries.cpp" />
     <ClCompile Include="TextDataValidator.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +267,7 @@
     <Image Include="res\userimages.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cpp.hint" />
     <None Include="res\PhoneBook.rc2" />
     <None Include="res\test1.bin" />
   </ItemGroup>

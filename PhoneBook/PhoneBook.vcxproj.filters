@@ -144,6 +144,9 @@
     <ClInclude Include="CPhoneTypesDocument.h">
       <Filter>PHONE_TYPES</Filter>
     </ClInclude>
+    <ClInclude Include="SqlQueries.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -227,6 +230,9 @@
     <ClCompile Include="CPhoneTypesDocument.cpp">
       <Filter>Source Files\PHONE_TYPES</Filter>
     </ClCompile>
+    <ClCompile Include="SqlQueries.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="PhoneBook.rc">
@@ -257,5 +263,6 @@
     <None Include="res\test1.bin">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>
