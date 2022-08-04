@@ -12,10 +12,12 @@ BEGIN_MESSAGE_MAP(CPersonsDialog, CDialog)
 	ON_WM_LBUTTONDBLCLK()
 	ON_WM_LBUTTONDOWN()
 	ON_BN_CLICKED(IDCANCEL, &CPersonsDialog::OnBnClickedCancel)
-	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CPersonsDialog::OnContextMenuEdit)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_EDIT, &CPersonsDialog::ManageContextMenuItems)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_READ_DATA, &CPersonsDialog::ManageContextMenuItems)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_DELETE, &CPersonsDialog::ManageContextMenuItems)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_INSERT, &CPersonsDialog::ManageContextMenuItems)
+
+	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CPersonsDialog::OnContextMenuEdit)
 	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CPersonsDialog::OnContextMenuDelete)
 	ON_COMMAND(ID_EDIT_CONTEXT_READ_DATA, &CPersonsDialog::OnContextMenuReadData)
 	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CPersonsDialog::OnContextMenuInsert)
@@ -51,6 +53,20 @@ void CPersonsDialog::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 
 void CPersonsDialog::ManageContextMenuItems(CCmdUI* pCmdUI)
 {
+	UINT uSelectedCount = m_lscPersonPhoneNumbers.GetSelectedCount();
+
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount==0)
+	{
+		pCmdUI->Enable(true);
+		return;
+	}
+
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount > 0)
+	{
+		pCmdUI->Enable(false);
+		return;
+	}
+
 	if (m_lscPersonPhoneNumbers.GetSelectedCount() == 0)
 	{
 		pCmdUI->Enable(false);

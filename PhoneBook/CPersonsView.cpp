@@ -23,6 +23,8 @@ BEGIN_MESSAGE_MAP(CPersonsView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_EDIT, &CPersonsView::ManageContextMenuItems)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_READ_DATA, &CPersonsView::ManageContextMenuItems)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_DELETE, &CPersonsView::ManageContextMenuItems)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_INSERT, &CPersonsView::ManageContextMenuItems)
+
 
 END_MESSAGE_MAP()
 
@@ -41,7 +43,21 @@ void CPersonsView::ManageContextMenuItems(CCmdUI* pCmdUI)
 {
 	CListCtrl& LSCCitiesList = GetListCtrl();
 
-	if (LSCCitiesList.GetSelectedCount() == 0)
+	UINT uSelectedCount = LSCCitiesList.GetSelectedCount();
+
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount == 0)
+	{
+		pCmdUI->Enable(true);
+		return;
+	}
+
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount > 0)
+	{
+		pCmdUI->Enable(false);
+		return;
+	}
+
+	if (uSelectedCount == 0)
 		pCmdUI->Enable(false);
 }
 
