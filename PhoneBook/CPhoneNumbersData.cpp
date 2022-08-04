@@ -31,7 +31,7 @@ bool CPhoneNumbersData::SelectWhereID(const long lID, PHONE_NUMBERS& recPhoneNum
 
 	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
 
-	if (!oPhoneNumbersTable.SelectWhereID(lID, recPhoneNumbers))
+	if (!oPhoneNumbersTable.SelectWhereID(lID, recPhoneNumbers, SqlQueries::SelectWhereID))
 	{
 		pDbConnector->CloseDbConnectionAndSession();
 
@@ -48,7 +48,7 @@ bool CPhoneNumbersData::UpdateWhereID(const long lID, const PHONE_NUMBERS& recPh
 
 	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
 
-	if (!oPhoneNumbersTable.UpdateWhereID(lID, recPhoneNumbers))
+	if (!oPhoneNumbersTable.UpdateWhereID(lID, recPhoneNumbers, SqlQueries::SelectWhereID))
 	{
 		pDbConnector->CloseDbConnectionAndSession();
 		return false;
@@ -81,7 +81,7 @@ bool CPhoneNumbersData::DeleteWhereID(const long lID)
 
 	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
 
-	if (!oPhoneNumbersTable.DeleteWhereID(lID))
+	if (!oPhoneNumbersTable.DeleteWhereID(lID, SqlQueries::SelectWhereID))
 	{
 		pDbConnector->CloseDbConnectionAndSession();
 

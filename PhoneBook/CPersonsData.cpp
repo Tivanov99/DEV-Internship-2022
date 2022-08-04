@@ -86,7 +86,7 @@ bool CPersonsData::SelectWhereID(const long lID, PERSONS& recPersons)
 
 	CPersonsTable îPersonsTable(pDatabaseConnector->GetSession());
 
-	if (!îPersonsTable.SelectWhereID(lID, recPersons))
+	if (!îPersonsTable.SelectWhereID(lID, recPersons, SqlQueries::SelectWhereID))
 	{
 		pDatabaseConnector->CloseDbConnectionAndSession();
 		return false;
@@ -105,7 +105,7 @@ bool CPersonsData::UpdateWhereID(const long lID, const PERSONS& recPersons)
 
 	CPersonsTable îPersonsTable(pDatabaseConnector->GetSession());
 
-	if (!îPersonsTable.UpdateWhereID(lID, recPersons))
+	if (!îPersonsTable.UpdateWhereID(lID, recPersons, SqlQueries::SelectWhereID))
 	{
 		pDatabaseConnector->CloseDbConnectionAndSession();
 		return false;
@@ -163,7 +163,7 @@ bool CPersonsData::DeleteWhereID(const long lID)
 	}
 
 	CPersonsTable îPersonsTable(pDatabaseConnector->GetSession());
-	if (!îPersonsTable.DeleteWhereID(lID))
+	if (!îPersonsTable.DeleteWhereID(lID,SqlQueries::SelectWhereID))
 	{
 		oSession.Abort();
 		pDatabaseConnector->CloseDbConnectionAndSession();

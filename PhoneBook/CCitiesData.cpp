@@ -15,7 +15,7 @@ bool CCitiesData::SelectAll(CCitiesArray& oCitiesArray)
 };
 bool CCitiesData::SelectWhereID(const long lID, CITIES& recCities)
 {
-	if (!m_CitiesTable.SelectWhereID(lID, recCities))
+	if (!m_CitiesTable.SelectWhereID(lID, recCities, SqlQueries::SelectWhereID))
 		return false;
 
 	return true;
@@ -23,7 +23,7 @@ bool CCitiesData::SelectWhereID(const long lID, CITIES& recCities)
 
 bool CCitiesData::UpdateWhereID(const long lID, const CITIES& recCities)
 {
-	if (!m_CitiesTable.UpdateWhereID(lID, recCities))
+	if (!m_CitiesTable.UpdateWhereID(lID, recCities, SqlQueries::SelectWhereID))
 		return false;
 
 	return true;
@@ -39,7 +39,7 @@ bool CCitiesData::InsertRecord(const CITIES& recCities)
 
 bool CCitiesData::DeleteWhereID(const long lID)
 {
-	if (!m_CitiesTable.DeleteWhereID(lID))
+	if (!m_CitiesTable.DeleteWhereID(lID, SqlQueries::SelectWhereID))
 		return false;
 
 	return true;
