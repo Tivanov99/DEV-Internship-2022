@@ -88,7 +88,7 @@ CPersonsDocument* CPersonsView::GetDocument() const // non-debug version is inli
 
 void CPersonsView::OnInitialUpdate()
 {
-	CListView::OnInitialUpdate();
+	//CListView::OnInitialUpdate();
 
 	ConfigurateCListCtrl();
 
@@ -156,10 +156,12 @@ void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
 	int nNumberOfSelectedRow = GetSelectedRowNumber();
 	CListCtrl& LSCCitiesList = GetListCtrl();
+	CPersonsDocument* pPersonDocument = GetDocument();
 
 	switch (lHint)
 	{
 	case ContextMenuOperations::InsertRecord:
+		InsertNewRecordToCListCtrl(pPersonDocument->GetPersonById((long)pHint));
 		break;
 	case ContextMenuOperations::Delete:
 		LSCCitiesList.DeleteItem(nNumberOfSelectedRow);
@@ -170,6 +172,12 @@ void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 		break;
 	}
 }
+
+void UpdateRecord(PERSONS* pPerson)
+{
+
+}
+
 
 void CPersonsView::InsertNewRecordToCListCtrl(PERSONS* pPerson)
 {
@@ -226,7 +234,7 @@ void CPersonsView::OnEditContextReadData()
 
 	map<PHONE_NUMBERS*, PHONE_TYPES*> oMap;
 
-	pPersonDocument->GetPersonPhoneNumbersAndTypes(oMap, pPerson->lID);
+	//pPersonDocument->GetPersonPhoneNumbersAndTypes(oMap, pPerson->lID);
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::ReadData, oPerson, oCitiesArray, oMap);
 
@@ -245,6 +253,7 @@ void CPersonsView::OnContextMenuInsert()
 	map<PHONE_NUMBERS*, PHONE_TYPES*> oMap;
 
 	PERSONS oPerson;
+	oPerson.lUpdateCounter = 0;
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oMap);
 
@@ -274,7 +283,7 @@ void CPersonsView::OnContextMenuEdit()
 
 	map<PHONE_NUMBERS*, PHONE_TYPES*> oMap;
 
-	pPersonDocument->GetPersonPhoneNumbersAndTypes(oMap, pPerson->lID);
+	//pPersonDocument->GetPersonPhoneNumbersAndTypes(oMap, pPerson->lID);
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oMap);
 

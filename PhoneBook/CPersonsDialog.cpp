@@ -211,10 +211,10 @@ void CPersonsDialog::OnOK()
 		return;
 	}
 
-	CString strPersonLastdName;
-	m_edbPersonLastName.GetWindowText(strPersonLastdName);
+	CString strPersonLastName;
+	m_edbPersonLastName.GetWindowText(strPersonLastName);
 
-	CString strPersonLastNameErrorMessage = m_oTextValidator.ValidateTextData(strPersonLastdName,
+	CString strPersonLastNameErrorMessage = m_oTextValidator.ValidateTextData(strPersonLastName,
 		GlobalConstants::_nPersonLastNameMinSize);
 	if (strPersonLastNameErrorMessage.GetLength() > 0)
 	{
@@ -222,7 +222,22 @@ void CPersonsDialog::OnOK()
 		return;
 	}
 
+
 	CITIES* pCity = (CITIES*)m_cmbCitiesNames.GetItemData(m_cmbCitiesNames.GetCurSel());
+
+	//m_recPerson.szADDRESS
+	m_edbPersonFirstName.GetWindowText(strPersonFirstName);
+	_tcscpy_s(m_recPerson.szFIRST_NAME, strPersonFirstName);
+
+	m_edbPersonSecondName.GetWindowText(strPersonSecondName);
+	_tcscpy_s(m_recPerson.szSECOND_NAME, strPersonSecondName);
+
+	m_edbPersonLastName.GetWindowText(strPersonLastName);
+	_tcscpy_s(m_recPerson.szLAST_NAME, strPersonLastName);
+
+	CString strPersonUcn;
+	m_edbPersonLastName.GetWindowText(strPersonUcn);
+	_tcscpy_s(m_recPerson.szUCN, strPersonUcn);
 
 	m_recPerson.lCITY_ID = pCity->lID;
 

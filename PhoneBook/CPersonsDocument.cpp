@@ -34,10 +34,25 @@ void CPersonsDocument::Serialize(CArchive& ar)
 	}
 }
 
+
+#ifdef _DEBUG
+void CPersonsDocument::AssertValid() const
+{
+	CDocument::AssertValid();
+}
+#endif //_DEBUG
+
+
+void CPersonsDocument::Dump(CDumpContext& dc) const
+{
+	CPersonsDocument::Dump(dc);
+}
+
 const CPersonsArray& CPersonsDocument::GetAllPersons()
 {
 	return m_oPersonsArray;
 }
+
 bool CPersonsDocument::GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
 {
 	if (!m_ÓPersonsData.SelectAllPhoneTypes(oPhoneTypesArray))
@@ -46,25 +61,12 @@ bool CPersonsDocument::GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
 	return true;
 }
 
-#ifdef _DEBUG
-void CPersonsDocument::AssertValid() const
-{
-	CDocument::AssertValid();
-}
-
-void CPersonsDocument::Dump(CDumpContext& dc) const
-{
-	CPersonsDocument::Dump(dc);
-}
-#endif //_DEBUG
-
 PERSONS* CPersonsDocument::GetPersonById(long lID)
 {
 	PERSONS* pPerson = m_oPersonsArray.GetAt(lID);
 	if (pPerson == NULL)
-	{
 		AfxMessageBox(_T("Failed to read data about person."));
-	}
+
 	return pPerson;
 }
 
@@ -76,7 +78,7 @@ bool CPersonsDocument::DeletePersonById(long lID)
 	DeletePersonFromPersonsArray(lID);
 
 	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
-	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
+	OnUpdateAllViews(ContextMenuOperations::Delete, (CObject*)lID);
 	return true;
 }
 
@@ -88,7 +90,7 @@ bool CPersonsDocument::GetAllCities(CCitiesArray& oCitiesArray)
 	return true;
 }
 
-void CPersonsDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
+void CPersonsDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint = NULL)
 {
 	UpdateAllViews(NULL, lHint, pHint);
 }
@@ -98,26 +100,20 @@ bool CPersonsDocument::UpdatePerson(PERSONS& recPerson)
 	if (!m_ÓPersonsData.UpdateWhereID(recPerson.lID, recPerson))
 		return false;
 
-	/*PERSONS oPerson;
-	m_ÓPersonsData.SelectWhereID(recPerson.lID, oPerson);*/
-
-
-	//TODO: Chech here for object ?
-
 	//view-ÚÓ ‚ÁÂÏ‡ Á‡ÔËÒ‡ ÓÚ Ï‡ÒË‚‡ ÍÓÈÚÓ Â ÚÛÍ!
 
-	//OnUpdateAllViews(ContextMenuOperations::Edit, &oPerson);
+	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)recPerson.lID);
 	return true;
 }
-bool CPersonsDocument::InsertPerson(PERSONS& recCity)
+bool CPersonsDocument::InsertPerson(PERSONS& recPerson)
 {
-	if (!m_ÓPersonsData.InsertRecord(recCity))
+	if (!m_ÓPersonsData.InsertRecord(recPerson))
 		return false;
 
-	AddPersonToPersonsArray(recCity);
+	AddPersonToPersonsArray(recPerson);
 
 	//TODO: Chech here for object ?
-	//OnUpdateAllViews(ContextMenuOperations::EditData, &oPerson);
+	OnUpdateAllViews(ContextMenuOperations::InsertRecord, (CObject*)recPerson.lID);
 	return true;
 }
 
@@ -148,6 +144,7 @@ PERSONS* CPersonsDocument::AddPersonToPersonsArray(PERSONS& recPerson)
 	{
 		delete pPerson;
 		AfxMessageBox(_T("Failed to add city to document."));
+		return NULL;
 	}
 	m_oPersonsArray.Add(pPerson);
 
@@ -166,7 +163,7 @@ long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 	{
 		PERSONS* pPerson = m_oPersonsArray.GetAt(i);
 
-		if (pPerson->lID != lID)
+		if (pPerson == NULL || pPerson->lID != lID)
 			continue;
 
 		return i;
@@ -183,7 +180,7 @@ bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray&
 	return true;
 }
 
-bool CPersonsDocument::GetPersonPhoneNumbersAndTypes(map<PHONE_NUMBERS*, PHONE_TYPES*>& oMap,const long lPersonID)
+bool CPersonsDocument::GetPersonPhoneNumbersAndTypes(map<long, PHONE_TYPES*>& oMap,const long lPersonID)
 {
 	CPhoneNumbersArray oPhoneNumbersArray;
 	if (!m_ÓPersonsData.SelectAllPhoneNumbersByPersonId(lPersonID, oPhoneNumbersArray))
@@ -203,7 +200,9 @@ bool CPersonsDocument::GetPersonPhoneNumbersAndTypes(map<PHONE_NUMBERS*, PHONE_T
 		if (pPhoneType == NULL)
 			continue;
 
-		oMap.insert(pair<PHONE_NUMBERS*, PHONE_TYPES*>(new PHONE_NUMBERS(*pPhoneNumers), new PHONE_TYPES(*pPhoneType)));
+		long lPeronId = pPhoneNumers->lID;
+
+		/*oMap.insert(lPeronId,NULL);*/
 	}
 	return true;
 }

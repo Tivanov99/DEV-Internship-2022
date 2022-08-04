@@ -49,6 +49,8 @@ private:
 	/// <param name="pPerson">Пойнтър представляващ нов запис</param>
 	void InsertNewRecordToCListCtrl(PERSONS* pPerson);
 
+	void UpdateRecord(PERSONS* pPerson);
+
 	/// <summary>
 	/// Конфигурира всичко нужно за държанието и изгледа на лист контролата.
 	/// </summary>
