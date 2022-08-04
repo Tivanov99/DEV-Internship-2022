@@ -19,7 +19,7 @@ public:
 	//Methods
 private:
 
-	void OnUpdateContextFirst(CCmdUI* pCmdUI);
+	void ManageContextMenuItems(CCmdUI* pCmdUI);
 
 	/// <summary>
 	/// Функция която попълва цялата информация за хората.

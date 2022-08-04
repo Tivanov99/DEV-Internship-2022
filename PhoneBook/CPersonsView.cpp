@@ -13,6 +13,7 @@ IMPLEMENT_DYNCREATE(CPersonsView, CListView)
 
 
 BEGIN_MESSAGE_MAP(CPersonsView, CListView)
+
 	ON_WM_CONTEXTMENU()
 	ON_WM_LBUTTONDBLCLK()
 	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CPersonsView::OnContextMenuDelete)
@@ -29,13 +30,24 @@ CPersonsView::CPersonsView() noexcept {};
 
 CPersonsView::~CPersonsView() {};
 
+void CPersonsView::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
+{
+#ifndef SHARED_HANDLERS
+	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
+#endif
+}
 
 void CPersonsView::ManageContextMenuItems(CCmdUI* pCmdUI)
 {
 	long lIndex = GetSelectedRowNumber();
 
-	if(lIndex==-1)
-	pCmdUI->Enable(false);
+	if (lIndex == -1)
+		pCmdUI->Enable(false);
+}
+
+BOOL CPersonsView::PreCreateWindow(CREATESTRUCT& cs)
+{
+	return CListView::PreCreateWindow(cs);
 }
 
 #ifdef _DEBUG
@@ -56,10 +68,7 @@ CPersonsDocument* CPersonsView::GetDocument() const // non-debug version is inli
 };
 #endif //_DEBUG
 
-BOOL CPersonsView::PreCreateWindow(CREATESTRUCT& cs)
-{
-	return CListView::PreCreateWindow(cs);
-}
+
 
 void CPersonsView::OnInitialUpdate()
 {
@@ -68,29 +77,6 @@ void CPersonsView::OnInitialUpdate()
 	ConfigurateCListCtrl();
 
 	FillView();
-}
-
-void CPersonsView::OnContextMenu(CWnd* pWnd, CPoint point)
-{
-#ifndef SHARED_HANDLERS
-	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
-#endif
-
-	CMenu oMenu;
-	oMenu.LoadMenu(IDR_POPUP_EDIT);
-
-
-	int nCount = oMenu.GetMenuItemCount();
-
-
-	CListCtrl& oListCtrl = GetListCtrl();
-	const int nSelectedItem = oListCtrl.HitTest(point);
-
-	if (nSelectedItem == -1)
-	{
-		oMenu.RemoveMenu(ID_EDIT_CONTEXT_EDIT, MF_BYCOMMAND);
-		oMenu.RemoveMenu(ID_EDIT_CONTEXT_READ_DATA, MF_BYCOMMAND);
-	}
 }
 
 void CPersonsView::ConfigurateCListCtrl()
@@ -276,7 +262,7 @@ void CPersonsView::OnContextMenuEdit()
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oMap);
 
-	if (oPersonsDialog.DoModal()!= IDOK)
+	if (oPersonsDialog.DoModal() != IDOK)
 		return;
 
 	bool bResult = pPersonDocument->UpdatePerson(oPerson);

@@ -27,7 +27,13 @@ public:
 
 	// Methods
 	// ----------------
+
+public:
+	void OnContextMenu(CWnd* /*pWnd*/, CPoint point);
+
 private:
+	void ManageContextMenuItems(CCmdUI* pCmdUI);
+
 	/// <summary>
 	/// Попълва всички входни полета с данните идващи от 'm_recPerson'.
 	/// </summary>
@@ -128,5 +134,9 @@ private:
 	TextDataValidator m_oTextValidator;
 public:
 	afx_msg void OnBnClickedCancel();
+	afx_msg void OnContextMenuEdit();
+	afx_msg void OnContextMenuDelete();
+	afx_msg void OnContextMenuReadData();
+	afx_msg void OnContextMenuInsert();
 };
 

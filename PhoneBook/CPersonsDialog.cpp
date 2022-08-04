@@ -7,6 +7,21 @@
 
 IMPLEMENT_DYNAMIC(CPersonsDialog, CDialog)
 
+BEGIN_MESSAGE_MAP(CPersonsDialog, CDialog)
+	ON_WM_CONTEXTMENU()
+	ON_WM_LBUTTONDBLCLK()
+	ON_WM_LBUTTONDOWN()
+	ON_BN_CLICKED(IDCANCEL, &CPersonsDialog::OnBnClickedCancel)
+	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CPersonsDialog::OnContextMenuEdit)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_EDIT, &CPersonsDialog::ManageContextMenuItems)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_READ_DATA, &CPersonsDialog::ManageContextMenuItems)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_DELETE, &CPersonsDialog::ManageContextMenuItems)
+	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CPersonsDialog::OnContextMenuDelete)
+	ON_COMMAND(ID_EDIT_CONTEXT_READ_DATA, &CPersonsDialog::OnContextMenuReadData)
+	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CPersonsDialog::OnContextMenuInsert)
+END_MESSAGE_MAP()
+
+
 CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerson, CCitiesArray& oCitiesArray,
 	map<PHONE_NUMBERS*, PHONE_TYPES*>& oMap, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation), m_oCitiesArray(oCitiesArray),
@@ -27,11 +42,28 @@ void CPersonsDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_LSC_PERSON_PHONE_NUMBERS, m_lscPersonPhoneNumbers);
 }
 
-BEGIN_MESSAGE_MAP(CPersonsDialog, CDialog)
-	ON_WM_LBUTTONDOWN()
-	ON_WM_LBUTTONDBLCLK()
-	ON_BN_CLICKED(IDCANCEL, &CPersonsDialog::OnBnClickedCancel)
-END_MESSAGE_MAP()
+void CPersonsDialog::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
+{
+#ifndef SHARED_HANDLERS
+	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
+#endif
+}
+
+void CPersonsDialog::ManageContextMenuItems(CCmdUI* pCmdUI)
+{
+	long lIndex =  m_lscPersonPhoneNumbers.GetSelectionMark();
+
+	if (lIndex == -1)
+	{
+		pCmdUI->Enable(false);
+	}
+	else
+	{
+		pCmdUI->Enable(true);
+	}
+}
+
+
 
 BOOL CPersonsDialog::OnInitDialog()
 {
@@ -140,7 +172,7 @@ void CPersonsDialog::FillPhoneNumbers()
 
 		m_lscPersonPhoneNumbers.InsertItem(nRow, pCurrentPhoneNumber->szPHONE_NUMBER);
 
-		m_lscPersonPhoneNumbers.SetItemText(nRow,1, pCurrentPhoneType->szPHONE_TYPE);
+		m_lscPersonPhoneNumbers.SetItemText(nRow, 1, pCurrentPhoneType->szPHONE_TYPE);
 
 		m_lscPersonPhoneNumbers.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCurrentPhoneNumber));
 	}
@@ -190,4 +222,28 @@ void CPersonsDialog::OnBnClickedCancel()
 {
 	// TODO: Add your control notification handler code here
 	CDialog::OnCancel();
+}
+
+
+void CPersonsDialog::OnContextMenuEdit()
+{
+	// TODO: Add your command handler code here
+}
+
+
+void CPersonsDialog::OnContextMenuDelete()
+{
+	// TODO: Add your command handler code here
+}
+
+
+void CPersonsDialog::OnContextMenuReadData()
+{
+	// TODO: Add your command handler code here
+}
+
+
+void CPersonsDialog::OnContextMenuInsert()
+{
+	// TODO: Add your command handler code here
 }
