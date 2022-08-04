@@ -35,7 +35,7 @@ void CCitiesDocument::Serialize(CArchive& ar)
 	}
 }
 
-const CSelfClearingTypedPtrArray<CITIES>& CCitiesDocument::GetAllCities()
+const CCitiesArray& CCitiesDocument::GetAllCities()
 {
 	return m_oCitiesArray;
 }
@@ -91,9 +91,7 @@ bool CCitiesDocument::UpdateCity(CITIES& recCity)
 	if (!m_CitiesData.UpdateWhereID(recCity.lID, recCity))
 		return false;
 
-	long lCityIndex = GetCityIndexFromCitiesArray(recCity.lID);
-
-	CITIES* pCity = m_oCitiesArray.GetAt(lCityIndex);
+	CITIES* pCity = m_oCitiesArray.GetAt(GetCityIndexFromCitiesArray(recCity.lID));
 	*pCity = recCity;
 
 	//TODO: Chech here for object ?
@@ -107,7 +105,6 @@ CITIES* CCitiesDocument::InsertCity(CITIES& recCity)
 		return NULL;
 	
 	CITIES* pCity = AddCityToCitiesArray(recCity);
-
 
 	//TODO: Chech here for object ?
 	OnUpdateAllViews(ContextMenuOperations::Edit, NULL);
@@ -143,7 +140,6 @@ CITIES* CCitiesDocument::AddCityToCitiesArray(CITIES& recCity)
 		AfxMessageBox(_T("Failed to add city to document."));
 	}
 	m_oCitiesArray.Add(pCity);
-
 	return pCity;
 }
 
