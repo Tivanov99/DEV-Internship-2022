@@ -32,6 +32,9 @@ public:
 	void OnContextMenu(CWnd* /*pWnd*/, CPoint point);
 
 private:
+
+	PHONE_NUMBERS* GetSelectedRecordItemData();
+
 	void ManageContextMenuItems(CCmdUI* pCmdUI);
 
 	/// <summary>

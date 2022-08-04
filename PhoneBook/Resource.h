@@ -57,8 +57,8 @@
 #define IDC_STT_PHONE_NUMBER            1045
 #define IDC_STT_PHONE_TYPE              1046
 #define IDC_EDB_PHONE_NUMBER            1047
-#define IDC_EDIT2                       1048
-#define IDC_EDB_PHONE_TYPE              1048
+#define IDC_CMB_PHONE_TYPE              1049
+#define IDC_EDIT1                       1050
 #define ID_EDIT_CONTEXT_DELETE          32805
 #define ID_EDIT_CONTEXT_EDIT            32807
 #define ID_EDIT_CONTEXT_INSERT          32809
@@ -68,14 +68,17 @@
 #define ID_INSERT_EDIT                  32815
 #define ID_INSERT_INSERT                32816
 #define ID_EDIT_COPY32817               32817
+#define ID_EDIT_SEP                     32818
+#define ID_EDIT_SEP32819                32819
+#define ID_EDIT_SEP32820                32820
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        330
-#define _APS_NEXT_COMMAND_VALUE         32818
-#define _APS_NEXT_CONTROL_VALUE         1049
+#define _APS_NEXT_COMMAND_VALUE         32821
+#define _APS_NEXT_CONTROL_VALUE         1051
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

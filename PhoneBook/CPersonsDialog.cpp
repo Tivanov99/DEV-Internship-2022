@@ -3,6 +3,7 @@
 #include "afxdialogex.h"
 #include "CPersonsDialog.h"
 #include "resource.h"
+#include "CPhoneNumbersDialog.h"
 
 
 IMPLEMENT_DYNAMIC(CPersonsDialog, CDialog)
@@ -155,14 +156,11 @@ void CPersonsDialog::FillCitiesComboBox()
 		if (pCity == NULL)
 			continue;
 
-		CString strCityName;
-		strCityName.Append(pCity->szCITY_NAME);
+		int nResult = m_cmbCitiesNames.AddString(pCity->szCITY_NAME);
+		m_cmbCitiesNames.SetItemData(nResult, reinterpret_cast<DWORD_PTR>(pCity));
 
 		if (pCity->lID == m_recPerson.lCITY_ID)
-			strCityName.Append(_T("(CURRENT)"));
-
-		int nResult = m_cmbCitiesNames.AddString(strCityName);
-		m_cmbCitiesNames.SetItemData(nResult, reinterpret_cast<DWORD_PTR>(pCity));
+			m_cmbCitiesNames.SetCurSel(nResult);
 	}
 }
 
@@ -238,8 +236,27 @@ void CPersonsDialog::OnBnClickedCancel()
 }
 
 
+PHONE_NUMBERS* CPersonsDialog::GetSelectedRecordItemData()
+{
+	const int nSelectedRow = m_lscPersonPhoneNumbers.GetSelectionMark();
+	if (nSelectedRow == -1)
+	{
+		AfxMessageBox(_T("This function is only called on record!"));
+		return NULL;
+	}
+	PHONE_NUMBERS* pPhoneNumber = reinterpret_cast<PHONE_NUMBERS*>(m_lscPersonPhoneNumbers.GetItemData(nSelectedRow));
+	return pPhoneNumber;
+}
+
 void CPersonsDialog::OnContextMenuEdit()
 {
+	PHONE_NUMBERS* pPhoneNumber = GetSelectedRecordItemData();
+	CPhoneTypesArray oPhoneTypesArray;
+
+	CPhoneNumbersDialog oPhoneNumbersDialog(*pPhoneNumber, oPhoneTypesArray);
+
+	if (oPhoneNumbersDialog.DoModal() != IDOK)
+		return;
 	// TODO: Add your command handler code here
 }
 

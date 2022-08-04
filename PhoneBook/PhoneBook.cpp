@@ -174,11 +174,7 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 // Implementation
-protected:
-	DECLARE_MESSAGE_MAP()
-public:
-	afx_msg void OnBnClickedOk();
-	afx_msg void OnBnClickedCancel();
+
 };
 
 CAboutDlg::CAboutDlg() noexcept : CDialogEx(IDD_ABOUTBOX)

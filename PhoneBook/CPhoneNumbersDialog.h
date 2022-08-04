@@ -23,6 +23,7 @@ public:
 	//Methods
 	//-----------------
 private:
+	void FillInputFileds();
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedCancel();
 
@@ -30,7 +31,11 @@ private:
 	//-----------------
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-
+	/// <summary>
+	///Надстройва диалоговия прозорец при стартиране и попълва всички данни на подадения обект в полетата; 
+	/// </summary>
+	/// <returns></returns>
+	virtual BOOL OnInitDialog();
 	DECLARE_MESSAGE_MAP()
 
 	//Members
@@ -47,12 +52,12 @@ private:
 	CPhoneTypesArray& m_oPhonetypesArray;
 
 	/// <summary>
+	/// Мембър представляващ падащо меню за типът телефонен номер в диалога.
+	/// </summary>
+	CComboBox m_cmbPhoneTypes;
+
+	/// <summary>
 	/// Мембър представляващ входното поле за телефонен номер в диалога.
 	/// </summary>
 	CEdit m_edbPhoneNumber;
-
-	/// <summary>
-	/// Мембър представляващ входното поле за типър телефонен номер в диалога.
-	/// </summary>
-	CEdit m_edbPhoneType;
 };

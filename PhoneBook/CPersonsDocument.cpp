@@ -103,7 +103,10 @@ bool CPersonsDocument::UpdatePerson(PERSONS& recPerson)
 
 
 	//TODO: Chech here for object ?
-	//OnUpdateAllViews(ContextMenuOperations::EditData, &oPerson);
+
+	//view-то взема записа от масива който е тук!
+
+	//OnUpdateAllViews(ContextMenuOperations::Edit, &oPerson);
 	return true;
 }
 bool CPersonsDocument::InsertPerson(PERSONS& recCity)
