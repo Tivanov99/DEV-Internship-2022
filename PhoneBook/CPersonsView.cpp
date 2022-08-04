@@ -19,11 +19,24 @@ BEGIN_MESSAGE_MAP(CPersonsView, CListView)
 	ON_COMMAND(ID_EDIT_CONTEXT_READ_DATA, &CPersonsView::OnEditContextReadData)
 	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CPersonsView::OnContextMenuInsert)
 	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CPersonsView::OnContextMenuEdit)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_EDIT, &CPersonsView::ManageContextMenuItems)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_READ_DATA, &CPersonsView::ManageContextMenuItems)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_DELETE, &CPersonsView::ManageContextMenuItems)
+
 END_MESSAGE_MAP()
 
 CPersonsView::CPersonsView() noexcept {};
 
 CPersonsView::~CPersonsView() {};
+
+
+void CPersonsView::ManageContextMenuItems(CCmdUI* pCmdUI)
+{
+	long lIndex = GetSelectedRowNumber();
+
+	if(lIndex==-1)
+	pCmdUI->Enable(false);
+}
 
 #ifdef _DEBUG
 void CPersonsView::AssertValid() const

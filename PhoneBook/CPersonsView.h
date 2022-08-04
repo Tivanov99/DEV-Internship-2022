@@ -18,6 +18,9 @@ public:
 
 	//Methods
 private:
+
+	void OnUpdateContextFirst(CCmdUI* pCmdUI);
+
 	/// <summary>
 	/// Функция която попълва цялата информация за хората.
 	/// </summary>
