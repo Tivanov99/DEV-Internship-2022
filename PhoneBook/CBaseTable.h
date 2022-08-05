@@ -286,7 +286,7 @@ public:
 		return true;
 	};
 
-	bool SelectBySpecificColumnWhereID(CSelfClearingTypedPtrArray<Record_Type>& optrArray, CString strSqlWhereClause)
+	bool SelectBySpecificColumnWhereID(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray, CString strSqlWhereClause)
 	{
 		CString strQuery;
 		strQuery.Format(SqlQueries::SelectAll, m_strTableName);
@@ -324,8 +324,6 @@ public:
 			}
 			// Logic with the result
 		}
-
-		recTableRecord = m_recTableRecord;
 
 		CloseRowSet();
 

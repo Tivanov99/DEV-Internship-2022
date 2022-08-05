@@ -69,5 +69,7 @@ public:
 	/// </summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	bool DeleteWhereID(const long lID);
+
+	bool DeletePersonPhoneNumbers(const long lID);
 };
 
