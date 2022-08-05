@@ -165,11 +165,12 @@ void CPersonsDialog::FillCitiesComboBox()
 
 void CPersonsDialog::FillPhoneNumbers()
 {
+	map<long, PHONE_TYPES*>::iterator itr;
 	for (INT_PTR i = 0; i < m_oPhoneNumbersArray.GetCount(); i++)
 	{
 		PHONE_NUMBERS* pCurrentPhoneNumber = m_oPhoneNumbersArray.GetAt(i);
 
-		map<long, PHONE_TYPES*>::iterator itr = m_oMap.find(pCurrentPhoneNumber->lPHONE_TYPE_ID);
+		itr = m_oMap.find(pCurrentPhoneNumber->lPHONE_TYPE_ID);
 
 		PHONE_TYPES* pPhoneType = itr->second;
 

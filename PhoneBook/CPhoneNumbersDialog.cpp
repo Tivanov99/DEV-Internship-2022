@@ -50,11 +50,23 @@ void CPhoneNumbersDialog::FillInputFileds()
 {
 	m_edbPhoneNumber.SetWindowText(m_recPhoneNumber.szPHONE_NUMBER);
 	
-	int nDa = 0;
-	/*for (INT_PTR i = 0; i < m_oPhonetypesArray.GetCount(); i++)
+	map<long, PHONE_TYPES*>::iterator itr;
+
+	/*for (size_t i = 0; i < m_oMap.size(); i++)
 	{
 
 	}*/
+
+	for (itr = m_oMap.begin();itr != m_oMap.end(); ++itr)
+	{
+		PHONE_TYPES* pPhoneType = itr->second;
+
+		int nResult = m_cmbPhoneTypes.AddString(pPhoneType->szPHONE_TYPE);
+		m_cmbPhoneTypes.SetItemData(nResult, reinterpret_cast<DWORD_PTR>(pPhoneType));
+
+		if (pPhoneType->lID == m_recPhoneNumber.lPHONE_TYPE_ID)
+			m_cmbPhoneTypes.SetCurSel(nResult);
+	}
 }
 
 void CPhoneNumbersDialog::OnBnClickedOk()
