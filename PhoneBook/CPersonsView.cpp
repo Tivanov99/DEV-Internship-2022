@@ -8,6 +8,7 @@
 #define new DEBUG_NEW
 #endif
 #include <map>
+#include "CSelfClearingMap.h"
 
 IMPLEMENT_DYNCREATE(CPersonsView, CListView)
 
@@ -229,9 +230,9 @@ void CPersonsView::OnEditContextReadData()
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
 
-	map<long, PHONE_TYPES*> oPhoneTypesMap;
+	CSelfClearingMap<long, PHONE_TYPES*> oPhoneTypesMap;
 
-	map<long, PHONE_NUMBERS*> oPhoneNumbersMap;
+	CSelfClearingMap<long, PHONE_NUMBERS*> oPhoneNumbersMap;
 	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersMap);
 
 	//pPersonDocument->GetAllPhoneTypes(oMap, pPerson->lID);
@@ -250,9 +251,9 @@ void CPersonsView::OnContextMenuInsert()
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
 
-	map<long, PHONE_NUMBERS*> oPhoneNumbersMap;
+	CSelfClearingMap<long, PHONE_NUMBERS*> oPhoneNumbersMap;
 
-	map<long, PHONE_TYPES*> oPhoneTypesMap;
+	CSelfClearingMap<long, PHONE_TYPES*> oPhoneTypesMap;
 
 	PERSONS oPerson;
 	oPerson.lUpdateCounter = 0;
@@ -285,11 +286,11 @@ void CPersonsView::OnContextMenuEdit()
 	pPersonDocument->GetAllCities(oCitiesArray);
 
 
-	map<long, PHONE_TYPES*> oPhoneTypesMap;
+	CSelfClearingMap<long, PHONE_TYPES*> oPhoneTypesMap;
 
 	pPersonDocument->GetAllPhoneTypes(oPhoneTypesMap);
 
-	map<long, PHONE_NUMBERS*> oPhoneNumbersMap;
+	CSelfClearingMap<long, PHONE_NUMBERS*> oPhoneNumbersMap;
 	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersMap);
 
 

@@ -25,7 +25,7 @@ END_MESSAGE_MAP()
 
 
 CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerson, CCitiesArray& oCitiesArray,
-	map<long, PHONE_NUMBERS*>& oPhoneNumbersMap, map<long, PHONE_TYPES*>& oMap, CWnd* pParent /*=nullptr*/)
+	CSelfClearingMap<long, PHONE_NUMBERS*>& oPhoneNumbersMap, CSelfClearingMap<long, PHONE_TYPES*>& oMap, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation), m_oCitiesArray(oCitiesArray),
 	m_oPhoneNumbersMap(oPhoneNumbersMap), m_oPhoneTypesMap(oMap)
 {
@@ -165,8 +165,8 @@ void CPersonsDialog::FillCitiesComboBox()
 
 void CPersonsDialog::FillPhoneNumbers()
 {
-	map<long, PHONE_TYPES*>::iterator intrPhoneTypes;
-	map<long, PHONE_NUMBERS*>::iterator itrPhoneNumbers;
+	CSelfClearingMap<long, PHONE_TYPES*>::iterator intrPhoneTypes;
+	CSelfClearingMap<long, PHONE_NUMBERS*>::iterator itrPhoneNumbers;
 
 	for (itrPhoneNumbers = m_oPhoneNumbersMap.begin(); itrPhoneNumbers != m_oPhoneNumbersMap.end(); ++itrPhoneNumbers)
 	{
@@ -180,7 +180,7 @@ void CPersonsDialog::FillPhoneNumbers()
 
 void CPersonsDialog::InsertRecordToListCtrl(PHONE_NUMBERS* pPhoneNumber)
 {
-	map<long, PHONE_TYPES*>::iterator intrPhoneTypes = m_oPhoneTypesMap.find(pPhoneNumber->lPHONE_TYPE_ID);
+	CSelfClearingMap<long, PHONE_TYPES*>::iterator intrPhoneTypes = m_oPhoneTypesMap.find(pPhoneNumber->lPHONE_TYPE_ID);
 
 	PHONE_TYPES* pPhoneType = intrPhoneTypes->second;
 

@@ -180,7 +180,7 @@ long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 	return -1;
 }
 
-bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, map<long, PHONE_NUMBERS*>& oPhoneNumbersMap)
+bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CSelfClearingMap<long, PHONE_NUMBERS*>& oPhoneNumbersMap)
 {
 	CPhoneNumbersArray oPhoneNumbersArray;
 	if (!m_ÓPersonsData.SelectAllPhoneNumbersByPersonId(lPersonID, oPhoneNumbersArray))
@@ -202,7 +202,7 @@ bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, map<long, PHONE_NUM
 	return true;
 }
 
-bool CPersonsDocument::GetAllPhoneTypes(map<long, PHONE_TYPES*>& oMap)
+bool CPersonsDocument::GetAllPhoneTypes(CSelfClearingMap<long, PHONE_TYPES*>& oMap)
 {
 	CPhoneTypesArray oPhoneTypesArray;
 	if (!m_ÓPersonsData.SelectAllPhoneTypes(oPhoneTypesArray))
@@ -219,7 +219,7 @@ bool CPersonsDocument::GetAllPhoneTypes(map<long, PHONE_TYPES*>& oMap)
 		PHONE_TYPES* pPhoneType = new PHONE_TYPES();
 
 		*pPhoneType = *pCurrentPhoneType;
-			
+
 
 		oMap.insert(pair<long, PHONE_TYPES*>(pPhoneType->lID, pPhoneType));
 	}
@@ -240,22 +240,22 @@ PHONE_TYPES* CPersonsDocument::GetPhoneTypeById(long lID, CPhoneTypesArray& oPho
 }
 
 
-bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID,map<long, PHONE_NUMBERS*>& oModifiedPhoneNumbersMap)
+bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID, CSelfClearingMap<long, PHONE_NUMBERS*>& oModifiedPhoneNumbersMap)
 {
-	map<long, PHONE_NUMBERS*> oPhoneNumbersOriginalMap;
+	CSelfClearingMap<long, PHONE_NUMBERS*> oPhoneNumbersOriginalMap;
 
 	if (!GetPersonPhoneNumbers(lPersonID, oPhoneNumbersOriginalMap))
 		return false;
 
-	map<long, PHONE_NUMBERS*>::iterator itrOriginalMap;
+	CSelfClearingMap<long, PHONE_NUMBERS*>::iterator itrOriginalMap;
 
-	for (itrOriginalMap = oPhoneNumbersOriginalMap.begin(); itrOriginalMap!= oPhoneNumbersOriginalMap.end();++itrOriginalMap)
+	for (itrOriginalMap = oPhoneNumbersOriginalMap.begin(); itrOriginalMap != oPhoneNumbersOriginalMap.end();++itrOriginalMap)
 	{
 		PHONE_NUMBERS* pCurrentOriginalPhoneNumber = itrOriginalMap->second;
 		if (pCurrentOriginalPhoneNumber == NULL)
 			continue;
 
-		map<long, PHONE_NUMBERS*>::iterator itrModifiedMap;
+		CSelfClearingMap<long, PHONE_NUMBERS*>::iterator itrModifiedMap;
 
 		itrModifiedMap = oModifiedPhoneNumbersMap.find(pCurrentOriginalPhoneNumber->lID);
 
@@ -263,17 +263,23 @@ bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID,map<long, PHONE_N
 		{
 			if (!m_oPhoneNumbersData.DeleteWhereID(pCurrentOriginalPhoneNumber->lID))
 				return false;
+
+			oPhoneNumbersOriginalMap.erase(pCurrentOriginalPhoneNumber->lID);
 		}
-
-
-
 
 		PHONE_NUMBERS* pCurrentModifiedPhoneNumber = itrModifiedMap->second;
 
-
 		if (m_oPhoneNumbersData.ComparePhoneNumbers(*pCurrentModifiedPhoneNumber, *pCurrentOriginalPhoneNumber))
-			m_oPhoneNumbersData.UpdateWhereID(pCurrentModifiedPhoneNumber->lID, *pCurrentModifiedPhoneNumber);
+		{
+			if (!m_oPhoneNumbersData.UpdateWhereID(pCurrentModifiedPhoneNumber->lID, *pCurrentModifiedPhoneNumber))
+				return false;
+
+			oPhoneNumbersOriginalMap.erase(pCurrentOriginalPhoneNumber->lID);
+			oModifiedPhoneNumbersMap.erase(pCurrentOriginalPhoneNumber->lID);
+		}
+
 	}
+
 	return true;
 }
 

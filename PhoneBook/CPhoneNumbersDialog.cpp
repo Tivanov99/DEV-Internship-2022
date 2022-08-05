@@ -6,6 +6,7 @@
 #include "afxdialogex.h"
 #include "CPhoneNumbersDialog.h"
 #include <map>
+#include "CSelfClearingMap.h"
 
 
 // CPhoneNumbersDialog dialog

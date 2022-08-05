@@ -2,6 +2,8 @@
 #include "Structures.h"
 #include "CPersonsData.h"
 #include "CPhoneNumbersData.h"
+#include "CSelfClearingMap.h"
+
 
 class CPersonsDocument :public CDocument
 {
@@ -38,13 +40,13 @@ public:
 
 	bool DeletePersonAndPhoneNumbers(long lID);
 
-	bool UpdatePersonPhoneNumbers(long lPersonID,map<long, PHONE_NUMBERS*>& oPhoneNumbersMap);
+	bool UpdatePersonPhoneNumbers(long lPersonID, CSelfClearingMap<long, PHONE_NUMBERS*>& oPhoneNumbersMap);
 
-	bool GetPersonPhoneNumbers(long lPersonID, map<long, PHONE_NUMBERS*>& oPhoneNumbersMap);
+	bool GetPersonPhoneNumbers(long lPersonID, CSelfClearingMap<long, PHONE_NUMBERS*>& oPhoneNumbersMap);
 
 	bool GetAllCities(CCitiesArray& oCitiesArray);
 	bool GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray);
-	bool GetAllPhoneTypes(map<long, PHONE_TYPES*>& oMap);
+	bool GetAllPhoneTypes(CSelfClearingMap<long, PHONE_TYPES*>& oMap);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	bool DeletePersonFromPersonsArray(long lPersonId);
