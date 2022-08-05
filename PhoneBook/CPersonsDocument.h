@@ -34,7 +34,12 @@ public:
 	bool DeletePersonById(long lID);
 	bool UpdatePerson(PERSONS& recPerson);
 	bool InsertPerson(PERSONS& recPerson);
+
 	bool DeletePersonAndPhoneNumbers(long lID);
+
+	bool UpdatePersonPhoneNumbers(long lPersonID, map<long, PHONE_NUMBERS*>& oPhoneNumbersMap);
+
+	bool DeletePersonPhoneNumber(long lID);
 
 	bool GetAllCities(CCitiesArray& oCitiesArray);
 	bool GetPersonPhoneNumbers(long lPersonID, map<long, PHONE_NUMBERS*>& oPhoneNumbersMap);

@@ -238,3 +238,14 @@ PHONE_TYPES* CPersonsDocument::GetPhoneTypeById(long lID, CPhoneTypesArray& oPho
 	}
 	return NULL;
 }
+
+
+bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID, map<long, PHONE_NUMBERS*>& oPhoneNumbersMap)
+{
+
+}
+
+bool CPersonsDocument::DeletePersonPhoneNumber(long lID)
+{
+
+}
