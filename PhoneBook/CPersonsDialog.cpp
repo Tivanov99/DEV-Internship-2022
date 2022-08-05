@@ -288,5 +288,20 @@ void CPersonsDialog::OnContextMenuReadData()
 
 void CPersonsDialog::OnContextMenuInsert()
 {
+	PHONE_NUMBERS* pPhoneNumber = new PHONE_NUMBERS;
+	_tcscpy_s(pPhoneNumber->szPHONE_NUMBER, _T(""));
+
+	CPhoneTypesArray oPhoneTypesArray;
+
+	CPhoneNumbersDialog oPhoneNumbersDialog(*pPhoneNumber, oPhoneTypesArray);
+
+	if (oPhoneNumbersDialog.DoModal() != IDOK)
+	{
+		pPhoneNumber = NULL;
+		delete pPhoneNumber;
+		return;
+	}
+
+
 	// TODO: Add your command handler code here
 }

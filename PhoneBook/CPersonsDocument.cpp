@@ -182,27 +182,17 @@ bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray&
 
 bool CPersonsDocument::GetPersonPhoneNumbersAndTypes(map<long, PHONE_TYPES*>& oMap,const long lPersonID)
 {
-	CPhoneNumbersArray oPhoneNumbersArray;
-	if (!m_ÓPersonsData.SelectAllPhoneNumbersByPersonId(lPersonID, oPhoneNumbersArray))
-		return false;
-
 	CPhoneTypesArray oPhoneTypesArray;
 	if (!m_ÓPersonsData.SelectAllPhoneTypes(oPhoneTypesArray))
 		return false;
 
-	for (INT_PTR i = 0; i < oPhoneNumbersArray.GetCount(); i++)
+	for (INT_PTR i = 0; i < oPhoneTypesArray.GetCount(); i++)
 	{
-		PHONE_NUMBERS* pPhoneNumers = oPhoneNumbersArray.GetAt(i);
-		if (pPhoneNumers == NULL)
-			continue;
-
-		PHONE_TYPES* pPhoneType = GetPhoneTypeById(pPhoneNumers->lPHONE_TYPE_ID, oPhoneTypesArray);
+		PHONE_TYPES* pPhoneType = oPhoneTypesArray.GetAt(i);
 		if (pPhoneType == NULL)
 			continue;
 
-		long lPeronId = pPhoneNumers->lID;
-
-		/*oMap.insert(lPeronId,NULL);*/
+		oMap.insert(pair<long, PHONE_TYPES*>(pPhoneType->lID, pPhoneType));
 	}
 	return true;
 }

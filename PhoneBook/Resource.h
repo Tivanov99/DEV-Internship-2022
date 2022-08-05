@@ -58,7 +58,7 @@
 #define IDC_STT_PHONE_TYPE              1046
 #define IDC_EDB_PHONE_NUMBER            1047
 #define IDC_CMB_PHONE_TYPE              1049
-#define IDC_EDIT1                       1060
+#define IDC_EDB_PERSON_ADDRESS          1061
 #define ID_EDIT_CONTEXT_DELETE          32805
 #define ID_EDIT_CONTEXT_EDIT            32807
 #define ID_EDIT_CONTEXT_INSERT          32809
@@ -74,7 +74,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        330
 #define _APS_NEXT_COMMAND_VALUE         32821
-#define _APS_NEXT_CONTROL_VALUE         1061
+#define _APS_NEXT_CONTROL_VALUE         1062
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif
