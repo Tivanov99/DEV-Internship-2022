@@ -52,17 +52,12 @@ void CPhoneNumbersDialog::FillInputFileds()
 	
 	map<long, PHONE_TYPES*>::iterator itr;
 
-	/*for (size_t i = 0; i < m_oMap.size(); i++)
-	{
-
-	}*/
-
 	for (itr = m_oMap.begin();itr != m_oMap.end(); ++itr)
 	{
 		PHONE_TYPES* pPhoneType = itr->second;
 
 		int nResult = m_cmbPhoneTypes.AddString(pPhoneType->szPHONE_TYPE);
-		m_cmbPhoneTypes.SetItemData(nResult, reinterpret_cast<DWORD_PTR>(pPhoneType));
+		m_cmbPhoneTypes.SetItemData(nResult, pPhoneType->lID);
 
 		if (pPhoneType->lID == m_recPhoneNumber.lPHONE_TYPE_ID)
 			m_cmbPhoneTypes.SetCurSel(nResult);
@@ -71,7 +66,19 @@ void CPhoneNumbersDialog::FillInputFileds()
 
 void CPhoneNumbersDialog::OnBnClickedOk()
 {
-	// TODO: Add your control notification handler code here
+	CString strPhoneNumber;
+	m_edbPhoneNumber.GetWindowText(strPhoneNumber);
+
+	if (strPhoneNumber.GetLength() < GlobalConstants::_nPhoneNumberMinSize || strPhoneNumber.GetLength() > GlobalConstants::_nPhoneNumberSize)
+	{
+		AfxMessageBox(_T("Phone number must me between $d and $d numbers."), GlobalConstants::_nPhoneNumberMinSize, GlobalConstants::_nPhoneNumberSize);
+		return;
+	}
+
+	_tcscpy_s(m_recPhoneNumber.szPHONE_NUMBER, strPhoneNumber);
+
+	m_recPhoneNumber.lPHONE_TYPE_ID = m_cmbPhoneTypes.GetItemData(m_cmbPhoneTypes.GetCurSel());
+
 	CDialog::OnOK();
 }
 
