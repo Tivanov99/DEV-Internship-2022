@@ -72,7 +72,7 @@ PERSONS* CPersonsDocument::GetPersonById(long lID)
 
 bool CPersonsDocument::DeletePersonById(long lID)
 {
-	if (!m_ÓPersonsData.DeleteWhereID(lID))
+	if (!m_ÓPersonsData.DeletePersonAndPhoneNumbers(lID))
 		return false;
 
 	DeletePersonFromPersonsArray(lID);

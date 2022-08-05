@@ -248,7 +248,6 @@ public:
 			CloseRowSet();
 			return false;
 		}
-		m_oSession.Commit();
 		CloseRowSet();
 		return true;
 	};
@@ -267,8 +266,7 @@ public:
 			CloseRowSet();
 			return false;
 		}
-
-		if (MoveFirst() != S_OK)
+		if (MoveFirst () != S_OK)
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
 			CloseRowSet();
@@ -281,7 +279,6 @@ public:
 			CloseRowSet();
 			return false;
 		}
-		m_oSession.Commit();
 		CloseRowSet();
 		return true;
 	};

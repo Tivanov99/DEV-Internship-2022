@@ -159,7 +159,7 @@ bool CPersonsData::DeleteWhereID(const long lID)
 	return true;
 }
 
-bool CPersonsData::DeletePersonPhoneNumbers(const long lID)
+bool CPersonsData::DeletePersonAndPhoneNumbers(const long lID)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
