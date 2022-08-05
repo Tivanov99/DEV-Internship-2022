@@ -281,8 +281,6 @@ void CPersonsDialog::OnContextMenuEdit()
 		return;
 
 	UpdateListCtrlRecord();
-
-	// TODO: Add your command handler code here
 }
 
 INT_PTR CPersonsDialog::GetPhoneNumberIndex(long lID)
@@ -304,6 +302,8 @@ INT_PTR CPersonsDialog::GetPhoneNumberIndex(long lID)
 
 void CPersonsDialog::OnContextMenuDelete()
 {
+	m_oPhoneNumbersArray;
+
 	PHONE_NUMBERS* pPhoneNumber = GetSelectedRecordItemData();
 
 	CString strMessage;
