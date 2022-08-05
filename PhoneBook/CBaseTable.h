@@ -166,7 +166,6 @@ public:
 		{
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
 			CloseRowSet();
-
 			return false;
 		}
 

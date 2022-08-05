@@ -1,6 +1,7 @@
 #pragma once
 #include "Structures.h"
 #include "CPersonsData.h"
+#include "CPhoneNumbersData.h"
 
 class CPersonsDocument :public CDocument
 {
@@ -37,12 +38,11 @@ public:
 
 	bool DeletePersonAndPhoneNumbers(long lID);
 
-	bool UpdatePersonPhoneNumbers(long lPersonID, map<long, PHONE_NUMBERS*>& oPhoneNumbersMap);
+	bool UpdatePersonPhoneNumbers(long lPersonID,map<long, PHONE_NUMBERS*>& oPhoneNumbersMap);
 
-	bool DeletePersonPhoneNumber(long lID);
+	bool GetPersonPhoneNumbers(long lPersonID, map<long, PHONE_NUMBERS*>& oPhoneNumbersMap);
 
 	bool GetAllCities(CCitiesArray& oCitiesArray);
-	bool GetPersonPhoneNumbers(long lPersonID, map<long, PHONE_NUMBERS*>& oPhoneNumbersMap);
 	bool GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray);
 	bool GetAllPhoneTypes(map<long, PHONE_TYPES*>& oMap);
 private:
@@ -57,6 +57,7 @@ private:
 private:
 	CPersonsArray m_oPersonsArray;
 	CPersonsData m_ÓPersonsData;
+	CPhoneNumbersData m_oPhoneNumbersData;
 	
 protected:
 

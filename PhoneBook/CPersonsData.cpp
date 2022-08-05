@@ -126,7 +126,8 @@ bool CPersonsData::UpdateWhereID(const long lID, const PERSONS& recPersons)
 		return false;
 	}
 
-	CPersonsTable ÓPersonsTable(pDatabaseConnector->GetSession());
+	CSession oSession = pDatabaseConnector->GetSession();
+	CPersonsTable ÓPersonsTable(oSession);
 
 	if (!ÓPersonsTable.UpdateWhereID(lID, recPersons))
 	{

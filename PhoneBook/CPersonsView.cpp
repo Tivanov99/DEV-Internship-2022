@@ -304,7 +304,7 @@ void CPersonsView::OnContextMenuEdit()
 		return;
 	}
 
-
+	pPersonDocument->UpdatePersonPhoneNumbers(pPerson->lID, oPhoneNumbersMap);
 
 
 }

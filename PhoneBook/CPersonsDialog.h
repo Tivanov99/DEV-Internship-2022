@@ -16,7 +16,7 @@ class CPersonsDialog : public CDialog
 
 public:
 	CPersonsDialog(DialogWindowActions eOperations, PERSONS& recPerson, CCitiesArray& oCitiesArray,
-		map<long, PHONE_NUMBERS*> oPhoneNumbersMap,  map<long, PHONE_TYPES*>& oMap, CWnd* pParent = nullptr);  // standard constructor
+		map<long, PHONE_NUMBERS*>& oPhoneNumbersMap,  map<long, PHONE_TYPES*>& oMap, CWnd* pParent = nullptr);  // standard constructor
 	virtual ~CPersonsDialog();
 
 	// Dialog Data
@@ -33,6 +33,8 @@ public:
 
 private:
 	void UpdateListCtrlRecord();
+
+	void InsertRecordToListCtrl(PHONE_NUMBERS* pPhoneNumber);
 
 	PHONE_NUMBERS* GetSelectedRecordItemData();
 
@@ -83,12 +85,12 @@ private:
 	/// <summary>
 	/// Мембър съдържащ всички телефонни номера за текущият Person.
 	/// </summary>
-	map<long, PHONE_NUMBERS*> m_oPhoneNumbersMap;
+	map<long, PHONE_NUMBERS*>& m_oPhoneNumbersMap;
 
 	/// <summary>
 	/// Мембър съдържащ релация между ID-то на всички типове телефонни номера и обектите прочетени от базата.
 	/// </summary>
-	 map<long, PHONE_TYPES*>& m_oMap;
+	 map<long, PHONE_TYPES*>& m_oPhoneTypesMap;
 
 	/// <summary>
 	/// Референция към подаден запис при извикването на диалога.

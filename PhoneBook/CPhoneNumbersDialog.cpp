@@ -13,7 +13,7 @@
 IMPLEMENT_DYNAMIC(CPhoneNumbersDialog, CDialog)
 
 CPhoneNumbersDialog::CPhoneNumbersDialog(PHONE_NUMBERS& recPhoneNumber, map<long, PHONE_TYPES*>& oMap,CWnd* pParent /*=nullptr*/)
-	: CDialog(IDD_PHONE_NUMBERS_DIALOG, pParent), m_recPhoneNumber(recPhoneNumber),m_oMap(oMap)
+	: CDialog(IDD_PHONE_NUMBERS_DIALOG, pParent), m_recPhoneNumber(recPhoneNumber),m_oPhoneTypesMap(oMap)
 {
 
 }
@@ -52,7 +52,7 @@ void CPhoneNumbersDialog::FillInputFileds()
 	
 	map<long, PHONE_TYPES*>::iterator itr;
 
-	for (itr = m_oMap.begin();itr != m_oMap.end(); ++itr)
+	for (itr = m_oPhoneTypesMap.begin();itr != m_oPhoneTypesMap.end(); ++itr)
 	{
 		PHONE_TYPES* pPhoneType = itr->second;
 

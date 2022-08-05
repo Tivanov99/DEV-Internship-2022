@@ -240,12 +240,40 @@ PHONE_TYPES* CPersonsDocument::GetPhoneTypeById(long lID, CPhoneTypesArray& oPho
 }
 
 
-bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID, map<long, PHONE_NUMBERS*>& oPhoneNumbersMap)
+bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID,map<long, PHONE_NUMBERS*>& oModifiedPhoneNumbersMap)
 {
+	map<long, PHONE_NUMBERS*> oPhoneNumbersOriginalMap;
 
+	if (!GetPersonPhoneNumbers(lPersonID, oPhoneNumbersOriginalMap))
+		return false;
+
+	map<long, PHONE_NUMBERS*>::iterator itrOriginalMap;
+
+	for (itrOriginalMap = oPhoneNumbersOriginalMap.begin(); itrOriginalMap!= oPhoneNumbersOriginalMap.end();++itrOriginalMap)
+	{
+		PHONE_NUMBERS* pCurrentOriginalPhoneNumber = itrOriginalMap->second;
+		if (pCurrentOriginalPhoneNumber == NULL)
+			continue;
+
+		map<long, PHONE_NUMBERS*>::iterator itrModifiedMap;
+
+		itrModifiedMap = oModifiedPhoneNumbersMap.find(pCurrentOriginalPhoneNumber->lID);
+
+		if (itrModifiedMap == oModifiedPhoneNumbersMap.end())
+		{
+			if (!m_oPhoneNumbersData.DeleteWhereID(pCurrentOriginalPhoneNumber->lID))
+				return false;
+		}
+
+
+
+
+		PHONE_NUMBERS* pCurrentModifiedPhoneNumber = itrModifiedMap->second;
+
+
+		if (m_oPhoneNumbersData.ComparePhoneNumbers(*pCurrentModifiedPhoneNumber, *pCurrentOriginalPhoneNumber))
+			m_oPhoneNumbersData.UpdateWhereID(pCurrentModifiedPhoneNumber->lID, *pCurrentModifiedPhoneNumber);
+	}
+	return true;
 }
 
-bool CPersonsDocument::DeletePersonPhoneNumber(long lID)
-{
-
-}

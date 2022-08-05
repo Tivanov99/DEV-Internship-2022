@@ -13,6 +13,9 @@ bool CPhoneNumbersData::SelectAll(CPhoneNumbersArray& oPhoneNumbersArray)
 {
 	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
 
+	if (!pDbConnector->OpenDbConnectionAndSession())
+		return false;
+
 	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
 
 	if (!oPhoneNumbersTable.SelectAll(oPhoneNumbersArray))
@@ -28,6 +31,9 @@ bool CPhoneNumbersData::SelectAll(CPhoneNumbersArray& oPhoneNumbersArray)
 bool CPhoneNumbersData::SelectWhereID(const long lID, PHONE_NUMBERS& recPhoneNumbers)
 {
 	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
+
+	if (!pDbConnector->OpenDbConnectionAndSession())
+		return false;
 
 	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
 
@@ -46,6 +52,9 @@ bool CPhoneNumbersData::UpdateWhereID(const long lID, const PHONE_NUMBERS& recPh
 {
 	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
 
+	if (!pDbConnector->OpenDbConnectionAndSession())
+		return false;
+
 	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
 
 	if (!oPhoneNumbersTable.UpdateWhereID(lID, recPhoneNumbers))
@@ -61,6 +70,9 @@ bool CPhoneNumbersData::UpdateWhereID(const long lID, const PHONE_NUMBERS& recPh
 bool CPhoneNumbersData::InsertRecord(const PHONE_NUMBERS& recPhoneNumbers)
 {
 	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
+
+	if (!pDbConnector->OpenDbConnectionAndSession())
+		return false;
 
 	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
 
@@ -79,6 +91,9 @@ bool CPhoneNumbersData::DeleteWhereID(const long lID)
 {
 	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
 
+	if (!pDbConnector->OpenDbConnectionAndSession())
+		return false;
+
 	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
 
 	if (!oPhoneNumbersTable.DeleteWhereID(lID))
@@ -90,4 +105,15 @@ bool CPhoneNumbersData::DeleteWhereID(const long lID)
 	pDbConnector->CloseDbConnectionAndSession();
 
 	return true;
+}
+
+bool CPhoneNumbersData::ComparePhoneNumbers(PHONE_NUMBERS& oComparedPhoneNumber, PHONE_NUMBERS& oPhoneNumberComparator)
+{
+	if (oPhoneNumberComparator.lPHONE_TYPE_ID != oComparedPhoneNumber.lPHONE_TYPE_ID)
+		return true;
+
+	if (_tcscmp(oPhoneNumberComparator.szPHONE_NUMBER, oComparedPhoneNumber.szPHONE_NUMBER) != 0 )
+		return true;
+
+	return false;
 }

@@ -150,6 +150,9 @@
     <ClInclude Include="CPhoneNumbersDialog.h">
       <Filter>PHONE_NUMERS</Filter>
     </ClInclude>
+    <ClInclude Include="CSelfClearingMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -238,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="CPhoneNumbersDialog.cpp">
       <Filter>Source Files\PHONE_NUMBERS</Filter>
+    </ClCompile>
+    <ClCompile Include="CSelfClearingMap.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
