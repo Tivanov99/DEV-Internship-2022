@@ -165,14 +165,21 @@ void CPersonsDialog::FillCitiesComboBox()
 
 void CPersonsDialog::FillPhoneNumbers()
 {
-	map<long, PHONE_TYPES*>::iterator itr;
-	for (INT_PTR i = 0; i < m_oPhoneNumbersArray.GetCount(); i++)
+	map<long, PHONE_TYPES*>::iterator intrPhoneTypes;
+	map<long, PHONE_NUMBERS*>::iterator itrPhoneNumbers;
+
+	for (itrPhoneNumbers = m_oPhoneNumbersMap.begin(); itrPhoneNumbers != m_oPhoneNumbersMap.end(); ++itrPhoneNumbers)
 	{
-		PHONE_NUMBERS* pCurrentPhoneNumber = m_oPhoneNumbersArray.GetAt(i);
+		PHONE_NUMBERS* pCurrentPhoneNumber = itrPhoneNumbers->second;
 
-		itr = m_oMap.find(pCurrentPhoneNumber->lPHONE_TYPE_ID);
+		if (pCurrentPhoneNumber == NULL)
+			continue;
 
-		PHONE_TYPES* pPhoneType = itr->second;
+		intrPhoneTypes = m_oMap.find(pCurrentPhoneNumber->lPHONE_TYPE_ID);
+
+		PHONE_TYPES* pPhoneType = intrPhoneTypes->second;
+		if (pPhoneType == NULL)
+			continue;
 
 		const int nRow = m_lscPersonPhoneNumbers.GetItemCount();
 
@@ -190,13 +197,15 @@ void CPersonsDialog::UpdateListCtrlRecord()
 
 	const int nSelectedRow = m_lscPersonPhoneNumbers.GetSelectionMark();
 
-	m_lscPersonPhoneNumbers.SetItemText(nSelectedRow, 0, pPhoneNumber->szPHONE_NUMBER);
+	int nColumn = 0;
+
+	m_lscPersonPhoneNumbers.SetItemText(nSelectedRow, nColumn++, pPhoneNumber->szPHONE_NUMBER);
 
 	map<long, PHONE_TYPES*>::iterator itr;
 	itr = m_oMap.find(pPhoneNumber->lPHONE_TYPE_ID);
-
 	PHONE_TYPES* pPhoneType = itr->second;
-	m_lscPersonPhoneNumbers.SetItemText(nSelectedRow, 1, pPhoneType->szPHONE_TYPE);
+
+	m_lscPersonPhoneNumbers.SetItemText(nSelectedRow, nColumn, pPhoneType->szPHONE_TYPE);
 }
 
 void CPersonsDialog::OnOK()
@@ -283,28 +292,12 @@ void CPersonsDialog::OnContextMenuEdit()
 	UpdateListCtrlRecord();
 }
 
-INT_PTR CPersonsDialog::GetPhoneNumberIndex(long lID)
-{
-	for (INT_PTR i = 0; i < m_oPhoneNumbersArray.GetCount(); i++)
-	{
-		PHONE_NUMBERS* pCurrentPhoneNumber = m_oPhoneNumbersArray.GetAt(i);
-
-		if (pCurrentPhoneNumber == NULL)
-			continue;
-
-		if (pCurrentPhoneNumber->lID == lID)
-			return i;
-	}
-	return -1;
-}
-
-
-
 void CPersonsDialog::OnContextMenuDelete()
 {
-	m_oPhoneNumbersArray;
-
 	PHONE_NUMBERS* pPhoneNumber = GetSelectedRecordItemData();
+
+	if (pPhoneNumber == NULL)
+		return;
 
 	CString strMessage;
 	strMessage.Format(_T("Do you want the record to be deleted? Phone number : %s "), pPhoneNumber->szPHONE_NUMBER);
@@ -320,14 +313,12 @@ void CPersonsDialog::OnContextMenuDelete()
 		const int nSelectedRow = m_lscPersonPhoneNumbers.GetSelectionMark();
 		m_lscPersonPhoneNumbers.DeleteItem(nSelectedRow);
 
-		INT_PTR nIndex = GetPhoneNumberIndex(pPhoneNumber->lID);
+		/*if (nIndex == -1)
+			return;*/
 
-		if (nIndex == -1)
-			return;
-
+		m_oPhoneNumbersMap.erase(pPhoneNumber->lID);
 		delete pPhoneNumber;
 		pPhoneNumber = NULL;
-		m_oPhoneNumbersArray.RemoveAt(nIndex);
 	}
 }
 
