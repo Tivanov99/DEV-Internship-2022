@@ -24,8 +24,8 @@ BEGIN_MESSAGE_MAP(CPersonsDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-CPersonsDialog::CPersonsDialog(const DialogWindowActions eOperation, PERSONS& recPerson, const CCitiesArray& oCitiesArray,
-	CPhoneNumbersArray& oPhoneNumbersArray,const  map<long, PHONE_TYPES*>& oMap, CWnd* pParent /*=nullptr*/)
+CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerson, CCitiesArray& oCitiesArray,
+	CPhoneNumbersArray& oPhoneNumbersArray, map<long, PHONE_TYPES*>& oMap, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation), m_oCitiesArray(oCitiesArray),
 	m_oPhoneNumbersArray(oPhoneNumbersArray),m_oMap(oMap)
 {
@@ -166,26 +166,31 @@ void CPersonsDialog::FillCitiesComboBox()
 void CPersonsDialog::FillPhoneNumbers()
 {
 
-	map<long, PHONE_TYPES*>::iterator itr;
+	for (INT_PTR i = 0; i < m_oPhoneNumbersArray.GetCount(); i++)
+	{
+		PHONE_NUMBERS* pPHoneNumber = m_oPhoneNumbersArray.GetAt(i);
+
+		//PHONE_TYPES* pPhoneType = m_oMap.find(pPHoneNumber->lPHONE_TYPE_ID);
+
+	}
+	/*map<long, PHONE_TYPES*>::iterator itr;
 
 	for (itr = m_oMap.begin(); itr != m_oMap.end(); ++itr)
 	{
-		long pCurrentPhoneNumber = itr->first;
-		if (pCurrentPhoneNumber == NULL)
-			continue;
+		long lCurrentPhoneTypeId = itr->first;
 
 		PHONE_TYPES* pCurrentPhoneType = itr->second;
 		if (pCurrentPhoneType == NULL)
-			continue;
+			continue;*/
 
 		const int nRow = m_lscPersonPhoneNumbers.GetItemCount();
 
-		m_lscPersonPhoneNumbers.InsertItem(nRow, pCurrentPhoneNumber->szPHONE_NUMBER);
+		/*m_lscPersonPhoneNumbers.InsertItem(nRow, lCurrentPhoneTypeId->szPHONE_NUMBER);
 
 		m_lscPersonPhoneNumbers.SetItemText(nRow, 1, pCurrentPhoneType->szPHONE_TYPE);
 
-		m_lscPersonPhoneNumbers.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCurrentPhoneNumber));
-	}
+		m_lscPersonPhoneNumbers.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(lCurrentPhoneTypeId));*/
+	//}
 }
 
 void CPersonsDialog::OnOK()

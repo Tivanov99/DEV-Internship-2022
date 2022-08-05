@@ -15,8 +15,8 @@ class CPersonsDialog : public CDialog
 	DECLARE_DYNAMIC(CPersonsDialog)
 
 public:
-	CPersonsDialog(const DialogWindowActions eOperations, PERSONS& recPerson, const CCitiesArray& oCitiesArray,
-		CPhoneNumbersArray& oPhoneNumbersArray, const map<long, PHONE_TYPES*>& oMap, CWnd* pParent = nullptr);  // standard constructor
+	CPersonsDialog(DialogWindowActions eOperations, PERSONS& recPerson, CCitiesArray& oCitiesArray,
+		CPhoneNumbersArray& oPhoneNumbersArray,  map<long, PHONE_TYPES*>& oMap, CWnd* pParent = nullptr);  // standard constructor
 	virtual ~CPersonsDialog();
 
 	// Dialog Data
@@ -87,7 +87,7 @@ private:
 	/// <summary>
 	/// Мембър съдържащ релация между ID-то на всички типове телефонни номера и обектите прочетени от базата.
 	/// </summary>
-	const map<long, PHONE_TYPES*>& m_oMap;
+	 map<long, PHONE_TYPES*>& m_oMap;
 
 	/// <summary>
 	/// Референция към подаден запис при извикването на диалога.
@@ -97,12 +97,12 @@ private:
 	/// <summary>
 	/// Референция към подаден масив  при извикването на диалога който съдържа всички градове.
 	/// </summary>
-	const CCitiesArray& m_oCitiesArray;
+	CCitiesArray& m_oCitiesArray;
 
 	/// <summary>
 	/// Мембър съдържащ типът на текущата операция подаден като аргумент при извикването на диалога.
 	/// </summary>
-	const DialogWindowActions m_eOperation;
+	DialogWindowActions m_eOperation;
 
 	/// <summary>
 	/// Мембър отговарящ за входното поле съдържащо името на контакта.
