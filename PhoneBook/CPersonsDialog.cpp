@@ -170,7 +170,7 @@ void CPersonsDialog::FillPhoneNumbers()
 	{
 		PHONE_NUMBERS* pCurrentPhoneNumber = m_oPhoneNumbersArray.GetAt(i);
 
-		itr = m_oMap.find(pCurrentPhoneNumber->lPHONE_TYPE_ID);
+		 itr = m_oMap.find(pCurrentPhoneNumber->lPHONE_TYPE_ID);
 
 		PHONE_TYPES* pPhoneType = itr->second;
 
@@ -182,6 +182,21 @@ void CPersonsDialog::FillPhoneNumbers()
 
 		m_lscPersonPhoneNumbers.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCurrentPhoneNumber));
 	}
+}
+
+void CPersonsDialog::UpdateListCtrlRecord()
+{
+	PHONE_NUMBERS* pPhoneNumber = GetSelectedRecordItemData();
+
+	const int nSelectedRow = m_lscPersonPhoneNumbers.GetSelectionMark();
+
+	m_lscPersonPhoneNumbers.SetItemText(nSelectedRow, 0, pPhoneNumber->szPHONE_NUMBER);
+
+	map<long, PHONE_TYPES*>::iterator itr;
+	itr = m_oMap.find(pPhoneNumber->lPHONE_TYPE_ID);
+
+	PHONE_TYPES* pPhoneType = itr->second;
+	m_lscPersonPhoneNumbers.SetItemText(nSelectedRow, 1, pPhoneType->szPHONE_TYPE);
 }
 
 void CPersonsDialog::OnOK()
@@ -265,8 +280,14 @@ void CPersonsDialog::OnContextMenuEdit()
 
 	if (oPhoneNumbersDialog.DoModal() != IDOK)
 		return;
+
+	UpdateListCtrlRecord();
+
+
 	// TODO: Add your command handler code here
 }
+
+
 
 
 void CPersonsDialog::OnContextMenuDelete()
