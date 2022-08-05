@@ -5,14 +5,15 @@
 #include "PhoneBook.h"
 #include "afxdialogex.h"
 #include "CPhoneNumbersDialog.h"
+#include <map>
 
 
 // CPhoneNumbersDialog dialog
 
 IMPLEMENT_DYNAMIC(CPhoneNumbersDialog, CDialog)
 
-CPhoneNumbersDialog::CPhoneNumbersDialog(PHONE_NUMBERS& recPhoneNumber, CPhoneTypesArray& oPhonetypesArray,CWnd* pParent /*=nullptr*/)
-	: CDialog(IDD_PHONE_NUMBERS_DIALOG, pParent), m_recPhoneNumber(recPhoneNumber),m_oPhonetypesArray(oPhonetypesArray)
+CPhoneNumbersDialog::CPhoneNumbersDialog(PHONE_NUMBERS& recPhoneNumber, map<long, PHONE_TYPES*>& oMap,CWnd* pParent /*=nullptr*/)
+	: CDialog(IDD_PHONE_NUMBERS_DIALOG, pParent), m_recPhoneNumber(recPhoneNumber),m_oMap(oMap)
 {
 
 }

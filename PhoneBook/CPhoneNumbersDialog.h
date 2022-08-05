@@ -1,6 +1,9 @@
 #pragma once
 #include "afxdialogex.h"
 #include "Structures.h"
+#include <map>
+
+using namespace std;
 
 
 // CPhoneNumbersDialog dialog
@@ -12,10 +15,10 @@ class CPhoneNumbersDialog : public CDialog
 	//Constructor/Destructor
 	//-----------------
 public:
-	CPhoneNumbersDialog(PHONE_NUMBERS& recPhoneNumber,CPhoneTypesArray& oPhonetypesArray, CWnd* pParent = nullptr);   // standard constructor
+	CPhoneNumbersDialog(PHONE_NUMBERS& recPhoneNumber, map<long, PHONE_TYPES*>& oMap, CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CPhoneNumbersDialog();
 
-// Dialog Data
+	// Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_PHONE_NUMBERS_DIALOG };
 #endif
@@ -47,9 +50,9 @@ private:
 	PHONE_NUMBERS& m_recPhoneNumber;
 
 	/// <summary>
-	/// Мембър съдържащ всички типове телефонен номер
+	/// Мембър съдържащ релация между ID-то на всички типове телефонни номера и обектите прочетени от базата.
 	/// </summary>
-	CPhoneTypesArray& m_oPhonetypesArray;
+	map<long, PHONE_TYPES*>& m_oMap;
 
 	/// <summary>
 	/// Мембър представляващ падащо меню за типът телефонен номер в диалога.

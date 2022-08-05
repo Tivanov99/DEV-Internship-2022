@@ -165,7 +165,6 @@ void CPersonsDialog::FillCitiesComboBox()
 
 void CPersonsDialog::FillPhoneNumbers()
 {
-
 	for (INT_PTR i = 0; i < m_oPhoneNumbersArray.GetCount(); i++)
 	{
 		PHONE_NUMBERS* pCurrentPhoneNumber = m_oPhoneNumbersArray.GetAt(i);
@@ -260,9 +259,8 @@ PHONE_NUMBERS* CPersonsDialog::GetSelectedRecordItemData()
 void CPersonsDialog::OnContextMenuEdit()
 {
 	PHONE_NUMBERS* pPhoneNumber = GetSelectedRecordItemData();
-	CPhoneTypesArray oPhoneTypesArray;
 
-	CPhoneNumbersDialog oPhoneNumbersDialog(*pPhoneNumber, oPhoneTypesArray);
+	CPhoneNumbersDialog oPhoneNumbersDialog(*pPhoneNumber, m_oMap);
 
 	if (oPhoneNumbersDialog.DoModal() != IDOK)
 		return;
@@ -287,9 +285,8 @@ void CPersonsDialog::OnContextMenuInsert()
 	PHONE_NUMBERS* pPhoneNumber = new PHONE_NUMBERS;
 	_tcscpy_s(pPhoneNumber->szPHONE_NUMBER, _T(""));
 
-	CPhoneTypesArray oPhoneTypesArray;
 
-	CPhoneNumbersDialog oPhoneNumbersDialog(*pPhoneNumber, oPhoneTypesArray);
+	CPhoneNumbersDialog oPhoneNumbersDialog(*pPhoneNumber, m_oMap);
 
 	if (oPhoneNumbersDialog.DoModal() != IDOK)
 	{
