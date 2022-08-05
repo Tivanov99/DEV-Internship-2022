@@ -11,14 +11,14 @@ CPhoneTypesData::~CPhoneTypesData() {};
 
 bool CPhoneTypesData::SelectAll(CPhoneTypesArray& oPhoneTyesArray)
 {
-	if (!m_PhoneTypesTable.SelectAll(oPhoneTyesArray, SqlQueries::SelectAll))
+	if (!m_PhoneTypesTable.SelectAll(oPhoneTyesArray))
 		return false;
 
 	return true;
 };
 bool CPhoneTypesData::SelectWhereID(const long lID, PHONE_TYPES& recPhoneType)
 {
-	if (!m_PhoneTypesTable.SelectWhereID(lID, recPhoneType, SqlQueries::SelectWhereID))
+	if (!m_PhoneTypesTable.SelectWhereID(lID, recPhoneType))
 		return false;
 
 	return true;
@@ -26,7 +26,7 @@ bool CPhoneTypesData::SelectWhereID(const long lID, PHONE_TYPES& recPhoneType)
 
 bool CPhoneTypesData::UpdateWhereID(const long lID, const PHONE_TYPES& recPhoneType)
 {
-	if (!m_PhoneTypesTable.UpdateWhereID(lID, recPhoneType, SqlQueries::SelectWhereID))
+	if (!m_PhoneTypesTable.UpdateWhereID(lID, recPhoneType))
 		return false;
 
 	return true;
@@ -42,7 +42,7 @@ bool CPhoneTypesData::InsertRecord(const PHONE_TYPES& recPhoneType)
 
 bool CPhoneTypesData::DeleteWhereID(const long lID)
 {
-	if (!m_PhoneTypesTable.DeleteWhereID(lID, SqlQueries::SelectWhereID))
+	if (!m_PhoneTypesTable.DeleteWhereID(lID))
 		return false;
 
 	return true;

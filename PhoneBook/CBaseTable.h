@@ -253,6 +253,133 @@ public:
 		return true;
 	};
 
+	bool DeleteBySpecificColumnWhereID(const long lID, CString strSqlWhereClause)
+	{
+		// Конструираме заявката
+		CString strQuery;
+		strQuery.Format(SqlQueries::SelectAll, m_strTableName);
+		strQuery.Append(strSqlWhereClause);
+
+		// Изпълняваме командата
+		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
+		{
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
+			CloseRowSet();
+			return false;
+		}
+
+		if (MoveFirst() != S_OK)
+		{
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
+			CloseRowSet();
+			return false;
+		}
+
+		if (FAILED(Delete()))
+		{
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorDeletingRecord, NULL);
+			CloseRowSet();
+			return false;
+		}
+		m_oSession.Commit();
+		CloseRowSet();
+		return true;
+	};
+
+	bool SelectBySpecificColumnWhereID(CSelfClearingTypedPtrArray<Record_Type>& optrArray, CString strSqlWhereClause)
+	{
+		CString strQuery;
+		strQuery.Format(SqlQueries::SelectAll, m_strTableName);
+		strQuery.Append(strSqlWhereClause);
+
+		if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
+		{
+			CloseRowSet();
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
+			return false;
+		}
+		
+		HRESULT hResult = MoveFirst();
+		if (FAILED(hResult))
+		{
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+			CloseRowSet();
+			return false;
+		}
+
+		while (hResult == S_OK)
+		{
+			Record_Type* pCurrentRecord = new Record_Type;
+			*pCurrentRecord = m_recTableRecord;
+			oPtrArray.Add(pCurrentRecord);
+
+			hResult = MoveNext();
+
+			if (FAILED(hResult) && hResult != DB_S_ENDOFROWSET)
+			{
+				ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+				CloseRowSet();
+
+				return false;
+			}
+			// Logic with the result
+		}
+
+		recTableRecord = m_recTableRecord;
+
+		CloseRowSet();
+
+		return true;
+	};
+
+
+	bool UpdateBySpecificColumnWhereID(const long lID, const Record_Type& recTableRecord, CString strSqlWhereClause)
+	{
+		// Конструираме заявката
+		CString strQuery;
+		strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
+		strQuery.Append(strSqlWhereClause);
+
+		// Изпълняваме командата
+		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
+		{
+			CloseRowSet();
+			return false;
+		}
+
+		if (FAILED(MoveFirst()))
+		{
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
+			CloseRowSet();
+
+			return false;
+		}
+
+		if (recTableRecord.lUpdateCounter != m_recTableRecord.lUpdateCounter)
+		{
+			ErrorMessageVisualizator::ShowErrorMessage(lpszInvalidRecordVersion, NULL);
+			CloseRowSet();
+
+			return false;
+		}
+
+		m_recTableRecord.lUpdateCounter++;
+		m_recTableRecord = recTableRecord;
+
+		if (FAILED(SetData(ModifyColumnCode)))
+		{
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorUpdatingRecord, NULL);
+			CloseRowSet();
+
+			return false;
+		}
+		CloseRowSet();
+
+		return true;
+	};
+
+
+
 	void CloseRowSet()
 	{
 		Close();
