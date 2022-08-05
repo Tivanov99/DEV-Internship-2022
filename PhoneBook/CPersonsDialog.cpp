@@ -27,7 +27,7 @@ END_MESSAGE_MAP()
 CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerson, CCitiesArray& oCitiesArray,
 	CPhoneNumbersArray& oPhoneNumbersArray, map<long, PHONE_TYPES*>& oMap, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation), m_oCitiesArray(oCitiesArray),
-	m_oPhoneNumbersArray(oPhoneNumbersArray),m_oMap(oMap)
+	m_oPhoneNumbersArray(oPhoneNumbersArray), m_oMap(oMap)
 {
 }
 CPersonsDialog :: ~CPersonsDialog() {};
@@ -55,7 +55,7 @@ void CPersonsDialog::ManageContextMenuItems(CCmdUI* pCmdUI)
 {
 	UINT uSelectedCount = m_lscPersonPhoneNumbers.GetSelectedCount();
 
-	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount==0)
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount == 0)
 	{
 		pCmdUI->Enable(true);
 		return;
@@ -170,7 +170,7 @@ void CPersonsDialog::FillPhoneNumbers()
 	{
 		PHONE_NUMBERS* pCurrentPhoneNumber = m_oPhoneNumbersArray.GetAt(i);
 
-		 itr = m_oMap.find(pCurrentPhoneNumber->lPHONE_TYPE_ID);
+		itr = m_oMap.find(pCurrentPhoneNumber->lPHONE_TYPE_ID);
 
 		PHONE_TYPES* pPhoneType = itr->second;
 
@@ -282,7 +282,6 @@ void CPersonsDialog::OnContextMenuEdit()
 
 	UpdateListCtrlRecord();
 
-
 	// TODO: Add your command handler code here
 }
 
@@ -305,8 +304,6 @@ INT_PTR CPersonsDialog::GetPhoneNumberIndex(long lID)
 
 void CPersonsDialog::OnContextMenuDelete()
 {
-	const int nSelectedRow = m_lscPersonPhoneNumbers.GetSelectionMark();
-
 	PHONE_NUMBERS* pPhoneNumber = GetSelectedRecordItemData();
 
 	CString strMessage;
@@ -318,8 +315,20 @@ void CPersonsDialog::OnContextMenuDelete()
 		MB_ICONINFORMATION | IDOK
 	);
 
-	if(msgboxID== IDOK)
-	m_lscPersonPhoneNumbers.DeleteItem(nSelectedRow);
+	if (msgboxID == IDOK)
+	{
+		const int nSelectedRow = m_lscPersonPhoneNumbers.GetSelectionMark();
+		m_lscPersonPhoneNumbers.DeleteItem(nSelectedRow);
+
+		INT_PTR nIndex = GetPhoneNumberIndex(pPhoneNumber->lID);
+
+		if (nIndex == -1)
+			return;
+
+		delete pPhoneNumber;
+		pPhoneNumber = NULL;
+		m_oPhoneNumbersArray.RemoveAt(nIndex);
+	}
 }
 
 
