@@ -82,6 +82,14 @@ bool CPersonsDocument::DeletePersonById(long lID)
 	return true;
 }
 
+bool CPersonsDocument::DeletePersonAndPhoneNumbers(long lID)
+{
+	if (!m_ÓPersonsData.DeletePersonAndPhoneNumbers(lID))
+		return false;
+
+	return true;
+}
+
 bool CPersonsDocument::GetAllCities(CCitiesArray& oCitiesArray)
 {
 	if (!m_ÓPersonsData.SelectAllCities(oCitiesArray))

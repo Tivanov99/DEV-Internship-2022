@@ -211,7 +211,9 @@ void CPersonsView::OnContextMenuDelete()
 	{
 		CPersonsDocument* pPersonsDocument = GetDocument();
 
-		pPersonsDocument->DeletePersonById(pPerson->lID);
+		if (!pPersonsDocument->DeletePersonById(pPerson->lID))
+			return;
+
 	}
 }
 
@@ -266,6 +268,8 @@ void CPersonsView::OnContextMenuInsert()
 	bool bInsertResult = pPersonDocument->InsertPerson(oPerson);
 	if (!bInsertResult)
 		AfxMessageBox(_T("Record insert failed."));
+
+
 	//TODO: Check for inserting phone numbers
 }
 

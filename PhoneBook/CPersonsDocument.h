@@ -34,6 +34,7 @@ public:
 	bool DeletePersonById(long lID);
 	bool UpdatePerson(PERSONS& recPerson);
 	bool InsertPerson(PERSONS& recPerson);
+	bool DeletePersonAndPhoneNumbers(long lID);
 
 	bool GetAllCities(CCitiesArray& oCitiesArray);
 	bool GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray);
