@@ -37,7 +37,7 @@ public:
 	bool DeletePersonAndPhoneNumbers(long lID);
 
 	bool GetAllCities(CCitiesArray& oCitiesArray);
-	bool GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray);
+	bool GetPersonPhoneNumbers(long lPersonID, map<long, PHONE_NUMBERS*>& oPhoneNumbersMap);
 	bool GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray);
 	bool GetAllPhoneTypes(map<long, PHONE_TYPES*>& oMap);
 private:

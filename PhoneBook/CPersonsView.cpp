@@ -176,7 +176,6 @@ void UpdateRecord(PERSONS* pPerson)
 
 }
 
-
 void CPersonsView::InsertNewRecordToCListCtrl(PERSONS* pPerson)
 {
 	CListCtrl& LSCCitiesList = GetListCtrl();
@@ -211,12 +210,10 @@ void CPersonsView::OnContextMenuDelete()
 	{
 		CPersonsDocument* pPersonsDocument = GetDocument();
 
-		if (!pPersonsDocument->DeletePersonById(pPerson->lID))
+		if (!pPersonsDocument->DeletePersonAndPhoneNumbers(pPerson->lID))
 			return;
-
 	}
 }
-
 
 void CPersonsView::OnEditContextReadData()
 {
@@ -287,19 +284,25 @@ void CPersonsView::OnContextMenuEdit()
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
 
-	CPhoneNumbersArray oPhoneNumbersArray;
-	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersArray);
 
-	map<long, PHONE_TYPES*> oMap;
+	map<long, PHONE_TYPES*> oPhoneTypesMap;
 
-	pPersonDocument->GetAllPhoneTypes(oMap);
+	pPersonDocument->GetAllPhoneTypes(oPhoneTypesMap);
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oPhoneNumbersArray, oMap);
+	map<long, PHONE_NUMBERS*> oPhoneNumbersMap;
+	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersMap);
+
+
+	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oPhoneNumbersMap, oPhoneTypesMap);
 
 	if (oPersonsDialog.DoModal() != IDOK)
 		return;
 
-	bool bResult = pPersonDocument->UpdatePerson(oPerson);
-	if (!bResult)
+	if (!pPersonDocument->UpdatePerson(oPerson))
+	{
 		AfxMessageBox(_T("Record update failed."));
+		return;
+	}
+
+
 }

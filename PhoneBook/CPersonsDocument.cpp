@@ -180,10 +180,24 @@ long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 	return -1;
 }
 
-bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
+bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, map<long, PHONE_NUMBERS*>& oPhoneNumbersMap)
 {
+	CPhoneNumbersArray oPhoneNumbersArray;
 	if (!m_ÓPersonsData.SelectAllPhoneNumbersByPersonId(lPersonID, oPhoneNumbersArray))
 		return false;
+
+	for (INT_PTR i = 0; i < oPhoneNumbersArray.GetCount(); i++)
+	{
+		PHONE_NUMBERS* pCurrentPhoneNumber = oPhoneNumbersArray.GetAt(i);
+
+		if (pCurrentPhoneNumber == NULL)
+			continue;
+
+		PHONE_NUMBERS* pPhoneNumber = new PHONE_NUMBERS;
+		*pPhoneNumber = *pCurrentPhoneNumber;
+
+		oPhoneNumbersMap.insert(pair<long, PHONE_NUMBERS*>(pPhoneNumber->lID, pPhoneNumber));
+	}
 
 	return true;
 }
@@ -196,12 +210,16 @@ bool CPersonsDocument::GetAllPhoneTypes(map<long, PHONE_TYPES*>& oMap)
 
 	for (INT_PTR i = 0; i < oPhoneTypesArray.GetCount(); i++)
 	{
+		PHONE_TYPES* pCurrentPhoneType = oPhoneTypesArray.GetAt(i);
+
+		if (pCurrentPhoneType == NULL)
+			continue;
+
+
 		PHONE_TYPES* pPhoneType = new PHONE_TYPES();
 
-		*pPhoneType = *oPhoneTypesArray.GetAt(i);
+		*pPhoneType = *pCurrentPhoneType;
 			
-		if (pPhoneType == NULL)
-			continue;
 
 		oMap.insert(pair<long, PHONE_TYPES*>(pPhoneType->lID, pPhoneType));
 	}
