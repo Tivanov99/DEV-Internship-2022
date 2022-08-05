@@ -236,7 +236,7 @@ void CPersonsView::OnEditContextReadData()
 
 	map<PHONE_NUMBERS*, PHONE_TYPES*> oMap;
 
-	//pPersonDocument->GetPersonPhoneNumbersAndTypes(oMap, pPerson->lID);
+	//pPersonDocument->GetAllPhoneTypes(oMap, pPerson->lID);
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::ReadData, oPerson, oCitiesArray, oMap);
 
@@ -283,9 +283,9 @@ void CPersonsView::OnContextMenuEdit()
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
 
-	map<PHONE_NUMBERS*, PHONE_TYPES*> oMap;
+	map<long, PHONE_TYPES*> oMap;
 
-	//pPersonDocument->GetPersonPhoneNumbersAndTypes(oMap, pPerson->lID);
+	pPersonDocument->GetAllPhoneTypes(oMap);
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oMap);
 

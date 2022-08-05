@@ -180,7 +180,7 @@ bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray&
 	return true;
 }
 
-bool CPersonsDocument::GetPersonPhoneNumbersAndTypes(map<long, PHONE_TYPES*>& oMap,const long lPersonID)
+bool CPersonsDocument::GetAllPhoneTypes(map<long, PHONE_TYPES*>& oMap)
 {
 	CPhoneTypesArray oPhoneTypesArray;
 	if (!m_ÓPersonsData.SelectAllPhoneTypes(oPhoneTypesArray))
