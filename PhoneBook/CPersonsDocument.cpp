@@ -188,7 +188,10 @@ bool CPersonsDocument::GetAllPhoneTypes(map<long, PHONE_TYPES*>& oMap)
 
 	for (INT_PTR i = 0; i < oPhoneTypesArray.GetCount(); i++)
 	{
-		PHONE_TYPES* pPhoneType = oPhoneTypesArray.GetAt(i);
+		PHONE_TYPES* pPhoneType = new PHONE_TYPES();
+
+		*pPhoneType = *oPhoneTypesArray.GetAt(i);
+			
 		if (pPhoneType == NULL)
 			continue;
 

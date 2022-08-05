@@ -168,29 +168,20 @@ void CPersonsDialog::FillPhoneNumbers()
 
 	for (INT_PTR i = 0; i < m_oPhoneNumbersArray.GetCount(); i++)
 	{
-		PHONE_NUMBERS* pPHoneNumber = m_oPhoneNumbersArray.GetAt(i);
+		PHONE_NUMBERS* pCurrentPhoneNumber = m_oPhoneNumbersArray.GetAt(i);
 
-		//PHONE_TYPES* pPhoneType = m_oMap.find(pPHoneNumber->lPHONE_TYPE_ID);
+		map<long, PHONE_TYPES*>::iterator itr = m_oMap.find(pCurrentPhoneNumber->lPHONE_TYPE_ID);
 
-	}
-	/*map<long, PHONE_TYPES*>::iterator itr;
-
-	for (itr = m_oMap.begin(); itr != m_oMap.end(); ++itr)
-	{
-		long lCurrentPhoneTypeId = itr->first;
-
-		PHONE_TYPES* pCurrentPhoneType = itr->second;
-		if (pCurrentPhoneType == NULL)
-			continue;*/
+		PHONE_TYPES* pPhoneType = itr->second;
 
 		const int nRow = m_lscPersonPhoneNumbers.GetItemCount();
 
-		/*m_lscPersonPhoneNumbers.InsertItem(nRow, lCurrentPhoneTypeId->szPHONE_NUMBER);
+		m_lscPersonPhoneNumbers.InsertItem(nRow, pCurrentPhoneNumber->szPHONE_NUMBER);
 
-		m_lscPersonPhoneNumbers.SetItemText(nRow, 1, pCurrentPhoneType->szPHONE_TYPE);
+		m_lscPersonPhoneNumbers.SetItemText(nRow, 1, pPhoneType->szPHONE_TYPE);
 
-		m_lscPersonPhoneNumbers.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(lCurrentPhoneTypeId));*/
-	//}
+		m_lscPersonPhoneNumbers.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCurrentPhoneNumber));
+	}
 }
 
 void CPersonsDialog::OnOK()
