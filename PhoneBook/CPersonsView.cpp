@@ -142,11 +142,7 @@ const int CPersonsView::GetSelectedRowNumber()
 PERSONS* CPersonsView::GetSelectedRecordItemData()
 {
 	const int nSelectedRow = GetSelectedRowNumber();
-	if (nSelectedRow == -1)
-	{
-		AfxMessageBox(_T("This function is only called on record!"));
-		return NULL;
-	}
+	
 	CListCtrl& оListCtrl = GetListCtrl();
 	PERSONS* pPerson = reinterpret_cast<PERSONS*>(оListCtrl.GetItemData(nSelectedRow));
 	return pPerson;

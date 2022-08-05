@@ -32,6 +32,8 @@ public:
 	void OnContextMenu(CWnd* /*pWnd*/, CPoint point);
 
 private:
+	INT_PTR GetPhoneNumberIndex(long lID);
+
 	void UpdateListCtrlRecord();
 
 	PHONE_NUMBERS* GetSelectedRecordItemData();

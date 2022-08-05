@@ -259,7 +259,6 @@ void CPersonsDialog::OnBnClickedCancel()
 	CDialog::OnCancel();
 }
 
-
 PHONE_NUMBERS* CPersonsDialog::GetSelectedRecordItemData()
 {
 	const int nSelectedRow = m_lscPersonPhoneNumbers.GetSelectionMark();
@@ -287,12 +286,40 @@ void CPersonsDialog::OnContextMenuEdit()
 	// TODO: Add your command handler code here
 }
 
+INT_PTR CPersonsDialog::GetPhoneNumberIndex(long lID)
+{
+	for (INT_PTR i = 0; i < m_oPhoneNumbersArray.GetCount(); i++)
+	{
+		PHONE_NUMBERS* pCurrentPhoneNumber = m_oPhoneNumbersArray.GetAt(i);
+
+		if (pCurrentPhoneNumber == NULL)
+			continue;
+
+		if (pCurrentPhoneNumber->lID == lID)
+			return i;
+	}
+	return -1;
+}
 
 
 
 void CPersonsDialog::OnContextMenuDelete()
 {
-	// TODO: Add your command handler code here
+	const int nSelectedRow = m_lscPersonPhoneNumbers.GetSelectionMark();
+
+	PHONE_NUMBERS* pPhoneNumber = GetSelectedRecordItemData();
+
+	CString strMessage;
+	strMessage.Format(_T("Do you want the record to be deleted? Phone number : %s "), pPhoneNumber->szPHONE_NUMBER);
+
+	const int msgboxID = MessageBox(
+		(LPCWSTR)strMessage,
+		(LPCWSTR)L"Delete record.",
+		MB_ICONINFORMATION | IDOK
+	);
+
+	if(msgboxID== IDOK)
+	m_lscPersonPhoneNumbers.DeleteItem(nSelectedRow);
 }
 
 
