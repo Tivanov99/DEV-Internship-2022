@@ -262,9 +262,8 @@ bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID, CSelfClearingMap
 		if (itrModifiedMap == oModifiedPhoneNumbersMap.end())
 		{
 			if (!m_oPhoneNumbersData.DeleteWhereID(pCurrentOriginalPhoneNumber->lID))
-				return false;
-
-			oPhoneNumbersOriginalMap.erase(pCurrentOriginalPhoneNumber->lID);
+				oModifiedPhoneNumbersMap.erase(pCurrentOriginalPhoneNumber->lID);
+				continue;
 		}
 
 		PHONE_NUMBERS* pCurrentModifiedPhoneNumber = itrModifiedMap->second;
@@ -274,10 +273,22 @@ bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID, CSelfClearingMap
 			if (!m_oPhoneNumbersData.UpdateWhereID(pCurrentModifiedPhoneNumber->lID, *pCurrentModifiedPhoneNumber))
 				return false;
 
-			oPhoneNumbersOriginalMap.erase(pCurrentOriginalPhoneNumber->lID);
 			oModifiedPhoneNumbersMap.erase(pCurrentOriginalPhoneNumber->lID);
 		}
+		else
+		{
+			oModifiedPhoneNumbersMap.erase(pCurrentOriginalPhoneNumber->lID);
+		}
+	}
 
+	CSelfClearingMap<long, PHONE_NUMBERS*>::iterator itrModifiedMap;
+	for (itrModifiedMap = oModifiedPhoneNumbersMap.begin(); itrModifiedMap != oModifiedPhoneNumbersMap.end();++itrModifiedMap)
+	{
+		PHONE_NUMBERS* pCurrentPhoneNumber = itrModifiedMap->second;
+
+		if (pCurrentPhoneNumber != NULL)
+			if (!m_oPhoneNumbersData.InsertRecord(*pCurrentPhoneNumber))
+				return false;
 	}
 
 	return true;

@@ -320,9 +320,6 @@ void CPersonsDialog::OnContextMenuDelete()
 		const int nSelectedRow = m_lscPersonPhoneNumbers.GetSelectionMark();
 		m_lscPersonPhoneNumbers.DeleteItem(nSelectedRow);
 
-		/*if (nIndex == -1)
-			return;*/
-
 		m_oPhoneNumbersMap.erase(pPhoneNumber->lID);
 		delete pPhoneNumber;
 		pPhoneNumber = NULL;
@@ -352,6 +349,7 @@ void CPersonsDialog::OnContextMenuInsert()
 	}
 
 	pPhoneNumber->lID = 0;
+	pPhoneNumber->lPERSON_ID = m_recPerson.lID;
 
 	m_oPhoneNumbersMap.insert(pair<long,PHONE_NUMBERS*>(pPhoneNumber->lID, pPhoneNumber));
 
