@@ -24,10 +24,10 @@ BEGIN_MESSAGE_MAP(CPersonsDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerson, CCitiesArray& oCitiesArray,
-	map<PHONE_NUMBERS*, PHONE_TYPES*>& oMap, CWnd* pParent /*=nullptr*/)
+CPersonsDialog::CPersonsDialog(const DialogWindowActions eOperation, PERSONS& recPerson, const CCitiesArray& oCitiesArray,
+	CPhoneNumbersArray& oPhoneNumbersArray,const  map<long, PHONE_TYPES*>& oMap, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation), m_oCitiesArray(oCitiesArray),
-	m_oMap(oMap)
+	m_oPhoneNumbersArray(oPhoneNumbersArray),m_oMap(oMap)
 {
 }
 CPersonsDialog :: ~CPersonsDialog() {};
@@ -166,11 +166,11 @@ void CPersonsDialog::FillCitiesComboBox()
 void CPersonsDialog::FillPhoneNumbers()
 {
 
-	map<PHONE_NUMBERS*, PHONE_TYPES*>::iterator itr;
+	map<long, PHONE_TYPES*>::iterator itr;
 
 	for (itr = m_oMap.begin(); itr != m_oMap.end(); ++itr)
 	{
-		PHONE_NUMBERS* pCurrentPhoneNumber = itr->first;
+		long pCurrentPhoneNumber = itr->first;
 		if (pCurrentPhoneNumber == NULL)
 			continue;
 
