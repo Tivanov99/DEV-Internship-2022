@@ -155,7 +155,9 @@ PERSONS* CPersonsView::GetSelectedRecordItemData()
 void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
 	int nNumberOfSelectedRow = GetSelectedRowNumber();
+
 	CListCtrl& LSCCitiesList = GetListCtrl();
+
 	CPersonsDocument* pPersonDocument = GetDocument();
 
 	switch (lHint)

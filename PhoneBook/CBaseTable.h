@@ -76,13 +76,10 @@ public:
 		return bResult;
 	}
 
-	bool SelectAll(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray, CString strSqlQuery, long lID=NULL)
+	bool SelectAll(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray)
 	{
 		CString strQuery;
-
-		lID == NULL?
-			strQuery.Format(strSqlQuery, m_strTableName) :
-			strQuery.Format(strSqlQuery, m_strTableName, lID);
+		strQuery.Format(SqlQueries::SelectAll, m_strTableName);
 
 		// Изпълняваме командата
 		if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
@@ -125,10 +122,10 @@ public:
 	};
 
 
-	bool SelectWhereID(const long lID, Record_Type& recTableRecord, CString strSqlQuery)
+	bool SelectWhereID(const long lID, Record_Type& recTableRecord)
 	{
 		CString strQuery;
-		strQuery.Format(strSqlQuery, m_strTableName, lID);
+		strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
 
 		if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
 		{
@@ -152,11 +149,11 @@ public:
 	};
 
 
-	bool UpdateWhereID(const long lID, const Record_Type& recTableRecord, CString strSqlQuery)
+	bool UpdateWhereID(const long lID, const Record_Type& recTableRecord)
 	{
 		// Конструираме заявката
 		CString strQuery;
-		strQuery.Format(strSqlQuery, m_strTableName, lID);
+		strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
 
 		// Изпълняваме командата
 		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
@@ -224,11 +221,11 @@ public:
 		return true;
 	};
 
-	bool DeleteWhereID(const long lID,CString strSqlQuery)
+	bool DeleteWhereID(const long lID)
 	{
 		// Конструираме заявката
 		CString strQuery;
-		strQuery.Format(strSqlQuery, m_strTableName, lID);
+		strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
 
 		// Изпълняваме командата
 		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))

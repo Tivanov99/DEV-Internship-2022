@@ -17,7 +17,6 @@ BEGIN_MESSAGE_MAP(CPersonsDialog, CDialog)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_READ_DATA, &CPersonsDialog::ManageContextMenuItems)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_DELETE, &CPersonsDialog::ManageContextMenuItems)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_INSERT, &CPersonsDialog::ManageContextMenuItems)
-
 	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CPersonsDialog::OnContextMenuEdit)
 	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CPersonsDialog::OnContextMenuDelete)
 	ON_COMMAND(ID_EDIT_CONTEXT_READ_DATA, &CPersonsDialog::OnContextMenuReadData)
@@ -221,7 +220,6 @@ void CPersonsDialog::OnOK()
 		AfxMessageBox(_T("The 'Last name' field: ") + strPersonLastNameErrorMessage);
 		return;
 	}
-
 
 	CITIES* pCity = (CITIES*)m_cmbCitiesNames.GetItemData(m_cmbCitiesNames.GetCurSel());
 
