@@ -139,7 +139,7 @@ void CPersonsDialog::SetDialogTitle()
 
 void CPersonsDialog::FillPersonDataFields()
 {
-	m_edbPersonFirstName.SetWindowText(m_recPerson.szFIRST_NAME);
+	m_edbPersonFirstName.SetWindowText(m_recPerson.szFirstName);
 	m_edbPersonFirstName.SetLimitText(GlobalConstants::_nPersonFirstNameSize);
 
 	m_edbPersonSecondName.SetWindowText(m_recPerson.szSECOND_NAME);
@@ -286,7 +286,7 @@ void CPersonsDialog::OnOK()
 
 	//m_recPerson.szADDRESS
 	m_edbPersonFirstName.GetWindowText(strPersonFirstName);
-	_tcscpy_s(m_recPerson.szFIRST_NAME, strPersonFirstName);
+	_tcscpy_s(m_recPerson.szFirstName, strPersonFirstName);
 
 	m_edbPersonSecondName.GetWindowText(strPersonSecondName);
 	_tcscpy_s(m_recPerson.szSECOND_NAME, strPersonSecondName);

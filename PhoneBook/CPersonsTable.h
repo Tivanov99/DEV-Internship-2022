@@ -33,7 +33,7 @@ protected:
 
 		BEGIN_ACCESSOR(ModifyColumnCode, true)
 		COLUMN_ENTRY(2, m_recTableRecord.lUpdateCounter)
-		COLUMN_ENTRY(3, m_recTableRecord.szFIRST_NAME)
+		COLUMN_ENTRY(3, m_recTableRecord.szFirstName)
 		COLUMN_ENTRY(4, m_recTableRecord.szSECOND_NAME)
 		COLUMN_ENTRY(5, m_recTableRecord.szLAST_NAME)
 		COLUMN_ENTRY(6, m_recTableRecord.szUCN)

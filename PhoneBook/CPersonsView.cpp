@@ -183,7 +183,7 @@ void CPersonsView::InsertNewRecordToCListCtrl(PERSONS* pPerson)
 
 	const int nRow = LSCCitiesList.GetItemCount();
 
-	LSCCitiesList.InsertItem(nRow, pPerson->szFIRST_NAME);
+	LSCCitiesList.InsertItem(nRow, pPerson->szFirstName);
 
 	int nColumnNumber = 1;
 
@@ -199,7 +199,7 @@ void CPersonsView::OnContextMenuDelete()
 		return;
 
 	CString strMessage;
-	strMessage.Format(_T("Do you want the record to be deleted? First name : %s Last name : %s"), pPerson->szFIRST_NAME, pPerson->szLAST_NAME);
+	strMessage.Format(_T("Do you want the record to be deleted? First name : %s Last name : %s"), pPerson->szFirstName, pPerson->szLAST_NAME);
 
 	const int msgboxID = MessageBox(
 		(LPCWSTR)strMessage,
@@ -272,7 +272,7 @@ void CPersonsView::OnContextMenuInsert()
 	//TODO: Check for inserting phone numbers
 }
 
-
+//TODO: Check for bool methods.
 void CPersonsView::OnContextMenuEdit()
 {
 	PERSONS* pPerson = GetSelectedRecordItemData();
@@ -280,12 +280,10 @@ void CPersonsView::OnContextMenuEdit()
 	if (pPerson == NULL)
 		return;
 
-	PERSONS oPerson = *pPerson;
 	CPersonsDocument* pPersonDocument = GetDocument();
 
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
-
 
 	CSelfClearingMap<long, PHONE_TYPES*> oPhoneTypesMap;
 
@@ -294,19 +292,17 @@ void CPersonsView::OnContextMenuEdit()
 	CSelfClearingMap<long, PHONE_NUMBERS*> oPhoneNumbersMap;
 	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersMap);
 
-
-	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, oPerson, oCitiesArray, oPhoneNumbersMap, oPhoneTypesMap);
+	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, *pPerson, oCitiesArray, oPhoneNumbersMap, oPhoneTypesMap); 
 
 	if (oPersonsDialog.DoModal() != IDOK)
 		return;
 
-	if (!pPersonDocument->UpdatePerson(oPerson))
+	//TODO: transaction and one call.
+	if (!pPersonDocument->UpdatePerson(*pPerson))
 	{
 		AfxMessageBox(_T("Record update failed."));
 		return;
 	}
 
 	pPersonDocument->UpdatePersonPhoneNumbers(pPerson->lID, oPhoneNumbersMap);
-
-
 }

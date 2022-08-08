@@ -239,7 +239,7 @@ PHONE_TYPES* CPersonsDocument::GetPhoneTypeById(long lID, CPhoneTypesArray& oPho
 	return NULL;
 }
 
-
+//TODO: транзакция при update на person i phone n
 bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID, CSelfClearingMap<long, PHONE_NUMBERS*>& oModifiedPhoneNumbersMap)
 {
 	CSelfClearingMap<long, PHONE_NUMBERS*> oPhoneNumbersOriginalMap;
@@ -247,18 +247,16 @@ bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID, CSelfClearingMap
 	if (!GetPersonPhoneNumbers(lPersonID, oPhoneNumbersOriginalMap))
 		return false;
 
-	//CSelfClearingMap<long, PHONE_NUMBERS*>::iterator itrOriginalMap;
-
 	PHONE_NUMBERS* pOriginalPhoneNumber;
 	long lId;
 
-	POSITION posPhoneNumbers = oPhoneNumbersOriginalMap.GetStartPosition();
+	POSITION posOriginalPhoneNumbers = oPhoneNumbersOriginalMap.GetStartPosition();
 
-	while (posPhoneNumbers)
+	while (posOriginalPhoneNumbers)
 	{
-		if (posPhoneNumbers == NULL)
+		if (posOriginalPhoneNumbers == NULL)
 			break;
-		oPhoneNumbersOriginalMap.GetNextAssoc(posPhoneNumbers, lId, pOriginalPhoneNumber);
+		oPhoneNumbersOriginalMap.GetNextAssoc(posOriginalPhoneNumbers, lId, pOriginalPhoneNumber);
 
 		if (pOriginalPhoneNumber == NULL)
 			continue;
@@ -268,9 +266,9 @@ bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID, CSelfClearingMap
 		if (!oModifiedPhoneNumbersMap.Lookup(lId, pCurrentModifiedPhoneNumber))
 		{
 			if (!m_oPhoneNumbersData.DeleteWhereID(pOriginalPhoneNumber->lID))
-			{
-				oModifiedPhoneNumbersMap.RemoveKey(pOriginalPhoneNumber->lID);
-			}
+				return false;
+
+			oPhoneNumbersOriginalMap.RemoveKey(pOriginalPhoneNumber->lID);
 			continue;
 		}
 
@@ -287,8 +285,7 @@ bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID, CSelfClearingMap
 		}
 	}
 
-	//CSelfClearingMap<long, PHONE_NUMBERS*>::iterator itrModifiedMap;
-
+	//Insert
 	POSITION posModifiedMap = oModifiedPhoneNumbersMap.GetStartPosition();
 
 	while (posModifiedMap)
@@ -302,59 +299,7 @@ bool CPersonsDocument::UpdatePersonPhoneNumbers(long lPersonID, CSelfClearingMap
 		if (pCurrentPhoneNumber != NULL)
 			if (!m_oPhoneNumbersData.InsertRecord(*pCurrentPhoneNumber))
 				return false;
-
-
 	}
-	/*for (itrModifiedMap = oModifiedPhoneNumbersMap.begin(); itrModifiedMap != oModifiedPhoneNumbersMap.end();++itrModifiedMap)
-	{
-		PHONE_NUMBERS* pCurrentPhoneNumber = itrModifiedMap->second;
-
-		if (pCurrentPhoneNumber != NULL)
-			if (!m_oPhoneNumbersData.InsertRecord(*pCurrentPhoneNumber))
-				return false;
-	}*/
-
-	/*for (itrOriginalMap = oPhoneNumbersOriginalMap.begin(); itrOriginalMap != oPhoneNumbersOriginalMap.end();++itrOriginalMap)
-	{
-		PHONE_NUMBERS* pCurrentOriginalPhoneNumber = itrOriginalMap->second;
-		if (pCurrentOriginalPhoneNumber == NULL)
-			continue;
-
-		CSelfClearingMap<long, PHONE_NUMBERS*>::iterator itrModifiedMap;
-
-		itrModifiedMap = oModifiedPhoneNumbersMap.find(pCurrentOriginalPhoneNumber->lID);
-
-		if (itrModifiedMap == oModifiedPhoneNumbersMap.end())
-		{
-			if (!m_oPhoneNumbersData.DeleteWhereID(pCurrentOriginalPhoneNumber->lID))
-				oModifiedPhoneNumbersMap.erase(pCurrentOriginalPhoneNumber->lID);
-				continue;
-		}
-
-		PHONE_NUMBERS* pCurrentModifiedPhoneNumber = itrModifiedMap->second;
-
-		if (m_oPhoneNumbersData.ComparePhoneNumbers(*pCurrentModifiedPhoneNumber, *pCurrentOriginalPhoneNumber))
-		{
-			if (!m_oPhoneNumbersData.UpdateWhereID(pCurrentModifiedPhoneNumber->lID, *pCurrentModifiedPhoneNumber))
-				return false;
-
-			oModifiedPhoneNumbersMap.erase(pCurrentOriginalPhoneNumber->lID);
-		}
-		else
-		{
-			oModifiedPhoneNumbersMap.erase(pCurrentOriginalPhoneNumber->lID);
-		}
-	}*/
-
-	/*CSelfClearingMap<long, PHONE_NUMBERS*>::iterator itrModifiedMap;
-	for (itrModifiedMap = oModifiedPhoneNumbersMap.begin(); itrModifiedMap != oModifiedPhoneNumbersMap.end();++itrModifiedMap)
-	{
-		PHONE_NUMBERS* pCurrentPhoneNumber = itrModifiedMap->second;
-
-		if (pCurrentPhoneNumber != NULL)
-			if (!m_oPhoneNumbersData.InsertRecord(*pCurrentPhoneNumber))
-				return false;
-	}*/
 
 	return true;
 }

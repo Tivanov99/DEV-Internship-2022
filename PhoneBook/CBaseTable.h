@@ -42,342 +42,33 @@ public:
 	// ----------------
 public:
 
-	CDBPropSet GetModifyDBPropSet() const
-	{
-		CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
-		oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
-		oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true);
-		oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true);
-		oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE);
-		return oUpdateDBPropSet;
-	};
+	//TODO: suummary
 
-	bool ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor)
-	{
-		bool bResult = false;
-		switch (eQueryAccessor)
-		{
-		case AccessorTypes::NoneModifying:
-			FAILED(CCommand<CAccessor<Table_AcessorType>>::Open(m_oSession, strQuery)) ?
-				ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
-				bResult = true;
-			break;
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
+	CDBPropSet GetModifyDBPropSet() const;
 
-		case AccessorTypes::Modifying:
-			FAILED(CCommand<CAccessor<Table_AcessorType>>::Open(m_oSession, strQuery, &GetModifyDBPropSet())) ?
-				ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
-				bResult = true;
-			break;
+	bool ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor);
 
-		default:
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
-			break;
-		}
-		return bResult;
-	}
+	bool SelectAll(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray);
 
-	bool SelectAll(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray)
-	{
-		CString strQuery;
-		strQuery.Format(SqlQueries::SelectAll, m_strTableName);
+	bool SelectWhereID(const long lID, Record_Type& recTableRecord);
 
-		// Изпълняваме командата
-		if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
-		{
-			CloseRowSet();
-			return false;
+	bool UpdateWhereID(const long lID, const Record_Type& recTableRecord);
 
-		}
+	bool InsertRecord(const Record_Type& recTableRecord);
 
-		//TODO: CHECK HERE
-		HRESULT hResult = MoveFirst();
-		if (FAILED(hResult))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
-			CloseRowSet();
-			return false;
-		}
+	bool DeleteWhereID(const long lID);
 
-		// Прочитаме всички данни
-		while (hResult == S_OK)
-		{
-			Record_Type* pCurrentRecord = new Record_Type;
-			*pCurrentRecord = m_recTableRecord;
-			oPtrArray.Add(pCurrentRecord);
+	bool DeleteBySpecificColumnWhereID(const long lID, CString strSqlWhereClause);
 
-			hResult = MoveNext();
+	bool SelectBySpecificColumnWhereID(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray, CString strSqlWhereClause);
 
-			if (FAILED(hResult) && hResult != DB_S_ENDOFROWSET)
-			{
-				ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
-				CloseRowSet();
+	bool UpdateBySpecificColumnWhereID(const long lID, const Record_Type& recTableRecord, CString strSqlWhereClause);
 
-				return false;
-			}
-			// Logic with the result
-		}
-		CloseRowSet();
-
-		return true;
-	};
-
-
-	bool SelectWhereID(const long lID, Record_Type& recTableRecord)
-	{
-		CString strQuery;
-		strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
-
-		if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
-		{
-			CloseRowSet();
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-			return false;
-		}
-
-		if (FAILED(MoveFirst()))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
-			CloseRowSet();
-
-			return false;
-		}
-		recTableRecord = m_recTableRecord;
-
-		CloseRowSet();
-
-		return true;
-	};
-
-
-	bool UpdateWhereID(const long lID, const Record_Type& recTableRecord)
-	{
-		// Конструираме заявката
-		CString strQuery;
-		strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
-
-		// Изпълняваме командата
-		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
-		{
-			CloseRowSet();
-			return false;
-		}
-
-		if (FAILED(MoveFirst()))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
-			CloseRowSet();
-			return false;
-		}
-
-		if (recTableRecord.lUpdateCounter != m_recTableRecord.lUpdateCounter)
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszInvalidRecordVersion, NULL);
-			CloseRowSet();
-
-			return false;
-		}
-
-		m_recTableRecord.lUpdateCounter++;
-		m_recTableRecord = recTableRecord;
-
-		if (FAILED(SetData(ModifyColumnCode)))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorUpdatingRecord, NULL);
-			CloseRowSet();
-
-			return false;
-		}
-		CloseRowSet();
-
-		return true;
-	};
-
-
-	bool InsertRecord(const Record_Type& recTableRecord)
-	{
-		CString strQuery;
-		strQuery.Format(SqlQueries::EmptySelect, m_strTableName);
-
-		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, NULL);
-			CloseRowSet();
-
-			return false;
-		}
-
-		m_recTableRecord = recTableRecord;
-
-		if (FAILED(CCommand<CAccessor<Table_AcessorType>>::Insert(ModifyColumnCode)))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorInsertingRecord, NULL);
-			CloseRowSet();
-
-			return false;
-		}
-		CloseRowSet();
-
-		return true;
-	};
-
-	bool DeleteWhereID(const long lID)
-	{
-		// Конструираме заявката
-		CString strQuery;
-		strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
-
-		// Изпълняваме командата
-		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-			CloseRowSet();
-			return false;
-		}
-
-		if (MoveFirst() != S_OK)
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
-			CloseRowSet();
-			return false;
-		}
-
-		if (FAILED(Delete()))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorDeletingRecord, NULL);
-			CloseRowSet();
-			return false;
-		}
-		CloseRowSet();
-		return true;
-	};
-
-	bool DeleteBySpecificColumnWhereID(const long lID, CString strSqlWhereClause)
-	{
-		// Конструираме заявката
-		CString strQuery;
-		strQuery.Format(SqlQueries::SelectAll, m_strTableName);
-		strQuery.Append(strSqlWhereClause);
-
-		// Изпълняваме командата
-		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-			CloseRowSet();
-			return false;
-		}
-		if (MoveFirst () != S_OK)
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
-			CloseRowSet();
-			return false;
-		}
-
-		if (FAILED(Delete()))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorDeletingRecord, NULL);
-			CloseRowSet();
-			return false;
-		}
-		CloseRowSet();
-		return true;
-	};
-
-	bool SelectBySpecificColumnWhereID(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray, CString strSqlWhereClause)
-	{
-		CString strQuery;
-		strQuery.Format(SqlQueries::SelectAll, m_strTableName);
-		strQuery.Append(strSqlWhereClause);
-
-		if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
-		{
-			CloseRowSet();
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
-			return false;
-		}
-		
-		HRESULT hResult = MoveFirst();
-		if (FAILED(hResult))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
-			CloseRowSet();
-			return false;
-		}
-
-		while (hResult == S_OK)
-		{
-			Record_Type* pCurrentRecord = new Record_Type;
-			*pCurrentRecord = m_recTableRecord;
-			oPtrArray.Add(pCurrentRecord);
-
-			hResult = MoveNext();
-
-			if (FAILED(hResult) && hResult != DB_S_ENDOFROWSET)
-			{
-				ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
-				CloseRowSet();
-
-				return false;
-			}
-			// Logic with the result
-		}
-
-		CloseRowSet();
-
-		return true;
-	};
-
-
-	bool UpdateBySpecificColumnWhereID(const long lID, const Record_Type& recTableRecord, CString strSqlWhereClause)
-	{
-		// Конструираме заявката
-		CString strQuery;
-		strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
-		strQuery.Append(strSqlWhereClause);
-
-		// Изпълняваме командата
-		if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
-		{
-			CloseRowSet();
-			return false;
-		}
-
-		if (FAILED(MoveFirst()))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
-			CloseRowSet();
-
-			return false;
-		}
-
-		if (recTableRecord.lUpdateCounter != m_recTableRecord.lUpdateCounter)
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszInvalidRecordVersion, NULL);
-			CloseRowSet();
-
-			return false;
-		}
-
-		m_recTableRecord.lUpdateCounter++;
-		m_recTableRecord = recTableRecord;
-
-		if (FAILED(SetData(ModifyColumnCode)))
-		{
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorUpdatingRecord, NULL);
-			CloseRowSet();
-
-			return false;
-		}
-		CloseRowSet();
-
-		return true;
-	};
-
-
-
-	void CloseRowSet()
-	{
-		Close();
-	}
+	void CloseRowSet();
 
 	// Members
 	// -------------
@@ -389,3 +80,348 @@ private:
 	CString m_strTableName;
 };
 
+
+
+template <typename Record_Type, class Table_AcessorType>
+CDBPropSet CBaseTable<Record_Type, Table_AcessorType>::GetModifyDBPropSet() const
+{
+	CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
+	oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true);
+	oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true);
+	oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true);
+	oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE);
+	return oUpdateDBPropSet;
+};
+
+
+template <typename Record_Type, class Table_AcessorType>
+bool CBaseTable<Record_Type, Table_AcessorType>::ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor)
+{
+	bool bResult = false;
+	switch (eQueryAccessor)
+	{
+	case AccessorTypes::NoneModifying:
+		FAILED(CCommand<CAccessor<Table_AcessorType>>::Open(m_oSession, strQuery)) ?
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
+			bResult = true;
+		break;
+
+	case AccessorTypes::Modifying:
+		FAILED(CCommand<CAccessor<Table_AcessorType>>::Open(m_oSession, strQuery, &GetModifyDBPropSet())) ?
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
+			bResult = true;
+		break;
+
+	default:
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
+		break;
+	}
+	return bResult;
+}
+
+
+template <typename Record_Type, class Table_AcessorType>
+bool CBaseTable<Record_Type, Table_AcessorType>::SelectAll(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray)
+{
+	CString strQuery;
+	strQuery.Format(SqlQueries::SelectAll, m_strTableName);
+
+	// Изпълняваме командата
+	if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
+	{
+		CloseRowSet();
+		return false;
+
+	}
+
+	//TODO: CHECK HERE
+	HRESULT hResult = MoveFirst();
+	if (FAILED(hResult))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+		CloseRowSet();
+		return false;
+	}
+
+	// Прочитаме всички данни
+	while (hResult == S_OK)
+	{
+		Record_Type* pCurrentRecord = new Record_Type;
+		*pCurrentRecord = m_recTableRecord;
+		oPtrArray.Add(pCurrentRecord);
+
+		hResult = MoveNext();
+
+		if (FAILED(hResult) && hResult != DB_S_ENDOFROWSET)
+		{
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+			CloseRowSet();
+
+			return false;
+		}
+		// Logic with the result
+	}
+	CloseRowSet();
+
+	return true;
+};
+
+template <typename Record_Type, class Table_AcessorType>
+bool CBaseTable<Record_Type, Table_AcessorType>::SelectWhereID(const long lID, Record_Type& recTableRecord)
+{
+	CString strQuery;
+	strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
+
+	if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
+	{
+		CloseRowSet();
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
+		return false;
+	}
+
+	if (FAILED(MoveFirst()))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+		CloseRowSet();
+
+		return false;
+	}
+	recTableRecord = m_recTableRecord;
+
+	CloseRowSet();
+
+	return true;
+};
+
+template <typename Record_Type, class Table_AcessorType>
+bool CBaseTable<Record_Type, Table_AcessorType>::UpdateWhereID(const long lID, const Record_Type& recTableRecord)
+{
+	// Конструираме заявката
+	CString strQuery;
+	strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
+
+	// Изпълняваме командата
+	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
+	{
+		CloseRowSet();
+		return false;
+	}
+
+	if (FAILED(MoveFirst()))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
+		CloseRowSet();
+		return false;
+	}
+
+	if (recTableRecord.lUpdateCounter != m_recTableRecord.lUpdateCounter)
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszInvalidRecordVersion, NULL);
+		CloseRowSet();
+		return false;
+	}
+
+	m_recTableRecord.lUpdateCounter++;
+	m_recTableRecord = recTableRecord;
+
+	if (FAILED(SetData(ModifyColumnCode)))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorUpdatingRecord, NULL);
+		CloseRowSet();
+
+		return false;
+	}
+	CloseRowSet();
+
+	return true;
+};
+
+template <typename Record_Type, class Table_AcessorType>
+bool CBaseTable<Record_Type, Table_AcessorType>::InsertRecord(const Record_Type& recTableRecord)
+{
+	CString strQuery;
+	strQuery.Format(SqlQueries::EmptySelect, m_strTableName);
+
+	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, NULL);
+		CloseRowSet();
+
+		return false;
+	}
+
+	m_recTableRecord = recTableRecord;
+
+	if (FAILED(CCommand<CAccessor<Table_AcessorType>>::Insert(ModifyColumnCode)))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorInsertingRecord, NULL);
+		CloseRowSet();
+
+		return false;
+	}
+	CloseRowSet();
+
+	return true;
+};
+
+
+template <typename Record_Type, class Table_AcessorType>
+bool CBaseTable<Record_Type, Table_AcessorType>::DeleteWhereID(const long lID)
+{
+	// Конструираме заявката
+	CString strQuery;
+	strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
+
+	// Изпълняваме командата
+	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
+		CloseRowSet();
+		return false;
+	}
+
+	if (MoveFirst() != S_OK)
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
+		CloseRowSet();
+		return false;
+	}
+
+	if (FAILED(Delete()))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorDeletingRecord, NULL);
+		CloseRowSet();
+		return false;
+	}
+	CloseRowSet();
+	return true;
+};
+
+template <typename Record_Type, class Table_AcessorType>
+bool CBaseTable<Record_Type, Table_AcessorType>::DeleteBySpecificColumnWhereID(const long lID, CString strSqlWhereClause)
+{
+	// Конструираме заявката
+	CString strQuery;
+	strQuery.Format(SqlQueries::SelectAll, m_strTableName);
+	strQuery.Append(strSqlWhereClause);
+
+	// Изпълняваме командата
+	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
+		CloseRowSet();
+		return false;
+	}
+	if (MoveFirst() != S_OK)
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
+		CloseRowSet();
+		return false;
+	}
+
+	if (FAILED(Delete()))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorDeletingRecord, NULL);
+		CloseRowSet();
+		return false;
+	}
+	CloseRowSet();
+	return true;
+};
+
+template <typename Record_Type, class Table_AcessorType>
+bool CBaseTable<Record_Type, Table_AcessorType>::SelectBySpecificColumnWhereID(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray, CString strSqlWhereClause)
+{
+	CString strQuery;
+	strQuery.Format(SqlQueries::SelectAll, m_strTableName);
+	strQuery.Append(strSqlWhereClause);
+
+	if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
+	{
+		CloseRowSet();
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery);
+		return false;
+	}
+
+	HRESULT hResult = MoveFirst();
+	if (FAILED(hResult))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+		CloseRowSet();
+		return false;
+	}
+
+	while (hResult == S_OK)
+	{
+		Record_Type* pCurrentRecord = new Record_Type;
+		*pCurrentRecord = m_recTableRecord;
+		oPtrArray.Add(pCurrentRecord);
+
+		hResult = MoveNext();
+
+		if (FAILED(hResult) && hResult != DB_S_ENDOFROWSET)
+		{
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
+			CloseRowSet();
+
+			return false;
+		}
+		// Logic with the result
+	}
+	CloseRowSet();
+	return true;
+};
+
+
+template <typename Record_Type, class Table_AcessorType>
+bool CBaseTable<Record_Type, Table_AcessorType>::UpdateBySpecificColumnWhereID(const long lID, const Record_Type& recTableRecord, CString strSqlWhereClause)
+{
+	// Конструираме заявката
+	CString strQuery;
+	strQuery.Format(SqlQueries::SelectWhereID, m_strTableName, lID);
+	strQuery.Append(strSqlWhereClause);
+
+	// Изпълняваме командата
+	if (!ExecuteQuery(strQuery, AccessorTypes::Modifying))
+	{
+		CloseRowSet();
+		return false;
+	}
+
+	if (FAILED(MoveFirst()))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
+		CloseRowSet();
+
+		return false;
+	}
+
+	if (recTableRecord.lUpdateCounter != m_recTableRecord.lUpdateCounter)
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszInvalidRecordVersion, NULL);
+		CloseRowSet();
+
+		return false;
+	}
+
+	m_recTableRecord.lUpdateCounter++;
+	m_recTableRecord = recTableRecord;
+
+	if (FAILED(SetData(ModifyColumnCode)))
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorUpdatingRecord, NULL);
+		CloseRowSet();
+
+		return false;
+	}
+	CloseRowSet();
+
+	return true;
+};
+
+
+template <typename Record_Type, class Table_AcessorType>
+void CBaseTable<Record_Type, Table_AcessorType>::CloseRowSet()
+{
+	Close();
+}
