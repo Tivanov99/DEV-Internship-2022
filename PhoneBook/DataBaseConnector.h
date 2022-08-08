@@ -21,32 +21,23 @@ private:
 	// Methods
 	// ----------------
 public:
-	/// <summary>
-	///  Функция която създава рол-сет.
-	/// </summary>
+	/// <summary>Функция която създава рол-сет.</summary>
 	CDBPropSet GetDBPropSet() const;
-
-	/// <summary>
-	///  Функция която отваря сесия и връзка към базата.
-	/// </summary>
+	/// <summary>Функция която отваря сесия и връзка към базата.</summary>
 	bool OpenDbConnectionAndSession();
-
-	/// <summary>
-	///  Функция която затваря връзката към базата.
-	/// </summary>
+	/// <summary>Функция която затваря връзката към базата.</summary>
 	void  CloseDbConnectionAndSession();
-
-	/// <summary>
-	/// Getter
-	/// </summary>
+	/// <summary> Getter</summary>
 	CSession& GetSession();
-
+	/// <summary>Метод връщащ инстанция от този клас</summary>
+	/// <returns>Инстанция от този клас</returns>
 	static DataBaseConnector* GetInstance();
-
 	// Members
 	// -------------
 private:
+	/// <summary>Мембър чрез който имаме достъп до бизнеслогиката. </summary>
 	CDataSource m_oDataSource;
+	/// <summary>Мембър съдържащ сесията която е нужна при заявките към базата.</summary>
 	CSession m_oSession;
 };
 

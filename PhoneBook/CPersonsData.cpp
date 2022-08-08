@@ -12,7 +12,9 @@ bool CPersonsData::SelectAllPhoneNumbersByPersonId(long lPersonID, CPhoneNumbers
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
-	pDatabaseConnector->OpenDbConnectionAndSession();
+	if (pDatabaseConnector->OpenDbConnectionAndSession())
+		return false;
+
 	CPhoneNumbersTable oPhoneNumbersTable(pDatabaseConnector->GetSession());
 
 	CString strWhereClause;
@@ -246,6 +248,22 @@ bool CPersonsData::UpdatePersonPhoneNumbers(long lPersonID, CPhoneNumbersMap& oM
 
 	POSITION posOriginalPhoneNumbers = oPhoneNumbersOriginalMap.GetStartPosition();
 
+	for (INT_PTR i = 0; i < oPhoneNumbersArray.GetCount(); i++)
+	{
+		PHONE_NUMBERS* pCurrentPhoneNumber = oPhoneNumbersArray.GetAt(i);
+		if (pCurrentPhoneNumber == NULL)
+			continue;
+
+		if (!oModifiedPhoneNumbersMap.Lookup(lId, pCurrentPhoneNumber))
+		{
+			if (!DeleteWhereID(pOriginalPhoneNumber->lID))
+				return false;
+
+			oPhoneNumbersOriginalMap.RemoveKey(pOriginalPhoneNumber->lID);
+			continue;
+		}
+
+	}
 	while (posOriginalPhoneNumbers)
 	{
 		if (posOriginalPhoneNumbers == NULL)

@@ -170,35 +170,18 @@ void CPersonsDialog::FillCitiesComboBox()
 
 void CPersonsDialog::FillPhoneNumbers()
 {
-	CSelfClearingMap<long, PHONE_NUMBERS*> map;
-
-	POSITION posPhoneNumbers = m_oPhoneNumbersMap.GetStartPosition();
-
-	long lId;
-	PHONE_NUMBERS* pPhoneNumber;
-
-	while (posPhoneNumbers)
+	for (INT_PTR i = 0; i < m_oPhoneNumbersArray.GetCount(); i++)
 	{
-		m_oPhoneNumbersMap.GetNextAssoc(posPhoneNumbers, lId, pPhoneNumber);
+		PHONE_NUMBERS* pPhoneNumber = m_oPhoneNumbersArray.GetAt(i);
 		if (pPhoneNumber == NULL)
-			return;
+			continue;
 		InsertRecordToListCtrl(pPhoneNumber);
 	}
-
-	//for (itrPhoneNumbers = m_oPhoneNumbersMap.begin(); itrPhoneNumbers != m_oPhoneNumbersMap.end(); ++itrPhoneNumbers)
-	//{
-	//	PHONE_NUMBERS* pCurrentPhoneNumber = itrPhoneNumbers->second;
-
-	//	if (pCurrentPhoneNumber == NULL)
-	//		continue;
-	//	InsertRecordToListCtrl(pCurrentPhoneNumber);
-	//}
 }
 
 void CPersonsDialog::InsertRecordToListCtrl(PHONE_NUMBERS* pPhoneNumber)
 {
 	PHONE_TYPES* pPhoneType;
-
 
 	if (!m_oPhoneTypesMap.Lookup(pPhoneNumber->lPhoneTypeId, pPhoneType))
 		return;
@@ -206,23 +189,10 @@ void CPersonsDialog::InsertRecordToListCtrl(PHONE_NUMBERS* pPhoneNumber)
 	if (pPhoneType == NULL)
 		return;
 
-
-	/*CSelfClearingMap<long, PHONE_TYPES*>::iterator intrPhoneTypes = m_oPhoneTypesMap.find(pPhoneNumber->lPhoneTypeId);
-
-	if (intrPhoneTypes == m_oPhoneTypesMap.end())
-		return;
-
-	PHONE_TYPES* pPhoneType = intrPhoneTypes->second;
-
-	if (pPhoneType == NULL)
-		return;*/
-
 	const int nRow = m_lscPersonPhoneNumbers.GetItemCount();
 
 	m_lscPersonPhoneNumbers.InsertItem(nRow, pPhoneNumber->szPhoneNumber);
-
 	m_lscPersonPhoneNumbers.SetItemText(nRow, 1, pPhoneType->szPhoneType);
-
 	m_lscPersonPhoneNumbers.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pPhoneNumber));
 }
 
@@ -305,7 +275,6 @@ void CPersonsDialog::OnOK()
 
 void CPersonsDialog::OnBnClickedCancel()
 {
-	// TODO: Add your control notification handler code here
 	CDialog::OnCancel();
 }
 
@@ -354,6 +323,8 @@ void CPersonsDialog::OnContextMenuDelete()
 		const int nSelectedRow = m_lscPersonPhoneNumbers.GetSelectionMark();
 		m_lscPersonPhoneNumbers.DeleteItem(nSelectedRow);
 
+		m_oPhoneNumbersArray.remove
+
 		m_oPhoneNumbersMap.RemoveKey(pPhoneNumber->lID);
 
 		delete pPhoneNumber;
@@ -374,7 +345,7 @@ void CPersonsDialog::OnContextMenuReadData()
 void CPersonsDialog::OnContextMenuInsert()
 {
 	PHONE_NUMBERS* pPhoneNumber = new PHONE_NUMBERS;
-	_tcscpy_s(pPhoneNumber->szPhoneNumber, _T(""));
+	//_tcscpy_s(pPhoneNumber->szPhoneNumber, _T(""));
 
 	CPhoneNumbersDialog oPhoneNumbersDialog(DialogWindowActions::InsertData,*pPhoneNumber, m_oPhoneTypesMap);
 
@@ -385,12 +356,9 @@ void CPersonsDialog::OnContextMenuInsert()
 		return;
 	}
 
-	pPhoneNumber->lID = 0;
 	pPhoneNumber->lPersonId = m_recPerson.lID;
 
-	PHONE_NUMBERS* p;
-
-	m_oPhoneNumbersMap.SetAt(pPhoneNumber->lID, pPhoneNumber);
+	m_oPhoneNumbersArray.Add(pPhoneNumber);
 
 	InsertRecordToListCtrl(pPhoneNumber);
 }

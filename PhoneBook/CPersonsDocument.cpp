@@ -215,11 +215,9 @@ bool CPersonsDocument::GetAllPhoneTypes(CSelfClearingMap<long, PHONE_TYPES*>& oM
 		if (pCurrentPhoneType == NULL)
 			continue;
 
-
 		PHONE_TYPES* pPhoneType = new PHONE_TYPES();
 
 		*pPhoneType = *pCurrentPhoneType;
-
 
 		oMap.SetAt(pPhoneType->lID, pPhoneType);
 	}
