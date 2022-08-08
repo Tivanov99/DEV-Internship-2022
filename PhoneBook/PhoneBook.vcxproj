@@ -224,7 +224,6 @@
     <ClInclude Include="TextDataValidator.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CBaseView.cpp" />
     <ClCompile Include="CCitiesData.cpp" />
     <ClCompile Include="CCitiesDialog.cpp" />
     <ClCompile Include="CCitiesDocument.cpp" />
@@ -244,10 +243,8 @@
     <ClCompile Include="CPhoneTypesData.cpp" />
     <ClCompile Include="CPhoneTypesDocument.cpp" />
     <ClCompile Include="CPhoneTypesTable.cpp" />
-    <ClCompile Include="CSelfClearingMap.cpp" />
     <ClCompile Include="DataBaseConnector.cpp" />
     <ClCompile Include="ErrorVisualizator.cpp" />
-    <ClCompile Include="GlobalConstants.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -256,7 +253,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="PhoneBook.cpp" />
-    <ClCompile Include="CSelfClearingTypedPtrArray.cpp" />
     <ClCompile Include="SqlQueries.cpp" />
     <ClCompile Include="TextDataValidator.cpp" />
   </ItemGroup>

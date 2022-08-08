@@ -364,6 +364,4 @@ void CPersonsDialog::OnContextMenuInsert()
 	m_oPhoneNumbersMap.insert(pair<long, PHONE_NUMBERS*>(pPhoneNumber->lID, pPhoneNumber));
 
 	InsertRecordToListCtrl(pPhoneNumber);
-
-	// TODO: Add your command handler code here
 }

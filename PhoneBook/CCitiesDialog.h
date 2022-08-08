@@ -92,12 +92,14 @@ private:
 	/// </summary>
 	DialogWindowActions m_eOperation;
 
-
 	/// <summary>
 	/// Мембър съдържащ методи за валидиране на сойностите в текстовите полета.
 	/// </summary>
 	CCitiesDataValidator m_oDataValidator;
 private:
+	/// <summary>
+	/// Функция изпълняваща се когато в диалоговия прозорец се избере бутона 'Ok'
+	/// </summary>
 	CButton btn_Ok;
 };
 
