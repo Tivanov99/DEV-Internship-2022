@@ -109,3 +109,8 @@ typedef CSelfClearingTypedPtrArray<CITIES> CCitiesArray;
 typedef CSelfClearingTypedPtrArray<PERSONS> CPersonsArray;
 typedef CSelfClearingTypedPtrArray<PHONE_NUMBERS> CPhoneNumbersArray;
 typedef CSelfClearingTypedPtrArray<PHONE_TYPES> CPhoneTypesArray;
+
+typedef CSelfClearingMap<long, PHONE_NUMBERS*> CPhoneNumbersMap;
+typedef CSelfClearingMap<long, PHONE_TYPES*> CPhoneTypesMap;
+typedef CSelfClearingMap<long, CITIES*> CCitiesMap;
+typedef CSelfClearingMap<long, PERSONS*> CPersonsMap;

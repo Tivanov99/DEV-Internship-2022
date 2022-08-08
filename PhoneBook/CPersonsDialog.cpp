@@ -25,9 +25,9 @@ END_MESSAGE_MAP()
 
 
 CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerson, CCitiesArray& oCitiesArray,
-	CSelfClearingMap<long, PHONE_NUMBERS*>& oPhoneNumbersMap, CSelfClearingMap<long, PHONE_TYPES*>& oMap, CWnd* pParent /*=nullptr*/)
+	CPhoneNumbersMap& oPhoneNumbersMap, CPhoneTypesMap& oPhoneTypesMap, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation), m_oCitiesArray(oCitiesArray),
-	m_oPhoneNumbersMap(oPhoneNumbersMap), m_oPhoneTypesMap(oMap)
+	m_oPhoneNumbersMap(oPhoneNumbersMap), m_oPhoneTypesMap(oPhoneTypesMap)
 {
 }
 CPersonsDialog :: ~CPersonsDialog() {};
@@ -172,8 +172,16 @@ void CPersonsDialog::FillCitiesComboBox()
 
 void CPersonsDialog::FillPhoneNumbers()
 {
-	CSelfClearingMap<long, PHONE_TYPES*>::iterator intrPhoneTypes;
-	CSelfClearingMap<long, PHONE_NUMBERS*>::iterator itrPhoneNumbers;
+	POSITION posPhoneTypes = m_oPhoneTypesMap.GetStartPosition();
+
+	POSITION posPhoneNumbers = m_oPhoneNumbersMap.GetStartPosition();
+
+	long lId;
+
+	while (posPhoneNumbers)
+	{
+		m_oPhoneNumbersMap.GetNextAssoc(posPhoneNumbers,)
+	}
 
 	for (itrPhoneNumbers = m_oPhoneNumbersMap.begin(); itrPhoneNumbers != m_oPhoneNumbersMap.end(); ++itrPhoneNumbers)
 	{

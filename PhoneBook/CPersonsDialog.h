@@ -17,7 +17,7 @@ class CPersonsDialog : public CDialog
 
 public:
 	CPersonsDialog(DialogWindowActions eOperations, PERSONS& recPerson, CCitiesArray& oCitiesArray,
-		CSelfClearingMap<long, PHONE_NUMBERS*>& oPhoneNumbersMap, CSelfClearingMap<long, PHONE_TYPES*>& oMap, CWnd* pParent = nullptr);  // standard constructor
+		CPhoneNumbersMap& oPhoneNumbersMap, CPhoneTypesMap& oPhoneTypesMap, CWnd* pParent = nullptr);  // standard constructor
 	virtual ~CPersonsDialog();
 
 	// Dialog Data
@@ -86,12 +86,12 @@ private:
 	/// <summary>
 	/// Мембър съдържащ всички телефонни номера за текущият Person.
 	/// </summary>
-	CSelfClearingMap<long, PHONE_NUMBERS*>& m_oPhoneNumbersMap;
+	CPhoneNumbersMap& m_oPhoneNumbersMap;
 
 	/// <summary>
 	/// Мембър съдържащ релация между ID-то на всички типове телефонни номера и обектите прочетени от базата.
 	/// </summary>
-	CSelfClearingMap<long, PHONE_TYPES*>& m_oPhoneTypesMap;
+	CPhoneTypesMap& m_oPhoneTypesMap;
 
 	/// <summary>
 	/// Референция към подаден запис при извикването на диалога.

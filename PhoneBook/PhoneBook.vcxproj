@@ -185,7 +185,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CBaseTable.h" />
-    <ClInclude Include="CBaseView.h" />
     <ClInclude Include="CCitiesData.h" />
     <ClInclude Include="CCitiesDialog.h" />
     <ClInclude Include="CCitiesDocument.h" />
@@ -212,7 +211,6 @@
     <ClInclude Include="GlobalConstants.h" />
     <ClInclude Include="SqlQueries.h" />
     <ClInclude Include="Structures.h" />
-    <ClInclude Include="CitiesDoc.h" />
     <ClInclude Include="CitiesView.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MainFrm.h" />
