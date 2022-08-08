@@ -232,11 +232,13 @@ bool CPersonsData::DeletePersonAndPhoneNumbers(const long lID)
 	return true;
 }
 
+//TODO: Add transaction !!!!!
+//TODO: Back all logic with arrays!
 bool CPersonsData::UpdatePersonPhoneNumbers(long lPersonID, CPhoneNumbersMap& oModifiedPhoneNumbersMap)
 {
-	CSelfClearingMap<long, PHONE_NUMBERS*> oPhoneNumbersOriginalMap;
+	CPhoneNumbersArray oPhoneNumbersArray;
 
-	if (!GetPersonPhoneNumbers(lPersonID, oPhoneNumbersOriginalMap))
+	if (!SelectAllPhoneNumbersByPersonId(lPersonID, oPhoneNumbersArray))
 		return false;
 
 	PHONE_NUMBERS* pOriginalPhoneNumber;

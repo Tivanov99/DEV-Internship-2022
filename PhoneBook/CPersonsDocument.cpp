@@ -239,6 +239,5 @@ PHONE_TYPES* CPersonsDocument::GetPhoneTypeById(long lID, CPhoneTypesArray& oPho
 	return NULL;
 }
 
-//TODO: транзакция при update на person i phone n
 
 

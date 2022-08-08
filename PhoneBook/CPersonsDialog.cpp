@@ -25,9 +25,9 @@ END_MESSAGE_MAP()
 
 
 CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerson, CCitiesArray& oCitiesArray,
-	CSelfClearingMap<long, PHONE_NUMBERS*>& oPhoneNumbersMap, CSelfClearingMap<long, PHONE_TYPES*>& oPhoneTypesMap, CWnd* pParent /*=nullptr*/)
+	CPhoneNumbersArray& oPhoneNumbersArray, CSelfClearingMap<long, PHONE_TYPES*>& oPhoneTypesMap, CWnd* pParent /*=nullptr*/)
 	: CDialog(IDD_PERSONS_DIALOG, pParent), m_recPerson(recPerson), m_eOperation(eOperation), m_oCitiesArray(oCitiesArray),
-	m_oPhoneNumbersMap(oPhoneNumbersMap), m_oPhoneTypesMap(oPhoneTypesMap)
+	m_oPhoneNumbersArray(oPhoneNumbersArray), m_oPhoneTypesMap(oPhoneTypesMap)
 {
 }
 CPersonsDialog :: ~CPersonsDialog() {};
