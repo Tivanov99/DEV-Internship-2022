@@ -11,7 +11,7 @@ IMPLEMENT_DYNAMIC(CPersonsDialog, CDialog)
 BEGIN_MESSAGE_MAP(CPersonsDialog, CDialog)
 	ON_WM_CONTEXTMENU()
 	ON_WM_LBUTTONDBLCLK()
-	ON_WM_LBUTTONDOWN()
+	//ON_WM_LBUTTONDOWN()
 	ON_BN_CLICKED(IDCANCEL, &CPersonsDialog::OnBnClickedCancel)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_EDIT, &CPersonsDialog::ManageContextMenuItems)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_READ_DATA, &CPersonsDialog::ManageContextMenuItems)
@@ -32,6 +32,34 @@ CPersonsDialog::CPersonsDialog(DialogWindowActions eOperation, PERSONS& recPerso
 }
 CPersonsDialog :: ~CPersonsDialog() {};
 
+BOOL CPersonsDialog::OnInitDialog()
+{
+	CDialog::OnInitDialog();
+
+	ConfiguratePhoneNumbersLsc();
+
+	if (m_eOperation != DialogWindowActions::InsertData)
+	{
+		FillPersonDataFields();
+		FillPhoneNumbers();
+	}
+
+	FillCitiesComboBox();
+	SetDialogTitle();
+
+	if (m_eOperation == DialogWindowActions::ReadData)
+	{
+		m_edbPersonFirstName.EnableWindow(false);
+		m_edbPersonSecondName.EnableWindow(false);
+		m_edbPersonLastName.EnableWindow(false);
+		m_edbPersonUcn.EnableWindow(false);
+		m_cmbCitiesNames.EnableWindow(false);
+		m_lscPersonPhoneNumbers.EnableWindow(false);
+	}
+
+	return TRUE;
+}
+
 void CPersonsDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
@@ -46,9 +74,12 @@ void CPersonsDialog::DoDataExchange(CDataExchange* pDX)
 
 void CPersonsDialog::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 {
+	if (m_eOperation != DialogWindowActions::ReadData)
+	{
 #ifndef SHARED_HANDLERS
-	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
+		theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
 #endif
+	}
 }
 
 void CPersonsDialog::ManageContextMenuItems(CCmdUI* pCmdUI)
@@ -78,31 +109,7 @@ void CPersonsDialog::ManageContextMenuItems(CCmdUI* pCmdUI)
 }
 
 
-BOOL CPersonsDialog::OnInitDialog()
-{
-	CDialog::OnInitDialog();
 
-	ConfiguratePhoneNumbersLsc();
-
-	if (m_eOperation != DialogWindowActions::InsertData)
-	{
-		FillPersonDataFields();
-		FillPhoneNumbers();
-	}
-	FillCitiesComboBox();
-	SetDialogTitle();
-	if (m_eOperation == DialogWindowActions::ReadData)
-	{
-		m_edbPersonFirstName.EnableWindow(false);
-		m_edbPersonSecondName.EnableWindow(false);
-		m_edbPersonLastName.EnableWindow(false);
-		m_edbPersonUcn.EnableWindow(false);
-		m_cmbCitiesNames.EnableWindow(false);
-		m_lscPersonPhoneNumbers.EnableWindow(false);
-	}
-
-	return TRUE;
-}
 
 void CPersonsDialog::ConfiguratePhoneNumbersLsc()
 {
@@ -181,6 +188,9 @@ void CPersonsDialog::FillPhoneNumbers()
 void CPersonsDialog::InsertRecordToListCtrl(PHONE_NUMBERS* pPhoneNumber)
 {
 	CSelfClearingMap<long, PHONE_TYPES*>::iterator intrPhoneTypes = m_oPhoneTypesMap.find(pPhoneNumber->lPHONE_TYPE_ID);
+
+	if (intrPhoneTypes == m_oPhoneTypesMap.end())
+		return;
 
 	PHONE_TYPES* pPhoneType = intrPhoneTypes->second;
 
@@ -351,9 +361,9 @@ void CPersonsDialog::OnContextMenuInsert()
 	pPhoneNumber->lID = 0;
 	pPhoneNumber->lPERSON_ID = m_recPerson.lID;
 
-	m_oPhoneNumbersMap.insert(pair<long,PHONE_NUMBERS*>(pPhoneNumber->lID, pPhoneNumber));
+	m_oPhoneNumbersMap.insert(pair<long, PHONE_NUMBERS*>(pPhoneNumber->lID, pPhoneNumber));
 
 	InsertRecordToListCtrl(pPhoneNumber);
-	
+
 	// TODO: Add your command handler code here
 }

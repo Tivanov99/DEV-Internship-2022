@@ -231,6 +231,7 @@ void CPersonsView::OnEditContextReadData()
 	pPersonDocument->GetAllCities(oCitiesArray);
 
 	CSelfClearingMap<long, PHONE_TYPES*> oPhoneTypesMap;
+	pPersonDocument->GetAllPhoneTypes(oPhoneTypesMap);
 
 	CSelfClearingMap<long, PHONE_NUMBERS*> oPhoneNumbersMap;
 	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersMap);
