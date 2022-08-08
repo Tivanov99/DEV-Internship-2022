@@ -72,17 +72,6 @@ void CPhoneNumbersDialog::FillInputFileds()
 		if (pPhoneType->lID == m_recPhoneNumber.lPHONE_TYPE_ID)
 			m_cmbPhoneTypes.SetCurSel(nResult);
 	}
-
-	/*for (itr = m_oPhoneTypesMap.begin();itr != m_oPhoneTypesMap.end(); ++itr)
-	{
-		PHONE_TYPES* pPhoneType = itr->second;
-
-		int nResult = m_cmbPhoneTypes.AddString(pPhoneType->szPHONE_TYPE);
-		m_cmbPhoneTypes.SetItemData(nResult, pPhoneType->lID);
-
-		if (pPhoneType->lID == m_recPhoneNumber.lPHONE_TYPE_ID)
-			m_cmbPhoneTypes.SetCurSel(nResult);
-	}*/
 }
 
 void CPhoneNumbersDialog::OnBnClickedOk()
@@ -92,7 +81,10 @@ void CPhoneNumbersDialog::OnBnClickedOk()
 
 	if (strPhoneNumber.GetLength() < GlobalConstants::_nPhoneNumberMinSize || strPhoneNumber.GetLength() > GlobalConstants::_nPhoneNumberSize)
 	{
-		AfxMessageBox(_T("Phone number must me between $d and $d numbers."), GlobalConstants::_nPhoneNumberMinSize, GlobalConstants::_nPhoneNumberSize);
+		CString strErrorMessage;
+		strErrorMessage.Format(_T("Phone number must me between %d and %d numbers."), GlobalConstants::_nPhoneNumberMinSize, GlobalConstants::_nPhoneNumberSize);
+
+		AfxMessageBox(strErrorMessage);
 		return;
 	}
 
