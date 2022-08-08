@@ -25,11 +25,17 @@ BOOL CPhoneNumbersDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	if (m_eOperation != DialogWindowActions::InsertData)
-		FillInputFileds();
+	FillInputFileds();
+
+	if (m_eOperation == DialogWindowActions::InsertData)
+	{
+		int nFirstPhoneType = 0;
+		m_cmbPhoneTypes.SetCurSel(nFirstPhoneType);
+	}
 
 	if (m_eOperation == DialogWindowActions::ReadData)
 		LockInputFields();
+
 
 	return TRUE;
 }

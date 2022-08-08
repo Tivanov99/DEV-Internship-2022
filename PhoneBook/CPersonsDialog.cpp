@@ -325,7 +325,7 @@ void CPersonsDialog::OnContextMenuEdit()
 {
 	PHONE_NUMBERS* pPhoneNumber = GetSelectedRecordItemData();
 
-	CPhoneNumbersDialog oPhoneNumbersDialog(*pPhoneNumber, m_oPhoneTypesMap);
+	CPhoneNumbersDialog oPhoneNumbersDialog(DialogWindowActions::EditData,*pPhoneNumber, m_oPhoneTypesMap);
 
 	if (oPhoneNumbersDialog.DoModal() != IDOK)
 		return;
@@ -364,7 +364,11 @@ void CPersonsDialog::OnContextMenuDelete()
 
 void CPersonsDialog::OnContextMenuReadData()
 {
-	// TODO: Add your command handler code here
+	PHONE_NUMBERS* pPhoneNumber = GetSelectedRecordItemData();
+
+	CPhoneNumbersDialog oPhoneNumbersDialog(DialogWindowActions::ReadData, *pPhoneNumber, m_oPhoneTypesMap);
+
+	oPhoneNumbersDialog.DoModal();
 }
 
 
@@ -373,8 +377,7 @@ void CPersonsDialog::OnContextMenuInsert()
 	PHONE_NUMBERS* pPhoneNumber = new PHONE_NUMBERS;
 	_tcscpy_s(pPhoneNumber->szPHONE_NUMBER, _T(""));
 
-
-	CPhoneNumbersDialog oPhoneNumbersDialog(*pPhoneNumber, m_oPhoneTypesMap);
+	CPhoneNumbersDialog oPhoneNumbersDialog(DialogWindowActions::InsertData,*pPhoneNumber, m_oPhoneTypesMap);
 
 	if (oPhoneNumbersDialog.DoModal() != IDOK)
 	{
