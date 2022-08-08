@@ -232,3 +232,66 @@ bool CPersonsData::DeletePersonAndPhoneNumbers(const long lID)
 	return true;
 }
 
+bool CPersonsData::UpdatePersonPhoneNumbers(long lPersonID, CPhoneNumbersMap& oModifiedPhoneNumbersMap)
+{
+	CSelfClearingMap<long, PHONE_NUMBERS*> oPhoneNumbersOriginalMap;
+
+	if (!GetPersonPhoneNumbers(lPersonID, oPhoneNumbersOriginalMap))
+		return false;
+
+	PHONE_NUMBERS* pOriginalPhoneNumber;
+	long lId;
+
+	POSITION posOriginalPhoneNumbers = oPhoneNumbersOriginalMap.GetStartPosition();
+
+	while (posOriginalPhoneNumbers)
+	{
+		if (posOriginalPhoneNumbers == NULL)
+			break;
+		oPhoneNumbersOriginalMap.GetNextAssoc(posOriginalPhoneNumbers, lId, pOriginalPhoneNumber);
+
+		if (pOriginalPhoneNumber == NULL)
+			continue;
+
+		PHONE_NUMBERS* pCurrentModifiedPhoneNumber;
+
+		if (!oModifiedPhoneNumbersMap.Lookup(lId, pCurrentModifiedPhoneNumber))
+		{
+			if (!m_oPhoneNumbersData.DeleteWhereID(pOriginalPhoneNumber->lID))
+				return false;
+
+			oPhoneNumbersOriginalMap.RemoveKey(pOriginalPhoneNumber->lID);
+			continue;
+		}
+
+		if (m_oPhoneNumbersData.ComparePhoneNumbers(*pCurrentModifiedPhoneNumber, *pOriginalPhoneNumber))
+		{
+			if (!m_oPhoneNumbersData.UpdateWhereID(pCurrentModifiedPhoneNumber->lID, *pCurrentModifiedPhoneNumber))
+				return false;
+
+			oModifiedPhoneNumbersMap.RemoveKey(pOriginalPhoneNumber->lID);
+		}
+		else
+		{
+			oModifiedPhoneNumbersMap.RemoveKey(pOriginalPhoneNumber->lID);
+		}
+	}
+
+	//Insert
+	POSITION posModifiedMap = oModifiedPhoneNumbersMap.GetStartPosition();
+
+	while (posModifiedMap)
+	{
+		if (posModifiedMap == NULL)
+			break;
+		PHONE_NUMBERS* pCurrentPhoneNumber;
+		long lCurrentId;
+		oModifiedPhoneNumbersMap.GetNextAssoc(posModifiedMap, lCurrentId, pCurrentPhoneNumber);
+
+		if (pCurrentPhoneNumber != NULL)
+			if (!m_oPhoneNumbersData.InsertRecord(*pCurrentPhoneNumber))
+				return false;
+	}
+
+	return true;
+}

@@ -70,6 +70,16 @@ public:
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	bool DeleteWhereID(const long lID);
 
+	/// <summary>Функция която изтрива запис от таблицата 'PERSONS' чието ID отговаря на 'lID', и всички записи от таблицата 'PHONE_NUMBERS' чийто стойност от колоната 'PERSON_ID' са идентични с 'lID'.</summary>
+	/// <param name="lID">Уникален идентификатор по който се изтриват записите от базата.</param>
+	/// <returns>Според това дали успешно е минала операцията връща 'true' ако ли не 'false'.</returns>
 	bool DeletePersonAndPhoneNumbers(const long lID);
+	/// <summary>
+	/// Функция която актуализира запис от таблицата 'PERSONS' чието ID отговаря на 'lPersonID', и всички записи от таблицата 'PHONE_NUMBERS' чийто стойност от колоната 'PERSON_ID' са идентични с 'lPersonID'.
+	/// </summary>
+	/// <param name="lPersonID">Уникален идентификатор по който се изтриват записите от базата.</param>
+	/// <param name="oModifiedPhoneNumbersMap">Колекция съдържаща всички записи на телефонни номера след като е приключена работата с диалоговия прозорец.</param>
+	/// <returns></returns>
+	bool UpdatePersonPhoneNumbers(long lPersonID, CPhoneNumbersMap& oModifiedPhoneNumbersMap);
 };
 
