@@ -1,9 +1,7 @@
 #pragma once
 #include "afxdialogex.h"
 #include "Structures.h"
-#include <map>
-
-using namespace std;
+#include "CSelfClearingMap.h"
 
 
 // CPhoneNumbersDialog dialog
@@ -15,7 +13,7 @@ class CPhoneNumbersDialog : public CDialog
 	//Constructor/Destructor
 	//-----------------
 public:
-	CPhoneNumbersDialog(PHONE_NUMBERS& recPhoneNumber, map<long, PHONE_TYPES*>& oMap, CWnd* pParent = nullptr);   // standard constructor
+	CPhoneNumbersDialog(PHONE_NUMBERS& recPhoneNumber, CSelfClearingMap<long, PHONE_TYPES*>& oPhoneTypesMap, CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CPhoneNumbersDialog();
 
 	// Dialog Data
@@ -61,7 +59,7 @@ private:
 	/// <summary>
 	/// Мембър съдържащ релация между ID-то на всички типове телефонни номера и обектите прочетени от базата.
 	/// </summary>
-	map<long, PHONE_TYPES*>& m_oPhoneTypesMap;
+	CSelfClearingMap<long,PHONE_TYPES*>& m_oPhoneTypesMap;
 
 	/// <summary>
 	/// Мембър представляващ падащо меню за типът телефонен номер в диалога.

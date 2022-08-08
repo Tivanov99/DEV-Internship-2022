@@ -6,15 +6,14 @@
 #include "afxdialogex.h"
 #include "CPhoneNumbersDialog.h"
 #include <map>
-#include "CSelfClearingMap.h"
 
 
 // CPhoneNumbersDialog dialog
 
 IMPLEMENT_DYNAMIC(CPhoneNumbersDialog, CDialog)
 
-CPhoneNumbersDialog::CPhoneNumbersDialog(PHONE_NUMBERS& recPhoneNumber, map<long, PHONE_TYPES*>& oMap,CWnd* pParent /*=nullptr*/)
-	: CDialog(IDD_PHONE_NUMBERS_DIALOG, pParent), m_recPhoneNumber(recPhoneNumber),m_oPhoneTypesMap(oMap)
+CPhoneNumbersDialog::CPhoneNumbersDialog(PHONE_NUMBERS& recPhoneNumber, CSelfClearingMap<long,PHONE_TYPES*>& oPhoneTypesMap,CWnd* pParent /*=nullptr*/)
+	: CDialog(IDD_PHONE_NUMBERS_DIALOG, pParent), m_recPhoneNumber(recPhoneNumber),m_oPhoneTypesMap(oPhoneTypesMap)
 {
 
 }
@@ -53,7 +52,28 @@ void CPhoneNumbersDialog::FillInputFileds()
 	
 	map<long, PHONE_TYPES*>::iterator itr;
 
-	for (itr = m_oPhoneTypesMap.begin();itr != m_oPhoneTypesMap.end(); ++itr)
+	PHONE_TYPES* pPhoneType;
+	long lId;
+
+	POSITION posPhoneTypes = m_oPhoneTypesMap.GetStartPosition();
+
+	while (posPhoneTypes)
+	{
+		if (posPhoneTypes == NULL)
+			break;
+
+		m_oPhoneTypesMap.GetNextAssoc(posPhoneTypes, lId, pPhoneType);
+		if (pPhoneType == NULL)
+			continue;
+
+		int nResult = m_cmbPhoneTypes.AddString(pPhoneType->szPHONE_TYPE);
+		m_cmbPhoneTypes.SetItemData(nResult, pPhoneType->lID);
+
+		if (pPhoneType->lID == m_recPhoneNumber.lPHONE_TYPE_ID)
+			m_cmbPhoneTypes.SetCurSel(nResult);
+	}
+
+	/*for (itr = m_oPhoneTypesMap.begin();itr != m_oPhoneTypesMap.end(); ++itr)
 	{
 		PHONE_TYPES* pPhoneType = itr->second;
 
@@ -62,7 +82,7 @@ void CPhoneNumbersDialog::FillInputFileds()
 
 		if (pPhoneType->lID == m_recPhoneNumber.lPHONE_TYPE_ID)
 			m_cmbPhoneTypes.SetCurSel(nResult);
-	}
+	}*/
 }
 
 void CPhoneNumbersDialog::OnBnClickedOk()
