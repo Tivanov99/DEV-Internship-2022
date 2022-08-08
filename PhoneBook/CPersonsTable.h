@@ -38,7 +38,7 @@ protected:
 		COLUMN_ENTRY(5, m_recTableRecord.szLastName)
 		COLUMN_ENTRY(6, m_recTableRecord.szUcn)
 		COLUMN_ENTRY(7, m_recTableRecord.lCityId)
-		COLUMN_ENTRY(8, m_recTableRecord.szADDRESS)
+		COLUMN_ENTRY(8, m_recTableRecord.szAddress)
 		END_ACCESSOR()
 	END_ACCESSOR_MAP()
 };

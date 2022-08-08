@@ -58,7 +58,7 @@ END_MESSAGE_MAP()
 
 void CPhoneNumbersDialog::FillInputFileds()
 {
-	m_edbPhoneNumber.SetWindowText(m_recPhoneNumber.szPHONE_NUMBER);
+	m_edbPhoneNumber.SetWindowText(m_recPhoneNumber.szPhoneNumber);
 
 	map<long, PHONE_TYPES*>::iterator itr;
 
@@ -98,7 +98,7 @@ void CPhoneNumbersDialog::OnBnClickedOk()
 		return;
 	}
 
-	_tcscpy_s(m_recPhoneNumber.szPHONE_NUMBER, strPhoneNumber);
+	_tcscpy_s(m_recPhoneNumber.szPhoneNumber, strPhoneNumber);
 
 	m_recPhoneNumber.lPhoneTypeId = m_cmbPhoneTypes.GetItemData(m_cmbPhoneTypes.GetCurSel());
 

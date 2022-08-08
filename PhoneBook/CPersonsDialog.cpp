@@ -219,7 +219,7 @@ void CPersonsDialog::InsertRecordToListCtrl(PHONE_NUMBERS* pPhoneNumber)
 
 	const int nRow = m_lscPersonPhoneNumbers.GetItemCount();
 
-	m_lscPersonPhoneNumbers.InsertItem(nRow, pPhoneNumber->szPHONE_NUMBER);
+	m_lscPersonPhoneNumbers.InsertItem(nRow, pPhoneNumber->szPhoneNumber);
 
 	m_lscPersonPhoneNumbers.SetItemText(nRow, 1, pPhoneType->szPhoneType);
 
@@ -234,7 +234,7 @@ void CPersonsDialog::UpdateListCtrlRecord()
 
 	int nColumn = 0;
 
-	m_lscPersonPhoneNumbers.SetItemText(nSelectedRow, nColumn++, pPhoneNumber->szPHONE_NUMBER);
+	m_lscPersonPhoneNumbers.SetItemText(nSelectedRow, nColumn++, pPhoneNumber->szPhoneNumber);
 
 	PHONE_TYPES* pPhoneType;
 
@@ -284,7 +284,7 @@ void CPersonsDialog::OnOK()
 
 	CITIES* pCity = (CITIES*)m_cmbCitiesNames.GetItemData(m_cmbCitiesNames.GetCurSel());
 
-	//m_recPerson.szADDRESS
+	//m_recPerson.szAddress
 	m_edbPersonFirstName.GetWindowText(strPersonFirstName);
 	_tcscpy_s(m_recPerson.szFirstName, strPersonFirstName);
 
@@ -341,7 +341,7 @@ void CPersonsDialog::OnContextMenuDelete()
 		return;
 
 	CString strMessage;
-	strMessage.Format(_T("Do you want the record to be deleted? Phone number : %s "), pPhoneNumber->szPHONE_NUMBER);
+	strMessage.Format(_T("Do you want the record to be deleted? Phone number : %s "), pPhoneNumber->szPhoneNumber);
 
 	const int msgboxID = MessageBox(
 		(LPCWSTR)strMessage,
@@ -374,7 +374,7 @@ void CPersonsDialog::OnContextMenuReadData()
 void CPersonsDialog::OnContextMenuInsert()
 {
 	PHONE_NUMBERS* pPhoneNumber = new PHONE_NUMBERS;
-	_tcscpy_s(pPhoneNumber->szPHONE_NUMBER, _T(""));
+	_tcscpy_s(pPhoneNumber->szPhoneNumber, _T(""));
 
 	CPhoneNumbersDialog oPhoneNumbersDialog(DialogWindowActions::InsertData,*pPhoneNumber, m_oPhoneTypesMap);
 

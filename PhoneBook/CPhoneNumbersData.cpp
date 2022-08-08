@@ -112,7 +112,7 @@ bool CPhoneNumbersData::ComparePhoneNumbers(PHONE_NUMBERS& oComparedPhoneNumber,
 	if (oPhoneNumberComparator.lPhoneTypeId != oComparedPhoneNumber.lPhoneTypeId)
 		return true;
 
-	if (_tcscmp(oPhoneNumberComparator.szPHONE_NUMBER, oComparedPhoneNumber.szPHONE_NUMBER) != 0 )
+	if (_tcscmp(oPhoneNumberComparator.szPhoneNumber, oComparedPhoneNumber.szPhoneNumber) != 0 )
 		return true;
 
 	return false;

@@ -27,7 +27,7 @@ protected:
 		COLUMN_ENTRY(2, m_recTableRecord.lUpdateCounter)
 		COLUMN_ENTRY(3, m_recTableRecord.szCityName)
 		COLUMN_ENTRY(4, m_recTableRecord.szAreaName)
-		COLUMN_ENTRY(5, m_recTableRecord.lPOSTAL_CODE)
+		COLUMN_ENTRY(5, m_recTableRecord.lPostalCode)
 		END_ACCESSOR()
 	END_ACCESSOR_MAP()
 };

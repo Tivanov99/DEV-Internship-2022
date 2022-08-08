@@ -21,7 +21,7 @@ protected:
 		COLUMN_ENTRY(2, m_recTableRecord.lUpdateCounter)
 		COLUMN_ENTRY(3, m_recTableRecord.lPersonId)
 		COLUMN_ENTRY(4, m_recTableRecord.lPhoneTypeId)
-		COLUMN_ENTRY(5, m_recTableRecord.szPHONE_NUMBER)
+		COLUMN_ENTRY(5, m_recTableRecord.szPhoneNumber)
 		END_ACCESSOR()
 	END_ACCESSOR_MAP()
 };

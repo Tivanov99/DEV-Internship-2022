@@ -67,7 +67,7 @@ void CCitiesDialog::FillingInputFields()
 	m_edbCityAreaName.SetWindowText(m_recCity.szAreaName);
 
 	CString strPostalCode;
-	strPostalCode.Format(_T("%d"), m_recCity.lPOSTAL_CODE);
+	strPostalCode.Format(_T("%d"), m_recCity.lPostalCode);
 	m_edbCityPostalCode.SetWindowText(strPostalCode);
 }
 
@@ -108,7 +108,7 @@ void CCitiesDialog::OnOK()
 void CCitiesDialog::SetDataToRecord()
 {
 	long lPostalCode = GetPostalCodeFromInputFiled();
-	m_recCity.lPOSTAL_CODE = lPostalCode;
+	m_recCity.lPostalCode = lPostalCode;
 
 	CString strCityName;
 	m_edbCityName.GetWindowText(strCityName);

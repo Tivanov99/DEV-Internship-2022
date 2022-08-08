@@ -255,7 +255,7 @@ void CCitiesView::InsertNewRecordToCListCtrl(CITIES* pCity)
 	�ListCtrl.SetItemText(nRow, nColumnNumber++, pCity->szAreaName);
 
 	CString strPostalCode;
-	strPostalCode.Format(_T("%d"), pCity->lPOSTAL_CODE);
+	strPostalCode.Format(_T("%d"), pCity->lPostalCode);
 	�ListCtrl.SetItemText(nRow, nColumnNumber, strPostalCode);
 
 	�ListCtrl.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCity));
@@ -277,7 +277,7 @@ void CCitiesView::OnEditContextReadData()
 void CCitiesView::UpdateRecord(CITIES& oCity)
 {
 	CString strPostalCode;
-	strPostalCode.Format(_T("%d"), oCity.lPOSTAL_CODE);
+	strPostalCode.Format(_T("%d"), oCity.lPostalCode);
 
 	const int nSelectedRow = GetSelectedRowNumber();
 	CListCtrl& �ListCtrl = GetListCtrl();
