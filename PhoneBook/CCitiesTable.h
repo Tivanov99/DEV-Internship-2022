@@ -8,13 +8,7 @@
 #include "CBaseTable.h"
 #include "CTableAccessor.h"
 
-
 using namespace std;
-
-//TODO: USE ENUMERATION
-
-#define NoneModifyColumnCode 0
-#define ModifyColumnCode 1
 
 class CCityAccessor : public CTableAccessor<CITIES>
 {
@@ -25,11 +19,11 @@ protected:
 	};
 
 	BEGIN_ACCESSOR_MAP(CCityAccessor, 2)
-		BEGIN_ACCESSOR(NoneModifyColumnCode, true)
+		BEGIN_ACCESSOR(AccessorTypes::NoneModifying, true)
 		COLUMN_ENTRY(1, m_recTableRecord.lID)
 		END_ACCESSOR()
 
-		BEGIN_ACCESSOR(ModifyColumnCode, true)
+		BEGIN_ACCESSOR(AccessorTypes::Modifying, true)
 		COLUMN_ENTRY(2, m_recTableRecord.lUpdateCounter)
 		COLUMN_ENTRY(3, m_recTableRecord.szCITY_NAME)
 		COLUMN_ENTRY(4, m_recTableRecord.szAREA_NAME)
