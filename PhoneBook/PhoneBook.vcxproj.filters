@@ -81,9 +81,6 @@
     <ClInclude Include="CCitiesTable.h">
       <Filter>CITIES</Filter>
     </ClInclude>
-    <ClInclude Include="CitiesView.h">
-      <Filter>CITIES</Filter>
-    </ClInclude>
     <ClInclude Include="CPersonsData.h">
       <Filter>PERSONS</Filter>
     </ClInclude>
@@ -147,6 +144,9 @@
     <ClInclude Include="CSelfClearingMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CCitiesView.h">
+      <Filter>CITIES</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -174,9 +174,6 @@
       <Filter>Source Files\CITIES</Filter>
     </ClCompile>
     <ClCompile Include="CitiesDoc.cpp">
-      <Filter>Source Files\CITIES</Filter>
-    </ClCompile>
-    <ClCompile Include="CitiesView.cpp">
       <Filter>Source Files\CITIES</Filter>
     </ClCompile>
     <ClCompile Include="CPersonsData.cpp">
@@ -226,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="CPhoneNumbersDialog.cpp">
       <Filter>Source Files\PHONE_NUMBERS</Filter>
+    </ClCompile>
+    <ClCompile Include="CCitiesView.cpp">
+      <Filter>Source Files\CITIES</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

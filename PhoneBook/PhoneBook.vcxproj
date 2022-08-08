@@ -189,6 +189,7 @@
     <ClInclude Include="CCitiesDialog.h" />
     <ClInclude Include="CCitiesDocument.h" />
     <ClInclude Include="CCitiesTable.h" />
+    <ClInclude Include="CCitiesView.h" />
     <ClInclude Include="CPhoneNumbersDialog.h" />
     <ClInclude Include="CPhoneTypesData.h" />
     <ClInclude Include="CPhoneTypesDocument.h" />
@@ -211,7 +212,6 @@
     <ClInclude Include="GlobalConstants.h" />
     <ClInclude Include="SqlQueries.h" />
     <ClInclude Include="Structures.h" />
-    <ClInclude Include="CitiesView.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="pch.h" />
@@ -226,9 +226,9 @@
     <ClCompile Include="CCitiesDialog.cpp" />
     <ClCompile Include="CCitiesDocument.cpp" />
     <ClCompile Include="CCitiesTable.cpp" />
+    <ClCompile Include="CCitiesView.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="CitiesDoc.cpp" />
-    <ClCompile Include="CitiesView.cpp" />
     <ClCompile Include="CPersonsData.cpp" />
     <ClCompile Include="CPersonsDialog.cpp" />
     <ClCompile Include="CPersonsDocument.cpp" />

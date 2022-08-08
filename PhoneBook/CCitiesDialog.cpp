@@ -5,7 +5,7 @@
 #include "PhoneBook.h"
 #include "afxdialogex.h"
 #include "CCitiesDialog.h"
-#include "CitiesView.h"
+#include "CCitiesView.h"
 #include "GlobalConstants.h"
 
 // CCitiesDialog dialog
@@ -63,8 +63,8 @@ BOOL CCitiesDialog::OnInitDialog()
 
 void CCitiesDialog::FillingInputFields()
 {
-	m_edbCityName.SetWindowText(m_recCity.szCITY_NAME);
-	m_edbCityAreaName.SetWindowText(m_recCity.szAREA_NAME);
+	m_edbCityName.SetWindowText(m_recCity.szCityName);
+	m_edbCityAreaName.SetWindowText(m_recCity.szAreaName);
 
 	CString strPostalCode;
 	strPostalCode.Format(_T("%d"), m_recCity.lPOSTAL_CODE);
@@ -112,11 +112,11 @@ void CCitiesDialog::SetDataToRecord()
 
 	CString strCityName;
 	m_edbCityName.GetWindowText(strCityName);
-	_tcscpy_s(m_recCity.szCITY_NAME, strCityName);
+	_tcscpy_s(m_recCity.szCityName, strCityName);
 
 	CString strAreaName;
 	m_edbCityAreaName.GetWindowText(strAreaName);
-	_tcscpy_s(m_recCity.szAREA_NAME, strAreaName);
+	_tcscpy_s(m_recCity.szAreaName, strAreaName);
 }
 
 void CCitiesDialog::SetDialogTitle()

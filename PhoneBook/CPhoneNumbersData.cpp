@@ -109,7 +109,7 @@ bool CPhoneNumbersData::DeleteWhereID(const long lID)
 
 bool CPhoneNumbersData::ComparePhoneNumbers(PHONE_NUMBERS& oComparedPhoneNumber, PHONE_NUMBERS& oPhoneNumberComparator)
 {
-	if (oPhoneNumberComparator.lPHONE_TYPE_ID != oComparedPhoneNumber.lPHONE_TYPE_ID)
+	if (oPhoneNumberComparator.lPhoneTypeId != oComparedPhoneNumber.lPhoneTypeId)
 		return true;
 
 	if (_tcscmp(oPhoneNumberComparator.szPHONE_NUMBER, oComparedPhoneNumber.szPHONE_NUMBER) != 0 )

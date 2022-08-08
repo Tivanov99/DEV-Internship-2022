@@ -76,10 +76,10 @@ void CPhoneNumbersDialog::FillInputFileds()
 		if (pPhoneType == NULL)
 			continue;
 
-		int nResult = m_cmbPhoneTypes.AddString(pPhoneType->szPHONE_TYPE);
+		int nResult = m_cmbPhoneTypes.AddString(pPhoneType->szPhoneType);
 		m_cmbPhoneTypes.SetItemData(nResult, pPhoneType->lID);
 
-		if (pPhoneType->lID == m_recPhoneNumber.lPHONE_TYPE_ID)
+		if (pPhoneType->lID == m_recPhoneNumber.lPhoneTypeId)
 			m_cmbPhoneTypes.SetCurSel(nResult);
 	}
 }
@@ -100,7 +100,7 @@ void CPhoneNumbersDialog::OnBnClickedOk()
 
 	_tcscpy_s(m_recPhoneNumber.szPHONE_NUMBER, strPhoneNumber);
 
-	m_recPhoneNumber.lPHONE_TYPE_ID = m_cmbPhoneTypes.GetItemData(m_cmbPhoneTypes.GetCurSel());
+	m_recPhoneNumber.lPhoneTypeId = m_cmbPhoneTypes.GetItemData(m_cmbPhoneTypes.GetCurSel());
 
 	CDialog::OnOK();
 }
@@ -108,8 +108,19 @@ void CPhoneNumbersDialog::OnBnClickedOk()
 
 void CPhoneNumbersDialog::OnBnClickedCancel()
 {
-	// TODO: Add your control notification handler code here
-	CDialog::OnCancel();
+	CString strMessage;
+	strMessage.Format(_T("If there are any changes made, they will not be saved!"));
+
+	const int msgboxID = MessageBox(
+		(LPCWSTR)strMessage,
+		(LPCWSTR)L"Message",
+		MB_ICONINFORMATION | IDOK
+	);
+
+	if (msgboxID == IDOK)
+	{
+		CDialog::OnCancel();
+	}
 }
 
 void CPhoneNumbersDialog::LockInputFields()

@@ -187,7 +187,7 @@ void CPersonsView::InsertNewRecordToCListCtrl(PERSONS* pPerson)
 
 	int nColumnNumber = 1;
 
-	LSCCitiesList.SetItemText(nRow, nColumnNumber, pPerson->szLAST_NAME);
+	LSCCitiesList.SetItemText(nRow, nColumnNumber, pPerson->szLastName);
 
 	LSCCitiesList.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pPerson));
 }
@@ -199,7 +199,7 @@ void CPersonsView::OnContextMenuDelete()
 		return;
 
 	CString strMessage;
-	strMessage.Format(_T("Do you want the record to be deleted? First name : %s Last name : %s"), pPerson->szFirstName, pPerson->szLAST_NAME);
+	strMessage.Format(_T("Do you want the record to be deleted? First name : %s Last name : %s"), pPerson->szFirstName, pPerson->szLastName);
 
 	const int msgboxID = MessageBox(
 		(LPCWSTR)strMessage,

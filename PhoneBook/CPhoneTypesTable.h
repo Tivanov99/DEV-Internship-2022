@@ -26,7 +26,7 @@ protected:
 
 		BEGIN_ACCESSOR(ModifyColumnCode, true)
 		COLUMN_ENTRY(2, m_recTableRecord.lUpdateCounter)
-		COLUMN_ENTRY(3, m_recTableRecord.szPHONE_TYPE)
+		COLUMN_ENTRY(3, m_recTableRecord.szPhoneType)
 	
 		END_ACCESSOR()
 	END_ACCESSOR_MAP()

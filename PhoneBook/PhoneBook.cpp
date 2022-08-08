@@ -11,7 +11,7 @@
 
 #include "ChildFrm.h"
 #include "CitiesDoc.h"
-#include "CitiesView.h"
+#include "CCitiesView.h"
 #include "CCitiesTable.h"
 #include "CPersonsDocument.h"
 #include "CPersonsView.h"

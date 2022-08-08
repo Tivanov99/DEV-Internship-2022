@@ -11,17 +11,15 @@
 struct CITIES
 {
 	/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'CITIES'</summary>
-	
 	long lID;
-
 	/// <summary>Променлива съдържаща текущата версия на запис.</summary>
 	long lUpdateCounter;
 	/// <summary>Променлива съдържаща стойността от колона 'CITY_NAME' в таблицата 'CITIES'</summary>
-	TCHAR szCITY_NAME[GlobalConstants::_nCityNameSize];
+	TCHAR szCityName[GlobalConstants::_nCityNameSize];
 	/// <summary>Променлива съдържаща стойността от колона 'AREA_NAME' в таблицата 'CITIES'</summary>
-	TCHAR szAREA_NAME[GlobalConstants::_nCityAreaNameSize];
+	TCHAR szAreaName[GlobalConstants::_nCityAreaNameSize];
 	/// <summary>Променлива съдържаща стойността от колона 'POSTAL_CODE' в таблицата 'CITIES'</summary>
-	long lPOSTAL_CODE;
+	long lPostalCode;
 
 	CITIES()
 	{
@@ -41,16 +39,16 @@ struct PERSONS {
 	/// <summary>Променлива съдържаща стойността от колона 'FIRST_NAME' в таблицата  'PERSONS'.</summary>
 	TCHAR szFirstName[GlobalConstants::_nPersonFirstNameSize];
 	/// <summary>Променлива съдържаща стойността от колона 'SECOND_NAME' в таблицата  'PERSONS'.</summary>
-	TCHAR szSECOND_NAME[GlobalConstants::_nPersonSecondNameSize];
+	TCHAR szSecondName[GlobalConstants::_nPersonSecondNameSize];
 	/// <summary>Променлива съдържаща стойността от колоната 'LAST_NAME' в таблицата  'PERSONS'.</summary>
-	TCHAR szLAST_NAME[GlobalConstants::_nPersonLastNameSize];
+	TCHAR szLastName[GlobalConstants::_nPersonLastNameSize];
 	/// <summary>Променлива съдържаща стойността от колоната UCN в таблицата  'PERSONS'.</summary>
-	TCHAR szUCN[GlobalConstants::_nPersonUcnSize];
+	TCHAR szUcn[GlobalConstants::_nPersonUcnSize];
 	/// <summary>Променлива съдържаща вторичен ключ (от колона 'CITY_ID' в таблицата  'PERSONS').
 	/// <summary>сочещ към таблицата 'CITIES' и колона 'ID'.</summary>
-	long lCITY_ID;
+	long lCityId;
 	/// <summary>Променлива съдържаща стойността от колоната 'ADDRESS' в таблицата  'PERSONS'.</summary>
-	TCHAR szADDRESS[GlobalConstants::_nPersonAddressSize];
+	TCHAR szAddress[GlobalConstants::_nPersonAddressSize];
 
 	PERSONS()
 	{
@@ -70,15 +68,15 @@ struct PHONE_NUMBERS
 	/// <summary>
 		/// Променлива съдържаща вторичен ключ сочещ към колоната 'ID' в таблицата 'PERSONS'</summary>;
 	/// </summary>
-	long lPERSON_ID;
+	long lPersonId;
 	/// <summary>
 		/// Променлива съдържаща вторичен ключ (от колона 'PHONE_TYPE_ID' в таблицата 'PHONE_TYPES')
 		/// сочещ към колоната 'ID' в таблицата 'PHONE_NUMBERS'</summary>;
 	/// </summary>
-	long lPHONE_TYPE_ID;
+	long lPhoneTypeId;
 
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_NUMBER' в таблицата  'PHONE_NUMBERS'</summary>
-	TCHAR szPHONE_NUMBER[GlobalConstants::_nPhoneNumberSize];
+	TCHAR szPhoneNumber[GlobalConstants::_nPhoneNumberSize];
 
 	PHONE_NUMBERS()
 	{
@@ -94,7 +92,7 @@ struct PHONE_TYPES {
 	/// <summary>?</summary>
 	long lUpdateCounter;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_TYPE' в таблицата  'PHONE_TYPES'</summary>
-	TCHAR szPHONE_TYPE[PHONE_TYPE_SIZE];
+	TCHAR szPhoneType[PHONE_TYPE_SIZE];
 
 	PHONE_TYPES()
 	{

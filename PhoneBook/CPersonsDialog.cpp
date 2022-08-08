@@ -142,13 +142,13 @@ void CPersonsDialog::FillPersonDataFields()
 	m_edbPersonFirstName.SetWindowText(m_recPerson.szFirstName);
 	m_edbPersonFirstName.SetLimitText(GlobalConstants::_nPersonFirstNameSize);
 
-	m_edbPersonSecondName.SetWindowText(m_recPerson.szSECOND_NAME);
+	m_edbPersonSecondName.SetWindowText(m_recPerson.szSecondName);
 	m_edbPersonSecondName.SetLimitText(GlobalConstants::_nPersonSecondNameSize);
 
-	m_edbPersonLastName.SetWindowText(m_recPerson.szLAST_NAME);
+	m_edbPersonLastName.SetWindowText(m_recPerson.szLastName);
 	m_edbPersonLastName.SetLimitText(GlobalConstants::_nPersonLastNameSize);
 
-	m_edbPersonUcn.SetWindowText(m_recPerson.szUCN);
+	m_edbPersonUcn.SetWindowText(m_recPerson.szUcn);
 	m_edbPersonUcn.SetLimitText(GlobalConstants::_nPersonUcnSize);
 }
 
@@ -160,10 +160,10 @@ void CPersonsDialog::FillCitiesComboBox()
 		if (pCity == NULL)
 			continue;
 
-		int nResult = m_cmbCitiesNames.AddString(pCity->szCITY_NAME);
+		int nResult = m_cmbCitiesNames.AddString(pCity->szCityName);
 		m_cmbCitiesNames.SetItemData(nResult, reinterpret_cast<DWORD_PTR>(pCity));
 
-		if (pCity->lID == m_recPerson.lCITY_ID)
+		if (pCity->lID == m_recPerson.lCityId)
 			m_cmbCitiesNames.SetCurSel(nResult);
 	}
 }
@@ -200,14 +200,14 @@ void CPersonsDialog::InsertRecordToListCtrl(PHONE_NUMBERS* pPhoneNumber)
 	PHONE_TYPES* pPhoneType;
 
 
-	if (!m_oPhoneTypesMap.Lookup(pPhoneNumber->lPHONE_TYPE_ID, pPhoneType))
+	if (!m_oPhoneTypesMap.Lookup(pPhoneNumber->lPhoneTypeId, pPhoneType))
 		return;
 
 	if (pPhoneType == NULL)
 		return;
 
 
-	/*CSelfClearingMap<long, PHONE_TYPES*>::iterator intrPhoneTypes = m_oPhoneTypesMap.find(pPhoneNumber->lPHONE_TYPE_ID);
+	/*CSelfClearingMap<long, PHONE_TYPES*>::iterator intrPhoneTypes = m_oPhoneTypesMap.find(pPhoneNumber->lPhoneTypeId);
 
 	if (intrPhoneTypes == m_oPhoneTypesMap.end())
 		return;
@@ -221,7 +221,7 @@ void CPersonsDialog::InsertRecordToListCtrl(PHONE_NUMBERS* pPhoneNumber)
 
 	m_lscPersonPhoneNumbers.InsertItem(nRow, pPhoneNumber->szPHONE_NUMBER);
 
-	m_lscPersonPhoneNumbers.SetItemText(nRow, 1, pPhoneType->szPHONE_TYPE);
+	m_lscPersonPhoneNumbers.SetItemText(nRow, 1, pPhoneType->szPhoneType);
 
 	m_lscPersonPhoneNumbers.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pPhoneNumber));
 }
@@ -244,7 +244,7 @@ void CPersonsDialog::UpdateListCtrlRecord()
 	if (pPhoneType == NULL)
 		return;
 
-	m_lscPersonPhoneNumbers.SetItemText(nSelectedRow, nColumn, pPhoneType->szPHONE_TYPE);
+	m_lscPersonPhoneNumbers.SetItemText(nSelectedRow, nColumn, pPhoneType->szPhoneType);
 }
 
 
@@ -289,16 +289,16 @@ void CPersonsDialog::OnOK()
 	_tcscpy_s(m_recPerson.szFirstName, strPersonFirstName);
 
 	m_edbPersonSecondName.GetWindowText(strPersonSecondName);
-	_tcscpy_s(m_recPerson.szSECOND_NAME, strPersonSecondName);
+	_tcscpy_s(m_recPerson.szSecondName, strPersonSecondName);
 
 	m_edbPersonLastName.GetWindowText(strPersonLastName);
-	_tcscpy_s(m_recPerson.szLAST_NAME, strPersonLastName);
+	_tcscpy_s(m_recPerson.szLastName, strPersonLastName);
 
 	CString strPersonUcn;
 	m_edbPersonLastName.GetWindowText(strPersonUcn);
-	_tcscpy_s(m_recPerson.szUCN, strPersonUcn);
+	_tcscpy_s(m_recPerson.szUcn, strPersonUcn);
 
-	m_recPerson.lCITY_ID = pCity->lID;
+	m_recPerson.lCityId = pCity->lID;
 
 	CDialog::OnOK();
 }
@@ -361,7 +361,6 @@ void CPersonsDialog::OnContextMenuDelete()
 	}
 }
 
-
 void CPersonsDialog::OnContextMenuReadData()
 {
 	PHONE_NUMBERS* pPhoneNumber = GetSelectedRecordItemData();
@@ -387,7 +386,7 @@ void CPersonsDialog::OnContextMenuInsert()
 	}
 
 	pPhoneNumber->lID = 0;
-	pPhoneNumber->lPERSON_ID = m_recPerson.lID;
+	pPhoneNumber->lPersonId = m_recPerson.lID;
 
 	PHONE_NUMBERS* p;
 
