@@ -89,3 +89,4 @@ void CPhoneNumbersDialog::OnBnClickedCancel()
 	// TODO: Add your control notification handler code here
 	CDialog::OnCancel();
 }
+

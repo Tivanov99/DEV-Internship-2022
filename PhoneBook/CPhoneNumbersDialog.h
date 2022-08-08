@@ -26,8 +26,17 @@ public:
 	//Methods
 	//-----------------
 private:
+	/// <summary>
+	/// Попълва всички полета с данните от обекта който е подаден като аргумент 'recPhoneNumber' при извикването на диалога.
+	/// </summary>
 	void FillInputFileds();
+	/// <summary>
+	/// Функция която попълва всички въведени данни във входните полета по обекта 'm_recPhoneNumber' и запазва промените при клик на бутона 'Ok'.
+	/// </summary>
 	afx_msg void OnBnClickedOk();
+	/// <summary>
+	/// Функция която отменя всички направени промени и затваря диалоговия прозорец при клик на бутона 'Cancel'.
+	/// </summary>
 	afx_msg void OnBnClickedCancel();
 
 	//Overrides

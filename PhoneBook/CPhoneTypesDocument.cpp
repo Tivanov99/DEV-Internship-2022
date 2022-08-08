@@ -3,9 +3,6 @@
 
 IMPLEMENT_DYNCREATE(CPhoneTypesDocument, CDocument)
 
-BEGIN_MESSAGE_MAP(CPhoneTypesDocument, CDocument)
-END_MESSAGE_MAP()
-
 CPhoneTypesDocument::CPhoneTypesDocument() noexcept {};
 
 CPhoneTypesDocument::~CPhoneTypesDocument() {};
@@ -162,3 +159,5 @@ long CPhoneTypesDocument::GetPhoneTypeIndexFromPhoneTypesArray(long lID)
 
 	return -1;
 }
+
+
