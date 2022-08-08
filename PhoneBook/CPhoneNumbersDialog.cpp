@@ -12,8 +12,8 @@
 
 IMPLEMENT_DYNAMIC(CPhoneNumbersDialog, CDialog)
 
-CPhoneNumbersDialog::CPhoneNumbersDialog(PHONE_NUMBERS& recPhoneNumber, CSelfClearingMap<long,PHONE_TYPES*>& oPhoneTypesMap,CWnd* pParent /*=nullptr*/)
-	: CDialog(IDD_PHONE_NUMBERS_DIALOG, pParent), m_recPhoneNumber(recPhoneNumber),m_oPhoneTypesMap(oPhoneTypesMap)
+CPhoneNumbersDialog::CPhoneNumbersDialog(DialogWindowActions eOperation, PHONE_NUMBERS& recPhoneNumber, CSelfClearingMap<long, PHONE_TYPES*>& oPhoneTypesMap, CWnd* pParent /*=nullptr*/)
+	: CDialog(IDD_PHONE_NUMBERS_DIALOG, pParent), m_recPhoneNumber(recPhoneNumber), m_oPhoneTypesMap(oPhoneTypesMap), m_eOperation(eOperation)
 {
 
 }
@@ -25,7 +25,11 @@ BOOL CPhoneNumbersDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	FillInputFileds();
+	if (m_eOperation != DialogWindowActions::InsertData)
+		FillInputFileds();
+
+	if (m_eOperation == DialogWindowActions::ReadData)
+		LockInputFields();
 
 	return TRUE;
 }
@@ -49,7 +53,7 @@ END_MESSAGE_MAP()
 void CPhoneNumbersDialog::FillInputFileds()
 {
 	m_edbPhoneNumber.SetWindowText(m_recPhoneNumber.szPHONE_NUMBER);
-	
+
 	map<long, PHONE_TYPES*>::iterator itr;
 
 	PHONE_TYPES* pPhoneType;
@@ -102,3 +106,8 @@ void CPhoneNumbersDialog::OnBnClickedCancel()
 	CDialog::OnCancel();
 }
 
+void CPhoneNumbersDialog::LockInputFields()
+{
+	m_cmbPhoneTypes.EnableWindow(false);
+	m_edbPhoneNumber.EnableWindow(false);
+}
