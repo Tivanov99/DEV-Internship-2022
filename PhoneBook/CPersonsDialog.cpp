@@ -217,8 +217,6 @@ void CPersonsDialog::UpdateListCtrlRecord()
 	m_lscPersonPhoneNumbers.SetItemText(nSelectedRow, nColumn, pPhoneType->szPhoneType);
 }
 
-
-
 void CPersonsDialog::OnOK()
 {
 	CString strPersonFirstName;

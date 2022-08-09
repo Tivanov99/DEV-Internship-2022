@@ -8,6 +8,7 @@
 
 #include "CPhoneTypesView.h"
 #include "resource.h"
+#include "CPhoneTypesDialog.h"
 
 
 IMPLEMENT_DYNCREATE(CPhoneTypesView, CListView)
@@ -61,7 +62,7 @@ CPhoneTypesDocument* CPhoneTypesView::GetDocument() const // non-debug version i
 };
 #endif //_DEBUG
 
-void CPhoneTypesView::ManageContextMenuItems(CCmdUI* pCmdUI)
+void CPhoneTypesView::ContextMenuItems(CCmdUI* pCmdUI)
 {
 	CListCtrl& LSCCitiesList = GetListCtrl();
 
@@ -83,12 +84,6 @@ void CPhoneTypesView::ManageContextMenuItems(CCmdUI* pCmdUI)
 		pCmdUI->Enable(false);
 }
 
-
-void CPhoneTypesView::OnRButtonUp(UINT /* nFlags */, CPoint point)
-{
-	ClientToScreen(&point);
-	OnContextMenu(this, point);
-}
 
 void CPhoneTypesView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 {
@@ -199,9 +194,9 @@ void CPhoneTypesView::OnEditContextReadData()
 
 	PHONE_TYPES oPhoneType = *pPhoneType;
 
-	//CCitiesDialog oCitiesDialog(DialogWindowActions::ReadData, oPhoneType);
+	CPhoneTypesDialog oPhoneTypesDialog(DialogWindowActions::ReadData, oPhoneType);
 
-	//oCitiesDialog.DoModal();
+	oPhoneTypesDialog.DoModal();
 }
 
 
@@ -213,17 +208,17 @@ void CPhoneTypesView::OnEditContextEdit()
 
 	PHONE_TYPES oPhoneType = *pPhoneType;
 
-	//CCitiesDialog oCitiesDialog(DialogWindowActions::EditData, oPhoneType);
+	CPhoneTypesDialog oPhoneTypesDialog(DialogWindowActions::EditData, oPhoneType);
 
-	/*if (oCitiesDialog.DoModal() != IDOK)
-		return;*/
+	if (oPhoneTypesDialog.DoModal() != IDOK)
+		return;
 
 	CPhoneTypesDocument* pPhoneTypesDocument = GetDocument();
 
 	if (!pPhoneTypesDocument->UpdatePhoneType(oPhoneType))
 		return;
 
-	UpdateRecord(oPhoneType);
+	//UpdateRecord(oPhoneType);
 }
 
 
@@ -254,22 +249,16 @@ void CPhoneTypesView::OnEditContextDelete()
 void CPhoneTypesView::OnEditContextInsert()
 {
 	PHONE_TYPES oPhoneType;
-	oPhoneType.lUpdateCounter = 0;
 
-	//CCitiesDialog oCitiesDialog(DialogWindowActions::InsertData, oPhoneType);
+	CPhoneTypesDialog oPhoneTypesDialog(DialogWindowActions::InsertData, oPhoneType);
 
-	/*if (oCitiesDialog.DoModal() != IDOK)
-		return;*/
+	if (oPhoneTypesDialog.DoModal() != IDOK)
+		return;
 
 	CPhoneTypesDocument* pPhoneTypesDocument = GetDocument();
 
-	PHONE_TYPES* pPhoneType = pPhoneTypesDocument->InsertPhoneType(oPhoneType);
-
-	if (pPhoneType == NULL)
+	if (!pPhoneTypesDocument->InsertPhoneType(oPhoneType))
 		return;
-
-	InsertNewRecordToCListCtrl(pPhoneType);
-
 	//TODO: Use OnUpdateAllViews method from CCitiesDocument.e
 }
 
@@ -286,24 +275,4 @@ void CPhoneTypesView::UpdateRecord(PHONE_TYPES& pPhoneType)
 
 }
 
-void CPhoneTypesView::ContextMenuItems(CCmdUI* pCmdUI)
-{
-	CListCtrl& LSCCitiesList = GetListCtrl();
 
-	UINT uSelectedCount = LSCCitiesList.GetSelectedCount();
-
-	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount == 0)
-	{
-		pCmdUI->Enable(true);
-		return;
-	}
-
-	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount > 0)
-	{
-		pCmdUI->Enable(false);
-		return;
-	}
-
-	if (uSelectedCount == 0)
-		pCmdUI->Enable(false);
-}

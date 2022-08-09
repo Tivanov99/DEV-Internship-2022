@@ -192,6 +192,7 @@
     <ClInclude Include="CCitiesView.h" />
     <ClInclude Include="CPhoneNumbersDialog.h" />
     <ClInclude Include="CPhoneTypesData.h" />
+    <ClInclude Include="CPhoneTypesDialog.h" />
     <ClInclude Include="CPhoneTypesDocument.h" />
     <ClInclude Include="CPhoneTypesTable.h" />
     <ClInclude Include="CPhoneTypesView.h" />
@@ -240,6 +241,7 @@
     <ClCompile Include="CPhoneNumbersDialog.cpp" />
     <ClCompile Include="CPhoneNumbersTable.cpp" />
     <ClCompile Include="CPhoneTypesData.cpp" />
+    <ClCompile Include="CPhoneTypesDialog.cpp" />
     <ClCompile Include="CPhoneTypesDocument.cpp" />
     <ClCompile Include="CPhoneTypesTable.cpp" />
     <ClCompile Include="CPhoneTypesView.cpp" />

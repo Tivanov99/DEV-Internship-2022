@@ -15,8 +15,6 @@ public:
 	//Methods
 	//-------------
 private:
-	/// <summary>Фунцкия която определя коя опция от контекстното меню може да бъде използвана при клик на десен бутон.</summary>
-	void ManageContextMenuItems(CCmdUI* pCmdUI);
 	/// <summary>Функция която попълва цялата информация за градовете.</summary>
 	/// <param name="оListCtrl">Лист контрола в която ще се попълват данните.</param>
 	/// <param name="oCitiesArray">Масив съдържащ всички записи за градовете прочетени от базата.</param>
@@ -56,22 +54,10 @@ public:
 	// Generated message map functions
 protected:
 	afx_msg void OnFilePrintPreview();
-	/// <summary>Функция обработваща десен клик на мишката.</summary>
-	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	/// <summary>Функция която се грижи за визуализирането на контекстното меню.</summary>
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
-
 private:
-	///// <summary>Изтрива посочен запис при десен клик върху запис във view-то и 'Delete' от контекстното меню.</summary>
-	//afx_msg void OnContextMenuDelete();
-	///// <summary>При десен клик върху запис извиква диалогов прозорец попълнен с неговите данни даващ възможност за редакция.</summary>
-	//afx_msg void OnContextMenuEdit();
-	///// <summary>При десен клик без значение къде е извършен той и 'InsertRecord' от контекстното меню извиква диалогов прозорец в който да бъдат попълнени данните на записа.</summary>
-	//afx_msg void OnContextMenuInsert();
-	///// <summary>При десен клик върху запис извиква диалогов прозорец попълнен с неговите данни.</summary>
-	//afx_msg void OnEditContextReadData();
-public:
 	/// <summary>При десен клик върху запис извиква диалогов прозорец попълнен с неговите данни.</summary>
 	afx_msg void OnEditContextReadData();
 	/// <summary>При десен клик върху запис извиква диалогов прозорец попълнен с неговите данни даващ възможност за редакция.</summary>
@@ -80,7 +66,7 @@ public:
 	afx_msg void OnEditContextDelete();
 	/// <summary>При десен клик без значение къде е извършен той и 'InsertRecord' от контекстното меню извиква диалогов прозорец в който да бъдат попълнени данните на записа.</summary>
 	afx_msg void OnEditContextInsert();
-	afx_msg void OnContextMenuReadData(CCmdUI* pCmdUI);
+	/// <summary>Фунцкия която определя коя опция от контекстното меню може да бъде използвана при клик на десен бутон.</summary>
 	afx_msg void ContextMenuItems(CCmdUI* pCmdUI);
 };
 

@@ -35,7 +35,7 @@ public:
 	PHONE_TYPES* GetPhoneTypeById(long lID);
 	bool DeletePhoneTypeById(long lID);
 	bool UpdatePhoneType(PHONE_TYPES& recPhoneType);
-	PHONE_TYPES* InsertPhoneType(PHONE_TYPES& recPhoneType);
+	bool InsertPhoneType(PHONE_TYPES& recPhoneType);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	bool DeletePhoneTypeFromPhoneTypesArray(long lID);

@@ -28,6 +28,10 @@ public:
 	static const int _nPhoneNumberMinSize = 10;
 
 	static const int _nColumnWidth = 120;
+
+	static const int _nPhoneTypeMinLenght = 4;
+	static const int _nPhoneTypeMaxLenght = 16;
+
 };
 
 

@@ -98,17 +98,16 @@ bool CPhoneTypesDocument::UpdatePhoneType(PHONE_TYPES& recPhoneType)
 	return true;
 }
 
-PHONE_TYPES* CPhoneTypesDocument::InsertPhoneType(PHONE_TYPES& recPhoneType)
+bool CPhoneTypesDocument::InsertPhoneType(PHONE_TYPES& recPhoneType)
 {
 	if (!m_PhoneTypesData.InsertRecord(recPhoneType))
-		return NULL;
+		return false;
 
 	PHONE_TYPES* pPhoneNumber = AddPhoneTypeToPhoneTypesArray(recPhoneType);
 
-
 	//TODO: Chech here for object ?
 	OnUpdateAllViews(ContextMenuOperations::Edit, NULL);
-	return pPhoneNumber;
+	return true;
 }
 
 bool CPhoneTypesDocument::DeletePhoneTypeFromPhoneTypesArray(long lID)

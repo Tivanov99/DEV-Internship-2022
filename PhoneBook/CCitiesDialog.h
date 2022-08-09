@@ -9,8 +9,6 @@
 
 class CCitiesDialog : public CDialog
 {
-	//Constants
-	// ----------------
 	DECLARE_DYNAMIC(CCitiesDialog)
 
 	// Constructor / Destructor

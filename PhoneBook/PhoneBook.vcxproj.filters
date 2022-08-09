@@ -150,6 +150,9 @@
     <ClInclude Include="CPhoneTypesView.h">
       <Filter>PHONE_TYPES</Filter>
     </ClInclude>
+    <ClInclude Include="CPhoneTypesDialog.h">
+      <Filter>PHONE_TYPES</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -231,6 +234,9 @@
       <Filter>Source Files\CITIES</Filter>
     </ClCompile>
     <ClCompile Include="CPhoneTypesView.cpp">
+      <Filter>Source Files\PHONE_TYPES</Filter>
+    </ClCompile>
+    <ClCompile Include="CPhoneTypesDialog.cpp">
       <Filter>Source Files\PHONE_TYPES</Filter>
     </ClCompile>
   </ItemGroup>
