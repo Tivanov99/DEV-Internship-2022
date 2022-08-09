@@ -25,6 +25,7 @@ public:
 	const LPCSTR lpszErrorUpdatingRecord = "Error updating record with id: %d";
 	const LPCSTR lpszErrorDeletingRecord = "Delete failed.";
 	const LPCSTR lpszErrorInsertingRecord = "Insert failed.";
+	const LPCSTR lpszErrorForeignKeyDeletingRecord = "Delete failed.This entry can be used in any of the other entries.";
 
 	// Constructor / Destructor
 	// ----------------
@@ -309,7 +310,7 @@ bool CBaseTable<Record_Type, Table_AcessorType>::DeleteWhereID(const long lID)
 
 	if (FAILED(Delete()))
 	{
-		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorDeletingRecord, NULL);
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorForeignKeyDeletingRecord, NULL);
 		CloseRowSet();
 		return false;
 	}

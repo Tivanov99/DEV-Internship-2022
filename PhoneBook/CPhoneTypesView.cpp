@@ -241,7 +241,8 @@ void CPhoneTypesView::OnEditContextDelete()
 	{
 		CPhoneTypesDocument* pPhoneTypesDocument = GetDocument();
 
-		pPhoneTypesDocument->DeletePhoneTypeById(pPhoneType->lID);
+		if (!pPhoneTypesDocument->DeletePhoneTypeById(pPhoneType->lID))
+			return;
 	}
 }
 

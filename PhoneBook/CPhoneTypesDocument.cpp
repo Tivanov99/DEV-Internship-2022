@@ -62,9 +62,7 @@ PHONE_TYPES* CPhoneTypesDocument::GetPhoneTypeById(long lID)
 
 bool CPhoneTypesDocument::DeletePhoneTypeById(long lID)
 {
-	const bool bDeleteResult = m_PhoneTypesData.DeleteWhereID(lID);
-
-	if (!bDeleteResult)
+	if (!m_PhoneTypesData.DeleteWhereID(lID))
 	{
 		TRACE(_T("Deletion from database returned error. Phone type id: %d"), lID);
 		return false;
