@@ -27,17 +27,17 @@ public:
 	/// <returns>Според това дали успешно е извършено действието връща 'true' в провитен случай 'false'</returns>
 	bool OpenDbConnection();
 	/// <summary>Функция която затваря връзката към базата.</summary>
-	void  CloseDbConnectionAndSession();
+	void  CloseDbConnection();
 	/// <summary> Getter</summary>
 	CSession& GetSession();
 	/// <summary>Метод връщащ инстанция от този клас</summary>
 	/// <returns>Инстанция от този клас</returns>
 	static DataBaseConnector* GetInstance();
-	/// <summary>
-	/// Отваряне на сесия.
-	/// </summary>
+	/// <summary>Отваряне на сесия.</summary>
 	/// <returns>Според това дали успешно е извършено действието връща 'true' в провитен случай 'false'</returns>
 	bool OpenSession();
+	/// <summary>Функция която затваря сесията.</summary>
+	void CloseSession();
 	// Members
 	// -------------
 private:

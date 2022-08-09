@@ -49,10 +49,10 @@ public:
 	/// <returns>Според това дали успешно е минала операцията връща 'true' ако ли не 'false'.</returns>
 	bool DeletePersonAndPhoneNumbers(const long lID);
 	/// <summary>Функция която актуализира запис от таблицата 'PERSONS' чието ID отговаря на 'lPersonID', и всички записи от таблицата 'PHONE_NUMBERS' чийто стойност от колоната 'PERSON_ID' са идентични с 'lPersonID'.</summary>
-	/// <param name="lPersonID">Уникален идентификатор по който се изтриват записите от базата.</param>
+	/// <param name="recPersons">Запис който съдържа актуалната информация.</param>
 	/// <param name="oModifiedPhoneNumbersMap">Колекция съдържаща всички записи на телефонни номера след като е приключена работата с диалоговия прозорец.</param>
 	/// <returns>Според това дали успешно е минала операцията връща 'true' ако ли не 'false'.</returns>
-	bool UpdatePersonAndPhoneNumbers(long lPersonID, CPhoneNumbersMap& oModifiedPhoneNumbersMap);
+	bool UpdatePersonAndPhoneNumbers(const PERSONS& recPersons, CPhoneNumbersMap& oModifiedPhoneNumbersMap);
 
 private:
 	/// <summary>Сравнява 2 обекта за разлики между тях.</summary>

@@ -11,9 +11,8 @@ DataBaseConnector :: ~DataBaseConnector() {};
 
 DataBaseConnector* DataBaseConnector::m_pInstance = NULL;
 
-void DataBaseConnector::CloseDbConnectionAndSession()
+void DataBaseConnector::CloseDbConnection()
 {
-	m_oSession.Close();
 	m_oDataSource.Close();
 };
 
@@ -45,14 +44,6 @@ bool DataBaseConnector::OpenDbConnection()
 		return false;
 	}
 
-	// Отваряме сесия
-	hResult = m_oSession.Open(m_oDataSource);
-	if (hResult != S_OK)
-	{
-		ErrorMessageVisualizator::ShowErrorMessage(lpszUnableToOpenSession, NULL);
-		m_oDataSource.Close();
-		return false;
-	}
 	return true;
 };
 bool DataBaseConnector::OpenSession()
@@ -70,6 +61,10 @@ bool DataBaseConnector::OpenSession()
 CSession& DataBaseConnector::GetSession()
 {
 	return m_oSession;
+}
+void DataBaseConnector::CloseSession()
+{
+	m_oSession.Close();
 }
 
 DataBaseConnector* DataBaseConnector::GetInstance()

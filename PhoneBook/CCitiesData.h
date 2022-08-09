@@ -33,12 +33,5 @@ public:
 	/// <summary>Функция която изтрива запис от таблицата "CITIES" който отговавя на "lID" аргумента.</summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	bool DeleteWhereID(const long lID);
-
-private:
-	/// <summary>Мембър за достъп до класът съдържащ бизнес логиката.</summary>
-	CCitiesTable m_CitiesTable;
-
-	/// <summary>Мембър съдържащ сесията.</summary>
-	CSession m_oSession;
 };
 

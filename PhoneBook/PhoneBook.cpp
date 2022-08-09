@@ -121,7 +121,7 @@ BOOL CPhoneBookApp::InitInstance()
 
 	if (!pDatabaseConnector->OpenDbConnection())
 	{
-		pDatabaseConnector->CloseDbConnectionAndSession();
+		pDatabaseConnector->CloseDbConnection();
 		return false;
 	}
 
