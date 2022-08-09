@@ -57,5 +57,9 @@ private:
 	/// <param name="oComparedPhoneNumber">Обект който ще бъде сравняван.</param>
 	/// <param name="oPhoneNumberComparator">Обект с който ще се сравнява.</param>
 	bool ComparePhoneNumbers(PHONE_NUMBERS& oComparedPhoneNumber, PHONE_NUMBERS& oPhoneNumberComparator);
+
+	bool UpdatePhoneNumbers(PHONE_NUMBERS& pCurrentOriginalPhoneNumber,CPhoneNumbersArray& oModifiedPhoneNumbersArray);
+
+	bool InsertPhoneNumbers(CPhoneNumbersArray& oPhoneNumbersArray);
 };
 

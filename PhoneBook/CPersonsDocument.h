@@ -40,10 +40,6 @@ public:
 	/// <param name="lID">Уникален идентификатор чрез който ще се изчете конкретен запис.</param>
 	/// <returns>Връща указател съдържащ информацията на записа.</returns>
 	PERSONS* GetPersonById(long lID);
-	/// <summary>Функция която изтрива запис от базата с уникален идентификатор 'ID' което отговаря на 'lID'.</summary>
-	/// <param name="lID">Уникален идентификатор чрез който ще се изчете конкретен запис.</param>
-	/// <returns>При успешно изпълнение връща 'true' в противен случай 'false'</returns>
-	bool DeletePersonById(long lID);
 	/// <summary>Функция която добавя нов запис в базата.</summary>
 	/// <param name="recPerson">Референция към обект който ще бъде добавен в базата.</param>
 	bool InsertPerson(PERSONS& recPerson);

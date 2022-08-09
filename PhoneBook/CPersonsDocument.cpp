@@ -51,98 +51,11 @@ const CPersonsArray& CPersonsDocument::GetAllPersons()
 	return m_oPersonsArray;
 }
 
-bool CPersonsDocument::GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
-{
-	if (!m_ÓPersonsData.SelectAllPhoneTypes(oPhoneTypesArray))
-		return false;
-
-	return true;
-}
-
 PERSONS* CPersonsDocument::GetPersonById(long lID)
 {
 	PERSONS* pPerson = m_oPersonsArray.GetAt(lID);
 	if (pPerson == NULL)
 		AfxMessageBox(_T("Failed to read data about person."));
-
-	return pPerson;
-}
-
-bool CPersonsDocument::DeletePersonById(long lID)
-{
-	if (!m_ÓPersonsData.DeletePersonAndPhoneNumbers(lID))
-		return false;
-
-	DeletePersonFromPersonsArray(lID);
-
-	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
-	OnUpdateAllViews(ContextMenuOperations::Delete, (CObject*)lID);
-	return true;
-}
-
-bool CPersonsDocument::DeletePersonAndPhoneNumbers(long lID)
-{
-	if (!m_ÓPersonsData.DeletePersonAndPhoneNumbers(lID))
-		return false;
-
-	return true;
-}
-
-bool CPersonsDocument::GetAllCities(CCitiesArray& oCitiesArray)
-{
-	if (!m_ÓPersonsData.SelectAllCities(oCitiesArray))
-		return false;
-
-	return true;
-}
-
-void CPersonsDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint = NULL)
-{
-	UpdateAllViews(NULL, lHint, pHint);
-}
-
-bool CPersonsDocument::InsertPerson(PERSONS& recPerson)
-{
-	if (!m_ÓPersonsData.InsertRecord(recPerson))
-		return false;
-
-	AddPersonToPersonsArray(recPerson);
-
-	//TODO: Chech here for object ?
-	OnUpdateAllViews(ContextMenuOperations::InsertRecord, (CObject*)recPerson.lID);
-	return true;
-}
-
-bool CPersonsDocument::DeletePersonFromPersonsArray(long lPersonId)
-{
-	if (lPersonId == -1)
-	{
-		AfxMessageBox(_T("The person was not found in the document! Person Id - %d"), lPersonId);
-		return false;
-	}
-
-	long lPersonIndex = GetPersonIndexFromPersonsArray(lPersonId);
-
-	PERSONS* pPerson = m_oPersonsArray.GetAt(lPersonIndex);
-
-	delete pPerson;
-	pPerson = NULL;
-	m_oPersonsArray.RemoveAt(lPersonIndex);
-
-	return true;
-}
-
-PERSONS* CPersonsDocument::AddPersonToPersonsArray(PERSONS& recPerson)
-{
-	PERSONS* pPerson = new PERSONS();
-	*pPerson = recPerson;
-	if (pPerson == NULL)
-	{
-		delete pPerson;
-		AfxMessageBox(_T("Failed to add city to document."));
-		return NULL;
-	}
-	m_oPersonsArray.Add(pPerson);
 
 	return pPerson;
 }
@@ -210,13 +123,91 @@ PHONE_TYPES* CPersonsDocument::GetPhoneTypeById(long lID, CPhoneTypesArray& oPho
 	}
 	return NULL;
 }
-bool CPersonsDocument::UpdatePersonAndPhoneNumbers(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray)
+
+bool CPersonsDocument::GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
 {
-	if (m_ÓPersonsData.UpdatePersonAndPhoneNumbers(recPerson, oPhoneNumbersArray))
+	if (!m_ÓPersonsData.SelectAllPhoneTypes(oPhoneTypesArray))
 		return false;
 
 	return true;
 }
 
+bool CPersonsDocument::GetAllCities(CCitiesArray& oCitiesArray)
+{
+	if (!m_ÓPersonsData.SelectAllCities(oCitiesArray))
+		return false;
 
+	return true;
+}
 
+void CPersonsDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint = NULL)
+{
+	UpdateAllViews(NULL, lHint, pHint);
+}
+
+bool CPersonsDocument::InsertPerson(PERSONS& recPerson)
+{
+	if (!m_ÓPersonsData.InsertRecord(recPerson))
+		return false;
+
+	//TODO: How to get inserted redord ?
+
+	AddPersonToPersonsArray(recPerson);
+
+	OnUpdateAllViews(ContextMenuOperations::InsertRecord, (CObject*)recPerson.lID);
+	return true;
+}
+
+bool CPersonsDocument::UpdatePersonAndPhoneNumbers(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray)
+{
+	if (m_ÓPersonsData.UpdatePersonAndPhoneNumbers(recPerson, oPhoneNumbersArray))
+		return false;
+
+	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)recPerson.lID);
+	return true;
+}
+
+bool CPersonsDocument::DeletePersonAndPhoneNumbers(long lID)
+{
+	if (!m_ÓPersonsData.DeletePersonAndPhoneNumbers(lID))
+		return false;
+
+	DeletePersonFromPersonsArray(lID);
+
+	OnUpdateAllViews(ContextMenuOperations::Delete, (CObject*)lID);
+
+	return true;
+}
+
+PERSONS* CPersonsDocument::AddPersonToPersonsArray(PERSONS& recPerson)
+{
+	PERSONS* pPerson = new PERSONS();
+	*pPerson = recPerson;
+	if (pPerson == NULL)
+	{
+		delete pPerson;
+		AfxMessageBox(_T("Failed to add city to document."));
+		return NULL;
+	}
+	m_oPersonsArray.Add(pPerson);
+
+	return pPerson;
+}
+
+bool CPersonsDocument::DeletePersonFromPersonsArray(long lPersonId)
+{
+	if (lPersonId == -1)
+	{
+		AfxMessageBox(_T("The person was not found in the document! Person Id - %d"), lPersonId);
+		return false;
+	}
+
+	long lPersonIndex = GetPersonIndexFromPersonsArray(lPersonId);
+
+	PERSONS* pPerson = m_oPersonsArray.GetAt(lPersonIndex);
+
+	delete pPerson;
+	pPerson = NULL;
+	m_oPersonsArray.RemoveAt(lPersonIndex);
+	return true;
+}

@@ -281,8 +281,8 @@ bool CBaseTable<Record_Type, Table_AcessorType>::InsertRecord(const Record_Type&
 
 		return false;
 	}
-	CloseRowSet();
 
+	CloseRowSet();
 	return true;
 };
 

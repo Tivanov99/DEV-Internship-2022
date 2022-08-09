@@ -38,6 +38,8 @@ public:
 	bool OpenSession();
 	/// <summary>Функция която затваря сесията.</summary>
 	void CloseSession();
+
+	void AbortTransactionAndCloseSession();
 	// Members
 	// -------------
 private:

@@ -72,6 +72,12 @@ void DataBaseConnector::CloseSession()
 	m_oSession.Close();
 }
 
+void DataBaseConnector::AbortTransactionAndCloseSession()
+{
+	m_oSession.Abort();
+	CloseSession();
+}
+
 DataBaseConnector* DataBaseConnector::GetInstance()
 {
 	if (!m_pInstance)

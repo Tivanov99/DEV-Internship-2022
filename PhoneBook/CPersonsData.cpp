@@ -210,84 +210,89 @@ bool CPersonsData::DeletePersonAndPhoneNumbers(const long lID)
 bool CPersonsData::UpdatePersonAndPhoneNumbers(const PERSONS& recPersons, CPhoneNumbersArray& oModifiedPhoneNumbersArray)
 {
 	CPhoneNumbersArray oPhoneNumbersArray;
-
 	if (!SelectAllPhoneNumbersByPersonId(recPersons.lID, oPhoneNumbersArray))
 		return false;
 
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
-
 	if (!pDatabaseConnector->OpenSession())
 		return false;
 
 	CSession oSession = pDatabaseConnector->GetSession();
-
 	if (oSession.StartTransaction() != S_OK)
 		return false;
 
 	CPersonsTable îPersonsTable(oSession);
-
 	if (!îPersonsTable.UpdateWhereID(recPersons.lID, recPersons))
 	{
-		oSession.Abort();
-		pDatabaseConnector->CloseSession();
+		pDatabaseConnector->AbortTransactionAndCloseSession();
 		return false;
 	}
-	CPhoneNumbersTable oPhoneNumbersTable(oSession);
 
 	for (INT_PTR i = 0; i < oPhoneNumbersArray.GetCount(); i++)
 	{
 		PHONE_NUMBERS* pCurrentOriginalPhoneNumber = oPhoneNumbersArray.GetAt(i);
 		if (pCurrentOriginalPhoneNumber == NULL)
 			continue;
-
-		bool bFound = false;
-
-		for (INT_PTR s = 0; s < oModifiedPhoneNumbersArray.GetCount(); s++)
+		if (!UpdatePhoneNumbers(*pCurrentOriginalPhoneNumber, oModifiedPhoneNumbersArray))
 		{
-			PHONE_NUMBERS* pCurrentModifiedPhoneNumber = oModifiedPhoneNumbersArray.GetAt(i);
-			if (pCurrentModifiedPhoneNumber == NULL)
-				continue;
-
-			if (pCurrentOriginalPhoneNumber->lID == pCurrentModifiedPhoneNumber->lID)
-			{
-				if (ComparePhoneNumbers(*pCurrentModifiedPhoneNumber, *pCurrentOriginalPhoneNumber))
-					if (!oPhoneNumbersTable.UpdateWhereID(pCurrentModifiedPhoneNumber->lID, *pCurrentModifiedPhoneNumber))
-					{
-						oSession.Abort();
-						pDatabaseConnector->CloseSession();
-						return false;
-					}
-				bFound = true;
-				oModifiedPhoneNumbersArray.RemoveAt(s);
-				break;
-			}
-		}
-
-		if (!bFound)
-		{
-			if (!oPhoneNumbersTable.DeleteWhereID(pCurrentOriginalPhoneNumber->lID))
-			{
-				oSession.Abort();
-				pDatabaseConnector->CloseSession();
-				return false;
-			}
-			continue;
+			pDatabaseConnector->AbortTransactionAndCloseSession();
+			return false;
 		}
 	}
-	//Insert
-	for (INT_PTR i = 0; i < oModifiedPhoneNumbersArray.GetCount(); i++)
+	if (!InsertPhoneNumbers(oModifiedPhoneNumbersArray))
 	{
-		PHONE_NUMBERS* pCurrentPhoneNumber = oModifiedPhoneNumbersArray.GetAt(i);
-		if (pCurrentPhoneNumber != NULL)
-			if (!oPhoneNumbersTable.InsertRecord(*pCurrentPhoneNumber))
-			{
-				oSession.Abort();
-				pDatabaseConnector->CloseSession();
-				return false;
-			}
+		pDatabaseConnector->AbortTransactionAndCloseSession();
+		return false;
 	}
+
 	oSession.Commit();
 	pDatabaseConnector->CloseSession();
+	return true;
+}
+bool CPersonsData::InsertPhoneNumbers(CPhoneNumbersArray& oPhoneNumbersArray)
+{
+	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
+	CPhoneNumbersTable oPhoneNumbersTable(pDatabaseConnector->GetSession());
+
+	for (INT_PTR i = 0; i < oPhoneNumbersArray.GetCount(); i++)
+	{
+		PHONE_NUMBERS* pCurrentPhoneNumber = oPhoneNumbersArray.GetAt(i);
+		if (pCurrentPhoneNumber != NULL)
+			if (!oPhoneNumbersTable.InsertRecord(*pCurrentPhoneNumber))
+				return false;
+	}
+	return true;
+}
+
+bool CPersonsData::UpdatePhoneNumbers(PHONE_NUMBERS& pCurrentOriginalPhoneNumber,CPhoneNumbersArray& oModifiedPhoneNumbersArray)
+{
+	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
+	CPhoneNumbersTable oPhoneNumbersTable(pDatabaseConnector->GetSession());
+
+	bool bFound = false;
+	for (INT_PTR s = 0; s < oModifiedPhoneNumbersArray.GetCount(); s++)
+	{
+		PHONE_NUMBERS* pCurrentModifiedPhoneNumber = oModifiedPhoneNumbersArray.GetAt(s);
+		if (pCurrentModifiedPhoneNumber == NULL)
+			continue;
+
+		if (pCurrentOriginalPhoneNumber.lID == pCurrentModifiedPhoneNumber->lID)
+		{
+			if (ComparePhoneNumbers(*pCurrentModifiedPhoneNumber, pCurrentOriginalPhoneNumber))
+				if (!oPhoneNumbersTable.UpdateWhereID(pCurrentModifiedPhoneNumber->lID, *pCurrentModifiedPhoneNumber))
+					return false;
+			oModifiedPhoneNumbersArray.RemoveAt(s);
+			bFound= true;
+			break;
+		}
+	}
+	if (!bFound)
+	{
+		if (!oPhoneNumbersTable.DeleteWhereID(pCurrentOriginalPhoneNumber.lID))
+		{
+			return false;
+		}
+	}
 	return true;
 }
 
