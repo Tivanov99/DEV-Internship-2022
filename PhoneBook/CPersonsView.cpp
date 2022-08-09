@@ -288,20 +288,14 @@ void CPersonsView::OnContextMenuEdit()
 	CSelfClearingMap<long, PHONE_TYPES*> oPhoneTypesMap;
 	pPersonDocument->GetAllPhoneTypes(oPhoneTypesMap);
 
-	CPhoneNumbersArray oPhoneTypesArray;
-	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneTypesArray);
+	CPhoneNumbersArray oPhoneNumbersArray;
+	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersArray);
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, *pPerson, oCitiesArray, oPhoneTypesArray, oPhoneTypesMap);
+	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, *pPerson, oCitiesArray, oPhoneNumbersArray, oPhoneTypesMap);
 
 	if (oPersonsDialog.DoModal() != IDOK)
 		return;
 
-	//TODO: transaction and one call.
-	/*if (!pPersonDocument->UpdatePerson(*pPerson))
-	{
-		AfxMessageBox(_T("Record update failed."));
+	if (!pPersonDocument->UpdatePersonAndPhoneNumbers(*pPerson, oPhoneNumbersArray))
 		return;
-	}
-
-	pPersonDocument->UpdatePersonAndPhoneNumbers(pPerson->lID, oPhoneNumbersMap);*/
 }

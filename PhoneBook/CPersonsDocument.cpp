@@ -222,6 +222,13 @@ PHONE_TYPES* CPersonsDocument::GetPhoneTypeById(long lID, CPhoneTypesArray& oPho
 	}
 	return NULL;
 }
+bool CPersonsDocument::UpdatePersonAndPhoneNumbers(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray)
+{
+	if (m_ÓPersonsData.UpdatePersonAndPhoneNumbers(recPerson, oPhoneNumbersArray))
+		return false;
+
+	return true;
+}
 
 
 

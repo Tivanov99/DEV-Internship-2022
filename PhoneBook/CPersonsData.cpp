@@ -207,7 +207,7 @@ bool CPersonsData::DeletePersonAndPhoneNumbers(const long lID)
 	return true;
 }
 
-bool CPersonsData::UpdatePersonAndPhoneNumbers(const PERSONS& recPersons, CPhoneNumbersMap& oModifiedPhoneNumbersMap)
+bool CPersonsData::UpdatePersonAndPhoneNumbers(const PERSONS& recPersons, CPhoneNumbersArray& oModifiedPhoneNumbersArray)
 {
 	CPhoneNumbersArray oPhoneNumbersArray;
 
@@ -240,44 +240,47 @@ bool CPersonsData::UpdatePersonAndPhoneNumbers(const PERSONS& recPersons, CPhone
 		if (pCurrentOriginalPhoneNumber == NULL)
 			continue;
 
-		PHONE_NUMBERS* pPhoneNumbersFromModifiedMap;
+		bool bFound = false;
 
-		if (!oModifiedPhoneNumbersMap.Lookup(pCurrentOriginalPhoneNumber->lID, pPhoneNumbersFromModifiedMap))
+		for (INT_PTR s = 0; s < oModifiedPhoneNumbersArray.GetCount(); s++)
 		{
-			if (pPhoneNumbersFromModifiedMap == NULL)
+			PHONE_NUMBERS* pCurrentModifiedPhoneNumber = oModifiedPhoneNumbersArray.GetAt(i);
+			if (pCurrentModifiedPhoneNumber == NULL)
 				continue;
 
-			if (oPhoneNumbersTable.DeleteWhereID(pCurrentOriginalPhoneNumber->lID))
+			if (pCurrentOriginalPhoneNumber->lID == pCurrentModifiedPhoneNumber->lID)
+			{
+				if (ComparePhoneNumbers(*pCurrentModifiedPhoneNumber, *pCurrentOriginalPhoneNumber))
+				{
+					if (!oPhoneNumbersTable.UpdateWhereID(pCurrentModifiedPhoneNumber->lID, *pCurrentModifiedPhoneNumber))
+					{
+						oSession.Abort();
+						return false;
+					}
+				}
+				bFound = true;
+				oModifiedPhoneNumbersArray.RemoveAt(s);
+				break;
+			}
+		}
+
+		if (!bFound)
+		{
+			if (!oPhoneNumbersTable.DeleteWhereID(pCurrentOriginalPhoneNumber->lID))
 			{
 				oSession.Abort();
 				return false;
 			}
 			continue;
 		}
-		if (ComparePhoneNumbers(*pPhoneNumbersFromModifiedMap, *pCurrentOriginalPhoneNumber))
-		{
-			if (!oPhoneNumbersTable.UpdateWhereID(pPhoneNumbersFromModifiedMap->lID, *pPhoneNumbersFromModifiedMap))
-			{
-				oSession.Abort();
-				return false;
-			}
-		}
-			oModifiedPhoneNumbersMap.RemoveKey(pPhoneNumbersFromModifiedMap->lID);
 	}
-
 	//Insert
-	POSITION posModifiedMap = oModifiedPhoneNumbersMap.GetStartPosition();
 
-	while (posModifiedMap)
+	for (INT_PTR i = 0; i < oModifiedPhoneNumbersArray.GetCount(); i++)
 	{
-		if (posModifiedMap == NULL)
-			break;
-		PHONE_NUMBERS* pCurrentOriginalPhoneNumber;
-		long lCurrentId;
-		oModifiedPhoneNumbersMap.GetNextAssoc(posModifiedMap, lCurrentId, pCurrentOriginalPhoneNumber);
-
-		if (pCurrentOriginalPhoneNumber != NULL)
-			if (!oPhoneNumbersTable.InsertRecord(*pCurrentOriginalPhoneNumber))
+		PHONE_NUMBERS* pCurrentPhoneNumber = oModifiedPhoneNumbersArray.GetAt(i);
+		if (pCurrentPhoneNumber != NULL)
+			if (!oPhoneNumbersTable.InsertRecord(*pCurrentPhoneNumber))
 			{
 				oSession.Abort();
 				return false;

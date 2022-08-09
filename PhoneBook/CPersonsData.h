@@ -52,7 +52,7 @@ public:
 	/// <param name="recPersons">Запис който съдържа актуалната информация.</param>
 	/// <param name="oModifiedPhoneNumbersMap">Колекция съдържаща всички записи на телефонни номера след като е приключена работата с диалоговия прозорец.</param>
 	/// <returns>Според това дали успешно е минала операцията връща 'true' ако ли не 'false'.</returns>
-	bool UpdatePersonAndPhoneNumbers(const PERSONS& recPersons, CPhoneNumbersMap& oModifiedPhoneNumbersMap);
+	bool UpdatePersonAndPhoneNumbers(const PERSONS& recPersons, CPhoneNumbersArray& oModifiedPhoneNumbersArray);
 
 private:
 	/// <summary>Сравнява 2 обекта за разлики между тях.</summary>

@@ -72,6 +72,8 @@ public:
 
 	
 	bool GetAllPhoneTypes(CSelfClearingMap<long, PHONE_TYPES*>& oMap);
+
+	bool UpdatePersonAndPhoneNumbers(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	/// <summary>Фунцкия изтриваща запис от 'm_oPersonsArray' чието 'ID' отговаря на 'lPersonId'.</summary>

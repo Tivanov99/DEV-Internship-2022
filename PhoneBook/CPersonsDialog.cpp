@@ -323,9 +323,19 @@ void CPersonsDialog::OnContextMenuDelete()
 		const int nSelectedRow = m_lscPersonPhoneNumbers.GetSelectionMark();
 		m_lscPersonPhoneNumbers.DeleteItem(nSelectedRow);
 
-		/*m_oPhoneNumbersArray.remove
+		for (INT_PTR i = 0; i < m_oPhoneNumbersArray.GetCount(); i++)
+		{
+			PHONE_NUMBERS* pCurrentPhoneNumber = m_oPhoneNumbersArray.GetAt(i);
+			if (pCurrentPhoneNumber == NULL)
+				continue;
 
-		m_oPhoneNumbersMap.RemoveKey(pPhoneNumber->lID);*/
+			if (pCurrentPhoneNumber->lID == pPhoneNumber->lID)
+			{
+				m_oPhoneNumbersArray.RemoveAt(i);
+				break;
+			}
+		}
+
 
 		delete pPhoneNumber;
 		pPhoneNumber = NULL;
