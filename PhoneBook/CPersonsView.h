@@ -33,15 +33,14 @@ private:
 	void InsertNewRecordToCListCtrl(PERSONS* pPerson);
 
 	void UpdateRecord(PERSONS* pPerson);
-
 	/// <summary>Конфигурира всичко нужно за държанието и изгледа на лист контролата.</summary>
 	void ConfigurateCListCtrl();
-
+	
 	// Overrides
+	//----------------
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint) override;
-
 protected:
 	/// <summary>Метод подготвящ всично нужно по CListCtrl при стартирането на програмата.</summary>
 	virtual void OnInitialUpdate(); // called first time after construct
@@ -53,10 +52,9 @@ public:
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
 #endif
-
-
 	// Generated message map functions
 protected:
+	/// <summary>Функция която се грижи за визуализирането на контекстното меню.</summary>
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
 public:

@@ -21,6 +21,10 @@ BEGIN_MESSAGE_MAP(CPhoneTypesView, CListView)
 	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CPhoneTypesView::OnEditContextEdit)
 	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CPhoneTypesView::OnEditContextDelete)
 	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CPhoneTypesView::OnEditContextInsert)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_READ_DATA, &CPhoneTypesView::ContextMenuItems)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_EDIT, &CPhoneTypesView::ContextMenuItems)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_DELETE, &CPhoneTypesView::ContextMenuItems)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_INSERT, &CPhoneTypesView::ContextMenuItems)
 END_MESSAGE_MAP()
 
 CPhoneTypesView::CPhoneTypesView() noexcept
@@ -280,4 +284,26 @@ void CPhoneTypesView::UpdateRecord(PHONE_TYPES& pPhoneType)
 
 	oListCtrl.SetItemText(nSelectedRow, nColumnNumber++, pPhoneType.szPhoneType);
 
+}
+
+void CPhoneTypesView::ContextMenuItems(CCmdUI* pCmdUI)
+{
+	CListCtrl& LSCCitiesList = GetListCtrl();
+
+	UINT uSelectedCount = LSCCitiesList.GetSelectedCount();
+
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount == 0)
+	{
+		pCmdUI->Enable(true);
+		return;
+	}
+
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount > 0)
+	{
+		pCmdUI->Enable(false);
+		return;
+	}
+
+	if (uSelectedCount == 0)
+		pCmdUI->Enable(false);
 }

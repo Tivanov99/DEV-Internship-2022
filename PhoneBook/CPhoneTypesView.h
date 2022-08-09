@@ -80,5 +80,7 @@ public:
 	afx_msg void OnEditContextDelete();
 	/// <summary>При десен клик без значение къде е извършен той и 'InsertRecord' от контекстното меню извиква диалогов прозорец в който да бъдат попълнени данните на записа.</summary>
 	afx_msg void OnEditContextInsert();
+	afx_msg void OnContextMenuReadData(CCmdUI* pCmdUI);
+	afx_msg void ContextMenuItems(CCmdUI* pCmdUI);
 };
 

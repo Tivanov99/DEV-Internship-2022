@@ -14,7 +14,6 @@ IMPLEMENT_DYNCREATE(CPersonsView, CListView)
 
 
 BEGIN_MESSAGE_MAP(CPersonsView, CListView)
-
 	ON_WM_CONTEXTMENU()
 	ON_WM_LBUTTONDBLCLK()
 	ON_COMMAND(ID_EDIT_CONTEXT_DELETE, &CPersonsView::OnContextMenuDelete)
@@ -25,8 +24,6 @@ BEGIN_MESSAGE_MAP(CPersonsView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_READ_DATA, &CPersonsView::ManageContextMenuItems)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_DELETE, &CPersonsView::ManageContextMenuItems)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_INSERT, &CPersonsView::ManageContextMenuItems)
-
-
 END_MESSAGE_MAP()
 
 CPersonsView::CPersonsView() noexcept {};
