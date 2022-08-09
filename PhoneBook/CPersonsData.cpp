@@ -195,7 +195,6 @@ bool CPersonsData::DeletePersonAndPhoneNumbers(const long lID)
 	if (!pDatabaseConnector->OpenDbConnectionAndSession())
 	{
 		pDatabaseConnector->CloseDbConnectionAndSession();
-
 		return false;
 	}
 	CSession oSession = pDatabaseConnector->GetSession();
@@ -219,7 +218,7 @@ bool CPersonsData::DeletePersonAndPhoneNumbers(const long lID)
 		return false;
 	}
 
-	CPersonsTable îPersonsTable(pDatabaseConnector->GetSession());
+	CPersonsTable îPersonsTable(oSession);
 	if (!îPersonsTable.DeleteWhereID(lID))
 	{
 		oSession.Abort();
@@ -228,73 +227,45 @@ bool CPersonsData::DeletePersonAndPhoneNumbers(const long lID)
 	}
 
 	oSession.Commit();
-
 	pDatabaseConnector->CloseDbConnectionAndSession();
-
 	return true;
 }
 
 //TODO: Add transaction !!!!!
 //TODO: Back all logic with arrays!
-bool CPersonsData::UpdatePersonPhoneNumbers(long lPersonID, CPhoneNumbersMap& oModifiedPhoneNumbersMap)
+bool CPersonsData::UpdatePersonAndPhoneNumbers(long lPersonID, CPhoneNumbersMap& oModifiedPhoneNumbersMap)
 {
+	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
+	CSession oSession = pDbConnector->GetSession();
+
 	CPhoneNumbersArray oPhoneNumbersArray;
 
 	if (!SelectAllPhoneNumbersByPersonId(lPersonID, oPhoneNumbersArray))
 		return false;
 
-	PHONE_NUMBERS* pOriginalPhoneNumber;
-	long lId;
-
-	POSITION posOriginalPhoneNumbers = oPhoneNumbersOriginalMap.GetStartPosition();
+	CPhoneNumbersTable oPhoneNumbersTable(oSession);
 
 	for (INT_PTR i = 0; i < oPhoneNumbersArray.GetCount(); i++)
 	{
-		PHONE_NUMBERS* pCurrentPhoneNumber = oPhoneNumbersArray.GetAt(i);
-		if (pCurrentPhoneNumber == NULL)
+		PHONE_NUMBERS* pCurrentOriginalPhoneNumber = oPhoneNumbersArray.GetAt(i);
+		if (pCurrentOriginalPhoneNumber == NULL)
 			continue;
 
-		if (!oModifiedPhoneNumbersMap.Lookup(lId, pCurrentPhoneNumber))
+		PHONE_NUMBERS* pPhoneNumbersFromModifiedMap;
+
+		if (!oModifiedPhoneNumbersMap.Lookup(pCurrentOriginalPhoneNumber->lID, pPhoneNumbersFromModifiedMap))
 		{
-			if (!DeleteWhereID(pOriginalPhoneNumber->lID))
+			if (!DeleteWhereID(pCurrentOriginalPhoneNumber->lID))
+				break;
+
+			continue;
+		}
+		if (ComparePhoneNumbers(*pPhoneNumbersFromModifiedMap, *pCurrentOriginalPhoneNumber))
+		{
+			if (!oPhoneNumbersTable.UpdateWhereID(pPhoneNumbersFromModifiedMap->lID, *pPhoneNumbersFromModifiedMap))
 				return false;
-
-			oPhoneNumbersOriginalMap.RemoveKey(pOriginalPhoneNumber->lID);
-			continue;
 		}
-
-	}
-	while (posOriginalPhoneNumbers)
-	{
-		if (posOriginalPhoneNumbers == NULL)
-			break;
-		oPhoneNumbersOriginalMap.GetNextAssoc(posOriginalPhoneNumbers, lId, pOriginalPhoneNumber);
-
-		if (pOriginalPhoneNumber == NULL)
-			continue;
-
-		PHONE_NUMBERS* pCurrentModifiedPhoneNumber;
-
-		if (!oModifiedPhoneNumbersMap.Lookup(lId, pCurrentModifiedPhoneNumber))
-		{
-			if (!m_oPhoneNumbersData.DeleteWhereID(pOriginalPhoneNumber->lID))
-				return false;
-
-			oPhoneNumbersOriginalMap.RemoveKey(pOriginalPhoneNumber->lID);
-			continue;
-		}
-
-		if (m_oPhoneNumbersData.ComparePhoneNumbers(*pCurrentModifiedPhoneNumber, *pOriginalPhoneNumber))
-		{
-			if (!m_oPhoneNumbersData.UpdateWhereID(pCurrentModifiedPhoneNumber->lID, *pCurrentModifiedPhoneNumber))
-				return false;
-
-			oModifiedPhoneNumbersMap.RemoveKey(pOriginalPhoneNumber->lID);
-		}
-		else
-		{
-			oModifiedPhoneNumbersMap.RemoveKey(pOriginalPhoneNumber->lID);
-		}
+			oModifiedPhoneNumbersMap.RemoveKey(pPhoneNumbersFromModifiedMap->lID);
 	}
 
 	//Insert
@@ -304,14 +275,25 @@ bool CPersonsData::UpdatePersonPhoneNumbers(long lPersonID, CPhoneNumbersMap& oM
 	{
 		if (posModifiedMap == NULL)
 			break;
-		PHONE_NUMBERS* pCurrentPhoneNumber;
+		PHONE_NUMBERS* pCurrentOriginalPhoneNumber;
 		long lCurrentId;
-		oModifiedPhoneNumbersMap.GetNextAssoc(posModifiedMap, lCurrentId, pCurrentPhoneNumber);
+		oModifiedPhoneNumbersMap.GetNextAssoc(posModifiedMap, lCurrentId, pCurrentOriginalPhoneNumber);
 
-		if (pCurrentPhoneNumber != NULL)
-			if (!m_oPhoneNumbersData.InsertRecord(*pCurrentPhoneNumber))
+		if (pCurrentOriginalPhoneNumber != NULL)
+			if (!oPhoneNumbersTable.InsertRecord(*pCurrentOriginalPhoneNumber))
 				return false;
 	}
 
 	return true;
+}
+
+bool CPersonsData::ComparePhoneNumbers(PHONE_NUMBERS& oComparedPhoneNumber, PHONE_NUMBERS& oPhoneNumberComparator)
+{
+	if (oPhoneNumberComparator.lPhoneTypeId != oComparedPhoneNumber.lPhoneTypeId)
+		return true;
+
+	if (_tcscmp(oPhoneNumberComparator.szPhoneNumber, oComparedPhoneNumber.szPhoneNumber) != 0)
+		return true;
+
+	return false;
 }

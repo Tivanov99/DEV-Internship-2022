@@ -56,11 +56,6 @@ public:
 	/// <param name="lID">Уникален идентификатор чрез който ще се изтрие конкретен запис.</param>
 	/// <returns>При успешно изпълнение връща 'true' в противен случай 'false'</returns>
 	bool DeletePersonAndPhoneNumbers(long lID);
-	/// <summary>Функция която актуализира всички записи от таблицата 'PHONE_NUMBERS' чието 'PERSON_ID' отговаря на 'lPersonID'.</summary>
-	/// <param name="lPersonID">Уникален идентификатор чрез който ще се изтрие конкретен запис.</param>
-	/// <param name="oPhoneNumbersMap">Буфер съдържащ всички телефонни номера.</param>
-	/// <returns>При успешно изпълнение връща 'true' в противен случай 'false'</returns>
-	bool UpdatePersonPhoneNumbers(long lPersonID, CSelfClearingMap<long, PHONE_NUMBERS*>& oPhoneNumbersMap);
 	/// <summary>Фукция която изчита всички записи от таблицата 'PHONE_NUMBERS' чийто 'PERSON_ID' е идентично с 'lPersonID'. </summary>
 	/// <param name="lPersonID">Уникален идентификатор чрез който ще се изтрие конкретен запис.</param>
 	/// <param name="oPhoneNumbersMap">Буфер където ще се запишат всички изчетени от базата записи.</param>

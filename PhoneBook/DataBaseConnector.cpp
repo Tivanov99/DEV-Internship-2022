@@ -31,7 +31,7 @@ CDBPropSet DataBaseConnector::GetDBPropSet() const
 	return oDBPropSet;
 };
 
-bool DataBaseConnector::OpenDbConnectionAndSession()
+bool DataBaseConnector::OpenDbConnection()
 {
 	CDBPropSet& oDBPropSet = GetDBPropSet();
 
@@ -48,6 +48,17 @@ bool DataBaseConnector::OpenDbConnectionAndSession()
 	// Отваряме сесия
 	hResult = m_oSession.Open(m_oDataSource);
 	if (hResult != S_OK)
+	{
+		ErrorMessageVisualizator::ShowErrorMessage(lpszUnableToOpenSession, NULL);
+		m_oDataSource.Close();
+		return false;
+	}
+	return true;
+};
+bool DataBaseConnector::OpenSession()
+{
+	// Отваряме сесия
+	if (m_oSession.Open(m_oDataSource) != S_OK)
 	{
 		ErrorMessageVisualizator::ShowErrorMessage(lpszUnableToOpenSession, NULL);
 		m_oDataSource.Close();

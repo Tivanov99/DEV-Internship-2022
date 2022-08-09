@@ -52,6 +52,13 @@ public:
 	/// <param name="lPersonID">Уникален идентификатор по който се изтриват записите от базата.</param>
 	/// <param name="oModifiedPhoneNumbersMap">Колекция съдържаща всички записи на телефонни номера след като е приключена работата с диалоговия прозорец.</param>
 	/// <returns>Според това дали успешно е минала операцията връща 'true' ако ли не 'false'.</returns>
-	bool UpdatePersonPhoneNumbers(long lPersonID, CPhoneNumbersMap& oModifiedPhoneNumbersMap);
+	bool UpdatePersonAndPhoneNumbers(long lPersonID, CPhoneNumbersMap& oModifiedPhoneNumbersMap);
+
+private:
+	/// <summary>Сравнява 2 обекта за разлики между тях.</summary>
+	/// <param name="oComparedPhoneNumber">Обект който ще бъде сравняван.</param>
+	/// <param name="oPhoneNumberComparator">Обект с който ще се сравнява.</param>
+	/// <returns>Според това дали имат различия връща 'true' ако ли не 'false'.</returns>
+	bool ComparePhoneNumbers(PHONE_NUMBERS& oComparedPhoneNumber, PHONE_NUMBERS& oPhoneNumberComparator);
 };
 
