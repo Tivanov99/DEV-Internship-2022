@@ -9,7 +9,6 @@
 #include "PhoneBook.h"
 #endif
 
-#include "CitiesDoc.h"
 #include "CCitiesView.h"
 
 #ifdef _DEBUG
@@ -101,13 +100,13 @@ void CCitiesView::OnInitialUpdate()
 
 void CCitiesView::ConfigurateCListCtrl()
 {
-	CListCtrl& �ListCtrl = GetListCtrl();
+	CListCtrl& oListCtrl = GetListCtrl();
 
-	�ListCtrl.SetExtendedStyle(�ListCtrl.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
+	oListCtrl.SetExtendedStyle(oListCtrl.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
 
-	�ListCtrl.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
+	oListCtrl.ModifyStyle(LVS_TYPEMASK, LVS_REPORT);
 
-	AddColumns(�ListCtrl);
+	AddColumns(oListCtrl);
 }
 
 void CCitiesView::AddColumns(CListCtrl& LSCCitiesList)
@@ -121,7 +120,7 @@ void CCitiesView::AddColumns(CListCtrl& LSCCitiesList)
 
 void CCitiesView::FillView()
 {
-	CListCtrl& �ListCtrl = GetListCtrl();
+	CListCtrl& oListCtrl = GetListCtrl();
 
 	CCitiesDocument* pCCitiesDocument = GetDocument();
 
@@ -139,8 +138,8 @@ void CCitiesView::FillView()
 
 const int CCitiesView::GetSelectedRowNumber()
 {
-	CListCtrl& �ListCtrl = GetListCtrl();
-	const int nSelectedRow = �ListCtrl.GetSelectionMark();
+	CListCtrl& oListCtrl = GetListCtrl();
+	const int nSelectedRow = oListCtrl.GetSelectionMark();
 	return nSelectedRow;
 }
 
@@ -152,22 +151,22 @@ CITIES* CCitiesView::GetSelectedRecordItemData()
 		AfxMessageBox(_T("This function is only called on record!"));
 		return NULL;
 	}
-	CListCtrl& �ListCtrl = GetListCtrl();
-	CITIES* pCity = reinterpret_cast<CITIES*>(�ListCtrl.GetItemData(nSelectedRow));
+	CListCtrl& oListCtrl = GetListCtrl();
+	CITIES* pCity = reinterpret_cast<CITIES*>(oListCtrl.GetItemData(nSelectedRow));
 	return pCity;
 }
 
 void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
 	int nNumberOfSelectedRow = GetSelectedRowNumber();
-	CListCtrl& �ListCtrl = GetListCtrl();
+	CListCtrl& oListCtrl = GetListCtrl();
 
 	switch (lHint)
 	{
 	case ContextMenuOperations::InsertRecord:
 		break;
 	case ContextMenuOperations::Delete:
-		�ListCtrl.DeleteItem(nNumberOfSelectedRow);
+		oListCtrl.DeleteItem(nNumberOfSelectedRow);
 		break;
 	case ContextMenuOperations::Edit: break;
 	default:
@@ -244,21 +243,21 @@ void CCitiesView::OnContextMenuInsert()
 
 void CCitiesView::InsertNewRecordToCListCtrl(CITIES* pCity)
 {
-	CListCtrl& �ListCtrl = GetListCtrl();
+	CListCtrl& oListCtrl = GetListCtrl();
 
-	const int nRow = �ListCtrl.GetItemCount();
+	const int nRow = oListCtrl.GetItemCount();
 
-	�ListCtrl.InsertItem(nRow, pCity->szCityName);
+	oListCtrl.InsertItem(nRow, pCity->szCityName);
 
 	int nColumnNumber = 1;
 
-	�ListCtrl.SetItemText(nRow, nColumnNumber++, pCity->szAreaName);
+	oListCtrl.SetItemText(nRow, nColumnNumber++, pCity->szAreaName);
 
 	CString strPostalCode;
 	strPostalCode.Format(_T("%d"), pCity->lPostalCode);
-	�ListCtrl.SetItemText(nRow, nColumnNumber, strPostalCode);
+	oListCtrl.SetItemText(nRow, nColumnNumber, strPostalCode);
 
-	�ListCtrl.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCity));
+	oListCtrl.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pCity));
 }
 
 void CCitiesView::OnEditContextReadData()
@@ -280,12 +279,12 @@ void CCitiesView::UpdateRecord(CITIES& oCity)
 	strPostalCode.Format(_T("%d"), oCity.lPostalCode);
 
 	const int nSelectedRow = GetSelectedRowNumber();
-	CListCtrl& �ListCtrl = GetListCtrl();
+	CListCtrl& oListCtrl = GetListCtrl();
 	int nColumnNumber = 0;
 
-	�ListCtrl.SetItemText(nSelectedRow, nColumnNumber++, oCity.szCityName);
-	�ListCtrl.SetItemText(nSelectedRow, nColumnNumber++, oCity.szAreaName);
-	�ListCtrl.SetItemText(nSelectedRow, nColumnNumber, strPostalCode);
+	oListCtrl.SetItemText(nSelectedRow, nColumnNumber++, oCity.szCityName);
+	oListCtrl.SetItemText(nSelectedRow, nColumnNumber++, oCity.szAreaName);
+	oListCtrl.SetItemText(nSelectedRow, nColumnNumber, strPostalCode);
 }
 
 

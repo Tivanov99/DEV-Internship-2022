@@ -1,12 +1,10 @@
 #include "pch.h"
 #include "CPersonsDocument.h"
 
-
 IMPLEMENT_DYNCREATE(CPersonsDocument, CDocument)
 
 BEGIN_MESSAGE_MAP(CPersonsDocument, CDocument)
 END_MESSAGE_MAP()
-
 
 CPersonsDocument::CPersonsDocument()noexcept {};
 CPersonsDocument::~CPersonsDocument() {};

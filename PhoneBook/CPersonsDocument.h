@@ -104,8 +104,6 @@ private:
 	/// <summary>Мембър чрез който се достъпва бизнеслогиката за таблицата 'PHONE_NUMBERS'.</summary>
 	CPhoneNumbersData m_oPhoneNumbersData;
 	
-protected:
-
 	// Generated message map functions
 protected:
 	DECLARE_MESSAGE_MAP()

@@ -194,6 +194,7 @@
     <ClInclude Include="CPhoneTypesData.h" />
     <ClInclude Include="CPhoneTypesDocument.h" />
     <ClInclude Include="CPhoneTypesTable.h" />
+    <ClInclude Include="CPhoneTypesView.h" />
     <ClInclude Include="CSelfClearingMap.h" />
     <ClInclude Include="CTableAccessor.h" />
     <ClInclude Include="ChildFrm.h" />
@@ -241,6 +242,7 @@
     <ClCompile Include="CPhoneTypesData.cpp" />
     <ClCompile Include="CPhoneTypesDocument.cpp" />
     <ClCompile Include="CPhoneTypesTable.cpp" />
+    <ClCompile Include="CPhoneTypesView.cpp" />
     <ClCompile Include="DataBaseConnector.cpp" />
     <ClCompile Include="ErrorVisualizator.cpp" />
     <ClCompile Include="MainFrm.cpp" />

@@ -16,7 +16,7 @@ void DataBaseConnector::CloseDbConnection()
 	m_oDataSource.Close();
 };
 
-
+//TODO: Chech here.
 CDBPropSet DataBaseConnector::GetDBPropSet() const
 {
 	CDBPropSet oDBPropSet(DBPROPSET_DBINIT);

@@ -49,45 +49,36 @@ public:
 	/// <summary>Функция която изпълнява команда в базата данни.</summary>
 	/// <param name="strQuery">Заявката към базата.</param>
 	/// <param name="eQueryAccessor">Типът на достъп</param>
-	/// <returns>Връща 'true' при успешно извършване на операцията, и 'false' при неуспешно.</returns>
 	bool ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor);
 	/// <summary>Функция която изчита всички записи от базата и ги записва в масива подаден като аргумент 'oPtrArray'.</summary>
 	/// <param name="oPtrArray">Масив където ще се запишат всички записи от базата.</param>
-	/// <returns>Връща 'true' при успешно извършване на операцията, и 'false' при неуспешно.</returns>
 	bool SelectAll(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray);
 	/// <summary>Функция която изчита запис от базата чието ID отговаря на аргумента 'lID' и го презаписва в 'recTableRecord' аргумента.<summary>
 	/// <param name="lID">Уникален идентификатор по който ще се изчете запис.</param>
 	/// <param name="recTableRecord">Референция към обект където ще се запише изчетения запис от базата.</param>
-	/// <returns>Връща 'true' при успешно извършване на операцията, и 'false' при неуспешно.</returns>
 	bool SelectWhereID(const long lID, Record_Type& recTableRecord);
 	/// <summary>Функция която актуализира запис от базата чието ID отговаря на аргумента 'lID' с данните от 'recTableRecord' аргумента.</summary>
 	/// <param name="lID">Уникален идентификатор по който ще се изчете запис.</param>
 	/// <param name="recTableRecord">Референция към обект който съдържа новата информация за записа от базата.</param>
-	/// <returns>Връща 'true' при успешно извършване на операцията, и 'false' при неуспешно.</returns>
 	bool UpdateWhereID(const long lID, const Record_Type& recTableRecord);
 	/// <summary>Финкция която добавя запис в базата.</summary>
 	/// <param name="recTableRecord">Референция към обект който ще бъде добавен в базата.</param>
-	/// <returns>Връща 'true' при успешно извършване на операцията, и 'false' при неуспешно.</returns>
 	bool InsertRecord(const Record_Type& recTableRecord);
 	/// <summary>Функция която трие запис от базата чиято стойност в колоната 'ID' отговаря на 'lID'.</summary>
 	/// <param name="lID">Уникален идентификатор по който ще се изтрие запис.</param>
-	/// <returns>Връща 'true' при успешно извършване на операцията, и 'false' при неуспешно.</returns>
 	bool DeleteWhereID(const long lID);
 	/// <summary>Функция която изтрива запис/и чрез идентификатор 'lID' и клауза указваща за коя колона се отнася която е подадена като аргумент 'strSqlWhereClause'.</summary>
 	/// <param name="lID">Уникален идентификатор по който ще се изтрие запис.</param>
 	/// <param name="strSqlWhereClause">Клауза указваща за коя колона се отнася заявката.</param>
-	/// <returns>Връща 'true' при успешно извършване на операцията, и 'false' при неуспешно.</returns>
 	bool DeleteBySpecificColumnWhereID(const long lID, CString strSqlWhereClause);
 	/// <summary>Функция която изчита запис/и според клауза която указва за коя колона се отнася заявката, и ги записва в 'oPtrArray'.</summary>
 	/// <param name="oPtrArray">Масив където се записват всички изчетени от базата запис/и.</param>
 	/// <param name="strSqlWhereClause">Клауза указваща за коя колона се отнася заявката.</param>
-	/// <returns>Връща 'true' при успешно извършване на операцията, и 'false' при неуспешно.</returns>
 	bool SelectBySpecificColumnWhereID(CSelfClearingTypedPtrArray<Record_Type>& oPtrArray, CString strSqlWhereClause);
 	/// <summary>Функция която актуализира запис от таблица със специфична колона указана чрез калузата 'strSqlWhereClause' подадена като аргумент и според 'lID'.</summary>
 	/// <param name="lID">Уникален идентификатор по който ще се актуализира информацията за запис.</param>
 	/// <param name="recTableRecord">Референция към обект който съдържа вече актуализирана информация.</param>
 	/// <param name="strSqlWhereClause">Клауза указваща за коя колона се отнася заявката.</param>
-	/// <returns>Връща 'true' при успешно извършване на операцията, и 'false' при неуспешно.</returns>
 	bool UpdateBySpecificColumnWhereID(const long lID, const Record_Type& recTableRecord, CString strSqlWhereClause);
 	/// <summary>Функция която затваря RowSet.</summary>
 	void CloseRowSet();

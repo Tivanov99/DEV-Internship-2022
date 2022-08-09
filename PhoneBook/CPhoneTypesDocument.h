@@ -48,7 +48,7 @@ private:
 	CPhoneTypesData m_PhoneTypesData;
 
 protected:
-
+	DECLARE_MESSAGE_MAP()
 
 #ifdef SHARED_HANDLERS
 	// Helper function that sets search content for a Search Handler

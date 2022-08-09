@@ -3,6 +3,9 @@
 
 IMPLEMENT_DYNCREATE(CPhoneTypesDocument, CDocument)
 
+BEGIN_MESSAGE_MAP(CPhoneTypesDocument, CDocument)
+END_MESSAGE_MAP()
+
 CPhoneTypesDocument::CPhoneTypesDocument() noexcept {};
 
 CPhoneTypesDocument::~CPhoneTypesDocument() {};
@@ -11,7 +14,9 @@ BOOL CPhoneTypesDocument::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
-	m_PhoneTypesData.SelectAll(m_oPhoneTypesArray);
+
+	if (!m_PhoneTypesData.SelectAll(m_oPhoneTypesArray))
+		return FALSE;
 	return TRUE;
 };
 
@@ -41,7 +46,7 @@ void CPhoneTypesDocument::AssertValid() const
 
 void CPhoneTypesDocument::Dump(CDumpContext& dc) const
 {
-	CDocument::Dump(dc);
+	CPhoneTypesDocument::Dump(dc);
 }
 #endif //_DEBUG
 

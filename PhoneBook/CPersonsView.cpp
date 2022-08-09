@@ -166,6 +166,7 @@ void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 		LSCCitiesList.DeleteItem(nNumberOfSelectedRow);
 		break;
 	case ContextMenuOperations::Edit:
+		//TODO: Check here.
 		break;
 	default:
 		break;
