@@ -57,6 +57,28 @@ CPhoneTypesDocument* CPhoneTypesView::GetDocument() const // non-debug version i
 };
 #endif //_DEBUG
 
+void CPhoneTypesView::ManageContextMenuItems(CCmdUI* pCmdUI)
+{
+	CListCtrl& LSCCitiesList = GetListCtrl();
+
+	UINT uSelectedCount = LSCCitiesList.GetSelectedCount();
+
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount == 0)
+	{
+		pCmdUI->Enable(true);
+		return;
+	}
+
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount > 0)
+	{
+		pCmdUI->Enable(false);
+		return;
+	}
+
+	if (uSelectedCount == 0)
+		pCmdUI->Enable(false);
+}
+
 
 void CPhoneTypesView::OnRButtonUp(UINT /* nFlags */, CPoint point)
 {

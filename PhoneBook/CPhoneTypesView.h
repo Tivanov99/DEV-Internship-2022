@@ -15,6 +15,8 @@ public:
 	//Methods
 	//-------------
 private:
+	/// <summary>Фунцкия която определя коя опция от контекстното меню може да бъде използвана при клик на десен бутон.</summary>
+	void ManageContextMenuItems(CCmdUI* pCmdUI);
 	/// <summary>Функция която попълва цялата информация за градовете.</summary>
 	/// <param name="оListCtrl">Лист контрола в която ще се попълват данните.</param>
 	/// <param name="oCitiesArray">Масив съдържащ всички записи за градовете прочетени от базата.</param>
@@ -36,6 +38,7 @@ private:
 	/// <summary>Подменя старите стойности с нови на запис който е бил редактиран.</summary>
 	/// <param name="pPhoneType">Референция която сърържа новите стойности.</param>
 	void UpdateRecord(PHONE_TYPES& pPhoneType);
+	
 	// Overrides
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -69,9 +72,13 @@ private:
 	///// <summary>При десен клик върху запис извиква диалогов прозорец попълнен с неговите данни.</summary>
 	//afx_msg void OnEditContextReadData();
 public:
+	/// <summary>При десен клик върху запис извиква диалогов прозорец попълнен с неговите данни.</summary>
 	afx_msg void OnEditContextReadData();
+	/// <summary>При десен клик върху запис извиква диалогов прозорец попълнен с неговите данни даващ възможност за редакция.</summary>
 	afx_msg void OnEditContextEdit();
+	/// <summary>Изтрива посочен запис при десен клик върху запис във view-то и 'Delete' от контекстното меню.</summary>
 	afx_msg void OnEditContextDelete();
+	/// <summary>При десен клик без значение къде е извършен той и 'InsertRecord' от контекстното меню извиква диалогов прозорец в който да бъдат попълнени данните на записа.</summary>
 	afx_msg void OnEditContextInsert();
 };
 
