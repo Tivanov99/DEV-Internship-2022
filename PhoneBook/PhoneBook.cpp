@@ -1,7 +1,3 @@
-
-// PhoneBook.cpp : Defines the class behaviors for the application.
-//
-
 #include "pch.h"
 #include "framework.h"
 #include "afxwinappex.h"
@@ -67,6 +63,7 @@ BOOL CPhoneBookApp::InitInstance()
 	InitCtrls.dwSize = sizeof(InitCtrls);
 	// Set this to include all the common control classes you want to use
 	// in your application.
+
 	InitCtrls.dwICC = ICC_WIN95_CLASSES;
 	InitCommonControlsEx(&InitCtrls);
 
@@ -120,6 +117,14 @@ BOOL CPhoneBookApp::InitInstance()
 		return FALSE;
 	AddDocTemplate(pDocTemplate);
 
+	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
+
+	if (!pDatabaseConnector->OpenDbConnection())
+	{
+		pDatabaseConnector->CloseDbConnectionAndSession();
+		return false;
+	}
+
 	// create main MDI Frame window
 	CMainFrame* pMainFrame = new CMainFrame;
 	if (!pMainFrame || !pMainFrame->LoadFrame(IDR_MAINFRAME))
@@ -165,7 +170,7 @@ class CAboutDlg : public CDialogEx
 public:
 	CAboutDlg() noexcept;
 
-// Dialog Data
+	// Dialog Data
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
@@ -212,6 +217,3 @@ void CPhoneBookApp::SaveCustomState()
 }
 
 // CPhoneBookApp message handlers
-
-
-

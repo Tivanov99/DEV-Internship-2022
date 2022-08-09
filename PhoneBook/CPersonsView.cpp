@@ -233,12 +233,12 @@ void CPersonsView::OnEditContextReadData()
 	CSelfClearingMap<long, PHONE_TYPES*> oPhoneTypesMap;
 	pPersonDocument->GetAllPhoneTypes(oPhoneTypesMap);
 
-	CSelfClearingMap<long, PHONE_NUMBERS*> oPhoneNumbersMap;
-	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersMap);
+	CPhoneNumbersArray oPhoneTypesArray;
+	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneTypesArray);
 
 	//pPersonDocument->GetAllPhoneTypes(oMap, pPerson->lID);
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::ReadData, oPerson, oCitiesArray, oPhoneNumbersMap, oPhoneTypesMap);
+	CPersonsDialog oPersonsDialog(DialogWindowActions::ReadData, oPerson, oCitiesArray, oPhoneTypesArray, oPhoneTypesMap);
 
 	if (!oPersonsDialog.DoModal())
 		return;
@@ -252,14 +252,14 @@ void CPersonsView::OnContextMenuInsert()
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
 
-	CSelfClearingMap<long, PHONE_NUMBERS*> oPhoneNumbersMap;
+	CPhoneNumbersArray oPhoneTypesArray;
 
 	CSelfClearingMap<long, PHONE_TYPES*> oPhoneTypesMap;
 
 	PERSONS oPerson;
 	oPerson.lUpdateCounter = 0;
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oPhoneNumbersMap, oPhoneTypesMap);
+	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oPhoneTypesArray, oPhoneTypesMap);
 
 	if (!oPersonsDialog.DoModal())
 		return;
@@ -286,23 +286,22 @@ void CPersonsView::OnContextMenuEdit()
 	pPersonDocument->GetAllCities(oCitiesArray);
 
 	CSelfClearingMap<long, PHONE_TYPES*> oPhoneTypesMap;
-
 	pPersonDocument->GetAllPhoneTypes(oPhoneTypesMap);
 
 	CPhoneNumbersArray oPhoneTypesArray;
 	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneTypesArray);
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, *pPerson, oCitiesArray, oPhoneNumbersMap, oPhoneTypesMap); 
+	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, *pPerson, oCitiesArray, oPhoneTypesArray, oPhoneTypesMap);
 
 	if (oPersonsDialog.DoModal() != IDOK)
 		return;
 
 	//TODO: transaction and one call.
-	if (!pPersonDocument->UpdatePerson(*pPerson))
+	/*if (!pPersonDocument->UpdatePerson(*pPerson))
 	{
 		AfxMessageBox(_T("Record update failed."));
 		return;
 	}
 
-	pPersonDocument->UpdatePersonAndPhoneNumbers(pPerson->lID, oPhoneNumbersMap);
+	pPersonDocument->UpdatePersonAndPhoneNumbers(pPerson->lID, oPhoneNumbersMap);*/
 }
