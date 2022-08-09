@@ -28,14 +28,11 @@ public:
 private:
 	/// <summary>Попълва всички входни полета с данните идващи от 'm_recCity'.</summary>
 	void FillingInputFields();
-
 	/// <summary>Според командата в 'm_eOperation' задава име на прозореца и на бутона за потвърждаване на операцията.</summary>
 	void SetDialogTitle();
-
 	/// <summary>Взема въвдената стойност от полето за пощенски код.</summary>
 	/// <returns>Връша въвдената стойност в полето за пощенски код.</returns>
 	long GetPostalCodeFromInputFiled();
-
 	/// <summary>Задава сойносите попълнени в полетата на записът който подлежи на обработка.</summary>
 	void SetDataToRecord();
 	// Overrides

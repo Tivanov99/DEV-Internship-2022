@@ -88,7 +88,7 @@ struct PHONE_NUMBERS
 /// <summary>Дискова структура PHONE_TYPES предназначена за таблицата 'PHONE_TYPES'</summary>
 struct PHONE_TYPES {
 	/// <summary>Променлива съдържаща първичен ключ от колоната 'ID' в таблицата 'PHONE_TYPES'</summary>
-	long lID;
+	long lID ;
 	/// <summary>?</summary>
 	long lUpdateCounter;
 	/// <summary>Променлива съдържаща стойността от колоната 'PHONE_TYPE' в таблицата  'PHONE_TYPES'</summary>

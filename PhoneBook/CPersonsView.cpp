@@ -262,10 +262,8 @@ void CPersonsView::OnContextMenuInsert()
 	if (!oPersonsDialog.DoModal())
 		return;
 
-	bool bInsertResult = pPersonDocument->InsertPerson(oPerson);
-	if (!bInsertResult)
+	if (!pPersonDocument->InsertPerson(oPerson))
 		AfxMessageBox(_T("Record insert failed."));
-
 
 	//TODO: Check for inserting phone numbers
 }

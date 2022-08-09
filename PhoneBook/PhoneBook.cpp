@@ -109,9 +109,9 @@ BOOL CPhoneBookApp::InitInstance()
 	//  serve as the connection between documents, frame windows and views
 	CMultiDocTemplate* pDocTemplate;
 	pDocTemplate = new CMultiDocTemplate(IDR_PhoneBookTYPE,
-		RUNTIME_CLASS(CPhoneTypesDocument),
+		RUNTIME_CLASS(CPersonsDocument),
 		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
-		RUNTIME_CLASS(CPhoneTypesView));
+		RUNTIME_CLASS(CPersonsView));
 
 	if (!pDocTemplate)
 		return FALSE;

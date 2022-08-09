@@ -31,32 +31,25 @@ public:
 
 public:
 	void OnContextMenu(CWnd* /*pWnd*/, CPoint point);
-
 private:
+	/// <summary>Фунцкия която актуализира лист контролата която съдържа телефонните номера.</summary>
 	void UpdateListCtrlRecord();
-
+	/// <summary>Функция която добавя нов запис към лист контролата която съдържа телефонните номера.</summary>
+	/// <param name="pPhoneNumber">Запис който ще бъде добавен,</param>
 	void InsertRecordToListCtrl(PHONE_NUMBERS* pPhoneNumber);
-
+	/// <summary>Функция която връща item data на текущия запис от лист контролата.</summary>
 	PHONE_NUMBERS* GetSelectedRecordItemData();
-
+	/// <summary>Функция която определя коя фунцкия от контекстното меню може да бъде използвана.</summary>
 	void ManageContextMenuItems(CCmdUI* pCmdUI);
-
-	/// <summary>
-	/// Попълва всички входни полета с данните идващи от 'm_recPerson'.
-	/// </summary>
+	/// <summary>Попълва всички входни полета с данните идващи от 'm_recPerson'.</summary>
 	void FillPersonDataFields();
-
-	/// <summary>
-	/// Попълва 'm_cmbCitiesNames' с всички градове идващи като аргумент 'oCitiesArray' при извикването на диалога.
-	/// </summary>
+	/// <summary>Попълва 'm_cmbCitiesNames' с всички градове идващи като аргумент 'oCitiesArray' при извикването на диалога.</summary>
 	void FillCitiesComboBox();
-
 	/// <summary>Попълва 'm_lscPersonPhoneNumbers' с всички телефонни номера идващи като аргумент 'oCitiesArray' при извикването на диалога.</summary>
 	void FillPhoneNumbers();
-
 	/// <summary>Според командата в 'm_eOperation' задава име на прозореца.</summary>
 	void SetDialogTitle();
-
+	/// <summary>Функция която конфигурита лист контролата в която се съдържат всички телефонни номера.</summary>
 	void ConfiguratePhoneNumbersLsc();
 
 	// Overrides
@@ -65,9 +58,7 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 	/// <summary>Надстройва диалоговия прозорец при стартиране и попълва всички данни на подадения обект в полетата; </summary>
-	/// <returns></returns>
 	virtual BOOL OnInitDialog();
-
 	/// <summary>Извиква се при натиска не бутона 'Ок'.</summary>
 	virtual void OnOK();
 

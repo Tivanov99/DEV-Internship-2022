@@ -17,14 +17,11 @@ private:
 	void RemoveAllElements()
 	{
 		/*POSITION posPhoneNumbers = GetStartPosition();
-
 		T* pRec;
-
 		while (posPhoneNumbers)
 		{
-
 		}
-		map<K, K, T*, T*>::iterator itr;
+		
 		for (itr = begin();itr != end(); ++itr)
 		{
 			T* pCurrent = itr->second;

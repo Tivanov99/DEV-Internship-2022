@@ -46,7 +46,7 @@ void CPhoneTypesDocument::AssertValid() const
 
 void CPhoneTypesDocument::Dump(CDumpContext& dc) const
 {
-	CPhoneTypesDocument::Dump(dc);
+	CDocument::Dump(dc);
 }
 #endif //_DEBUG
 

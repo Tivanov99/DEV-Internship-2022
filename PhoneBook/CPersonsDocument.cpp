@@ -43,7 +43,7 @@ void CPersonsDocument::AssertValid() const
 
 void CPersonsDocument::Dump(CDumpContext& dc) const
 {
-	CPersonsDocument::Dump(dc);
+	CDocument::Dump(dc);
 }
 
 const CPersonsArray& CPersonsDocument::GetAllPersons()
@@ -101,16 +101,6 @@ void CPersonsDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint = NULL)
 	UpdateAllViews(NULL, lHint, pHint);
 }
 
-bool CPersonsDocument::UpdatePerson(PERSONS& recPerson)
-{
-	if (!m_оPersonsData.UpdateWhereID(recPerson.lID, recPerson))
-		return false;
-
-	//view-то взема записа от масива който е тук!
-
-	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)recPerson.lID);
-	return true;
-}
 bool CPersonsDocument::InsertPerson(PERSONS& recPerson)
 {
 	if (!m_оPersonsData.InsertRecord(recPerson))

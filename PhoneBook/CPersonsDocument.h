@@ -44,35 +44,32 @@ public:
 	/// <param name="lID">Уникален идентификатор чрез който ще се изчете конкретен запис.</param>
 	/// <returns>При успешно изпълнение връща 'true' в противен случай 'false'</returns>
 	bool DeletePersonById(long lID);
-	/// <summary>Функция която актуализира информацията за запис.</summary>
-	/// <param name="recPerson">Референция към обект който съдържа актуализираната инфромация за запис.</param>
-	/// <returns>При успешно изпълнение връща 'true' в противен случай 'false'</returns>
-	bool UpdatePerson(PERSONS& recPerson);
 	/// <summary>Функция която добавя нов запис в базата.</summary>
 	/// <param name="recPerson">Референция към обект който ще бъде добавен в базата.</param>
-	/// <returns>При успешно изпълнение връща 'true' в противен случай 'false'</returns>
 	bool InsertPerson(PERSONS& recPerson);
 	/// <summary>Функция която изтрива запис от таблицата 'PERSONS' чието 'ID' отговаря на 'lID' и също така изтрива всички записи от таблицата 'PHONE_NUMBERS' чието 'PERSON_ID' отговаря на 'lID'.</summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се изтрие конкретен запис.</param>
-	/// <returns>При успешно изпълнение връща 'true' в противен случай 'false'</returns>
 	bool DeletePersonAndPhoneNumbers(long lID);
 	/// <summary>Фукция която изчита всички записи от таблицата 'PHONE_NUMBERS' чийто 'PERSON_ID' е идентично с 'lPersonID'. </summary>
 	/// <param name="lPersonID">Уникален идентификатор чрез който ще се изтрие конкретен запис.</param>
 	/// <param name="oPhoneNumbersArray">Буфер където ще се запишат всички изчетени от базата записи.</param>
-	/// <returns>При успешно изпълнение връща 'true' в противен случай 'false'</returns>
 	bool GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray);
 	/// <summary>Функция която изчита всички записи свързани с градовете от таблицата 'CITIES'.</summary>
 	/// <param name="oCitiesArray">Масив където се записват всички стойности.</param>
-	/// <returns>При успешно изпълнение връща 'true' в противен случай 'false'</returns>
 	bool GetAllCities(CCitiesArray& oCitiesArray);
 	/// <summary>Функция която изчита всички записи свързани с градовете от таблицата 'PHONE_TYPES'.</summary>
 	/// <param name="oPhoneTypesArray">Масив където се записват всички стойности.</param>
-	/// <returns>При успешно изпълнение връща 'true' в противен случай 'false'</returns>
 	bool GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray);
 
-	
+	/// <summary>
+	/// Функция която изчита всички телефонни номера.
+	/// </summary>
+	/// <param name="oMap">Мап в който се записват всички изчетени записи от базата.</param>
 	bool GetAllPhoneTypes(CSelfClearingMap<long, PHONE_TYPES*>& oMap);
 
+	/// <summary>Функция която актуализира всички телефонни номера на контакт както и него самия.</summary>
+	/// <param name="recPerson">Референция към обект който съдържа обект с актуална информация.</param>
+	/// <param name="oPhoneNumbersArray">Масив който съдържа всички актуализирани записи за телефонните номера.</param>
 	bool UpdatePersonAndPhoneNumbers(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
