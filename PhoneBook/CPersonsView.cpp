@@ -289,8 +289,8 @@ void CPersonsView::OnContextMenuEdit()
 
 	pPersonDocument->GetAllPhoneTypes(oPhoneTypesMap);
 
-	CSelfClearingMap<long, PHONE_NUMBERS*> oPhoneNumbersMap;
-	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersMap);
+	CPhoneNumbersArray oPhoneTypesArray;
+	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneTypesArray);
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, *pPerson, oCitiesArray, oPhoneNumbersMap, oPhoneTypesMap); 
 

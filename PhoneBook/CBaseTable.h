@@ -110,16 +110,16 @@ CDBPropSet CBaseTable<Record_Type, Table_AcessorType>::GetModifyDBPropSet() cons
 {
 	CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
 
-	if(!oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true))
+	if(oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true)==0)
 		return NULL;
 
-	if(!oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true))
+	if(!oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true)==0)
 		return NULL;
 
-	if(!oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true))
+	if(!oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true)==0)
 		return NULL;
 
-	if (!oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE))
+	if (!oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE)==0)
 		return NULL;
 
 	return oUpdateDBPropSet;

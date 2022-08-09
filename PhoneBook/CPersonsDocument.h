@@ -58,9 +58,9 @@ public:
 	bool DeletePersonAndPhoneNumbers(long lID);
 	/// <summary>Фукция която изчита всички записи от таблицата 'PHONE_NUMBERS' чийто 'PERSON_ID' е идентично с 'lPersonID'. </summary>
 	/// <param name="lPersonID">Уникален идентификатор чрез който ще се изтрие конкретен запис.</param>
-	/// <param name="oPhoneNumbersMap">Буфер където ще се запишат всички изчетени от базата записи.</param>
+	/// <param name="oPhoneNumbersArray">Буфер където ще се запишат всички изчетени от базата записи.</param>
 	/// <returns>При успешно изпълнение връща 'true' в противен случай 'false'</returns>
-	bool GetPersonPhoneNumbers(long lPersonID, CSelfClearingMap<long, PHONE_NUMBERS*>& oPhoneNumbersMap);
+	bool GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray);
 	/// <summary>Функция която изчита всички записи свързани с градовете от таблицата 'CITIES'.</summary>
 	/// <param name="oCitiesArray">Масив където се записват всички стойности.</param>
 	/// <returns>При успешно изпълнение връща 'true' в противен случай 'false'</returns>

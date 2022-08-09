@@ -180,24 +180,10 @@ long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 	return -1;
 }
 
-bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CSelfClearingMap<long, PHONE_NUMBERS*>& oPhoneNumbersMap)
+bool CPersonsDocument::GetPersonPhoneNumbers(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
-	CPhoneNumbersArray oPhoneNumbersArray;
 	if (!m_ÓPersonsData.SelectAllPhoneNumbersByPersonId(lPersonID, oPhoneNumbersArray))
 		return false;
-
-	for (INT_PTR i = 0; i < oPhoneNumbersArray.GetCount(); i++)
-	{
-		PHONE_NUMBERS* pCurrentPhoneNumber = oPhoneNumbersArray.GetAt(i);
-
-		if (pCurrentPhoneNumber == NULL)
-			continue;
-
-		PHONE_NUMBERS* pPhoneNumber = new PHONE_NUMBERS;
-		*pPhoneNumber = *pCurrentPhoneNumber;
-
-		oPhoneNumbersMap.SetAt(pPhoneNumber->lID, pPhoneNumber);
-	}
 
 	return true;
 }

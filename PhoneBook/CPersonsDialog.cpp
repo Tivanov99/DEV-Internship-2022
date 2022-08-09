@@ -323,9 +323,9 @@ void CPersonsDialog::OnContextMenuDelete()
 		const int nSelectedRow = m_lscPersonPhoneNumbers.GetSelectionMark();
 		m_lscPersonPhoneNumbers.DeleteItem(nSelectedRow);
 
-		m_oPhoneNumbersArray.remove
+		/*m_oPhoneNumbersArray.remove
 
-		m_oPhoneNumbersMap.RemoveKey(pPhoneNumber->lID);
+		m_oPhoneNumbersMap.RemoveKey(pPhoneNumber->lID);*/
 
 		delete pPhoneNumber;
 		pPhoneNumber = NULL;
