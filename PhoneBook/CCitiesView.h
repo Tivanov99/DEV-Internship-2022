@@ -39,8 +39,7 @@ private:
 	/// <summary>Конфигурира всичко нужно за държанието и изгледа на лист контролата.</summary>
 	void ConfigurateCListCtrl();
 	/// <summary>Подменя старите стойности с нови на запис който е бил редактиран.</summary>
-	/// <param name="pCity">Референция която сърържа новите стойности.</param>
-	void UpdateRecord(CITIES& pCity);
+	void UpdateRecord(long lID);
 	// Overrides
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -73,6 +72,8 @@ private:
 	afx_msg void OnContextMenuInsert();
 	/// <summary>При десен клик върху запис извиква диалогов прозорец попълнен с неговите данни.</summary>
 	afx_msg void OnEditContextReadData();
+public:
+	afx_msg void ManageContextMenuItems(CCmdUI* pCmdUI);
 };
 
 #ifndef _DEBUG  // debug version in CitiesView.cpp

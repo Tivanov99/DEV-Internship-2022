@@ -44,7 +44,7 @@ public:
 	bool UpdateCity(CITIES& recCity);
 	/// <summary>Функция която добавя нов запис към базата.</summary>
 	/// <param name="recCity">Референция към обект който ще бъде добавен в базата.</param>
-	CITIES* InsertCity(CITIES& recCity);
+	bool InsertCity(CITIES& recCity);
 private:
 	/// <summary>Функция при която при някаква промяна на записите се извиква и актуализира view-то.</summary>
 	/// <param name="lHint"></param>

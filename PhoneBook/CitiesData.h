@@ -24,7 +24,7 @@ public:
 	/// <summary>Функция която прави промяна на запис от таблицата "CITIES" чието ID отговаря на "lID" аргумента,и ще приложи промените от аргумента "recCities" в записа извлечен от базата.</summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	/// <param name="recCities">Референция която съдържа вече променените данни.</param>
-	bool UpdateWhereID(const long lID, const CITIES& recCities);
+	bool UpdateCityById(const long lID, const CITIES& recCities);
 
 	/// <summary>Функция която добавя запис подаден като аргумент към таблицата "CITIES".</summary>
 	/// <param name="recCities">Референция която съдържа нов обект.</param>

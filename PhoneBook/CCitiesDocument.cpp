@@ -55,12 +55,17 @@ void CCitiesDocument::Dump(CDumpContext& dc) const
 
 CITIES* CCitiesDocument::GetCityById(long lID)
 {
-	CITIES* pCity = m_oCitiesArray.GetAt(lID);
-	if (pCity == NULL)
+	for (INT_PTR i = 0; i < m_oCitiesArray.GetCount(); i++)
 	{
-		AfxMessageBox(_T("Somethin wrong with record. Try again."));
+		CITIES* pCity = m_oCitiesArray.GetAt(i);
+		if (pCity == NULL)
+			continue;
+		if (pCity->lID == lID)
+			return pCity;
 	}
-	return pCity;
+	AfxMessageBox(_T("Failed to read data about person."));
+
+	return NULL;
 }
 
 bool CCitiesDocument::DeleteCityById(long lID)
@@ -88,27 +93,24 @@ void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 
 bool CCitiesDocument::UpdateCity(CITIES& recCity)
 {
-	if (!m_CitiesData.UpdateWhereID(recCity.lID, recCity))
+	if (!m_CitiesData.UpdateCityById(recCity.lID, recCity))
 		return false;
 
-	CITIES* pCity = m_oCitiesArray.GetAt(GetCityIndexFromCitiesArray(recCity.lID));
-	*pCity = recCity;
-
-	//TODO: Chech here for object ?
-	//OnUpdateAllViews(ContextMenuOperations::EditData, &oCity);
+	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)recCity.lID);
 	return true;
 }
 
-CITIES* CCitiesDocument::InsertCity(CITIES& recCity)
+bool CCitiesDocument::InsertCity(CITIES& recCity)
 {
 	if (!m_CitiesData.InsertRecord(recCity))
-		return NULL;
+		return false;
 	
-	CITIES* pCity = AddCityToCitiesArray(recCity);
+	if (!AddCityToCitiesArray(recCity))
+		return false;
 
-	//TODO: Chech here for object ?
-	OnUpdateAllViews(ContextMenuOperations::Edit, NULL);
-	return pCity;
+	OnUpdateAllViews(ContextMenuOperations::InsertRecord, (CObject*)recCity.lID);
+
+	return true;
 }
 
 bool CCitiesDocument::DeleteCityFromCitiesArray(long lCityId)
@@ -133,7 +135,9 @@ bool CCitiesDocument::DeleteCityFromCitiesArray(long lCityId)
 CITIES* CCitiesDocument::AddCityToCitiesArray(CITIES& recCity)
 {
 	CITIES* pCity = new CITIES();
+
 	*pCity = recCity;
+
 	if (pCity == NULL)
 	{
 		delete pCity;

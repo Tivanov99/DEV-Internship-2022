@@ -16,8 +16,11 @@ bool CCitiesData::SelectAll(CCitiesArray& oCitiesArray)
 	CCitiesTable oCitiesTable(pDatabaseConnector->GetSession());
 
 	if (!oCitiesTable.SelectAll(oCitiesArray))
+	{
+		pDatabaseConnector->CloseSession();
 		return false;
-
+	}
+	pDatabaseConnector->CloseSession();
 	return true;
 };
 bool CCitiesData::SelectWhereID(const long lID, CITIES& recCities)
@@ -30,12 +33,15 @@ bool CCitiesData::SelectWhereID(const long lID, CITIES& recCities)
 	CCitiesTable oCitiesTable(pDatabaseConnector->GetSession());
 
 	if (!oCitiesTable.SelectWhereID(lID, recCities))
+	{
+		pDatabaseConnector->CloseSession();
 		return false;
-
+	}
+	pDatabaseConnector->CloseSession();
 	return true;
 }
 
-bool CCitiesData::UpdateWhereID(const long lID, const CITIES& recCities)
+bool CCitiesData::UpdateCityById(const long lID, const CITIES& recCities)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
@@ -44,8 +50,11 @@ bool CCitiesData::UpdateWhereID(const long lID, const CITIES& recCities)
 
 	CCitiesTable oCitiesTable(pDatabaseConnector->GetSession());
 	if (!oCitiesTable.UpdateWhereID(lID, recCities))
+	{
+		pDatabaseConnector->CloseSession();
 		return false;
-
+	}
+	pDatabaseConnector->CloseSession();
 	return true;
 }
 
@@ -59,8 +68,11 @@ bool CCitiesData::InsertRecord(CITIES& recCities)
 	CCitiesTable oCitiesTable(pDatabaseConnector->GetSession());
 
 	if (!oCitiesTable.InsertRecord(recCities))
+	{
+		pDatabaseConnector->CloseSession();
 		return false;
-
+	}
+	pDatabaseConnector->CloseSession();
 	return true;
 }
 
@@ -74,7 +86,10 @@ bool CCitiesData::DeleteWhereID(const long lID)
 	CCitiesTable oCitiesTable(pDatabaseConnector->GetSession());
 
 	if (!oCitiesTable.DeleteWhereID(lID))
+	{
+		pDatabaseConnector->CloseSession();
 		return false;
-
+	}
+	pDatabaseConnector->CloseSession();
 	return true;
 }

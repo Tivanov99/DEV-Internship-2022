@@ -32,6 +32,11 @@ BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	ON_COMMAND(ID_EDIT_CONTEXT_EDIT, &CCitiesView::OnContextMenuEdit)
 	ON_COMMAND(ID_EDIT_CONTEXT_INSERT, &CCitiesView::OnContextMenuInsert)
 	ON_COMMAND(ID_EDIT_CONTEXT_READ_DATA, &CCitiesView::OnEditContextReadData)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_INSERT, &CCitiesView::ManageContextMenuItems)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_DELETE, &CCitiesView::ManageContextMenuItems)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_READ_DATA, &CCitiesView::ManageContextMenuItems)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_EDIT, &CCitiesView::ManageContextMenuItems)
+
 END_MESSAGE_MAP()
 
 
@@ -91,7 +96,7 @@ void CCitiesView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 
 void CCitiesView::OnInitialUpdate()
 {
-	CListView::OnInitialUpdate();
+	//CListView::OnInitialUpdate();
 
 	ConfigurateCListCtrl();
 
@@ -113,9 +118,9 @@ void CCitiesView::AddColumns(CListCtrl& LSCCitiesList)
 {
 	const int nColumnWidth = 120;
 	int nColumnNumber = 0;
-	LSCCitiesList.InsertColumn(nColumnNumber++, _T("���"), LVCFMT_LEFT, nColumnWidth, 1);
-	LSCCitiesList.InsertColumn(nColumnNumber++, _T("������"), LVCFMT_CENTER, nColumnWidth, 1);
-	LSCCitiesList.InsertColumn(nColumnNumber, _T("�������� ���"), LVCFMT_CENTER, nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Име"), LVCFMT_LEFT, nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Област"), LVCFMT_CENTER, nColumnWidth, 1);
+	LSCCitiesList.InsertColumn(nColumnNumber, _T("Пощенски код"), LVCFMT_CENTER, nColumnWidth, 1);
 }
 
 void CCitiesView::FillView()
@@ -159,16 +164,22 @@ CITIES* CCitiesView::GetSelectedRecordItemData()
 void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
 	int nNumberOfSelectedRow = GetSelectedRowNumber();
-	CListCtrl& oListCtrl = GetListCtrl();
+
+	CListCtrl& LSCCitiesList = GetListCtrl();
+
+	CCitiesDocument* pCitiesDocument = GetDocument();
 
 	switch (lHint)
 	{
 	case ContextMenuOperations::InsertRecord:
+		InsertNewRecordToCListCtrl(pCitiesDocument->GetCityById((long)pHint));
 		break;
 	case ContextMenuOperations::Delete:
-		oListCtrl.DeleteItem(nNumberOfSelectedRow);
+		LSCCitiesList.DeleteItem(nNumberOfSelectedRow);
 		break;
-	case ContextMenuOperations::Edit: break;
+	case ContextMenuOperations::Edit:
+		UpdateRecord((long)pHint);
+		break;
 	default:
 		break;
 	}
@@ -203,42 +214,34 @@ void CCitiesView::OnContextMenuEdit()
 	if (pCity == NULL)
 		return;
 
-	CITIES oCity = *pCity;
-
-	CCitiesDialog oCitiesDialog(DialogWindowActions::EditData, oCity);
+	CCitiesDialog oCitiesDialog(DialogWindowActions::EditData, *pCity);
 
 	if (oCitiesDialog.DoModal() != IDOK)
 		return;
 
 	CCitiesDocument* pCitiesDocument = GetDocument();
 
-	if (!pCitiesDocument->UpdateCity(oCity))
+	if (!pCitiesDocument->UpdateCity(*pCity))
 		return;
 
-	UpdateRecord(oCity);
+	UpdateRecord(pCity->lID);
 }
 
 
 void CCitiesView::OnContextMenuInsert()
 {
 	CITIES oCity;
-	oCity.lUpdateCounter = 0;
-
 	CCitiesDialog oCitiesDialog(DialogWindowActions::InsertData, oCity);
 
 	if (oCitiesDialog.DoModal() != IDOK)
 		return;
 
-	CCitiesDocument* pCitiesDoc = GetDocument();
+	CCitiesDocument* pCitiesDocument = GetDocument();
 
-	CITIES* pCity = pCitiesDoc->InsertCity(oCity);
-
-	if (pCity == NULL)
+	if (!pCitiesDocument->InsertCity(oCity))
 		return;
 
-	InsertNewRecordToCListCtrl(pCity);
-
-	//TODO: Use OnUpdateAllViews method from CCitiesDocument.
+	CITIES* pInsertedCity = pCitiesDocument->GetCityById(oCity.lID);
 }
 
 void CCitiesView::InsertNewRecordToCListCtrl(CITIES* pCity)
@@ -265,26 +268,47 @@ void CCitiesView::OnEditContextReadData()
 	CITIES* pCity = GetSelectedRecordItemData();
 	if (pCity == NULL)
 		return;
-
-	CITIES oCity = *pCity;
-
-	CCitiesDialog oCitiesDialog(DialogWindowActions::ReadData, oCity);
-
+	CCitiesDialog oCitiesDialog(DialogWindowActions::ReadData, *pCity);
 	oCitiesDialog.DoModal();
 }
 
-void CCitiesView::UpdateRecord(CITIES& oCity)
+void CCitiesView::UpdateRecord(long lID)
 {
+	CCitiesDocument* oCitiesDocument = GetDocument();
+	CITIES* pUpdatedCity = oCitiesDocument->GetCityById(lID);
+
 	CString strPostalCode;
-	strPostalCode.Format(_T("%d"), oCity.lPostalCode);
+	strPostalCode.Format(_T("%d"), pUpdatedCity->lPostalCode);
 
 	const int nSelectedRow = GetSelectedRowNumber();
+
 	CListCtrl& oListCtrl = GetListCtrl();
 	int nColumnNumber = 0;
 
-	oListCtrl.SetItemText(nSelectedRow, nColumnNumber++, oCity.szCityName);
-	oListCtrl.SetItemText(nSelectedRow, nColumnNumber++, oCity.szAreaName);
+	oListCtrl.SetItemText(nSelectedRow, nColumnNumber++, pUpdatedCity->szCityName);
+	oListCtrl.SetItemText(nSelectedRow, nColumnNumber++, pUpdatedCity->szAreaName);
 	oListCtrl.SetItemText(nSelectedRow, nColumnNumber, strPostalCode);
+	oListCtrl.SetItemData(nSelectedRow, reinterpret_cast<DWORD_PTR>(pUpdatedCity));
 }
 
+void CCitiesView::ManageContextMenuItems(CCmdUI* pCmdUI)
+{
+	CListCtrl& LSCCitiesList = GetListCtrl();
 
+	UINT uSelectedCount = LSCCitiesList.GetSelectedCount();
+
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount == 0)
+	{
+		pCmdUI->Enable(true);
+		return;
+	}
+
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount > 0)
+	{
+		pCmdUI->Enable(false);
+		return;
+	}
+
+	if (uSelectedCount == 0)
+		pCmdUI->Enable(false);
+}
