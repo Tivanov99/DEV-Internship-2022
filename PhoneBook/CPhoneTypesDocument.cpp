@@ -63,12 +63,7 @@ PHONE_TYPES* CPhoneTypesDocument::GetPhoneTypeById(long lID)
 bool CPhoneTypesDocument::DeletePhoneTypeById(long lID)
 {
 	if (!m_PhoneTypesData.DeleteWhereID(lID))
-	{
-		CString strErrorMessage;
-		strErrorMessage.Format(_T("Deletion from database returned error. Phone type id: %d"), lID);
-		AfxMessageBox(strErrorMessage);
 		return false;
-	}
 
 	if (!DeletePhoneTypeFromPhoneTypesArray(lID))
 		return false;
