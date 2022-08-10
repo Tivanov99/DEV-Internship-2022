@@ -4,7 +4,7 @@
 #include "pch.h"
 #include "PhoneBook.h"
 #include "afxdialogex.h"
-#include "CCitiesDialog.h"
+#include "CitiesDialog.h"
 #include "CCitiesView.h"
 #include "GlobalConstants.h"
 

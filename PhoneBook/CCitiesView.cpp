@@ -15,7 +15,7 @@
 #define new DEBUG_NEW
 #endif
 #include "CCitiesDocument.h"
-#include "CCitiesDialog.h"
+#include "CitiesDialog.h"
 
 
 

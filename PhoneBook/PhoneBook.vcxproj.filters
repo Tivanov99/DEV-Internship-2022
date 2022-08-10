@@ -69,10 +69,10 @@
     <ClInclude Include="CBaseTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CCitiesData.h">
+    <ClInclude Include="CitiesData.h">
       <Filter>CITIES</Filter>
     </ClInclude>
-    <ClInclude Include="CCitiesDialog.h">
+    <ClInclude Include="CitiesDialog.h">
       <Filter>CITIES</Filter>
     </ClInclude>
     <ClInclude Include="CCitiesDocument.h">

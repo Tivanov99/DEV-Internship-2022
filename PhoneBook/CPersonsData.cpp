@@ -126,7 +126,7 @@ bool CPersonsData::UpdateWhereID(const long lID, const PERSONS& recPersons)
 	return true;
 }
 
-bool CPersonsData::InsertRecord(const PERSONS& recPersons)
+bool CPersonsData::InsertRecord(PERSONS& recPersons)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 

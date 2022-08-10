@@ -64,7 +64,7 @@ public:
 	bool UpdateWhereID(const long lID, const Record_Type& recTableRecord);
 	/// <summary>Финкция която добавя запис в базата.</summary>
 	/// <param name="recTableRecord">Референция към обект който ще бъде добавен в базата.</param>
-	bool InsertRecord(const Record_Type& recTableRecord);
+	bool InsertRecord(Record_Type& recTableRecord);
 	/// <summary>Функция която трие запис от базата чиято стойност в колоната 'ID' отговаря на 'lID'.</summary>
 	/// <param name="lID">Уникален идентификатор по който ще се изтрие запис.</param>
 	bool DeleteWhereID(const long lID);
@@ -150,12 +150,10 @@ bool CBaseTable<Record_Type, Table_AcessorType>::SelectAll(CSelfClearingTypedPtr
 	CString strQuery;
 	strQuery.Format(SqlQueries::SelectAll, m_strTableName);
 
-	// Изпълняваме командата
 	if (!ExecuteQuery(strQuery, AccessorTypes::NoneModifying))
 	{
 		CloseRowSet();
 		return false;
-
 	}
 
 	HRESULT hResult = MoveFirst();
@@ -166,7 +164,6 @@ bool CBaseTable<Record_Type, Table_AcessorType>::SelectAll(CSelfClearingTypedPtr
 		return false;
 	}
 
-	// Прочитаме всички данни
 	while (hResult == S_OK)
 	{
 		Record_Type* pCurrentRecord = new Record_Type;
@@ -184,7 +181,6 @@ bool CBaseTable<Record_Type, Table_AcessorType>::SelectAll(CSelfClearingTypedPtr
 		}
 	}
 	CloseRowSet();
-
 	return true;
 };
 
@@ -205,13 +201,10 @@ bool CBaseTable<Record_Type, Table_AcessorType>::SelectWhereID(const long lID, R
 	{
 		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, NULL);
 		CloseRowSet();
-
 		return false;
 	}
 	recTableRecord = m_recTableRecord;
-
 	CloseRowSet();
-
 	return true;
 };
 
@@ -250,16 +243,14 @@ bool CBaseTable<Record_Type, Table_AcessorType>::UpdateWhereID(const long lID, c
 	{
 		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorUpdatingRecord, NULL);
 		CloseRowSet();
-
 		return false;
 	}
 	CloseRowSet();
-
 	return true;
 };
 
 template <typename Record_Type, class Table_AcessorType>
-bool CBaseTable<Record_Type, Table_AcessorType>::InsertRecord(const Record_Type& recTableRecord)
+bool CBaseTable<Record_Type, Table_AcessorType>::InsertRecord(Record_Type& recTableRecord)
 {
 	CString strQuery;
 	strQuery.Format(SqlQueries::EmptySelect, m_strTableName);
@@ -268,7 +259,6 @@ bool CBaseTable<Record_Type, Table_AcessorType>::InsertRecord(const Record_Type&
 	{
 		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, NULL);
 		CloseRowSet();
-
 		return false;
 	}
 
@@ -278,9 +268,13 @@ bool CBaseTable<Record_Type, Table_AcessorType>::InsertRecord(const Record_Type&
 	{
 		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorInsertingRecord, NULL);
 		CloseRowSet();
-
 		return false;
 	}
+
+	if (MoveLast() != S_OK)
+		return false;
+
+	recTableRecord = m_recTableRecord;
 
 	CloseRowSet();
 	return true;

@@ -40,7 +40,7 @@ public:
 	bool UpdateWhereID(const long lID, const PERSONS& recPersons);
 	/// <summary>Функция която добавя запис подаден като аргумент към таблицата "PERSONS".</summary>
 	/// <param name="recPersons">Референция която съдържа нов обект.</param>
-	bool InsertRecord(const PERSONS& recPersons);
+	bool InsertRecord(PERSONS& recPersons);
 	/// <summary>Функция която изтрива запис от таблицата "PERSONS" който отговавя на "lID" аргумента.</summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	bool DeleteWhereID(const long lID);
@@ -57,9 +57,13 @@ private:
 	/// <param name="oComparedPhoneNumber">Обект който ще бъде сравняван.</param>
 	/// <param name="oPhoneNumberComparator">Обект с който ще се сравнява.</param>
 	bool ComparePhoneNumbers(PHONE_NUMBERS& oComparedPhoneNumber, PHONE_NUMBERS& oPhoneNumberComparator);
-
+	/// <summary>Функция която актуализира всички записи.</summary>
+	/// <param name="pCurrentOriginalPhoneNumber">Запис който ще бъде проверено дали съществува в 'oModifiedPhoneNumbersArray'.</param>
+	/// <param name="oModifiedPhoneNumbersArray">Сисък с вече актуализирани записи.</param>
 	bool UpdatePhoneNumbers(PHONE_NUMBERS& pCurrentOriginalPhoneNumber,CPhoneNumbersArray& oModifiedPhoneNumbersArray);
 
+	/// <summary>Функция която добавя записите в от 'oPhoneNumbersArray' в базата.</summary>
+	/// <param name="oPhoneNumbersArray">Масив съдържащ всички нови записи.</param>
 	bool InsertPhoneNumbers(CPhoneNumbersArray& oPhoneNumbersArray);
 };
 

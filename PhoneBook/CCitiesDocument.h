@@ -1,5 +1,5 @@
 #pragma once
-#include "CCitiesData.h"
+#include "CitiesData.h"
 
 
 class CCitiesDocument :public CDocument

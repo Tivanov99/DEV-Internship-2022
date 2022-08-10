@@ -4,7 +4,7 @@
 
 
 #pragma once
-#include "CCitiesData.h"
+#include "CitiesData.h"
 
 
 class CCitiesDoc : public CDocument

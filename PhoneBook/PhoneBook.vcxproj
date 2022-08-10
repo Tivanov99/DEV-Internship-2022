@@ -185,8 +185,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CBaseTable.h" />
-    <ClInclude Include="CCitiesData.h" />
-    <ClInclude Include="CCitiesDialog.h" />
+    <ClInclude Include="CitiesData.h" />
+    <ClInclude Include="CitiesDialog.h" />
     <ClInclude Include="CCitiesDocument.h" />
     <ClInclude Include="CCitiesTable.h" />
     <ClInclude Include="CCitiesView.h" />

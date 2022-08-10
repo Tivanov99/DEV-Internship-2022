@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CCitiesData.h"
+#include "CitiesData.h"
 #include "DataBaseConnector.h"
 
 CCitiesData::CCitiesData()
@@ -49,7 +49,7 @@ bool CCitiesData::UpdateWhereID(const long lID, const CITIES& recCities)
 	return true;
 }
 
-bool CCitiesData::InsertRecord(const CITIES& recCities)
+bool CCitiesData::InsertRecord(CITIES& recCities)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
