@@ -178,7 +178,7 @@ bool CPersonsDocument::DeletePersonAndPhoneNumbers(long lID)
 	if (!m_ÓPersonsData.DeletePersonAndPhoneNumbers(lID))
 		return false;
 
-	if(DeletePersonFromPersonsArray(lID));
+	if(!DeletePersonFromPersonsArray(lID))
 		return false;
 
 	OnUpdateAllViews(ContextMenuOperations::Delete, (CObject*)lID);

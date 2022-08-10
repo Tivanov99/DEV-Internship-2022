@@ -156,7 +156,7 @@ bool CPersonsData::InsertPersonAndPhoneNumbers(PERSONS& recPersons, CPhoneNumber
 		return false;
 	}
 	oSession.Commit();
-	oSession.Close();
+	pDatabaseConnector->CloseSession();
 	return true;
 }
 
@@ -181,6 +181,10 @@ bool CPersonsData::DeleteWhereID(const long lID)
 
 bool CPersonsData::DeletePersonAndPhoneNumbers(const long lID)
 {
+	CPhoneNumbersArray oPhoneNumbersArray;
+	if (!SelectAllPhoneNumbersByPersonId(lID, oPhoneNumbersArray))
+		return false;
+
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 
 	if (!pDatabaseConnector->OpenSession())
@@ -199,11 +203,12 @@ bool CPersonsData::DeletePersonAndPhoneNumbers(const long lID)
 	CString strSqlQuery;
 	strSqlQuery.Format(SqlQueries::WherePersonID, lID);
 
-	if (!oPhoneNumbersTable.DeleteBySpecificColumnWhereID(lID, strSqlQuery))
-	{
-		pDatabaseConnector->AbortTransactionAndCloseSession();
-		return false;
-	}
+	if (oPhoneNumbersArray.GetCount()>0)
+		if (!oPhoneNumbersTable.DeleteBySpecificColumnWhereID(lID, strSqlQuery))
+		{
+			pDatabaseConnector->AbortTransactionAndCloseSession();
+			return false;
+		}
 
 	CPersonsTable îPersonsTable(oSession);
 	if (!îPersonsTable.DeleteWhereID(lID))
@@ -228,7 +233,7 @@ bool CPersonsData::UpdatePersonAndPhoneNumbers(const PERSONS& recPersons, CPhone
 		return false;
 
 	CSession oSession = pDatabaseConnector->GetSession();
-	if (oSession.StartTransaction()!= S_OK)
+	if (oSession.StartTransaction() != S_OK)
 		return false;
 
 	CPersonsTable îPersonsTable(oSession);
@@ -274,7 +279,7 @@ bool CPersonsData::InsertPhoneNumbers(CPhoneNumbersArray& oPhoneNumbersArray)
 	return true;
 }
 
-bool CPersonsData::UpdatePhoneNumbers(PHONE_NUMBERS& pCurrentOriginalPhoneNumber,CPhoneNumbersArray& oModifiedPhoneNumbersArray)
+bool CPersonsData::UpdatePhoneNumbers(PHONE_NUMBERS& pCurrentOriginalPhoneNumber, CPhoneNumbersArray& oModifiedPhoneNumbersArray)
 {
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 	CPhoneNumbersTable oPhoneNumbersTable(pDatabaseConnector->GetSession());
@@ -292,7 +297,7 @@ bool CPersonsData::UpdatePhoneNumbers(PHONE_NUMBERS& pCurrentOriginalPhoneNumber
 				if (!oPhoneNumbersTable.UpdateWhereID(pCurrentModifiedPhoneNumber->lID, *pCurrentModifiedPhoneNumber))
 					return false;
 			oModifiedPhoneNumbersArray.RemoveAt(s);
-			bFound= true;
+			bFound = true;
 			break;
 		}
 	}

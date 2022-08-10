@@ -182,10 +182,7 @@ void CPersonsView::UpdateRecord(long lId)
 
 	CListCtrl& LSCCitiesList = GetListCtrl();
 	LSCCitiesList.SetItemText(nNumberOfSelectedRow, nColumnNumber++, pUpdatedPerson->szFirstName);
-	LSCCitiesList.SetItemText(nNumberOfSelectedRow, nColumnNumber++, pUpdatedPerson->szSecondName);
 	LSCCitiesList.SetItemText(nNumberOfSelectedRow, nColumnNumber, pUpdatedPerson->szLastName);
-
-	LSCCitiesList.DeleteItem(nColumnNumber);
 
 	LSCCitiesList.SetItemData(nNumberOfSelectedRow, reinterpret_cast<DWORD_PTR>(pUpdatedPerson));
 }
@@ -277,6 +274,8 @@ void CPersonsView::OnContextMenuInsert()
 
 void CPersonsView::OnContextMenuEdit()
 {
+	int nNumberOfSelectedRow = GetSelectedRowNumber();
+
 	PERSONS* pPerson = GetSelectedRecordItemData();
 
 	if (pPerson == NULL)
