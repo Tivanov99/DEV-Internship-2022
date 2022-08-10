@@ -21,17 +21,13 @@ BOOL CCitiesDocument::OnNewDocument()
 	return TRUE;
 };
 
-// CCitiesDoc serialization
-
 void CCitiesDocument::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: add storing code here
 	}
 	else
 	{
-		// TODO: add loading code here
 	}
 }
 
@@ -55,17 +51,19 @@ void CCitiesDocument::Dump(CDumpContext& dc) const
 
 CITIES* CCitiesDocument::GetCityById(long lID)
 {
-	for (INT_PTR i = 0; i < m_oCitiesArray.GetCount(); i++)
-	{
-		CITIES* pCity = m_oCitiesArray.GetAt(i);
-		if (pCity == NULL)
-			continue;
-		if (pCity->lID == lID)
-			return pCity;
-	}
-	AfxMessageBox(_T("Failed to read data about person."));
+	long lIndex = GetCityIndexFromCitiesArray(lID);
 
-	return NULL;
+	if (lIndex == -1)
+		return NULL;
+
+	CITIES* pCity = m_oCitiesArray.GetAt(lIndex);
+
+	if (pCity == NULL)
+	{
+	AfxMessageBox(_T("Failed to read data about person."));
+		return NULL;
+	}
+	return pCity;
 }
 
 bool CCitiesDocument::DeleteCityById(long lID)
@@ -80,7 +78,6 @@ bool CCitiesDocument::DeleteCityById(long lID)
 
 	DeleteCityFromCitiesArray(lID);
 
-	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
 	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
 	return true;
 }
@@ -89,7 +86,6 @@ void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)
 {
 	UpdateAllViews(NULL, lHint, pHint);
 }
-
 
 bool CCitiesDocument::UpdateCity(CITIES& recCity)
 {
@@ -115,13 +111,10 @@ bool CCitiesDocument::InsertCity(CITIES& recCity)
 
 bool CCitiesDocument::DeleteCityFromCitiesArray(long lCityId)
 {
-	if (lCityId == -1)
-	{
-		AfxMessageBox(_T("The city was not found in the document! City Id - %d"), lCityId);
-		return false;
-	}
-
 	long lCityIndex = GetCityIndexFromCitiesArray(lCityId);
+
+	if (lCityIndex == -1)
+		return false;
 
 	CITIES* pCity = m_oCitiesArray.GetAt(lCityIndex);
 
@@ -135,13 +128,13 @@ bool CCitiesDocument::DeleteCityFromCitiesArray(long lCityId)
 CITIES* CCitiesDocument::AddCityToCitiesArray(CITIES& recCity)
 {
 	CITIES* pCity = new CITIES();
-
 	*pCity = recCity;
 
 	if (pCity == NULL)
 	{
 		delete pCity;
 		AfxMessageBox(_T("Failed to add city to document."));
+		return NULL;
 	}
 	m_oCitiesArray.Add(pCity);
 	return pCity;
@@ -159,7 +152,7 @@ long CCitiesDocument::GetCityIndexFromCitiesArray(long lID)
 	{
 		CITIES* pCity = m_oCitiesArray.GetAt(i);
 
-		if (pCity->lID != lID)
+		if (pCity == NULL || pCity->lID != lID)
 			continue;
 
 		return i;

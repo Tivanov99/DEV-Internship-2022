@@ -53,24 +53,27 @@ const CPersonsArray& CPersonsDocument::GetAllPersons()
 
 PERSONS* CPersonsDocument::GetPersonByIdFromPersonsArray(long lID)
 {
-	for (INT_PTR i = 0; i < m_oPersonsArray.GetCount(); i++)
-	{
-		PERSONS* pPerson = m_oPersonsArray.GetAt(i);
-		if (pPerson == NULL)
-			continue;
-		if (pPerson->lID == lID)
-			return pPerson;
-	}
-	AfxMessageBox(_T("Failed to read data about person."));
+	long lIndex = GetPersonIndexFromPersonsArray(lID);
 
-	return NULL;
+	if (lIndex == -1)
+		return NULL;
+
+	PERSONS* pPerson = m_oPersonsArray.GetAt(lIndex);
+
+	if (pPerson == NULL)
+	{
+		AfxMessageBox(_T("Failed to read data about person."));
+		return NULL;
+	}
+
+	return pPerson;
 }
 
 long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 {
 	if (lID < 0)
 	{
-		AfxMessageBox(_T("City with ID  - (%d)  was not found in the document."), lID);
+		AfxMessageBox(_T("Person with ID  - (%d)  was not found in the document."), lID);
 		return -1;
 	}
 
@@ -197,7 +200,6 @@ PERSONS* CPersonsDocument::AddPersonToPersonsArray(PERSONS& recPerson)
 		return NULL;
 	}
 	m_oPersonsArray.Add(pPerson);
-
 	return pPerson;
 }
 
