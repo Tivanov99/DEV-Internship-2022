@@ -25,8 +25,7 @@ public:
 	const LPCSTR lpszErrorUpdatingRecord = "Error updating record with id: %d";
 	const LPCSTR lpszErrorDeletingRecord = "Delete failed.";
 	const LPCSTR lpszErrorInsertingRecord = "Insert failed.";
-	const LPCSTR lpszErrorForeignKeyDeletingRecord = "Delete failed.This entry can be used in any of the other entries.";
-
+	const LPCSTR lpszErrorInsertingExistRecord = "Insert failed. Such a record already exists in the %s table.";
 	// Constructor / Destructor
 	// ----------------
 public:
@@ -264,8 +263,18 @@ bool CBaseTable<Record_Type, Table_AcessorType>::InsertRecord(Record_Type& recTa
 
 	m_recTableRecord = recTableRecord;
 
-	if (FAILED(CCommand<CAccessor<Table_AcessorType>>::Insert(ModifyColumnCode)))
+	HRESULT hresult = CCommand<CAccessor<Table_AcessorType>>::Insert(ModifyColumnCode);
+
+	if (hresult!= S_OK)
 	{
+		if (hresult == DB_E_INTEGRITYVIOLATION)
+		{
+			CString strErrorMessage;
+			strErrorMessage.Format(_T("Insert failed.Such a record already exists in the % s table."), m_strTableName);
+			AfxMessageBox(strErrorMessage);
+			CloseRowSet();
+			return false;
+		}
 		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorInsertingRecord, NULL);
 		CloseRowSet();
 		return false;

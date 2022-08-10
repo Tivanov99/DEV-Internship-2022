@@ -261,6 +261,7 @@ void CPersonsView::OnContextMenuInsert()
 	CPhoneNumbersArray oPhoneTypesArray;
 
 	CSelfClearingMap<long, PHONE_TYPES*> oPhoneTypesMap;
+	pPersonDocument->GetAllPhoneTypes(oPhoneTypesMap);
 
 	PERSONS oPerson;
 	oPerson.lUpdateCounter = 0;
@@ -270,10 +271,8 @@ void CPersonsView::OnContextMenuInsert()
 	if (!oPersonsDialog.DoModal())
 		return;
 
-	if (!pPersonDocument->InsertPerson(oPerson))
+	if (!pPersonDocument->InsertRecord(oPerson, oPhoneTypesArray))
 		AfxMessageBox(_T("Record insert failed."));
-
-	//TODO: Check for inserting phone numbers
 }
 
 void CPersonsView::OnContextMenuEdit()

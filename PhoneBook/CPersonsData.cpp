@@ -126,23 +126,34 @@ bool CPersonsData::UpdateWhereID(const long lID, const PERSONS& recPersons)
 	return true;
 }
 
-bool CPersonsData::InsertRecord(PERSONS& recPersons)
+bool CPersonsData::InsertPersonAndPhoneNumbers(PERSONS& recPersons, CPhoneNumbersArray& oPhoneNumbersArray)
 {
-	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
+	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
+	CSession oSession = pDbConnector->GetSession();
 
-	if (!pDatabaseConnector->OpenSession())
+	if (!pDbConnector->OpenSession())
 		return false;
 
-	CPersonsTable ÓPersonsTable(pDatabaseConnector->GetSession());
-
-	if (!ÓPersonsTable.InsertRecord(recPersons))
+	if (oSession.StartTransaction() != S_OK)
 	{
-		pDatabaseConnector->CloseSession();
+		pDbConnector->CloseSession();
 		return false;
 	}
 
-	pDatabaseConnector->CloseSession();
+	CPersonsTable oPersonsTable(oSession);
 
+	if (!oPersonsTable.InsertRecord(recPersons))
+	{
+		pDbConnector->AbortTransactionAndCloseSession();
+		return false;
+	}
+	if (!InsertPhoneNumbers(oPhoneNumbersArray))
+	{
+		pDbConnector->AbortTransactionAndCloseSession();
+		return false;
+	}
+	oSession.Commit();
+	oSession.Close();
 	return true;
 }
 
@@ -162,7 +173,6 @@ bool CPersonsData::DeleteWhereID(const long lID)
 	}
 
 	pDatabaseConnector->CloseSession();
-
 	return true;
 }
 
@@ -177,8 +187,7 @@ bool CPersonsData::DeletePersonAndPhoneNumbers(const long lID)
 
 	if (oSession.StartTransaction() != S_OK)
 	{
-		oSession.Abort();
-		pDatabaseConnector->CloseSession();
+		pDatabaseConnector->AbortTransactionAndCloseSession();
 		return false;
 	}
 
@@ -189,16 +198,14 @@ bool CPersonsData::DeletePersonAndPhoneNumbers(const long lID)
 
 	if (!oPhoneNumbersTable.DeleteBySpecificColumnWhereID(lID, strSqlQuery))
 	{
-		oSession.Abort();
-		pDatabaseConnector->CloseSession();
+		pDatabaseConnector->AbortTransactionAndCloseSession();
 		return false;
 	}
 
 	CPersonsTable ÓPersonsTable(oSession);
 	if (!ÓPersonsTable.DeleteWhereID(lID))
 	{
-		oSession.Abort();
-		pDatabaseConnector->CloseSession();
+		pDatabaseConnector->AbortTransactionAndCloseSession();
 		return false;
 	}
 
@@ -218,7 +225,7 @@ bool CPersonsData::UpdatePersonAndPhoneNumbers(const PERSONS& recPersons, CPhone
 		return false;
 
 	CSession oSession = pDatabaseConnector->GetSession();
-	if (oSession.StartTransaction() != S_OK)
+	if (oSession.StartTransaction()!= S_OK)
 		return false;
 
 	CPersonsTable ÓPersonsTable(oSession);

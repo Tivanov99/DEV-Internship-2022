@@ -38,7 +38,7 @@ public:
 	bool OpenSession();
 	/// <summary>Функция която затваря сесията.</summary>
 	void CloseSession();
-
+	/// <summary>Функция която затваря сесията и абортира транзакцията.</summary>
 	void AbortTransactionAndCloseSession();
 	// Members
 	// -------------

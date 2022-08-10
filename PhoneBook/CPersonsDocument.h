@@ -42,7 +42,7 @@ public:
 	PERSONS* GetPersonByIdFromPersonsArray(long lID);
 	/// <summary>Функция която добавя нов запис в базата.</summary>
 	/// <param name="recPerson">Референция към обект който ще бъде добавен в базата.</param>
-	bool InsertPersonAndPhoneNumbers(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray);
+	bool InsertRecord(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray);
 	/// <summary>Функция която изтрива запис от таблицата 'PERSONS' чието 'ID' отговаря на 'lID' и също така изтрива всички записи от таблицата 'PHONE_NUMBERS' чието 'PERSON_ID' отговаря на 'lID'.</summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се изтрие конкретен запис.</param>
 	bool DeletePersonAndPhoneNumbers(long lID);
