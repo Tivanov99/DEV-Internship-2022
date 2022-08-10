@@ -225,6 +225,9 @@ void CPersonsDocument::UpdatePersonFromPersonsArray(long lID, PERSONS& recUpdate
 {
 	long lPersonIndex = GetPersonIndexFromPersonsArray(lID);
 
+	if (lPersonIndex == -1)
+		return;
+
 	PERSONS* pPerson = m_oPersonsArray.GetAt(lPersonIndex);
 	*pPerson = recUpdatedPerson;
 }

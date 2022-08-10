@@ -64,14 +64,16 @@ bool CPhoneTypesDocument::DeletePhoneTypeById(long lID)
 {
 	if (!m_PhoneTypesData.DeleteWhereID(lID))
 	{
-		TRACE(_T("Deletion from database returned error. Phone type id: %d"), lID);
+		CString strErrorMessage;
+		strErrorMessage.Format(_T("Deletion from database returned error. Phone type id: %d"), lID);
+		AfxMessageBox(strErrorMessage);
 		return false;
 	}
 
-	DeletePhoneTypeFromPhoneTypesArray(lID);
+	if (!DeletePhoneTypeFromPhoneTypesArray(lID))
+		return false;
 
-	//TODO: Pass hint for deleted record and object which contains data for remove from listctrl.
-	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
+	OnUpdateAllViews(ContextMenuOperations::Delete, (CObject*)lID);
 	return true;
 }
 
@@ -86,13 +88,8 @@ bool CPhoneTypesDocument::UpdatePhoneType(PHONE_TYPES& recPhoneType)
 	if (!m_PhoneTypesData.UpdateWhereID(recPhoneType.lID, recPhoneType))
 		return false;
 
-	long lCityIndex = GetPhoneTypeIndexFromPhoneTypesArray(recPhoneType.lID);
 
-	PHONE_TYPES* pPhoneType = m_oPhoneTypesArray.GetAt(lCityIndex);
-	*pPhoneType = recPhoneType;
-
-	//TODO: Chech here for object ?
-	//OnUpdateAllViews(ContextMenuOperations::EditData, &oCity);
+	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)recPhoneType.lID);
 	return true;
 }
 
@@ -101,10 +98,10 @@ bool CPhoneTypesDocument::InsertPhoneType(PHONE_TYPES& recPhoneType)
 	if (!m_PhoneTypesData.InsertRecord(recPhoneType))
 		return false;
 
-	PHONE_TYPES* pPhoneNumber = AddPhoneTypeToPhoneTypesArray(recPhoneType);
+	if (!AddPhoneTypeToPhoneTypesArray(recPhoneType))
+		return false;
 
-	//TODO: Chech here for object ?
-	OnUpdateAllViews(ContextMenuOperations::Edit, NULL);
+	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)recPhoneType.lID);
 	return true;
 }
 
@@ -118,7 +115,12 @@ bool CPhoneTypesDocument::DeletePhoneTypeFromPhoneTypesArray(long lID)
 
 	long lPhoneTypeIndex = GetPhoneTypeIndexFromPhoneTypesArray(lID);
 
+	if (lPhoneTypeIndex == -1)
+		return false;
+
 	PHONE_TYPES* pPhoneNumber = m_oPhoneTypesArray.GetAt(lPhoneTypeIndex);
+	if (pPhoneNumber == NULL)
+		return false;
 
 	delete pPhoneNumber;
 	pPhoneNumber = NULL;
@@ -127,7 +129,7 @@ bool CPhoneTypesDocument::DeletePhoneTypeFromPhoneTypesArray(long lID)
 	return true;
 }
 
-PHONE_TYPES* CPhoneTypesDocument::AddPhoneTypeToPhoneTypesArray(PHONE_TYPES& recPhoneType)
+bool CPhoneTypesDocument::AddPhoneTypeToPhoneTypesArray(PHONE_TYPES& recPhoneType)
 {
 	PHONE_TYPES* pPhoneType = new PHONE_TYPES();
 	*pPhoneType = recPhoneType;
@@ -135,10 +137,10 @@ PHONE_TYPES* CPhoneTypesDocument::AddPhoneTypeToPhoneTypesArray(PHONE_TYPES& rec
 	{
 		delete pPhoneType;
 		AfxMessageBox(_T("Failed to add phone type to document."));
+		return false;
 	}
 	m_oPhoneTypesArray.Add(pPhoneType);
-
-	return pPhoneType;
+	return true;
 }
 
 long CPhoneTypesDocument::GetPhoneTypeIndexFromPhoneTypesArray(long lID)
@@ -162,4 +164,13 @@ long CPhoneTypesDocument::GetPhoneTypeIndexFromPhoneTypesArray(long lID)
 	return -1;
 }
 
+void CPhoneTypesDocument::UpdatePhoneTypesArray(long lID, PHONE_TYPES& recPhoneType)
+{
+	long lPersonIndex = GetPhoneTypeIndexFromPhoneTypesArray(lID);
 
+	if (lPersonIndex == -1)
+		return;
+
+	PHONE_TYPES* pPhoneType = m_oPhoneTypesArray.GetAt(lPersonIndex);
+	*pPhoneType = recPhoneType;
+}

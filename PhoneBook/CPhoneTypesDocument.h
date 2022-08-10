@@ -39,8 +39,9 @@ public:
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	bool DeletePhoneTypeFromPhoneTypesArray(long lID);
-	PHONE_TYPES* AddPhoneTypeToPhoneTypesArray(PHONE_TYPES& recPhoneType);
+	bool AddPhoneTypeToPhoneTypesArray(PHONE_TYPES& recPhoneType);
 	long GetPhoneTypeIndexFromPhoneTypesArray(long lID);
+	void UpdatePhoneTypesArray(long lID, PHONE_TYPES& recPhoneType);
 
 	//Members
 private:
