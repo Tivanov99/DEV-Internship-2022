@@ -128,28 +128,25 @@ bool CPersonsData::UpdateWhereID(const long lID, const PERSONS& recPersons)
 
 bool CPersonsData::InsertPersonAndPhoneNumbers(PERSONS& recPersons, CPhoneNumbersArray& oPhoneNumbersArray)
 {
-	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
-	CSession oSession = pDbConnector->GetSession();
-
-	if (!pDbConnector->OpenSession())
+	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
+	if (!pDatabaseConnector->OpenSession())
 		return false;
 
+	CSession oSession = pDatabaseConnector->GetSession();
 	if (oSession.StartTransaction() != S_OK)
-	{
-		pDbConnector->CloseSession();
 		return false;
-	}
 
 	CPersonsTable oPersonsTable(oSession);
 
 	if (!oPersonsTable.InsertRecord(recPersons))
 	{
-		pDbConnector->AbortTransactionAndCloseSession();
+		pDatabaseConnector->AbortTransactionAndCloseSession();
 		return false;
 	}
+	oPhoneNumbersArray[0]->lPersonId = 1;
 	if (!InsertPhoneNumbers(oPhoneNumbersArray))
 	{
-		pDbConnector->AbortTransactionAndCloseSession();
+		pDatabaseConnector->AbortTransactionAndCloseSession();
 		return false;
 	}
 	oSession.Commit();

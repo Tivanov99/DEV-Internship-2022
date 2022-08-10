@@ -29,7 +29,7 @@ public:
 	/// <summary>Функция която добавя запис подаден като аргумент към таблицата "PHONE_NUMBERS".</summary>
 	/// <param name="recPhoneNumbers">Референция която съдържа нов обект.</param>
 	/// <returns>Според това дали успешно е минала операцията връща 'true' ако ли не 'false'.</returns>
-	bool InsertRecord(PHONE_NUMBERS& recPhoneNumbers);
+	bool InsertPhoneNumber(PHONE_NUMBERS& recPhoneNumbers);
 	/// <summary>Функция която изтрива запис от таблицата "CITIES" който отговавя на "lID" аргумента.</summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси запис в базата.</param>
 	/// <returns>Според това дали успешно е минала операцията връща 'true' ако ли не 'false'.</returns>

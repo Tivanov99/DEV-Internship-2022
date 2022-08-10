@@ -268,7 +268,7 @@ void CPersonsView::OnContextMenuInsert()
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oPhoneTypesArray, oPhoneTypesMap);
 
-	if (!oPersonsDialog.DoModal())
+	if (oPersonsDialog.DoModal() != IDOK)
 		return;
 
 	if (!pPersonDocument->InsertRecord(oPerson, oPhoneTypesArray))

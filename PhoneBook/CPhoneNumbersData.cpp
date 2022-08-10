@@ -67,7 +67,7 @@ bool CPhoneNumbersData::UpdateWhereID(const long lID, const PHONE_NUMBERS& recPh
 	return true;
 }
 
-bool CPhoneNumbersData::InsertRecord(PHONE_NUMBERS& recPhoneNumbers)
+bool CPhoneNumbersData::InsertPhoneNumber(PHONE_NUMBERS& recPhoneNumbers)
 {
 	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
 

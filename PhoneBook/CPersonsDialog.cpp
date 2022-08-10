@@ -333,8 +333,6 @@ void CPersonsDialog::OnContextMenuDelete()
 				break;
 			}
 		}
-
-
 		delete pPhoneNumber;
 		pPhoneNumber = NULL;
 	}
