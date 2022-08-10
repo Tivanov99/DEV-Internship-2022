@@ -143,7 +143,13 @@ bool CPersonsData::InsertPersonAndPhoneNumbers(PERSONS& recPersons, CPhoneNumber
 		pDatabaseConnector->AbortTransactionAndCloseSession();
 		return false;
 	}
-	oPhoneNumbersArray[0]->lPersonId = 1;
+
+	for (INT_PTR i = 0; i < oPhoneNumbersArray.GetCount(); i++)
+	{
+		PHONE_NUMBERS* pPhoneNumbers = oPhoneNumbersArray.GetAt(i);
+		pPhoneNumbers->lPersonId = recPersons.lID;
+	}
+
 	if (!InsertPhoneNumbers(oPhoneNumbersArray))
 	{
 		pDatabaseConnector->AbortTransactionAndCloseSession();
