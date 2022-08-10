@@ -151,8 +151,10 @@ void CPersonsDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint = NULL)
 	UpdateAllViews(NULL, lHint, pHint);
 }
 
-bool CPersonsDocument::InsertPerson(PERSONS& recPerson)
+bool CPersonsDocument::InsertPersonAndPhoneNumbers(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray)
 {
+	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
+
 	if (!m_ÓPersonsData.InsertRecord(recPerson))
 		return false;
 

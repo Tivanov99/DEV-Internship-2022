@@ -232,11 +232,8 @@ void CPersonsView::OnContextMenuDelete()
 void CPersonsView::OnEditContextReadData()
 {
 	PERSONS* pPerson = GetSelectedRecordItemData();
-
 	if (pPerson == NULL)
 		return;
-
-	PERSONS oPerson = *pPerson;
 
 	CPersonsDocument* pPersonDocument = GetDocument();
 
@@ -249,12 +246,8 @@ void CPersonsView::OnEditContextReadData()
 	CPhoneNumbersArray oPhoneTypesArray;
 	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneTypesArray);
 
-	//pPersonDocument->GetAllPhoneTypes(oMap, pPerson->lID);
-
-	CPersonsDialog oPersonsDialog(DialogWindowActions::ReadData, oPerson, oCitiesArray, oPhoneTypesArray, oPhoneTypesMap);
-
-	if (!oPersonsDialog.DoModal())
-		return;
+	CPersonsDialog oPersonsDialog(DialogWindowActions::ReadData, *pPerson, oCitiesArray, oPhoneTypesArray, oPhoneTypesMap);
+	oPersonsDialog.DoModal();
 }
 
 
@@ -283,7 +276,6 @@ void CPersonsView::OnContextMenuInsert()
 	//TODO: Check for inserting phone numbers
 }
 
-//TODO: Check for bool methods.
 void CPersonsView::OnContextMenuEdit()
 {
 	PERSONS* pPerson = GetSelectedRecordItemData();
@@ -294,13 +286,16 @@ void CPersonsView::OnContextMenuEdit()
 	CPersonsDocument* pPersonDocument = GetDocument();
 
 	CCitiesArray oCitiesArray;
-	pPersonDocument->GetAllCities(oCitiesArray);
+	if (!pPersonDocument->GetAllCities(oCitiesArray))
+		return;
 
 	CSelfClearingMap<long, PHONE_TYPES*> oPhoneTypesMap;
-	pPersonDocument->GetAllPhoneTypes(oPhoneTypesMap);
+	if (!pPersonDocument->GetAllPhoneTypes(oPhoneTypesMap))
+		return;
 
 	CPhoneNumbersArray oPhoneNumbersArray;
-	pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersArray);
+	if (!pPersonDocument->GetPersonPhoneNumbers(pPerson->lID, oPhoneNumbersArray))
+		return;
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::EditData, *pPerson, oCitiesArray, oPhoneNumbersArray, oPhoneTypesMap);
 
