@@ -263,7 +263,7 @@ void CPersonsDialog::OnOK()
 	_tcscpy_s(m_recPerson.szLastName, strPersonLastName);
 
 	CString strPersonUcn;
-	m_edbPersonLastName.GetWindowText(strPersonUcn);
+	m_edbPersonUcn.GetWindowText(strPersonUcn);
 	_tcscpy_s(m_recPerson.szUcn, strPersonUcn);
 
 	m_recPerson.lCityId = pCity->lID;

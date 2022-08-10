@@ -51,13 +51,19 @@ const CPersonsArray& CPersonsDocument::GetAllPersons()
 	return m_oPersonsArray;
 }
 
-PERSONS* CPersonsDocument::GetPersonById(long lID)
+PERSONS* CPersonsDocument::GetPersonByIdFromPersonsArray(long lID)
 {
-	PERSONS* pPerson = m_oPersonsArray.GetAt(lID);
-	if (pPerson == NULL)
-		AfxMessageBox(_T("Failed to read data about person."));
+	for (INT_PTR i = 0; i < m_oPersonsArray.GetCount(); i++)
+	{
+		PERSONS* pPerson = m_oPersonsArray.GetAt(i);
+		if (pPerson == NULL)
+			continue;
+		if (pPerson->lID == lID)
+			return pPerson;
+	}
+	AfxMessageBox(_T("Failed to read data about person."));
 
-	return pPerson;
+	return NULL;
 }
 
 long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
@@ -150,8 +156,6 @@ bool CPersonsDocument::InsertPerson(PERSONS& recPerson)
 	if (!m_ÓPersonsData.InsertRecord(recPerson))
 		return false;
 
-	//TODO: How to get inserted redord ?
-
 	AddPersonToPersonsArray(recPerson);
 
 	OnUpdateAllViews(ContextMenuOperations::InsertRecord, (CObject*)recPerson.lID);
@@ -160,8 +164,10 @@ bool CPersonsDocument::InsertPerson(PERSONS& recPerson)
 
 bool CPersonsDocument::UpdatePersonAndPhoneNumbers(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray)
 {
-	if (m_ÓPersonsData.UpdatePersonAndPhoneNumbers(recPerson, oPhoneNumbersArray))
+	if (!m_ÓPersonsData.UpdatePersonAndPhoneNumbers(recPerson, oPhoneNumbersArray))
 		return false;
+
+	UpdatePersonFromPersonsArray(recPerson.lID, recPerson);
 
 	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)recPerson.lID);
 	return true;
@@ -172,7 +178,8 @@ bool CPersonsDocument::DeletePersonAndPhoneNumbers(long lID)
 	if (!m_ÓPersonsData.DeletePersonAndPhoneNumbers(lID))
 		return false;
 
-	DeletePersonFromPersonsArray(lID);
+	if(DeletePersonFromPersonsArray(lID));
+		return false;
 
 	OnUpdateAllViews(ContextMenuOperations::Delete, (CObject*)lID);
 
@@ -210,4 +217,12 @@ bool CPersonsDocument::DeletePersonFromPersonsArray(long lPersonId)
 	pPerson = NULL;
 	m_oPersonsArray.RemoveAt(lPersonIndex);
 	return true;
+}
+
+void CPersonsDocument::UpdatePersonFromPersonsArray(long lID, PERSONS& recUpdatedPerson)
+{
+	long lPersonIndex = GetPersonIndexFromPersonsArray(lID);
+
+	PERSONS* pPerson = m_oPersonsArray.GetAt(lPersonIndex);
+	*pPerson = recUpdatedPerson;
 }

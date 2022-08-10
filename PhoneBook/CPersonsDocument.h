@@ -39,7 +39,7 @@ public:
 	/// <summary>Функция която изчита запис с уникален идентификатор 'ID' което отговаря на 'lID' от таблицата 'PERSONS'.</summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се изчете конкретен запис.</param>
 	/// <returns>Връща указател съдържащ информацията на записа.</returns>
-	PERSONS* GetPersonById(long lID);
+	PERSONS* GetPersonByIdFromPersonsArray(long lID);
 	/// <summary>Функция която добавя нов запис в базата.</summary>
 	/// <param name="recPerson">Референция към обект който ще бъде добавен в базата.</param>
 	bool InsertPerson(PERSONS& recPerson);
@@ -86,6 +86,8 @@ private:
 	/// <param name="oPhoneTypesArray">Масив в който ще се търси обект чийто 'ID' е идентично с 'lID'</param>
 	/// <returns>Обект чието 'ID' отговаря на 'lID'.</returns>
 	PHONE_TYPES* GetPhoneTypeById(long lID, CPhoneTypesArray& oPhoneTypesArray);
+
+	void UpdatePersonFromPersonsArray(long lID, PERSONS& recUpdatedPerson);
 
 	//Members
 	//------------------------

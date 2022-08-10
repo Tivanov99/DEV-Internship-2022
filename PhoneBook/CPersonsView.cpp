@@ -157,22 +157,37 @@ void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 	switch (lHint)
 	{
 	case ContextMenuOperations::InsertRecord:
-		InsertNewRecordToCListCtrl(pPersonDocument->GetPersonById((long)pHint));
+		InsertNewRecordToCListCtrl(pPersonDocument->GetPersonByIdFromPersonsArray((long)pHint));
 		break;
 	case ContextMenuOperations::Delete:
 		LSCCitiesList.DeleteItem(nNumberOfSelectedRow);
 		break;
 	case ContextMenuOperations::Edit:
-		//TODO: Check here.
+		UpdateRecord((long)pHint);
 		break;
 	default:
 		break;
 	}
 }
 
-void UpdateRecord(PERSONS* pPerson)
+void CPersonsView::UpdateRecord(long lId)
 {
+	CPersonsDocument* pPersonDocument = GetDocument();
 
+	int nNumberOfSelectedRow = GetSelectedRowNumber();
+
+	PERSONS* pUpdatedPerson = pPersonDocument->GetPersonByIdFromPersonsArray(lId);
+
+	int nColumnNumber = 0;
+
+	CListCtrl& LSCCitiesList = GetListCtrl();
+	LSCCitiesList.SetItemText(nNumberOfSelectedRow, nColumnNumber++, pUpdatedPerson->szFirstName);
+	LSCCitiesList.SetItemText(nNumberOfSelectedRow, nColumnNumber++, pUpdatedPerson->szSecondName);
+	LSCCitiesList.SetItemText(nNumberOfSelectedRow, nColumnNumber, pUpdatedPerson->szLastName);
+
+	LSCCitiesList.DeleteItem(nColumnNumber);
+
+	LSCCitiesList.SetItemData(nNumberOfSelectedRow, reinterpret_cast<DWORD_PTR>(pUpdatedPerson));
 }
 
 void CPersonsView::InsertNewRecordToCListCtrl(PERSONS* pPerson)
