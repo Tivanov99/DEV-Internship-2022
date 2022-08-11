@@ -154,17 +154,19 @@ void CPersonsView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 	CListCtrl& LSCCitiesList = GetListCtrl();
 
 	CPersonsDocument* pPersonDocument = GetDocument();
+	
+	long* lId = (long*)&pHint;
 
 	switch (lHint)
 	{
 	case ContextMenuOperations::InsertRecord:
-		InsertNewRecordToCListCtrl(pPersonDocument->GetPersonByIdFromPersonsArray((long)pHint));
+		InsertNewRecordToCListCtrl(pPersonDocument->GetPersonByIdFromPersonsArray(*lId));
 		break;
 	case ContextMenuOperations::Delete:
 		LSCCitiesList.DeleteItem(nNumberOfSelectedRow);
 		break;
 	case ContextMenuOperations::Edit:
-		UpdateRecord((long)pHint);
+		UpdateRecord(*lId);
 		break;
 	default:
 		break;

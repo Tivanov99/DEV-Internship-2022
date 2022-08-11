@@ -114,7 +114,7 @@ void CPhoneTypesView::ConfigurateCListCtrl()
 
 void CPhoneTypesView::AddColumns(CListCtrl& LSCCitiesList)
 {
-	const int nColumnWidth = 120;
+	const int nColumnWidth = 160;
 	int nColumnNumber = 0;
 	LSCCitiesList.InsertColumn(nColumnNumber++, _T("Тип"), LVCFMT_LEFT, nColumnWidth, 1);
 }

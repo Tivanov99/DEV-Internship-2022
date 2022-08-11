@@ -18,17 +18,13 @@ BOOL CPersonsDocument::OnNewDocument()
 	return TRUE;
 };
 
-// CCitiesDoc serialization
-
 void CPersonsDocument::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: add storing code here
 	}
 	else
 	{
-		// TODO: add loading code here
 	}
 }
 
@@ -106,14 +102,11 @@ bool CPersonsDocument::GetAllPhoneTypes(CSelfClearingMap<long, PHONE_TYPES*>& oM
 	for (INT_PTR i = 0; i < oPhoneTypesArray.GetCount(); i++)
 	{
 		PHONE_TYPES* pCurrentPhoneType = oPhoneTypesArray.GetAt(i);
-
 		if (pCurrentPhoneType == NULL)
 			continue;
 
 		PHONE_TYPES* pPhoneType = new PHONE_TYPES();
-
 		*pPhoneType = *pCurrentPhoneType;
-
 		oMap.SetAt(pPhoneType->lID, pPhoneType);
 	}
 	return true;
@@ -211,7 +204,6 @@ bool CPersonsDocument::DeletePersonFromPersonsArray(long lPersonId)
 void CPersonsDocument::UpdatePersonFromPersonsArray(long lID, PERSONS& recUpdatedPerson)
 {
 	INT_PTR lPersonIndex = GetPersonIndexFromPersonsArray(lID);
-
 	if (lPersonIndex == -1)
 		return;
 

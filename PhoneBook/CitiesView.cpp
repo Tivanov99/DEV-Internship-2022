@@ -91,7 +91,27 @@ void CCitiesView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 #endif
 }
 
-//TODO: Ask for view base class which will contains pure virtual method for fill view data.
+void CCitiesView::ManageContextMenuItems(CCmdUI* pCmdUI)
+{
+	CListCtrl& LSCCitiesList = GetListCtrl();
+
+	UINT uSelectedCount = LSCCitiesList.GetSelectedCount();
+
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount == 0)
+	{
+		pCmdUI->Enable(true);
+		return;
+	}
+
+	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount > 0)
+	{
+		pCmdUI->Enable(false);
+		return;
+	}
+
+	if (uSelectedCount == 0)
+		pCmdUI->Enable(false);
+}
 
 void CCitiesView::OnInitialUpdate()
 {
@@ -168,16 +188,18 @@ void CCitiesView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 
 	CCitiesDocument* pCitiesDocument = GetDocument();
 
+	long* lId = (long*)&pHint;
+
 	switch (lHint)
 	{
 	case ContextMenuOperations::InsertRecord:
-		InsertNewRecordToCListCtrl(pCitiesDocument->GetCityById((long)pHint));
+		InsertNewRecordToCListCtrl(pCitiesDocument->GetCityById(*lId));
 		break;
 	case ContextMenuOperations::Delete:
 		LSCCitiesList.DeleteItem(nNumberOfSelectedRow);
 		break;
 	case ContextMenuOperations::Edit:
-		UpdateRecord((long)pHint);
+		UpdateRecord(*lId);
 		break;
 	default:
 		break;
@@ -239,8 +261,6 @@ void CCitiesView::OnContextMenuInsert()
 
 	if (!pCitiesDocument->InsertCity(oCity))
 		return;
-
-	CITIES* pInsertedCity = pCitiesDocument->GetCityById(oCity.lID);
 }
 
 void CCitiesView::InsertNewRecordToCListCtrl(CITIES* pCity)
@@ -288,26 +308,4 @@ void CCitiesView::UpdateRecord(long lID)
 	oListCtrl.SetItemText(nSelectedRow, nColumnNumber++, pUpdatedCity->szAreaName);
 	oListCtrl.SetItemText(nSelectedRow, nColumnNumber, strPostalCode);
 	oListCtrl.SetItemData(nSelectedRow, reinterpret_cast<DWORD_PTR>(pUpdatedCity));
-}
-
-void CCitiesView::ManageContextMenuItems(CCmdUI* pCmdUI)
-{
-	CListCtrl& LSCCitiesList = GetListCtrl();
-
-	UINT uSelectedCount = LSCCitiesList.GetSelectedCount();
-
-	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount == 0)
-	{
-		pCmdUI->Enable(true);
-		return;
-	}
-
-	if (pCmdUI->m_nID == ID_EDIT_CONTEXT_INSERT && uSelectedCount > 0)
-	{
-		pCmdUI->Enable(false);
-		return;
-	}
-
-	if (uSelectedCount == 0)
-		pCmdUI->Enable(false);
 }

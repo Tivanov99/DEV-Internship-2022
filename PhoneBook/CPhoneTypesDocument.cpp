@@ -108,7 +108,7 @@ bool CPhoneTypesDocument::DeletePhoneTypeFromPhoneTypesArray(long lID)
 		return false;
 	}
 
-	long lPhoneTypeIndex = GetPhoneTypeIndexFromPhoneTypesArray(lID);
+	INT_PTR lPhoneTypeIndex = GetPhoneTypeIndexFromPhoneTypesArray(lID);
 
 	if (lPhoneTypeIndex == -1)
 		return false;
@@ -138,7 +138,7 @@ bool CPhoneTypesDocument::AddPhoneTypeToPhoneTypesArray(PHONE_TYPES& recPhoneTyp
 	return true;
 }
 
-long CPhoneTypesDocument::GetPhoneTypeIndexFromPhoneTypesArray(long lID)
+INT_PTR CPhoneTypesDocument::GetPhoneTypeIndexFromPhoneTypesArray(long lID)
 {
 	if (lID < 0)
 	{
@@ -161,7 +161,7 @@ long CPhoneTypesDocument::GetPhoneTypeIndexFromPhoneTypesArray(long lID)
 
 void CPhoneTypesDocument::UpdatePhoneTypesArray(long lID, PHONE_TYPES& recPhoneType)
 {
-	long lPersonIndex = GetPhoneTypeIndexFromPhoneTypesArray(lID);
+	INT_PTR lPersonIndex = GetPhoneTypeIndexFromPhoneTypesArray(lID);
 
 	if (lPersonIndex == -1)
 		return;

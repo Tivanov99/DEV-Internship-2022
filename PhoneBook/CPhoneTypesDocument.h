@@ -40,7 +40,7 @@ private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	bool DeletePhoneTypeFromPhoneTypesArray(long lID);
 	bool AddPhoneTypeToPhoneTypesArray(PHONE_TYPES& recPhoneType);
-	long GetPhoneTypeIndexFromPhoneTypesArray(long lID);
+	INT_PTR GetPhoneTypeIndexFromPhoneTypesArray(long lID);
 	void UpdatePhoneTypesArray(long lID, PHONE_TYPES& recPhoneType);
 
 	//Members

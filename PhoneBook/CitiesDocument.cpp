@@ -52,7 +52,6 @@ void CCitiesDocument::Dump(CDumpContext& dc) const
 CITIES* CCitiesDocument::GetCityById(long lID)
 {
 	INT_PTR lIndex = GetCityIndexFromCitiesArray(lID);
-
 	if (lIndex == -1)
 		return NULL;
 
@@ -60,7 +59,7 @@ CITIES* CCitiesDocument::GetCityById(long lID)
 
 	if (pCity == NULL)
 	{
-	AfxMessageBox(_T("Failed to read data about person."));
+		AfxMessageBox(_T("Failed to read data about person."));
 		return NULL;
 	}
 	return pCity;
@@ -72,13 +71,13 @@ bool CCitiesDocument::DeleteCityById(long lID)
 
 	if (!bDeleteResult)
 	{
-		TRACE(_T("Deletion from database returned error. City id: %d"), lID);
+		AfxMessageBox(_T("Deletion from database returned error. City id: %d"), lID);
 		return false;
 	}
 
 	DeleteCityFromCitiesArray(lID);
 
-	OnUpdateAllViews(ContextMenuOperations::Delete, NULL);
+	OnUpdateAllViews(ContextMenuOperations::Delete, (CObject*)lID);
 	return true;
 }
 
@@ -92,7 +91,7 @@ bool CCitiesDocument::UpdateCity(CITIES& recCity)
 	if (!m_CitiesData.UpdateCityById(recCity.lID, recCity))
 		return false;
 
-	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)recCity.lID);
+	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)(recCity.lID));
 	return true;
 }
 
@@ -116,11 +115,7 @@ bool CCitiesDocument::DeleteCityFromCitiesArray(long lCityId)
 	if (lCityIndex == -1)
 		return false;
 
-	CITIES* pCity = m_oCitiesArray.GetAt(lCityIndex);
-
-	delete pCity;
-	pCity = NULL;
-	m_oCitiesArray.RemoveAt(lCityIndex);
+	m_oCitiesArray.RemovePointerAt(lCityIndex);
 
 	return true;
 }
