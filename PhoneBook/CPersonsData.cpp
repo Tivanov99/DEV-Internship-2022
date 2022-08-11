@@ -61,6 +61,25 @@ bool CPersonsData::SelectAllCities(CCitiesArray& oCitiesArray)
 	DataBaseConnector::GetInstance()->CloseSession();
 	return true;
 }
+
+bool CPersonsData::SelectCityWhereID(const long lID, CITIES& recCities)
+{
+	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
+
+	if (!pDatabaseConnector->OpenSession())
+		return false;
+
+	CCitiesTable oCitiesTable(pDatabaseConnector->GetSession());
+
+	if (!oCitiesTable.SelectWhereID(lID, recCities))
+	{
+		pDatabaseConnector->CloseSession();
+		return false;
+	}
+	pDatabaseConnector->CloseSession();
+	return true;
+}
+
 bool CPersonsData::SelectAll(CPersonsArray& oPersonsArray)
 {
 	if (!DataBaseConnector::GetInstance()->OpenSession())

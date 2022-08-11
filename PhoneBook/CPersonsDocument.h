@@ -56,17 +56,18 @@ public:
 	/// <summary>Функция която изчита всички записи свързани с градовете от таблицата 'PHONE_TYPES'.</summary>
 	/// <param name="oPhoneTypesArray">Масив където се записват всички стойности.</param>
 	bool GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray);
-
-	/// <summary>
-	/// Функция която изчита всички телефонни номера.
-	/// </summary>
+	/// <summary>Функция която изчита всички телефонни номера.</summary>
 	/// <param name="oMap">Мап в който се записват всички изчетени записи от базата.</param>
 	bool GetAllPhoneTypes(CSelfClearingMap<long, PHONE_TYPES*>& oMap);
-
 	/// <summary>Функция която актуализира всички телефонни номера на контакт както и него самия.</summary>
 	/// <param name="recPerson">Референция към обект който съдържа обект с актуална информация.</param>
 	/// <param name="oPhoneNumbersArray">Масив който съдържа всички актуализирани записи за телефонните номера.</param>
 	bool UpdatePersonAndPhoneNumbers(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray);
+	/// <summary>Функция която връща град според уникален идентифокатор 'lID'.</summary>
+	/// <param name="lID">Уникален идентифокатор</param>
+	/// <param name="oCity">Референция към обект където ще се запише запис</param>
+	/// <returns></returns>
+	bool GetCityById(long lID, CITIES& oCity);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);
 	/// <summary>Фунцкия изтриваща запис от 'm_oPersonsArray' чието 'ID' отговаря на 'lPersonId'.</summary>

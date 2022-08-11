@@ -9,6 +9,7 @@
 #endif
 #include <map>
 #include "CSelfClearingMap.h"
+#include "CPersonsFull.h"
 
 IMPLEMENT_DYNCREATE(CPersonsView, CListView)
 
@@ -183,22 +184,16 @@ void CPersonsView::UpdateRecord(long lId)
 	CListCtrl& LSCCitiesList = GetListCtrl();
 	LSCCitiesList.SetItemText(nNumberOfSelectedRow, nColumnNumber++, pUpdatedPerson->szFirstName);
 	LSCCitiesList.SetItemText(nNumberOfSelectedRow, nColumnNumber, pUpdatedPerson->szLastName);
-
 	LSCCitiesList.SetItemData(nNumberOfSelectedRow, reinterpret_cast<DWORD_PTR>(pUpdatedPerson));
 }
 
 void CPersonsView::InsertNewRecordToCListCtrl(PERSONS* pPerson)
 {
 	CListCtrl& LSCCitiesList = GetListCtrl();
-
 	const int nRow = LSCCitiesList.GetItemCount();
-
 	LSCCitiesList.InsertItem(nRow, pPerson->szFirstName);
-
 	int nColumnNumber = 1;
-
 	LSCCitiesList.SetItemText(nRow, nColumnNumber, pPerson->szLastName);
-
 	LSCCitiesList.SetItemData(nRow, reinterpret_cast<DWORD_PTR>(pPerson));
 }
 
@@ -220,7 +215,6 @@ void CPersonsView::OnContextMenuDelete()
 	if (msgboxID == IDOK)
 	{
 		CPersonsDocument* pPersonsDocument = GetDocument();
-
 		if (!pPersonsDocument->DeletePersonAndPhoneNumbers(pPerson->lID))
 			return;
 	}
@@ -261,7 +255,6 @@ void CPersonsView::OnContextMenuInsert()
 	pPersonDocument->GetAllPhoneTypes(oPhoneTypesMap);
 
 	PERSONS oPerson;
-	oPerson.lUpdateCounter = 0;
 
 	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oPhoneTypesArray, oPhoneTypesMap);
 
@@ -274,8 +267,6 @@ void CPersonsView::OnContextMenuInsert()
 
 void CPersonsView::OnContextMenuEdit()
 {
-	int nNumberOfSelectedRow = GetSelectedRowNumber();
-
 	PERSONS* pPerson = GetSelectedRecordItemData();
 
 	if (pPerson == NULL)
@@ -300,6 +291,8 @@ void CPersonsView::OnContextMenuEdit()
 	if (oPersonsDialog.DoModal() != IDOK)
 		return;
 
-	if (!pPersonDocument->UpdatePersonAndPhoneNumbers(*pPerson, oPhoneNumbersArray))
+	CPersonsFull oPersonInfo(*pPerson, oPhoneNumbersArray);
+
+	if (!pPersonDocument->UpdatePersonAndPhoneNumbers(oPersonInfo))
 		return;
 }

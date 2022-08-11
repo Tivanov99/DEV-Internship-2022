@@ -149,6 +149,14 @@ bool CPersonsDocument::GetAllCities(CCitiesArray& oCitiesArray)
 	return true;
 }
 
+bool CPersonsDocument::GetCityById(long lID, CITIES& oCity)
+{
+	if (!m_ÓPersonsData.SelectCityWhereID(lID, oCity))
+		return false;
+
+	return true;
+}
+
 void CPersonsDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint = NULL)
 {
 	UpdateAllViews(NULL, lHint, pHint);
