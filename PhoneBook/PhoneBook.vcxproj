@@ -226,13 +226,12 @@
     <ClInclude Include="TextDataValidator.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CCitiesData.cpp" />
-    <ClCompile Include="CCitiesDialog.cpp" />
-    <ClCompile Include="CCitiesDocument.cpp" />
-    <ClCompile Include="CCitiesTable.cpp" />
-    <ClCompile Include="CCitiesView.cpp" />
+    <ClCompile Include="CitiesData.cpp" />
+    <ClCompile Include="CitiesDialog.cpp" />
+    <ClCompile Include="CitiesDocument.cpp" />
+    <ClCompile Include="CitiesTable.cpp" />
+    <ClCompile Include="CitiesView.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
-    <ClCompile Include="CitiesDoc.cpp" />
     <ClCompile Include="CPersonsData.cpp" />
     <ClCompile Include="CPersonsDialog.cpp" />
     <ClCompile Include="CPersonsDocument.cpp" />

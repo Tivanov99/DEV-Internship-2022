@@ -11,79 +11,69 @@ CPersonsData::~CPersonsData() {};
 
 bool CPersonsData::SelectAllPhoneNumbersByPersonId(long lPersonID, CPhoneNumbersArray& oPhoneNumbersArray)
 {
-	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
-
-	if (!pDatabaseConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CPhoneNumbersTable oPhoneNumbersTable(pDatabaseConnector->GetSession());
+	CPhoneNumbersTable oPhoneNumbersTable(DataBaseConnector::GetInstance()->GetSession());
 
 	CString strWhereClause;
 	strWhereClause.Format(SqlQueries::WherePersonID, lPersonID);
 
 	if (!oPhoneNumbersTable.SelectBySpecificColumnWhereID(oPhoneNumbersArray, strWhereClause))
 	{
-		pDatabaseConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 		return false;
 	}
-
-	pDatabaseConnector->CloseSession();
-
+	DataBaseConnector::GetInstance()->CloseSession();
 	return true;
 }
 
 bool CPersonsData::SelectAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
 {
-	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
-
-	if (!pDatabaseConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CPhoneTypesTable oPhoneTypesTable(pDatabaseConnector->GetSession());
+	CPhoneTypesTable oPhoneTypesTable(DataBaseConnector::GetInstance()->GetSession());
 
 	if (!oPhoneTypesTable.SelectAll(oPhoneTypesArray))
 	{
-		pDatabaseConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 		return false;
 	}
-	pDatabaseConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 
 	return true;
 }
 
 bool CPersonsData::SelectAllCities(CCitiesArray& oCitiesArray)
 {
-	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
-
-	if (!pDatabaseConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CCitiesTable oCitiesTable(pDatabaseConnector->GetSession());
+	CCitiesTable oCitiesTable(DataBaseConnector::GetInstance()->GetSession());
 
 	if (!oCitiesTable.SelectAll(oCitiesArray))
 	{
-		pDatabaseConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 		return false;
 	}
 
-	pDatabaseConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 	return true;
 }
 bool CPersonsData::SelectAll(CPersonsArray& oPersonsArray)
 {
-	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
-
-	if (!pDatabaseConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CPersonsTable îPersonsTable(pDatabaseConnector->GetSession());
+	CPersonsTable îPersonsTable(DataBaseConnector::GetInstance()->GetSession());
 	if (!îPersonsTable.SelectAll(oPersonsArray))
 	{
-		pDatabaseConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 		return false;
 	}
 
-	pDatabaseConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 	return true;
 }
 
