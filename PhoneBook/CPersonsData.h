@@ -1,7 +1,6 @@
 #pragma once
 #include "Structures.h"
 #include "CPersonsTable.h"
-#include "CCitiesTable.h"
 #include "DataBaseConnector.h"
 #include <map>
 

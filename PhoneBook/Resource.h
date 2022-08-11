@@ -31,7 +31,6 @@
 #define ID_VIEW_APPLOOK_WINDOWS_7       219
 #define IDS_EDIT_MENU                   306
 #define IDD_CITIES_DIALOG               310
-#define IDD_COMFIRM_DELETE              318
 #define IDD_PERSONS_DIALOG              320
 #define IDD_PHONE_NUMBERS_DIALOG        328
 #define IDD_PHONE_TYPES_DIALOG          330
@@ -76,8 +75,8 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        334
-#define _APS_NEXT_COMMAND_VALUE         32824
+#define _APS_NEXT_RESOURCE_VALUE        337
+#define _APS_NEXT_COMMAND_VALUE         32825
 #define _APS_NEXT_CONTROL_VALUE         1067
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

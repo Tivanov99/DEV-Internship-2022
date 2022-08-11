@@ -7,8 +7,8 @@
 
 #include "ChildFrm.h"
 #include "CitiesDoc.h"
-#include "CCitiesView.h"
-#include "CCitiesTable.h"
+#include "CitiesView.h"
+#include "CitiesTable.h"
 #include "CPersonsDocument.h"
 #include "CPersonsView.h"
 #include "CPhoneTypesView.h"
@@ -107,6 +107,7 @@ BOOL CPhoneBookApp::InitInstance()
 
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views
+
 	CMultiDocTemplate* pDocTemplate;
 	pDocTemplate = new CMultiDocTemplate(IDR_PhoneBookTYPE,
 		RUNTIME_CLASS(CPhoneTypesDocument),
@@ -116,6 +117,29 @@ BOOL CPhoneBookApp::InitInstance()
 	if (!pDocTemplate)
 		return FALSE;
 	AddDocTemplate(pDocTemplate);
+
+	CMultiDocTemplate* pCitiesDcTemplate;
+	pCitiesDcTemplate = new CMultiDocTemplate(IDR_PhoneBookTYPE,
+		RUNTIME_CLASS(CCitiesDocument),
+		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
+		RUNTIME_CLASS(CCitiesView));
+
+	if (!pCitiesDcTemplate)
+		return FALSE;
+	AddDocTemplate(pCitiesDcTemplate);
+
+
+	CMultiDocTemplate* pPersonsDcTemplate;
+	pPersonsDcTemplate = new CMultiDocTemplate(IDR_PhoneBookTYPE,
+		RUNTIME_CLASS(CPersonsDocument),
+		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
+		RUNTIME_CLASS(CPersonsView));
+	pPersonsDcTemplate->docName;
+
+	if (!pPersonsDcTemplate)
+		return FALSE;
+	AddDocTemplate(pPersonsDcTemplate);
+
 
 	DataBaseConnector* pDatabaseConnector = DataBaseConnector::GetInstance();
 

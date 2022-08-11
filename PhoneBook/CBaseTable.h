@@ -271,7 +271,7 @@ bool CBaseTable<Record_Type, Table_AcessorType>::InsertRecord(Record_Type& recTa
 		if (hresult == DB_E_INTEGRITYVIOLATION)
 		{
 			CString strErrorMessage;
-			strErrorMessage.Format(_T("Insert failed. Such a record already exists in the % s table."), m_strTableName);
+			strErrorMessage.Format(_T("Insert failed. Such a record already exists in the %s table."), m_strTableName);
 			AfxMessageBox(strErrorMessage);
 			CloseRowSet();
 			return false;

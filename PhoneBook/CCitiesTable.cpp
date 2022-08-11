@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include "CCitiesTable.h"
+#include "CitiesTable.h"
 #include "ErrorVisualizator.h"
 
 

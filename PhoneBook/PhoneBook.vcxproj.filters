@@ -75,10 +75,10 @@
     <ClInclude Include="CitiesDialog.h">
       <Filter>CITIES</Filter>
     </ClInclude>
-    <ClInclude Include="CCitiesDocument.h">
+    <ClInclude Include="CitiesDocument.h">
       <Filter>CITIES</Filter>
     </ClInclude>
-    <ClInclude Include="CCitiesTable.h">
+    <ClInclude Include="CitiesTable.h">
       <Filter>CITIES</Filter>
     </ClInclude>
     <ClInclude Include="CPersonsData.h">
@@ -144,7 +144,7 @@
     <ClInclude Include="CSelfClearingMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CCitiesView.h">
+    <ClInclude Include="CitiesView.h">
       <Filter>CITIES</Filter>
     </ClInclude>
     <ClInclude Include="CPhoneTypesView.h">
@@ -270,5 +270,11 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="cpp.hint" />
+    <None Include="res\idr_pers.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\phone_ty.bin">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

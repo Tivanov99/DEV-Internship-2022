@@ -2,6 +2,7 @@
 #include "CPersonsData.h"
 #include "CPhoneNumbersTable.h"
 #include "CPhoneTypesTable.h"
+#include "CitiesTable.h"
 
 CPersonsData::CPersonsData()
 {

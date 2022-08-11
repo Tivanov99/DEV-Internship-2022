@@ -187,9 +187,11 @@
     <ClInclude Include="CBaseTable.h" />
     <ClInclude Include="CitiesData.h" />
     <ClInclude Include="CitiesDialog.h" />
-    <ClInclude Include="CCitiesDocument.h" />
-    <ClInclude Include="CCitiesTable.h" />
-    <ClInclude Include="CCitiesView.h" />
+    <ClInclude Include="CitiesDocument.h" />
+    <ClInclude Include="CitiesTable.h">
+      <DeploymentContent>true</DeploymentContent>
+    </ClInclude>
+    <ClInclude Include="CitiesView.h" />
     <ClInclude Include="CPhoneNumbersDialog.h" />
     <ClInclude Include="CPhoneTypesData.h" />
     <ClInclude Include="CPhoneTypesDialog.h" />
@@ -270,7 +272,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+    <None Include="res\idr_pers.bin" />
     <None Include="res\PhoneBook.rc2" />
+    <None Include="res\phone_ty.bin" />
     <None Include="res\test1.bin" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

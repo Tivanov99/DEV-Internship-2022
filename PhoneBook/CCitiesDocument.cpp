@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CCitiesDocument.h"
+#include "CitiesDocument.h"
 
 
 IMPLEMENT_DYNCREATE(CCitiesDocument, CDocument)
@@ -51,7 +51,7 @@ void CCitiesDocument::Dump(CDumpContext& dc) const
 
 CITIES* CCitiesDocument::GetCityById(long lID)
 {
-	long lIndex = GetCityIndexFromCitiesArray(lID);
+	INT_PTR lIndex = GetCityIndexFromCitiesArray(lID);
 
 	if (lIndex == -1)
 		return NULL;
@@ -111,7 +111,7 @@ bool CCitiesDocument::InsertCity(CITIES& recCity)
 
 bool CCitiesDocument::DeleteCityFromCitiesArray(long lCityId)
 {
-	long lCityIndex = GetCityIndexFromCitiesArray(lCityId);
+	INT_PTR lCityIndex = GetCityIndexFromCitiesArray(lCityId);
 
 	if (lCityIndex == -1)
 		return false;
@@ -140,7 +140,7 @@ CITIES* CCitiesDocument::AddCityToCitiesArray(CITIES& recCity)
 	return pCity;
 }
 
-long CCitiesDocument::GetCityIndexFromCitiesArray(long lID)
+INT_PTR CCitiesDocument::GetCityIndexFromCitiesArray(long lID)
 {
 	if (lID < 0 )
 	{

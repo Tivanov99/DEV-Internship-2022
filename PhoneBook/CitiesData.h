@@ -1,5 +1,5 @@
 #pragma once
-#include "CCitiesTable.h"
+#include "CitiesTable.h"
 
 class CCitiesData
 {

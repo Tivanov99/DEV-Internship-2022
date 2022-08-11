@@ -9,12 +9,12 @@
 #include "PhoneBook.h"
 #endif
 
-#include "CCitiesView.h"
+#include "CitiesView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-#include "CCitiesDocument.h"
+#include "CitiesDocument.h"
 #include "CitiesDialog.h"
 
 
@@ -36,7 +36,6 @@ BEGIN_MESSAGE_MAP(CCitiesView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_DELETE, &CCitiesView::ManageContextMenuItems)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_READ_DATA, &CCitiesView::ManageContextMenuItems)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_CONTEXT_EDIT, &CCitiesView::ManageContextMenuItems)
-
 END_MESSAGE_MAP()
 
 

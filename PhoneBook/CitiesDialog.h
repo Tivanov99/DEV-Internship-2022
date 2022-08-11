@@ -4,7 +4,6 @@
 #include "CitiesDataValidator.h"
 #include "DialogWindowEnumeration.h"
 
-
 // CCitiesDialog dialog
 
 class CCitiesDialog : public CDialog

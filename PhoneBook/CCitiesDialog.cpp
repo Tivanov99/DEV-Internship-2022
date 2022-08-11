@@ -1,13 +1,11 @@
 // CCitiesDialog.cpp : implementation file
 //
-
 #include "pch.h"
 #include "PhoneBook.h"
 #include "afxdialogex.h"
 #include "CitiesDialog.h"
-#include "CCitiesView.h"
+#include "CitiesView.h"
 #include "GlobalConstants.h"
-
 // CCitiesDialog dialog
 
 IMPLEMENT_DYNAMIC(CCitiesDialog, CDialog)

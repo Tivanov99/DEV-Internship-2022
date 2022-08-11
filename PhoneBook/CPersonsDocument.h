@@ -80,7 +80,7 @@ private:
 	/// <summary>Функция която връша запис от масива 'm_oPersonsArray' според неговото 'ID'.</summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси конкретен запис.</param>
 	/// <returns>Обект чието 'ID' отговаря на 'lID'.</returns>
-	long GetPersonIndexFromPersonsArray(long lID);
+	INT_PTR GetPersonIndexFromPersonsArray(long lID);
 	/// <summary>Функция която връща 'PHONE_TYPES' обект според неговото 'ID'.</summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси конкретен запис.</param>
 	/// <param name="oPhoneTypesArray">Масив в който ще се търси обект чийто 'ID' е идентично с 'lID'</param>

@@ -7,7 +7,11 @@ const LPCSTR DataBaseConnector::lpszUnableToConnectServer = "Unable to connect t
 const LPCSTR DataBaseConnector::lpszUnableToOpenSession = "Unable to open session. Error: %d";
 
 DataBaseConnector::DataBaseConnector() {};
-DataBaseConnector :: ~DataBaseConnector() {};
+DataBaseConnector :: ~DataBaseConnector() 
+{
+	m_pInstance = NULL;
+	delete m_pInstance;
+};
 
 DataBaseConnector* DataBaseConnector::m_pInstance = NULL;
 

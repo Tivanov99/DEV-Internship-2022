@@ -53,7 +53,7 @@ const CPersonsArray& CPersonsDocument::GetAllPersons()
 
 PERSONS* CPersonsDocument::GetPersonByIdFromPersonsArray(long lID)
 {
-	long lIndex = GetPersonIndexFromPersonsArray(lID);
+	INT_PTR lIndex = GetPersonIndexFromPersonsArray(lID);
 
 	if (lIndex == -1)
 		return NULL;
@@ -69,7 +69,7 @@ PERSONS* CPersonsDocument::GetPersonByIdFromPersonsArray(long lID)
 	return pPerson;
 }
 
-long CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
+INT_PTR CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 {
 	if (lID < 0)
 	{
@@ -211,7 +211,7 @@ bool CPersonsDocument::DeletePersonFromPersonsArray(long lPersonId)
 		return false;
 	}
 
-	long lPersonIndex = GetPersonIndexFromPersonsArray(lPersonId);
+	INT_PTR lPersonIndex = GetPersonIndexFromPersonsArray(lPersonId);
 
 	PERSONS* pPerson = m_oPersonsArray.GetAt(lPersonIndex);
 
@@ -223,7 +223,7 @@ bool CPersonsDocument::DeletePersonFromPersonsArray(long lPersonId)
 
 void CPersonsDocument::UpdatePersonFromPersonsArray(long lID, PERSONS& recUpdatedPerson)
 {
-	long lPersonIndex = GetPersonIndexFromPersonsArray(lID);
+	INT_PTR lPersonIndex = GetPersonIndexFromPersonsArray(lID);
 
 	if (lPersonIndex == -1)
 		return;
