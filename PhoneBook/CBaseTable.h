@@ -46,7 +46,7 @@ public:
 	/// Функция която конструира пропърти сет нужен при добавяне, изтриване или актуализиране на запис.
 	/// </summary>
 	/// <returns>Обект</returns>
-	CDBPropSet GetModifyDBPropSet() const;
+	bool GetModifyDBPropSet();
 	/// <summary>Функция която изпълнява команда в базата данни.</summary>
 	/// <param name="strQuery">Заявката към базата.</param>
 	/// <param name="eQueryAccessor">Типът на достъп</param>
@@ -93,28 +93,43 @@ public:
 private:
 	/// <summary>Клас мембър съдържащ името на текущата таблица в която се извърват операции.</summary>
 	CString m_strTableName;
+
+	CDBPropSet m_RowSet;
 };
 
 
 
 template <typename Record_Type, class Table_AcessorType>
-CDBPropSet CBaseTable<Record_Type, Table_AcessorType>::GetModifyDBPropSet() const
+bool CBaseTable<Record_Type, Table_AcessorType>::GetModifyDBPropSet()
 {
 	CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
 
 	if (oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true) == 0)
-		return oUpdateDBPropSet;
+	{
+		AfxMessageBox(_T("Failed to add 'DBPROP_CANFETCHBACKWARDS' property to rowset!"));
+		return false;
+	}
 
-	if(oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true)==0)
-		return oUpdateDBPropSet;
+	if (oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true) == 0)
+	{
+		AfxMessageBox(_T("Failed to add 'DBPROP_IRowsetScroll' property to rowset!"));
+		return false;
+	}
 
 	if(oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true)==0)
-		return oUpdateDBPropSet;
+	{
+		AfxMessageBox(_T("Failed to add 'DBPROP_IRowsetChange' property to rowset!"));
+		return false;
+	}
 
 	if (oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE)==0)
-		return oUpdateDBPropSet;
+	{
+		AfxMessageBox(_T("Failed to add 'DBPROP_UPDATABILITY' property to rowset!"));
+		return false;
+	}
 
-	return oUpdateDBPropSet;
+	m_RowSet = oUpdateDBPropSet;
+	return true;
 };
 
 
@@ -131,7 +146,7 @@ bool CBaseTable<Record_Type, Table_AcessorType>::ExecuteQuery(const CString& str
 		break;
 
 	case AccessorTypes::Modifying:
-		FAILED(CCommand<CAccessor<Table_AcessorType>>::Open(m_oSession, strQuery, &GetModifyDBPropSet())) ?
+		FAILED(CCommand<CAccessor<Table_AcessorType>>::Open(m_oSession, strQuery, &m_RowSet)) ?
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
 			bResult = true;
 		break;
