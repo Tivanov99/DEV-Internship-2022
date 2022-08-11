@@ -22,7 +22,7 @@ private:
 	// ----------------
 public:
 	/// <summary>Функция която създава рол-сет.</summary>
-	CDBPropSet GetDBPropSet() const;
+	bool GetDBPropSet();
 	/// <summary>Функция която отваря сесия и връзка към базата.</summary>
 	/// <returns>Според това дали успешно е извършено действието връща 'true' в провитен случай 'false'</returns>
 	bool OpenDbConnection();
@@ -47,5 +47,7 @@ private:
 	CDataSource m_oDataSource;
 	/// <summary>Мембър съдържащ сесията която е нужна при заявките към базата.</summary>
 	CSession m_oSession;
+
+	CDBPropSet m_oDbPropSet;
 };
 

@@ -20,31 +20,51 @@ void DataBaseConnector::CloseDbConnection()
 	m_oDataSource.Close();
 };
 
-//TODO: Chech here.
-CDBPropSet DataBaseConnector::GetDBPropSet() const
+bool DataBaseConnector::GetDBPropSet()
 {
 	CDBPropSet oDBPropSet(DBPROPSET_DBINIT);
-	if (!oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65"))) // сървър
-		return oDBPropSet;
+
+	if (!oDBPropSet.AddProperty(DBPROP_INIT_DATASOURCE, _T("DESKTOP-6RL5K65")))// сървър
+	{
+		AfxMessageBox(_T("Failed to add 'DBPROP_INIT_DATASOURCE' property to CDBPropSet!"));
+		return false;
+	}
 	if (!oDBPropSet.AddProperty(DBPROP_AUTH_INTEGRATED, _T("SSPI")))
-		return oDBPropSet;
+	{
+		AfxMessageBox(_T("Failed to add 'DBPROP_AUTH_INTEGRATED' property to CDBPropSet!"));
+		return false;
+	}
 	if (!oDBPropSet.AddProperty(DBPROP_INIT_CATALOG, _T("PhoneBook")))// база данни
-		return oDBPropSet;
+	{
+		AfxMessageBox(_T("Failed to add 'DBPROP_INIT_CATALOG' property to CDBPropSet!"));
+		return false;
+	}
 	if (!oDBPropSet.AddProperty(DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO, false))
-		return oDBPropSet;
+	{
+		AfxMessageBox(_T("Failed to add 'DBPROP_AUTH_PERSIST_SENSITIVE_AUTHINFO' property to CDBPropSet!"));
+		return false;
+	}
 	if (!oDBPropSet.AddProperty(DBPROP_INIT_LCID, 1033L))
-		return oDBPropSet;
+	{
+		AfxMessageBox(_T("Failed to add 'DBPROP_INIT_LCID' property to CDBPropSet!"));
+		return false;
+	}
 	if (!oDBPropSet.AddProperty(DBPROP_INIT_PROMPT, static_cast<short>(4)))
-		return oDBPropSet;
-	return oDBPropSet;
+	{
+		AfxMessageBox(_T("Failed to add 'DBPROP_INIT_PROMPT' property to CDBPropSet!"));
+		return false;
+	}
+
+	m_oDbPropSet = oDBPropSet;
+	return true;
 };
 
 bool DataBaseConnector::OpenDbConnection()
 {
-	CDBPropSet& oDBPropSet = GetDBPropSet();
+	GetDBPropSet();
 
 	// Свързваме се към базата данни
-	HRESULT hResult = m_oDataSource.Open(_T("SQLOLEDB"), &oDBPropSet);
+	HRESULT hResult = m_oDataSource.Open(_T("SQLOLEDB"), &m_oDbPropSet);
 
 	//Отваряме връзка към дб
 	if (hResult != S_OK)
