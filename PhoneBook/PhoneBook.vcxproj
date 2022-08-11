@@ -192,6 +192,7 @@
       <DeploymentContent>true</DeploymentContent>
     </ClInclude>
     <ClInclude Include="CitiesView.h" />
+    <ClInclude Include="CPersonsFull.h" />
     <ClInclude Include="CPhoneNumbersDialog.h" />
     <ClInclude Include="CPhoneTypesData.h" />
     <ClInclude Include="CPhoneTypesDialog.h" />
@@ -235,6 +236,7 @@
     <ClCompile Include="CPersonsData.cpp" />
     <ClCompile Include="CPersonsDialog.cpp" />
     <ClCompile Include="CPersonsDocument.cpp" />
+    <ClCompile Include="CPersonsFull.cpp" />
     <ClCompile Include="CPersonsTable.cpp" />
     <ClCompile Include="CPersonsView.cpp" />
     <ClCompile Include="CitiesDataValidator.cpp" />

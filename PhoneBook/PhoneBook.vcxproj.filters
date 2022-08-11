@@ -37,6 +37,12 @@
     <Filter Include="Source Files\PHONE_TYPES">
       <UniqueIdentifier>{80c21068-ef2e-45bf-b823-bc87d8c6d232}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Parameters Objects">
+      <UniqueIdentifier>{a9fc1574-a889-4a9f-ac07-94ad2569378f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Parameters Objects">
+      <UniqueIdentifier>{0bb144da-92ec-4587-beda-688da5ce414d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PhoneBook.h">
@@ -153,6 +159,9 @@
     <ClInclude Include="CPhoneTypesDialog.h">
       <Filter>PHONE_TYPES</Filter>
     </ClInclude>
+    <ClInclude Include="CPersonsFull.h">
+      <Filter>Parameters Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -235,6 +244,9 @@
     </ClCompile>
     <ClCompile Include="CPhoneTypesDialog.cpp">
       <Filter>Source Files\PHONE_TYPES</Filter>
+    </ClCompile>
+    <ClCompile Include="CPersonsFull.cpp">
+      <Filter>Source Files\Parameters Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
