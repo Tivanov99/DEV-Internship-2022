@@ -16,15 +16,24 @@ class CBaseTable : public CCommand<CAccessor<Table_AcessorType>>
 	// Constants
 	// ----------------
 public:
+	/// <summary>Съобщение указващо, че текущия запис е с невалидна версия.</summary>
 	const LPCSTR lpszInvalidRecordVersion = "Invalid version of current record! Please reload the record again.";
+	/// <summary>Съобщение което указва, че е възникнала грешка при изпълнение на текущята заявка.</summary>
 	const LPCSTR lpszErrorExecutingQuery = "Error executing query.Query : %s";
+	/// <summary>Съобщение което указва, че достъп е разрешен само от 0 и 1.</summary>
 	const LPCSTR lpszErrorInvalidQueryAcessor =
 		"Invalid query accessor! Use 0 for non-record-changing queries or 1 for record-changing queries";
+	/// <summary>Съобщение което указва, че е възникнала грешка при опит за свързване към базата.</summary>
 	const LPCSTR lpszUnableToConnectServer = "Unable to connect to SQL Server database. Error: %d";
+	/// <summary>Съобщение което указва, че е възникнала грешка при отварянето на зас след като той е бил прочетен от базата.</summary>
 	const LPCSTR lpszErrorOpeningRecord = "Error opening record.Query %s";
+	/// <summary>Съобщение което указва, че е възникнала грешка при актуализирането на запис.</summary>
 	const LPCSTR lpszErrorUpdatingRecord = "Error updating record with id: %d";
+	/// <summary>Съобщение което указва, че е възникнала грешка при изтриването на запис.</summary>
 	const LPCSTR lpszErrorDeletingRecord = "Delete failed.";
+	/// <summary>Съобщение което указва, че е възникнала грешка при добавянето на запис.</summary>
 	const LPCSTR lpszErrorInsertingRecord = "Insert failed.";
+	/// <summary>Съобщение което указва, че е възникнала грешка при изтриването на запис. Възможните причини е, че е вторичен ключ към някой от записите.</summary>
 	const LPCSTR lpszErrorForeignKeyDeletingRecord = "Delete failed.This entry can be used in any of the other entries.";
 
 	// Constructor / Destructor
@@ -215,6 +224,7 @@ bool CBaseTable<Record_Type, Table_AcessorType>::SelectWhereID(const long lID, R
 		CloseRowSet();
 		return false;
 	}
+
 	recTableRecord = m_recTableRecord;
 	CloseRowSet();
 	return true;
@@ -257,6 +267,7 @@ bool CBaseTable<Record_Type, Table_AcessorType>::UpdateWhereID(const long lID, c
 		CloseRowSet();
 		return false;
 	}
+
 	CloseRowSet();
 	return true;
 };
@@ -330,6 +341,7 @@ bool CBaseTable<Record_Type, Table_AcessorType>::DeleteWhereID(const long lID)
 		CloseRowSet();
 		return false;
 	}
+
 	CloseRowSet();
 	return true;
 };
@@ -349,6 +361,7 @@ bool CBaseTable<Record_Type, Table_AcessorType>::DeleteBySpecificColumnWhereID(c
 		CloseRowSet();
 		return false;
 	}
+
 	if (MoveFirst() != S_OK)
 	{
 		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorOpeningRecord, strQuery);
@@ -362,6 +375,7 @@ bool CBaseTable<Record_Type, Table_AcessorType>::DeleteBySpecificColumnWhereID(c
 		CloseRowSet();
 		return false;
 	}
+
 	CloseRowSet();
 	return true;
 };
@@ -451,6 +465,7 @@ bool CBaseTable<Record_Type, Table_AcessorType>::UpdateBySpecificColumnWhereID(c
 
 		return false;
 	}
+
 	CloseRowSet();
 
 	return true;

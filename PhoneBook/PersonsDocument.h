@@ -39,7 +39,6 @@ public:
 	const CPersonsArray& GetAllPersons();
 	/// <summary>Функция която изчита запис с уникален идентификатор 'ID' което отговаря на 'lID' от таблицата 'PERSONS'.</summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се изчете конкретен запис.</param>
-	/// <returns>Връща указател съдържащ информацията на записа.</returns>
 	PERSONS* GetPersonByIdFromPersonsArray(long lID);
 	/// <summary>Функция която добавя нов запис в базата.</summary>
 	/// <param name="oPersonInfo">Референция към обект който съдържа обект с актуална информация и асив който съдържа всички актуализирани записи за телефонните номера.</param>
@@ -66,7 +65,6 @@ public:
 	/// <summary>Функция която връща град според уникален идентифокатор 'lID'.</summary>
 	/// <param name="lID">Уникален идентифокатор</param>
 	/// <param name="oCity">Референция към обект където ще се запише запис</param>
-	/// <returns></returns>
 	bool GetCityById(long lID, CITIES& oCity);
 private:
 	void OnUpdateAllViews(LPARAM lHint, CObject* pHint);

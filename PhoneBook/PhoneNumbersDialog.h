@@ -39,7 +39,6 @@ private:
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	/// <summary>Надстройва диалоговия прозорец при стартиране и попълва всички данни на подадения обект в полетата; </summary>
-	/// <returns></returns>
 	virtual BOOL OnInitDialog();
 	DECLARE_MESSAGE_MAP()
 

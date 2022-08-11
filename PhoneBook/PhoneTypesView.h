@@ -23,10 +23,8 @@ private:
 	/// <param name="оListCtrl">Лист контрола към която ще бъдат добавени колините.</param>
 	void AddColumns(CListCtrl& оListCtrl);
 	/// <summary>Връща указател записан в 'item data' при добавянето на записа в CListCtrl.</summary>
-	/// <returns></returns>
 	PHONE_TYPES* GetSelectedRecordItemData();
 	/// <summary>Според това къде потребител е кликнал връща номер на ред (-1 когато не е кликнато на нито един от запситие,и освен това извежда и предупредително съобщение, в  противен случай номер на ред).</summary>
-	/// <returns>Номер на ред в диапазона -1 до N</returns>
 	const int GetSelectedRowNumber();
 	/// <summary>Добавя нов запис към лист контролата.</summary>
 	/// <param name="pPhoneType">Пойнтър представляващ нов запис</param>

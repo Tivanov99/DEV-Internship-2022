@@ -11,7 +11,6 @@ protected: // create from serialization only
 	// Attributes
 public:
 	/// <summary>Връща документ чрез който се достъпват информацията от базата данни.</summary>
-	/// <returns>Указател на документа.</returns>
 	CPersonsDocument* GetDocument() const;
 
 	//Methods
@@ -23,10 +22,8 @@ private:
 	/// <summary>Метод добавящ всички колони към подадена като аргумент лист контрола.</summary>
 	void AddColumns();
 	/// <summary>Връща указател записан в 'item data' при добавянето на записа в CListCtrl.</summary>
-	/// <returns>Указател за текущия запис.</returns>
 	PERSONS* GetSelectedRecordItemData();
 	/// <summary>Според това къде потребител е кликнал връща номер на ред (-1 когато не е кликнато на нито един от запситие,и освен това извежда и предупредително съобщение, в  противен случай номер на ред).</summary>
-	/// <returns>Номер на ред в диапазона -1 до N</returns>
 	const int GetSelectedRowNumber();
 	/// <summary>Добавя нов запис към лист контролата.</summary>
 	/// <param name="pPerson">Пойнтър представляващ нов запис</param>

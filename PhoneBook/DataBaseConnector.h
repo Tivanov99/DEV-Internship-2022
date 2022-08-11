@@ -24,17 +24,14 @@ public:
 	/// <summary>Функция която създава рол-сет.</summary>
 	bool GetDBPropSet();
 	/// <summary>Функция която отваря сесия и връзка към базата.</summary>
-	/// <returns>Според това дали успешно е извършено действието връща 'true' в провитен случай 'false'</returns>
 	bool OpenDbConnection();
 	/// <summary>Функция която затваря връзката към базата.</summary>
 	void  CloseDbConnection();
 	/// <summary> Getter</summary>
 	CSession& GetSession();
 	/// <summary>Метод връщащ инстанция от този клас</summary>
-	/// <returns>Инстанция от този клас</returns>
 	static DataBaseConnector* GetInstance();
 	/// <summary>Отваряне на сесия.</summary>
-	/// <returns>Според това дали успешно е извършено действието връща 'true' в провитен случай 'false'</returns>
 	bool OpenSession();
 	/// <summary>Функция която затваря сесията.</summary>
 	void CloseSession();

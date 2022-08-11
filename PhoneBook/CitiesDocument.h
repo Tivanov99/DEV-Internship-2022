@@ -57,7 +57,6 @@ private:
 	CITIES* AddCityToCitiesArray(CITIES& recCity);
 	/// <summary>Връща позицията на която се намира даден запис с уникален идентификатор 'ID' в хранилището 'm_oCitiesArray'.</summary>
 	/// <param name="lID">Уникален идентификатор по който ще се търси запис.</param>
-	/// <returns>При намиране на записа връща позицията на която се намира, в противен случай -1.</returns>
 	INT_PTR GetCityIndexFromCitiesArray(long lID);
 	//Members
 	//---------------------

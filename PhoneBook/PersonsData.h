@@ -53,7 +53,6 @@ public:
 	/// <summary>Функция която връща град според уникален идентифокатор 'lID'.</summary>
 	/// <param name="lID">Уникален идентифокатор</param>
 	/// <param name="oCity">Референция към обект където ще се запише запис</param>
-	/// <returns></returns>
 	bool SelectCityWhereID(const long lID, CITIES& recCities);
 private:
 	/// <summary>Сравнява 2 обекта за разлики между тях.</summary>
@@ -64,7 +63,6 @@ private:
 	/// <param name="pCurrentOriginalPhoneNumber">Запис който ще бъде проверено дали съществува в 'oModifiedPhoneNumbersArray'.</param>
 	/// <param name="oModifiedPhoneNumbersArray">Сисък с вече актуализирани записи.</param>
 	bool UpdatePhoneNumbers(PHONE_NUMBERS& pCurrentOriginalPhoneNumber,CPhoneNumbersArray& oModifiedPhoneNumbersArray);
-
 	/// <summary>Функция която добавя записите в от 'oPhoneNumbersArray' в базата.</summary>
 	/// <param name="oPhoneNumbersArray">Масив съдържащ всички нови записи.</param>
 	bool InsertPhoneNumbers(CPhoneNumbersArray& oPhoneNumbersArray);

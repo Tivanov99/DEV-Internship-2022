@@ -11,7 +11,9 @@ public:
 	//Methods
 	//--------------
 public:
+	/// <summary>Функция която връща записа подаден през конструктора.</summary>
 	PERSONS& GetPerson();
+	/// <summary>Функция която връща масива подаден през конструктора.</summary>
 	CPhoneNumbersArray& GetPhoneNumbers();
 	//Members:
 	//------------------
