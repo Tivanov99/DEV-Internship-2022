@@ -86,7 +86,6 @@ INT_PTR CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 
 		return i;
 	}
-
 	return -1;
 }
 
@@ -118,19 +117,6 @@ bool CPersonsDocument::GetAllPhoneTypes(CSelfClearingMap<long, PHONE_TYPES*>& oM
 		oMap.SetAt(pPhoneType->lID, pPhoneType);
 	}
 	return true;
-}
-PHONE_TYPES* CPersonsDocument::GetPhoneTypeById(long lID, CPhoneTypesArray& oPhoneTypesArray)
-{
-	for (INT_PTR i = 0; i < oPhoneTypesArray.GetCount(); i++)
-	{
-		PHONE_TYPES* pCurrentPhoneType = oPhoneTypesArray.GetAt(i);
-		if (pCurrentPhoneType == NULL)
-			continue;
-
-		if (pCurrentPhoneType->lID == lID)
-			return pCurrentPhoneType;
-	}
-	return NULL;
 }
 
 bool CPersonsDocument::GetAllPhoneTypes(CPhoneTypesArray& oPhoneTypesArray)
@@ -166,9 +152,7 @@ bool CPersonsDocument::InsertRecord(CPersonsFull& oPersonInfo)
 {
 	if (!m_ÓPersonsData.InsertPersonAndPhoneNumbers(oPersonInfo.GetPerson(), oPersonInfo.GetPhoneNumbers()))
 		return false;
-
 	AddPersonToPersonsArray(oPersonInfo.GetPerson());
-
 	OnUpdateAllViews(ContextMenuOperations::InsertRecord, (CObject*)oPersonInfo.GetPerson().lID);
 	return true;
 }
@@ -177,9 +161,7 @@ bool CPersonsDocument::UpdatePersonAndPhoneNumbers(CPersonsFull& oPersonInfo)
 {
 	if (!m_ÓPersonsData.UpdatePersonAndPhoneNumbers(oPersonInfo.GetPerson(), oPersonInfo.GetPhoneNumbers()))
 		return false;
-
 	UpdatePersonFromPersonsArray(oPersonInfo.GetPerson().lID, oPersonInfo.GetPerson());
-
 	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)oPersonInfo.GetPerson().lID);
 	return true;
 }
@@ -221,11 +203,8 @@ bool CPersonsDocument::DeletePersonFromPersonsArray(long lPersonId)
 
 	INT_PTR lPersonIndex = GetPersonIndexFromPersonsArray(lPersonId);
 
-	PERSONS* pPerson = m_oPersonsArray.GetAt(lPersonIndex);
+	m_oPersonsArray.RemovePointerAt(lPersonIndex);
 
-	delete pPerson;
-	pPerson = NULL;
-	m_oPersonsArray.RemoveAt(lPersonIndex);
 	return true;
 }
 

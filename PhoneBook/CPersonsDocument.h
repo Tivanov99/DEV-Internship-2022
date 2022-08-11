@@ -82,12 +82,9 @@ private:
 	/// <param name="lID">Уникален идентификатор чрез който ще се търси конкретен запис.</param>
 	/// <returns>Обект чието 'ID' отговаря на 'lID'.</returns>
 	INT_PTR GetPersonIndexFromPersonsArray(long lID);
-	/// <summary>Функция която връща 'PHONE_TYPES' обект според неговото 'ID'.</summary>
-	/// <param name="lID">Уникален идентификатор чрез който ще се търси конкретен запис.</param>
-	/// <param name="oPhoneTypesArray">Масив в който ще се търси обект чийто 'ID' е идентично с 'lID'</param>
-	/// <returns>Обект чието 'ID' отговаря на 'lID'.</returns>
-	PHONE_TYPES* GetPhoneTypeById(long lID, CPhoneTypesArray& oPhoneTypesArray);
-
+	/// <summary>Функция която актуализира данните на абонат от хранилището.</summary>
+	/// <param name="lID">Уникален идентификатор за всеки абонат.</param>
+	/// <param name="recUpdatedPerson">Референция към обект който съдържа актуализиранта информация.</param>
 	void UpdatePersonFromPersonsArray(long lID, PERSONS& recUpdatedPerson);
 
 	//Members
