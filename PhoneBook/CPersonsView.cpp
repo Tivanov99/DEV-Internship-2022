@@ -249,19 +249,21 @@ void CPersonsView::OnContextMenuInsert()
 	CCitiesArray oCitiesArray;
 	pPersonDocument->GetAllCities(oCitiesArray);
 
-	CPhoneNumbersArray oPhoneTypesArray;
+	CPhoneNumbersArray oPhoneNumbersArray;
 
 	CSelfClearingMap<long, PHONE_TYPES*> oPhoneTypesMap;
 	pPersonDocument->GetAllPhoneTypes(oPhoneTypesMap);
 
 	PERSONS oPerson;
 
-	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oPhoneTypesArray, oPhoneTypesMap);
+	CPersonsDialog oPersonsDialog(DialogWindowActions::InsertData, oPerson, oCitiesArray, oPhoneNumbersArray, oPhoneTypesMap);
 
 	if (oPersonsDialog.DoModal() != IDOK)
 		return;
 
-	if (!pPersonDocument->InsertRecord(oPerson, oPhoneTypesArray))
+	CPersonsFull oPersonInfo(oPerson, oPhoneNumbersArray);
+
+	if (!pPersonDocument->InsertRecord(oPersonInfo))
 		AfxMessageBox(_T("Record insert failed."));
 }
 

@@ -3,6 +3,7 @@
 #include "CPersonsData.h"
 #include "CPhoneNumbersData.h"
 #include "CSelfClearingMap.h"
+#include "CPersonsFull.h"
 
 
 class CPersonsDocument :public CDocument
@@ -41,8 +42,8 @@ public:
 	/// <returns>Връща указател съдържащ информацията на записа.</returns>
 	PERSONS* GetPersonByIdFromPersonsArray(long lID);
 	/// <summary>Функция която добавя нов запис в базата.</summary>
-	/// <param name="recPerson">Референция към обект който ще бъде добавен в базата.</param>
-	bool InsertRecord(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray);
+	/// <param name="oPersonInfo">Референция към обект който съдържа обект с актуална информация и асив който съдържа всички актуализирани записи за телефонните номера.</param>
+	bool InsertRecord(CPersonsFull& oPersonInfo);
 	/// <summary>Функция която изтрива запис от таблицата 'PERSONS' чието 'ID' отговаря на 'lID' и също така изтрива всички записи от таблицата 'PHONE_NUMBERS' чието 'PERSON_ID' отговаря на 'lID'.</summary>
 	/// <param name="lID">Уникален идентификатор чрез който ще се изтрие конкретен запис.</param>
 	bool DeletePersonAndPhoneNumbers(long lID);
@@ -60,9 +61,8 @@ public:
 	/// <param name="oMap">Мап в който се записват всички изчетени записи от базата.</param>
 	bool GetAllPhoneTypes(CSelfClearingMap<long, PHONE_TYPES*>& oMap);
 	/// <summary>Функция която актуализира всички телефонни номера на контакт както и него самия.</summary>
-	/// <param name="recPerson">Референция към обект който съдържа обект с актуална информация.</param>
-	/// <param name="oPhoneNumbersArray">Масив който съдържа всички актуализирани записи за телефонните номера.</param>
-	bool UpdatePersonAndPhoneNumbers(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray);
+	/// <param name="oPersonInfo">Референция към обект който съдържа обект с актуална информация и асив който съдържа всички актуализирани записи за телефонните номера.</param>
+	bool UpdatePersonAndPhoneNumbers(CPersonsFull& oPersonInfo);
 	/// <summary>Функция която връща град според уникален идентифокатор 'lID'.</summary>
 	/// <param name="lID">Уникален идентифокатор</param>
 	/// <param name="oCity">Референция към обект където ще се запише запис</param>

@@ -162,25 +162,25 @@ void CPersonsDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint = NULL)
 	UpdateAllViews(NULL, lHint, pHint);
 }
 
-bool CPersonsDocument::InsertRecord(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray)
+bool CPersonsDocument::InsertRecord(CPersonsFull& oPersonInfo)
 {
-	if (!m_ÓPersonsData.InsertPersonAndPhoneNumbers(recPerson, oPhoneNumbersArray))
+	if (!m_ÓPersonsData.InsertPersonAndPhoneNumbers(oPersonInfo.GetPerson(), oPersonInfo.GetPhoneNumbers()))
 		return false;
 
-	AddPersonToPersonsArray(recPerson);
+	AddPersonToPersonsArray(oPersonInfo.GetPerson());
 
-	OnUpdateAllViews(ContextMenuOperations::InsertRecord, (CObject*)recPerson.lID);
+	OnUpdateAllViews(ContextMenuOperations::InsertRecord, (CObject*)oPersonInfo.GetPerson().lID);
 	return true;
 }
 
-bool CPersonsDocument::UpdatePersonAndPhoneNumbers(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray)
+bool CPersonsDocument::UpdatePersonAndPhoneNumbers(CPersonsFull& oPersonInfo)
 {
-	if (!m_ÓPersonsData.UpdatePersonAndPhoneNumbers(recPerson, oPhoneNumbersArray))
+	if (!m_ÓPersonsData.UpdatePersonAndPhoneNumbers(oPersonInfo.GetPerson(), oPersonInfo.GetPhoneNumbers()))
 		return false;
 
-	UpdatePersonFromPersonsArray(recPerson.lID, recPerson);
+	UpdatePersonFromPersonsArray(oPersonInfo.GetPerson().lID, oPersonInfo.GetPerson());
 
-	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)recPerson.lID);
+	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)oPersonInfo.GetPerson().lID);
 	return true;
 }
 

@@ -50,9 +50,11 @@ public:
 	/// <param name="recPersons">Запис който съдържа актуалната информация.</param>
 	/// <param name="oModifiedPhoneNumbersMap">Колекция съдържаща всички записи на телефонни номера след като е приключена работата с диалоговия прозорец.</param>
 	bool UpdatePersonAndPhoneNumbers(const PERSONS& recPersons, CPhoneNumbersArray& oModifiedPhoneNumbersArray);
-
+	/// <summary>Функция която връща град според уникален идентифокатор 'lID'.</summary>
+	/// <param name="lID">Уникален идентифокатор</param>
+	/// <param name="oCity">Референция към обект където ще се запише запис</param>
+	/// <returns></returns>
 	bool SelectCityWhereID(const long lID, CITIES& recCities);
-
 private:
 	/// <summary>Сравнява 2 обекта за разлики между тях.</summary>
 	/// <param name="oComparedPhoneNumber">Обект който ще бъде сравняван.</param>
