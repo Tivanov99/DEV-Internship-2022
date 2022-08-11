@@ -5,8 +5,8 @@
 #include <afxcontrolbars.h>
 #include <afxcontrolbars.h>
 #include "Structures.h"
-#include "CBaseTable.h"
-#include "CTableAccessor.h"
+#include "BaseTable.h"
+#include "TableAccessor.h"
 
 using namespace std;
 

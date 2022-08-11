@@ -3,7 +3,7 @@
 #include "DialogWindowEnumeration.h"
 #include "TextDataValidator.h"
 #include <map>
-#include "CSelfClearingMap.h"
+#include "SelfClearingMap.h"
 using namespace std;
 
 

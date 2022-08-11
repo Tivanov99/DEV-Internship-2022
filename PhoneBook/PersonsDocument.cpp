@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CPersonsDocument.h"
+#include "PersonsDocument.h"
 
 IMPLEMENT_DYNCREATE(CPersonsDocument, CDocument)
 

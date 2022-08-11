@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CPersonsTable.h"
+#include "PersonsTable.h"
 #include "ErrorVisualizator.h"
 
 

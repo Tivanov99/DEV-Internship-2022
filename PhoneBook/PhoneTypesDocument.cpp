@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CPhoneTypesDocument.h"
+#include "PhoneTypesDocument.h"
 
 IMPLEMENT_DYNCREATE(CPhoneTypesDocument, CDocument)
 
@@ -67,6 +67,8 @@ bool CPhoneTypesDocument::DeletePhoneTypeById(long lID)
 
 	if (!DeletePhoneTypeFromPhoneTypesArray(lID))
 		return false;
+
+
 
 	OnUpdateAllViews(ContextMenuOperations::Delete, (CObject*)lID);
 	return true;

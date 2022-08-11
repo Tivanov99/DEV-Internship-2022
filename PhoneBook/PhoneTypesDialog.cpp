@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CPhoneTypesDialog.h"
+#include "PhoneTypesDialog.h"
 #include "resource.h"
 
 IMPLEMENT_DYNAMIC(CPhoneTypesDialog, CDialog)

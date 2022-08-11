@@ -77,8 +77,9 @@ bool CCitiesDocument::DeleteCityById(long lID)
 
 	DeleteCityFromCitiesArray(lID);
 
+
 	OnUpdateAllViews(ContextMenuOperations::Delete, (CObject*)lID);
-	return true;
+	return true;	
 }
 
 void CCitiesDocument::OnUpdateAllViews(LPARAM lHint, CObject* pHint)

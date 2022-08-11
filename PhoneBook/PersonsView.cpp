@@ -1,15 +1,15 @@
 ﻿#include "pch.h"
-#include "CPersonsView.h"
+#include "PersonsView.h"
 #include "resource.h"
 #include "PhoneBook.h"
-#include "CPersonsDialog.h"
+#include "PersonsDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 #include <map>
-#include "CSelfClearingMap.h"
-#include "CPersonsFull.h"
+#include "SelfClearingMap.h"
+#include "PersonsFull.h"
 
 IMPLEMENT_DYNCREATE(CPersonsView, CListView)
 

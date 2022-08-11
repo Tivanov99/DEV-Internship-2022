@@ -42,11 +42,8 @@ public:
 	// Methods
 	// ----------------
 public:
-	/// <summary>
-	/// Функция която конструира пропърти сет нужен при добавяне, изтриване или актуализиране на запис.
-	/// </summary>
-	/// <returns>Обект</returns>
-	bool GetModifyDBPropSet();
+	/// <summary>Функция която конструира 'rowset' нужен при добавяне, изтриване или актуализиране на запис./// </summary>
+	bool BuildRowSet();
 	/// <summary>Функция която изпълнява команда в базата данни.</summary>
 	/// <param name="strQuery">Заявката към базата.</param>
 	/// <param name="eQueryAccessor">Типът на достъп</param>
@@ -99,8 +96,9 @@ private:
 
 
 
+
 template <typename Record_Type, class Table_AcessorType>
-bool CBaseTable<Record_Type, Table_AcessorType>::GetModifyDBPropSet()
+bool CBaseTable<Record_Type, Table_AcessorType>::BuildRowSet()
 {
 	CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
 
@@ -116,13 +114,13 @@ bool CBaseTable<Record_Type, Table_AcessorType>::GetModifyDBPropSet()
 		return false;
 	}
 
-	if(oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true)==0)
+	if (oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true) == 0)
 	{
 		AfxMessageBox(_T("Failed to add 'DBPROP_IRowsetChange' property to rowset!"));
 		return false;
 	}
 
-	if (oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE)==0)
+	if (oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE) == 0)
 	{
 		AfxMessageBox(_T("Failed to add 'DBPROP_UPDATABILITY' property to rowset!"));
 		return false;
@@ -130,8 +128,7 @@ bool CBaseTable<Record_Type, Table_AcessorType>::GetModifyDBPropSet()
 
 	m_RowSet = oUpdateDBPropSet;
 	return true;
-};
-
+}
 
 template <typename Record_Type, class Table_AcessorType>
 bool CBaseTable<Record_Type, Table_AcessorType>::ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor)

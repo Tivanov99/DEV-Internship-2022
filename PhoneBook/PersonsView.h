@@ -1,5 +1,5 @@
 #pragma once
-#include "CPersonsDocument.h"
+#include "PersonsDocument.h"
 
 
 class CPersonsView :public CListView

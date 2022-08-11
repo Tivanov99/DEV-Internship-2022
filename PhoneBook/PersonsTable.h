@@ -4,9 +4,9 @@
 #include <iostream>
 #include <afxcontrolbars.h>
 #include "Structures.h"
-#include "CSelfClearingTypedPtrArray.h"
-#include "CBaseTable.h"
-#include "CTableAccessor.h"
+#include "SelfClearingTypedPtrArray.h"
+#include "BaseTable.h"
+#include "TableAccessor.h"
 
 
 using namespace std;

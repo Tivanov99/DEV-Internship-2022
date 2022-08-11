@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "PhoneBook.h"
 #include "afxdialogex.h"
-#include "CPersonsDialog.h"
+#include "PersonsDialog.h"
 #include "resource.h"
-#include "CPhoneNumbersDialog.h"
+#include "PhoneNumbersDialog.h"
 
 
 IMPLEMENT_DYNAMIC(CPersonsDialog, CDialog)

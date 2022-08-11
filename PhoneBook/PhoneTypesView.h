@@ -1,5 +1,5 @@
 #pragma once
-#include "CPhoneTypesDocument.h"
+#include "PhoneTypesDocument.h"
 class CPhoneTypesView :public CListView
 {
 protected: // create from serialization only

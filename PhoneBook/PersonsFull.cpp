@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CPersonsFull.h"
+#include "PersonsFull.h"
 
 CPersonsFull:: CPersonsFull(PERSONS& recPerson, CPhoneNumbersArray& oPhoneNumbersArray)
 	:m_recPerson(recPerson), m_PhoneNumbersArray(oPhoneNumbersArray)

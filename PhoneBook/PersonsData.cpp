@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "CPersonsData.h"
-#include "CPhoneNumbersTable.h"
-#include "CPhoneTypesTable.h"
+#include "PersonsData.h"
+#include "PhoneNumbersTable.h"
+#include "PhoneTypesTable.h"
 #include "CitiesTable.h"
 
 CPersonsData::CPersonsData()

@@ -1,6 +1,6 @@
 #pragma once
 #include "Structures.h"
-#include "CPersonsTable.h"
+#include "PersonsTable.h"
 #include "DataBaseConnector.h"
 #include <map>
 

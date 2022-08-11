@@ -1,8 +1,8 @@
 #pragma once
 #include <afxtempl.h>
 #include "GlobalConstants.h"
-#include "CSelfClearingTypedPtrArray.h"
-#include "CSelfClearingMap.h"
+#include "SelfClearingTypedPtrArray.h"
+#include "SelfClearingMap.h"
 
 /// <summary>
 ///  ƒискова структура CITIES предназначена за таблицата 'CITIES'

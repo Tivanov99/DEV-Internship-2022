@@ -1,6 +1,6 @@
 #pragma once
 #include "Structures.h"
-#include "CPhoneTypesTable.h"
+#include "PhoneTypesTable.h"
 class CPhoneTypesData
 {
 public:

@@ -6,9 +6,9 @@
 #include "PhoneBook.h"
 #endif
 
-#include "CPhoneTypesView.h"
+#include "PhoneTypesView.h"
 #include "resource.h"
-#include "CPhoneTypesDialog.h"
+#include "PhoneTypesDialog.h"
 
 
 IMPLEMENT_DYNCREATE(CPhoneTypesView, CListView)

@@ -1,6 +1,6 @@
 #pragma once
 #include "Structures.h"
-#include "CPhoneTypesData.h"
+#include "PhoneTypesData.h"
 class CPhoneTypesDocument :public CDocument
 {
 protected: // create from serialization only

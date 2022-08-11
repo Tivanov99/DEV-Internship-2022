@@ -9,14 +9,14 @@
 #include "CitiesDoc.h"
 #include "CitiesView.h"
 #include "CitiesTable.h"
-#include "CPersonsDocument.h"
-#include "CPersonsView.h"
-#include "CPhoneTypesView.h"
+#include "PersonsDocument.h"
+#include "PersonsView.h"
+#include "PhoneTypesView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-#include "CSelfClearingTypedPtrArray.h"
+#include "SelfClearingTypedPtrArray.h"
 #include "Structures.h"
 
 

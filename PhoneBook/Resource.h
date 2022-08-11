@@ -34,6 +34,7 @@
 #define IDD_PERSONS_DIALOG              320
 #define IDD_PHONE_NUMBERS_DIALOG        328
 #define IDD_PHONE_TYPES_DIALOG          330
+#define IDR_VIEW1                       337
 #define IDC_EDB_CITIES_NAME             1001
 #define IDC_CITIES_LIST                 1002
 #define IDC_STT_NAME                    1003
@@ -75,7 +76,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        337
+#define _APS_NEXT_RESOURCE_VALUE        343
 #define _APS_NEXT_COMMAND_VALUE         32825
 #define _APS_NEXT_CONTROL_VALUE         1067
 #define _APS_NEXT_SYMED_VALUE           310

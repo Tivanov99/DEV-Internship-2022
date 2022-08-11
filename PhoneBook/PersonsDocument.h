@@ -1,9 +1,9 @@
 #pragma once
 #include "Structures.h"
-#include "CPersonsData.h"
-#include "CPhoneNumbersData.h"
-#include "CSelfClearingMap.h"
-#include "CPersonsFull.h"
+#include "PersonsData.h"
+#include "PhoneNumbersData.h"
+#include "SelfClearingMap.h"
+#include "PersonsFull.h"
 
 
 class CPersonsDocument :public CDocument

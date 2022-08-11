@@ -184,7 +184,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CBaseTable.h" />
+    <ClInclude Include="BaseTable.h" />
     <ClInclude Include="CitiesData.h" />
     <ClInclude Include="CitiesDialog.h" />
     <ClInclude Include="CitiesDocument.h" />
@@ -192,24 +192,24 @@
       <DeploymentContent>true</DeploymentContent>
     </ClInclude>
     <ClInclude Include="CitiesView.h" />
-    <ClInclude Include="CPersonsFull.h" />
-    <ClInclude Include="CPhoneNumbersDialog.h" />
-    <ClInclude Include="CPhoneTypesData.h" />
-    <ClInclude Include="CPhoneTypesDialog.h" />
-    <ClInclude Include="CPhoneTypesDocument.h" />
-    <ClInclude Include="CPhoneTypesTable.h" />
-    <ClInclude Include="CPhoneTypesView.h" />
-    <ClInclude Include="CSelfClearingMap.h" />
-    <ClInclude Include="CTableAccessor.h" />
+    <ClInclude Include="PersonsFull.h" />
+    <ClInclude Include="PhoneNumbersDialog.h" />
+    <ClInclude Include="PhoneTypesData.h" />
+    <ClInclude Include="PhoneTypesDialog.h" />
+    <ClInclude Include="PhoneTypesDocument.h" />
+    <ClInclude Include="PhoneTypesTable.h" />
+    <ClInclude Include="PhoneTypesView.h" />
+    <ClInclude Include="SelfClearingMap.h" />
+    <ClInclude Include="TableAccessor.h" />
     <ClInclude Include="ChildFrm.h" />
-    <ClInclude Include="CPersonsData.h" />
-    <ClInclude Include="CPersonsDialog.h" />
-    <ClInclude Include="CPersonsDocument.h" />
-    <ClInclude Include="CPersonsTable.h" />
-    <ClInclude Include="CPersonsView.h" />
+    <ClInclude Include="PersonsData.h" />
+    <ClInclude Include="PersonsDialog.h" />
+    <ClInclude Include="PersonsDocument.h" />
+    <ClInclude Include="PersonsTable.h" />
+    <ClInclude Include="PersonsView.h" />
     <ClInclude Include="CitiesDataValidator.h" />
-    <ClInclude Include="CPhoneNumbersData.h" />
-    <ClInclude Include="CPhoneNumbersTable.h" />
+    <ClInclude Include="PhoneNumbersData.h" />
+    <ClInclude Include="PhoneNumbersTable.h" />
     <ClInclude Include="DataBaseConnector.h" />
     <ClInclude Include="DialogWindowEnumeration.h" />
     <ClInclude Include="Enumerations.h" />
@@ -222,7 +222,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="PhoneBook.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="CSelfClearingTypedPtrArray.h" />
+    <ClInclude Include="SelfClearingTypedPtrArray.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TextDataValidator.h" />
   </ItemGroup>
@@ -233,21 +233,21 @@
     <ClCompile Include="CitiesTable.cpp" />
     <ClCompile Include="CitiesView.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
-    <ClCompile Include="CPersonsData.cpp" />
-    <ClCompile Include="CPersonsDialog.cpp" />
-    <ClCompile Include="CPersonsDocument.cpp" />
-    <ClCompile Include="CPersonsFull.cpp" />
-    <ClCompile Include="CPersonsTable.cpp" />
-    <ClCompile Include="CPersonsView.cpp" />
+    <ClCompile Include="PersonsData.cpp" />
+    <ClCompile Include="PersonsDialog.cpp" />
+    <ClCompile Include="PersonsDocument.cpp" />
+    <ClCompile Include="PersonsFull.cpp" />
+    <ClCompile Include="PersonsTable.cpp" />
+    <ClCompile Include="PersonsView.cpp" />
     <ClCompile Include="CitiesDataValidator.cpp" />
-    <ClCompile Include="CPhoneNumbersData.cpp" />
-    <ClCompile Include="CPhoneNumbersDialog.cpp" />
-    <ClCompile Include="CPhoneNumbersTable.cpp" />
-    <ClCompile Include="CPhoneTypesData.cpp" />
-    <ClCompile Include="CPhoneTypesDialog.cpp" />
-    <ClCompile Include="CPhoneTypesDocument.cpp" />
-    <ClCompile Include="CPhoneTypesTable.cpp" />
-    <ClCompile Include="CPhoneTypesView.cpp" />
+    <ClCompile Include="PhoneNumbersData.cpp" />
+    <ClCompile Include="PhoneNumbersDialog.cpp" />
+    <ClCompile Include="PhoneNumbersTable.cpp" />
+    <ClCompile Include="PhoneTypesData.cpp" />
+    <ClCompile Include="PhoneTypesDialog.cpp" />
+    <ClCompile Include="PhoneTypesDocument.cpp" />
+    <ClCompile Include="PhoneTypesTable.cpp" />
+    <ClCompile Include="PhoneTypesView.cpp" />
     <ClCompile Include="DataBaseConnector.cpp" />
     <ClCompile Include="ErrorVisualizator.cpp" />
     <ClCompile Include="MainFrm.cpp" />

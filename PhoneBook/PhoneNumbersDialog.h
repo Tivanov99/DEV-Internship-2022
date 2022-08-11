@@ -1,7 +1,7 @@
 #pragma once
 #include "afxdialogex.h"
 #include "Structures.h"
-#include "CSelfClearingMap.h"
+#include "SelfClearingMap.h"
 #include "DialogWindowEnumeration.h"
 
 

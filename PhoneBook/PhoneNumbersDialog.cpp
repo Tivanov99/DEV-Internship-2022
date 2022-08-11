@@ -4,7 +4,7 @@
 #include "pch.h"
 #include "PhoneBook.h"
 #include "afxdialogex.h"
-#include "CPhoneNumbersDialog.h"
+#include "PhoneNumbersDialog.h"
 #include <map>
 
 
