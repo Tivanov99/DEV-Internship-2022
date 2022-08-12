@@ -192,6 +192,7 @@
       <DeploymentContent>true</DeploymentContent>
     </ClInclude>
     <ClInclude Include="CitiesView.h" />
+    <ClInclude Include="JustTest.h" />
     <ClInclude Include="PersonsFull.h" />
     <ClInclude Include="PhoneNumbersDialog.h" />
     <ClInclude Include="PhoneTypesData.h" />
@@ -224,6 +225,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SelfClearingTypedPtrArray.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TestDocument.h" />
     <ClInclude Include="TextDataValidator.h" />
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +235,7 @@
     <ClCompile Include="CitiesTable.cpp" />
     <ClCompile Include="CitiesView.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="JustTest.cpp" />
     <ClCompile Include="PersonsData.cpp" />
     <ClCompile Include="PersonsDialog.cpp" />
     <ClCompile Include="PersonsDocument.cpp" />
@@ -259,6 +262,7 @@
     </ClCompile>
     <ClCompile Include="PhoneBook.cpp" />
     <ClCompile Include="SqlQueries.cpp" />
+    <ClCompile Include="TestDocument.cpp" />
     <ClCompile Include="TextDataValidator.cpp" />
   </ItemGroup>
   <ItemGroup>

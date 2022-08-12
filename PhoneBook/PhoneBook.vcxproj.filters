@@ -162,6 +162,12 @@
     <ClInclude Include="PersonsFull.h">
       <Filter>Parameters Objects</Filter>
     </ClInclude>
+    <ClInclude Include="TestDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JustTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PhoneBook.cpp">
@@ -247,6 +253,12 @@
     </ClCompile>
     <ClCompile Include="PersonsFull.cpp">
       <Filter>Source Files\Parameters Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="TestDocument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JustTest.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
