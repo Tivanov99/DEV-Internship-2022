@@ -262,7 +262,6 @@
     </ClCompile>
     <ClCompile Include="PhoneBook.cpp" />
     <ClCompile Include="SqlQueries.cpp" />
-    <ClCompile Include="TestDocument.cpp" />
     <ClCompile Include="TextDataValidator.cpp" />
   </ItemGroup>
   <ItemGroup>

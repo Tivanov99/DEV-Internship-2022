@@ -11,98 +11,88 @@ CPhoneNumbersData::~CPhoneNumbersData() {};
 
 bool CPhoneNumbersData::SelectAll(CPhoneNumbersArray& oPhoneNumbersArray)
 {
-	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
-
-	if (!pDbConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
+	CPhoneNumbersTable oPhoneNumbersTable(DataBaseConnector::GetInstance()->GetSession());
 
 	if (!oPhoneNumbersTable.SelectAll(oPhoneNumbersArray))
 	{
-		pDbConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 		return false;
 	}
-	pDbConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 
 	return true;
 };
 
 bool CPhoneNumbersData::SelectWhereID(const long lID, PHONE_NUMBERS& recPhoneNumbers)
 {
-	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
-
-	if (!pDbConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
+	CPhoneNumbersTable oPhoneNumbersTable(DataBaseConnector::GetInstance()->GetSession());
 
 	if (!oPhoneNumbersTable.SelectWhereID(lID, recPhoneNumbers))
 	{
-		pDbConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 
 		return false;
 	}
-	pDbConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 
 	return true;
 }
 
 bool CPhoneNumbersData::UpdateWhereID(const long lID, const PHONE_NUMBERS& recPhoneNumbers)
 {
-	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
-
-	if (!pDbConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
+	CPhoneNumbersTable oPhoneNumbersTable(DataBaseConnector::GetInstance()->GetSession());
 
 	if (!oPhoneNumbersTable.UpdateWhereID(lID, recPhoneNumbers))
 	{
-		pDbConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 		return false;
 	}
-	pDbConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 
 	return true;
 }
 
 bool CPhoneNumbersData::InsertPhoneNumber(PHONE_NUMBERS& recPhoneNumbers)
 {
-	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
-
-	if (!pDbConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
+	CPhoneNumbersTable oPhoneNumbersTable(DataBaseConnector::GetInstance()->GetSession());
 
 	if (!oPhoneNumbersTable.InsertRecord(recPhoneNumbers))
 	{
-		pDbConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 
 		return false;
 	}
-	pDbConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 
 	return true;
 }
 
 bool CPhoneNumbersData::DeleteWhereID(const long lID)
 {
-	DataBaseConnector* pDbConnector = DataBaseConnector::GetInstance();
-
-	if (!pDbConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CPhoneNumbersTable oPhoneNumbersTable(pDbConnector->GetSession());
+	CPhoneNumbersTable oPhoneNumbersTable(DataBaseConnector::GetInstance()->GetSession());
 
 	if (!oPhoneNumbersTable.DeleteWhereID(lID))
 	{
-		pDbConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 
 		return false;
 	}
-	pDbConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 
 	return true;
 }

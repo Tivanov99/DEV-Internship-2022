@@ -82,6 +82,7 @@ INT_PTR CPersonsDocument::GetPersonIndexFromPersonsArray(long lID)
 
 		return i;
 	}
+
 	return -1;
 }
 
@@ -109,6 +110,7 @@ bool CPersonsDocument::GetAllPhoneTypes(CSelfClearingMap<long, PHONE_TYPES*>& oM
 		*pPhoneType = *pCurrentPhoneType;
 		oMap.SetAt(pPhoneType->lID, pPhoneType);
 	}
+
 	return true;
 }
 
@@ -145,8 +147,11 @@ bool CPersonsDocument::InsertRecord(CPersonsFull& oPersonInfo)
 {
 	if (!m_ÓPersonsData.InsertPersonAndPhoneNumbers(oPersonInfo.GetPerson(), oPersonInfo.GetPhoneNumbers()))
 		return false;
+
 	AddPersonToPersonsArray(oPersonInfo.GetPerson());
+
 	OnUpdateAllViews(ContextMenuOperations::InsertRecord, (CObject*)oPersonInfo.GetPerson().lID);
+
 	return true;
 }
 
@@ -154,8 +159,10 @@ bool CPersonsDocument::UpdatePersonAndPhoneNumbers(CPersonsFull& oPersonInfo)
 {
 	if (!m_ÓPersonsData.UpdatePersonAndPhoneNumbers(oPersonInfo.GetPerson(), oPersonInfo.GetPhoneNumbers()))
 		return false;
+
 	UpdatePersonFromPersonsArray(oPersonInfo.GetPerson().lID, oPersonInfo.GetPerson());
 	OnUpdateAllViews(ContextMenuOperations::Edit, (CObject*)oPersonInfo.GetPerson().lID);
+
 	return true;
 }
 
@@ -175,14 +182,11 @@ bool CPersonsDocument::DeletePersonAndPhoneNumbers(long lID)
 PERSONS* CPersonsDocument::AddPersonToPersonsArray(PERSONS& recPerson)
 {
 	PERSONS* pPerson = new PERSONS();
+
 	*pPerson = recPerson;
-	if (pPerson == NULL)
-	{
-		delete pPerson;
-		AfxMessageBox(_T("Failed to add city to document."));
-		return NULL;
-	}
+
 	m_oPersonsArray.Add(pPerson);
+
 	return pPerson;
 }
 
@@ -204,6 +208,7 @@ bool CPersonsDocument::DeletePersonFromPersonsArray(long lPersonId)
 void CPersonsDocument::UpdatePersonFromPersonsArray(long lID, PERSONS& recUpdatedPerson)
 {
 	INT_PTR lPersonIndex = GetPersonIndexFromPersonsArray(lID);
+
 	if (lPersonIndex == -1)
 		return;
 

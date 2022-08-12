@@ -11,80 +11,72 @@ CPhoneTypesData::~CPhoneTypesData() {};
 
 bool CPhoneTypesData::SelectAll(CPhoneTypesArray& oPhoneTyesArray)
 {
-	DataBaseConnector* pdbConnector  = DataBaseConnector::GetInstance();
-	if (!pdbConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CPhoneTypesTable oPhoneTypesTable(pdbConnector->GetSession());
+	CPhoneTypesTable oPhoneTypesTable(DataBaseConnector::GetInstance()->GetSession());
 	if (!oPhoneTypesTable.SelectAll(oPhoneTyesArray))
 	{
-		pdbConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 		return false;
 	}
-	pdbConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 	return true;
 };
 bool CPhoneTypesData::SelectWhereID(const long lID, PHONE_TYPES& recPhoneType)
 {
-	DataBaseConnector* pdbConnector = DataBaseConnector::GetInstance();
-
-	if (!pdbConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CPhoneTypesTable oPhoneTypesTable(pdbConnector->GetSession());
+	CPhoneTypesTable oPhoneTypesTable(DataBaseConnector::GetInstance()->GetSession());
 	if (!oPhoneTypesTable.SelectWhereID(lID, recPhoneType))
 	{
-		pdbConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 		return false;
 	}
-	pdbConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 	return true;
 }
 
 bool CPhoneTypesData::UpdateWhereID(const long lID, const PHONE_TYPES& recPhoneType)
 {
-	DataBaseConnector* pdbConnector = DataBaseConnector::GetInstance();
-
-	if (!pdbConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CPhoneTypesTable oPhoneTypesTable(pdbConnector->GetSession());
+	CPhoneTypesTable oPhoneTypesTable(DataBaseConnector::GetInstance()->GetSession());
 	if (!oPhoneTypesTable.UpdateWhereID(lID, recPhoneType))
 	{
-		pdbConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 		return false;
 	}
-	pdbConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 	return true;
 }
 
 bool CPhoneTypesData::InsertRecord(PHONE_TYPES& recPhoneType)
 {
-	DataBaseConnector* pdbConnector = DataBaseConnector::GetInstance();
-	pdbConnector->OpenSession();
-	CPhoneTypesTable oPhoneTypesTable(pdbConnector->GetSession());
+	DataBaseConnector::GetInstance()->OpenSession();
+	CPhoneTypesTable oPhoneTypesTable(DataBaseConnector::GetInstance()->GetSession());
 	if (!oPhoneTypesTable.InsertRecord(recPhoneType))
 	{
-		pdbConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 		return false;
 	}
-	pdbConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 	return true;
 }
 
 bool CPhoneTypesData::DeleteWhereID(const long lID)
 {
-	DataBaseConnector* pdbConnector = DataBaseConnector::GetInstance();
-
-	if (!pdbConnector->OpenSession())
+	if (!DataBaseConnector::GetInstance()->OpenSession())
 		return false;
 
-	CPhoneTypesTable oPhoneTypesTable(pdbConnector->GetSession());
+	CPhoneTypesTable oPhoneTypesTable(DataBaseConnector::GetInstance()->GetSession());
 	if (!oPhoneTypesTable.DeleteWhereID(lID))
 	{
-		pdbConnector->CloseSession();
+		DataBaseConnector::GetInstance()->CloseSession();
 		return false;
 	}
-	pdbConnector->CloseSession();
+	DataBaseConnector::GetInstance()->CloseSession();
 	return true;
 }

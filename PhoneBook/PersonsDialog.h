@@ -82,7 +82,7 @@ private:
 	/// <summary>Мембър отговарящ за входното поле съдържащо фамилното име на контакта.</summary>
 	CEdit m_edbPersonLastName;
 	/// <summary>Мембър отговарящ за входното поле съдържащо егн-то на контакта.</summary>
-	CEdit m_edbPersonUcn;
+	CEdit m_edbPersonUCN;
 	/// <summary>Мембър отговарящ за падащото меню с всички градове в него.</summary>
 	CComboBox m_cmbCitiesNames;
 	/// <summary> Мембър отговарящ за всички телефонни номера в него.</summary>

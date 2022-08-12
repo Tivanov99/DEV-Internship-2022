@@ -52,7 +52,7 @@ BOOL CPersonsDialog::OnInitDialog()
 		m_edbPersonFirstName.EnableWindow(false);
 		m_edbPersonSecondName.EnableWindow(false);
 		m_edbPersonLastName.EnableWindow(false);
-		m_edbPersonUcn.EnableWindow(false);
+		m_edbPersonUCN.EnableWindow(false);
 		m_cmbCitiesNames.EnableWindow(false);
 		m_lscPersonPhoneNumbers.EnableWindow(false);
 	}
@@ -67,7 +67,7 @@ void CPersonsDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDB_FIRST_NAME, m_edbPersonFirstName);
 	DDX_Control(pDX, IDC_EDB_SECOND_NAME, m_edbPersonSecondName);
 	DDX_Control(pDX, IDC_EDB_LAST_NAME, m_edbPersonLastName);
-	DDX_Control(pDX, IDC_EDB_PERSON_UCN, m_edbPersonUcn);
+	DDX_Control(pDX, IDC_EDB_PERSON_UCN, m_edbPersonUCN);
 	DDX_Control(pDX, IDC_CMB_CITIES_NAMES, m_cmbCitiesNames);
 	DDX_Control(pDX, IDC_LSC_PERSON_PHONE_NUMBERS, m_lscPersonPhoneNumbers);
 }
@@ -148,8 +148,8 @@ void CPersonsDialog::FillPersonDataFields()
 	m_edbPersonLastName.SetWindowText(m_recPerson.szLastName);
 	m_edbPersonLastName.SetLimitText(GlobalConstants::_nPersonLastNameSize);
 
-	m_edbPersonUcn.SetWindowText(m_recPerson.szUcn);
-	m_edbPersonUcn.SetLimitText(GlobalConstants::_nPersonUcnSize);
+	m_edbPersonUCN.SetWindowText(m_recPerson.szUcn);
+	m_edbPersonUCN.SetLimitText(GlobalConstants::_nPersonUcnSize);
 }
 
 void CPersonsDialog::FillCitiesComboBox()
@@ -263,7 +263,7 @@ void CPersonsDialog::OnOK()
 	_tcscpy_s(m_recPerson.szLastName, strPersonLastName);
 
 	CString strPersonUcn;
-	m_edbPersonUcn.GetWindowText(strPersonUcn);
+	m_edbPersonUCN.GetWindowText(strPersonUcn);
 	_tcscpy_s(m_recPerson.szUcn, strPersonUcn);
 
 	m_recPerson.lCityId = pCity->lID;
@@ -342,6 +342,9 @@ void CPersonsDialog::OnContextMenuReadData()
 {
 	PHONE_NUMBERS* pPhoneNumber = GetSelectedRecordItemData();
 
+	if (pPhoneNumber == NULL)
+		return;
+
 	CPhoneNumbersDialog oPhoneNumbersDialog(DialogWindowActions::ReadData, *pPhoneNumber, m_oPhoneTypesMap);
 
 	oPhoneNumbersDialog.DoModal();
@@ -350,19 +353,18 @@ void CPersonsDialog::OnContextMenuReadData()
 
 void CPersonsDialog::OnContextMenuInsert()
 {
-	PHONE_NUMBERS* pPhoneNumber = new PHONE_NUMBERS;
-	//_tcscpy_s(pPhoneNumber->szPhoneNumber, _T(""));
-
-	CPhoneNumbersDialog oPhoneNumbersDialog(DialogWindowActions::InsertData,*pPhoneNumber, m_oPhoneTypesMap);
+	PHONE_NUMBERS oPhoneNumber;
+	
+	CPhoneNumbersDialog oPhoneNumbersDialog(DialogWindowActions::InsertData, oPhoneNumber, m_oPhoneTypesMap);
 
 	if (oPhoneNumbersDialog.DoModal() != IDOK)
-	{
-		pPhoneNumber = NULL;
-		delete pPhoneNumber;
 		return;
-	}
 
-	pPhoneNumber->lPersonId = m_recPerson.lID;
+	PHONE_NUMBERS* pPhoneNumber = new PHONE_NUMBERS();
+
+	oPhoneNumber.lPersonId = m_recPerson.lID;
+
+	*pPhoneNumber = oPhoneNumber;
 
 	m_oPhoneNumbersArray.Add(pPhoneNumber);
 

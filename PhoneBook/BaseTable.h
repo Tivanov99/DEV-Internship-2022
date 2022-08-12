@@ -52,7 +52,7 @@ public:
 	// ----------------
 public:
 	/// <summary>Функция която конструира 'rowset' нужен при добавяне, изтриване или актуализиране на запис./// </summary>
-	CDBPropSet BuildRowSet();
+	bool BuildRowSet();
 	/// <summary>Функция която изпълнява команда в базата данни.</summary>
 	/// <param name="strQuery">Заявката към базата.</param>
 	/// <param name="eQueryAccessor">Типът на достъп</param>
@@ -99,7 +99,7 @@ public:
 private:
 	/// <summary>Клас мембър съдържащ името на текущата таблица в която се извърват операции.</summary>
 	CString m_strTableName;
-
+	/// <summary>Мембър чрез който се достъпват и обработват записите в базата.</summary>
 	CDBPropSet m_RowSet;
 };
 
@@ -107,60 +107,67 @@ private:
 
 
 template <typename Record_Type, class Table_AcessorType>
-CDBPropSet CBaseTable<Record_Type, Table_AcessorType>::BuildRowSet()
+bool CBaseTable<Record_Type, Table_AcessorType>::BuildRowSet()
 {
 	CDBPropSet oUpdateDBPropSet(DBPROPSET_ROWSET);
 
 	if (oUpdateDBPropSet.AddProperty(DBPROP_CANFETCHBACKWARDS, true) == 0)
 	{
 		AfxMessageBox(_T("Failed to add 'DBPROP_CANFETCHBACKWARDS' property to rowset!"));
-		return oUpdateDBPropSet;
+		return false;
 	}
 
 	if (oUpdateDBPropSet.AddProperty(DBPROP_IRowsetScroll, true) == 0)
 	{
 		AfxMessageBox(_T("Failed to add 'DBPROP_IRowsetScroll' property to rowset!"));
-		return oUpdateDBPropSet;
+		return false;
 	}
 
 	if (oUpdateDBPropSet.AddProperty(DBPROP_IRowsetChange, true) == 0)
 	{
 		AfxMessageBox(_T("Failed to add 'DBPROP_IRowsetChange' property to rowset!"));
-		return oUpdateDBPropSet;
+		return false;
 	}
 
 	if (oUpdateDBPropSet.AddProperty(DBPROP_UPDATABILITY, DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROPVAL_UP_DELETE) == 0)
 	{
 		AfxMessageBox(_T("Failed to add 'DBPROP_UPDATABILITY' property to rowset!"));
-		return oUpdateDBPropSet;
+		return false;
 	}
 
-	
-	return oUpdateDBPropSet;
+	m_RowSet = oUpdateDBPropSet;
+
+	return true;
 }
 
 template <typename Record_Type, class Table_AcessorType>
 bool CBaseTable<Record_Type, Table_AcessorType>::ExecuteQuery(const CString& strQuery, AccessorTypes eQueryAccessor)
 {
 	bool bResult = false;
-	switch (eQueryAccessor)
+
+	if (eQueryAccessor != AccessorTypes::Modifying && eQueryAccessor != AccessorTypes::NoneModifying)
 	{
-	case AccessorTypes::NoneModifying:
+		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
+		return bResult;
+	}
+
+	if (eQueryAccessor == AccessorTypes::NoneModifying)
+	{
 		FAILED(CCommand<CAccessor<Table_AcessorType>>::Open(m_oSession, strQuery)) ?
 			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
-			bResult = true;
-		break;
-
-	case AccessorTypes::Modifying:
-		FAILED(CCommand<CAccessor<Table_AcessorType>>::Open(m_oSession, strQuery, &BuildRowSet())) ?
-			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
-			bResult = true;
-		break;
-
-	default:
-		ErrorMessageVisualizator::ShowErrorMessage(lpszErrorInvalidQueryAcessor, strQuery);
-		break;
+			bResult= true;
 	}
+
+	if (eQueryAccessor == AccessorTypes::Modifying)
+	{
+		if (!BuildRowSet())
+			bResult= false;
+
+		FAILED(CCommand<CAccessor<Table_AcessorType>>::Open(m_oSession, strQuery, &m_RowSet)) ?
+			ErrorMessageVisualizator::ShowErrorMessage(lpszErrorExecutingQuery, strQuery) :
+			bResult= true;
+	}
+
 	return bResult;
 }
 
